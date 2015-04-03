@@ -1,0 +1,28 @@
+{
+  "name": "CapeJS",
+  "version": "0.1.0",
+  "description": "A lightweight Javascript UI library based on virtual-dom",
+  "main": "cape.js",
+  "browser": "cape.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oiax/capejs.git"
+  },
+  "author": "Oiax, Inc. and other contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oiax/dotreserve/issues"
+  },
+  "homepage": "https://github.com/oiax/capejs",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2"
+  }
+}
+
