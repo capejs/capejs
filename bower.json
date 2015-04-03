@@ -1,0 +1,21 @@
+{
+  "name": "CapeJS",
+  "version": "0.1.0",
+  "homepage": "https://github.com/oiax/capejs",
+  "repository": { "type": "git", "url": "git://github.com/oiax/capejs" },
+  "authors": ["Oiax, Inc. and other contributors"],
+  "license": "MIT",
+  "keywords": [
+    "virtual dom",
+    "framework",
+    "data binding",
+    "lightweight",
+    "user interface"
+  ],
+  "ignore": [
+    "**/.*",
+    "test"
+  ],
+  "dependencies": {
+  }
+}
