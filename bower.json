@@ -14,8 +14,11 @@
   ],
   "ignore": [
     "**/.*",
+    "package.json",
     "test"
   ],
   "dependencies": {
-  }
+    "jquery": "latest"
+  },
+  "main": "cape.js"
 }
