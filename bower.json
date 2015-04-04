@@ -20,5 +20,5 @@
   "dependencies": {
     "jquery": "latest"
   },
-  "main": "cape.js"
+  "main": "dist/cape.js"
 }

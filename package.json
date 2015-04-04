@@ -2,8 +2,8 @@
   "name": "capejs",
   "version": "0.2.0",
   "description": "A lightweight Javascript UI library based on virtual-dom",
-  "main": "cape.js",
-  "browser": "cape.js",
+  "main": "dist/cape.js",
+  "browser": "dist/cape.js",
   "directories": {
     "test": "test"
   },
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/oiax/capejs",
   "devDependencies": {
     "gulp": "^3.8.11",
-    "gulp-concat": "^2.5.2"
+    "gulp-concat": "^2.5.2",
+    "gulp-watch": "^4.2.3"
   }
 }
