@@ -161,18 +161,21 @@
       "this.tag('" + tagName + "', options)");
   }
 
-  if ("process" in global) module.exports = VdomBuilder;
-  global.VdomBuilder = VdomBuilder;
+  if (!global.CapeJS) {
+    var CapeJS = {};
+    if ("process" in global) module.exports = CapeJS;
+    global.CapeJS = CapeJS;
+  }
+  global.CapeJS.VdomBuilder = VdomBuilder;
 
 })((this || 0).self || global);
-
 
 (function(global) {
   "use strict;"
 
-  var CapeDataStore = function CapeDataStore() {};
+  var DataStore = function DataStore() {};
 
-  $.extend(CapeDataStore.prototype, {
+  $.extend(DataStore.prototype, {
     on: function(eventType, callback) {
       if (!this.handlers) this.handlers = {};
       if (!this.handlers[eventType]) this.handlers[eventType] = [];
@@ -186,19 +189,23 @@
     }
   });
 
-  if ("process" in global) module.exports = CapeDataStore;
-  global.CapeDataStore = CapeDataStore;
+  if (!global.CapeJS) {
+    var CapeJS = {};
+    if ("process" in global) module.exports = CapeJS;
+    global.CapeJS = CapeJS;
+  }
+  global.CapeJS.DataStore = DataStore;
 
 })((this || 0).self || global);
 
 (function(global) {
   "use strict;"
 
-  var CapeComponent = function CapeComponent() {
+  var Component = function Component() {
     this.forms = {};
   };
 
-  $.extend(CapeComponent.prototype, {
+  $.extend(Component.prototype, {
     mount: function(id) {
       this.root = document.getElementById(id);
       this.init();
@@ -232,7 +239,11 @@
     });
   }
 
-  if ("process" in global) module.exports = CapeComponent;
-  global.CapeComponent = CapeComponent;
+  if (!global.CapeJS) {
+    var CapeJS = {};
+    if ("process" in global) module.exports = CapeJS;
+    global.CapeJS = CapeJS;
+  }
+  global.CapeJS.Component = Component;
 
 })((this || 0).self || global);
