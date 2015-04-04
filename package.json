@@ -1,6 +1,6 @@
 {
   "name": "capejs",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A lightweight Javascript UI library based on virtual-dom",
   "main": "cape.js",
   "browser": "cape.js",
@@ -25,4 +25,3 @@
     "gulp-concat": "^2.5.2"
   }
 }
-

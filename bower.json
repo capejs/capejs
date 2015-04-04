@@ -1,6 +1,6 @@
 {
   "name": "capejs",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "homepage": "https://github.com/oiax/capejs",
   "repository": { "type": "git", "url": "git://github.com/oiax/capejs" },
   "authors": ["Oiax, Inc. and other contributors"],
@@ -22,4 +22,3 @@
   },
   "main": "cape.js"
 }
-
