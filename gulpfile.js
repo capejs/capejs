@@ -6,6 +6,7 @@ var paths = [
   './lib/cape/vdom_builder.js',
   './lib/cape/data_store.js',
   './lib/cape/component.js',
+  './lib/cape/router.js'
 ]
 
 var build = function() {
