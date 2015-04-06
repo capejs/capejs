@@ -9,11 +9,23 @@
   };
 
   $.extend(VdomBuilder.prototype, {
-    markup: function(tagName, arg1, arg2) {
-      this.contentTag(tagName, arg1, arg2);
-      return this.elements[0];
+    markup: function(callback) {
+      var root = this.component.root, formName, builder, attributes;
+
+      if (typeof callback !== 'function')
+        throw new Error("The first agument must be a function.");
+      if (callback.length === 0)
+        throw new Error("Callback requires an argument.");
+      if (root.tagName == 'form') formName = root.attributes.name;
+      builder = new VdomBuilder(this.component, formName);
+      callback.call(this.component, builder);
+
+      attributes = {};
+      for (var i = 0, len = root.attributes.length; i < len; i++)
+        attributes[root.attributes[i].nodeName] = root.attributes[i].value;
+      return this.h(root.tagName, attributes, builder.elements);
     },
-    contentTag: function(tagName) {
+    elem: function(tagName) {
       var args, options, content, callback, builder;
 
       args = Array.prototype.slice.call(arguments, 1);
@@ -33,68 +45,94 @@
         attributes = generateAttributes(options);
         this.elements.push(this.h(tagName, attributes, content));
       }
-    },
-    tag: function(tagName, options) {
-      attributes = generateAttributes(options);
-      this.elements.push(this.h(tagName, attributes));
+      return this;
     },
     text: function(content) {
       this.elements.push(content);
+      return this;
     },
     space: function() {
       this.elements.push(' ');
+      return this;
     },
     form: function(options, callback) {
       var name, builder, attributes;
 
       if (callback.length === 0) { throw new Error("Callback requires an argument.") }
-      name = options['name'] || '';
+      name = options.name || '';
       builder = new VdomBuilder(this.component, name);
       callback.call(this.component, builder);
       options = options || {};
-      if (options['onsubmit'] === undefined) {
-        options['onsubmit'] = function(e) { return false };
+      if (options.onsubmit === undefined) {
+        options.onsubmit = function(e) { return false };
       }
       attributes = generateAttributes(options);
       this.elements.push(this.h('form', attributes, builder.elements));
+      return this;
     },
     labelFor: function(id, content, options) {
       options = options || {};
-      options['htmlFor'] = id;
-      this.contentTag('label', content, options)
+      options.htmlFor = id;
+      this.element('label', content, options)
+      return this;
     },
     input: function(options) {
       var form, name, value;
 
       options = options || {};
-      name = options['name'];
-      value = options['value'];
+      name = options.name;
+      value = options.value;
       if (value === undefined && name !== undefined && this.formName !== undefined)
-        options['value'] = this.component.getValue(this.formName + '.' + name);
+        options.value = this.component.getValue(this.formName + '.' + name);
       attributes = generateAttributes(options);
       this.elements.push(this.h('input', attributes));
+      return this;
+    },
+    hiddenField: function(name, options) {
+      options = options || {};
+      options.type = 'hidden';
+      options.name = name;
+      this.input(options);
+      return this;
     },
     textField: function(name, options) {
-      var self = this;
-
       options = options || {};
-      options['type'] = 'text';
-      options['name'] = name;
+      options.type = 'text';
+      options.name = name;
       this.input(options);
+      return this;
+    },
+    textarea: function(name, options) {
+      var value = this.component.getValue(this.formName + '.' + name);
+      options.name = name;
+      this.element('textarea', value, options);
+      return this;
     },
     checkBox: function(attrName, options) {
       var checked = this.component.getValue(this.formName + '.' + attrName);
 
       options = options || {};
-      options['type'] = 'checkbox';
-      if (attrName) options['name'] = attrName;
-      if (checked) options['checked'] = 'checked';
-      if (!options['value']) options['value'] = '1';
+      options.type = 'checkbox';
+      if (attrName) options.name = attrName;
+      if (checked) options.checked = 'checked';
+      if (!options.value) options.value = '1';
       this.input($.extend({}, options, { type: 'hidden', value: '0' }));
       this.input(options);
+      return this;
     },
-    value: function(name) {
-      this.component.getValue(this.formName + '.' + name);
+    radioButton: function(attrName, options) {
+      var value = this.component.getValue(this.formName + '.' + attrName);
+
+      options = options || {};
+      options.type = 'radio';
+      if (attrName) options.name = attrName;
+      if (options.value === value) options.checked = 'checked';
+      this.input(options);
+      return this;
+    },
+    faIcon: function(iconName) {
+      this.i('', { class: 'fa fa-' + iconName});
+      return this;
     }
   });
 
@@ -153,13 +191,13 @@
     'menu', 'menuitem', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup',
     'option', 'output', 'p', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's',
     'samp', 'script', 'section', 'select', 'small', 'span', 'strong', 'style',
-    'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot',
+    'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'tfoot',
     'th', 'thead', 'time', 'title', 'tr', 'u', 'ul', 'var', 'video' ];
 
   for (var i = 0; i < normalElementNames.length; i++) {
     var tagName = normalElementNames[i];
     VdomBuilder.prototype[tagName] = new Function("arg1", "arg2",
-      "this.contentTag('" + tagName + "', arg1, arg2)");
+      "this.elem('" + tagName + "', arg1, arg2); return this");
   }
 
   var voidElementNames = [
@@ -170,7 +208,7 @@
   for (var i = 0; i < voidElementNames.length; i++) {
     var tagName = voidElementNames[i];
     VdomBuilder.prototype[tagName] = new Function("options",
-      "this.tag('" + tagName + "', options)");
+      "this.elem('" + tagName + "', options); return this");
   }
 
   if (!global.CapeJS) {
@@ -221,14 +259,20 @@
   $.extend(Component.prototype, {
     mount: function(id) {
       this.root = document.getElementById(id);
-      this.init();
+      if (this.init) this.init();
       this.forms = {};
       this.tree = this.render();
       this.rootNode = virtualDom.create(this.tree);
-      this.root.appendChild(this.rootNode);
+      this.root.parentNode.replaceChild(this.rootNode, this.root);
+      this.root = this.rootNode;
       serializeForms(this);
+      if (this.afterMount) this.afterMount();
     },
-    init: function() {},
+    unmount: function() {
+      if (this.beforeUnmount) this.beforeUnmount();
+      while (this.root.firstChild) this.root.removeChild(this.root.firstChild);
+      if (this.afterUnmount) this.afterUnmount();
+    },
     refresh: function() {
       var newTree, patches;
 
@@ -274,7 +318,7 @@
     component.forms = {};
     delete component.form;
     $(component.rootNode).find('form').each(function(i) {
-      var obj = {}, ary;
+      var obj = {};
 
       $.each($(this).serializeArray(), function() {
         obj[this.name] = this.value || '';
