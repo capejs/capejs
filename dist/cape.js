@@ -73,7 +73,7 @@
     labelFor: function(id, content, options) {
       options = options || {};
       options.htmlFor = id;
-      this.element('label', content, options)
+      this.elem('label', content, options)
       return this;
     },
     input: function(options) {
@@ -105,7 +105,7 @@
     textarea: function(name, options) {
       var value = this.component.getValue(this.formName + '.' + name);
       options.name = name;
-      this.element('textarea', value, options);
+      this.elem('textarea', value, options);
       return this;
     },
     checkBox: function(attrName, options) {
@@ -225,19 +225,37 @@
 
   var DataStore = function DataStore() {};
 
+  DataStore.create = function() {
+    if (!this.instance) this.instance = new(this);
+    return this.instance;
+  }
+
   $.extend(DataStore.prototype, {
     on: function(eventType, callback) {
+      var i, len;
       if (!this.handlers) this.handlers = {};
       if (!this.handlers[eventType]) this.handlers[eventType] = [];
+      for (i = 0, len = this.handlers[eventType].length; i < len; i++)
+        if (this.handlers[eventType][i] == callback) return;
       this.handlers[eventType].push(callback);
     },
-    off: function(eventType, callback) {}, // Not yet implemented.
-    trigger: function(eventType) {
-      var i;
+    off: function(eventType, callback) {
+      var i, len;
       if (!this.handlers || !this.handlers[eventType]) return;
-      for (i = 0; i < this.handlers[eventType].length; i++)
+      for (i = 0, len = this.handlers[eventType].length; i < len; i++) {
+        if (this.handlers[eventType][i] === callback) {
+          this.handlers[eventType].splice(i, 1);
+          break;
+        }
+      }
+    },
+    trigger: function(eventType) {
+      var i, len;
+      if (!this.handlers || !this.handlers[eventType]) return;
+      for (i = 0, len = this.handlers[eventType].length; i < len; i++)
         this.handlers[eventType][i].call(this, eventType);
-    }
+    },
+    refresh: function() {}
   });
 
   if (!global.CapeJS) {
@@ -258,8 +276,16 @@
 
   $.extend(Component.prototype, {
     mount: function(id) {
+      var self = this;
+
       this.root = document.getElementById(id);
       if (this.init) this.init();
+      if (this.dataStore) {
+        this.dataStore.refresh();
+        this.updateCallback = function() { self.refresh() };
+        this.dataStore.on('update', this.updateCallback);
+      }
+
       this.forms = {};
       this.tree = this.render();
       this.rootNode = virtualDom.create(this.tree);
@@ -270,6 +296,7 @@
     },
     unmount: function() {
       if (this.beforeUnmount) this.beforeUnmount();
+      if (this.dataStore) this.dataStore.off('update', this.updateCallback);
       while (this.root.firstChild) this.root.removeChild(this.root.firstChild);
       if (this.afterUnmount) this.afterUnmount();
     },
