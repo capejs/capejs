@@ -316,13 +316,12 @@
       this.handlers.push(callback);
     },
     off: function(callback) {}, // Not yet implemented.
-    hash: function(hash) {
+    visit: function(hash) {
       window.location.hash = hash;
       this.trigger();
     },
     trigger: function() {
       var hash, i;
-      if (!this.handlers) return;
 
       hash = window.location.href.split('#')[1] || '';
       if (hash != this.currentHash) {
@@ -330,6 +329,10 @@
           this.handlers[i].apply(this, hash.split('/'));
         this.currentHash = hash;
       }
+    },
+    exec: function(callback) {
+      var hash = window.location.href.split('#')[1] || '';
+      callback.apply(this, hash.split('/'));
     }
   });
 
@@ -339,6 +342,7 @@
 
   if (!window.CapeJS) window.CapeJS = {};
   window.CapeJS.router = new Router();
+  window.CapeJS.visit = function(hash) { window.CapeJS.router.visit(hash) }
 
   if (window.addEventListener)
     window.addEventListener('hashchange', trigger, false)
