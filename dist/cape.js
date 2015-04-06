@@ -1,9 +1,9 @@
 (function(global) {
   "use strict;"
 
-  var VdomBuilder = function VdomBuilder(component, formId) {
+  var VdomBuilder = function VdomBuilder(component, formName) {
     this.component = component;
-    this.formId = formId;
+    this.formName = formName;
     this.h = virtualDom.h;
     this.elements = [];
   };
@@ -22,7 +22,7 @@
       callback = extractCallback(args);
 
       if (callback) {
-        builder = new VdomBuilder(this.component, this.formId);
+        builder = new VdomBuilder(this.component, this.formName);
         if (callback.length === 0) { throw new Error("Callback requires an argument.") }
         callback.call(this.component, builder);
         attributes = generateAttributes(options);
@@ -44,14 +44,14 @@
     space: function() {
       this.elements.push(' ');
     },
-    form: function(name, options, callback) {
-      var builder, attributes;
+    form: function(options, callback) {
+      var name, builder, attributes;
 
       if (callback.length === 0) { throw new Error("Callback requires an argument.") }
+      name = options['name'] || '';
       builder = new VdomBuilder(this.component, name);
       callback.call(this.component, builder);
       options = options || {};
-      options['name'] = name;
       if (options['onsubmit'] === undefined) {
         options['onsubmit'] = function(e) { return false };
       }
@@ -69,8 +69,8 @@
       options = options || {};
       name = options['name'];
       value = options['value'];
-      if (value === undefined && name !== undefined && this.formId !== undefined)
-        options['value'] = this.component.getValue(this.formId, name);
+      if (value === undefined && name !== undefined && this.formName !== undefined)
+        options['value'] = this.component.getValue(this.formName + '.' + name);
       attributes = generateAttributes(options);
       this.elements.push(this.h('input', attributes));
     },
@@ -82,18 +82,19 @@
       options['name'] = name;
       this.input(options);
     },
-    checkBox: function(name, options) {
-      var checked = this.component.getValue(this.formId, name);
+    checkBox: function(attrName, options) {
+      var checked = this.component.getValue(this.formName + '.' + attrName);
 
       options = options || {};
       options['type'] = 'checkbox';
-      if (name) options['name'] = name;
+      if (attrName) options['name'] = attrName;
       if (checked) options['checked'] = 'checked';
       if (!options['value']) options['value'] = '1';
+      this.input($.extend({}, options, { type: 'hidden', value: '0' }));
       this.input(options);
     },
     value: function(name) {
-      this.component.getValue(this.formId, name);
+      this.component.getValue(this.formName + '.' + name);
     }
   });
 
@@ -192,6 +193,7 @@
       if (!this.handlers[eventType]) this.handlers[eventType] = [];
       this.handlers[eventType].push(callback);
     },
+    off: function(eventType, callback) {}, // Not yet implemented.
     trigger: function(eventType) {
       var i;
       if (!this.handlers || !this.handlers[eventType]) return;
@@ -236,19 +238,41 @@
       this.rootNode = virtualDom.patch(this.rootNode, patches);
       this.tree = newTree;
     },
-    getValue: function(formName, attrName) {
-      var form = this.forms[formName];
+    getValue: function(name) {
+      var names, formName, attrName, form;
+
+      names = getNames(name);
+      formName = names[0];
+      attrName = names[1];
+
+      form = this.forms[formName];
       if (form) return form[attrName];
-      else return {};
+      else return '';
     },
-    setValue: function(formName, attrName, value) {
+    setValue: function(name, value) {
+      var names, formName, attrName;
+
+      names = getNames(name);
+      formName = names[0];
+      attrName = names[1];
+
       if (!this.virtualForms[formName]) this.virtualForms[formName] = {};
       this.virtualForms[formName][attrName] = value;
     }
   });
 
+  function getNames(name) {
+    if (typeof name === 'string' && name.indexOf('.') >= 0) {
+      return name.split('.', 2);
+    }
+    else {
+      return [ '', name ]
+    }
+  }
+
   function serializeForms(component) {
     component.forms = {};
+    delete component.form;
     $(component.rootNode).find('form').each(function(i) {
       var obj = {}, ary;
 
@@ -258,6 +282,10 @@
 
       if ($(this).attr('name')) {
         component.forms[$(this).attr('name')] = obj;
+      }
+      else {
+        component.forms[''] = obj;
+        component.form = obj;
       }
     });
     $.extend(true, component.forms, component.virtualForms);
@@ -272,3 +300,48 @@
   global.CapeJS.Component = Component;
 
 })((this || 0).self || global);
+
+(function() {
+  "use strict;"
+
+  if (!window) return;
+
+  var Router = function Router() {
+    this.handlers = [];
+    this.currentHash = null;
+  };
+
+  $.extend(Router.prototype, {
+    route: function(callback) {
+      this.handlers.push(callback);
+    },
+    off: function(callback) {}, // Not yet implemented.
+    hash: function(hash) {
+      window.location.hash = hash;
+      this.trigger();
+    },
+    trigger: function() {
+      var hash, i;
+      if (!this.handlers) return;
+
+      hash = window.location.href.split('#')[1] || '';
+      if (hash != this.currentHash) {
+        for (i = 0; i < this.handlers.length; i++)
+          this.handlers[i].apply(this, hash.split('/'));
+        this.currentHash = hash;
+      }
+    }
+  });
+
+  function trigger() {
+    window.CapeJS.router.trigger()
+  }
+
+  if (!window.CapeJS) window.CapeJS = {};
+  window.CapeJS.router = new Router();
+
+  if (window.addEventListener)
+    window.addEventListener('hashchange', trigger, false)
+  else
+    window.attachEvent('onhashchange', trigger)
+})();

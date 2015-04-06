@@ -1,6 +1,6 @@
 {
   "name": "capejs",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A lightweight Javascript UI library based on virtual-dom",
   "main": "dist/cape.js",
   "browser": "dist/cape.js",
