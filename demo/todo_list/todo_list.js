@@ -5,35 +5,32 @@
 
   $.extend(TodoList.prototype, CapeJS.Component.prototype, {
     render: function() {
-      var self = this;
       return this.markup(function(b) {
         b.ul(function(b) {
-          self.items.forEach(function(item) {
-            self.renderItem(b, item);
-          })
+          this.items.forEach(function(item) {
+            this.renderItem(b, item);
+          }.bind(this))
         });
-        self.renderForm(b);
+        this.renderForm(b);
       })
     },
 
     renderItem: function(b, item) {
-      var self = this;
       b.li(function(b) {
         b.label({ class: { completed: item.done }}, function(b) {
           b.input({ type: 'checkbox', checked: item.done,
-            onclick: function(e) { self.toggle(item) } });
+            onclick: function(e) { this.toggle(item) } });
           b.space().text(item.title);
         })
       })
     },
 
     renderForm: function(b) {
-      var self = this;
       b.form(function(b) {
-        b.textField('title', { onkeyup: function(e) { self.refresh() } });
+        b.textField('title', { onkeyup: function(e) { this.refresh() } });
         b.button("Add", {
-          disabled: self.getValue('title') === '',
-          onclick: function(e) { self.addItem() }
+          disabled: this.getValue('title') === '',
+          onclick: function(e) { this.addItem() }
         });
       });
     },
