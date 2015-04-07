@@ -292,11 +292,13 @@
       this.root.parentNode.replaceChild(this.rootNode, this.root);
       this.root = this.rootNode;
       serializeForms(this);
+      if (global.CapeJS.router) global.CapeJS.router.attach(this);
       if (this.afterMount) this.afterMount();
     },
     unmount: function() {
       if (this.beforeUnmount) this.beforeUnmount();
       if (this.dataStore) this.dataStore.off('update', this.updateCallback);
+      if (global.CapeJS.router) global.CapeJS.router.detach(this);
       while (this.root.firstChild) this.root.removeChild(this.root.firstChild);
       if (this.afterUnmount) this.afterUnmount();
     },
@@ -380,30 +382,51 @@
   var Router = function Router() {
     this.handlers = [];
     this.currentHash = null;
+    this.params = {};
   };
 
   $.extend(Router.prototype, {
-    route: function(callback) {
-      this.handlers.push(callback);
+    attach: function(component) {
+      var target = component;
+      for (var i = 0, len = this.handlers.length; i < len; i++) {
+        if (this.handlers[i].component === component) return;
+      }
+      this.handlers.push({
+        component: component,
+        callback: function(params) { component.refresh(params) }
+      });
     },
-    off: function(callback) {}, // Not yet implemented.
+    detach: function(component) {
+      for (var i = 0, len = this.handlers.length; i < len; i++) {
+        if (this.handlers[i].component === component) {
+          this.handlers.splice(i, 1);
+          break;
+        }
+      }
+    },
     visit: function(hash) {
       window.location.hash = hash;
       this.trigger();
     },
     trigger: function() {
-      var hash, i;
+      var hash;
 
       hash = window.location.href.split('#')[1] || '';
       if (hash != this.currentHash) {
-        for (i = 0; i < this.handlers.length; i++)
-          this.handlers[i].apply(this, hash.split('/'));
+        this.refresh();
+        for (var i = 0, len = this.handlers.length; i < len; i++)
+          this.handlers[i].callback.call(this, this.params);
         this.currentHash = hash;
       }
     },
-    exec: function(callback) {
-      var hash = window.location.href.split('#')[1] || '';
-      callback.apply(this, hash.split('/'));
+    refresh: function() {
+      var hash, ary;
+
+      hash = window.location.href.split('#')[1] || '';
+      ary = hash.split('/');
+      this.params.collection = ary[0];
+      this.params.id = ary[1];
+      this.params.action = ary[2];
     }
   });
 
