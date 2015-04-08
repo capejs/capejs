@@ -1,0 +1,11 @@
+{
+  "name": "capejs_demo_apps_es6_version",
+  "version": "0.1.0",
+  "description": "A demo apps for the CapeJS (ES6 version)",
+  "author": "Oiax, Inc. and other contributors",
+  "license": "MIT",
+  "homepage": "https://github.com/oiax/capejs/demo/es6",
+  "devDependencies": {
+    "babelify": "^6.0.2"
+  }
+}

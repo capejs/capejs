@@ -167,3 +167,29 @@ it is set to the value of `name` attribute of the `input` element and
 we can get its value by `this.getValue('title')`.
 
 A working demo is found in the directory [demo/todo_list](demo/todo_list).
+
+## Examples (ES6 version)
+
+If you want to write more concisely, try to define class using ECMAScript 6 (ES6) syntax.
+
+### Hello World
+
+```javascript
+class HelloMessage extends Cape.Component {
+  render() {
+    return this.markup(m =>
+      m.p(`Hello ${this.root.data.name}!`)
+    )
+  }
+}
+
+var component = new HelloMessage();
+component.mount('hello-message');
+```
+
+A working demo is found in the directory [demo/es6/hello_message](demo/es6/hello_message).
+
+You must have `npm` and `babel-core` to see this demo page.
+You must also have `browserify` to convert `.es6` file to `.js` file.
+
+See [demo/es6/README.md](demo/es6/README.md) for details.
