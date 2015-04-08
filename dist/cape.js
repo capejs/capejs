@@ -382,6 +382,11 @@
 
       if (!this.virtualForms[formName]) this.virtualForms[formName] = {};
       this.virtualForms[formName][attrName] = value;
+    },
+    formData: function(formName) {
+      if (!this.serialized) serializeForms(this);
+      if (formName === undefined) formName = '';
+      return this.forms[formName] || {};
     }
   });
 
