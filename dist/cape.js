@@ -21,7 +21,7 @@
       callback.call(this.component, builder);
 
       attributes = {};
-      for (var i = 0, len = root.attributes.length; i < len; i++)
+      for (var i = root.attributes.length; i--;)
         attributes[root.attributes[i].nodeName] = root.attributes[i].value;
       return this.h(root.tagName, attributes, builder.elements);
     },
@@ -215,7 +215,7 @@
     'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'tfoot',
     'th', 'thead', 'time', 'title', 'tr', 'u', 'ul', 'var', 'video' ];
 
-  for (var i = 0; i < normalElementNames.length; i++) {
+  for (var i = normalElementNames.length; i--;) {
     var tagName = normalElementNames[i];
     VdomBuilder.prototype[tagName] = new Function("arg1", "arg2",
       "this.elem('" + tagName + "', arg1, arg2); return this");
@@ -226,7 +226,7 @@
     'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr'
   ]
 
-  for (var i = 0; i < voidElementNames.length; i++) {
+  for (var i = voidElementNames.length; i--;) {
     var tagName = voidElementNames[i];
     VdomBuilder.prototype[tagName] = new Function("options",
       "this.elem('" + tagName + "', options); return this");
@@ -260,13 +260,15 @@
       var i, len;
       if (!this.handlers) this.handlers = {};
       if (!this.handlers[eventType]) this.handlers[eventType] = [];
+
       for (i = 0, len = this.handlers[eventType].length; i < len; i++)
-        if (this.handlers[eventType][i] == callback) return;
+        if (this.handlers[eventType][i] === callback) return;
       this.handlers[eventType].push(callback);
     },
     off: function(eventType, callback) {
       var i, len;
       if (!this.handlers || !this.handlers[eventType]) return;
+
       for (i = 0, len = this.handlers[eventType].length; i < len; i++) {
         if (this.handlers[eventType][i] === callback) {
           this.handlers[eventType].splice(i, 1);
@@ -275,9 +277,9 @@
       }
     },
     trigger: function(eventType) {
-      var i, len;
       if (!this.handlers || !this.handlers[eventType]) return;
-      for (i = 0, len = this.handlers[eventType].length; i < len; i++)
+
+      for (var i = this.handlers[eventType].length; i--;)
         this.handlers[eventType][i].call(this, eventType);
     },
     refresh: function() {}
