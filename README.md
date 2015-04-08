@@ -14,7 +14,7 @@ CapeJS is a lightweight Javascript UI library based on [virtual-dom](https://git
   var HelloMesage = Cape.createComponentClass({
     render: function() {
       return this.markup(function(m) {
-        m.div('Hello ' + this.root.getAttribute('data-name') + '!')
+        m.div('Hello ' + this.root.data.name + '!')
       })
     }
   });
@@ -25,6 +25,13 @@ CapeJS is a lightweight Javascript UI library based on [virtual-dom](https://git
 ```
 
 This example will insert `<div>Hello World!</div>` into the `div#hello-message` element.
+
+In the JavaScript, `m` works as a *markup builder*.
+If you call its `div` method, you can add a `div` element to the component.
+
+You can call `this.root` to get the element which the component was mounted on.
+Note that you can access to `data-name` attributes of the `root` element by
+`this.root.data.name`.
 
 A working demo is found in the directory `demo/hello_message`.
 
@@ -60,6 +67,21 @@ A working demo is found in the directory `demo/hello_message`.
 ```
 
 On this example, your will see the number which gets incremented each time you click on it.
+
+Note that we give the second argument to the `div` method:
+
+```javascript
+        m.div(String(this.counter), {
+          class: 'counter',
+          onclick: function(e) { this.increment() }
+        })
+```
+
+This _associative array_ represents the attributes of `div` element.
+We can attach a handler (function) to the `click` event for this element like this.
+
+On the code of event handlers, `this` denotes the component itself.
+So you can call its `increment` method by `this.increment()`.
 
 A working demo is found in the directory `demo/click_counter`.
 
@@ -128,6 +150,10 @@ A working demo is found in the directory `demo/click_counter`.
 On this example, your can add a todo item from a HTML form and toggle the
 `completed` property of todo items by clicking check boxes.
 
-Note that the initial items are set within the `init` method.
+Note that we use the `textField` method of markup builder.
+This method creates an `input` element of the type `text`.
+If we give `'title'` as the first argument of the method,
+it is set to the value of `name` attribute of the `input` element and
+we can get its value by `this.getValue('title')`.
 
 A working demo is found in the directory `demo/todo_list`.
