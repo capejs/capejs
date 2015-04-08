@@ -116,7 +116,10 @@
       return this;
     },
     checkBox: function(attrName, options) {
-      var checked = this.component.getValue(this.formName + '.' + attrName);
+      var value, checked;
+
+      value = this.component.getValue(this.formName + '.' + attrName);
+      checked = (value === true || value === '1');
 
       options = options || {};
       options.type = 'checkbox';
@@ -322,7 +325,6 @@
         this.dataStore.refresh();
       }
 
-      if (global.Cape.router) global.Cape.router.attach(this);
       if (this.afterMount) this.afterMount();
     },
     unmount: function() {
