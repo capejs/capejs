@@ -63,6 +63,7 @@ A working demo is found in the directory [demo/hello_message](demo/hello_message
 
     init: function() {
       this.counter = 0;
+      this.refresh();
     },
 
     increment: function() {
@@ -92,6 +93,11 @@ We can attach a handler (function) to the `click` event for this element like th
 
 Within event handlers, `this` denotes the component itself.
 So you can call its `increment` method by `this.increment()`.
+
+A method call `this.refresh()` redraws the component.
+You should call it at the end of the `init` method,
+but if the component lacks the `init` method, the `refresh` method
+is called when the component is mounted.
 
 A working demo is found in the directory [demo/click_counter](demo/click_counter).
 
@@ -138,6 +144,7 @@ A working demo is found in the directory [demo/click_counter](demo/click_counter
         { title: 'Foo', done: false },
         { title: 'Bar', done: true }
       ];
+      this.refresh();
     },
 
     toggle: function(item) {

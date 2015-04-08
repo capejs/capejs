@@ -38,6 +38,7 @@
         { title: 'Foo', done: false },
         { title: 'Bar', done: true }
       ];
+      this.refresh();
     },
 
     toggle: function(item) {

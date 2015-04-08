@@ -13,6 +13,7 @@
 
     init: function() {
       this.counter = 0;
+      this.refresh();
     },
 
     increment: function() {
