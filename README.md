@@ -43,7 +43,7 @@ You can call `this.root` to get the node which the component was mounted on.
 And you can access to `data-name` attributes of the `root` node by
 `this.root.data.name`.
 
-A working demo is found in the directory `demo/hello_message`.
+A working demo is found in the directory [demo/hello_message](demo/hello_message).
 
 ### Click Counter
 
@@ -93,7 +93,7 @@ We can attach a handler (function) to the `click` event for this element like th
 Within the code of event handlers, `this` denotes the component itself.
 So you can call its `increment` method by `this.increment()`.
 
-A working demo is found in the directory `demo/click_counter`.
+A working demo is found in the directory [demo/click_counter](demo/click_counter).
 
 ### Todo List
 
@@ -166,4 +166,4 @@ If we give `'title'` as the first argument of the method,
 it is set to the value of `name` attribute of the `input` element and
 we can get its value by `this.getValue('title')`.
 
-A working demo is found in the directory `demo/todo_list`.
+A working demo is found in the directory [demo/todo_list](demo/todo_list).
