@@ -26,11 +26,21 @@ CapeJS is a lightweight Javascript UI library based on [virtual-dom](https://git
 
 This example will insert `<div>Hello World!</div>` into the `div#hello-message` element.
 
-In the JavaScript, `m` works as a *markup builder*.
-If you call its `div` method, you can add a `div` element to the component.
+First of all, we *must* define the `render` method for CapeJS components.
+The role of this method is to create a *virtual* DOM tree.
+CapeJS updates the *real* DOM tree of browsers using this virtual tree.
 
-You can call `this.root` to get the element which the component was mounted on.
-Note that you can access to `data-name` attributes of the `root` element by
+Within the `render` method, we can use `this.markup` method.
+It takes a function (*callback*) and returns a virtual DOM tree.
+
+A callback for the `markup` method should have an argument.
+In the example above, the `m` is the argument and is called *markup builder*.
+If you call its `div` method, you can add a `div` node to the virtual DOM tree.
+The markup builder has methods for all valid tag names of HTML5,
+such as `p`, `span`, `br`, `section`, `video`, etc.
+
+You can call `this.root` to get the node which the component was mounted on.
+And you can access to `data-name` attributes of the `root` node by
 `this.root.data.name`.
 
 A working demo is found in the directory `demo/hello_message`.
@@ -77,10 +87,10 @@ Note that we give the second argument to the `div` method:
         })
 ```
 
-This _associative array_ represents the attributes of `div` element.
+This *associative array* represents the attributes of `div` element.
 We can attach a handler (function) to the `click` event for this element like this.
 
-On the code of event handlers, `this` denotes the component itself.
+Within the code of event handlers, `this` denotes the component itself.
 So you can call its `increment` method by `this.increment()`.
 
 A working demo is found in the directory `demo/click_counter`.
