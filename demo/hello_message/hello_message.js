@@ -4,7 +4,7 @@
   var HelloMesage = Cape.createComponentClass({
     render: function() {
       return this.markup(function(m) {
-        m.p('Hello ' + this.root.getAttribute('data-name') + '!')
+        m.p('Hello ' + this.root.data.name + '!')
       })
     }
   });

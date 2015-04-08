@@ -309,6 +309,8 @@
       var self = this;
 
       this.root = document.getElementById(id);
+      this.root.data = getData(this.root);
+
       if (this.init) this.init();
       if (this.dataStore) {
         this.dataStore.refresh();
@@ -366,6 +368,19 @@
       this.virtualForms[formName][attrName] = value;
     }
   });
+
+  function getData(el) {
+    var data = {};
+    [].forEach.call(el.attributes, function(attr) {
+      if (/^data-/.test(attr.name)) {
+        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
+          return $1.toUpperCase();
+        });
+        data[camelCaseName] = attr.value;
+      }
+    });
+    return data;
+  }
 
   function getNames(name) {
     if (typeof name === 'string' && name.indexOf('.') >= 0) {
