@@ -7,25 +7,127 @@ CapeJS is a lightweight Javascript UI library based on [virtual-dom](https://git
 ### Hello World
 
 ```html
-<body>
-  <h1>Greeting from CapeJS</h1>
-  <div id="hello-message" data-name="World"></div>
+<h1>Greeting from CapeJS</h1>
+<div id="hello-message" data-name="World"></div>
 
-  <script>
-    var HelloMesage = function() {};
+<script>
+  var HelloMesage = Cape.createComponentClass({
+    render: function() {
+      return this.markup(function(m) {
+        m.div('Hello ' + this.root.getAttribute('data-name') + '!')
+      })
+    }
+  });
 
-    $.extend(HelloMesage.prototype, CapeJS.Component.prototype, {
-      render: function() {
-        return this.markup(function(m) {
-          m.div('Hello ' + this.root.getAttribute('data-name') + '!')
-        })
-      }
-    });
-
-    var component = new HelloMesage();
-    component.mount('hello-message');
-  </script>
-</body>
+  var component = new HelloMesage();
+  component.mount('hello-message');
+</script>
 ```
 
 This example will insert `<div>Hello World!</div>` into the `div#hello-message` element.
+
+A working demo is found in the directory `demo/hello_message`.
+
+### Click Counter
+
+```html
+<div id="click-counter"></div>
+
+<script>
+  var ClickCounter = Cape.createComponentClass({
+    render: function() {
+      return this.markup(function(m) {
+        m.div(String(this.counter), {
+          class: 'counter',
+          onclick: function(e) { this.increment() }
+        })
+      })
+    },
+
+    init: function() {
+      this.counter = 0;
+    },
+
+    increment: function() {
+      this.counter++;
+      this.refresh();
+    }
+  });
+
+  var counter = new ClickCounter();
+  counter.mount('click-counter');
+</script>
+```
+
+On this example, your will see the number which gets incremented each time you click on it.
+
+A working demo is found in the directory `demo/click_counter`.
+
+### Todo List
+
+```html
+<div id="click-counter"></div>
+
+<script>
+  var TodoList = Cape.createComponentClass({
+    render: function() {
+      return this.markup(function(m) {
+        m.ul(function(m) {
+          this.items.forEach(function(item) {
+            this.renderItem(m, item);
+          }.bind(this))
+        });
+        this.renderForm(m);
+      })
+    },
+
+    renderItem: function(m, item) {
+      m.li(function(m) {
+        m.label({ class: { completed: item.done }}, function(m) {
+          m.input({ type: 'checkbox', checked: item.done,
+            onclick: function(e) { this.toggle(item) } });
+          m.space().text(item.title);
+        })
+      })
+    },
+
+    renderForm: function(m) {
+      m.form(function(m) {
+        m.textField('title', { onkeyup: function(e) { this.refresh() } });
+        m.button("Add", {
+          disabled: this.getValue('title') === '',
+          onclick: function(e) { this.addItem() }
+        });
+      });
+    },
+
+    init: function() {
+      this.items = [
+        { title: 'Foo', done: false },
+        { title: 'Bar', done: true }
+      ];
+    },
+
+    toggle: function(item) {
+      item.done = !item.done;
+      this.refresh();
+    },
+
+    addItem: function() {
+      this.items.push({ title: this.getValue('title'), done: false });
+      this.setValue('title', '');
+      this.refresh();
+    }
+  });
+
+  var component = new TodoList();
+  component.mount('todo-list');
+</script>
+```
+
+On this example, your can add a todo item from a HTML form and toggle the
+`completed` property of todo items by clicking check boxes.
+
+Note that the initial items are set within the `init` method.
+
+A working demo is found in the directory `demo/todo_list`.

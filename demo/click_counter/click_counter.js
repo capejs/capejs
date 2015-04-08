@@ -1,10 +1,10 @@
 (function() {
   "use strict";
 
-  var ClickCounter = CapeJS.createComponentClass({
+  var ClickCounter = Cape.createComponentClass({
     render: function() {
-      return this.markup(function(b) {
-        b.div(String(this.counter), {
+      return this.markup(function(m) {
+        m.div(String(this.counter), {
           class: 'counter',
           onclick: function(e) { this.increment() }
         })

@@ -1,10 +1,10 @@
 (function() {
   "use strict";
 
-  var HelloMesage = CapeJS.createComponentClass({
+  var HelloMesage = Cape.createComponentClass({
     render: function() {
-      return this.markup(function(b) {
-        b.p('Hello ' + this.root.getAttribute('data-name') + '!')
+      return this.markup(function(m) {
+        m.p('Hello ' + this.root.getAttribute('data-name') + '!')
       })
     }
   });

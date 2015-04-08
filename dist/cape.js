@@ -232,12 +232,16 @@
       "this.elem('" + tagName + "', options); return this");
   }
 
-  if (!global.CapeJS) {
-    var CapeJS = {};
-    if ("process" in global) module.exports = CapeJS;
-    global.CapeJS = CapeJS;
+  if (!global.Cape) {
+    var Cape = {};
+    if ("process" in global) module.exports = Cape;
+    global.Cape = Cape;
   }
-  global.CapeJS.VdomBuilder = VdomBuilder;
+  if (!global.CapeJS) {
+    if ("process" in global) module.exports = CapeJS;
+    global.CapeJS = global.Cape;
+  }
+  global.Cape.VdomBuilder = VdomBuilder;
 
 })((this || 0).self || global);
 
@@ -279,12 +283,16 @@
     refresh: function() {}
   });
 
-  if (!global.CapeJS) {
-    var CapeJS = {};
-    if ("process" in global) module.exports = CapeJS;
-    global.CapeJS = CapeJS;
+  if (!global.Cape) {
+    var Cape = {};
+    if ("process" in global) module.exports = Cape;
+    global.Cape = Cape;
   }
-  global.CapeJS.DataStore = DataStore;
+  if (!global.CapeJS) {
+    if ("process" in global) module.exports = CapeJS;
+    global.CapeJS = global.Cape;
+  }
+  global.Cape.DataStore = DataStore;
 
 })((this || 0).self || global);
 
@@ -314,18 +322,18 @@
       this.root.parentNode.replaceChild(this.rootNode, this.root);
       this.root = this.rootNode;
       serializeForms(this);
-      if (global.CapeJS.router) global.CapeJS.router.attach(this);
+      if (global.Cape.router) global.Cape.router.attach(this);
       if (this.afterMount) this.afterMount();
     },
     unmount: function() {
       if (this.beforeUnmount) this.beforeUnmount();
       if (this.dataStore) this.dataStore.off('update', this.updateCallback);
-      if (global.CapeJS.router) global.CapeJS.router.detach(this);
+      if (global.Cape.router) global.Cape.router.detach(this);
       while (this.root.firstChild) this.root.removeChild(this.root.firstChild);
       if (this.afterUnmount) this.afterUnmount();
     },
     markup: function(callback) {
-      return (new global.CapeJS.VdomBuilder(this)).markup(callback);
+      return (new global.Cape.VdomBuilder(this)).markup(callback);
     },
     refresh: function() {
       var newTree, patches;
@@ -390,16 +398,20 @@
     component.virtualForms = {};
   }
 
-  if (!global.CapeJS) {
-    var CapeJS = {};
-    if ("process" in global) module.exports = CapeJS;
-    global.CapeJS = CapeJS;
+  if (!global.Cape) {
+    var Cape = {};
+    if ("process" in global) module.exports = Cape;
+    global.Cape = Cape;
   }
-  global.CapeJS.Component = Component;
+  if (!global.CapeJS) {
+    if ("process" in global) module.exports = CapeJS;
+    global.CapeJS = global.Cape;
+  }
+  global.Cape.Component = Component;
 
-  global.CapeJS.createComponentClass = function(methods) {
+  global.Cape.createComponentClass = function(methods) {
     var klass = function() {};
-    $.extend(klass.prototype, global.CapeJS.Component.prototype, methods);
+    $.extend(klass.prototype, global.Cape.Component.prototype, methods);
     return klass;
   }
 
@@ -463,15 +475,22 @@
   });
 
   function trigger() {
-    window.CapeJS.router.trigger()
+    window.Cape.router.trigger()
   }
 
-  if (!window.CapeJS) window.CapeJS = {};
-  window.CapeJS.router = new Router();
-  window.CapeJS.navigate = function(hash) { window.CapeJS.router.navigate(hash) }
+  if (!window.Cape) {
+    var Cape = {};
+    window.Cape = Cape;
+  }
+  if (!window.CapeJS) {
+    window.CapeJS = window.Cape;
+  }
+  window.Cape.Router = Router;
+  window.Cape.router = new Router();
+  window.Cape.navigate = function(hash) { window.Cape.router.navigate(hash) }
 
   if (window.addEventListener)
     window.addEventListener('hashchange', trigger, false)
   else
     window.attachEvent('onhashchange', trigger)
-})();
+})((this || 0).self || window);

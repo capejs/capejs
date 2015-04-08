@@ -1,32 +1,32 @@
 (function() {
   "use strict";
 
-  var TodoList = CapeJS.createComponentClass({
+  var TodoList = Cape.createComponentClass({
     render: function() {
-      return this.markup(function(b) {
-        b.ul(function(b) {
+      return this.markup(function(m) {
+        m.ul(function(m) {
           this.items.forEach(function(item) {
-            this.renderItem(b, item);
+            this.renderItem(m, item);
           }.bind(this))
         });
-        this.renderForm(b);
+        this.renderForm(m);
       })
     },
 
-    renderItem: function(b, item) {
-      b.li(function(b) {
-        b.label({ class: { completed: item.done }}, function(b) {
-          b.input({ type: 'checkbox', checked: item.done,
+    renderItem: function(m, item) {
+      m.li(function(m) {
+        m.label({ class: { completed: item.done }}, function(m) {
+          m.input({ type: 'checkbox', checked: item.done,
             onclick: function(e) { this.toggle(item) } });
-          b.space().text(item.title);
+          m.space().text(item.title);
         })
       })
     },
 
-    renderForm: function(b) {
-      b.form(function(b) {
-        b.textField('title', { onkeyup: function(e) { this.refresh() } });
-        b.button("Add", {
+    renderForm: function(m) {
+      m.form(function(m) {
+        m.textField('title', { onkeyup: function(e) { this.refresh() } });
+        m.button("Add", {
           disabled: this.getValue('title') === '',
           onclick: function(e) { this.addItem() }
         });
