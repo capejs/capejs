@@ -344,7 +344,7 @@
 
         newTree = this.render();
         patches = virtualDom.diff(this.tree, newTree);
-        this.rootNode = virtualDom.patch(this.root, patches);
+        this.root = virtualDom.patch(this.root, patches);
         this.tree = newTree;
       }
       else {
@@ -414,8 +414,7 @@
 
   function serializeForms(component) {
     component.forms = {};
-    delete component.form;
-    $(component.rootNode).find('form').each(function(i) {
+    $(component.root).find('form').each(function(i) {
       var obj = {};
 
       $.each($(this).serializeArray(), function() {
