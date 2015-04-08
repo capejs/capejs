@@ -1,5 +1,5 @@
 (function(global) {
-  "use strict;"
+  "use strict";
 
   var VdomBuilder = function VdomBuilder(component, formName) {
     this.component = component;
@@ -26,7 +26,7 @@
       return this.h(root.tagName, attributes, builder.elements);
     },
     elem: function(tagName) {
-      var args, options, content, callback, builder;
+      var args, options, content, callback, builder, attributes;
 
       args = Array.prototype.slice.call(arguments, 1);
       content = extractContent(args);
@@ -37,12 +37,12 @@
         builder = new VdomBuilder(this.component, this.formName);
         if (callback.length === 0) { throw new Error("Callback requires an argument.") }
         callback.call(this.component, builder);
-        attributes = generateAttributes(options);
+        attributes = generateAttributes.call(this, options);
         this.elements.push(this.h(tagName, attributes, builder.elements));
       }
       else {
         content = content || '';
-        attributes = generateAttributes(options);
+        attributes = generateAttributes.call(this, options);
         this.elements.push(this.h(tagName, attributes, content));
       }
       return this;
@@ -55,10 +55,17 @@
       this.elements.push(' ');
       return this;
     },
-    form: function(options, callback) {
-      var name, builder, attributes;
+    form: function() {
+      var args, options, callback, name, builder, attributes;
 
-      if (callback.length === 0) { throw new Error("Callback requires an argument.") }
+      args = Array.prototype.slice.call(arguments);
+      options = extractOptions(args) || {};
+      callback = extractCallback(args);
+
+      if (typeof callback !== 'function')
+        throw new Error("One of arguments must be a function.");
+      if (callback.length === 0)
+        throw new Error("Callback requires an argument.");
       name = options.name || '';
       builder = new VdomBuilder(this.component, name);
       callback.call(this.component, builder);
@@ -66,7 +73,7 @@
       if (options.onsubmit === undefined) {
         options.onsubmit = function(e) { return false };
       }
-      attributes = generateAttributes(options);
+      attributes = generateAttributes.call(this, options);
       this.elements.push(this.h('form', attributes, builder.elements));
       return this;
     },
@@ -77,14 +84,14 @@
       return this;
     },
     input: function(options) {
-      var form, name, value;
+      var form, name, value, attributes;
 
       options = options || {};
       name = options.name;
       value = options.value;
       if (value === undefined && name !== undefined && this.formName !== undefined)
         options.value = this.component.getValue(this.formName + '.' + name);
-      attributes = generateAttributes(options);
+      attributes = generateAttributes.call(this, options);
       this.elements.push(this.h('input', attributes));
       return this;
     },
@@ -130,8 +137,17 @@
       this.input(options);
       return this;
     },
-    faIcon: function(iconName) {
-      this.i('', { class: 'fa fa-' + iconName});
+    faIcon: function(iconName, options) {
+      options = options || {};
+      var htmlClass = options.class || options.className;
+      if (htmlClass) {
+        htmlClass = htmlClass + ' fa fa-' + iconName;
+      }
+      else {
+        htmlClass = 'fa fa-' + iconName;
+      }
+      options.class = htmlClass;
+      this.i('', options);
       return this;
     }
   });
@@ -178,6 +194,11 @@
         delete options['className'];
       }
     }
+    for (var key in options) {
+      if (typeof options[key] === 'function') {
+        options[key] = options[key].bind(this.component)
+      }
+    }
     return options;
   }
 
@@ -221,7 +242,7 @@
 })((this || 0).self || global);
 
 (function(global) {
-  "use strict;"
+  "use strict";
 
   var DataStore = function DataStore() {};
 
@@ -268,10 +289,11 @@
 })((this || 0).self || global);
 
 (function(global) {
-  "use strict;"
+  "use strict";
 
   var Component = function Component() {
     this.forms = {};
+    this.virtualForms = {};
   };
 
   $.extend(Component.prototype, {
@@ -301,6 +323,9 @@
       if (global.CapeJS.router) global.CapeJS.router.detach(this);
       while (this.root.firstChild) this.root.removeChild(this.root.firstChild);
       if (this.afterUnmount) this.afterUnmount();
+    },
+    markup: function(callback) {
+      return (new global.CapeJS.VdomBuilder(this)).markup(callback);
     },
     refresh: function() {
       var newTree, patches;
@@ -375,7 +400,7 @@
 })((this || 0).self || global);
 
 (function() {
-  "use strict;"
+  "use strict";
 
   if (!window) return;
 
@@ -383,6 +408,7 @@
     this.handlers = [];
     this.currentHash = null;
     this.params = {};
+    this.refresh();
   };
 
   $.extend(Router.prototype, {
@@ -404,7 +430,7 @@
         }
       }
     },
-    visit: function(hash) {
+    navigate: function(hash) {
       window.location.hash = hash;
       this.trigger();
     },
@@ -436,7 +462,7 @@
 
   if (!window.CapeJS) window.CapeJS = {};
   window.CapeJS.router = new Router();
-  window.CapeJS.visit = function(hash) { window.CapeJS.router.visit(hash) }
+  window.CapeJS.navigate = function(hash) { window.CapeJS.router.navigate(hash) }
 
   if (window.addEventListener)
     window.addEventListener('hashchange', trigger, false)
