@@ -35,8 +35,8 @@ It takes a function (*callback*) and returns a virtual DOM tree.
 
 A callback for the `markup` method should have an argument.
 In the example above, the `m` is the argument and is called *markup builder*.
-If you call its `div` method, you can add a `div` node to the virtual DOM tree.
-The markup builder has methods for all valid tag names of HTML5,
+When you call its `div` method, a `div` node is added to the virtual DOM tree.
+The markup builder has corresponding methods for all valid tag names of HTML5,
 such as `p`, `span`, `br`, `section`, `video`, etc.
 
 You can call `this.root` to get the node which the component was mounted on.
@@ -90,7 +90,7 @@ Note that we give the second argument to the `div` method:
 This *associative array* represents the attributes of `div` element.
 We can attach a handler (function) to the `click` event for this element like this.
 
-Within the code of event handlers, `this` denotes the component itself.
+Within event handlers, `this` denotes the component itself.
 So you can call its `increment` method by `this.increment()`.
 
 A working demo is found in the directory [demo/click_counter](demo/click_counter).
