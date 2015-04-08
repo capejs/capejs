@@ -397,6 +397,12 @@
   }
   global.CapeJS.Component = Component;
 
+  global.CapeJS.createComponentClass = function(methods) {
+    var klass = function() {};
+    $.extend(klass.prototype, global.CapeJS.Component.prototype, methods);
+    return klass;
+  }
+
 })((this || 0).self || global);
 
 (function() {

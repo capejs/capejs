@@ -1,9 +1,7 @@
 (function() {
   "use strict";
 
-  var TodoList = function() {};
-
-  $.extend(TodoList.prototype, CapeJS.Component.prototype, {
+  var TodoList = CapeJS.createComponentClass({
     render: function() {
       return this.markup(function(b) {
         b.ul(function(b) {
@@ -54,6 +52,6 @@
     }
   });
 
-  var todo = new TodoList();
-  todo.mount('todo-list');
+  var component = new TodoList();
+  component.mount('todo-list');
 })();

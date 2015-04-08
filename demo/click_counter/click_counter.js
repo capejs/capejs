@@ -1,9 +1,7 @@
 (function() {
   "use strict";
 
-  var ClickCounter = function() {};
-
-  $.extend(ClickCounter.prototype, CapeJS.Component.prototype, {
+  var ClickCounter = CapeJS.createComponentClass({
     render: function() {
       return this.markup(function(b) {
         b.div(String(this.counter), {

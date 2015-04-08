@@ -1,9 +1,7 @@
 (function() {
   "use strict";
 
-  var HelloMesage = function() {};
-
-  $.extend(HelloMesage.prototype, CapeJS.Component.prototype, {
+  var HelloMesage = CapeJS.createComponentClass({
     render: function() {
       return this.markup(function(b) {
         b.p('Hello ' + this.root.getAttribute('data-name') + '!')
