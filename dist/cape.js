@@ -354,6 +354,18 @@
         }
       });
       self.serialized = true;
+    },
+    getElementData: function(element) {
+      var data = {}, camelCaseName;
+      [].forEach.call(element.attributes, function(attr) {
+        if (/^data-/.test(attr.name)) {
+          camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
+            return $1.toUpperCase();
+          });
+          data[camelCaseName] = attr.value;
+        }
+      });
+      return data;
     }
   })
 
@@ -370,7 +382,7 @@
       this._internal = new _Internal(this);
 
       this.root = document.getElementById(id);
-      this.root.data = getData(this.root);
+      this.root.data = this._internal.getElementData(this.root);
 
       if (this.init) this.init();
       else this.refresh();
@@ -418,19 +430,6 @@
       return this._internal.forms[formName] || {};
     }
   });
-
-  function getData(el) {
-    var data = {};
-    [].forEach.call(el.attributes, function(attr) {
-      if (/^data-/.test(attr.name)) {
-        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
-          return $1.toUpperCase();
-        });
-        data[camelCaseName] = attr.value;
-      }
-    });
-    return data;
-  }
 
   function getNames(name) {
     if (typeof name === 'string' && name.indexOf('.') >= 0) {
