@@ -467,7 +467,7 @@
         }
       }
     },
-    trigger: function() {
+    propagate: function() {
       for (var i = this._.components.length; i--;)
         this._.components[i].refresh();
     },
