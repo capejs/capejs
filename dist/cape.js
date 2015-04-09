@@ -358,7 +358,7 @@
       if (form = this.virtualForms[formName]) {
         if (form[attrName] !== undefined) return form[attrName];
       }
-      if (!this.serialized) serializeForms(this.main);
+      if (!this.serialized) this.serializeForms();
       if (form = this.forms[formName]) {
         if (form[attrName] !== undefined) return form[attrName];
       }
