@@ -1,6 +1,7 @@
 var concat = require('gulp-concat');
 var gulp = require('gulp');
 var watch = require('gulp-watch');
+var karma = require('gulp-karma');
 
 var paths = [
   './lib/cape/markup_builder.js',
@@ -21,6 +22,22 @@ gulp.task('build', function() {
 
 gulp.task('watch', function() {
   watch('./lib/**/*.js', build);
+});
+
+var testFiles = [
+  'node_modules/expect.js/index.js',
+  'test/spec/*.js'
+];
+
+gulp.task('test', function() {
+  return gulp.src(testFiles)
+    .pipe(karma({
+      configFile: 'test/karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      throw err;
+    });
 });
 
 gulp.task('default', ['build']);
