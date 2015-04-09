@@ -428,7 +428,7 @@
   global.Cape.Component = Component;
 
   global.Cape.createComponentClass = function(methods) {
-    var klass = function() {};
+    var klass = function() { this._ = new _Internal(this); };
     $.extend(klass.prototype, global.Cape.Component.prototype, methods);
     return klass;
   }

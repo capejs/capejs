@@ -27,7 +27,7 @@
       m.form(function(m) {
         m.textField('title', { onkeyup: function(e) { this.refresh() } });
         m.button("Add", {
-          disabled: this.getValue('title') === '',
+          disabled: this.val('title') === '',
           onclick: function(e) { this.addItem() }
         });
       });
@@ -47,8 +47,8 @@
     },
 
     addItem: function() {
-      this.items.push({ title: this.getValue('title'), done: false });
-      this.setValue('title', '');
+      this.items.push({ title: this.val('title'), done: false });
+      this.val('title', '');
       this.refresh();
     }
   });
