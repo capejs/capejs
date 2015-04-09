@@ -251,7 +251,9 @@
 (function(global) {
   "use strict";
 
-  var DataStore = function DataStore() {};
+  var DataStore = function DataStore() {
+    this.components = [];
+  };
 
   DataStore.create = function() {
     if (!this.instance) this.instance = new(this);
@@ -259,31 +261,25 @@
   }
 
   $.extend(DataStore.prototype, {
-    on: function(eventType, callback) {
-      var i, len;
-      if (!this.handlers) this.handlers = {};
-      if (!this.handlers[eventType]) this.handlers[eventType] = [];
-
-      for (i = 0, len = this.handlers[eventType].length; i < len; i++)
-        if (this.handlers[eventType][i] === callback) return;
-      this.handlers[eventType].push(callback);
+    attach: function(component) {
+      var target = component;
+      for (var i = 0, len = this.components.length; i < len; i++) {
+        if (this.components[i] === component) return;
+      }
+      this.components.push(component);
+      this.refresh();
     },
-    off: function(eventType, callback) {
-      var i, len;
-      if (!this.handlers || !this.handlers[eventType]) return;
-
-      for (i = 0, len = this.handlers[eventType].length; i < len; i++) {
-        if (this.handlers[eventType][i] === callback) {
-          this.handlers[eventType].splice(i, 1);
+    detach: function(component) {
+      for (var i = 0, len = this.components.length; i < len; i++) {
+        if (this.components[i] === component) {
+          this.components.splice(i, 1);
           break;
         }
       }
     },
     trigger: function(eventType) {
-      if (!this.handlers || !this.handlers[eventType]) return;
-
-      for (var i = this.handlers[eventType].length; i--;)
-        this.handlers[eventType][i].call(this, eventType);
+      for (var i = this.components.length; i--;)
+        this.components[i].refresh();
     },
     refresh: function() {}
   });
