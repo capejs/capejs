@@ -3,9 +3,9 @@ var gulp = require('gulp');
 var watch = require('gulp-watch');
 
 var paths = [
-  './lib/cape/vdom_builder.js',
-  './lib/cape/data_store.js',
+  './lib/cape/markup_builder.js',
   './lib/cape/component.js',
+  './lib/cape/data_store.js',
   './lib/cape/router.js'
 ]
 

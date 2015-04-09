@@ -1,19 +1,19 @@
 (function(global) {
   "use strict";
 
-  // VdomBuilder
+  // MarkupBuilder
   //
   // public properties:
   //   component: the component that this builder works for.
   // private properties:
   //   _: the object that holds internal properties of this class.
-  var VdomBuilder = function VdomBuilder(component, formName) {
+  var MarkupBuilder = function MarkupBuilder(component, formName) {
     this._ = new _Internal(this);
     this.component = component;
     this._.formName = formName;
   };
 
-  $.extend(VdomBuilder.prototype, {
+  $.extend(MarkupBuilder.prototype, {
     markup: function(callback) {
       var root = this.component.root, formName, builder, attributes;
 
@@ -22,7 +22,7 @@
       if (callback.length === 0)
         throw new Error("Callback requires an argument.");
       if (root.tagName == 'form') formName = root.attributes.name;
-      builder = new VdomBuilder(this.component, formName);
+      builder = new MarkupBuilder(this.component, formName);
       callback.call(this.component, builder);
 
       attributes = {};
@@ -39,7 +39,7 @@
       callback = this._.extractCallback(args);
 
       if (callback) {
-        builder = new VdomBuilder(this.component, this._.formName);
+        builder = new MarkupBuilder(this.component, this._.formName);
         if (callback.length === 0) { throw new Error("Callback requires an argument.") }
         callback.call(this.component, builder);
         attributes = this._.generateAttributes.call(this, options);
@@ -72,7 +72,7 @@
       if (callback.length === 0)
         throw new Error("Callback requires an argument.");
       name = options.name || '';
-      builder = new VdomBuilder(this.component, name);
+      builder = new MarkupBuilder(this.component, name);
       callback.call(this.component, builder);
       options = options || {};
       if (options.onsubmit === undefined) {
@@ -234,7 +234,7 @@
 
   for (var i = normalElementNames.length; i--;) {
     var tagName = normalElementNames[i];
-    VdomBuilder.prototype[tagName] = new Function("arg1", "arg2",
+    MarkupBuilder.prototype[tagName] = new Function("arg1", "arg2",
       "this.elem('" + tagName + "', arg1, arg2); return this");
   }
 
@@ -245,7 +245,7 @@
 
   for (var i = voidElementNames.length; i--;) {
     var tagName = voidElementNames[i];
-    VdomBuilder.prototype[tagName] = new Function("options",
+    MarkupBuilder.prototype[tagName] = new Function("options",
       "this.elem('" + tagName + "', options); return this");
   }
 
@@ -258,56 +258,7 @@
     if ("process" in global) module.exports = CapeJS;
     global.CapeJS = global.Cape;
   }
-  global.Cape.VdomBuilder = VdomBuilder;
-
-})((this || 0).self || global);
-
-(function(global) {
-  "use strict";
-
-  var DataStore = function DataStore() {
-    this.components = [];
-  };
-
-  DataStore.create = function() {
-    if (!this.instance) this.instance = new(this);
-    return this.instance;
-  }
-
-  $.extend(DataStore.prototype, {
-    attach: function(component) {
-      var target = component;
-      for (var i = 0, len = this.components.length; i < len; i++) {
-        if (this.components[i] === component) return;
-      }
-      this.components.push(component);
-      this.refresh();
-    },
-    detach: function(component) {
-      for (var i = 0, len = this.components.length; i < len; i++) {
-        if (this.components[i] === component) {
-          this.components.splice(i, 1);
-          break;
-        }
-      }
-    },
-    trigger: function(eventType) {
-      for (var i = this.components.length; i--;)
-        this.components[i].refresh();
-    },
-    refresh: function() {}
-  });
-
-  if (!global.Cape) {
-    var Cape = {};
-    if ("process" in global) module.exports = Cape;
-    global.Cape = Cape;
-  }
-  if (!global.CapeJS) {
-    if ("process" in global) module.exports = CapeJS;
-    global.CapeJS = global.Cape;
-  }
-  global.Cape.DataStore = DataStore;
+  global.Cape.MarkupBuilder = MarkupBuilder;
 
 })((this || 0).self || global);
 
@@ -350,7 +301,7 @@
       if (this.afterUnmount) this.afterUnmount();
     },
     markup: function(callback) {
-      return (new global.Cape.VdomBuilder(this)).markup(callback);
+      return (new global.Cape.MarkupBuilder(this)).markup(callback);
     },
     refresh: function() {
       var newTree, patches, tempNode;
@@ -479,6 +430,55 @@
     $.extend(klass.prototype, global.Cape.Component.prototype, methods);
     return klass;
   }
+
+})((this || 0).self || global);
+
+(function(global) {
+  "use strict";
+
+  var DataStore = function DataStore() {
+    this.components = [];
+  };
+
+  DataStore.create = function() {
+    if (!this.instance) this.instance = new(this);
+    return this.instance;
+  }
+
+  $.extend(DataStore.prototype, {
+    attach: function(component) {
+      var target = component;
+      for (var i = 0, len = this.components.length; i < len; i++) {
+        if (this.components[i] === component) return;
+      }
+      this.components.push(component);
+      this.refresh();
+    },
+    detach: function(component) {
+      for (var i = 0, len = this.components.length; i < len; i++) {
+        if (this.components[i] === component) {
+          this.components.splice(i, 1);
+          break;
+        }
+      }
+    },
+    trigger: function(eventType) {
+      for (var i = this.components.length; i--;)
+        this.components[i].refresh();
+    },
+    refresh: function() {}
+  });
+
+  if (!global.Cape) {
+    var Cape = {};
+    if ("process" in global) module.exports = Cape;
+    global.Cape = Cape;
+  }
+  if (!global.CapeJS) {
+    if ("process" in global) module.exports = CapeJS;
+    global.CapeJS = global.Cape;
+  }
+  global.Cape.DataStore = DataStore;
 
 })((this || 0).self || global);
 
