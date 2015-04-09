@@ -306,12 +306,16 @@
   //   root: the root node which this component is mounted on.
   // private properties:
   //   _internal: the object that holds internal properties of this component.
-  var Component = function Component() {};
+  var Component = function Component() {
+    this._internal = new _Internal(this);
+  };
 
   $.extend(Component.prototype, {
     mount: function(id) {
-      this._internal = new _Internal(this);
+      if (this._internal.mounted)
+        throw new Error("This component has been mounted already.");
 
+      this._internal.mounted = true;
       this.root = document.getElementById(id);
       this.root.data = this._internal.getElementData(this.root);
 
@@ -321,6 +325,11 @@
       if (this.afterMount) this.afterMount();
     },
     unmount: function() {
+      if (!this._internal.mounted)
+        throw new Error("This component has not been mounted yet.");
+
+      this._internal.mounted = false;
+
       if (this.beforeUnmount) this.beforeUnmount();
       if (global.Cape.router) global.Cape.router.detach(this);
       while (this.root.firstChild) this.root.removeChild(this.root.firstChild);
@@ -366,6 +375,7 @@
     this.main = main;
     this.forms = {};
     this.virtualForms = {};
+    this.mounted = false;
     this.serialized = false;
   }
 
