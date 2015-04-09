@@ -3,7 +3,7 @@
 ## `Cape.Component`
 
 * Merge `getValue` and `setValue` methods into the single `val` method.
-* Rename `data` property to `props`.
+* Hide internal properties under the `_internal` property.
 
 ## `Cape.VdomBuilder`
 

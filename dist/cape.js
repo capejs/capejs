@@ -90,7 +90,7 @@
       name = options.name;
       value = options.value;
       if (value === undefined && name !== undefined && this.formName !== undefined)
-        options.value = this.component.getValue(this.formName + '.' + name);
+        options.value = this.component.val(this.formName + '.' + name);
       attributes = generateAttributes.call(this, options);
       this.elements.push(this.h('input', attributes));
       return this;
@@ -110,7 +110,7 @@
       return this;
     },
     textarea: function(name, options) {
-      var value = this.component.getValue(this.formName + '.' + name);
+      var value = this.component.val(this.formName + '.' + name);
       options.name = name;
       this.elem('textarea', value, options);
       return this;
@@ -118,7 +118,7 @@
     checkBox: function(attrName, options) {
       var value, checked;
 
-      value = this.component.getValue(this.formName + '.' + attrName);
+      value = this.component.val(this.formName + '.' + attrName);
       checked = (value === true || value === '1');
 
       options = options || {};
@@ -131,7 +131,7 @@
       return this;
     },
     radioButton: function(attrName, options) {
-      var value = this.component.getValue(this.formName + '.' + attrName);
+      var value = this.component.val(this.formName + '.' + attrName);
 
       options = options || {};
       options.type = 'radio';
@@ -300,12 +300,44 @@
 (function(global) {
   "use strict";
 
+  var _Internal = function _Internal(main) {
+    this.main = main;
+  }
+
+  $.extend(_Internal.prototype, {
+    getValue: function(name) {
+      var names, formName, attrName, form;
+
+      names = getNames(name);
+      formName = names[0];
+      attrName = names[1];
+
+      if (form = this.main.virtualForms[formName]) {
+        if (form[attrName] !== undefined) return form[attrName];
+      }
+      if (!this.main.serialized) serializeForms(this.main);
+      if (form = this.main.forms[formName]) {
+        if (form[attrName] !== undefined) return form[attrName];
+      }
+      return '';
+    },
+    setValue: function(name, value) {
+      var names, formName, attrName;
+
+      names = getNames(name);
+      formName = names[0];
+      attrName = names[1];
+
+      if (!this.main.virtualForms[formName]) this.main.virtualForms[formName] = {};
+      this.main.virtualForms[formName][attrName] = value;
+    }
+  })
+
   var Component = function Component() {};
 
   $.extend(Component.prototype, {
     mount: function(id) {
-      var self = this;
-
+      this._internal = new _Internal(this);
       this.forms = {};
       this.virtualForms = {};
       this.serialized = false;
@@ -349,31 +381,9 @@
       this.virtualForms = {};
       this.serialized = false;
     },
-    getValue: function(name) {
-      var names, formName, attrName, form;
-
-      names = getNames(name);
-      formName = names[0];
-      attrName = names[1];
-
-      if (form = this.virtualForms[formName]) {
-        if (form[attrName] !== undefined) return form[attrName];
-      }
-      if (!this.serialized) serializeForms(this);
-      if (form = this.forms[formName]) {
-        if (form[attrName] !== undefined) return form[attrName];
-      }
-      return '';
-    },
-    setValue: function(name, value) {
-      var names, formName, attrName;
-
-      names = getNames(name);
-      formName = names[0];
-      attrName = names[1];
-
-      if (!this.virtualForms[formName]) this.virtualForms[formName] = {};
-      this.virtualForms[formName][attrName] = value;
+    val: function(name, value) {
+      if (arguments.length === 1) return this._internal.getValue(name);
+      else this._internal.setValue(name, value);
     },
     formData: function(formName) {
       if (!this.serialized) serializeForms(this);
