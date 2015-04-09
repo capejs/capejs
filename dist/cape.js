@@ -302,6 +302,9 @@
 
   var _Internal = function _Internal(main) {
     this.main = main;
+    this.forms = {};
+    this.virtualForms = {};
+    this.serialized = false;
   }
 
   // Internal (private) methods
@@ -313,11 +316,11 @@
       formName = names[0];
       attrName = names[1];
 
-      if (form = this.main.virtualForms[formName]) {
+      if (form = this.virtualForms[formName]) {
         if (form[attrName] !== undefined) return form[attrName];
       }
-      if (!this.main.serialized) serializeForms(this.main);
-      if (form = this.main.forms[formName]) {
+      if (!this.serialized) serializeForms(this.main);
+      if (form = this.forms[formName]) {
         if (form[attrName] !== undefined) return form[attrName];
       }
       return '';
@@ -329,13 +332,13 @@
       formName = names[0];
       attrName = names[1];
 
-      if (!this.main.virtualForms[formName]) this.main.virtualForms[formName] = {};
-      this.main.virtualForms[formName][attrName] = value;
+      if (!this.virtualForms[formName]) this.virtualForms[formName] = {};
+      this.virtualForms[formName][attrName] = value;
     },
     serializeForms: function() {
       var self = this;
 
-      self.main.forms = {};
+      self.forms = {};
       $(self.main.root).find('form').each(function(i) {
         var obj = {};
 
@@ -344,13 +347,13 @@
         });
 
         if ($(this).attr('name')) {
-          self.main.forms[$(this).attr('name')] = obj;
+          self.forms[$(this).attr('name')] = obj;
         }
         else {
-          self.main.forms[''] = obj;
+          self.forms[''] = obj;
         }
       });
-      self.main.serialized = true;
+      self.serialized = true;
     }
   })
 
@@ -359,9 +362,6 @@
   $.extend(Component.prototype, {
     mount: function(id) {
       this._internal = new _Internal(this);
-      this.forms = {};
-      this.virtualForms = {};
-      this.serialized = false;
 
       this.root = document.getElementById(id);
       this.root.data = getData(this.root);
@@ -385,7 +385,7 @@
 
       if (this.tree) {
         this._internal.serializeForms();
-        $.extend(true, this.forms, this.virtualForms);
+        $.extend(true, this._internal.forms, this._internal.virtualForms);
 
         newTree = this.render();
         patches = virtualDom.diff(this.tree, newTree);
@@ -399,17 +399,17 @@
         this.root = tempNode;
       }
 
-      this.virtualForms = {};
-      this.serialized = false;
+      this._internal.virtualForms = {};
+      this._internal.serialized = false;
     },
     val: function(name, value) {
       if (arguments.length === 1) return this._internal.getValue(name);
       else this._internal.setValue(name, value);
     },
     formData: function(formName) {
-      if (!this.serialized) this._internal.serializeForms();
+      if (!this._internal.serialized) this._internal.serializeForms();
       if (formName === undefined) formName = '';
-      return this.forms[formName] || {};
+      return this._internal.forms[formName] || {};
     }
   });
 
