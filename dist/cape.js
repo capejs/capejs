@@ -566,10 +566,6 @@
     }
   });
 
-  function trigger() {
-    window.Cape.router.trigger()
-  }
-
   if (!window.Cape) {
     var Cape = {};
     window.Cape = Cape;
@@ -580,6 +576,8 @@
   window.Cape.Router = Router;
   window.Cape.router = new Router();
   window.Cape.navigate = function(hash) { window.Cape.router.navigate(hash) }
+
+  function trigger() { window.Cape.router.trigger() }
 
   if (window.addEventListener)
     window.addEventListener('hashchange', trigger, false)
