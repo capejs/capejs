@@ -5,12 +5,8 @@
 ## `Cape.VdomBuilder`
 
 * Set `selected` option to the `option` element automatically.
-* Hide internal properties under the `_internal` property.
-* Change its name to `Cape.MarkupBuilder`.
 
 ## `Cape.DataStore`
-
-* Hide internal properties under the `_internal` property.
 
 ## `Cape.Router`
 

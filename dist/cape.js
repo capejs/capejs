@@ -160,6 +160,7 @@
     }
   });
 
+  // A class for internal use.
   var _Internal = function _Internal(main) {
     this.main = main;
     this.h = virtualDom.h;
@@ -270,19 +271,19 @@
   // public properties:
   //   root: the root node which this component is mounted on.
   // private properties:
-  //   _internal: the object that holds internal properties of this component.
+  //   _: the object that holds internal properties of this component.
   var Component = function Component() {
-    this._internal = new _Internal(this);
+    this._ = new _Internal(this);
   };
 
   $.extend(Component.prototype, {
     mount: function(id) {
-      if (this._internal.mounted)
+      if (this._.mounted)
         throw new Error("This component has been mounted already.");
 
-      this._internal.mounted = true;
+      this._.mounted = true;
       this.root = document.getElementById(id);
-      this.root.data = this._internal.getElementData(this.root);
+      this.root.data = this._.getElementData(this.root);
 
       if (this.init) this.init();
       else this.refresh();
@@ -290,10 +291,10 @@
       if (this.afterMount) this.afterMount();
     },
     unmount: function() {
-      if (!this._internal.mounted)
+      if (!this._.mounted)
         throw new Error("This component has not been mounted yet.");
 
-      this._internal.mounted = false;
+      this._.mounted = false;
 
       if (this.beforeUnmount) this.beforeUnmount();
       if (global.Cape.router) global.Cape.router.detach(this);
@@ -306,36 +307,37 @@
     refresh: function() {
       var newTree, patches, tempNode;
 
-      if (this._internal.tree) {
-        this._internal.serializeForms();
-        $.extend(true, this._internal.forms, this._internal.virtualForms);
+      if (this._.tree) {
+        this._.serializeForms();
+        $.extend(true, this._.forms, this._.virtualForms);
 
         newTree = this.render();
-        patches = virtualDom.diff(this._internal.tree, newTree);
+        patches = virtualDom.diff(this._.tree, newTree);
         this.root = virtualDom.patch(this.root, patches);
-        this._internal.tree = newTree;
+        this._.tree = newTree;
       }
       else {
-        this._internal.tree = this.render();
-        tempNode = virtualDom.create(this._internal.tree);
+        this._.tree = this.render();
+        tempNode = virtualDom.create(this._.tree);
         this.root.parentNode.replaceChild(tempNode, this.root);
         this.root = tempNode;
       }
 
-      this._internal.virtualForms = {};
-      this._internal.serialized = false;
+      this._.virtualForms = {};
+      this._.serialized = false;
     },
     val: function(name, value) {
-      if (arguments.length === 1) return this._internal.getValue(name);
-      else this._internal.setValue(name, value);
+      if (arguments.length === 1) return this._.getValue(name);
+      else this._.setValue(name, value);
     },
     formData: function(formName) {
-      if (!this._internal.serialized) this._internal.serializeForms();
+      if (!this._.serialized) this._.serializeForms();
       if (formName === undefined) formName = '';
-      return this._internal.forms[formName] || {};
+      return this._.forms[formName] || {};
     }
   });
 
+  // A class for internal use.
   var _Internal = function _Internal(main) {
     this.main = main;
     this.forms = {};
@@ -474,7 +476,7 @@
     refresh: function() {}
   });
 
-  // Internal class of DataStore
+  // A class for internal use.
   var _Internal = function _Internal(main) {
     this.main = main;
     this.components = [];
