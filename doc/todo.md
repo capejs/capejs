@@ -2,7 +2,7 @@
 
 ## `Cape.Component`
 
-## `Cape.VdomBuilder`
+## `Cape.MarkupBuilder`
 
 * Set `selected` option to the `option` element automatically.
 

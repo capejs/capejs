@@ -1,12 +1,12 @@
 (function(global) {
   "use strict";
 
-  // MarkupBuilder
+  // Cape.MarkupBuilder
   //
   // public properties:
   //   component: the component that this builder works for.
   // private properties:
-  //   _: the object that holds internal properties of this class.
+  //   _: the object that holds internal methods and properties of this class.
   var MarkupBuilder = function MarkupBuilder(component, formName) {
     this._ = new _Internal(this);
     this.component = component;
@@ -160,14 +160,14 @@
     }
   });
 
-  // A class for internal use.
+  // Internal properties of Cape.MarkupBuilder
   var _Internal = function _Internal(main) {
     this.main = main;
     this.h = virtualDom.h;
     this.elements = [];
   }
 
-  // Internal (private) methods
+  // Internal methods of Cape.MarkupBuilder
   $.extend(_Internal.prototype, {
     extractContent: function(args) {
       if (typeof args[0] === 'string') return args[0];
@@ -266,12 +266,12 @@
 (function(global) {
   "use strict";
 
-  // Component
+  // Cape.Component
   //
   // public properties:
   //   root: the root node which this component is mounted on.
   // private properties:
-  //   _: the object that holds internal properties of this component.
+  //   _: the object that holds internal methods and properties of this class.
   var Component = function Component() {
     this._ = new _Internal(this);
   };
@@ -337,7 +337,7 @@
     }
   });
 
-  // A class for internal use.
+  // Internal properties of Cape.Component
   var _Internal = function _Internal(main) {
     this.main = main;
     this.forms = {};
@@ -346,7 +346,7 @@
     this.serialized = false;
   }
 
-  // Internal (private) methods
+  // Internal methods of Cape.Component
   $.extend(_Internal.prototype, {
     getValue: function(name) {
       var names, formName, attrName, form;
@@ -438,11 +438,11 @@
 (function(global) {
   "use strict";
 
-  // DataStore
+  // Cape.DataStore
   //
   // public properties:
   // private properties:
-  //   _: the object that holds internal properties of this class.
+  //   _: the object that holds internal methods and properties of this class.
   var DataStore = function DataStore() {
     this._ = new _Internal(this);
   };
@@ -476,7 +476,7 @@
     refresh: function() {}
   });
 
-  // A class for internal use.
+  // Internal properties of Cape.DataStore
   var _Internal = function _Internal(main) {
     this.main = main;
     this.components = [];
@@ -500,12 +500,12 @@
 
   if (!window) return;
 
-  // Router
+  // Cape.Router
   //
   // public properties:
   //   params: the parameters that are extracted from URL hash fragment.
   // private properties:
-  //   _: the object that holds internal properties of this class.
+  //   _: the object that holds internal methods and properties of this class.
   var Router = function Router() {
     this._ = new _Internal(this);
     this.params = {};
@@ -546,14 +546,14 @@
     },
   });
 
-  // A class for internal use.
+  // Internal properties of Cape.Router
   var _Internal = function _Internal(main) {
     this.main = main;
     this.components = [];
     this.currentHash = null;
   }
 
-  // Internal (private) methods
+  // Internal methods of Cape.Router
   $.extend(_Internal.prototype, {
     refreshParams: function() {
       var hash, ary;
