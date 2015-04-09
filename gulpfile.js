@@ -26,6 +26,10 @@ gulp.task('watch', function() {
 
 var testFiles = [
   'node_modules/expect.js/index.js',
+  'node_modules/jquery/dist/jquery.min.js',
+  'node_modules/virtual-dom/dist/virtual-dom.js',
+  'lib/cape/*.js',
+  'test/components/*.js',
   'test/spec/*.js'
 ];
 

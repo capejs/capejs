@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Riot.js tests</title>
+    <title>CapeJS tests</title>
     <link rel="stylesheet" href="../node_modules/mocha/mocha.css" type="text/css" />
     <!--[if lt IE 9]>
       <script src="ie8/es5-shim.js"></script>
@@ -14,14 +14,17 @@
   </head>
   <body>
     <div id="mocha"></div>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/virtual-dom/dist/virtual-dom.js"></script>
     <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/expect.js/index.js"></script>
     <script>
       mocha.setup('bdd')
     </script>
 
-    <script src="../dist/cape/cape.js"></script>
-    <script src="specs/component_test.js"></script>
+    <script src="../dist/cape.js"></script>
+    <script src="components/hello_world.js"></script>
+    <script src="spec/component_test.js"></script>
     <script src="runner.js"></script>
   </body>
 </html>
