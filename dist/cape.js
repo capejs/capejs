@@ -448,7 +448,7 @@
   if (!window) return;
 
   var Router = function Router() {
-    this.handlers = [];
+    this.components = [];
     this.currentHash = null;
     this.params = {};
     this.refresh();
@@ -457,36 +457,33 @@
   $.extend(Router.prototype, {
     attach: function(component) {
       var target = component;
-      for (var i = 0, len = this.handlers.length; i < len; i++) {
-        if (this.handlers[i].component === component) return;
+      for (var i = 0, len = this.components.length; i < len; i++) {
+        if (this.components[i] === component) return;
       }
-      this.handlers.push({
-        component: component,
-        callback: function(params) { component.refresh(params) }
-      });
+      this.components.push(component);
+      this.refresh();
     },
     detach: function(component) {
-      for (var i = 0, len = this.handlers.length; i < len; i++) {
-        if (this.handlers[i].component === component) {
+      for (var i = 0, len = this.components.length; i < len; i++) {
+        if (this.components[i] === component) {
           this.handlers.splice(i, 1);
           break;
         }
       }
     },
-    navigate: function(hash) {
-      window.location.hash = hash;
-      this.trigger();
-    },
-    trigger: function() {
+    trigger: function(eventType) {
       var hash;
 
       hash = window.location.href.split('#')[1] || '';
       if (hash != this.currentHash) {
         this.refresh();
-        for (var i = 0, len = this.handlers.length; i < len; i++)
-          this.handlers[i].callback.call(this, this.params);
-        this.currentHash = hash;
+        for (var i = this.components.length; i--;)
+          this.components[i].refresh(this.params);
       }
+    },
+    navigate: function(hash) {
+      window.location.hash = hash;
+      this.trigger();
     },
     refresh: function() {
       var hash, ary;
