@@ -319,17 +319,11 @@
 
       if (this.init) this.init();
       else this.refresh();
-      if (this.dataStore) {
-        this.updateCallback = function() { self.refresh() };
-        this.dataStore.on('update', this.updateCallback);
-        this.dataStore.refresh();
-      }
 
       if (this.afterMount) this.afterMount();
     },
     unmount: function() {
       if (this.beforeUnmount) this.beforeUnmount();
-      if (this.dataStore) this.dataStore.off('update', this.updateCallback);
       if (global.Cape.router) global.Cape.router.detach(this);
       while (this.root.firstChild) this.root.removeChild(this.root.firstChild);
       if (this.afterUnmount) this.afterUnmount();

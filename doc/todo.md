@@ -10,6 +10,10 @@
 
 * Set `selected` option to the `option` element automatically.
 
+## `Cape.DataStore`
+
+* Add `attach` and `detach` methods like those of `Cape.Router`.
+
 ## `Cape.Router`
 
 * Handle correctly hash without `id` part such as `users/new`.
