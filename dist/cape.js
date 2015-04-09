@@ -1,11 +1,16 @@
 (function(global) {
   "use strict";
 
+  // VdomBuilder
+  //
+  // public properties:
+  //   component: the component that this builder works for.
+  // private properties:
+  //   _: the object that holds internal properties of this class.
   var VdomBuilder = function VdomBuilder(component, formName) {
+    this._ = new _Internal(this);
     this.component = component;
-    this.formName = formName;
-    this.h = virtualDom.h;
-    this.elements = [];
+    this._.formName = formName;
   };
 
   $.extend(VdomBuilder.prototype, {
@@ -23,44 +28,44 @@
       attributes = {};
       for (var i = root.attributes.length; i--;)
         attributes[root.attributes[i].nodeName] = root.attributes[i].value;
-      return this.h(root.tagName, attributes, builder.elements);
+      return this._.h(root.tagName, attributes, builder._.elements);
     },
     elem: function(tagName) {
       var args, options, content, callback, builder, attributes;
 
       args = Array.prototype.slice.call(arguments, 1);
-      content = extractContent(args);
-      options = extractOptions(args);
-      callback = extractCallback(args);
+      content = this._.extractContent(args);
+      options = this._.extractOptions(args);
+      callback = this._.extractCallback(args);
 
       if (callback) {
-        builder = new VdomBuilder(this.component, this.formName);
+        builder = new VdomBuilder(this.component, this._.formName);
         if (callback.length === 0) { throw new Error("Callback requires an argument.") }
         callback.call(this.component, builder);
-        attributes = generateAttributes.call(this, options);
-        this.elements.push(this.h(tagName, attributes, builder.elements));
+        attributes = this._.generateAttributes.call(this, options);
+        this._.elements.push(this._.h(tagName, attributes, builder._.elements));
       }
       else {
         content = content || '';
-        attributes = generateAttributes.call(this, options);
-        this.elements.push(this.h(tagName, attributes, content));
+        attributes = this._.generateAttributes.call(this, options);
+        this._.elements.push(this._.h(tagName, attributes, content));
       }
       return this;
     },
     text: function(content) {
-      this.elements.push(content);
+      this._.elements.push(content);
       return this;
     },
     space: function() {
-      this.elements.push(' ');
+      this._.elements.push(' ');
       return this;
     },
     form: function() {
       var args, options, callback, name, builder, attributes;
 
       args = Array.prototype.slice.call(arguments);
-      options = extractOptions(args) || {};
-      callback = extractCallback(args);
+      options = this._.extractOptions(args) || {};
+      callback = this._.extractCallback(args);
 
       if (typeof callback !== 'function')
         throw new Error("One of arguments must be a function.");
@@ -73,8 +78,8 @@
       if (options.onsubmit === undefined) {
         options.onsubmit = function(e) { return false };
       }
-      attributes = generateAttributes.call(this, options);
-      this.elements.push(this.h('form', attributes, builder.elements));
+      attributes = this._.generateAttributes.call(this, options);
+      this._.elements.push(this._.h('form', attributes, builder._.elements));
       return this;
     },
     labelFor: function(id, content, options) {
@@ -89,10 +94,10 @@
       options = options || {};
       name = options.name;
       value = options.value;
-      if (value === undefined && name !== undefined && this.formName !== undefined)
-        options.value = this.component.val(this.formName + '.' + name);
-      attributes = generateAttributes.call(this, options);
-      this.elements.push(this.h('input', attributes));
+      if (value === undefined && name !== undefined && this._.formName !== undefined)
+        options.value = this.component.val(this._.formName + '.' + name);
+      attributes = this._.generateAttributes.call(this, options);
+      this._.elements.push(this._.h('input', attributes));
       return this;
     },
     hiddenField: function(name, options) {
@@ -110,7 +115,7 @@
       return this;
     },
     textarea: function(name, options) {
-      var value = this.component.val(this.formName + '.' + name);
+      var value = this.component.val(this._.formName + '.' + name);
       options.name = name;
       this.elem('textarea', value, options);
       return this;
@@ -118,7 +123,7 @@
     checkBox: function(attrName, options) {
       var value, checked;
 
-      value = this.component.val(this.formName + '.' + attrName);
+      value = this.component.val(this._.formName + '.' + attrName);
       checked = (value === true || value === '1');
 
       options = options || {};
@@ -131,7 +136,7 @@
       return this;
     },
     radioButton: function(attrName, options) {
-      var value = this.component.val(this.formName + '.' + attrName);
+      var value = this.component.val(this._.formName + '.' + attrName);
 
       options = options || {};
       options.type = 'radio';
@@ -155,55 +160,64 @@
     }
   });
 
-  function extractContent(args) {
-    if (typeof args[0] === 'string') return args[0];
+  var _Internal = function _Internal(main) {
+    this.main = main;
+    this.h = virtualDom.h;
+    this.elements = [];
   }
 
-  function extractOptions(args) {
-    for (var i = 0; i < args.length; i++)
-      if (typeof args[i] === 'object') return args[i];
-  }
+  // Internal (private) methods
+  $.extend(_Internal.prototype, {
+    extractContent: function(args) {
+      if (typeof args[0] === 'string') return args[0];
+    },
 
-  function extractCallback(args) {
-    for (var i = 0; i < args.length; i++)
-      if (typeof args[i] === 'function') return args[i];
-  }
+    extractOptions: function(args) {
+      for (var i = 0; i < args.length; i++)
+        if (typeof args[i] === 'object') return args[i];
+    },
 
-  function generateAttributes(options) {
-    options = options || {};
-    if ('visible' in options && !options['visible']) {
-      options['style'] = options['style'] || {};
-      options['style']['display'] = 'none';
-    }
-    if ('class' in options) {
-      options['className'] = options['class'];
-      delete options['class'];
-    }
-    if ('for' in options) {
-      options['htmlFor'] = options['for'];
-      delete options['for'];
-    }
-    if (typeof options['className'] === 'object') {
-      var names = []
-      for (var name in options['className']) {
-        if (options['className'][name]) {
-          names.push(name)
+    extractCallback: function(args) {
+      for (var i = 0; i < args.length; i++)
+        if (typeof args[i] === 'function') return args[i];
+    },
+
+    generateAttributes: function(options) {
+      options = options || {};
+      if ('visible' in options && !options['visible']) {
+        options['style'] = options['style'] || {};
+        options['style']['display'] = 'none';
+      }
+      if ('class' in options) {
+        options['className'] = options['class'];
+        delete options['class'];
+      }
+      if ('for' in options) {
+        options['htmlFor'] = options['for'];
+        delete options['for'];
+      }
+      if (typeof options['className'] === 'object') {
+        var names = []
+        for (var name in options['className']) {
+          if (options['className'][name]) {
+            names.push(name)
+          }
+        }
+        if (names.length) {
+          options['className'] = names.join(' ')
+        }
+        else {
+          delete options['className'];
         }
       }
-      if (names.length) {
-        options['className'] = names.join(' ')
+      for (var key in options) {
+        if (typeof options[key] === 'function') {
+          options[key] = options[key].bind(this.component)
+        }
       }
-      else {
-        delete options['className'];
-      }
+      return options;
     }
-    for (var key in options) {
-      if (typeof options[key] === 'function') {
-        options[key] = options[key].bind(this.component)
-      }
-    }
-    return options;
-  }
+  });
 
   var normalElementNames = [
     'a', 'abbr', 'address', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo',
