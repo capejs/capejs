@@ -312,7 +312,7 @@
     getValue: function(name) {
       var names, formName, attrName, form;
 
-      names = getNames(name);
+      names = this.getNames(name);
       formName = names[0];
       attrName = names[1];
 
@@ -328,7 +328,7 @@
     setValue: function(name, value) {
       var names, formName, attrName;
 
-      names = getNames(name);
+      names = this.getNames(name);
       formName = names[0];
       attrName = names[1];
 
@@ -366,6 +366,14 @@
         }
       });
       return data;
+    },
+    getNames: function(name) {
+      if (typeof name === 'string' && name.indexOf('.') >= 0) {
+        return name.split('.', 2);
+      }
+      else {
+        return [ '', name ]
+      }
     }
   })
 
@@ -430,15 +438,6 @@
       return this._internal.forms[formName] || {};
     }
   });
-
-  function getNames(name) {
-    if (typeof name === 'string' && name.indexOf('.') >= 0) {
-      return name.split('.', 2);
-    }
-    else {
-      return [ '', name ]
-    }
-  }
 
   if (!global.Cape) {
     var Cape = {};
