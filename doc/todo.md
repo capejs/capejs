@@ -11,4 +11,3 @@
 ## `Cape.Router`
 
 * Handle correctly hash without `id` part such as `users/new`.
-* Hide internal properties under the `_internal` property.
