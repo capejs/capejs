@@ -15,7 +15,7 @@ describe('Component', function() {
     it('should return a VirtualNode object', function() {
       var c, node;
 
-      c = new HelloWorld();
+      c = new HelloMessage();
       c.mount('component');
       node = c.markup(function(m) { m.p("Hello World!") });
       c.unmount();
@@ -32,12 +32,12 @@ describe('Component', function() {
   describe('#refresh', function() {
     before(function() {
       var div = document.createElement('div');
-      div.id = "component";
+      div.id = "click-counter";
       document.body.appendChild(div);
     })
 
     after(function() {
-      var element = document.getElementById('component');
+      var element = document.getElementById('click-counter');
       document.body.removeChild(element);
     })
 
@@ -45,7 +45,7 @@ describe('Component', function() {
       var c, div;
 
       c = new ClickCounter();
-      c.mount('component');
+      c.mount('click-counter');
 
       div = document.getElementsByClassName('counter')[0];
       expect(div.textContent).to.be('0');

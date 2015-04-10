@@ -1,4 +1,4 @@
-(function() {
+(function(global) {
   "use strict";
 
   var ClickCounter = Cape.createComponentClass({
@@ -22,6 +22,6 @@
     }
   });
 
-  var counter = new ClickCounter();
-  counter.mount('click-counter');
-})();
+  if ("process" in global) module.exports = ClickCounter;
+  global.ClickCounter = ClickCounter;
+})((this || 0).self || global);

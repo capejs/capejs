@@ -29,6 +29,8 @@ var testFiles = [
   'node_modules/jquery/dist/jquery.min.js',
   'node_modules/virtual-dom/dist/virtual-dom.js',
   'lib/cape/*.js',
+  'demo/hello_message/hello_message.js',
+  'demo/click_counter/click_counter.js',
   'test/components/*.js',
   'test/spec/*.js'
 ];
