@@ -32,6 +32,7 @@ var testFiles = [
   'demo/hello_message/hello_message.js',
   'demo/click_counter/click_counter.js',
   'demo/todo_list/todo_list.js',
+  'demo/form_manipulator/form_manipulator.js',
   'test/integration/*.js',
   'test/spec/*.js'
 ];

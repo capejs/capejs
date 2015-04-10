@@ -17,6 +17,12 @@ describe('Demo', function() {
       c = new TodoList();
       c.mount('component');
 
+      root = document.getElementById('component');
+
+      ul = root.getElementsByTagName('ul')[0];
+      expect(ul.getElementsByTagName('li').length).to.be(2);
+
+      root = document.getElementById('component');
       input = document.getElementsByName('title')[0];
       input.value = "Test";
       c.refresh();
@@ -24,13 +30,13 @@ describe('Demo', function() {
       button = input.nextSibling;
       button.click();
 
-      ul = document.getElementsByTagName('ul')[0];
+      ul = root.getElementsByTagName('ul')[0];
       expect(ul.children.length).to.be(3);
 
       cb = ul.children[2].getElementsByTagName('input')[0];
       cb.click();
 
-      ul = document.getElementsByTagName('ul')[0];
+      ul = root.getElementsByTagName('ul')[0];
       label = ul.children[2].getElementsByTagName('label')[0];
       expect(label.className).to.be('completed');
 

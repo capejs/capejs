@@ -56,7 +56,7 @@
       this.val('foo.title', 'Default');
       this.val('foo.genre', 'a');
       this.val('bar.title', 'No title');
-      this.chooseGenre('foo', 'y');
+      this.val('bar.genre', 'y');
       this.refresh();
     },
 
