@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+### 0.7.3
+
+### `MarkupBuilder`
+
+* Set `selected` attribute to the `option` element automatically.
+
 ## 0.7.2
 
 ### `MarkupBuilder`

@@ -4,7 +4,6 @@
 
 ## `Cape.MarkupBuilder`
 
-* Set `selected` option to the `option` element automatically.
 * Add `#fields_for` to create nested forms.
 
 ## `Cape.DataStore`
