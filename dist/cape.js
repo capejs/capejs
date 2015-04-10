@@ -240,7 +240,7 @@
   }
 
   var voidElementNames = [
-    'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'keygen',
+    'area', 'base', 'br', 'col', 'data', 'embed', 'hr', 'img', 'keygen',
     'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr'
   ]
 
