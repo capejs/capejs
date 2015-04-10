@@ -6,5 +6,4 @@ class HelloMessage extends Cape.Component {
   }
 }
 
-var component = new HelloMessage();
-component.mount('hello-message');
+window.HelloMessage = HelloMessage;
