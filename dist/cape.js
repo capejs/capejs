@@ -145,7 +145,7 @@
       this.input(options);
       return this;
     },
-    faIcon: function(iconName, options) {
+    fa: function(iconName, options) {
       options = options || {};
       var htmlClass = options.class || options.className;
       if (htmlClass) {
