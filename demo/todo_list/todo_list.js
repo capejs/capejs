@@ -1,4 +1,4 @@
-(function() {
+(function(global) {
   "use strict";
 
   var TodoList = Cape.createComponentClass({
@@ -53,6 +53,6 @@
     }
   });
 
-  var component = new TodoList();
-  component.mount('todo-list');
-})();
+  if ("process" in global) module.exports = TodoList;
+  global.TodoList = TodoList;
+})((this || 0).self || global);

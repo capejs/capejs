@@ -6,10 +6,9 @@ module.exports = function(config) {
       plugins: [
           'karma-mocha',
           'karma-coverage',
-          'karma-chrome-launcher',
-          'karma-phantomjs-launcher'
+          'karma-chrome-launcher'
       ],
-      browsers: ['Chrome', 'PhantomJS'],
+      browsers: ['Chrome'],
       reporters: ['progress', 'coverage'],
       preprocessors: {
           '../lib/cape/*.js': ['coverage']

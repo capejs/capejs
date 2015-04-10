@@ -31,7 +31,8 @@ var testFiles = [
   'lib/cape/*.js',
   'demo/hello_message/hello_message.js',
   'demo/click_counter/click_counter.js',
-  'test/components/*.js',
+  'demo/todo_list/todo_list.js',
+  'test/integration/*.js',
   'test/spec/*.js'
 ];
 
