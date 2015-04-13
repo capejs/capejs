@@ -238,6 +238,10 @@
         options['htmlFor'] = options['for'];
         delete options['for'];
       }
+      if ('data' in options) {
+        options['dataset'] = options['data'];
+        delete options['data'];
+      }
       if (typeof options['className'] === 'object') {
         var names = []
         for (var name in options['className']) {
