@@ -53,4 +53,23 @@ describe('MarkupBuilder', function() {
       c.unmount();
     })
   })
+
+  describe('fa', function() {
+    it('should add a font-awesome icon', function() {
+      var target, c, i;
+
+      var C = Cape.createComponentClass({
+        render: function(m) { m.fa('beer') }
+      });
+
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+      i = target.getElementsByTagName('i')[0];
+      expect(i.className).to.be('fa fa-beer');
+
+      c.unmount();
+    })
+  })
 })
