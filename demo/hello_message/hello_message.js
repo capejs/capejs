@@ -2,10 +2,8 @@
   "use strict";
 
   var HelloMessage = Cape.createComponentClass({
-    render: function() {
-      return this.markup(function(m) {
-        m.p('Hello ' + this.root.data.name + '!')
-      })
+    render: function(m) {
+      m.p('Hello, ' + this.root.data.name + '!')
     }
   });
 

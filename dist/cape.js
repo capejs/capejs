@@ -346,23 +346,22 @@
       while (this.root.firstChild) this.root.removeChild(this.root.firstChild);
       if (this.afterUnmount) this.afterUnmount();
     },
-    markup: function(callback) {
-      return (new global.Cape.MarkupBuilder(this)).markup(callback);
-    },
     refresh: function() {
-      var newTree, patches, tempNode;
+      var builder, newTree, patches, tempNode;
+
+      builder = new global.Cape.MarkupBuilder(this);
 
       if (this._.tree) {
         this._.serializeForms();
         $.extend(true, this._.forms, this._.virtualForms);
 
-        newTree = this.render();
+        newTree = builder.markup(this.render);
         patches = virtualDom.diff(this._.tree, newTree);
         this.root = virtualDom.patch(this.root, patches);
         this._.tree = newTree;
       }
       else {
-        this._.tree = this.render();
+        this._.tree = builder.markup(this.render);
         tempNode = virtualDom.create(this._.tree);
         this.root.parentNode.replaceChild(tempNode, this.root);
         this.root = tempNode;

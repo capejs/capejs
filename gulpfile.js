@@ -30,6 +30,7 @@ var testFiles = [
   'node_modules/virtual-dom/dist/virtual-dom.js',
   'lib/cape/*.js',
   'demo/hello_message/hello_message.js',
+  'demo/hello_message2/hello_message2.js',
   'demo/click_counter/click_counter.js',
   'demo/todo_list/todo_list.js',
   'demo/form_manipulator/form_manipulator.js',

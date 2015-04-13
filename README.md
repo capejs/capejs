@@ -12,10 +12,8 @@ CapeJS is a lightweight Javascript UI library based on [virtual-dom](https://git
 
 <script>
   var HelloMesage = Cape.createComponentClass({
-    render: function() {
-      return this.markup(function(m) {
-        m.div('Hello ' + this.root.data.name + '!')
-      })
+    render: function(m) {
+      m.div('Hello, ' + this.root.data.name + '!')
     }
   });
 
@@ -24,17 +22,13 @@ CapeJS is a lightweight Javascript UI library based on [virtual-dom](https://git
 </script>
 ```
 
-This example will insert `<div>Hello World!</div>` into the `div#hello-message` element.
+This example will insert `<div>Hello, World!</div>` into the `div#hello-message` element.
 
 First of all, we *must* define the `render` method for CapeJS components.
 The role of this method is to create a *virtual* DOM tree.
 CapeJS updates the *real* DOM tree of browsers using this virtual tree.
 
-Within the `render` method, we can use `this.markup` method.
-It takes a function (*callback*) and returns a virtual DOM tree.
-
-A callback for the `markup` method should have an argument.
-In the example above, the `m` is the argument and is called *markup builder*.
+The `render` method should take an argument, which is called *markup builder*.
 When you call its `div` method, a `div` node is added to the virtual DOM tree.
 The markup builder has corresponding methods for all valid tag names of HTML5,
 such as `p`, `span`, `br`, `section`, `video`, etc.
@@ -45,6 +39,35 @@ And you can access to `data-name` attributes of the `root` node by
 
 A working demo is found in the directory [demo/hello_message](demo/hello_message).
 
+### Hello World 2
+
+```html
+<h1>Greeting from CapeJS</h1>
+<div id="hello-message" data-name="World"></div>
+
+<script>
+  var HelloMesage2 = Cape.createComponentClass({
+    render: function(m) {
+      m.p(function(m) {
+        m.text('Hello, ');
+        m.strong(function(m) {
+          m.text(this.root.data.name);
+          m.text('!');
+        })
+      })
+    }
+  });
+
+  var component = new HelloMesage2();
+  component.mount('hello-message');
+</script>
+```
+
+This example will generate `<p>Hello, <strong>World!</strong></p>`.
+
+Note that `strong` method takes a function, which create the content of `strong` element.
+In this way you can create a deeply-nested DOM tree.
+
 ### Click Counter
 
 ```html
@@ -52,12 +75,10 @@ A working demo is found in the directory [demo/hello_message](demo/hello_message
 
 <script>
   var ClickCounter = Cape.createComponentClass({
-    render: function() {
-      return this.markup(function(m) {
-        m.div(String(this.counter), {
-          class: 'counter',
-          onclick: function(e) { this.increment() }
-        })
+    render: function(m) {
+      m.div(String(this.counter), {
+        class: 'counter',
+        onclick: function(e) { this.increment() }
       })
     },
 
@@ -108,15 +129,13 @@ A working demo is found in the directory [demo/click_counter](demo/click_counter
 
 <script>
   var TodoList = Cape.createComponentClass({
-    render: function() {
-      return this.markup(function(m) {
-        m.ul(function(m) {
-          this.items.forEach(function(item) {
-            this.renderItem(m, item);
-          }.bind(this))
-        });
-        this.renderForm(m);
-      })
+    render: function(m) {
+      m.ul(function(m) {
+        this.items.forEach(function(item) {
+          this.renderItem(m, item);
+        }.bind(this))
+      });
+      this.renderForm(m);
     },
 
     renderItem: function(m, item) {
@@ -183,10 +202,8 @@ If you want to write more concisely, try to define class using ECMAScript 6 (ES6
 
 ```javascript
 class HelloMessage extends Cape.Component {
-  render() {
-    return this.markup(m =>
-      m.p(`Hello ${this.root.data.name}!`)
-    )
+  render(m) {
+    m.p(`Hello ${this.root.data.name}!`)
   }
 }
 

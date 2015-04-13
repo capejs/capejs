@@ -2,12 +2,10 @@
   "use strict";
 
   var FormManipulator = Cape.createComponentClass({
-    render: function() {
-      return this.markup(function(m) {
-        this.renderForm1(m);
-        this.renderForm2(m);
-        this.renderButtons(m);
-      })
+    render: function(m) {
+      this.renderForm1(m);
+      this.renderForm2(m);
+      this.renderButtons(m);
     },
 
     renderForm1: function(m) {

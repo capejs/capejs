@@ -1,10 +1,17 @@
 # CHANGELOG - CapeJS
 
+## 0.8.0
+
+### `Component`
+
+* Remove `markup` method. Now, users should define the `render` method to
+  take a `MarkupBuilder` object.
+
 ## 0.7.4
 
 ### `MarkupBuilder`
 
-* Accept `data` option as `dataset`.
+* Accept `data` option as an alias of `dataset`.
 * Handle correctly hash without `id` part such as `users/new`.
 
 ## 0.7.3

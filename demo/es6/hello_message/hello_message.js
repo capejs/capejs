@@ -20,12 +20,8 @@ var HelloMessage = (function (_Cape$Component) {
 
   _createClass(HelloMessage, [{
     key: "render",
-    value: function render() {
-      var _this = this;
-
-      return this.markup(function (m) {
-        return m.p("Hello " + _this.root.data.name + "!");
-      });
+    value: function render(m) {
+      m.p("Hello " + this.root.data.name + "!");
     }
   }]);
 

@@ -2,15 +2,13 @@
   "use strict";
 
   var TodoList = Cape.createComponentClass({
-    render: function() {
-      return this.markup(function(m) {
-        m.ul(function(m) {
-          this.items.forEach(function(item) {
-            this.renderItem(m, item);
-          }.bind(this))
-        });
-        this.renderForm(m);
-      })
+    render: function(m) {
+      m.ul(function(m) {
+        this.items.forEach(function(item) {
+          this.renderItem(m, item);
+        }.bind(this))
+      });
+      this.renderForm(m);
     },
 
     renderItem: function(m, item) {
