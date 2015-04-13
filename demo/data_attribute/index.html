@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Attribute Test | CapeJS Demo</title>
+  <link rel="stylesheet" type="text/css"
+     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="../../vendor/virtual-dom/virtual-dom.js"></script>
+  <script src="../../dist/cape.js"></script>
+  <style>
+    div.counter {
+      border: 1px solid black;
+      padding: 20px;
+      margin: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>Data Attribute Test <small>CapeJS Demo</small></h1>
+    </div>
+
+    <div class="page-body" id="data-attribute"></div>
+  </div>
+
+  <script src="./data_attribute.js"></script>
+  <script>
+    var dataAttribute = new DataAttribute();
+    dataAttribute.mount('data-attribute');
+  </script>
+</body>
+</html>

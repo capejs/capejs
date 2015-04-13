@@ -34,6 +34,7 @@ var testFiles = [
   'demo/click_counter/click_counter.js',
   'demo/todo_list/todo_list.js',
   'demo/form_manipulator/form_manipulator.js',
+  'demo/data_attribute/data_attribute.js',
   'test/integration/*.js',
   'test/spec/*.js'
 ];
