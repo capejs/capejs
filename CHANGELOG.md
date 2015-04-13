@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 0.8.1
+
+### `MarkupBuilder`
+
+* Implement `attr`, `class` and `data` method to set attribute values cumulatively.
+
 ## 0.8.0
 
 ### `Component`
