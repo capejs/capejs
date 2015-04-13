@@ -24,6 +24,16 @@ Then run the following command (without `sudo`) to install dependencies:
 $ npm install
 ```
 
+## How to build virtual-dom
+
+You should build virtual-dom when you bump its version.
+
+```shell
+$ npm run build-vdom
+```
+
+The target file is created in the `vendor/virtual-dom` directory.
+
 ## How to build CapeJS
 
 ```shell
