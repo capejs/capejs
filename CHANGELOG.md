@@ -1,10 +1,17 @@
 # CHANGELOG - CapeJS
 
+## 0.8.2
+
+### `MarkupBuilder`
+
+* Implement `data` method to set attribute values cumulatively.
+* Fix `class` method. The class names set by it should be overridden by options['className'].
+
 ## 0.8.1
 
 ### `MarkupBuilder`
 
-* Implement `attr`, `class` and `data` method to set attribute values cumulatively.
+* Implement `attr` and `class` method to set attribute values cumulatively.
 
 ## 0.8.0
 
