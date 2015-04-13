@@ -14,7 +14,6 @@
       this._.formName = options.formName;
       this._.selectBoxName = options.selectBoxName;
     }
-
   };
 
   $.extend(MarkupBuilder.prototype, {
@@ -47,12 +46,12 @@
           { formName: this._.formName, selectBoxName: this._.selectBoxName });
         if (callback.length === 0) { throw new Error("Callback requires an argument.") }
         callback.call(this.component, builder);
-        attributes = this._.generateAttributes.call(this, options);
+        attributes = this._.generateAttributes(options);
         this._.elements.push(this._.h(tagName, attributes, builder._.elements));
       }
       else {
         content = content || '';
-        attributes = this._.generateAttributes.call(this, options);
+        attributes = this._.generateAttributes(options);
         this._.elements.push(this._.h(tagName, attributes, content));
       }
       return this;
@@ -83,7 +82,7 @@
       if (options.onsubmit === undefined) {
         options.onsubmit = function(e) { return false };
       }
-      attributes = this._.generateAttributes.call(this, options);
+      attributes = this._.generateAttributes(options);
       this._.elements.push(this._.h('form', attributes, builder._.elements));
       return this;
     },
@@ -101,7 +100,7 @@
       value = options.value;
       if (value === undefined && name !== undefined && this._.formName !== undefined)
         options.value = this.component.val(this._.formName + '.' + name);
-      attributes = this._.generateAttributes.call(this, options);
+      attributes = this._.generateAttributes(options);
       this._.elements.push(this._.h('input', attributes));
       return this;
     },
@@ -166,7 +165,7 @@
         { formName: this._.formName, selectBoxName: name });
       callback.call(this.component, builder);
       options = options || {};
-      attributes = this._.generateAttributes.call(this, options);
+      attributes = this._.generateAttributes(options);
       this._.elements.push(this._.h('select', attributes, builder._.elements));
       return this;
     },
@@ -185,6 +184,18 @@
       }
 
       this.elem('option', content, options, callback);
+    },
+    attr: function(name, value) {
+      this._.attr[name] = value;
+      return this;
+    },
+    class: function(name) {
+      this._.classNames.push(name);
+      return this;
+    },
+    data: function(name, value) {
+      this._.data[name] = value;
+      return this;
     },
     fa: function(iconName, options) {
       options = options || {};
@@ -206,6 +217,9 @@
     this.main = main;
     this.h = virtualDom.h;
     this.elements = [];
+    this.classNames = [];
+    this.attr = {};
+    this.data = {};
   }
 
   // Internal methods of Cape.MarkupBuilder
@@ -225,7 +239,12 @@
     },
 
     generateAttributes: function(options) {
+      var classNames, data;
+
       options = options || {};
+      options = $.extend({}, this.attr, options);
+      this.attr = {};
+
       if ('visible' in options && !options['visible']) {
         options['style'] = options['style'] || {};
         options['style']['display'] = 'none';
@@ -238,27 +257,44 @@
         options['htmlFor'] = options['for'];
         delete options['for'];
       }
+
+      classNames = this.classNames.slice(0);
+      this.classNames = [];
+      if (typeof options['className'] === 'object') {
+        for (var name in options['className']) {
+          if (options['className'][name]) {
+            classNames.push(name)
+          }
+        }
+      }
+      else if (typeof options['className'] === 'string') {
+        options['className'].split(' ').forEach(function(e) {
+          classNames.push(e);
+        })
+      }
+
+      if (classNames.length) {
+        classNames = classNames.filter(function(e, i, self) {
+          return self.indexOf(e) === i;
+        })
+        options['className'] = classNames.join(' ')
+      }
+      else {
+        delete options['className'];
+      }
+
       if ('data' in options) {
         options['dataset'] = options['data'];
         delete options['data'];
       }
-      if (typeof options['className'] === 'object') {
-        var names = []
-        for (var name in options['className']) {
-          if (options['className'][name]) {
-            names.push(name)
-          }
-        }
-        if (names.length) {
-          options['className'] = names.join(' ')
-        }
-        else {
-          delete options['className'];
-        }
-      }
+      data = options.dataset || {};
+      data = $.extend({}, this.data, data);
+      this.data = {};
+      options.dataset = data;
+
       for (var key in options) {
         if (typeof options[key] === 'function') {
-          options[key] = options[key].bind(this.component)
+          options[key] = options[key].bind(this.main.component)
         }
       }
       return options;
