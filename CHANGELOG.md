@@ -1,6 +1,13 @@
 # CHANGELOG - CapeJS
 
-### 0.7.3
+## 0.7.4
+
+### `MarkupBuilder`
+
+* Accept `data` option as `dataset`.
+* Handle correctly hash without `id` part such as `users/new`.
+
+## 0.7.3
 
 ### `MarkupBuilder`
 

@@ -601,13 +601,21 @@
   // Internal methods of Cape.Router
   $.extend(_Internal.prototype, {
     refreshParams: function() {
-      var hash, ary;
-
+      var hash, ary, matchObject;
       hash = window.location.href.split('#')[1] || '';
       ary = hash.split('/');
-      this.main.params.collection = ary[0];
-      this.main.params.id = ary[1];
-      this.main.params.action = ary[2];
+      matchObject = hash.match(/^[^\/]+\/[0-9]+/);
+
+      if (matchObject) {
+        this.main.params.collection = ary[0];
+        this.main.params.id         = ary[1];
+        this.main.params.action     = ary[2];
+      }
+      else {
+        this.main.params.collection = ary[0];
+        this.main.params.id         = null;
+        this.main.params.action     = ary[1];
+      }
     }
   });
 
