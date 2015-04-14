@@ -12,23 +12,30 @@ The architecture and terminology of CapeJS are strongly influenced by [React](ht
 
 ### Hello World
 
+The following example will insert `<div>Hello, World!</div>` into the `div#hello-message` element.
+
+`index.html`
+
 ```html
 <h1>Greeting from CapeJS</h1>
 <div id="hello-message" data-name="World"></div>
 
+<script src="./hello_message.js"></script>
 <script>
-  var HelloMesage = Cape.createComponentClass({
-    render: function(m) {
-      m.div('Hello, ' + this.root.data.name + '!')
-    }
-  });
-
   var component = new HelloMesage();
   component.mount('hello-message');
 </script>
 ```
 
-This example will insert `<div>Hello, World!</div>` into the `div#hello-message` element.
+`hello_message.js`
+
+```javascript
+var HelloMesage = Cape.createComponentClass({
+  render: function(m) {
+    m.div('Hello, ' + this.root.data.name + '!')
+  }
+});
+```
 
 First of all, we *must* define the `render` method for CapeJS components.
 The role of this method is to create a *virtual* DOM tree.
@@ -45,28 +52,56 @@ And you can access to `data-name` attributes of the `root` node by
 
 A working demo is found in the directory [demo/hello_message](demo/hello_message).
 
+### Hello World (ES6 version)
+
+If you want to write more concisely, try to define class using ECMAScript 6 (ES6) syntax.
+
+`hello_message.es6`
+
+```javascript
+class HelloMessage extends Cape.Component {
+  render(m) {
+    m.div(`Hello ${this.root.data.name}!`)
+  }
+}
+```
+
+A working demo is found in the directory [es6-demo/hello_message](es6-demo/hello_message).
+
+You must have `npm` and `babel-core` to see this demo page.
+You must also have `browserify` to convert `.es6` file to `.js` file.
+
+See [es6-demo/README.md](es6-demo/README.md) for details.
+
 ### Hello World 2
+
+`index.html`
 
 ```html
 <h1>Greeting from CapeJS</h1>
 <div id="hello-message" data-name="World"></div>
 
+<script src="./hello_message2.js"></script>
 <script>
-  var HelloMesage2 = Cape.createComponentClass({
-    render: function(m) {
-      m.p(function(m) {
-        m.text('Hello, ');
-        m.strong(function(m) {
-          m.text(this.root.data.name);
-          m.text('!');
-        })
-      })
-    }
-  });
-
   var component = new HelloMesage2();
   component.mount('hello-message');
 </script>
+```
+
+`hello_message2.js`
+
+```javascript
+var HelloMesage2 = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.text('Hello, ');
+      m.strong(function(m) {
+        m.text(this.root.data.name);
+        m.text('!');
+      })
+    })
+  }
+});
 ```
 
 This example will generate `<p>Hello, <strong>World!</strong></p>`.
@@ -74,45 +109,69 @@ This example will generate `<p>Hello, <strong>World!</strong></p>`.
 Note that `strong` method takes a function, which create the content of `strong` element.
 In this way you can create a deeply-nested DOM tree.
 
+With ES6 syntax, you can write much tersely:
+
+```javascript
+class HelloMesage2 extends Cape.Component {
+  render(m) {
+    m.p(m => {
+      m.text('Hello, ');
+      m.strong(m => {
+        m.text(this.root.data.name);
+        m.text('!');
+      })
+    })
+  }
+}
+```
+
+
 ### Click Counter
+
+On this example, your will see the number which gets incremented each time you click on the surrounding `div` box.
+
+`index.html`
 
 ```html
 <div id="click-counter"></div>
 
+<script src="./click_counter.js"></script>
 <script>
-  var ClickCounter = Cape.createComponentClass({
-    render: function(m) {
-      m.div(String(this.counter), {
-        class: 'counter',
-        onclick: function(e) { this.increment() }
-      })
-    },
-
-    init: function() {
-      this.counter = 0;
-      this.refresh();
-    },
-
-    increment: function() {
-      this.counter++;
-      this.refresh();
-    }
-  });
-
   var counter = new ClickCounter();
   counter.mount('click-counter');
 </script>
 ```
 
-On this example, your will see the number which gets incremented each time you click on it.
+`click_counter.js`
+
+```javascript
+var ClickCounter = Cape.createComponentClass({
+  render: function(m) {
+    m.div(String(this.counter), {
+      class: 'counter',
+      onclick: function(e) { this.increment() }
+    })
+  },
+
+  init: function() {
+    this.counter = 0;
+    this.refresh();
+  },
+
+  increment: function() {
+    this.counter++;
+    this.refresh();
+  }
+});
+```
 
 Note that we give the second argument to the `div` method:
 
 ```javascript
-        m.div(String(this.counter), {
-          class: 'counter',
-          onclick: function(e) { this.increment() }
-        })
+{
+  class: 'counter',
+  onclick: function(e) { this.increment() }
+}
 ```
 
 This *associative array* represents the attributes of `div` element.
@@ -130,67 +189,74 @@ A working demo is found in the directory [demo/click_counter](demo/click_counter
 
 ### Todo List
 
+On this example, your can add a todo item from a HTML form and toggle the
+`completed` property of todo items by clicking check boxes.
+
+`index.html`
+
 ```html
-<div id="click-counter"></div>
+<div id="todo-list"></div>
 
+<script src="./todo_list.js"></script>
 <script>
-  var TodoList = Cape.createComponentClass({
-    render: function(m) {
-      m.ul(function(m) {
-        this.items.forEach(function(item) {
-          this.renderItem(m, item);
-        }.bind(this))
-      });
-      this.renderForm(m);
-    },
-
-    renderItem: function(m, item) {
-      m.li(function(m) {
-        m.label({ class: { completed: item.done }}, function(m) {
-          m.input({ type: 'checkbox', checked: item.done,
-            onclick: function(e) { this.toggle(item) } });
-          m.space().text(item.title);
-        })
-      })
-    },
-
-    renderForm: function(m) {
-      m.form(function(m) {
-        m.textField('title', { onkeyup: function(e) { this.refresh() } });
-        m.button("Add", {
-          disabled: this.getValue('title') === '',
-          onclick: function(e) { this.addItem() }
-        });
-      });
-    },
-
-    init: function() {
-      this.items = [
-        { title: 'Foo', done: false },
-        { title: 'Bar', done: true }
-      ];
-      this.refresh();
-    },
-
-    toggle: function(item) {
-      item.done = !item.done;
-      this.refresh();
-    },
-
-    addItem: function() {
-      this.items.push({ title: this.getValue('title'), done: false });
-      this.setValue('title', '');
-      this.refresh();
-    }
-  });
-
-  var component = new TodoList();
-  component.mount('todo-list');
+  var todoList = new TodoList();
+  todoList.mount('todo-list');
 </script>
 ```
 
-On this example, your can add a todo item from a HTML form and toggle the
-`completed` property of todo items by clicking check boxes.
+`todo_list.js`
+
+```javascript
+var TodoList = Cape.createComponentClass({
+  render: function(m) {
+    m.ul(function(m) {
+      this.items.forEach(function(item) {
+        this.renderItem(m, item);
+      }.bind(this))
+    });
+    this.renderForm(m);
+  },
+
+  renderItem: function(m, item) {
+    m.li(function(m) {
+      m.label({ class: { completed: item.done }}, function(m) {
+        m.input({ type: 'checkbox', checked: item.done,
+          onclick: function(e) { this.toggle(item) } });
+        m.space().text(item.title);
+      })
+    })
+  },
+
+  renderForm: function(m) {
+    m.form(function(m) {
+      m.textField('title', { onkeyup: function(e) { this.refresh() } });
+      m.button("Add", {
+        disabled: this.getValue('title') === '',
+        onclick: function(e) { this.addItem() }
+      });
+    });
+  },
+
+  init: function() {
+    this.items = [
+      { title: 'Foo', done: false },
+      { title: 'Bar', done: true }
+    ];
+    this.refresh();
+  },
+
+  toggle: function(item) {
+    item.done = !item.done;
+    this.refresh();
+  },
+
+  addItem: function() {
+    this.items.push({ title: this.getValue('title'), done: false });
+    this.setValue('title', '');
+    this.refresh();
+  }
+});
+```
 
 Note that we use the `textField` method of markup builder.
 This method creates an `input` element of the type `text`.
@@ -199,27 +265,3 @@ it is set to the value of `name` attribute of the `input` element and
 we can get its value by `this.getValue('title')`.
 
 A working demo is found in the directory [demo/todo_list](demo/todo_list).
-
-## Examples (ES6 version)
-
-If you want to write more concisely, try to define class using ECMAScript 6 (ES6) syntax.
-
-### Hello World
-
-```javascript
-class HelloMessage extends Cape.Component {
-  render(m) {
-    m.p(`Hello ${this.root.data.name}!`)
-  }
-}
-
-var component = new HelloMessage();
-component.mount('hello-message');
-```
-
-A working demo is found in the directory [es6-demo/hello_message](es6-demo/hello_message).
-
-You must have `npm` and `babel-core` to see this demo page.
-You must also have `browserify` to convert `.es6` file to `.js` file.
-
-See [es6-demo/README.md](es6-demo/README.md) for details.
