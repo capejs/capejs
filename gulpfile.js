@@ -27,14 +27,9 @@ gulp.task('watch', function() {
 var testFiles = [
   'node_modules/expect.js/index.js',
   'node_modules/jquery/dist/jquery.min.js',
-  'node_modules/virtual-dom/dist/virtual-dom.js',
+  'vendor/virtual-dom/virtual-dom.js',
   'lib/cape/*.js',
-  'demo/hello_message/hello_message.js',
-  'demo/hello_message2/hello_message2.js',
-  'demo/click_counter/click_counter.js',
-  'demo/todo_list/todo_list.js',
-  'demo/form_manipulator/form_manipulator.js',
-  'demo/data_attribute/data_attribute.js',
+  'demo/**/*.js',
   'test/integration/*.js',
   'test/spec/*.js'
 ];
