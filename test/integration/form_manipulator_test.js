@@ -12,7 +12,7 @@ describe('Demo', function() {
     })
 
     it('should refresh counter', function() {
-      var c, root, cb, button, textarea;
+      var c, root, cb, button, textarea, formData;
 
       c = new FormManipulator();
       c.mount('form-manipulator');
@@ -40,6 +40,11 @@ describe('Demo', function() {
 
       cb = document.getElementsByName('items/0/done')[1];
       cb.checked = true;
+
+      formData = c.formData('bar');
+      expect(formData.items['0'].genre).to.be('z');
+      expect(formData.items['0'].done).to.be('1');
+      expect(formData.items['1'].remarks).to.be('Test');
 
       button = root.getElementsByTagName('button')[11]; // [Reset]
       button.click(0)

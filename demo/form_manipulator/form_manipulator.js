@@ -6,6 +6,9 @@
       this.renderForm1(m);
       this.renderForm2(m);
       this.renderButtons(m);
+      var fd = this.formData('bar');
+      if (Object.keys(fd).length)
+        m.pre(JSON.stringify(fd, null, 2));
     },
 
     renderForm1: function(m) {
@@ -78,7 +81,9 @@
         m.button('1B', { class: htmlClass,
           onclick: function(e) { this.chooseColor('bar.items/0', 'blue') } }).space()
         m.button('Reset', { class: htmlClass,
-          onclick: function(e) { this.init() } })
+          onclick: function(e) { this.init() } }).space()
+        m.button('Submit', { class: htmlClass,
+          onclick: function(e) { this.refresh() } })
       })
     },
 
