@@ -2,11 +2,10 @@
 
 ## `Cape.Component`
 
-* Adapt `#formData` to nested forms.
-
 ## `Cape.MarkupBuilder`
 
-* Add `#fields_for` to create nested forms.
+* Add `#selectBox` and make `#select` ordinary method.
+* Add `#_.inputField` and make `#input` ordinary method.
 
 ## `Cape.DataStore`
 

@@ -1,5 +1,15 @@
 # CHANGELOG - CapeJS
 
+## 0.8.3
+
+### `Cape.Component`
+
+* Adapt `#formData` to nested forms.
+
+### `Cape.MarkupBuilder`
+
+* Add `#fields_for` to create nested forms.
+
 ## 0.8.2
 
 ### `MarkupBuilder`
