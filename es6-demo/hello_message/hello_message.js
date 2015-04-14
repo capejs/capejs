@@ -7,27 +7,27 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
 
-var HelloMessage = (function (_Cape$Component) {
-  function HelloMessage() {
-    _classCallCheck(this, HelloMessage);
+var ES6HelloMessage = (function (_Cape$Component) {
+  function ES6HelloMessage() {
+    _classCallCheck(this, ES6HelloMessage);
 
     if (_Cape$Component != null) {
       _Cape$Component.apply(this, arguments);
     }
   }
 
-  _inherits(HelloMessage, _Cape$Component);
+  _inherits(ES6HelloMessage, _Cape$Component);
 
-  _createClass(HelloMessage, [{
+  _createClass(ES6HelloMessage, [{
     key: "render",
     value: function render(m) {
-      m.p("Hello " + this.root.data.name + "!");
+      m.p("Hello, " + this.root.data.name + "!");
     }
   }]);
 
-  return HelloMessage;
+  return ES6HelloMessage;
 })(Cape.Component);
 
-window.HelloMessage = HelloMessage;
+window.ES6HelloMessage = ES6HelloMessage;
 
 },{}]},{},[1]);

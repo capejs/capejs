@@ -1,7 +1,7 @@
-class HelloMessage extends Cape.Component {
+class ES6HelloMessage extends Cape.Component {
   render(m) {
-    m.p(`Hello ${this.root.data.name}!`)
+    m.p(`Hello, ${this.root.data.name}!`)
   }
 }
 
-window.HelloMessage = HelloMessage;
+window.ES6HelloMessage = ES6HelloMessage;

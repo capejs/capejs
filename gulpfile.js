@@ -30,6 +30,7 @@ var testFiles = [
   'vendor/virtual-dom/virtual-dom.js',
   'lib/cape/*.js',
   'demo/**/*.js',
+  'es6-demo/hello_message/*.js',
   'test/integration/*.js',
   'test/spec/*.js'
 ];
