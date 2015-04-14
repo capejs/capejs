@@ -14,7 +14,7 @@
     renderForm1: function(m) {
       m.form({ name: 'foo' }, function(m) {
         m.textField('title');
-        m.select({ name: 'genre' }, function(m) {
+        m.selectBox('genre', function(m) {
           m.option('A', { value: 'a' });
           m.option('B', { value: 'b' });
           m.option('C', { value: 'c' });
@@ -31,7 +31,7 @@
         items.forEach(function(item, i) {
           m.fieldsFor('items', { index: i }, function(m) {
             m.textField('title');
-            m.select({ name: 'genre' }, function(m) {
+            m.selectBox('genre', function(m) {
               m.option('X', { value: 'x' });
               m.option('Y', { value: 'y' });
               m.option('Z', { value: 'z' });

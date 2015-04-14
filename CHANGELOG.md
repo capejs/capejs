@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 0.9.0
+
+### `Cape.MarkupBuilder`
+
+* Add `#selectBox` and make `#select` ordinary method.
+
 ## 0.8.3
 
 ### `Cape.Component`
