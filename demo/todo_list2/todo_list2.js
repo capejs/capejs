@@ -44,11 +44,7 @@
         m.textField('title', { onkeyup: function(e) { this.refresh() } });
         m.button("Add", {
           disabled: this.val('title') === '',
-          onclick: function(e) {
-            var title = this.val('title');
-            this.val('title', '');
-            this.ds.addItem(title);
-          }
+          onclick: function(e) { this.ds.addItem(this.val('title', '')) }
         });
       });
     },

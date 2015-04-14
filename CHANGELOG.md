@@ -2,6 +2,10 @@
 
 ## 0.9.0
 
+### `Cape.Component`
+
+* Return original value when the value of a field gets set by `#val(name, value)`.
+
 ### `Cape.MarkupBuilder`
 
 * Add `#selectBox` and make `#select` ordinary method.
