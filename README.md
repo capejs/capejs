@@ -231,7 +231,7 @@ var TodoList = Cape.createComponentClass({
     m.form(function(m) {
       m.textField('title', { onkeyup: function(e) { this.refresh() } });
       m.button("Add", {
-        disabled: this.getValue('title') === '',
+        disabled: this.val('title') === '',
         onclick: function(e) { this.addItem() }
       });
     });
@@ -251,8 +251,8 @@ var TodoList = Cape.createComponentClass({
   },
 
   addItem: function() {
-    this.items.push({ title: this.getValue('title'), done: false });
-    this.setValue('title', '');
+    this.items.push({ title: this.val('title'), done: false });
+    this.val('title', '');
     this.refresh();
   }
 });
@@ -262,6 +262,7 @@ Note that we use the `textField` method of markup builder.
 This method creates an `input` element of the type `text`.
 If we give `'title'` as the first argument of the method,
 it is set to the value of `name` attribute of the `input` element and
-we can get its value by `this.getValue('title')`.
+we can get its value by `this.val('title')`.
+You can also set its value with `val` method by giving a new value as second argument.
 
 A working demo is found in the directory [demo/todo_list](demo/todo_list).
