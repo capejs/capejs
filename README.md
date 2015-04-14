@@ -2,7 +2,7 @@
 
 CapeJS is a lightweight Javascript UI framework based on [virtual-dom](https://github.com/Matt-Esch/virtual-dom) of Matt-Esch.
 
-* **Small but full stack:** CapeJS is consists of three basic but powerful classes; *Component, DataStore,* and *Router.* You can utilize them to create web widgets or single-page applications (SPAs).
+* **Small but full stack:** CapeJS is consists of three basic but powerful classes; *Component, DataStore,* and *Router.* You can utilize them to create web widgets and single-page applications (SPAs).
 * **Virtual DOM:** CapeJS takes advantage of [virtual-dom](https://github.com/Matt-Esch/virtual-dom) for high performance UI rendering. You don't have to rely on *jQuery* for DOM manipulation anymore.
 * **Concise syntax:** The *markup builder* helps you to construct HTML DOM trees with its simple, easy to learn syntax. You can add a `div` element by calling markup builder's `div` method, for example.
 
