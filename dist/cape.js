@@ -123,30 +123,18 @@
       this.elem('label', content, options)
       return this;
     },
-    input: function(options) {
-      var attributes;
-
-      options = options || {};
-
-      if (options.name && this._.fieldNamePrefix)
-        options.name = this._.fieldNamePrefix + '/' + options.name
-
-      attributes = this._.generateAttributes(options);
-      this._.elements.push(this._.h('input', attributes));
-      return this;
-    },
     hiddenField: function(name, options) {
       options = options || {};
       options.type = 'hidden';
       options.name = name;
-      this.input(options);
+      this._.inputField(options);
       return this;
     },
     textField: function(name, options) {
       options = options || {};
       options.type = 'text';
       options.name = name;
-      this.input(options);
+      this._.inputField(options);
       return this;
     },
     textareaField: function(attrName, options) {
@@ -162,8 +150,8 @@
       options.type = 'checkbox';
       if (attrName) options.name = attrName;
       if (!options.value) options.value = '1';
-      this.input($.extend({}, options, { type: 'hidden', value: '0' }));
-      this.input(options);
+      this._.inputField($.extend({}, options, { type: 'hidden', value: '0' }));
+      this._.inputField(options);
       return this;
     },
     radioButton: function(attrName, value, options) {
@@ -171,13 +159,13 @@
       options.type = 'radio';
       options.value = value;
       if (attrName) options.name = attrName;
-      this.input(options);
+      this._.inputField(options);
       return this;
     },
-    select: function() {
-      var args, options, callback, name, builder, attributes;
+    selectBox: function(name) {
+      var args, options, callback, builder, attributes;
 
-      args = Array.prototype.slice.call(arguments);
+      args = Array.prototype.slice.call(arguments, 1);
       options = this._.extractOptions(args) || {};
       callback = this._.extractCallback(args);
 
@@ -186,10 +174,11 @@
       if (callback.length === 0)
         throw new Error("Callback requires an argument.");
 
-      if (options.name && this._.fieldNamePrefix)
-        options.name = this._.fieldNamePrefix + '/' + options.name
+      if (name && this._.fieldNamePrefix)
+        options.name = this._.fieldNamePrefix + '/' + name;
+      else
+        options.name = name;
 
-      name = options.name || '';
       builder = new MarkupBuilder(this.component,
         { formName: this._.formName, selectBoxName: name });
       callback.call(this.component, builder);
@@ -237,6 +226,19 @@
 
   // Internal methods of Cape.MarkupBuilder
   $.extend(_Internal.prototype, {
+    inputField: function(options) {
+      var attributes;
+
+      options = options || {};
+
+      if (options.name && this.fieldNamePrefix)
+        options.name = this.fieldNamePrefix + '/' + options.name
+
+      attributes = this.generateAttributes(options);
+      this.elements.push(this.h('input', attributes));
+      return this;
+    },
+
     extractContent: function(args) {
       if (typeof args[0] === 'string') return args[0];
     },
@@ -323,7 +325,7 @@
     'i', 'iframe', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark',
     'menu', 'menuitem', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup',
     'option', 'output', 'p', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's',
-    'samp', 'script', 'section', 'small', 'span', 'strong', 'style',
+    'samp', 'script', 'section', 'select', 'small', 'span', 'strong', 'style',
     'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot',
     'th', 'thead', 'time', 'title', 'tr', 'u', 'ul', 'var', 'video' ];
 
@@ -334,7 +336,7 @@
   }
 
   var voidElementNames = [
-    'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'keygen',
+    'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen',
     'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr'
   ]
 
@@ -444,7 +446,7 @@
     },
     val: function(name, value) {
       if (arguments.length === 1) return this._.getValue(name);
-      else this._.setValue(name, value);
+      else return this._.setValue(name, value);
     },
     formData: function(formName) {
       this._.serializeForms();
@@ -481,14 +483,17 @@
       return '';
     },
     setValue: function(name, value) {
-      var names, formName, attrName;
+      var names, formName, attrName, origValue;
 
       names = this.getNames(name);
       formName = names[0];
       attrName = names[1];
+      origValue = this.getValue(name);
 
       if (!this.virtualForms[formName]) this.virtualForms[formName] = {};
       this.virtualForms[formName][attrName] = value;
+
+      return origValue;
     },
     serializeForms: function() {
       var self = this;
@@ -551,7 +556,7 @@
   global.Cape.Component = Component;
 
   global.Cape.createComponentClass = function(methods) {
-    var klass = function() { this._ = new _Internal(this); };
+    var klass = function() { Component.apply(this, arguments) };
     $.extend(klass.prototype, global.Cape.Component.prototype, methods);
     return klass;
   }
@@ -616,6 +621,11 @@
   }
   global.Cape.DataStore = DataStore;
 
+  global.Cape.createDataStoreClass = function(methods) {
+    var klass = function() { DataStore.apply(this, arguments) };
+    $.extend(klass.prototype, global.Cape.DataStore.prototype, methods);
+    return klass;
+  }
 })((this || 0).self || global);
 
 (function() {
