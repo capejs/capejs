@@ -4,8 +4,6 @@
 
 ## `Cape.MarkupBuilder`
 
-* Add `#_.inputField` and make `#input` ordinary method.
-
 ## `Cape.DataStore`
 
 ## `Cape.Router`
