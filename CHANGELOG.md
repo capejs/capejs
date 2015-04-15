@@ -1,5 +1,14 @@
 # CHANGELOG - CapeJS
 
+## 0.9.1
+
+### `RoutingMapper`
+
+* Add `#hash` method to add a route, optionally with constraints.
+* Add `#resources` method to add routes for four actions(index, show, new, edit).
+* Add `#resource` method to add routes for three actions(show, new, edit).
+* Support `pathNames`, `path`, `only`, `except` options on `#resources` and `#resource` methods.
+
 ## 0.9.0
 
 ### `Cape.Component`
