@@ -26,6 +26,7 @@ gulp.task('watch', function() {
 });
 
 var testFiles = [
+  'node_modules/sinon/pkg/sinon.js',
   'node_modules/expect.js/index.js',
   'node_modules/jquery/dist/jquery.min.js',
   'vendor/virtual-dom/virtual-dom.js',

@@ -37,6 +37,7 @@
     "karma-coverage": "^0.2.7",
     "karma-mocha": "^0.1.10",
     "mocha": "^2.2.0",
+    "sinon": "^1.14.1",
     "uglify-js": "latest",
     "virtual-dom": "2.0.1"
   }
