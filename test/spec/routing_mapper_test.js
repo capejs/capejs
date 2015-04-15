@@ -263,4 +263,31 @@ describe('RoutingMapper', function() {
       expect(router.routes[5].params.collection).to.be('passwords');
     })
   })
+
+  describe('namespace', function() {
+    it('should set namespace for routes', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      mapper.namespace('admin', function(m) {
+        m.match('hello/:message', 'messages#show');
+        m.resources('members')
+        m.resource('account')
+      })
+      expect(router.routes.length).to.be(8);
+
+      expect('admin/hello/world').to.match(router.routes[0].regexp);
+      expect('admin/members').to.match(router.routes[1].regexp);
+      expect('admin/members/new').to.match(router.routes[2].regexp);
+      expect('admin/members/123').to.match(router.routes[3].regexp);
+      expect('admin/members/123/edit').to.match(router.routes[4].regexp);
+      expect('admin/account').to.match(router.routes[5].regexp);
+      expect('admin/account/new').to.match(router.routes[6].regexp);
+      expect('admin/account/edit').to.match(router.routes[7].regexp);
+      expect(router.routes[0].params.collection).to.be('admin/messages');
+      expect(router.routes[4].params.collection).to.be('admin/members');
+      expect(router.routes[7].params.collection).to.be('admin/accounts');
+    })
+  })
 })
