@@ -2,6 +2,10 @@
 
 ## 0.9.1
 
+### `Router`
+
+* Implement `#draw`, `#mount`, `#start` and `#exec`.
+
 ### `RoutingMapper`
 
 * Add `#match` method to add a route, optionally with constraints.
