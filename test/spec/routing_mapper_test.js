@@ -119,6 +119,37 @@ describe('RoutingMapper', function() {
       expect('players/123').to.match(router.routes[2].regexp);
       expect('players/123/edit').to.match(router.routes[3].regexp);
     })
+
+    it('should define a custom route', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      mapper.resources('members', { only: [] }, function(m) {
+        m.get('list', { on: 'collection' })
+        m.get('info', 'address', { on: 'member' })
+      });
+      expect('members/list').to.match(router.routes[0].regexp);
+      expect('members/123/info').to.match(router.routes[1].regexp);
+      expect('members/123/address').to.match(router.routes[2].regexp);
+    })
+
+    it('should define a nested resource', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      mapper.resources('members', { only: 'show' }, function(m) {
+        m.resources('addresses')
+      });
+      expect('members/123').to.match(router.routes[0].regexp);
+      expect('members/123/addresses').to.match(router.routes[1].regexp);
+      expect('members/123/addresses/new').to.match(router.routes[2].regexp);
+      expect('members/123/addresses/99').to.match(router.routes[3].regexp);
+      expect('members/123/addresses/99/edit').to.match(router.routes[4].regexp);
+      expect(router.routes[4].keys[0]).to.be('member_id');
+      expect(router.routes[4].keys[1]).to.be('id');
+    })
   })
 
   describe('resource', function() {
@@ -199,6 +230,37 @@ describe('RoutingMapper', function() {
       expect('player').to.match(router.routes[0].regexp);
       expect('player/new').to.match(router.routes[1].regexp);
       expect('player/edit').to.match(router.routes[2].regexp);
+    })
+
+    it('should define a custom route', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      mapper.resource('member', { only: [] }, function(m) {
+        m.get('info', 'address')
+      });
+      expect('member/info').to.match(router.routes[0].regexp);
+      expect('member/address').to.match(router.routes[1].regexp);
+    })
+
+    it('should define a nested resource', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      mapper.resource('member', { only: 'show' }, function(m) {
+        m.resources('addresses')
+        m.resource('password', { only: 'show' })
+      });
+      expect('member').to.match(router.routes[0].regexp);
+      expect('member/addresses').to.match(router.routes[1].regexp);
+      expect('member/addresses/new').to.match(router.routes[2].regexp);
+      expect('member/addresses/99').to.match(router.routes[3].regexp);
+      expect('member/addresses/99/edit').to.match(router.routes[4].regexp);
+      expect('member/password').to.match(router.routes[5].regexp);
+      expect(router.routes[4].keys[0]).to.be('id');
+      expect(router.routes[5].params.collection).to.be('passwords');
     })
   })
 })
