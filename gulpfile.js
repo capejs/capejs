@@ -7,6 +7,7 @@ var paths = [
   './lib/cape/markup_builder.js',
   './lib/cape/component.js',
   './lib/cape/data_store.js',
+  './lib/cape/routing_mapper.js',
   './lib/cape/router.js'
 ]
 
@@ -28,6 +29,7 @@ var testFiles = [
   'node_modules/expect.js/index.js',
   'node_modules/jquery/dist/jquery.min.js',
   'vendor/virtual-dom/virtual-dom.js',
+  'vendor/inflected/inflected.js',
   'lib/cape/*.js',
   'demo/**/*.js',
   'es6-demo/hello_message/*.js',
