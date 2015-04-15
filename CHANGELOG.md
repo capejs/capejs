@@ -8,6 +8,8 @@
 * Add `#resources` method to add routes for four actions(index, show, new, edit).
 * Add `#resource` method to add routes for three actions(show, new, edit).
 * Support `pathNames`, `path`, `only`, `except` options on `#resources` and `#resource` methods.
+* Support nested resources.
+* Add `#namespace` method to set a namespace for routes.
 
 ## 0.9.0
 
