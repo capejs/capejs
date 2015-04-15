@@ -1,11 +1,11 @@
 describe('RoutingMapper', function() {
-  describe('hash', function() {
+  describe('match', function() {
     it('should add a route to specified component', function() {
       var router = { routes: [] },
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.hash('members/search/:name', 'members#search');
+      mapper.match('members/search/:name', 'members#search');
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
@@ -22,7 +22,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.hash('members/:id/edit', 'members#edit', { id: '\\d+' });
+      mapper.match('members/:id/edit', 'members#edit', { id: '\\d+' });
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
