@@ -266,3 +266,7 @@ we can get its value by `this.val('title')`.
 You can also set its value with `val` method by giving a new value as second argument.
 
 A working demo is found in the directory [demo/todo_list](demo/todo_list).
+
+## License
+
+CapeJS is released under [the MIT License](LICENSE).
