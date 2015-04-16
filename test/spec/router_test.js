@@ -3,8 +3,8 @@ describe('Router', function() {
     it('should mount the matched component and set Router#params', function() {
       var router, method;
 
-      window.Members = { Show: function() {} };
-      window.Members.Show.prototype.mount = method = sinon.spy();
+      window.MembersShow = function() {};
+      window.MembersShow.prototype.mount = method = sinon.spy();
       router = new Cape.Router();
       router.draw(function(m) {
         m.resources('members');
@@ -19,8 +19,8 @@ describe('Router', function() {
     it('should mount the nested component and set Router#params', function() {
       var router, method;
 
-      window.Members = { Show: function() {} };
-      window.Members.Show.prototype.mount = method = sinon.spy();
+      window.MembersShow = function() {};
+      window.MembersShow.prototype.mount = method = sinon.spy();
       router = new Cape.Router();
       router.draw(function(m) {
         m.resources('groups', { only: [] }, function(m) {
@@ -38,10 +38,11 @@ describe('Router', function() {
     it('should unmount the mounted component before remounting', function() {
       var router, method1, method2, method3;
 
-      window.Members = { Index: function() {}, Show: function() {} };
-      window.Members.Index.prototype.mount = method1 = sinon.spy();
-      window.Members.Index.prototype.unmount = method2 = sinon.spy();
-      window.Members.Show.prototype.mount = method3 = sinon.spy();
+      window.MembersIndex = function() {};
+      window.MembersShow = function() {};
+      window.MembersIndex.prototype.mount = method1 = sinon.spy();
+      window.MembersIndex.prototype.unmount = method2 = sinon.spy();
+      window.MembersShow.prototype.mount = method3 = sinon.spy();
 
       router = new Cape.Router();
       router.draw(function(m) {

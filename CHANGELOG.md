@@ -1,5 +1,9 @@
 # CHANGELOG - CapeJS
 
+## 0.10.0
+
+* Change component class name rule. Use `MembersIndex` instead of `Members.Index`.
+
 ## 0.9.1
 
 ### `Router`
