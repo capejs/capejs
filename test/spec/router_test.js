@@ -1,4 +1,80 @@
 describe('Router', function() {
+  describe('attach', function() {
+    it('should register a component as an event listener', function() {
+      var router, component;
+
+      router = new Cape.Router();
+      component = { refresh: sinon.spy() };
+      router.attach(component);
+      router._.notify();
+
+      expect(component.refresh.called).to.be(true);
+    })
+
+    it('should not register a component twice', function() {
+      var router, component;
+
+      router = new Cape.Router();
+      component = { refresh: sinon.spy() };
+      router.attach(component);
+      router.attach(component);
+
+      expect(router._.components.length).to.be(1);
+    })
+  })
+
+  describe('detach', function() {
+    it('should unregister a component as an event listener', function() {
+      var router, component;
+
+      router = new Cape.Router();
+      component = { refresh: sinon.spy() };
+      router.attach(component);
+      router.detach(component);
+      router._.notify();
+
+      expect(component.refresh.called).not.to.be(true);
+    })
+  })
+
+  describe('beforeAction', function() {
+    it('should register a beforeAction callback', function() {
+      var router, method;
+
+      window.TopIndex = function() {};
+      window.TopIndex.prototype.mount = function() {};
+      method = sinon.spy();
+
+      router = new Cape.Router();
+      router.draw(function(m) {
+        m.match('', 'top#index');
+      })
+      router.beforeAction(method);
+      router.mount('main');
+      router.start();
+
+      expect(method.called).to.be(true);
+    })
+  })
+
+  describe('start', function() {
+    it('should mount a component', function() {
+      var router, method;
+
+      window.TopIndex = function() {};
+      window.TopIndex.prototype.mount = method = sinon.spy();
+
+      router = new Cape.Router();
+      router.draw(function(m) {
+        m.match('', 'top#index');
+      })
+      router.mount('main');
+      router.start();
+
+      expect(method.calledWith('main')).to.be(true);
+    })
+  })
+
   describe('navigate', function() {
     it('should mount the matched component and set Router#params', function() {
       var router, method;
