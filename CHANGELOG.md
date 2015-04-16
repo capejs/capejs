@@ -2,7 +2,7 @@
 
 ## 0.9.2
 
-### `Router`
+### `Cape.Router`
 
 * Implement `#beforeAction` to allow users to register callbacks.
 * Remove `#exec` and add `#routeFor`.
@@ -10,10 +10,14 @@
 * Do not remount the same component. Just send notifications.
 * Call `navigate()` within the ``#start method`.
 
-### `RoutingMapper`
+### `Cape.RoutingMapper`
 
 * Change component class name rule. Use `MembersIndex` instead of `Members.Index`.
 * Bug fix: Give a correct class name for components under a namespace.
+
+### `Cape`
+
+* Add `session` property that users can store arbitrary data to.
 
 ## 0.9.1
 

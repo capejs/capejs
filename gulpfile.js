@@ -4,6 +4,7 @@ var watch = require('gulp-watch');
 var karma = require('gulp-karma');
 
 var paths = [
+  './lib/cape/cape.js',
   './lib/cape/markup_builder.js',
   './lib/cape/component.js',
   './lib/cape/data_store.js',
