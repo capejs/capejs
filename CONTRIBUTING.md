@@ -53,3 +53,13 @@ $ gulp test
 Coverage reports are created in the directory `coverage`.
 
 You can also run the test by opening `test/runner.html` with your web browser.
+
+## How to run the tests with jsdom (experimental)
+
+Run the following command on the terminal:
+
+```shell
+$ ./node_modules/.bin/mocha test/runner.js -R spec
+```
+
+You need [io.js](https://iojs.org) to run the test this way.

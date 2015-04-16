@@ -1,3 +1,5 @@
+var isNode = typeof module !== 'undefined' && module.exports !== undefined;
+
 describe('MarkupBuilder', function() {
   before(function() {
     var div = document.createElement('div');
@@ -59,27 +61,31 @@ describe('MarkupBuilder', function() {
   })
 
   describe('data', function() {
-    it('should set data-* attribute of next element', function() {
-      var target, c, p;
+    // jsdom does not support data-* attributes.
+    // See https://github.com/tmpvar/jsdom/issues/961
+    if (!isNode) {
+      it('should set data-* attribute of next element', function() {
+        var target, c, p;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
-          m.data('title', 'x').data('name', 'y')
-            .p('One', { data: { name: 'z' } })
-            .p('Two') }
-      });
+        var C = Cape.createComponentClass({
+          render: function(m) {
+            m.data('title', 'x').data('name', 'y')
+              .p('One', { data: { name: 'z' } })
+              .p('Two') }
+        });
 
-      c = new C();
-      c.mount('target');
+        c = new C();
+        c.mount('target');
 
-      target = document.getElementById('target');
-      p = target.getElementsByTagName('p');
-      expect(p[0].getAttribute('data-title')).to.be('x')
-      expect(p[0].getAttribute('data-name')).to.be('z')
-      expect(p[1].getAttribute('data-title')).to.null
+        target = document.getElementById('target');
+        p = target.getElementsByTagName('p');
+        expect(p[0].getAttribute('data-title')).to.be('x')
+        expect(p[0].getAttribute('data-name')).to.be('z')
+        expect(p[1].getAttribute('data-title')).to.null
 
-      c.unmount();
-    })
+        c.unmount();
+      })
+    }
   })
 
   describe('fa', function() {

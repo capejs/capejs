@@ -386,16 +386,8 @@
       "this.elem('" + tagName + "', options); return this");
   }
 
-  if (!global.Cape) {
-    var Cape = {};
-    if ("process" in global) module.exports = Cape;
-    global.Cape = Cape;
-  }
-  if (!global.CapeJS) {
-    if ("process" in global) module.exports = CapeJS;
-    global.CapeJS = global.Cape;
-  }
   global.Cape.MarkupBuilder = MarkupBuilder;
+  if ("process" in global) module.exports = MarkupBuilder;
 
 })((this || 0).self || global);
 
@@ -591,16 +583,8 @@
     }
   })
 
-  if (!global.Cape) {
-    var Cape = {};
-    if ("process" in global) module.exports = Cape;
-    global.Cape = Cape;
-  }
-  if (!global.CapeJS) {
-    if ("process" in global) module.exports = CapeJS;
-    global.CapeJS = global.Cape;
-  }
   global.Cape.Component = Component;
+  if ("process" in global) module.exports = Component;
 
   global.Cape.createComponentClass = function(methods) {
     var klass = function() { Component.apply(this, arguments) };
@@ -659,12 +643,8 @@
 
   if (!global.Cape) {
     var Cape = {};
-    if ("process" in global) module.exports = Cape;
+    if ("process" in global) module.exports = DataStore;
     global.Cape = Cape;
-  }
-  if (!global.CapeJS) {
-    if ("process" in global) module.exports = CapeJS;
-    global.CapeJS = global.Cape;
   }
   global.Cape.DataStore = DataStore;
 
@@ -897,13 +877,8 @@
     }
   })
 
-  if (!global.Cape) {
-    var Cape = {};
-    if ("process" in global) module.exports = Cape;
-    global.Cape = Cape;
-  }
   global.Cape.RoutingMapper = RoutingMapper;
-})((this || 0).self || window);
+})((this || 0).self || global);
 
 (function(global) {
   "use strict";
@@ -932,7 +907,7 @@
       if (callback.length === 0)
         throw new Error("Callback requires an argument.");
 
-      mapper = new window.Cape.RoutingMapper(this);
+      mapper = new global.Cape.RoutingMapper(this);
       callback(mapper);
     },
     mount: function(elementId) {
@@ -942,15 +917,15 @@
       var self = this, callback;
 
       callback = function() {
-        var hash = window.location.href.split('#')[1] || '';
+        var hash = global.location.href.split('#')[1] || '';
         self.navigate(hash);
       };
-      if (window.addEventListener)
-        window.addEventListener('hashchange', callback, false);
+      if (global.addEventListener)
+        global.addEventListener('hashchange', callback, false);
       else
-        window.attachEvent('onhashchange', callback);
+        global.attachEvent('onhashchange', callback);
 
-      this.hash = window.location.href.split('#')[1] || '';
+      this.hash = global.location.href.split('#')[1] || '';
       this.navigate(this.hash);
     },
     routeFor: function(hash) {
@@ -1043,13 +1018,6 @@
     }
   });
 
-  if (!window.Cape) {
-    var Cape = {};
-    window.Cape = Cape;
-  }
-  if (!window.CapeJS) {
-    window.CapeJS = window.Cape;
-  }
-  window.Cape.Router = Router;
+  global.Cape.Router = Router;
 
-})((this || 0).self || window);
+})((this || 0).self || global);

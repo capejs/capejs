@@ -5,7 +5,7 @@ describe('Cape', function() {
       var obj2 = { a: 4, d: 5 };
       var obj3 = { d: 6, e: 7 };
 
-      window.Cape.extend(obj1, obj2, obj3);
+      Cape.extend(obj1, obj2, obj3);
       expect(obj1.a).to.be(4);
       expect(obj1.b).to.be(2);
       expect(obj1.c).to.be(3);
@@ -20,7 +20,7 @@ describe('Cape', function() {
       var obj2 = { a: { b: { d: 4 } }, x: { z: 5 } };
       var obj3 = { a: { b: { e: { f: 6 } } }, x: { } };
 
-      window.Cape.deepExtend(obj1, obj2, obj3);
+      Cape.deepExtend(obj1, obj2, obj3);
       expect(obj1.a.b.c).to.be(1);
       expect(obj1.a.b.d).to.be(4);
       expect(obj1.a.b.e.f).to.be(6);
