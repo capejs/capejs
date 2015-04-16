@@ -3,6 +3,7 @@
 ## 0.10.0
 
 * Change component class name rule. Use `MembersIndex` instead of `Members.Index`.
+* Bug fix: Give a correct class name for components under a namespace.
 
 ## 0.9.1
 
