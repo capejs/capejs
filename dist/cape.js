@@ -1,6 +1,20 @@
 (function(global) {
   "use strict";
 
+  if (!global.Cape) {
+    var Cape = {};
+    if ("process" in global) module.exports = Cape;
+    global.Cape = Cape;
+  }
+
+  // Users may store arbitrary data to this hash.
+  global.Cape.session = {};
+
+})((this || 0).self || global);
+
+(function(global) {
+  "use strict";
+
   // Cape.MarkupBuilder
   //
   // public properties:
@@ -374,6 +388,8 @@
 
   $.extend(Component.prototype, {
     mount: function(id) {
+      if (id === undefined)
+        throw new Error("The first argument is missing.");
       if (this._.mounted)
         throw new Error("This component has been mounted already.");
 
@@ -641,6 +657,7 @@
       this.path = options.path;
       this.resourceName = options.resourceName;
       this.collectionName = options.collectionName;
+      this.moduleName = options.module;
     }
   };
 
@@ -653,7 +670,9 @@
       route.regexp = this._.constructRegexp(path, constraints);
       names = componentName.split(/#/);
       route.params = {};
-      if (this.namespaceName)
+      if (this.moduleName)
+        route.params.collection = this.moduleName + '/' + names[0];
+      else if (this.namespaceName)
         route.params.collection = this.namespaceName + '/' + names[0];
       else
         route.params.collection = names[0];
@@ -889,54 +908,64 @@
       this._.targetElementId = elementId;
     },
     start: function() {
-      var callback = function() { window.router.trigger() };
+      var self = this, callback;
+
+      callback = function() {
+        var hash = window.location.href.split('#')[1] || '';
+        self.navigate(hash);
+      };
       if (window.addEventListener)
         window.addEventListener('hashchange', callback, false);
       else
         window.attachEvent('onhashchange', callback);
-    },
-    trigger: function(caller) {
-      var hash, i;
 
-      hash = window.location.href.split('#')[1] || '';
-
-      if (hash !== this._.currentHash) {
-        this._.currentHash = hash;
-        this.exec(hash);
-        for (i = this._.components.length; i--;) {
-          if (this._.components[i] !== caller)
-            this._.components[i].refresh();
-        }
-      }
+      this.hash = window.location.href.split('#')[1] || '';
+      this.navigate(this.hash);
     },
-    exec: function(hash) {
-      var i, len, route, md, collection, action, mod, component;
+    routeFor: function(hash) {
+      var i, len, route;
 
       for (i = 0, len = this.routes.length; i < len; i++) {
         route = this.routes[i];
-        if (md = hash.match(route.regexp)) {
-          this.params = $.extend({}, route.params);
-          route.keys.forEach(function(key, j) {
-            this.params[key] = md[j + 1];
-          }.bind(this));
-          collection = Inflector.camelize(route.params.collection);
-          action = Inflector.camelize(route.params.action);
-          if (window[collection] && window[collection][action]) {
-            if (this._.mountedComponent) this._.mountedComponent.unmount();
-            component = new window[collection][action];
-            component.mount(this._.targetElementId);
-            this._.mountedComponent = component;
-            return
-          }
-          else {
-            throw new Error("Class not found.[" + collection + '.' + action + "]");
-          }
-        }
+        if (hash.match(route.regexp)) return route;
       }
       throw new Error("No route match. [" + hash + "]");
     },
     navigate: function(hash) {
-      window.location.hash = hash;
+      var i, len, route, md, componentClassName, componentClass, component;
+
+      this.hash = hash;
+      for (i = 0, len = this._.beforeActionCallbacks.length; i < len; i++) {
+        this._.beforeActionCallbacks[i].call(this);
+      }
+
+      this._.setHash(this.hash);
+
+      route = this.routeFor(this.hash);
+      md = hash.match(route.regexp);
+      this.params = $.extend({}, route.params);
+      route.keys.forEach(function(key, j) {
+        this.params[key] = md[j + 1];
+      }.bind(this));
+
+      componentClassName =
+        Inflector.camelize(route.params.collection.replace(/\//g, '_')) +
+        Inflector.camelize(route.params.action);
+      componentClass = window[componentClassName];
+      if (!componentClass)
+        throw new Error("Class not found.[" + collection + action + "]");
+
+      if (componentClass === this._.mountedComponentClass) {
+        this._.notify();
+      }
+      else {
+        if (this._.mountedComponent) this._.mountedComponent.unmount();
+        this._.notify();
+        component = new componentClass;
+        component.mount(this._.targetElementId);
+        this._.mountedComponentClass = componentClass;
+        this._.mountedComponent = component;
+      }
     },
     attach: function(component) {
       var target = component;
@@ -952,20 +981,36 @@
           break;
         }
       }
+    },
+    beforeAction: function(callback) {
+      this._.beforeActionCallbacks.push(callback);
     }
   });
 
   // Internal properties of Cape.Router
   var _Internal = function _Internal(main) {
     this.main = main;
+    this.beforeActionCallbacks = [];
     this.components = [];
+    this.hash = null;
     this.currentHash = null;
     this.mountedComponent = null;
     this.targetElementId = null;
   }
 
   // Internal methods of Cape.Router
-  $.extend(_Internal.prototype, {});
+  $.extend(_Internal.prototype, {
+    notify: function() {
+      var i;
+
+      for (i = this.components.length; i--;) {
+        this.components[i].refresh();
+      }
+    },
+    setHash: function(hash) {
+      window.location.hash = hash;
+    }
+  });
 
   if (!window.Cape) {
     var Cape = {};
