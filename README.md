@@ -347,7 +347,7 @@ var TodoList2 = Cape.createComponentClass({
   },
 
   init: function() {
-    this.ds = new TodoItemStore();
+    this.ds = TodoItemStore.create();
     this.ds.attach(this);
     this.ds.init();
   },
@@ -358,7 +358,7 @@ var TodoList2 = Cape.createComponentClass({
 });
 ```
 
-Within the `init` method, we create an instance of `TodoItemStore` class *(data store)*,
+Within the `init` method, we create a singleton instance of `TodoItemStore` class *(data store)*,
 and set it to the `ds` property of this component.
 
 Then we call the `attach` method of the data store to register this component

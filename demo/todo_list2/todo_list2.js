@@ -32,7 +32,7 @@
     },
 
     init: function() {
-      this.ds = new TodoItemStore();
+      this.ds = TodoItemStore.create();
       this.ds.attach(this);
       this.ds.init();
     },
