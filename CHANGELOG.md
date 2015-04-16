@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 0.9.3
+
+### `Cape.*`
+
+* Remove dependencies on jQuery.
+
 ## 0.9.2
 
 ### `Cape.Router`

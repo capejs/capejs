@@ -10,6 +10,32 @@
   // Users may store arbitrary data to this hash.
   global.Cape.session = {};
 
+  // Merge the properties of two or more objects together into the first object.
+  global.Cape.extend = function() {
+    var i, key;
+
+    for(i = 1; i < arguments.length; i++)
+      for(key in arguments[i])
+        if(arguments[i].hasOwnProperty(key))
+          arguments[0][key] = arguments[i][key];
+    return arguments[0];
+  }
+
+  // Merge the properties of two or more objects together into the first object recursively.
+  global.Cape.deepExtend = function() {
+    var i, key;
+
+    for(i = 1; i < arguments.length; i++)
+      for(key in arguments[i])
+        if(arguments[i].hasOwnProperty(key)) {
+          if (typeof arguments[0][key] === 'object' && typeof arguments[i][key] === 'object')
+            global.Cape.deepExtend(arguments[0][key], arguments[i][key]);
+          else
+            arguments[0][key] = arguments[i][key];
+        }
+    return arguments[0];
+  }
+
 })((this || 0).self || global);
 
 (function(global) {
@@ -31,7 +57,7 @@
     }
   };
 
-  $.extend(MarkupBuilder.prototype, {
+  global.Cape.extend(MarkupBuilder.prototype, {
     markup: function(callback) {
       var root = this.component.root, formName, builder, attributes;
 
@@ -164,7 +190,7 @@
       options.type = 'checkbox';
       if (attrName) options.name = attrName;
       if (!options.value) options.value = '1';
-      this._.inputField($.extend({}, options, { type: 'hidden', value: '0' }));
+      this._.inputField(global.Cape.extend({}, options, { type: 'hidden', value: '0' }));
       this._.inputField(options);
       return this;
     },
@@ -239,7 +265,7 @@
   }
 
   // Internal methods of Cape.MarkupBuilder
-  $.extend(_Internal.prototype, {
+  global.Cape.extend(_Internal.prototype, {
     inputField: function(options) {
       var attributes;
 
@@ -271,7 +297,7 @@
       var classNames, data;
 
       options = options || {};
-      options = $.extend({}, this.attr, options);
+      options = global.Cape.extend({}, this.attr, options);
       this.attr = {};
 
       if ('visible' in options && !options['visible']) {
@@ -317,7 +343,7 @@
         delete options['data'];
       }
       data = options.dataset || {};
-      data = $.extend({}, this.data, data);
+      data = global.Cape.extend({}, this.data, data);
       this.data = {};
       options.dataset = data;
 
@@ -386,7 +412,7 @@
     this._ = new _Internal(this);
   };
 
-  $.extend(Component.prototype, {
+  global.Cape.extend(Component.prototype, {
     mount: function(id) {
       if (id === undefined)
         throw new Error("The first argument is missing.");
@@ -420,7 +446,7 @@
 
       if (this._.tree) {
         this._.serializeForms();
-        $.extend(true, this._.forms, this._.virtualForms);
+        global.Cape.deepExtend(this._.forms, this._.virtualForms);
 
         newTree = builder.markup(this.render);
         patches = virtualDom.diff(this._.tree, newTree);
@@ -481,7 +507,7 @@
   }
 
   // Internal methods of Cape.Component
-  $.extend(_Internal.prototype, {
+  global.Cape.extend(_Internal.prototype, {
     getValue: function(name) {
       var names, formName, attrName, form;
 
@@ -512,31 +538,36 @@
       return origValue;
     },
     serializeForms: function() {
-      var self = this;
+      var forms, elements, i, j, elem, segments, lastSegment, obj, o;
 
-      self.forms = {};
-      $(self.main.root).find('form').each(function(i) {
-        var obj = {};
-
-        $.each($(this).serializeArray(), function() {
-          var segments = this.name.split('/');
-          var lastSegment = segments.pop();
-          var o = obj;
-          segments.forEach(function(segment) {
-            if (!o[segment]) o[segment] = {};
-            o = o[segment];
-          })
-          o[lastSegment] = this.value || '';
-        });
-
-        if ($(this).attr('name')) {
-          self.forms[$(this).attr('name')] = obj;
+      this.forms = {};
+      forms = this.main.root.getElementsByTagName('form');
+      for (i = 0; i < forms.length; i++) {
+        elements = forms[i].getElementsByTagName('*');
+        obj = {};
+        for (j = 0; j < elements.length; j++) {
+          elem = elements[j];
+          if (elem.name && (elem.value !== undefined)) {
+            if (elem.type === 'checkbox' || elem.type === 'radio')
+              if (!elem.checked) continue;
+            segments = elem.name.split('/');
+            lastSegment = segments.pop();
+            o = obj;
+            segments.forEach(function(segment) {
+              if (!o[segment]) o[segment] = {};
+              o = o[segment];
+            })
+            o[lastSegment] = elem.value;
+          }
+        }
+        if (forms[i].name) {
+          this.forms[forms[i].name] = obj;
         }
         else {
-          self.forms[''] = obj;
+          this.forms[''] = obj;
         }
-      });
-      self.serialized = true;
+      }
+      this.serialized = true;
     },
     getElementData: function(element) {
       var data = {}, camelCaseName;
@@ -573,7 +604,7 @@
 
   global.Cape.createComponentClass = function(methods) {
     var klass = function() { Component.apply(this, arguments) };
-    $.extend(klass.prototype, global.Cape.Component.prototype, methods);
+    global.Cape.extend(klass.prototype, global.Cape.Component.prototype, methods);
     return klass;
   }
 
@@ -596,7 +627,7 @@
     return this.instance;
   }
 
-  $.extend(DataStore.prototype, {
+  global.Cape.extend(DataStore.prototype, {
     attach: function(component) {
       var target = component;
       for (var i = 0, len = this._.components.length; i < len; i++) {
@@ -639,7 +670,7 @@
 
   global.Cape.createDataStoreClass = function(methods) {
     var klass = function() { DataStore.apply(this, arguments) };
-    $.extend(klass.prototype, global.Cape.DataStore.prototype, methods);
+    global.Cape.extend(klass.prototype, global.Cape.DataStore.prototype, methods);
     return klass;
   }
 })((this || 0).self || global);
@@ -661,7 +692,7 @@
     }
   };
 
-  $.extend(RoutingMapper.prototype, {
+  global.Cape.extend(RoutingMapper.prototype, {
     match: function(path, componentName, constraints) {
       var route = {}, names;
       if (this.namespaceName) path = this.namespaceName + '/' + path;
@@ -815,7 +846,7 @@
   }
 
   // Internal methods of Cape.Component
-  $.extend(_Internal.prototype, {
+  global.Cape.extend(_Internal.prototype, {
     extractKeys: function(path) {
       var keys = [], md;
 
@@ -874,7 +905,7 @@
   global.Cape.RoutingMapper = RoutingMapper;
 })((this || 0).self || window);
 
-(function() {
+(function(global) {
   "use strict";
 
   if (!window) return;
@@ -892,7 +923,7 @@
     this.params = {};
   };
 
-  $.extend(Router.prototype, {
+  global.Cape.extend(Router.prototype, {
     draw: function(callback) {
       var mapper;
 
@@ -943,7 +974,7 @@
 
       route = this.routeFor(this.hash);
       md = hash.match(route.regexp);
-      this.params = $.extend({}, route.params);
+      this.params = global.Cape.extend({}, route.params);
       route.keys.forEach(function(key, j) {
         this.params[key] = md[j + 1];
       }.bind(this));
@@ -999,7 +1030,7 @@
   }
 
   // Internal methods of Cape.Router
-  $.extend(_Internal.prototype, {
+  global.Cape.extend(_Internal.prototype, {
     notify: function() {
       var i;
 
