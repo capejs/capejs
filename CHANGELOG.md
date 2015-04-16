@@ -1,6 +1,16 @@
 # CHANGELOG - CapeJS
 
-## 0.10.0
+## 0.9.2
+
+### `Router`
+
+* Implement `#beforeAction` to allow users to register callbacks.
+* Remove `#exec` and add `#routeFor`.
+* Let `#navigate` to call callbacks before mounting component.
+* Do not remount the same component. Just send notifications.
+* Call `navigate()` within the ``#start method`.
+
+### `RoutingMapper`
 
 * Change component class name rule. Use `MembersIndex` instead of `Members.Index`.
 * Bug fix: Give a correct class name for components under a namespace.
