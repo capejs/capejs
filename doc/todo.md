@@ -2,7 +2,7 @@
 
 ## `Cape.*`
 
-* Remove dependencies on jQuery. `$.extend`, `$(this).serializeArray`, etc.
+* Remove dependencies on jQuery. $(this).serializeArray`.
 * Adopt a more *modern* build method.
 * Headless test using `jsdom`.
 * Write API docs.
