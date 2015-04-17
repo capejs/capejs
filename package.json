@@ -10,6 +10,7 @@
   "scripts": {
     "test": "gulp test",
     "test2": "./node_modules/.bin/mocha test/runner.js -R spec",
+    "build": "browserify --standalone Cape lib/cape.js > dist/cape.js",
     "build-vdom": "browserify --standalone virtual-dom node_modules/virtual-dom/index.js > vendor/virtual-dom/virtual-dom.js",
     "build-inflector": "browserify --standalone Inflector node_modules/inflected/index.js > vendor/inflected/inflected.js"
   },
@@ -24,11 +25,11 @@
   },
   "homepage": "https://github.com/oiax/capejs",
   "devDependencies": {
+    "browserify": "^9.0.8",
     "eslint": "^0.15.1",
     "expect.js": "^0.3.1",
     "glob": "^5.0.0",
     "gulp": "^3.8.11",
-    "gulp-concat": "^2.5.2",
     "gulp-karma": "0.0.4",
     "gulp-watch": "^4.2.3",
     "jsdom": "^4.0.2",
@@ -39,6 +40,7 @@
     "mocha": "^2.2.0",
     "sinon": "^1.14.1",
     "uglify-js": "latest",
+    "vinyl-source-stream": "^1.1.0",
     "virtual-dom": "2.0.1"
   }
 }

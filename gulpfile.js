@@ -1,5 +1,7 @@
 var concat = require('gulp-concat');
 var gulp = require('gulp');
+var source = require('vinyl-source-stream');
+var browserify = require('browserify');
 var watch = require('gulp-watch');
 var karma = require('gulp-karma');
 
@@ -13,9 +15,13 @@ var paths = [
 ]
 
 var build = function() {
-  gulp.src(paths)
-    .pipe(concat('cape.js'))
-    .pipe(gulp.dest('./dist'));
+  browserify({
+    entries: ['./lib/cape.js'],
+    standalone: 'Cape'
+  })
+  .bundle()
+  .pipe(source('cape.js'))
+  .pipe(gulp.dest('./dist'));
 }
 
 gulp.task('build', function() {
@@ -29,11 +35,7 @@ gulp.task('watch', function() {
 var testFiles = [
   'node_modules/sinon/pkg/sinon.js',
   'node_modules/expect.js/index.js',
-  'node_modules/jquery/dist/jquery.min.js',
-  'vendor/virtual-dom/virtual-dom.js',
-  'vendor/inflected/inflected.js',
-  'lib/cape/utilities.js',
-  'lib/cape/*.js',
+  'dist/cape.js',
   'demo/**/*.js',
   'es6-demo/hello_message/*.js',
   'test/integration/*.js',

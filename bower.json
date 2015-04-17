@@ -17,8 +17,5 @@
     "package.json",
     "test"
   ],
-  "dependencies": {
-    "jquery": "latest"
-  },
   "main": "dist/cape.js"
 }
