@@ -2,6 +2,8 @@ var concat = require('gulp-concat');
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
 var watch = require('gulp-watch');
 var karma = require('gulp-karma');
 
@@ -15,7 +17,7 @@ var paths = [
 ]
 
 var build = function() {
-  browserify({
+  return browserify({
     entries: ['./lib/cape.js'],
     standalone: 'Cape'
   })
@@ -24,8 +26,16 @@ var build = function() {
   .pipe(gulp.dest('./dist'));
 }
 
+var minify = function() {
+  return gulp.src('dist/cape.js')
+  .pipe(uglify())
+  .pipe(rename('cape.min.js'))
+  .pipe(gulp.dest('./dist'));
+}
+
 gulp.task('build', function() {
   build();
+  minify();
 });
 
 gulp.task('watch', function() {

@@ -1,5 +1,13 @@
 # CHANGELOG - CapeJS
 
+## 0.10.2
+
+### `Cape.*`
+
+* Adopt the structure of Node.js package.
+* Create *browserified* dist file containing `virtual-dom` and `inflected`.
+* Create *minified* dist file.
+
 ## 0.10.1
 
 ### `Cape.Component`
