@@ -32,6 +32,7 @@
     "gulp": "^3.8.11",
     "gulp-karma": "0.0.4",
     "gulp-watch": "^4.2.3",
+    "inflected": "^1.1.6",
     "jsdom": "^4.0.2",
     "karma": "^0.12.31",
     "karma-chrome-launcher": "^0.1.7",
