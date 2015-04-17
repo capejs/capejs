@@ -59,7 +59,7 @@ You can also run the test by opening `test/runner.html` with your web browser.
 Run the following command on the terminal:
 
 ```shell
-$ ./node_modules/.bin/mocha test/runner.js -R spec
+$ npm run test2
 ```
 
 You need [io.js](https://iojs.org) to run the test this way.

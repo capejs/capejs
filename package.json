@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "gulp test",
+    "test2": "./node_modules/.bin/mocha test/runner.js -R spec",
     "build-vdom": "browserify --standalone virtual-dom node_modules/virtual-dom/index.js > vendor/virtual-dom/virtual-dom.js",
     "build-inflector": "browserify --standalone Inflector node_modules/inflected/index.js > vendor/inflected/inflected.js"
   },
