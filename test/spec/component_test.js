@@ -49,9 +49,6 @@ describe('Component', function() {
       expect(component.val('foo.name')).to.be('B');
     })
 
-    // On jsdom, `form["foo"]` does not return a form control with the name `foo`.
-    if (isNode) return;
-
     it('should set the value of a form field', function() {
       var Klass, component;
 
