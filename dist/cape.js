@@ -973,6 +973,12 @@
     },
     beforeAction: function(callback) {
       this._.beforeActionCallbacks.push(callback);
+    },
+    redirectBack: function() {
+      var historyPage = window.history;
+      if (historyPage.length) {
+        return historyPage.back();
+      }
     }
   });
 
