@@ -51,6 +51,7 @@ describe('Router', function() {
       method = sinon.spy();
 
       router = new Cape.Router();
+      router._.setHash = function() {};
       router.draw(function(m) {
         m.match('', 'top#index');
       })
@@ -75,6 +76,7 @@ describe('Router', function() {
       window.Top.Index.prototype.mount = method = sinon.spy();
 
       router = new Cape.Router();
+      router._.setHash = function() {};
       router.draw(function(m) {
         m.match('', 'top#index');
       })
@@ -182,6 +184,7 @@ describe('Router', function() {
       window.Adm.Members.Show = function() {};
       window.Adm.Members.Show.prototype.mount = method = sinon.spy();
       router = new Cape.Router();
+      router._.setHash = function() {};
       router.draw(function(m) {
         m.namespace('admin', { module: 'adm' }, function(m) {
           m.resources('members');
@@ -281,6 +284,7 @@ describe('Router', function() {
       window.AdmMembersShow = function() {};
       window.AdmMembersShow.prototype.mount = method = sinon.spy();
       router = new Cape.Router();
+      router._.setHash = function() {};
       router.draw(function(m) {
         m.namespace('admin', { module: 'adm' }, function(m) {
           m.resources('members');
