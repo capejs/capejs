@@ -1,5 +1,17 @@
 # CHANGELOG - CapeJS
 
+## 0.10.0
+
+### `Cape.Router`
+
+* Introduce new convension for component class name.
+    * Old (still valid)
+        * `foo#bar => FooBar`
+        * `admin/foo#bar` => AdminFooBar`
+    * New
+        * `foo#bar => Foo.Bar`
+        * `admin/foo#bar` => Admin.Foo.Bar`
+
 ## 0.9.3
 
 ### `Cape.*`

@@ -38,11 +38,16 @@ describe('Router', function() {
   })
 
   describe('beforeAction', function() {
+    after(function() {
+      window.Top = undefined;
+    })
+
     it('should register a beforeAction callback', function() {
       var router, method;
 
-      window.TopIndex = function() {};
-      window.TopIndex.prototype.mount = function() {};
+      window.Top = {};
+      window.Top.Index = function() {};
+      window.Top.Index.prototype.mount = function() {};
       method = sinon.spy();
 
       router = new Cape.Router();
@@ -58,11 +63,16 @@ describe('Router', function() {
   })
 
   describe('start', function() {
+    after(function() {
+      window.Top = undefined;
+    })
+
     it('should mount a component', function() {
       var router, method;
 
-      window.TopIndex = function() {};
-      window.TopIndex.prototype.mount = method = sinon.spy();
+      window.Top = {};
+      window.Top.Index = function() {};
+      window.Top.Index.prototype.mount = method = sinon.spy();
 
       router = new Cape.Router();
       router.draw(function(m) {
@@ -76,6 +86,116 @@ describe('Router', function() {
   })
 
   describe('navigate', function() {
+    after(function() {
+      window.Members = undefined;
+      window.Admin = undefined;
+      window.Adm = undefined;
+    })
+
+    it('should mount the matched component and set Router#params', function() {
+      var router, method;
+
+      window.Members = {};
+      window.Members.Show = function() {};
+      window.Members.Show.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.resources('members');
+      })
+      router.mount('main');
+      router.navigate('members/123');
+
+      expect(method.calledWith('main')).to.be(true);
+      expect(router.params.id).to.be('123');
+    })
+
+    it('should mount the nested component and set Router#params', function() {
+      var router, method;
+
+      window.Members = {};
+      window.Members.Show = function() {};
+      window.Members.Show.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.resources('groups', { only: [] }, function(m) {
+          m.resources('members')
+        });
+      })
+      router.mount('main');
+      router.navigate('groups/9/members/123');
+
+      expect(method.calledWith('main')).to.be(true);
+      expect(router.params.group_id).to.be('9');
+      expect(router.params.id).to.be('123');
+    })
+
+    it('should unmount the mounted component before remounting', function() {
+      var router, method1, method2, method3;
+
+      window.Members = {};
+      window.Members.Index = function() {};
+      window.Members.Show = function() {};
+      window.Members.Index.prototype.mount = method1 = sinon.spy();
+      window.Members.Index.prototype.unmount = method2 = sinon.spy();
+      window.Members.Show.prototype.mount = method3 = sinon.spy();
+
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.resources('members');
+      })
+      router.mount('main');
+      router.navigate('members');
+      router.navigate('members/123');
+
+      expect(method1.calledWith('main')).to.be(true);
+      expect(method2.called).to.be(true);
+      expect(method3.calledWith('main')).to.be(true);
+    })
+
+    it('should mount the component under a namespace', function() {
+      var router, method;
+
+      window.Admin = { Members: {} };
+      window.Admin.Members.Show = function() {};
+      window.Admin.Members.Show.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.namespace('admin', function(m) {
+          m.resources('members');
+        })
+      })
+      router.mount('main');
+      router.navigate('admin/members/123');
+
+      expect(method.calledWith('main')).to.be(true);
+      expect(router.params.id).to.be('123');
+    })
+
+    it('should mount the component under a namespace with module option', function() {
+      var router, method;
+
+      window.Adm = { Members: {} };
+      window.Adm.Members.Show = function() {};
+      window.Adm.Members.Show.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router.draw(function(m) {
+        m.namespace('admin', { module: 'adm' }, function(m) {
+          m.resources('members');
+        })
+      })
+      router.mount('main');
+      router.navigate('admin/members/123');
+
+      expect(method.calledWith('main')).to.be(true);
+      expect(router.params.id).to.be('123');
+    })
+  })
+
+  describe('navigate (old convension)', function() {
     it('should mount the matched component and set Router#params', function() {
       var router, method;
 

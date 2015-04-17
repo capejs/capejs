@@ -34,6 +34,23 @@ describe('RoutingMapper', function() {
       expect(route.params.collection).to.be('members');
       expect(route.params.action).to.be('edit');
     })
+
+    it('should add a route to a namespaced component', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      mapper.match('admin/members/search/:name', 'admin/members#search');
+      expect(router.routes.length).to.be(1);
+
+      route = router.routes[0];
+      expect('admin/members/search/foo').to.match(route.regexp);
+      expect('admin/members/search').not.to.match(route.regexp);
+      expect(route.keys.length).to.be(1);
+      expect(route.keys[0]).to.be('name');
+      expect(route.params.collection).to.be('admin/members');
+      expect(route.params.action).to.be('search');
+    })
   })
 
   describe('resources', function() {
