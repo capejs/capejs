@@ -378,6 +378,14 @@ which will cause the re-rendering of this component.
 
 A working demo is found in the directory [demo/todo_list2](demo/todo_list2).
 
+## Acknowledgements
+
+The logo of Cape.JS is created by [Junya Suzuki](https://github.com/junya-suzuki).
+
+## Trademarks
+
+"Cape.JS" and its logo are trademarks of Oiax Inc. All rights reserved.
+
 ## License
 
 Cape.JS is released under [the MIT License](LICENSE).
