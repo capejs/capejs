@@ -43,4 +43,4 @@ gulp.task('test', function() {
     });
 });
 
-gulp.task('default', ['build', 'minify']);
+gulp.task('default', ['build']);
