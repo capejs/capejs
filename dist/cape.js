@@ -641,16 +641,13 @@
     this.components = [];
   }
 
-  if (!global.Cape) {
-    var Cape = {};
-    if ("process" in global) module.exports = DataStore;
-    global.Cape = Cape;
-  }
+  if ("process" in global) module.exports = DataStore;
   global.Cape.DataStore = DataStore;
 
   global.Cape.createDataStoreClass = function(methods) {
     var klass = function() { DataStore.apply(this, arguments) };
     global.Cape.extend(klass.prototype, global.Cape.DataStore.prototype, methods);
+    klass.create = global.Cape.DataStore.create;
     return klass;
   }
 })((this || 0).self || global);
@@ -917,15 +914,15 @@
       var self = this, callback;
 
       callback = function() {
-        var hash = global.location.href.split('#')[1] || '';
+        var hash = window.location.href.split('#')[1] || '';
         self.navigate(hash);
       };
-      if (global.addEventListener)
-        global.addEventListener('hashchange', callback, false);
-      else
-        global.attachEvent('onhashchange', callback);
+      if (window.addEventListener)
+        window.addEventListener('hashchange', callback, false);
+      else if (window.attachEvent)
+        window.attachEvent('onhashchange', callback);
 
-      this.hash = global.location.href.split('#')[1] || '';
+      this.hash = window.location.href.split('#')[1] || '';
       this.navigate(this.hash);
     },
     routeFor: function(hash) {
@@ -938,28 +935,14 @@
       throw new Error("No route match. [" + hash + "]");
     },
     navigate: function(hash) {
-      var i, len, route, md, componentClassName, componentClass, component;
+      var route, componentClass, component;
 
       this.hash = hash;
-      for (i = 0, len = this._.beforeActionCallbacks.length; i < len; i++) {
-        this._.beforeActionCallbacks[i].call(this);
-      }
-
+      this._.executeBeforeActionCallbacks();
       this._.setHash(this.hash);
-
       route = this.routeFor(this.hash);
-      md = hash.match(route.regexp);
-      this.params = global.Cape.extend({}, route.params);
-      route.keys.forEach(function(key, j) {
-        this.params[key] = md[j + 1];
-      }.bind(this));
-
-      componentClassName =
-        Inflector.camelize(route.params.collection.replace(/\//g, '_')) +
-        Inflector.camelize(route.params.action);
-      componentClass = window[componentClassName];
-      if (!componentClass)
-        throw new Error("Class not found.[" + collection + action + "]");
+      this._.setParams(route);
+      componentClass = this._.getComponentClassFor(route);
 
       if (componentClass === this._.mountedComponentClass) {
         this._.notify();
@@ -983,7 +966,7 @@
     detach: function(component) {
       for (var i = 0, len = this._.components.length; i < len; i++) {
         if (this._.components[i] === component) {
-          this._components.splice(i, 1);
+          this._.components.splice(i, 1);
           break;
         }
       }
@@ -1006,15 +989,58 @@
 
   // Internal methods of Cape.Router
   global.Cape.extend(_Internal.prototype, {
+    executeBeforeActionCallbacks: function() {
+      for (var i = 0, len = this.beforeActionCallbacks.length; i < len; i++) {
+        this.beforeActionCallbacks[i].call(this.main);
+      }
+    },
+    setHash: function(hash) {
+      window.location.hash = hash;
+    },
+    setParams: function(route) {
+      var md = this.main.hash.match(route.regexp);
+      this.main.params = global.Cape.extend({}, route.params);
+      route.keys.forEach(function(key, i) {
+        this.main.params[key] = md[i + 1];
+      }.bind(this));
+    },
+    getComponentClassFor: function(route) {
+      var fragments, namespace, collectionName, actionName, obj, componentClassName;
+
+      if (route.params.collection.indexOf('/') != -1) {
+        fragments = route.params.collection.split('/');
+        namespace = Inflector.camelize(fragments[0]);
+        collectionName = Inflector.camelize(fragments[1]);
+      }
+      else {
+        collectionName = Inflector.camelize(route.params.collection);
+      }
+      actionName = Inflector.camelize(route.params.action);
+
+      obj = window;
+      if (namespace) obj = window[namespace] || {};
+      if (typeof obj[collectionName] == 'object' && obj[collectionName][actionName])
+        return obj[collectionName][actionName];
+
+      // Old convension
+      if (namespace)
+        componentClassName = namespace + collectionName + actionName;
+      else
+        componentClassName = collectionName + actionName;
+
+      if (window[componentClassName])
+        return window[componentClassName];
+      else
+        throw new Error(
+          "Component class not found for " + route.params.collection +
+          "#" + route.params.action);
+    },
     notify: function() {
       var i;
 
       for (i = this.components.length; i--;) {
         this.components[i].refresh();
       }
-    },
-    setHash: function(hash) {
-      window.location.hash = hash;
     }
   });
 
