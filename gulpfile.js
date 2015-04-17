@@ -4,7 +4,7 @@ var watch = require('gulp-watch');
 var karma = require('gulp-karma');
 
 var paths = [
-  './lib/cape/cape.js',
+  './lib/cape/utilities.js',
   './lib/cape/markup_builder.js',
   './lib/cape/component.js',
   './lib/cape/data_store.js',
@@ -32,6 +32,7 @@ var testFiles = [
   'node_modules/jquery/dist/jquery.min.js',
   'vendor/virtual-dom/virtual-dom.js',
   'vendor/inflected/inflected.js',
+  'lib/cape/utilities.js',
   'lib/cape/*.js',
   'demo/**/*.js',
   'es6-demo/hello_message/*.js',

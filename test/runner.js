@@ -12,7 +12,7 @@ describe('Cape Tests', function() {
     global.expect = require('expect.js')
     global.sinon = require('sinon')
 
-    global.Cape = require('../lib/cape/cape.js')
+    global.Cape = require('../lib/cape/utilities.js')
     require('../lib/cape/markup_builder.js')
     require('../lib/cape/component.js')
     require('../lib/cape/data_store.js')
