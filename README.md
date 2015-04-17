@@ -1,14 +1,14 @@
-# CapeJS
+# Cape.JS
 
-![Cape.JS logo](https://cdn.rawgit.com/oiax/capejs/logo1/doc/logo/capejs.svg)
+![Cape.JS logo](https://cdn.rawgit.com/oiax/Cape.JS/logo1/doc/logo/Cape.JS.svg)
 
-CapeJS is a lightweight Javascript UI framework based on [virtual-dom](https://github.com/Matt-Esch/virtual-dom) of Matt-Esch.
+Cape.JS is a lightweight Javascript UI framework based on [virtual-dom](https://github.com/Matt-Esch/virtual-dom) of Matt-Esch.
 
-* **Small but full stack:** CapeJS is consists of three basic but powerful classes; *Component, DataStore,* and *Router.* You can utilize them to create web widgets and single-page applications (SPAs).
-* **Virtual DOM:** CapeJS takes advantage of [virtual-dom](https://github.com/Matt-Esch/virtual-dom) for high performance UI rendering. You don't have to rely on *jQuery* for DOM manipulation anymore.
+* **Small but full stack:** Cape.JS is consists of three basic but powerful classes; *Component, DataStore,* and *Router.* You can utilize them to create web widgets and single-page applications (SPAs).
+* **Virtual DOM:** Cape.JS takes advantage of [virtual-dom](https://github.com/Matt-Esch/virtual-dom) for high performance UI rendering. You don't have to rely on *jQuery* for DOM manipulation anymore.
 * **Concise syntax:** The *markup builder* helps you to construct HTML DOM trees with its simple, easy to learn syntax. You can add a `div` element by calling markup builder's `div` method, for example.
 
-The architecture and terminology of CapeJS are strongly influenced by [React](https://github.com/facebook/react),  [Riot](https://github.com/muut/riotjs) and [Ruby on Rails](https://github.com/rails/rails).
+The architecture and terminology of Cape.JS are strongly influenced by [React](https://github.com/facebook/react),  [Riot](https://github.com/muut/riotjs) and [Ruby on Rails](https://github.com/rails/rails).
 
 ## Examples
 
@@ -19,7 +19,7 @@ The following example will insert `<div>Hello, World!</div>` into the `div#hello
 `index.html`
 
 ```html
-<h1>Greeting from CapeJS</h1>
+<h1>Greeting from Cape.JS</h1>
 <div id="hello-message" data-name="World"></div>
 
 <script src="./hello_message.js"></script>
@@ -39,9 +39,9 @@ var HelloMesage = Cape.createComponentClass({
 });
 ```
 
-First of all, we *must* define the `render` method for CapeJS components.
+First of all, we *must* define the `render` method for Cape.JS components.
 The role of this method is to create a *virtual* DOM tree.
-CapeJS updates the *real* DOM tree of browsers using this virtual tree.
+Cape.JS updates the *real* DOM tree of browsers using this virtual tree.
 
 The `render` method should take an argument, which is called *markup builder*.
 When you call its `div` method, a `div` node is added to the virtual DOM tree.
@@ -80,7 +80,7 @@ See [es6-demo/README.md](es6-demo/README.md) for details.
 `index.html`
 
 ```html
-<h1>Greeting from CapeJS</h1>
+<h1>Greeting from Cape.JS</h1>
 <div id="hello-message" data-name="World"></div>
 
 <script src="./hello_message2.js"></script>
@@ -272,7 +272,7 @@ A working demo is found in the directory [demo/todo_list](demo/todo_list).
 ### Data stores
 
 When you develop something larger than a tiny widget, you are recommended to
-create a *data store* for your CapeJS component.
+create a *data store* for your Cape.JS component.
 
 The following example illustrates the basic concept of data stores.
 
@@ -380,4 +380,4 @@ A working demo is found in the directory [demo/todo_list2](demo/todo_list2).
 
 ## License
 
-CapeJS is released under [the MIT License](LICENSE).
+Cape.JS is released under [the MIT License](LICENSE).
