@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 0.10.1
+
+### `Cape.Component`
+
+### Fix `#refresh` to handle correctly a form control whose name is "name" (#8).
+
 ## 0.10.0
 
 ### `Cape.Router`
