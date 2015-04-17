@@ -1,6 +1,6 @@
 # Cape.JS
 
-![Cape.JS logo](https://cdn.rawgit.com/oiax/Cape.JS/logo1/doc/logo/Cape.JS.svg)
+![Cape.JS logo](https://cdn.rawgit.com/oiax/capejs/logo1/doc/logo/capejs.svg)
 
 Cape.JS is a lightweight Javascript UI framework based on [virtual-dom](https://github.com/Matt-Esch/virtual-dom) of Matt-Esch.
 
