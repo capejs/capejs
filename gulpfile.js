@@ -1,29 +1,14 @@
-var concat = require('gulp-concat');
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var uglify = require('gulp-uglify');
+var run = require('gulp-run');
 var rename = require('gulp-rename');
 var watch = require('gulp-watch');
 var karma = require('gulp-karma');
 
-var paths = [
-  './lib/cape/utilities.js',
-  './lib/cape/markup_builder.js',
-  './lib/cape/component.js',
-  './lib/cape/data_store.js',
-  './lib/cape/routing_mapper.js',
-  './lib/cape/router.js'
-]
-
 var build = function() {
-  return browserify({
-    entries: ['./lib/cape.js'],
-    standalone: 'Cape'
-  })
-  .bundle()
-  .pipe(source('cape.js'))
-  .pipe(gulp.dest('./dist'));
+  return run('browserify --standalone Cape lib/cape.js > dist/cape.js').exec()
 }
 
 var minify = function() {

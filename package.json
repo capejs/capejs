@@ -2,17 +2,14 @@
   "name": "capejs",
   "version": "0.10.2",
   "description": "A lightweight Javascript UI framework based on virtual-dom",
-  "main": "dist/cape.js",
-  "browser": "dist/cape.js",
+  "main": "lib/cape.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "gulp test",
     "test2": "./node_modules/.bin/mocha test/runner.js -R spec",
-    "build": "browserify --standalone Cape lib/cape.js > dist/cape.js",
-    "build-vdom": "browserify --standalone virtual-dom node_modules/virtual-dom/index.js > vendor/virtual-dom/virtual-dom.js",
-    "build-inflector": "browserify --standalone Inflector node_modules/inflected/index.js > vendor/inflected/inflected.js"
+    "build": "browserify --standalone Cape lib/cape.js -o dist/cape.js"
   },
   "repository": {
     "type": "git",
@@ -26,12 +23,11 @@
   "homepage": "https://github.com/oiax/capejs",
   "devDependencies": {
     "browserify": "^9.0.8",
-    "eslint": "^0.15.1",
     "expect.js": "^0.3.1",
-    "glob": "^5.0.0",
     "gulp": "^3.8.11",
     "gulp-karma": "0.0.4",
     "gulp-rename": "^1.2.2",
+    "gulp-run": "^1.6.7",
     "gulp-uglify": "^1.2.0",
     "gulp-watch": "^4.2.3",
     "inflected": "^1.1.6",
