@@ -7,24 +7,19 @@ var rename = require('gulp-rename');
 var watch = require('gulp-watch');
 var karma = require('gulp-karma');
 
-var build = function() {
+gulp.task('build', function() {
   return run('browserify --standalone Cape lib/cape.js > dist/cape.js').exec()
-}
+});
 
-var minify = function() {
+gulp.task('minify', function() {
   return gulp.src('dist/cape.js')
   .pipe(uglify())
   .pipe(rename('cape.min.js'))
   .pipe(gulp.dest('./dist'));
-}
-
-gulp.task('build', function() {
-  build();
-  minify();
-});
+})
 
 gulp.task('watch', function() {
-  watch('./lib/**/*.js', build);
+  gulp.watch('./lib/**/*.js', ['build']);
 });
 
 var testFiles = [
@@ -48,4 +43,4 @@ gulp.task('test', function() {
     });
 });
 
-gulp.task('default', ['build']);
+gulp.task('default', ['build', 'minify']);
