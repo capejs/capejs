@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 0.11.1
+
+### `Cape.RoutingMapper`
+
+* Add `#root` that add route for empty hash.
+
 ## 0.11.0
 
 ### `Cape.Router`

@@ -79,6 +79,41 @@ describe('RoutingMapper', function() {
     })
   })
 
+  describe('root', function() {
+    it('should add a route for empty hash', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      mapper.root('top/index');
+      expect(router.routes.length).to.be(1);
+
+      route = router.routes[0];
+      expect('').to.match(route.regexp);
+      expect('top/index').not.to.match(route.regexp);
+      expect(route.namespace).to.be.null;
+      expect(route.component).to.be('top/index');
+    })
+
+    it('should add a route for empty hash under a namespace', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      mapper.namespace('admin', function(m) {
+        m.root('top/index');
+      })
+
+      expect(router.routes.length).to.be(1);
+
+      route = router.routes[0];
+      expect('admin').to.match(route.regexp);
+      expect('').not.to.match(route.regexp);
+      expect(route.namespace).to.be('admin');
+      expect(route.component).to.be('top/index');
+    })
+  })
+
   describe('resources', function() {
     it('should add four routes', function() {
       var router = { routes: [] },
