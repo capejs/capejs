@@ -801,20 +801,41 @@ function RoutingMapper(router, options) {
 
 Cape.extend(RoutingMapper.prototype, {
   match: function(path, componentName, constraints) {
-    var route = {}, names;
+    var route = {}, names, namespace;
+
     if (this.namespaceName) path = this.namespaceName + '/' + path;
     route.path = path;
     route.keys = this._.extractKeys(path);
     route.regexp = this._.constructRegexp(path, constraints);
-    names = componentName.split(/#/);
+
     route.params = {};
-    if (this.moduleName)
-      route.params.collection = this.moduleName + '/' + names[0];
-    else if (this.namespaceName)
-      route.params.collection = this.namespaceName + '/' + names[0];
-    else
-      route.params.collection = names[0];
-    route.params.action = names[1];
+    if (componentName.indexOf('#') === -1) {
+      names = componentName.split(/\//);
+      route.params.component = names.pop();
+      if (names.length) {
+        namespace = names.join('/');
+        if (this.moduleName)
+          route.params.namespace = this.moduleName + '/' + namespace;
+        else if (this.namespaceName)
+          route.params.namespace = this.namespaceName + '/' + namespace;
+        else
+          route.params.namespace = namespace;
+      }
+      else {
+        route.params.namespace = null;
+      }
+    }
+    else {
+      // Old API
+      names = componentName.split(/#/);
+      if (this.moduleName)
+        route.params.collection = this.moduleName + '/' + names[0];
+      else if (this.namespaceName)
+        route.params.collection = this.namespaceName + '/' + names[0];
+      else
+        route.params.collection = names[0];
+      route.params.action = names[1];
+    }
     this.router.routes.push(route);
   },
   resources: function(resourceName, options, callback) {

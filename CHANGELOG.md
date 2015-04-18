@@ -1,5 +1,31 @@
 # CHANGELOG - CapeJS
 
+## 0.11.0
+
+### `Cape.Router`
+
+* Use `/` instead of `#` to separate namespace from component class name.
+  Not `foo#bar`, but `foo/bar`. Old style is still valid.
+
+### `Cape.RoutingMapper`
+
+* Support deeply nested namespace.
+* Do not include `namespace`, `collection`, and `action` in the keys of `route.params`
+  (No backward compatibility).
+* Drop support for old convention of component class name (such as `MembersIndex`).
+
+## 0.10.3
+
+### `Cape.RoutingMapper`
+
+* Change the format of `#match` method's first argument from `component#action` to `namespace/component`.
+* Deep nesting of namespaces.
+
+### `Cape.Router`
+
+* Choose a component under deeply nested namespace.
+
+
 ## 0.10.2
 
 ### `Cape.*`
@@ -18,7 +44,7 @@
 
 ### `Cape.Router`
 
-* Introduce new convension for component class name.
+* Introduce new convention for component class name.
     * Old (still valid)
         * `foo#bar => FooBar`
         * `admin/foo#bar` => AdminFooBar`

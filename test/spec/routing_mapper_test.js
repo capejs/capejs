@@ -5,6 +5,38 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
+      mapper.match('members/search/:name', 'search');
+      expect(router.routes.length).to.be(1);
+
+      route = router.routes[0];
+      expect('members/search/foo').to.match(route.regexp);
+      expect('members/search').not.to.match(route.regexp);
+      expect(route.keys.length).to.be(1);
+      expect(route.keys[0]).to.be('name');
+      expect(route.namespace).to.be.null;
+      expect(route.component).to.be('search');
+    })
+
+    it('should add a route to namespaced component', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      mapper.match('members/search/:name', 'members/search');
+      expect(router.routes.length).to.be(1);
+
+      route = router.routes[0];
+      expect('members/search/foo').to.match(route.regexp);
+      expect('members/search').not.to.match(route.regexp);
+      expect(route.keys.length).to.be(1);
+      expect(route.keys[0]).to.be('name');
+    })
+
+    it('should add a route to namespaced component (old style)', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
       mapper.match('members/search/:name', 'members#search');
       expect(router.routes.length).to.be(1);
 
@@ -13,8 +45,6 @@ describe('RoutingMapper', function() {
       expect('members/search').not.to.match(route.regexp);
       expect(route.keys.length).to.be(1);
       expect(route.keys[0]).to.be('name');
-      expect(route.params.collection).to.be('members');
-      expect(route.params.action).to.be('search');
     })
 
     it('should add a route with constraints', function() {
@@ -22,7 +52,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.match('members/:id/edit', 'members#edit', { id: '\\d+' });
+      mapper.match('members/:id/edit', 'members/edit', { id: '\\d+' });
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
@@ -31,16 +61,14 @@ describe('RoutingMapper', function() {
       expect('members/new').not.to.match(route.regexp);
       expect(route.keys.length).to.be(1);
       expect(route.keys[0]).to.be('id');
-      expect(route.params.collection).to.be('members');
-      expect(route.params.action).to.be('edit');
     })
 
-    it('should add a route to a namespaced component', function() {
+    it('should add a route to deeply namespaced component', function() {
       var router = { routes: [] },
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.match('admin/members/search/:name', 'admin/members#search');
+      mapper.match('admin/members/search/:name', 'app/admin/members/search');
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
@@ -48,8 +76,6 @@ describe('RoutingMapper', function() {
       expect('admin/members/search').not.to.match(route.regexp);
       expect(route.keys.length).to.be(1);
       expect(route.keys[0]).to.be('name');
-      expect(route.params.collection).to.be('admin/members');
-      expect(route.params.action).to.be('search');
     })
   })
 
@@ -64,7 +90,6 @@ describe('RoutingMapper', function() {
 
       route = router.routes[0];
       expect('members').to.match(route.regexp);
-      expect(route.params.collection).to.be('members');
 
       route = router.routes[1];
       expect('members/new').to.match(route.regexp);
@@ -180,7 +205,6 @@ describe('RoutingMapper', function() {
 
       route = router.routes[0];
       expect('member').to.match(route.regexp);
-      expect(route.params.collection).to.be('members');
 
       route = router.routes[1];
       expect('member/new').to.match(route.regexp);
@@ -277,7 +301,6 @@ describe('RoutingMapper', function() {
       expect('member/addresses/99/edit').to.match(router.routes[4].regexp);
       expect('member/password').to.match(router.routes[5].regexp);
       expect(router.routes[4].keys[0]).to.be('id');
-      expect(router.routes[5].params.collection).to.be('passwords');
     })
   })
 
@@ -288,23 +311,62 @@ describe('RoutingMapper', function() {
           route;
 
       mapper.namespace('admin', function(m) {
-        m.match('hello/:message', 'messages#show');
-        m.resources('members')
-        m.resource('account')
+        m.match('hello/:message', 'messages/show');
+        m.resources('members', function(m) {
+          m.resources('addresses', { only: 'index' });
+          m.resource('password', { only: 'show' });
+        })
+        m.resource('account', function(m) {
+          m.resources('addresses', { only: 'index' });
+          m.resource('password', { only: 'show' });
+        })
       })
-      expect(router.routes.length).to.be(8);
+      expect(router.routes.length).to.be(12);
 
       expect('admin/hello/world').to.match(router.routes[0].regexp);
       expect('admin/members').to.match(router.routes[1].regexp);
       expect('admin/members/new').to.match(router.routes[2].regexp);
       expect('admin/members/123').to.match(router.routes[3].regexp);
       expect('admin/members/123/edit').to.match(router.routes[4].regexp);
-      expect('admin/account').to.match(router.routes[5].regexp);
-      expect('admin/account/new').to.match(router.routes[6].regexp);
-      expect('admin/account/edit').to.match(router.routes[7].regexp);
-      expect(router.routes[0].params.collection).to.be('admin/messages');
-      expect(router.routes[4].params.collection).to.be('admin/members');
-      expect(router.routes[7].params.collection).to.be('admin/accounts');
+      expect('admin/members/123/addresses').to.match(router.routes[5].regexp);
+      expect('admin/members/123/password').to.match(router.routes[6].regexp);
+      expect('admin/account').to.match(router.routes[7].regexp);
+      expect('admin/account/new').to.match(router.routes[8].regexp);
+      expect('admin/account/edit').to.match(router.routes[9].regexp);
+      expect('admin/account/addresses').to.match(router.routes[10].regexp);
+      expect('admin/account/password').to.match(router.routes[11].regexp);
+      expect(router.routes[0].namespace).to.be('admin');
+      expect(router.routes[0].component).to.be('messages/show');
+      expect(router.routes[4].component).to.be('members/edit');
+      // expect(router.routes[5].resource).to.be('addresses');
+      expect(router.routes[5].component).to.be('addresses/index');
+      expect(router.routes[9].component).to.be('accounts/edit');
+      // expect(router.routes[11].resource).to.be('account/password');
+      expect(router.routes[11].component).to.be('passwords/show');
+    })
+
+    it('should set nested namespace for routes', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      mapper.namespace('app', function(m) {
+        m.namespace('admin', function(m) {
+          m.match('hello/:message', 'messages#show');
+          m.resources('members')
+          m.resource('account')
+        })
+      })
+      expect(router.routes.length).to.be(8);
+
+      expect('app/admin/hello/world').to.match(router.routes[0].regexp);
+      expect('app/admin/members').to.match(router.routes[1].regexp);
+      expect('app/admin/members/new').to.match(router.routes[2].regexp);
+      expect('app/admin/members/123').to.match(router.routes[3].regexp);
+      expect('app/admin/members/123/edit').to.match(router.routes[4].regexp);
+      expect('app/admin/account').to.match(router.routes[5].regexp);
+      expect('app/admin/account/new').to.match(router.routes[6].regexp);
+      expect('app/admin/account/edit').to.match(router.routes[7].regexp);
     })
   })
 })
