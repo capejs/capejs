@@ -733,41 +733,47 @@ Cape.extend(_Internal.prototype, {
   },
   setParams: function(route) {
     var md = this.main.hash.match(route.regexp);
-    this.main.params = global.Cape.extend({}, route.params);
+    this.main.params = {};
     route.keys.forEach(function(key, i) {
       this.main.params[key] = md[i + 1];
     }.bind(this));
   },
   getComponentClassFor: function(route) {
-    var fragments, namespace, collectionName, actionName, obj, componentClassName;
-
-    if (route.params.collection.indexOf('/') != -1) {
-      fragments = route.params.collection.split('/');
-      namespace = Inflector.camelize(fragments[0]);
-      collectionName = Inflector.camelize(fragments[1]);
-    }
-    else {
-      collectionName = Inflector.camelize(route.params.collection);
-    }
-    actionName = Inflector.camelize(route.params.action);
+    var fragments, i, camelized, componentName, obj, componentClassName;
 
     obj = window;
-    if (namespace) obj = window[namespace] || {};
-    if (typeof obj[collectionName] == 'object' && obj[collectionName][actionName])
-      return obj[collectionName][actionName];
+
+    fragments = route.componentClassName.split('/');
+
+    componentName = Inflector.camelize(fragments.pop());
+
+    for (i = 0; i < fragments.length; i++) {
+      camelized = Inflector.camelize(fragments[i]);
+      if (obj[camelized]) {
+        obj = obj[camelized];
+      }
+      else {
+        obj = null;
+        break;
+      }
+    }
+
+    if (obj && obj[componentName]) return obj[componentName];
 
     // Old convension
-    if (namespace)
-      componentClassName = namespace + collectionName + actionName;
-    else
-      componentClassName = collectionName + actionName;
-
-    if (window[componentClassName])
-      return window[componentClassName];
-    else
+    if (route.params.namespace) {
+      componentClassName = Inflector.camelize(
+        route.params.namespace.replace('/', '_')
+          + '_' + route.params.component);
+      if (window[componentClassName]) return window[componentClassName];
       throw new Error(
-        "Component class not found for " + route.params.collection +
-        "#" + route.params.action);
+        "Component class not found for " + route.params.namespace +
+        "/" + route.params.component);
+    }
+    else {
+      throw new Error(
+        "Component class not found for " + route.params.component);
+    }
   },
   notify: function() {
     var i;
@@ -790,86 +796,69 @@ function RoutingMapper(router, options) {
   this._ = new _Internal(this);
   this.router = router;
   if (options) {
-    this.namespaceName = options.namespace;
     this.singular = options.singular;
-    this.path = options.path;
-    this.resourceName = options.resourceName;
-    this.collectionName = options.collectionName;
-    this.moduleName = options.module;
+    this.pathPrefix = options.pathPrefix;
+    this.resourcePath = options.resourcePath;
+    this.classNamePrefix = options.classNamePrefix;
+    this.resourceClassName = options.resourceClassName;
   }
 };
 
 Cape.extend(RoutingMapper.prototype, {
-  match: function(path, componentName, constraints) {
-    var route = {}, names, namespace;
+  match: function(path, className, constraints) {
+    var route = {}, fullClassName, fragments;
 
-    if (this.namespaceName) path = this.namespaceName + '/' + path;
+    if (this.pathPrefix) path = this.pathPrefix + '/' + path;
+
+    className = className.replace('#', '/'); // For backward compatibitily.
+    if (this.classNamePrefix)
+      fullClassName = this.classNamePrefix + '/' + className;
+    else
+      fullClassName = className;
+
     route.path = path;
     route.keys = this._.extractKeys(path);
     route.regexp = this._.constructRegexp(path, constraints);
+    route.componentClassName = fullClassName;
+    route.namespace = this.pathPrefix;
+    route.component = className;
 
-    route.params = {};
-    if (componentName.indexOf('#') === -1) {
-      names = componentName.split(/\//);
-      route.params.component = names.pop();
-      if (names.length) {
-        namespace = names.join('/');
-        if (this.moduleName)
-          route.params.namespace = this.moduleName + '/' + namespace;
-        else if (this.namespaceName)
-          route.params.namespace = this.namespaceName + '/' + namespace;
-        else
-          route.params.namespace = namespace;
-      }
-      else {
-        route.params.namespace = null;
-      }
-    }
-    else {
-      // Old API
-      names = componentName.split(/#/);
-      if (this.moduleName)
-        route.params.collection = this.moduleName + '/' + names[0];
-      else if (this.namespaceName)
-        route.params.collection = this.namespaceName + '/' + names[0];
-      else
-        route.params.collection = names[0];
-      route.params.action = names[1];
-    }
     this.router.routes.push(route);
   },
   resources: function(resourceName, options, callback) {
-    var actions, path, pathName, mapper;
+    var actions, path, resourcePath, classNamePrefix, pathName, mapper;
 
-    options = options || {};
+    if (typeof options === 'function') {
+      callback = options;
+      options = {}
+    }
+    else {
+      options = options || {};
+    }
+
     options.pathNames = options.pathNames || {};
 
     actions = [ 'index', 'new', 'show', 'edit' ];
     this._.filterActions(actions, options);
 
     path = options.path || resourceName;
-    if (this.path) {
-      if (this.singular === true) {
-        path = this.path + '/' + path
-      }
-      else {
-        path = this.path + '/:' +
-          Inflector.singularize(this.collectionName) + '_id/' + path
-      }
-    }
+    resourcePath = this._.getResourcePath(path);
+
+    classNamePrefix = resourceName;
+    if (this.classNamePrefix)
+      classNamePrefix = this.classNamePrefix + '/' + classNamePrefix;
 
     if (actions.indexOf('index') != -1)
-      this.match(path, resourceName + '#index');
+      this.match(resourcePath, resourceName + '/index');
     if (actions.indexOf('new') != -1) {
       pathName = options.pathNames.new ? options.pathNames.new : 'new';
-      this.match(path + '/' + pathName, resourceName + '#new');
+      this.match(resourcePath + '/' + pathName, resourceName + '/new');
     }
     if (actions.indexOf('show') != -1)
-      this.match(path + '/:id', resourceName + '#show',
-        { id: '\\d+' });
+      this.match(resourcePath + '/:id', resourceName + '/show', { id: '\\d+' });
     if (actions.indexOf('edit') != -1) {
       pathName = options.pathNames.edit ? options.pathNames.edit : 'edit';
-      this.match(path + '/:id/' + pathName, resourceName + '#edit',
+      this.match(resourcePath + '/:id/' + pathName, resourceName + '/edit',
         { id: '\\d+' });
     }
 
@@ -877,49 +866,58 @@ Cape.extend(RoutingMapper.prototype, {
       if (callback.length === 0)
         throw new Error("Callback requires an argument.");
       mapper = new RoutingMapper(this.router,
-        { path: path, resourceName: resourceName, collectionName: resourceName });
+        { pathPrefix: this.pathPrefix,
+          resourcePath: resourcePath,
+          classNamePrefix: this.classNamePrefix,
+          resourceClassName: resourceName });
       callback(mapper);
     }
   },
   resource: function(resourceName, options, callback) {
-    var actions, path, pathName, collectionName, mapper;
+    var actions, path, resourcePath, pathName, resourceClassName,
+      mapper;
 
-    options = options || {};
+    if (typeof options === 'function') {
+      callback = options;
+      options = {}
+    }
+    else {
+      options = options || {};
+    }
+
     options.pathNames = options.pathNames || {};
 
     actions = [ 'new', 'show', 'edit' ];
     this._.filterActions(actions, options);
 
     path = options.path || resourceName;
-    if (this.path) {
-      if (this.singular === true) {
-        path = this.path + '/' + path
-      }
-      else {
-        path = this.path + '/:' +
-          Inflector.singularize(this.collectionName) + '_id/' + path
-      }
-    }
+    resourcePath = this._.getResourcePath(path);
 
-    collectionName = Inflector.pluralize(resourceName);
+    resourceClassName = Inflector.pluralize(resourceName);
+    classNamePrefix = resourceClassName;
+    if (this.classNamePrefix)
+      classNamePrefix = this.classNamePrefix + '/' + classNamePrefix
 
     if (actions.indexOf('show') != -1)
-      this.match(path, collectionName + '#show');
+      this.match(resourcePath, resourceClassName + '/show');
     if (actions.indexOf('new') != -1) {
       pathName = options.pathNames.new ? options.pathNames.new : 'new';
-      this.match(path + '/' + pathName, collectionName + '#new');
+      this.match(resourcePath + '/' + pathName, resourceClassName + '/new');
     }
     if (actions.indexOf('edit') != -1) {
       pathName = options.pathNames.edit ? options.pathNames.edit : 'edit';
-      this.match(path + '/' + pathName, collectionName + '#edit');
+      this.match(resourcePath + '/' + pathName, resourceClassName + '/edit');
     }
 
     if (typeof callback == 'function') {
       if (callback.length === 0)
         throw new Error("Callback requires an argument.");
       mapper = new RoutingMapper(this.router,
-        { singular: true, path: path, resourceName: resourceName,
-          collectionName: resourceName });
+        { singular: true,
+          pathPrefix: this.pathPrefix,
+          resourcePath: resourcePath,
+          classNamePrefix: classNamePrefix,
+          resourceClassName: resourceClassName });
       callback(mapper);
     }
   },
@@ -934,25 +932,25 @@ Cape.extend(RoutingMapper.prototype, {
 
     if (options.on === 'member') {
       args.forEach(function(actionName) {
-        this.match(this.path + '/:id/' + actionName,
-          this.resourceName + '#' + actionName, { id: '\\d+' });
+        this.match(this.resourcePath + '/:id/' + actionName,
+          this.resourceClassName + '/' + actionName, { id: '\\d+' });
       }.bind(this))
     }
     else if (options.on === 'new') {
       args.forEach(function(actionName) {
-        this.match(this.path + '/new/' + actionName,
-          this.resourceName + '#' + actionName);
+        this.match(this.resourcePath + '/new/' + actionName,
+          this.resourceClassName + '/' + actionName);
       }.bind(this))
     }
     else {
       args.forEach(function(actionName) {
-        this.match(this.path + '/' + actionName,
-          this.resourceName + '#' + actionName);
+        this.match(this.resourcePath + '/' + actionName,
+          this.resourceClassName + '/' + actionName);
       }.bind(this))
     }
   },
-  namespace: function(path) {
-    var args, callback, options, mapper;
+  namespace: function(className) {
+    var args, callback, options, path, mapper;
 
     args = Array.prototype.slice.call(arguments, 1);
     callback = args.pop();
@@ -962,8 +960,12 @@ Cape.extend(RoutingMapper.prototype, {
     if (callback.length === 0)
       throw new Error("Callback requires an argument.");
 
+    path = options.path || className;
+    if (this.pathPrefix) path = this.pathPrefix + '/' + path;
+    if (this.classNamePrefix) className = this.classNamePrefix + '/' + className;
+
     mapper = new RoutingMapper(this.router,
-      { namespace: path, module: options.module });
+      { pathPrefix: path, classNamePrefix: className });
     callback(mapper);
   }
 })
@@ -1022,6 +1024,18 @@ Cape.extend(_Internal.prototype, {
         if (idx !== -1) actions.splice(idx, 1)
       })
     }
+  },
+  getResourcePath: function(path) {
+    if (this.main.resourcePath) {
+      if (this.main.singular) {
+        path = this.main.resourcePath + '/' + path;
+      }
+      else {
+        path = this.main.resourcePath
+          + '/:' + Inflector.singularize(this.main.resourcePath) + '_id/' + path;
+      }
+    }
+    return path
   }
 })
 
