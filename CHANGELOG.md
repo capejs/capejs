@@ -2,6 +2,17 @@
 
 ## 0.11.1
 
+### `Cape.MarkupBuilder`
+
+* Add `#labelOf`. When its first argument is `'body_color'`, it will create
+  a `label` element whose `for` attribute is set by following rules:
+    * `'field-body-color'` if the form has no name and is not nested.
+    * `'field-items-1-body-color'` if the form has no name and is nested under the name `items-1`.
+    * `'foo-field-body-color'` if the form's name is `'foo'` and is not nested.
+    * `'foo-field-item-1-body-color'` if the form's name is `'foo'` and is nested under the name `item-1`.
+* Set `id` attribute of form controls using the rules listed above.
+* Alias `#sp` to `#space`.
+
 ### `Cape.RoutingMapper`
 
 * Add `#root` that add route for empty hash.

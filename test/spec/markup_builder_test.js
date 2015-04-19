@@ -106,4 +106,110 @@ describe('MarkupBuilder', function() {
       c.unmount();
     })
   })
+
+  describe('form', function() {
+    it('should create form with appropriate id attribute', function() {
+      var target, form, c, e;
+
+      var C = Cape.createComponentClass({
+        render: function(m) {
+          m.form(function(m) {
+            m.labelOf('name', 'Name').sp().textField('name').br();
+            m.labelOf('remarks', 'Remarks').sp().textareaField('remarks').br();
+            m.labelOf('color', 'Color').sp();
+            m.selectBox('color', function(m) {
+              m.option('White', { value: 'white'} );
+              m.option('Black', { value: 'black'} );
+            }).br();
+            m.radioButton('size', 'l').sp().labelOf('gender-l', 'L').sp();
+            m.radioButton('size', 'm').sp().labelOf('gender-m', 'M').sp();
+            m.checkBox('confirm').sp().labelOf('confirm', 'OK').sp();
+            [1, 2].forEach(function(i) {
+              m.fieldsFor('variants', { index: i }, function(m) {
+                m.labelOf('variant_name', 'Name').sp().textField('variant_name').br();
+                m.labelOf('remarks', 'Remarks').sp().textareaField('remarks').br();
+                m.labelOf('color', 'Color').sp();
+                m.selectBox('color', function(m) {
+                  m.option('White', { value: 'white'} );
+                  m.option('Black', { value: 'black'} );
+                }).br();
+              })
+            })
+          })
+          m.form({ name: 'product' }, function(m) {
+            m.labelOf('name', 'Name').sp().textField('name').br();
+            m.labelOf('remarks', 'Remarks').sp().textareaField('remarks').br();
+            m.labelOf('color', 'Color').sp();
+            m.selectBox('color', function(m) {
+              m.option('White', { value: 'white'} );
+              m.option('Black', { value: 'black'} );
+            }).br();
+            m.radioButton('size', 'l').sp().labelOf('gender-l', 'L').sp();
+            m.radioButton('size', 'm').sp().labelOf('gender-m', 'M').sp();
+            m.checkBox('confirm').sp().labelOf('confirm', 'OK').sp();
+            [1, 2].forEach(function(i) {
+              m.fieldsFor('variants', { index: i }, function(m) {
+                m.labelOf('variant_name', 'Name').sp().textField('variant_name').br();
+                m.labelOf('remarks', 'Remarks').sp().textareaField('remarks').br();
+                m.labelOf('color', 'Color').sp();
+                m.selectBox('color', function(m) {
+                  m.option('White', { value: 'white'} );
+                  m.option('Black', { value: 'black'} );
+                }).br();
+              })
+            })
+          })
+        }
+      });
+
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+
+      form = target.getElementsByTagName('form')[0];
+      e = form.getElementsByTagName('label')[0];
+      expect(e.htmlFor).to.be('field-name');
+      e = form.getElementsByTagName('input')[0];
+      expect(e.id).to.be('field-name');
+      e = form.getElementsByTagName('textarea')[0];
+      expect(e.id).to.be('field-remarks');
+      e = form.getElementsByTagName('select')[0];
+      expect(e.id).to.be('field-color');
+      e = form.getElementsByTagName('input')[1];
+      expect(e.id).to.be('field-size-l');
+      e = form.getElementsByTagName('input')[3];
+      expect(e.id).to.be('field-confirm');
+      e = form.getElementsByTagName('label')[6];
+      expect(e.htmlFor).to.be('field-variants-1-variant-name');
+      e = form.getElementsByTagName('input')[5];
+      expect(e.id).to.be('field-variants-1-variant-name');
+      e = form.getElementsByTagName('textarea')[1];
+      expect(e.id).to.be('field-variants-1-remarks');
+      e = form.getElementsByTagName('select')[1];
+      expect(e.id).to.be('field-variants-1-color');
+
+      form = target.getElementsByTagName('form')[1];
+      e = form.getElementsByTagName('label')[0];
+      expect(e.htmlFor).to.be('product-field-name');
+      e = form.getElementsByTagName('input')[0];
+      expect(e.id).to.be('product-field-name');
+      e = form.getElementsByTagName('textarea')[0];
+      expect(e.id).to.be('product-field-remarks');
+      e = form.getElementsByTagName('select')[0];
+      expect(e.id).to.be('product-field-color');
+      e = form.getElementsByTagName('input')[1];
+      expect(e.id).to.be('product-field-size-l');
+      e = form.getElementsByTagName('input')[3];
+      expect(e.id).to.be('product-field-confirm');
+      e = form.getElementsByTagName('label')[6];
+      expect(e.htmlFor).to.be('product-field-variants-1-variant-name');
+      e = form.getElementsByTagName('textarea')[1];
+      expect(e.id).to.be('product-field-variants-1-remarks');
+      e = form.getElementsByTagName('select')[1];
+      expect(e.id).to.be('product-field-variants-1-color');
+
+      c.unmount();
+    })
+  })
 })
