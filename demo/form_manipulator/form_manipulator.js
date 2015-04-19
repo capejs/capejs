@@ -38,11 +38,11 @@ var FormManipulator = Cape.createComponentClass({
           m.label(function(m) {
             m.checkBox('done')
             m.text(' Done')
-          }).space();
+          }).sp();
           m.label(function(m) {
             m.radioButton('color', 'red')
             m.text(' Red')
-          }).space();
+          }).sp();
           m.label(function(m) {
             m.radioButton('color', 'blue')
             m.text(' Blue')
