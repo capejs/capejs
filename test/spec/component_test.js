@@ -1,13 +1,13 @@
 var isNode = typeof module !== 'undefined' && module.exports !== undefined;
 
 describe('Component', function() {
-  before(function() {
+  beforeEach(function() {
     var div = document.createElement('div');
     div.id = "target";
     document.body.appendChild(div);
   })
 
-  after(function() {
+  afterEach(function() {
     var element = document.getElementById('target');
     document.body.removeChild(element);
   })
@@ -89,6 +89,58 @@ describe('Component', function() {
       component.refresh();
       expect(component.val('foo.title')).to.be('A');
       expect(component.val('foo.name')).to.be('B');
+    })
+  })
+
+
+  describe('renderPartial', function() {
+    beforeEach(function() {
+      window['NameSpace'] = undefined;
+    })
+
+    it('should render a partial', function() {
+      var Partial, Klass, component, target, elem;
+
+      Partial = function() {};
+      Cape.extend(Partial.prototype, {
+        render: function(m) {
+          m.span(this.message);
+        }
+      })
+
+      window['NameSpace'] = {};
+      window['NameSpace']['_Message'] = Partial;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.p(function(m) {
+            this.renderPartial(m, 'name_space.message', { message: 'Hello!' });
+          })
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+
+      target = document.getElementById('target');
+      element = target.getElementsByTagName('span')[0];
+      expect(element.textContent).to.be('Hello!');
+    })
+
+    it('should throw an error', function() {
+      var Klass, component, target, elem;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.p(function(m) {
+            this.renderPartial(m, 'name_space.message', { message: 'Hello!' });
+          })
+        }
+      })
+
+      component = new Klass();
+      expect(function() { component.mount('target') })
+        .to.throwError(/not found/);
     })
   })
 })

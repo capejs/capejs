@@ -2,6 +2,13 @@
 
 ## 0.11.1
 
+### `Cape.Component`
+
+* Add `#renderPartial` to render a *partial*. It takes three arguments:
+    1. The markup builder.
+    1. The partial class name (such as `'name_space/like_button'`).
+    1. A object that becomes *this* of the partial.
+
 ### `Cape.MarkupBuilder`
 
 * Add `#labelOf`. When its first argument is `'body_color'`, it will create
