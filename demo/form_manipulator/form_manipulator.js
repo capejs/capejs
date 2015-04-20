@@ -11,7 +11,7 @@ var FormManipulator = Cape.createComponentClass({
   },
 
   renderForm1: function(m) {
-    m.form({ name: 'foo' }, function(m) {
+    m.formFor('foo', function(m) {
       m.labelOf('title', 'Title').sp().textField('title');
       m.labelOf('genre', 'Genre').sp();
       m.selectBox('genre', function(m) {
@@ -23,7 +23,7 @@ var FormManipulator = Cape.createComponentClass({
   },
 
   renderForm2: function(m) {
-    m.form({ name: 'bar' }, function(m) {
+    m.formFor('bar', function(m) {
       var items = [
         { id: 1, title: 'T', genre: 'x', remarks: '' },
         { id: 2, title: 'S', genre: 'y', remarks: '' }

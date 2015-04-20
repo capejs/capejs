@@ -1,5 +1,12 @@
 # CHANGELOG - CapeJS
 
+## 0.11.6
+
+### `Cape.MarkupBuilder`
+
+* Add `#formFor`. Now we can write `m.formFor('foo', ...)`
+  instead of `m.form({ name: 'foo'}, ...)`.
+
 ## 0.11.5
 
 ### `Cape.Router`
