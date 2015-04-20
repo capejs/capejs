@@ -10,6 +10,7 @@ module.exports = Cape;
 },{"./cape/component.js":2,"./cape/data_store.js":3,"./cape/markup_builder":4,"./cape/router.js":5,"./cape/routing_mapper.js":6,"./cape/utilities":7}],2:[function(require,module,exports){
 (function (global){
 var virtualDom = require('virtual-dom');
+var Inflector = require('inflected');
 var Cape = require('./utilities');
 
 // Cape.Component
@@ -109,6 +110,28 @@ Cape.extend(Component.prototype, {
     this._.serializeForms();
     if (formName === undefined) formName = '';
     return this._.forms[formName] || {};
+  },
+  renderPartial: function(builder, componentName, thisObj) {
+    var fragments = componentName.split('.'),
+        klassName = fragments.pop(),
+        obj, i, camelized, partial;
+
+    klassName = Inflector.camelize(klassName);
+
+    obj = window;
+    for (i = 0; obj && i < fragments.length; i++) {
+      camelized = Inflector.camelize(fragments[i]);
+      if (obj[camelized]) obj = obj[camelized];
+      else obj = null;
+    }
+    if (!obj || !obj['_' + klassName]) {
+      throw new Error(
+        "Partial component class not found for '" + componentName + "'");
+    }
+
+    partial = new obj['_' + klassName];
+    if (typeof thisObj === 'object') Cape.extend(partial, thisObj);
+    partial.render(builder);
   }
 });
 
@@ -209,7 +232,7 @@ Cape.extend(_Internal.prototype, {
 module.exports = Component;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":7,"virtual-dom":23}],3:[function(require,module,exports){
+},{"./utilities":7,"inflected":10,"virtual-dom":23}],3:[function(require,module,exports){
 var Cape = require('./utilities');
 
 // Cape.DataStore
@@ -261,6 +284,7 @@ module.exports = DataStore;
 },{"./utilities":7}],4:[function(require,module,exports){
 (function (global){
 var virtualDom = require('virtual-dom');
+var Inflector = require('inflected');
 var Cape = require('./utilities');
 
 // Cape.MarkupBuilder
@@ -329,6 +353,10 @@ Cape.extend(MarkupBuilder.prototype, {
     this._.elements.push(' ');
     return this;
   },
+  sp: function() {
+    this.space();
+    return this;
+  },
   form: function() {
     var args, options, callback, name, builder, attributes;
 
@@ -385,6 +413,14 @@ Cape.extend(MarkupBuilder.prototype, {
     this.elem('label', content, options)
     return this;
   },
+  labelOf: function(name, content, options) {
+    var fieldName;
+
+    options = options || {};
+    options.htmlFor = this._.elementIdFor(name);
+    this.elem('label', content, options)
+    return this;
+  },
   hiddenField: function(name, options) {
     options = options || {};
     options.type = 'hidden';
@@ -394,16 +430,33 @@ Cape.extend(MarkupBuilder.prototype, {
   },
   textField: function(name, options) {
     options = options || {};
-    options.type = 'text';
+    options.type = options.type || 'text';
+    options.name = name;
+    this._.inputField(options);
+    return this;
+  },
+  passwordField: function(name, options) {
+    options = options || {};
+    options.type = 'password';
     options.name = name;
     this._.inputField(options);
     return this;
   },
   textareaField: function(attrName, options) {
+    var dasherized;
+
     if (attrName && this._.fieldNamePrefix)
       attrName = this._.fieldNamePrefix + '/' + attrName
     options = options || {};
     options.name = attrName;
+
+    dasherized = Inflector.dasherize(attrName.replace(/\//g, '_'));
+    if (!options.id) {
+      if (this._.formName)
+        options.id = this._.formName + '-field-' + dasherized;
+      else
+        options.id = 'field-' + dasherized;
+    }
     this.elem('textarea', '', options);
     return this;
   },
@@ -425,7 +478,7 @@ Cape.extend(MarkupBuilder.prototype, {
     return this;
   },
   selectBox: function(name) {
-    var args, options, callback, builder, attributes;
+    var args, options, callback, builder, attributes, dasherized;
 
     args = Array.prototype.slice.call(arguments, 1);
     options = this._.extractOptions(args) || {};
@@ -440,6 +493,8 @@ Cape.extend(MarkupBuilder.prototype, {
       options.name = this._.fieldNamePrefix + '/' + name;
     else
       options.name = name;
+
+    options.id = options.id || this._.elementIdFor(name);
 
     builder = new MarkupBuilder(this.component,
       { formName: this._.formName, selectBoxName: name });
@@ -489,16 +544,36 @@ var _Internal = function _Internal(main) {
 // Internal methods of Cape.MarkupBuilder
 Cape.extend(_Internal.prototype, {
   inputField: function(options) {
-    var attributes;
+    var attributes, dasherized;
 
     options = options || {};
 
+    if (!options.id) {
+      options.id = this.elementIdFor(options.name);
+      if (options.type === 'radio')
+        options.id = options.id + '-' + String(options.value);
+    }
     if (options.name && this.fieldNamePrefix)
       options.name = this.fieldNamePrefix + '/' + options.name
 
     attributes = this.generateAttributes(options);
     this.elements.push(this.h('input', attributes));
     return this;
+  },
+
+  elementIdFor: function(name) {
+    var dasherized;
+
+    if (this.fieldNamePrefix)
+      dasherized = Inflector.dasherize(
+        this.fieldNamePrefix.replace(/\//g, '-') + '-' + name);
+    else
+      dasherized = Inflector.dasherize(name);
+
+    if (this.formName)
+      return this.formName + '-field-' + dasherized;
+    else
+      return 'field-' + dasherized;
   },
 
   extractContent: function(args) {
@@ -611,7 +686,7 @@ for (var i = voidElementNames.length; i--;) {
 module.exports = MarkupBuilder;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":7,"virtual-dom":23}],5:[function(require,module,exports){
+},{"./utilities":7,"inflected":10,"virtual-dom":23}],5:[function(require,module,exports){
 (function (global){
 var Inflector = require('inflected');
 var Cape = require('./utilities');
@@ -824,6 +899,9 @@ Cape.extend(RoutingMapper.prototype, {
     route.component = className;
 
     this.router.routes.push(route);
+  },
+  root: function(className) {
+    this.match('', className);
   },
   resources: function(resourceName, options, callback) {
     var actions, path, resourcePath, classNamePrefix, pathName, mapper;
