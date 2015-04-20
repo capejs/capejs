@@ -704,6 +704,7 @@ var Router = function Router() {
   this.params = {};
   this.namespace = null;
   this.component = null;
+  this.waiting = false;
 };
 
 Cape.extend(Router.prototype, {
@@ -745,11 +746,14 @@ Cape.extend(Router.prototype, {
     }
     throw new Error("No route match. [" + hash + "]");
   },
-  navigate: function(hash) {
+  navigate: function(hash, skipBeforeNavigationCallbacks) {
     var route, componentClass, component;
 
     this.hash = hash;
-    this._.executeBeforeActionCallbacks();
+    if (!skipBeforeNavigationCallbacks)
+      this._.executeBeforeNavigationCallbacks();
+    if (this.waiting) return;
+
     this._.setHash(this.hash);
     route = this.routeFor(this.hash);
     this.namespace = route.namespace;
@@ -784,15 +788,19 @@ Cape.extend(Router.prototype, {
       }
     }
   },
+  beforeNavigation: function(callback) {
+    this._.beforeNavigationCallbacks.push(callback);
+  },
+  // For backward compatibility.
   beforeAction: function(callback) {
-    this._.beforeActionCallbacks.push(callback);
-  }
+    this._.beforeNavigationCallbacks.push(callback);
+  },
 });
 
 // Internal properties of Cape.Router
 var _Internal = function _Internal(main) {
   this.main = main;
-  this.beforeActionCallbacks = [];
+  this.beforeNavigationCallbacks = [];
   this.components = [];
   this.hash = null;
   this.currentHash = null;
@@ -802,9 +810,9 @@ var _Internal = function _Internal(main) {
 
 // Internal methods of Cape.Router
 Cape.extend(_Internal.prototype, {
-  executeBeforeActionCallbacks: function() {
-    for (var i = 0, len = this.beforeActionCallbacks.length; i < len; i++) {
-      this.beforeActionCallbacks[i].call(this.main);
+  executeBeforeNavigationCallbacks: function() {
+    for (var i = 0, len = this.beforeNavigationCallbacks.length; i < len; i++) {
+      this.beforeNavigationCallbacks[i].call(this.main);
     }
   },
   setHash: function(hash) {

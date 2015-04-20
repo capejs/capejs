@@ -4,7 +4,7 @@
 
 ### `Cape.Router`
 
-* Rename `#beforeAction` to `#beforeNavigation`.
+* Rename `#beforeAction` to `#beforeNavigation`. `#beforeAction` is deprecated.
 * Skip `beforeNavigation` callbacks when the second argument of `#navigate` is true.
 * Do not mount the component if the router's `waiting` property is true.
 
