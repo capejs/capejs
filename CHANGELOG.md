@@ -5,6 +5,7 @@
 ### `Cape.Router`
 
 * Fix a bug related to the `namespace` property of routes.
+* Set namespace and component properties of router.
 
 ## 0.11.2
 

@@ -110,6 +110,7 @@ describe('Router', function() {
       router.navigate('hello');
 
       expect(method.calledWith('main')).to.be(true);
+      expect(router.component).to.be('hello_message');
     })
 
     it('should mount the matched component and set Router#params', function() {
@@ -128,6 +129,7 @@ describe('Router', function() {
 
       expect(method.calledWith('main')).to.be(true);
       expect(router.params.id).to.be('123');
+      expect(router.component).to.be('members/show');
     })
 
     it('should mount the nested component and set Router#params', function() {
