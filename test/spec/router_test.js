@@ -37,12 +37,12 @@ describe('Router', function() {
     })
   })
 
-  describe('beforeAction', function() {
+  describe('beforeNavigation', function() {
     after(function() {
       window.Top = undefined;
     })
 
-    it('should register a beforeAction callback', function() {
+    it('should register a beforeNavigation callback', function() {
       var router, method;
 
       window.Top = {};
@@ -55,7 +55,7 @@ describe('Router', function() {
       router.draw(function(m) {
         m.match('', 'top/index');
       })
-      router.beforeAction(method);
+      router.beforeNavigation(method);
       router.mount('main');
       router.start();
 

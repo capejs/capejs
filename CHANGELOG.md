@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 0.11.5
+
+### `Cape.Router`
+
+* Rename `#beforeAction` to `#beforeNavigation`.
+
 ## 0.11.4
 
 ### `Cape.Router`
