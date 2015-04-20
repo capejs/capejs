@@ -373,10 +373,10 @@ describe('RoutingMapper', function() {
       expect(router.routes[0].namespace).to.be('admin');
       expect(router.routes[0].component).to.be('messages/show');
       expect(router.routes[4].component).to.be('members/edit');
-      // expect(router.routes[5].resource).to.be('addresses');
+      expect(router.routes[5].namespace).to.be('admin');
       expect(router.routes[5].component).to.be('addresses/index');
       expect(router.routes[9].component).to.be('accounts/edit');
-      // expect(router.routes[11].resource).to.be('account/password');
+      expect(router.routes[11].namespace).to.be('admin/accounts');
       expect(router.routes[11].component).to.be('passwords/show');
     })
 
@@ -402,6 +402,8 @@ describe('RoutingMapper', function() {
       expect('app/admin/account').to.match(router.routes[5].regexp);
       expect('app/admin/account/new').to.match(router.routes[6].regexp);
       expect('app/admin/account/edit').to.match(router.routes[7].regexp);
+      expect(router.routes[4].namespace).to.be('app/admin');
+      expect(router.routes[4].component).to.be('members/edit');
     })
   })
 })
