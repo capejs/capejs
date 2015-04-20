@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 0.11.4
+
+### `Cape.Router`
+
+* Fix a bug related to the `namespace` property of routes (again).
+
 ## 0.11.3
 
 ### `Cape.Router`

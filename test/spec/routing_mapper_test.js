@@ -13,7 +13,7 @@ describe('RoutingMapper', function() {
       expect('members/search').not.to.match(route.regexp);
       expect(route.keys.length).to.be(1);
       expect(route.keys[0]).to.be('name');
-      expect(route.namespace).to.be.null;
+      expect(route.namespace).to.be(null);
       expect(route.component).to.be('search');
     })
 
@@ -91,8 +91,8 @@ describe('RoutingMapper', function() {
       route = router.routes[0];
       expect('').to.match(route.regexp);
       expect('top/index').not.to.match(route.regexp);
-      expect(route.namespace).to.be.null;
-      expect(route.component).to.be('top/index');
+      expect(route.namespace).to.be('top');
+      expect(route.component).to.be('index');
     })
 
     it('should add a route for empty hash under a namespace', function() {
@@ -109,8 +109,8 @@ describe('RoutingMapper', function() {
       route = router.routes[0];
       expect('admin').to.match(route.regexp);
       expect('').not.to.match(route.regexp);
-      expect(route.namespace).to.be('admin');
-      expect(route.component).to.be('top/index');
+      expect(route.namespace).to.be('admin/top');
+      expect(route.component).to.be('index');
     })
   })
 
@@ -313,11 +313,13 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resource('member', { only: [] }, function(m) {
-        m.get('info', 'address')
+      mapper.resource('my_settings', {}, function(m) {
+        m.get('phone', 'address')
       });
-      expect('member/info').to.match(router.routes[0].regexp);
-      expect('member/address').to.match(router.routes[1].regexp);
+      expect('my_settings/phone').to.match(router.routes[3].regexp);
+      expect('my_settings/address').to.match(router.routes[4].regexp);
+      expect(router.routes[3].namespace).to.be('my_settings');
+      expect(router.routes[3].component).to.be('phone');
     })
 
     it('should define a nested resource', function() {
@@ -336,6 +338,8 @@ describe('RoutingMapper', function() {
       expect('member/addresses/99/edit').to.match(router.routes[4].regexp);
       expect('member/password').to.match(router.routes[5].regexp);
       expect(router.routes[4].keys[0]).to.be('id');
+      expect(router.routes[4].namespace).to.be('members/addresses');
+      expect(router.routes[4].component).to.be('edit');
     })
   })
 
@@ -370,14 +374,14 @@ describe('RoutingMapper', function() {
       expect('admin/account/edit').to.match(router.routes[9].regexp);
       expect('admin/account/addresses').to.match(router.routes[10].regexp);
       expect('admin/account/password').to.match(router.routes[11].regexp);
-      expect(router.routes[0].namespace).to.be('admin');
-      expect(router.routes[0].component).to.be('messages/show');
-      expect(router.routes[4].component).to.be('members/edit');
-      expect(router.routes[5].namespace).to.be('admin');
-      expect(router.routes[5].component).to.be('addresses/index');
-      expect(router.routes[9].component).to.be('accounts/edit');
-      expect(router.routes[11].namespace).to.be('admin/accounts');
-      expect(router.routes[11].component).to.be('passwords/show');
+      expect(router.routes[0].namespace).to.be('admin/messages');
+      expect(router.routes[0].component).to.be('show');
+      expect(router.routes[4].component).to.be('edit');
+      expect(router.routes[5].namespace).to.be('admin/addresses');
+      expect(router.routes[5].component).to.be('index');
+      expect(router.routes[9].component).to.be('edit');
+      expect(router.routes[11].namespace).to.be('admin/accounts/passwords');
+      expect(router.routes[11].component).to.be('show');
     })
 
     it('should set nested namespace for routes', function() {
@@ -402,8 +406,8 @@ describe('RoutingMapper', function() {
       expect('app/admin/account').to.match(router.routes[5].regexp);
       expect('app/admin/account/new').to.match(router.routes[6].regexp);
       expect('app/admin/account/edit').to.match(router.routes[7].regexp);
-      expect(router.routes[4].namespace).to.be('app/admin');
-      expect(router.routes[4].component).to.be('members/edit');
+      expect(router.routes[4].namespace).to.be('app/admin/members');
+      expect(router.routes[4].component).to.be('edit');
     })
   })
 })

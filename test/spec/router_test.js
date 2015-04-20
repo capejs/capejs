@@ -89,7 +89,7 @@ describe('Router', function() {
 
   describe('navigate', function() {
     afterEach(function() {
-      window.HelloMessage = undefined;
+      window.TestMessage = undefined;
       window.Members = undefined;
       window.App = undefined;
       window.Admin = undefined;
@@ -99,18 +99,18 @@ describe('Router', function() {
     it('should mount the matched component', function() {
       var router, method;
 
-      window.HelloMessage = function() {};
-      window.HelloMessage.prototype.mount = method = sinon.spy();
+      window.TestMessage = function() {};
+      window.TestMessage.prototype.mount = method = sinon.spy();
       router = new Cape.Router();
       router._.setHash = function() {};
       router.draw(function(m) {
-        m.match('hello', 'hello_message');
+        m.match('hello', 'test_message');
       })
       router.mount('main');
       router.navigate('hello');
 
       expect(method.calledWith('main')).to.be(true);
-      expect(router.component).to.be('hello_message');
+      expect(router.component).to.be('test_message');
     })
 
     it('should mount the matched component and set Router#params', function() {
@@ -129,7 +129,8 @@ describe('Router', function() {
 
       expect(method.calledWith('main')).to.be(true);
       expect(router.params.id).to.be('123');
-      expect(router.component).to.be('members/show');
+      expect(router.namespace).to.be('members');
+      expect(router.component).to.be('show');
     })
 
     it('should mount the nested component and set Router#params', function() {
