@@ -890,8 +890,10 @@ Cape.extend(RoutingMapper.prototype, {
     route.keys = this._.extractKeys(path);
     route.regexp = this._.constructRegexp(path, constraints);
     route.componentClassName = fullClassName;
-    route.namespace = this.classNamePrefix;
-    route.component = className;
+
+    fragments = fullClassName.split('/');
+    route.component = fragments.pop();
+    route.namespace = fragments.length ? fragments.join('/') : null;
 
     this.router.routes.push(route);
   },
@@ -1006,19 +1008,19 @@ Cape.extend(RoutingMapper.prototype, {
     if (options.on === 'member') {
       args.forEach(function(actionName) {
         this.match(this.resourcePath + '/:id/' + actionName,
-          this.resourceClassName + '/' + actionName, { id: '\\d+' });
+          actionName, { id: '\\d+' });
       }.bind(this))
     }
     else if (options.on === 'new') {
       args.forEach(function(actionName) {
         this.match(this.resourcePath + '/new/' + actionName,
-          this.resourceClassName + '/' + actionName);
+          actionName);
       }.bind(this))
     }
     else {
       args.forEach(function(actionName) {
         this.match(this.resourcePath + '/' + actionName,
-          this.resourceClassName + '/' + actionName);
+          actionName);
       }.bind(this))
     }
   },
