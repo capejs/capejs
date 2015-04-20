@@ -239,5 +239,42 @@ describe('Router', function() {
       expect(method.calledWith('main')).to.be(true);
       expect(router.params.id).to.be('123');
     })
+
+    it('should skip beforeNavigationCallbacks', function() {
+      var router, method;
+
+      window.TestMessage = function() {};
+      window.TestMessage.prototype.mount = function() {};
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.match('hello', 'test_message');
+      })
+      method = sinon.spy();
+      router.beforeNavigation(method);
+      router.mount('main');
+      router.navigate('hello', true);
+
+      expect(method.called).to.be(false);
+    })
+
+    it('should not mount the route is waiting', function() {
+      var router, method;
+
+      window.TestMessage = function() {};
+      window.TestMessage.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.match('hello', 'test_message');
+      })
+      router.beforeNavigation(function() {
+        this.waiting = true;
+      });
+      router.mount('main');
+      router.navigate('hello');
+
+      expect(method.called).to.be(false);
+    })
   })
 })
