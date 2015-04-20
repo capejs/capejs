@@ -88,11 +88,28 @@ describe('Router', function() {
   })
 
   describe('navigate', function() {
-    after(function() {
+    afterEach(function() {
+      window.HelloMessage = undefined;
       window.Members = undefined;
       window.App = undefined;
       window.Admin = undefined;
       window.Adm = undefined;
+    })
+
+    it('should mount the matched component', function() {
+      var router, method;
+
+      window.HelloMessage = function() {};
+      window.HelloMessage.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.match('hello', 'hello_message');
+      })
+      router.mount('main');
+      router.navigate('hello');
+
+      expect(method.calledWith('main')).to.be(true);
     })
 
     it('should mount the matched component and set Router#params', function() {
