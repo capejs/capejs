@@ -702,6 +702,8 @@ var Router = function Router() {
   this._ = new _Internal(this);
   this.routes = [];
   this.params = {};
+  this.namespace = null;
+  this.component = null;
 };
 
 Cape.extend(Router.prototype, {
@@ -750,6 +752,8 @@ Cape.extend(Router.prototype, {
     this._.executeBeforeActionCallbacks();
     this._.setHash(this.hash);
     route = this.routeFor(this.hash);
+    this.namespace = route.namespace;
+    this.component = route.component;
     this._.setParams(route);
     componentClass = this._.getComponentClassFor(route);
 
@@ -886,7 +890,7 @@ Cape.extend(RoutingMapper.prototype, {
     route.keys = this._.extractKeys(path);
     route.regexp = this._.constructRegexp(path, constraints);
     route.componentClassName = fullClassName;
-    route.namespace = this.pathPrefix;
+    route.namespace = this.classNamePrefix;
     route.component = className;
 
     this.router.routes.push(route);
