@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BEFORE NAVIGATION CALLBACKS | Cape.JS Demo</title>
+  <link rel="stylesheet" type="text/css"
+     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="../../dist/cape.js" charset="UTF-8"></script>
+  <style>
+    div#main div.p {
+      border: 1px solid black;
+      padding: 20px;
+      margin: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>BEFORE NAVIGATION CALLBACKS <small>Cape.JS Demo</small></h1>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a href="#">Component X</a>
+          <a href="#y">Component Y</a><br />
+          <label>
+            <input type="checkbox" id="causing-error">
+            Check this to cause an error
+          </lable><br />
+          <label>
+            <input type="checkbox" id="redirect">
+            Check this to redirect any hash to Component Z
+          </lable>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-body" id="main"></div>
+  </div>
+
+  <script src="./before_navigation_callbacks.js"></script>
+  <script>
+    var router = new Cape.Router();
+    router.draw(function(m) {
+      m.root('component_x');
+      m.match('y', 'component_y');
+      m.match('z', 'component_z');
+    })
+    router.beforeNavigation(
+      function(hash) {
+        return new Promise(function(resolve, reject) {
+          var func = setInterval(function() {
+            clearInterval(func);
+            var cb = document.getElementById('causing-error');
+            if (cb.checked)
+              reject(Error('Something is wrong.'));
+            else
+              resolve(hash);
+          }, 200)
+        })
+      }
+    )
+    router.beforeNavigation(
+      function(hash) {
+        if (hash === '') return '';
+        return new Promise(function(resolve, reject) {
+          var func = setInterval(function() {
+            clearInterval(func);
+            var cb = document.getElementById('redirect');
+            if (cb.checked)
+              resolve('z');
+            else
+              resolve(hash);
+          }, 100)
+        })
+      }
+    )
+    router.errorHandler(
+      function(error) {
+        var func = setInterval(function() {
+          clearInterval(func);
+          router.show(ErrorMessage);
+        }, 1000)
+      }
+    )
+    router.mount('main');
+    router.start();
+  </script>
+</body>
+</html>

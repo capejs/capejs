@@ -1,5 +1,16 @@
 # CHANGELOG - CapeJS
 
+## 0.12.0
+
+### `Cape.Router`
+
+* A before action callback must be a function that returns a *promise*.
+* Do not skip before navigation callbacks when the second argument of `#navigate` is true.
+* Remove the router's `waiting` property.
+* Add `#errorHandler` that registers a function to handle errors occurred
+  in before navigation callbacks.
+* Add `#show` to mount a component directly.
+
 ## 0.11.6
 
 ### `Cape.MarkupBuilder`
