@@ -1,6 +1,6 @@
 # CHANGELOG - CapeJS
 
-## 1.0.0.beta1 (April 21, 2015)
+## 1.0.0-beta.1 (April 21, 2015)
 
 ### `Cape.RoutingMapper`
 
