@@ -379,6 +379,17 @@ Cape.extend(MarkupBuilder.prototype, {
     this._.elements.push(this._.h('form', attributes, builder._.elements));
     return this;
   },
+  formFor: function() {
+    var args, options, callback, name;
+
+    args = Array.prototype.slice.call(arguments);
+    name = args.shift();
+    options = this._.extractOptions(args) || {};
+    callback = this._.extractCallback(args);
+    options.name = name;
+    this.form(options, callback);
+    return this;
+  },
   fieldsFor: function(name) {
     var args, options, callback, prefix, builder;
 
@@ -999,7 +1010,7 @@ Cape.extend(RoutingMapper.prototype, {
         { singular: true,
           pathPrefix: this.pathPrefix,
           resourcePath: resourcePath,
-          classNamePrefix: classNamePrefix,
+          classNamePrefix: this.classNamePrefix,
           resourceClassName: resourceClassName });
       callback(mapper);
     }
@@ -1016,19 +1027,19 @@ Cape.extend(RoutingMapper.prototype, {
     if (options.on === 'member') {
       args.forEach(function(actionName) {
         this.match(this.resourcePath + '/:id/' + actionName,
-          actionName, { id: '\\d+' });
+          this.resourcePath + '/' + actionName, { id: '\\d+' });
       }.bind(this))
     }
     else if (options.on === 'new') {
       args.forEach(function(actionName) {
         this.match(this.resourcePath + '/new/' + actionName,
-          actionName);
+          this.resourcePath + '/' + actionName);
       }.bind(this))
     }
     else {
       args.forEach(function(actionName) {
         this.match(this.resourcePath + '/' + actionName,
-          actionName);
+          this.resourcePath + '/' + actionName);
       }.bind(this))
     }
   },
