@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SIMPLE ROUTES | Cape.JS Demo</title>
+  <link rel="stylesheet" type="text/css"
+     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="../../dist/cape.js" charset="UTF-8"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>SIMPLE ROUTES <small>Cape.JS Demo</small></h1>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a href="#" class="btn btn-default">Top</a>
+          <a href="#about" class="btn btn-default">About</a>
+          <a href="#help" class="btn btn-default">Help</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-body" id="main"></div>
+  </div>
+
+  <script src="./components.js"></script>
+  <script src="./router.js"></script>
+  <script>
+    simple_router.mount('main');
+    simple_router.start();
+  </script>
+</body>
+</html>
