@@ -22,22 +22,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.match('members/search/:name', 'members/search');
-      expect(router.routes.length).to.be(1);
-
-      route = router.routes[0];
-      expect('members/search/foo').to.match(route.regexp);
-      expect('members/search').not.to.match(route.regexp);
-      expect(route.keys.length).to.be(1);
-      expect(route.keys[0]).to.be('name');
-    })
-
-    it('should add a route to namespaced component (old style)', function() {
-      var router = { routes: [] },
-          mapper = new Cape.RoutingMapper(router),
-          route;
-
-      mapper.match('members/search/:name', 'members#search');
+      mapper.match('members/search/:name', 'members.search');
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
@@ -52,7 +37,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.match('members/:id/edit', 'members/edit', { id: '\\d+' });
+      mapper.match('members/:id/edit', 'members.edit', { id: '\\d+' });
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
@@ -68,7 +53,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.match('admin/members/search/:name', 'app/admin/members/search');
+      mapper.match('admin/members/search/:name', 'app.admin.members.search');
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
@@ -85,7 +70,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.root('top/index');
+      mapper.root('top.index');
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
@@ -101,7 +86,7 @@ describe('RoutingMapper', function() {
           route;
 
       mapper.namespace('admin', function(m) {
-        m.root('top/index');
+        m.root('top.index');
       })
 
       expect(router.routes.length).to.be(1);
@@ -109,7 +94,7 @@ describe('RoutingMapper', function() {
       route = router.routes[0];
       expect('admin').to.match(route.regexp);
       expect('').not.to.match(route.regexp);
-      expect(route.namespace).to.be('admin/top');
+      expect(route.namespace).to.be('admin.top');
       expect(route.component).to.be('index');
     })
   })
@@ -358,7 +343,7 @@ describe('RoutingMapper', function() {
           route;
 
       mapper.namespace('admin', function(m) {
-        m.match('hello/:message', 'messages/show');
+        m.match('hello/:message', 'messages.show');
         m.resources('members', function(m) {
           m.resources('addresses', { only: 'index' });
           m.resource('password', { only: 'show' });
@@ -382,13 +367,13 @@ describe('RoutingMapper', function() {
       expect('admin/account/edit').to.match(router.routes[9].regexp);
       expect('admin/account/addresses').to.match(router.routes[10].regexp);
       expect('admin/account/password').to.match(router.routes[11].regexp);
-      expect(router.routes[0].namespace).to.be('admin/messages');
+      expect(router.routes[0].namespace).to.be('admin.messages');
       expect(router.routes[0].component).to.be('show');
       expect(router.routes[4].component).to.be('edit');
-      expect(router.routes[5].namespace).to.be('admin/addresses');
+      expect(router.routes[5].namespace).to.be('admin.addresses');
       expect(router.routes[5].component).to.be('index');
       expect(router.routes[9].component).to.be('edit');
-      expect(router.routes[11].namespace).to.be('admin/passwords');
+      expect(router.routes[11].namespace).to.be('admin.passwords');
       expect(router.routes[11].component).to.be('show');
     })
 
@@ -399,7 +384,7 @@ describe('RoutingMapper', function() {
 
       mapper.namespace('app', function(m) {
         m.namespace('admin', function(m) {
-          m.match('hello/:message', 'messages#show');
+          m.match('hello/:message', 'messages.show');
           m.resources('members')
           m.resource('account')
         })
@@ -414,7 +399,7 @@ describe('RoutingMapper', function() {
       expect('app/admin/account').to.match(router.routes[5].regexp);
       expect('app/admin/account/new').to.match(router.routes[6].regexp);
       expect('app/admin/account/edit').to.match(router.routes[7].regexp);
-      expect(router.routes[4].namespace).to.be('app/admin/members');
+      expect(router.routes[4].namespace).to.be('app.admin.members');
       expect(router.routes[4].component).to.be('edit');
     })
   })

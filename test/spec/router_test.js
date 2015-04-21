@@ -67,7 +67,7 @@ describe('Router', function() {
       router = new Cape.Router();
       router._.setHash = function() {};
       router.draw(function(m) {
-        m.match('', 'top/index');
+        m.match('', 'top.index');
       })
       router.mount('main');
       router.start();
