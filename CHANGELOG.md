@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 1.0.0-beta.2
+
+### `Cape.Router`
+
+* Add `#stop` to stop listening to the `hashchange` events.
+
 ## 1.0.0-beta.1 (April 21, 2015)
 
 ### `Cape.RoutingMapper`
@@ -14,10 +20,10 @@
         3. `members/:id      => Members.Item`
         4. `members/:id/edit => Members.Form`
     * `ResourceMapper#one('account') draws` following three routes:
-      1. `account          => AccountsList`
-      2. `account/new      => AccountsForm`
-      3. `account/:id      => AccountsItem`
-      4. `account/:id/edit => AccountsForm`
+        1. `account          => Accounts.List`
+        2. `account/new      => Accounts.Form`
+        3. `account/:id      => Accounts.Item`
+        4. `account/:id/edit => Accounts.Form`
 
 ## 0.12.1
 
