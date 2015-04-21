@@ -1,5 +1,24 @@
 # CHANGELOG - CapeJS
 
+## 1.0.0.beta1
+
+### `Cape.RoutingMapper`
+
+* This version introduced following drastic changes:
+    * Use dots to separate class name hierarchy.
+    * Rename `#match` to `#page`.
+    * Remove `#resources` and `#resource`.
+    * `ResourceMapper#many('members')` draws four routes:
+        1. `members          => Members.List`
+        2. `members/new      => Members.Form`
+        3. `members/:id      => Members.Item`
+        4. `members/:id/edit => Members.Form`
+    * `ResourceMapper#one('account') draws` following three routes:
+      1. `account          => AccountsList`
+      2. `account/new      => AccountsForm`
+      3. `account/:id      => AccountsItem`
+      4. `account/:id/edit => AccountsForm`
+
 ## 0.12.1
 
 ### `Cape.Router`

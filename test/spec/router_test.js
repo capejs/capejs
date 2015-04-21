@@ -106,12 +106,12 @@ describe('Router', function() {
       var router, method;
 
       window.Members = {};
-      window.Members.Show = function() {};
-      window.Members.Show.prototype.mount = method = sinon.spy();
+      window.Members.Item = function() {};
+      window.Members.Item.prototype.mount = method = sinon.spy();
       router = new Cape.Router();
       router._.setHash = function() {};
       router.draw(function(m) {
-        m.resources('members');
+        m.many('members');
       })
       router.mount('main');
       router.navigate('members/123');
@@ -119,20 +119,20 @@ describe('Router', function() {
       expect(method.calledWith('main')).to.be(true);
       expect(router.params.id).to.be('123');
       expect(router.namespace).to.be('members');
-      expect(router.component).to.be('show');
+      expect(router.component).to.be('item');
     })
 
     it('should mount the nested component and set Router#params', function() {
       var router, method;
 
       window.Members = {};
-      window.Members.Show = function() {};
-      window.Members.Show.prototype.mount = method = sinon.spy();
+      window.Members.Item = function() {};
+      window.Members.Item.prototype.mount = method = sinon.spy();
       router = new Cape.Router();
       router._.setHash = function() {};
       router.draw(function(m) {
-        m.resources('groups', { only: [] }, function(m) {
-          m.resources('members')
+        m.many('groups', { only: [] }, function(m) {
+          m.many('members')
         });
       })
       router.mount('main');
@@ -147,16 +147,16 @@ describe('Router', function() {
       var router, method1, method2, method3;
 
       window.Members = {};
-      window.Members.Index = function() {};
-      window.Members.Show = function() {};
-      window.Members.Index.prototype.mount = method1 = sinon.spy();
-      window.Members.Index.prototype.unmount = method2 = sinon.spy();
-      window.Members.Show.prototype.mount = method3 = sinon.spy();
+      window.Members.List = function() {};
+      window.Members.Item = function() {};
+      window.Members.List.prototype.mount = method1 = sinon.spy();
+      window.Members.List.prototype.unmount = method2 = sinon.spy();
+      window.Members.Item.prototype.mount = method3 = sinon.spy();
 
       router = new Cape.Router();
       router._.setHash = function() {};
       router.draw(function(m) {
-        m.resources('members');
+        m.many('members');
       })
       router.mount('main');
       router.navigate('members');
@@ -171,13 +171,13 @@ describe('Router', function() {
       var router, method;
 
       window.Admin = { Members: {} };
-      window.Admin.Members.Show = function() {};
-      window.Admin.Members.Show.prototype.mount = method = sinon.spy();
+      window.Admin.Members.Item = function() {};
+      window.Admin.Members.Item.prototype.mount = method = sinon.spy();
       router = new Cape.Router();
       router._.setHash = function() {};
       router.draw(function(m) {
         m.namespace('admin', function(m) {
-          m.resources('members');
+          m.many('members');
         })
       })
       router.mount('main');
@@ -191,14 +191,14 @@ describe('Router', function() {
       var router, method;
 
       window.App = { Admin: { Members: {} } };
-      window.App.Admin.Members.Show = function() {};
-      window.App.Admin.Members.Show.prototype.mount = method = sinon.spy();
+      window.App.Admin.Members.Item = function() {};
+      window.App.Admin.Members.Item.prototype.mount = method = sinon.spy();
       router = new Cape.Router();
       router._.setHash = function() {};
       router.draw(function(m) {
         m.namespace('app', function(m) {
           m.namespace('admin', function(m) {
-            m.resources('members');
+            m.many('members');
           })
         })
       })
@@ -213,13 +213,13 @@ describe('Router', function() {
       var router, method;
 
       window.Adm = { Members: {} };
-      window.Adm.Members.Show = function() {};
-      window.Adm.Members.Show.prototype.mount = method = sinon.spy();
+      window.Adm.Members.Item = function() {};
+      window.Adm.Members.Item.prototype.mount = method = sinon.spy();
       router = new Cape.Router();
       router._.setHash = function() {};
       router.draw(function(m) {
         m.namespace('adm', { path: 'admin' }, function(m) {
-          m.resources('members');
+          m.many('members');
         })
       })
       router.mount('main');

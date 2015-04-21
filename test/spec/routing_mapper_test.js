@@ -99,26 +99,30 @@ describe('RoutingMapper', function() {
     })
   })
 
-  describe('resources', function() {
+  describe('many', function() {
     it('should add four routes', function() {
       var router = { routes: [] },
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resources('members');
+      mapper.many('members');
       expect(router.routes.length).to.be(4);
 
       route = router.routes[0];
       expect('members').to.match(route.regexp);
+      expect(route.component).to.be('list');
 
       route = router.routes[1];
       expect('members/new').to.match(route.regexp);
+      expect(route.component).to.be('form');
 
       route = router.routes[2];
       expect('members/123').to.match(route.regexp);
+      expect(route.component).to.be('item');
 
       route = router.routes[3];
       expect('members/123/edit').to.match(route.regexp);
+      expect(route.component).to.be('form');
     })
 
     it('should take an action name for "only" option', function() {
@@ -126,7 +130,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resources('members', { only: 'show' });
+      mapper.many('members', { only: 'show' });
       expect(router.routes.length).to.be(1);
     })
 
@@ -135,7 +139,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resources('members', { only: ['show', 'edit'] });
+      mapper.many('members', { only: ['show', 'edit'] });
       expect(router.routes.length).to.be(2);
     })
 
@@ -144,7 +148,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resources('members', { except: 'new' });
+      mapper.many('members', { except: 'new' });
       expect(router.routes.length).to.be(3);
     })
 
@@ -153,7 +157,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resources('members', { except: ['show', 'edit'] });
+      mapper.many('members', { except: ['show', 'edit'] });
       expect(router.routes.length).to.be(2);
     })
 
@@ -162,7 +166,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resources('members',
+      mapper.many('members',
         { pathNames: { new: 'add', edit: 'modify' } });
       route = router.routes[1];
       expect('members/add').to.match(route.regexp);
@@ -175,7 +179,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resources('members', { path: 'players' });
+      mapper.many('members', { path: 'players' });
       expect('players').to.match(router.routes[0].regexp);
       expect('players/new').to.match(router.routes[1].regexp);
       expect('players/123').to.match(router.routes[2].regexp);
@@ -187,15 +191,15 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resources('members', { only: [] }, function(m) {
-        m.get('list', { on: 'collection' })
+      mapper.many('members', { only: [] }, function(m) {
+        m.get('special', { on: 'collection' })
         m.get('info', 'address', { on: 'member' })
       });
-      expect('members/list').to.match(router.routes[0].regexp);
+      expect('members/special').to.match(router.routes[0].regexp);
       expect('members/123/info').to.match(router.routes[1].regexp);
       expect('members/123/address').to.match(router.routes[2].regexp);
       expect(router.routes[0].namespace).to.be('members');
-      expect(router.routes[0].component).to.be('list');
+      expect(router.routes[0].component).to.be('special');
     })
 
     it('should define a nested resource', function() {
@@ -203,8 +207,8 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resources('members', { only: 'show' }, function(m) {
-        m.resources('addresses')
+      mapper.many('members', { only: 'show' }, function(m) {
+        m.many('addresses')
       });
       expect('members/123').to.match(router.routes[0].regexp);
       expect('members/123/addresses').to.match(router.routes[1].regexp);
@@ -214,29 +218,32 @@ describe('RoutingMapper', function() {
       expect(router.routes[4].keys[0]).to.be('member_id');
       expect(router.routes[4].keys[1]).to.be('id');
       expect(router.routes[0].namespace).to.be('members');
-      expect(router.routes[0].component).to.be('show');
+      expect(router.routes[0].component).to.be('item');
       expect(router.routes[4].namespace).to.be('addresses');
-      expect(router.routes[4].component).to.be('edit');
+      expect(router.routes[4].component).to.be('form');
     })
   })
 
-  describe('resource', function() {
+  describe('one', function() {
     it('should add three routes', function() {
       var router = { routes: [] },
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resource('member');
+      mapper.one('member');
       expect(router.routes.length).to.be(3);
 
       route = router.routes[0];
       expect('member').to.match(route.regexp);
+      expect(route.component).to.be('item');
 
       route = router.routes[1];
       expect('member/new').to.match(route.regexp);
+      expect(route.component).to.be('form');
 
       route = router.routes[2];
       expect('member/edit').to.match(route.regexp);
+      expect(route.component).to.be('form');
     })
 
     it('should take an action name for "only" option', function() {
@@ -244,7 +251,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resource('member', { only: 'show' });
+      mapper.one('member', { only: 'show' });
       expect(router.routes.length).to.be(1);
     })
 
@@ -253,7 +260,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resource('member', { only: ['show', 'edit'] });
+      mapper.one('member', { only: ['show', 'edit'] });
       expect(router.routes.length).to.be(2);
     })
 
@@ -262,7 +269,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resource('member', { except: 'new' });
+      mapper.one('member', { except: 'new' });
       expect(router.routes.length).to.be(2);
     })
 
@@ -271,7 +278,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resource('member', { except: ['show', 'edit'] });
+      mapper.one('member', { except: ['show', 'edit'] });
       expect(router.routes.length).to.be(1);
     })
 
@@ -280,7 +287,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resource('member',
+      mapper.one('member',
         { pathNames: { new: 'add', edit: 'modify' } });
       route = router.routes[1];
       expect('member/add').to.match(route.regexp);
@@ -293,7 +300,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resource('member', { path: 'player' });
+      mapper.one('member', { path: 'player' });
       expect('player').to.match(router.routes[0].regexp);
       expect('player/new').to.match(router.routes[1].regexp);
       expect('player/edit').to.match(router.routes[2].regexp);
@@ -304,7 +311,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resource('my_settings', {}, function(m) {
+      mapper.one('my_settings', {}, function(m) {
         m.get('phone', 'address')
       });
       expect('my_settings/phone').to.match(router.routes[3].regexp);
@@ -318,9 +325,9 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.resource('member', { only: 'show' }, function(m) {
-        m.resources('addresses')
-        m.resource('password', { only: 'show' })
+      mapper.one('member', { only: 'show' }, function(m) {
+        m.many('addresses')
+        m.one('password', { only: 'show' })
       });
       expect('member').to.match(router.routes[0].regexp);
       expect('member/addresses').to.match(router.routes[1].regexp);
@@ -329,10 +336,10 @@ describe('RoutingMapper', function() {
       expect('member/addresses/99/edit').to.match(router.routes[4].regexp);
       expect('member/password').to.match(router.routes[5].regexp);
       expect(router.routes[0].namespace).to.be('members');
-      expect(router.routes[0].component).to.be('show');
+      expect(router.routes[0].component).to.be('item');
       expect(router.routes[4].keys[0]).to.be('id');
       expect(router.routes[4].namespace).to.be('addresses');
-      expect(router.routes[4].component).to.be('edit');
+      expect(router.routes[4].component).to.be('form');
     })
   })
 
@@ -344,13 +351,13 @@ describe('RoutingMapper', function() {
 
       mapper.namespace('admin', function(m) {
         m.page('hello/:message', 'messages.show');
-        m.resources('members', function(m) {
-          m.resources('addresses', { only: 'index' });
-          m.resource('password', { only: 'show' });
+        m.many('members', function(m) {
+          m.many('addresses', { only: 'index' });
+          m.one('password', { only: 'show' });
         })
-        m.resource('account', function(m) {
-          m.resources('addresses', { only: 'index' });
-          m.resource('password', { only: 'show' });
+        m.one('account', function(m) {
+          m.many('addresses', { only: 'index' });
+          m.one('password', { only: 'show' });
         })
       })
       expect(router.routes.length).to.be(12);
@@ -369,12 +376,12 @@ describe('RoutingMapper', function() {
       expect('admin/account/password').to.match(router.routes[11].regexp);
       expect(router.routes[0].namespace).to.be('admin.messages');
       expect(router.routes[0].component).to.be('show');
-      expect(router.routes[4].component).to.be('edit');
+      expect(router.routes[4].component).to.be('form');
       expect(router.routes[5].namespace).to.be('admin.addresses');
-      expect(router.routes[5].component).to.be('index');
-      expect(router.routes[9].component).to.be('edit');
+      expect(router.routes[5].component).to.be('list');
+      expect(router.routes[9].component).to.be('form');
       expect(router.routes[11].namespace).to.be('admin.passwords');
-      expect(router.routes[11].component).to.be('show');
+      expect(router.routes[11].component).to.be('item');
     })
 
     it('should set nested namespace for routes', function() {
@@ -385,8 +392,8 @@ describe('RoutingMapper', function() {
       mapper.namespace('app', function(m) {
         m.namespace('admin', function(m) {
           m.page('hello/:message', 'messages.show');
-          m.resources('members')
-          m.resource('account')
+          m.many('members')
+          m.one('account')
         })
       })
       expect(router.routes.length).to.be(8);
@@ -400,7 +407,7 @@ describe('RoutingMapper', function() {
       expect('app/admin/account/new').to.match(router.routes[6].regexp);
       expect('app/admin/account/edit').to.match(router.routes[7].regexp);
       expect(router.routes[4].namespace).to.be('app.admin.members');
-      expect(router.routes[4].component).to.be('edit');
+      expect(router.routes[4].component).to.be('form');
     })
   })
 })
