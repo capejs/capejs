@@ -6,6 +6,7 @@
 
 * Add `#formFor`. Now we can write `m.formFor('foo', ...)`
   instead of `m.form({ name: 'foo'}, ...)`.
+* Fix a bug related to the `namespace` property of routes (again!).
 
 ## 0.11.5
 

@@ -209,6 +209,8 @@ describe('RoutingMapper', function() {
       expect('members/list').to.match(router.routes[0].regexp);
       expect('members/123/info').to.match(router.routes[1].regexp);
       expect('members/123/address').to.match(router.routes[2].regexp);
+      expect(router.routes[0].namespace).to.be('members');
+      expect(router.routes[0].component).to.be('list');
     })
 
     it('should define a nested resource', function() {
@@ -226,6 +228,10 @@ describe('RoutingMapper', function() {
       expect('members/123/addresses/99/edit').to.match(router.routes[4].regexp);
       expect(router.routes[4].keys[0]).to.be('member_id');
       expect(router.routes[4].keys[1]).to.be('id');
+      expect(router.routes[0].namespace).to.be('members');
+      expect(router.routes[0].component).to.be('show');
+      expect(router.routes[4].namespace).to.be('addresses');
+      expect(router.routes[4].component).to.be('edit');
     })
   })
 
@@ -337,8 +343,10 @@ describe('RoutingMapper', function() {
       expect('member/addresses/99').to.match(router.routes[3].regexp);
       expect('member/addresses/99/edit').to.match(router.routes[4].regexp);
       expect('member/password').to.match(router.routes[5].regexp);
+      expect(router.routes[0].namespace).to.be('members');
+      expect(router.routes[0].component).to.be('show');
       expect(router.routes[4].keys[0]).to.be('id');
-      expect(router.routes[4].namespace).to.be('members/addresses');
+      expect(router.routes[4].namespace).to.be('addresses');
       expect(router.routes[4].component).to.be('edit');
     })
   })
@@ -380,7 +388,7 @@ describe('RoutingMapper', function() {
       expect(router.routes[5].namespace).to.be('admin/addresses');
       expect(router.routes[5].component).to.be('index');
       expect(router.routes[9].component).to.be('edit');
-      expect(router.routes[11].namespace).to.be('admin/accounts/passwords');
+      expect(router.routes[11].namespace).to.be('admin/passwords');
       expect(router.routes[11].component).to.be('show');
     })
 
