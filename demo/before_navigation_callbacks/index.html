@@ -43,8 +43,8 @@
     var router = new Cape.Router();
     router.draw(function(m) {
       m.root('component_x');
-      m.match('y', 'component_y');
-      m.match('z', 'component_z');
+      m.page('y', 'component_y');
+      m.page('z', 'component_z');
     })
     router.beforeNavigation(
       function(hash) {

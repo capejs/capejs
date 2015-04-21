@@ -67,7 +67,7 @@ describe('Router', function() {
       router = new Cape.Router();
       router._.setHash = function() {};
       router.draw(function(m) {
-        m.match('', 'top.index');
+        m.page('', 'top.index');
       })
       router.mount('main');
       router.start();
@@ -93,7 +93,7 @@ describe('Router', function() {
       router = new Cape.Router();
       router._.setHash = function() {};
       router.draw(function(m) {
-        m.match('hello', 'test_message');
+        m.page('hello', 'test_message');
       })
       router.mount('main');
       router.navigate('hello');

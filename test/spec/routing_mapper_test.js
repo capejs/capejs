@@ -5,7 +5,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.match('members/search/:name', 'search');
+      mapper.page('members/search/:name', 'search');
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
@@ -22,7 +22,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.match('members/search/:name', 'members.search');
+      mapper.page('members/search/:name', 'members.search');
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
@@ -37,7 +37,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.match('members/:id/edit', 'members.edit', { id: '\\d+' });
+      mapper.page('members/:id/edit', 'members.edit', { id: '\\d+' });
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
@@ -53,7 +53,7 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.match('admin/members/search/:name', 'app.admin.members.search');
+      mapper.page('admin/members/search/:name', 'app.admin.members.search');
       expect(router.routes.length).to.be(1);
 
       route = router.routes[0];
@@ -343,7 +343,7 @@ describe('RoutingMapper', function() {
           route;
 
       mapper.namespace('admin', function(m) {
-        m.match('hello/:message', 'messages.show');
+        m.page('hello/:message', 'messages.show');
         m.resources('members', function(m) {
           m.resources('addresses', { only: 'index' });
           m.resource('password', { only: 'show' });
@@ -384,7 +384,7 @@ describe('RoutingMapper', function() {
 
       mapper.namespace('app', function(m) {
         m.namespace('admin', function(m) {
-          m.match('hello/:message', 'messages.show');
+          m.page('hello/:message', 'messages.show');
           m.resources('members')
           m.resource('account')
         })
