@@ -763,7 +763,6 @@ Cape.extend(Router.prototype, {
     this._.setHash(hash);
 
     if (this._.beforeNavigationCallbacks.length) {
-      console.log('xx')
       promises = [];
       promise = new Promise(function(resolve, reject) { resolve(hash) });
       promises.push(promise);

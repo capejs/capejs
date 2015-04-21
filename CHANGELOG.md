@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 0.12.1
+
+### `Cape.Router`
+
+* Remove debug code.
+
 ## 0.12.0
 
 ### `Cape.Router`
