@@ -11,11 +11,11 @@ Please make sure to [search the issue tracker](https://github.com/oiax/capejs/is
 
 You need [Node.js](https://nodejs.org/) to build CapeJS and run the tests.
 
-You also need [gulp](http://gulpjs.com/),
+You also need [gulp](http://gulpjs.com/) and [browserify](http://browserify.org/),
 which can be installed via `npm` (a package manager for Node.js):
 
 ```shell
-$ sudo npm install gulp
+$ sudo npm install -g gulp browserify
 ```
 
 Then run the following command (without `sudo`) to install dependencies:
@@ -24,16 +24,6 @@ Then run the following command (without `sudo`) to install dependencies:
 $ npm install
 ```
 
-## How to build virtual-dom
-
-You should build virtual-dom when you bump its version.
-
-```shell
-$ npm run build-vdom
-```
-
-The target file is created in the `vendor/virtual-dom` directory.
-
 ## How to build CapeJS
 
 ```shell
@@ -41,6 +31,15 @@ $ gulp
 ```
 
 You can automate building task by running `gulp watch`.
+
+Please do not include `dist` directory to your ordinary commits.
+You should include it only when you bump the version number of Cape.JS.
+
+## How to minify (uglify) cape.js
+
+```shell
+$ gulp minify
+```
 
 ## How to run the tests
 
