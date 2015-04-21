@@ -269,7 +269,9 @@ You can also set its value with `val` method by giving a new value as second arg
 
 A working demo is found in the directory [demo/todo_list](demo/todo_list).
 
-### Data stores
+## Data stores
+
+### Basics
 
 When you develop something larger than a tiny widget, you are recommended to
 create a *data store* for your Cape.JS component.
@@ -450,10 +452,32 @@ components according to the routes.
 
 A working demo is found in the directory [demo/simple_routes](demo/simple_routes).
 
+## FAQ
+
+### Is it "Cape.JS", "CapeJS", or "capejs"?
+
+The official name is **Cape.JS.**
+Its package name for [npm](https://www.npmjs.com)
+and [bower](http://bower.io) is **capejs** (without the dot).
+
+At the very initial phase of development, we called it "CapeJS", but
+we don't use it anymore.
+
+### Is it production ready?
+
+Not yet. We adopt [Semantic Versioning](http://semver.org/) for Cape.JS.
+According to this system, major version (0.y.z) zero is for initial development.
+We have released the version 1.0.0-beta.1, but the public API of Cape.JS should
+not be considered stable.
+
+### How can I contribute?
+
+The Cape.JS is an open source project. Everyone can help.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
 ## Acknowledgements
 
 The logo of Cape.JS is created by [Junya Suzuki](https://github.com/junya-suzuki).
-
 
 ## Trademarks
 
