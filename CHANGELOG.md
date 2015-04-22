@@ -4,6 +4,7 @@
 
 ### `Cape.Router`
 
+* Move `#notify` from internal class to main class.
 * Fix a bug that `navigate` method gets called twice.
 
 ## 1.0.0-beta.3 (April 22, 2015)

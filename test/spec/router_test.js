@@ -6,7 +6,7 @@ describe('Router', function() {
       router = new Cape.Router();
       component = { refresh: sinon.spy() };
       router.attach(component);
-      router._.notify();
+      router.notify();
 
       expect(component.refresh.called).to.equal(true);
     })
@@ -31,7 +31,7 @@ describe('Router', function() {
       component = { refresh: sinon.spy() };
       router.attach(component);
       router.detach(component);
-      router._.notify();
+      router.notify();
 
       expect(component.refresh.called).not.to.equal(true);
     })
