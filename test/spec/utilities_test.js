@@ -6,11 +6,11 @@ describe('Cape', function() {
       var obj3 = { d: 6, e: 7 };
 
       Cape.extend(obj1, obj2, obj3);
-      expect(obj1.a).to.be(4);
-      expect(obj1.b).to.be(2);
-      expect(obj1.c).to.be(3);
-      expect(obj1.d).to.be(6);
-      expect(obj1.e).to.be(7);
+      expect(obj1.a).to.equal(4);
+      expect(obj1.b).to.equal(2);
+      expect(obj1.c).to.equal(3);
+      expect(obj1.d).to.equal(6);
+      expect(obj1.e).to.equal(7);
     })
   })
 
@@ -21,11 +21,11 @@ describe('Cape', function() {
       var obj3 = { a: { b: { e: { f: 6 } } }, x: { } };
 
       Cape.deepExtend(obj1, obj2, obj3);
-      expect(obj1.a.b.c).to.be(1);
-      expect(obj1.a.b.d).to.be(4);
-      expect(obj1.a.b.e.f).to.be(6);
-      expect(obj1.x.y).to.be(3);
-      expect(obj1.x.z).to.be(5);
+      expect(obj1.a.b.c).to.equal(1);
+      expect(obj1.a.b.d).to.equal(4);
+      expect(obj1.a.b.e.f).to.equal(6);
+      expect(obj1.x.y).to.equal(3);
+      expect(obj1.x.z).to.equal(5);
     })
   })
 })

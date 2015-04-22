@@ -18,11 +18,11 @@ describe('Demo', function() {
       c.mount('click-counter');
 
       div = document.getElementsByClassName('counter')[0];
-      expect(div.textContent).to.be('0');
+      expect(div.textContent).to.equal('0');
       div.click();
 
       div = document.getElementsByClassName('counter')[0];
-      expect(div.textContent).to.be('1');
+      expect(div.textContent).to.equal('1');
 
       c.unmount();
     })

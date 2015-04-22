@@ -23,9 +23,11 @@ gulp.task('watch', function() {
 });
 
 var testFiles = [
+  'node_modules/chai/chai.js',
   'node_modules/sinon/pkg/sinon.js',
   'node_modules/expect.js/index.js',
   'dist/cape.js',
+  'test/chai.js',
   'demo/**/*.js',
   'es6-demo/hello_message/*.js',
   'test/integration/*.js',

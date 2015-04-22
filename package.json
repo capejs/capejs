@@ -23,7 +23,7 @@
   "homepage": "https://github.com/oiax/capejs",
   "devDependencies": {
     "browserify": "^9.0.8",
-    "expect.js": "^0.3.1",
+    "chai": "^2.2.0",
     "gulp": "^3.8.11",
     "gulp-karma": "0.0.4",
     "gulp-rename": "^1.2.2",
@@ -36,7 +36,7 @@
     "karma-chrome-launcher": "^0.1.7",
     "karma-coverage": "^0.2.7",
     "karma-mocha": "^0.1.10",
-    "mocha": "^2.2.0",
+    "mocha": "^2.2.4",
     "sinon": "^1.14.1",
     "uglify-js": "latest",
     "vinyl-source-stream": "^1.1.0",

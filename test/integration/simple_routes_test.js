@@ -19,22 +19,22 @@ describe('Demo', function() {
 
       main = document.getElementById('main');
       p = main.getElementsByTagName('p')[0];
-      expect(p.textContent).to.be('This is the top page.')
+      expect(p.textContent).to.equal('This is the top page.')
 
       simple_router.navigate('about');
       main = document.getElementById('main');
       p = main.getElementsByTagName('p')[0];
-      expect(p.textContent).to.be('This is the about page.')
+      expect(p.textContent).to.equal('This is the about page.')
 
       simple_router.navigate('help');
       main = document.getElementById('main');
       p = main.getElementsByTagName('p')[0];
-      expect(p.textContent).to.be('This is the help page.')
+      expect(p.textContent).to.equal('This is the help page.')
 
       simple_router.navigate('');
       main = document.getElementById('main');
       p = main.getElementsByTagName('p')[0];
-      expect(p.textContent).to.be('This is the top page.')
+      expect(p.textContent).to.equal('This is the top page.')
 
       simple_router.stop();
     })

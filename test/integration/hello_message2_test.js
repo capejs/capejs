@@ -21,7 +21,7 @@ describe('Demo', function() {
       element = document.getElementById('hello-message');
       p = element.children[0];
       strong = p.getElementsByTagName('strong')[0];
-      expect(strong.textContent).to.be('World!');
+      expect(strong.textContent).to.equal('World!');
 
       c.unmount();
     })

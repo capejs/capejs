@@ -20,7 +20,7 @@ describe('Demo', function() {
 
       element = document.getElementById('hello-message');
       p = element.children[0];
-      expect(p.textContent).to.be('Hello, World!');
+      expect(p.textContent).to.equal('Hello, World!');
 
       c.unmount();
     })

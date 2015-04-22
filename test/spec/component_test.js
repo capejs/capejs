@@ -27,8 +27,8 @@ describe('Component', function() {
 
       component = new Klass();
       component.mount('target');
-      expect(component.val('title')).to.be('A');
-      expect(component.val('name')).to.be('B');
+      expect(component.val('title')).to.equal('A');
+      expect(component.val('name')).to.equal('B');
     })
 
     it('should get the value of a field of named form', function() {
@@ -45,8 +45,8 @@ describe('Component', function() {
 
       component = new Klass();
       component.mount('target');
-      expect(component.val('foo.title')).to.be('A');
-      expect(component.val('foo.name')).to.be('B');
+      expect(component.val('foo.title')).to.equal('A');
+      expect(component.val('foo.name')).to.equal('B');
     })
 
     it('should set the value of a form field', function() {
@@ -66,8 +66,8 @@ describe('Component', function() {
       component.val('title', 'A');
       component.val('name', 'B');
       component.refresh();
-      expect(component.val('title')).to.be('A');
-      expect(component.val('name')).to.be('B');
+      expect(component.val('title')).to.equal('A');
+      expect(component.val('name')).to.equal('B');
     })
 
     it('should set the value of a field of named form', function() {
@@ -87,8 +87,8 @@ describe('Component', function() {
       component.val('foo.title', 'A');
       component.val('foo.name', 'B');
       component.refresh();
-      expect(component.val('foo.title')).to.be('A');
-      expect(component.val('foo.name')).to.be('B');
+      expect(component.val('foo.title')).to.equal('A');
+      expect(component.val('foo.name')).to.equal('B');
     })
   })
 
@@ -124,7 +124,7 @@ describe('Component', function() {
 
       target = document.getElementById('target');
       element = target.getElementsByTagName('span')[0];
-      expect(element.textContent).to.be('Hello!');
+      expect(element.textContent).to.equal('Hello!');
     })
 
     it('should render a partial setting its "this" object', function() {
@@ -153,7 +153,7 @@ describe('Component', function() {
 
       target = document.getElementById('target');
       element = target.getElementsByTagName('span')[0];
-      expect(element.textContent).to.be('Hello!');
+      expect(element.textContent).to.equal('Hello!');
     })
 
     it('should render a partial that has methods', function() {
@@ -185,7 +185,7 @@ describe('Component', function() {
 
       target = document.getElementById('target');
       element = target.getElementsByTagName('span')[0];
-      expect(element.textContent).to.be('Hello!');
+      expect(element.textContent).to.equal('Hello!');
     })
 
     it('should throw an error', function() {
@@ -201,7 +201,7 @@ describe('Component', function() {
 
       component = new Klass();
       expect(function() { component.mount('target') })
-        .to.throwError(/not found/);
+        .to.throw(/not found/);
     })
   })
 })

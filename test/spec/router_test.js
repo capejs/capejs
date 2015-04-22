@@ -8,7 +8,7 @@ describe('Router', function() {
       router.attach(component);
       router._.notify();
 
-      expect(component.refresh.called).to.be(true);
+      expect(component.refresh.called).to.equal(true);
     })
 
     it('should not register a component twice', function() {
@@ -19,7 +19,7 @@ describe('Router', function() {
       router.attach(component);
       router.attach(component);
 
-      expect(router._.components.length).to.be(1);
+      expect(router._.components.length).to.equal(1);
     })
   })
 
@@ -33,7 +33,7 @@ describe('Router', function() {
       router.detach(component);
       router._.notify();
 
-      expect(component.refresh.called).not.to.be(true);
+      expect(component.refresh.called).not.to.equal(true);
     })
   })
 
@@ -48,31 +48,27 @@ describe('Router', function() {
       router = new Cape.Router();
       router.beforeNavigation(function() {})
 
-      expect(router._.beforeNavigationCallbacks.length).to.be(1);
+      expect(router._.beforeNavigationCallbacks.length).to.equal(1);
     })
   })
 
   describe('start', function() {
-    after(function() {
-      window.Top = undefined;
-    })
-
     it('should mount a component', function() {
       var router, method;
 
-      window.Top = {};
-      window.Top.Index = function() {};
-      window.Top.Index.prototype.mount = method = sinon.spy();
+      window.HomePage = {};
+      window.HomePage.Index = function() {};
+      window.HomePage.Index.prototype.mount = method = sinon.spy();
 
       router = new Cape.Router();
       router._.setHash = function() {};
       router.draw(function(m) {
-        m.page('', 'top.index');
+        m.page('', 'home_page.index');
       })
       router.mount('main');
       router.start();
 
-      expect(method.calledWith('main')).to.be(true);
+      expect(method.calledWith('main')).to.equal(true);
     })
   })
 
@@ -98,8 +94,8 @@ describe('Router', function() {
       router.mount('main');
       router.navigate('hello');
 
-      expect(method.calledWith('main')).to.be(true);
-      expect(router.component).to.be('test_message');
+      expect(method.calledWith('main')).to.equal(true);
+      expect(router.component).to.equal('test_message');
     })
 
     it('should mount the matched component and set Router#params', function() {
@@ -116,10 +112,10 @@ describe('Router', function() {
       router.mount('main');
       router.navigate('members/123');
 
-      expect(method.calledWith('main')).to.be(true);
-      expect(router.params.id).to.be('123');
-      expect(router.namespace).to.be('members');
-      expect(router.component).to.be('item');
+      expect(method.calledWith('main')).to.equal(true);
+      expect(router.params.id).to.equal('123');
+      expect(router.namespace).to.equal('members');
+      expect(router.component).to.equal('item');
     })
 
     it('should mount the nested component and set Router#params', function() {
@@ -138,9 +134,9 @@ describe('Router', function() {
       router.mount('main');
       router.navigate('groups/9/members/123');
 
-      expect(method.calledWith('main')).to.be(true);
-      expect(router.params.group_id).to.be('9');
-      expect(router.params.id).to.be('123');
+      expect(method.calledWith('main')).to.equal(true);
+      expect(router.params.group_id).to.equal('9');
+      expect(router.params.id).to.equal('123');
     })
 
     it('should unmount the mounted component before remounting', function() {
@@ -162,9 +158,9 @@ describe('Router', function() {
       router.navigate('members');
       router.navigate('members/123');
 
-      expect(method1.calledWith('main')).to.be(true);
-      expect(method2.called).to.be(true);
-      expect(method3.calledWith('main')).to.be(true);
+      expect(method1.calledWith('main')).to.equal(true);
+      expect(method2.called).to.equal(true);
+      expect(method3.calledWith('main')).to.equal(true);
     })
 
     it('should mount the component under a namespace', function() {
@@ -183,8 +179,8 @@ describe('Router', function() {
       router.mount('main');
       router.navigate('admin/members/123');
 
-      expect(method.calledWith('main')).to.be(true);
-      expect(router.params.id).to.be('123');
+      expect(method.calledWith('main')).to.equal(true);
+      expect(router.params.id).to.equal('123');
     })
 
     it('should mount the component under a deeply nested namespace', function() {
@@ -205,8 +201,8 @@ describe('Router', function() {
       router.mount('main');
       router.navigate('app/admin/members/123');
 
-      expect(method.calledWith('main')).to.be(true);
-      expect(router.params.id).to.be('123');
+      expect(method.calledWith('main')).to.equal(true);
+      expect(router.params.id).to.equal('123');
     })
 
     it('should mount the component under a namespace with path option', function() {
@@ -225,8 +221,8 @@ describe('Router', function() {
       router.mount('main');
       router.navigate('admin/members/123');
 
-      expect(method.calledWith('main')).to.be(true);
-      expect(router.params.id).to.be('123');
+      expect(method.calledWith('main')).to.equal(true);
+      expect(router.params.id).to.equal('123');
     })
   })
 })

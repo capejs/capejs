@@ -9,7 +9,7 @@ describe('Cape Tests', function() {
 
     global.virtualDom = require('virtual-dom')
     global.Inflector = require('inflected')
-    global.expect = require('expect.js')
+    global.expect = require('chai').expect
     global.sinon = require('sinon')
 
     global.Cape = require('../lib/cape.js')

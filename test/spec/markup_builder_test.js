@@ -28,8 +28,8 @@ describe('MarkupBuilder', function() {
 
       target = document.getElementById('target');
       p = target.getElementsByTagName('p');
-      expect(p[0].getAttribute('title')).to.be('x')
-      expect(p[0].getAttribute('id')).to.be('z')
+      expect(p[0].getAttribute('title')).to.equal('x')
+      expect(p[0].getAttribute('id')).to.equal('z')
       expect(p[1].getAttribute('title')).to.null
 
       c.unmount();
@@ -53,8 +53,8 @@ describe('MarkupBuilder', function() {
 
       target = document.getElementById('target');
       p = target.getElementsByTagName('p');
-      expect(p[0].className).to.be('foo bar baz')
-      expect(p[1].className).to.be('foo')
+      expect(p[0].className).to.equal('foo bar baz')
+      expect(p[1].className).to.equal('foo')
 
       c.unmount();
     })
@@ -79,8 +79,8 @@ describe('MarkupBuilder', function() {
 
         target = document.getElementById('target');
         p = target.getElementsByTagName('p');
-        expect(p[0].getAttribute('data-title')).to.be('x')
-        expect(p[0].getAttribute('data-name')).to.be('z')
+        expect(p[0].getAttribute('data-title')).to.equal('x')
+        expect(p[0].getAttribute('data-name')).to.equal('z')
         expect(p[1].getAttribute('data-title')).to.null
 
         c.unmount();
@@ -101,7 +101,7 @@ describe('MarkupBuilder', function() {
 
       target = document.getElementById('target');
       i = target.getElementsByTagName('i')[0];
-      expect(i.className).to.be('fa fa-beer');
+      expect(i.className).to.equal('fa fa-beer');
 
       c.unmount();
     })
@@ -169,45 +169,45 @@ describe('MarkupBuilder', function() {
 
       form = target.getElementsByTagName('form')[0];
       e = form.getElementsByTagName('label')[0];
-      expect(e.htmlFor).to.be('field-name');
+      expect(e.htmlFor).to.equal('field-name');
       e = form.getElementsByTagName('input')[0];
-      expect(e.id).to.be('field-name');
+      expect(e.id).to.equal('field-name');
       e = form.getElementsByTagName('textarea')[0];
-      expect(e.id).to.be('field-remarks');
+      expect(e.id).to.equal('field-remarks');
       e = form.getElementsByTagName('select')[0];
-      expect(e.id).to.be('field-color');
+      expect(e.id).to.equal('field-color');
       e = form.getElementsByTagName('input')[1];
-      expect(e.id).to.be('field-size-l');
+      expect(e.id).to.equal('field-size-l');
       e = form.getElementsByTagName('input')[3];
-      expect(e.id).to.be('field-confirm');
+      expect(e.id).to.equal('field-confirm');
       e = form.getElementsByTagName('label')[6];
-      expect(e.htmlFor).to.be('field-variants-1-variant-name');
+      expect(e.htmlFor).to.equal('field-variants-1-variant-name');
       e = form.getElementsByTagName('input')[5];
-      expect(e.id).to.be('field-variants-1-variant-name');
+      expect(e.id).to.equal('field-variants-1-variant-name');
       e = form.getElementsByTagName('textarea')[1];
-      expect(e.id).to.be('field-variants-1-remarks');
+      expect(e.id).to.equal('field-variants-1-remarks');
       e = form.getElementsByTagName('select')[1];
-      expect(e.id).to.be('field-variants-1-color');
+      expect(e.id).to.equal('field-variants-1-color');
 
       form = target.getElementsByTagName('form')[1];
       e = form.getElementsByTagName('label')[0];
-      expect(e.htmlFor).to.be('product-field-name');
+      expect(e.htmlFor).to.equal('product-field-name');
       e = form.getElementsByTagName('input')[0];
-      expect(e.id).to.be('product-field-name');
+      expect(e.id).to.equal('product-field-name');
       e = form.getElementsByTagName('textarea')[0];
-      expect(e.id).to.be('product-field-remarks');
+      expect(e.id).to.equal('product-field-remarks');
       e = form.getElementsByTagName('select')[0];
-      expect(e.id).to.be('product-field-color');
+      expect(e.id).to.equal('product-field-color');
       e = form.getElementsByTagName('input')[1];
-      expect(e.id).to.be('product-field-size-l');
+      expect(e.id).to.equal('product-field-size-l');
       e = form.getElementsByTagName('input')[3];
-      expect(e.id).to.be('product-field-confirm');
+      expect(e.id).to.equal('product-field-confirm');
       e = form.getElementsByTagName('label')[6];
-      expect(e.htmlFor).to.be('product-field-variants-1-variant-name');
+      expect(e.htmlFor).to.equal('product-field-variants-1-variant-name');
       e = form.getElementsByTagName('textarea')[1];
-      expect(e.id).to.be('product-field-variants-1-remarks');
+      expect(e.id).to.equal('product-field-variants-1-remarks');
       e = form.getElementsByTagName('select')[1];
-      expect(e.id).to.be('product-field-variants-1-color');
+      expect(e.id).to.equal('product-field-variants-1-color');
 
       c.unmount();
     })

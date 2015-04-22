@@ -20,7 +20,7 @@ describe('Demo', function() {
       root = document.getElementById('data-attribute');
       h1 = root.getElementsByTagName('h1');
       data = h1[0].getAttribute('data-hello');
-      expect(data).to.be('hello');
+      expect(data).to.equal('hello');
 
       c.unmount();
     })

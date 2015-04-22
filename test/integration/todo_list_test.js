@@ -20,7 +20,7 @@ describe('Demo', function() {
       root = document.getElementById('component');
 
       ul = root.getElementsByTagName('ul')[0];
-      expect(ul.getElementsByTagName('li').length).to.be(2);
+      expect(ul.getElementsByTagName('li').length).to.equal(2);
 
       root = document.getElementById('component');
       input = document.getElementsByName('title')[0];
@@ -31,14 +31,14 @@ describe('Demo', function() {
       button.click();
 
       ul = root.getElementsByTagName('ul')[0];
-      expect(ul.children.length).to.be(3);
+      expect(ul.children.length).to.equal(3);
 
       cb = ul.children[2].getElementsByTagName('input')[0];
       cb.click();
 
       ul = root.getElementsByTagName('ul')[0];
       label = ul.children[2].getElementsByTagName('label')[0];
-      expect(label.className).to.be('completed');
+      expect(label.className).to.equal('completed');
 
       c.unmount();
     })
