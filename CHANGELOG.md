@@ -2,6 +2,8 @@
 
 ## 1.0.0-beta.3
 
+### `Cape.RoutingMapper`
+
 * Change APIs to define singular resource routes.
 
 ```
@@ -44,6 +46,11 @@ then the route has following properties:
 * `container` -- `'admin.passwords'`
 * `component` -- `'form'`
 
+
+### `Cape`
+
+* Add `Cape.merge`, which merges (but does not override) the properties of
+  two or more objects together into the first object.
 
 ## 1.0.0-beta.2
 
