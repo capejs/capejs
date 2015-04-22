@@ -19,7 +19,7 @@ describe('Router', function() {
       router.attach(component);
       router.attach(component);
 
-      expect(router._.components.length).to.equal(1);
+      expect(router._.attachedComponents.length).to.equal(1);
     })
   })
 
