@@ -192,12 +192,14 @@ describe('RoutingMapper', function() {
           route;
 
       mapper.many('members', { only: [] }, function(m) {
-        m.get('special', { on: 'collection' })
-        m.get('info', 'address', { on: 'member' })
+        m.collection('special')
+        m.member('info', 'address')
+        m.new('quick');
       });
       expect('members/special').to.match(router.routes[0].regexp);
       expect('members/123/info').to.match(router.routes[1].regexp);
       expect('members/123/address').to.match(router.routes[2].regexp);
+      expect('members/new/quick').to.match(router.routes[3].regexp);
       expect(router.routes[0].namespace).to.be('members');
       expect(router.routes[0].component).to.be('special');
     })
@@ -311,12 +313,14 @@ describe('RoutingMapper', function() {
           mapper = new Cape.RoutingMapper(router),
           route;
 
-      mapper.one('my_settings', {}, function(m) {
-        m.get('phone', 'address')
+      mapper.one('my_account', function(m) {
+        m.view('phone', 'address');
+        m.new('quick');
       });
-      expect('my_settings/phone').to.match(router.routes[3].regexp);
-      expect('my_settings/address').to.match(router.routes[4].regexp);
-      expect(router.routes[3].namespace).to.be('my_settings');
+      expect('my_account/phone').to.match(router.routes[3].regexp);
+      expect('my_account/address').to.match(router.routes[4].regexp);
+      expect('my_account/new/quick').to.match(router.routes[5].regexp);
+      expect(router.routes[3].namespace).to.be('my_account');
       expect(router.routes[3].component).to.be('phone');
     })
 

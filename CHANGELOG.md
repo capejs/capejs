@@ -2,6 +2,43 @@
 
 ## 1.0.0-beta.2
 
+### `Cape.RoutingMapper`
+
+* Introduce new APIs to define custom routes.
+
+```
+router.draw(function(m) {
+  m.many('members', { only: [] }, function(m) {
+    m.collection('special');
+    m.member('info');
+    m.new('quick')
+  })
+});
+```
+
+The above code defines the following three routes:
+
+1. `members/special          => Members.Special`
+2. `members/:id/info         => Members.Info`
+3. `members/new/quick        => Members.Quick`
+
+```
+router.draw(function(m) {
+  m.one('account', { only: [] }, function(m) {
+    m.view('info');
+    m.new('quick')
+  })
+});
+```
+
+The above code defines the following two routes:
+
+1. `account/info             => Account.Info`
+2. `account/new/quick        => Account.Quick`
+
+For plural resources (defined by `#many`), you can't use `#view`.
+For singular resources (defined by `#one`), you can't use `#collection` and `#element`.
+
 ### `Cape.Router`
 
 * Add `#stop` to stop listening to the `hashchange` events.
