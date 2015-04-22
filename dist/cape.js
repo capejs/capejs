@@ -707,6 +707,11 @@ var Cape = require('./utilities');
 // public properties:
 //   routes: array of hashes that contains routing information.
 //   params: the parameters that are extracted from URL hash fragment.
+//   namespace: the namespace part of URL hash fragment
+//   resource: the resource part of URL hash fragment
+//   action: the action name of current route
+//   container: the name of container of component
+//   component: the name of component
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
 var Router = function Router() {
@@ -714,6 +719,9 @@ var Router = function Router() {
   this.routes = [];
   this.params = {};
   this.namespace = null;
+  this.resource = null;
+  this.action = null;
+  this.container = null;
   this.component = null;
   this.waiting = false;
 };
@@ -837,6 +845,9 @@ Cape.extend(_Internal.prototype, {
 
     route = this.main.routeFor(hash);
     this.main.namespace = route.namespace;
+    this.main.resource = route.resource;
+    this.main.action = route.action;
+    this.main.container = route.container;
     this.main.component = route.component;
     this.setParams(route);
     componentClass = this.getComponentClassFor(route);
@@ -864,32 +875,29 @@ Cape.extend(_Internal.prototype, {
     }.bind(this));
   },
   getComponentClassFor: function(route) {
-    var fragments, i, camelized, componentName, obj, componentClassName;
+    var fragments, obj, i, componentName;
 
-    fragments = route.componentClassName.split('.');
-    componentName = Inflector.camelize(fragments.pop());
-
-    obj = window;
-    for (i = 0; i < fragments.length; i++) {
-      camelized = Inflector.camelize(fragments[i]);
-      if (obj[camelized]) {
-        obj = obj[camelized];
-      }
-      else {
-        obj = null;
-        break;
-      }
+    fragments = [];
+    if (route.container) {
+      route.container.split('.').forEach(function(part) {
+        fragments.push(Inflector.camelize(part));
+      })
     }
 
+    obj = window;
+    for (i = 0; obj && i < fragments.length; i++) {
+      if (obj[fragments[i]]) obj = obj[fragments[i]];
+      else obj = null;
+    }
+
+    componentName = Inflector.camelize(route.component);
     if (obj && obj[componentName]) return obj[componentName];
 
-    // Old convension
-    componentClassName = Inflector.camelize(
-      route.componentClassName.replace(/\//g, '_'));
-    if (window[componentClassName]) return window[componentClassName];
-
     throw new Error(
-      "Component class not found for " + route.componentClassName);
+      "Component class "
+        + fragments.concat([componentName]).join('.')
+        + " is not defined."
+    );
   },
   notify: function() {
     var i;
@@ -912,6 +920,8 @@ function RoutingMapper(router, options) {
   this._ = new _Internal(this);
   this.router = router;
   if (options) {
+    // The namespace part of URL hash
+    this.namespacePath = options.namespacePath;
     this.singular = options.singular;
     this.pathPrefix = options.pathPrefix;
     this.resourcePath = options.resourcePath;
@@ -921,126 +931,60 @@ function RoutingMapper(router, options) {
 };
 
 Cape.extend(RoutingMapper.prototype, {
-  page: function(path, className, constraints) {
-    var route = {}, fullClassName, fragments;
+  page: function(path, className, constraints, options) {
+    var route = {}, fullClassName, fragments, resourceNames;
+
+    options = options || {};
 
     if (this.pathPrefix) path = this.pathPrefix + '/' + path;
+
+    route.path = path;
+    route.keys = this._.extractKeys(path);
+    route.regexp = this._.constructRegexp(path, constraints);
 
     if (this.classNamePrefix)
       fullClassName = this.classNamePrefix + '.' + className;
     else
       fullClassName = className;
 
-    route.path = path;
-    route.keys = this._.extractKeys(path);
-    route.regexp = this._.constructRegexp(path, constraints);
-    route.componentClassName = fullClassName;
-
     fragments = fullClassName.split('.');
     route.component = fragments.pop();
-    route.namespace = fragments.length ? fragments.join('.') : null;
+    route.container = fragments.length ? fragments.join('.') : null;
+
+    route.namespace = this.namespacePath || null;
+
+    resourceNames = [];
+    if (this.resourcePath) resourceNames.push(this.resourcePath);
+    if (options.resource) resourceNames.push(options.resource);
+    if (resourceNames.length) route.resource = resourceNames.join('/');
+    else route.resource = null;
+
+    route.action = options.action || null;
 
     this.router.routes.push(route);
   },
   root: function(className) {
     this.page('', className);
   },
-  many: function(resourceName, options, callback) {
-    var actions, path, resourcePath, classNamePrefix, pathName, mapper;
+  many: function(resourceName) {
+    var options, callback, resourcePath;
 
-    if (typeof options === 'function') {
-      callback = options;
-      options = {}
-    }
-    else {
-      options = options || {};
-    }
+    options = this._.extractOptions(arguments);
+    callback = this._.extractCallback(arguments);
+    resourcePath = this._.getResourcePath(options.path || resourceName);
 
-    options.pathNames = options.pathNames || {};
-
-    actions = [ 'index', 'new', 'show', 'edit' ];
-    this._.filterActions(actions, options);
-
-    path = options.path || resourceName;
-    resourcePath = this._.getResourcePath(path);
-
-    classNamePrefix = resourceName;
-    if (this.classNamePrefix)
-      classNamePrefix = this.classNamePrefix + '.' + classNamePrefix;
-
-    if (actions.indexOf('index') != -1)
-      this.page(resourcePath, resourceName + '.list');
-    if (actions.indexOf('new') != -1) {
-      pathName = options.pathNames.new ? options.pathNames.new : 'new';
-      this.page(resourcePath + '/' + pathName, resourceName + '.form');
-    }
-    if (actions.indexOf('show') != -1)
-      this.page(resourcePath + '/:id', resourceName + '.item', { id: '\\d+' });
-    if (actions.indexOf('edit') != -1) {
-      pathName = options.pathNames.edit ? options.pathNames.edit : 'edit';
-      this.page(resourcePath + '/:id/' + pathName, resourceName + '.form',
-        { id: '\\d+' });
-    }
-
-    if (typeof callback == 'function') {
-      if (callback.length === 0)
-        throw new Error("Callback requires an argument.");
-      mapper = new RoutingMapper(this.router,
-        { singular: false,
-          pathPrefix: this.pathPrefix,
-          resourcePath: resourcePath,
-          classNamePrefix: this.classNamePrefix,
-          resourceClassName: resourceName });
-      callback(mapper);
-    }
+    this._.addPagesForPluralResource(resourceName, resourcePath, options);
+    this._.executeCallback(callback, resourceName, resourcePath, false);
   },
-  one: function(resourceName, options, callback) {
-    var actions, path, resourcePath, pathName, resourceClassName,
-      mapper;
+  one: function(resourceName) {
+    var options, callback, resourcePath;
 
-    if (typeof options === 'function') {
-      callback = options;
-      options = {}
-    }
-    else {
-      options = options || {};
-    }
+    options = this._.extractOptions(arguments);
+    callback = this._.extractCallback(arguments);
+    resourcePath = this._.getResourcePath(options.path || resourceName);
 
-    options.pathNames = options.pathNames || {};
-
-    actions = [ 'new', 'show', 'edit' ];
-    this._.filterActions(actions, options);
-
-    path = options.path || resourceName;
-    resourcePath = this._.getResourcePath(path);
-
-    resourceClassName = Inflector.pluralize(resourceName);
-    classNamePrefix = resourceClassName;
-    if (this.classNamePrefix)
-      classNamePrefix = this.classNamePrefix + '.' + classNamePrefix
-
-    if (actions.indexOf('show') != -1)
-      this.page(resourcePath, resourceClassName + '.item');
-    if (actions.indexOf('new') != -1) {
-      pathName = options.pathNames.new ? options.pathNames.new : 'new';
-      this.page(resourcePath + '/' + pathName, resourceClassName + '.form');
-    }
-    if (actions.indexOf('edit') != -1) {
-      pathName = options.pathNames.edit ? options.pathNames.edit : 'edit';
-      this.page(resourcePath + '/' + pathName, resourceClassName + '.form');
-    }
-
-    if (typeof callback == 'function') {
-      if (callback.length === 0)
-        throw new Error("Callback requires an argument.");
-      mapper = new RoutingMapper(this.router,
-        { singular: true,
-          pathPrefix: this.pathPrefix,
-          resourcePath: resourcePath,
-          classNamePrefix: this.classNamePrefix,
-          resourceClassName: resourceClassName });
-      callback(mapper);
-    }
+    this._.addPagesForSingularResource(resourceName, resourcePath, options);
+    this._.executeCallback(callback, resourceName, resourcePath, true);
   },
   collection: function() {
     var args;
@@ -1051,7 +995,7 @@ Cape.extend(RoutingMapper.prototype, {
     args = Array.prototype.slice.call(arguments, 0);
     args.forEach(function(path) {
       this.page(this.resourcePath + '/' + path,
-        this.resourcePath + '.' + path);
+        this.resourcePath + '.' + path, {}, { action: path });
     }.bind(this))
   },
   member: function() {
@@ -1063,7 +1007,7 @@ Cape.extend(RoutingMapper.prototype, {
     args = Array.prototype.slice.call(arguments, 0);
     args.forEach(function(path) {
       this.page(this.resourcePath + '/:id/' + path,
-        this.resourcePath + '.' + path, { id: '\\d+' });
+        this.resourcePath + '.' + path, { id: '\\d+' }, {}, { action: path });
     }.bind(this))
   },
   new: function() {
@@ -1075,7 +1019,7 @@ Cape.extend(RoutingMapper.prototype, {
     args = Array.prototype.slice.call(arguments, 0);
     args.forEach(function(path) {
       this.page(this.resourcePath + '/new/' + path,
-        this.resourcePath + '.' + path);
+        this.resourcePath + '.' + path, {}, { action: path });
     }.bind(this))
   },
   view: function() {
@@ -1087,27 +1031,34 @@ Cape.extend(RoutingMapper.prototype, {
     args = Array.prototype.slice.call(arguments, 0);
     args.forEach(function(path) {
       this.page(this.resourcePath + '/' + path,
-        this.resourcePath + '.' + path);
+        this.resourcePath + '.' + path, {}, { action: path });
     }.bind(this))
   },
   namespace: function(className) {
-    var args, callback, options, path, mapper;
+    var args, callback, options, namespacePath, path;
 
     args = Array.prototype.slice.call(arguments, 1);
     callback = args.pop();
     options = args.pop() || {};
+
     if (typeof callback !== 'function')
       throw new Error("The last argument must be a function.");
     if (callback.length === 0)
       throw new Error("Callback requires an argument.");
 
     path = options.path || className;
+    if (this.namespacePath) namespacePath = this.namespacePath + '/' + path;
+    else namespacePath = path;
     if (this.pathPrefix) path = this.pathPrefix + '/' + path;
     if (this.classNamePrefix) className = this.classNamePrefix + '.' + className;
 
-    mapper = new RoutingMapper(this.router,
-      { pathPrefix: path, classNamePrefix: className });
-    callback(mapper);
+    callback(
+      new RoutingMapper(this.router, {
+        namespacePath: namespacePath,
+        pathPrefix: path,
+        classNamePrefix: className
+      })
+    );
   }
 })
 
@@ -1143,6 +1094,14 @@ Cape.extend(_Internal.prototype, {
     })
     return new RegExp('^' + fragments.join('/') + '$');
   },
+  extractOptions: function(arguments) {
+    if (typeof arguments[1] === 'function') return {}
+    else return arguments[1] || {}
+  },
+  extractCallback: function(arguments) {
+    if (typeof arguments[1] === 'function') return arguments[1]
+    else return arguments[2]
+  },
   filterActions: function(actions, options) {
     var idx;
 
@@ -1177,6 +1136,64 @@ Cape.extend(_Internal.prototype, {
       }
     }
     return path
+  },
+  addPagesForPluralResource: function(resourceName, resourcePath, options) {
+    var actions = [ 'index', 'new', 'show', 'edit' ];
+    this.filterActions(actions, options);
+
+    options.pathNames = options.pathNames || {};
+
+    if (actions.indexOf('index') != -1)
+      this.main.page(resourcePath, resourceName + '.list', {},
+        { resource: resourceName, action: 'index' });
+    if (actions.indexOf('new') != -1) {
+      pathName = options.pathNames.new ? options.pathNames.new : 'new';
+      this.main.page(resourcePath + '/' + pathName, resourceName + '.form', {},
+        { resource: resourceName, action: 'new' });
+    }
+    if (actions.indexOf('show') != -1)
+      this.main.page(resourcePath + '/:id', resourceName + '.item', { id: '\\d+' },
+        { resource: resourceName, action: 'show' });
+    if (actions.indexOf('edit') != -1) {
+      pathName = options.pathNames.edit ? options.pathNames.edit : 'edit';
+      this.main.page(resourcePath + '/:id/' + pathName, resourceName + '.form',
+        { id: '\\d+' }, { resource: resourceName, action: 'edit' });
+    }
+  },
+  addPagesForSingularResource: function(resourceName, resourcePath, options) {
+    var actions = [ 'new', 'show', 'edit' ];
+    this.filterActions(actions, options);
+
+    options.pathNames = options.pathNames || {};
+
+    if (actions.indexOf('show') != -1)
+      this.main.page(resourcePath, resourceName + '.content', {},
+        { resource: resourceName, action: 'show' });
+    if (actions.indexOf('new') != -1) {
+      pathName = options.pathNames.new ? options.pathNames.new : 'new';
+      this.main.page(resourcePath + '/' + pathName, resourceName + '.form', {},
+        { resource: resourceName, action: 'new' });
+    }
+    if (actions.indexOf('edit') != -1) {
+      pathName = options.pathNames.edit ? options.pathNames.edit : 'edit';
+      this.main.page(resourcePath + '/' + pathName, resourceName + '.form', {},
+        { resource: resourceName, action: 'edit' });
+    }
+  },
+  executeCallback: function(callback, resourceName, resourcePath, singular) {
+    if (typeof callback == 'function') {
+      if (callback.length === 0)
+        throw new Error("Callback requires an argument.");
+      callback(
+        new RoutingMapper(this.main.router, {
+          singular: singular,
+          pathPrefix: this.main.pathPrefix,
+          resourcePath: resourcePath,
+          classNamePrefix: this.main.classNamePrefix,
+          resourceClassName: resourceName
+        })
+      );
+    }
   }
 })
 
@@ -1212,6 +1229,18 @@ Cape.deepExtend = function() {
         else
           arguments[0][key] = arguments[i][key];
       }
+  return arguments[0];
+}
+
+// Merge (but not override) the properties of two or more objects together
+// into the first object
+Cape.merge = function() {
+  var i, key;
+
+  for(i = 1; i < arguments.length; i++)
+    for(key in arguments[i])
+      if(!arguments[0].hasOwnProperty(key) && arguments[i].hasOwnProperty(key))
+        arguments[0][key] = arguments[i][key];
   return arguments[0];
 }
 
