@@ -114,7 +114,10 @@ describe('Router', function() {
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.params.id).to.equal('123');
-      expect(router.namespace).to.equal('members');
+      expect(router.namespace).to.be.null;
+      expect(router.resource).to.equal('members');
+      expect(router.action).to.equal('show');
+      expect(router.container).to.equal('members');
       expect(router.component).to.equal('item');
     })
 
@@ -181,6 +184,11 @@ describe('Router', function() {
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.params.id).to.equal('123');
+      expect(router.namespace).to.equal('admin');
+      expect(router.resource).to.equal('members');
+      expect(router.action).to.equal('show');
+      expect(router.container).to.equal('admin.members');
+      expect(router.component).to.equal('item');
     })
 
     it('should mount the component under a deeply nested namespace', function() {

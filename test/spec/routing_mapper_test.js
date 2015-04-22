@@ -76,7 +76,10 @@ describe('RoutingMapper', function() {
       route = router.routes[0];
       expect('').to.match(route.regexp);
       expect('top/index').not.to.match(route.regexp);
-      expect(route.namespace).to.equal('top');
+      expect(route.namespace).to.be.null;
+      expect(route.resource).to.be.null;
+      expect(route.action).to.be.null;
+      expect(route.container).to.equal('top');
       expect(route.component).to.equal('index');
     })
 
@@ -94,7 +97,7 @@ describe('RoutingMapper', function() {
       route = router.routes[0];
       expect('admin').to.match(route.regexp);
       expect('').not.to.match(route.regexp);
-      expect(route.namespace).to.equal('admin.top');
+      expect(route.container).to.equal('admin.top');
       expect(route.component).to.equal('index');
     })
   })
@@ -110,18 +113,31 @@ describe('RoutingMapper', function() {
 
       route = router.routes[0];
       expect('members').to.match(route.regexp);
+      expect(route.namespace).to.be.null;
+      expect(route.resource).to.equal('members');
+      expect(route.action).to.equal('index');
+      expect(route.container).to.equal('members');
       expect(route.component).to.equal('list');
 
       route = router.routes[1];
       expect('members/new').to.match(route.regexp);
+      expect(route.resource).to.equal('members');
+      expect(route.action).to.equal('new');
+      expect(route.container).to.equal('members');
       expect(route.component).to.equal('form');
 
       route = router.routes[2];
       expect('members/123').to.match(route.regexp);
+      expect(route.resource).to.equal('members');
+      expect(route.action).to.equal('show');
+      expect(route.container).to.equal('members');
       expect(route.component).to.equal('item');
 
       route = router.routes[3];
       expect('members/123/edit').to.match(route.regexp);
+      expect(route.resource).to.equal('members');
+      expect(route.action).to.equal('edit');
+      expect(route.container).to.equal('members');
       expect(route.component).to.equal('form');
     })
 
@@ -200,7 +216,10 @@ describe('RoutingMapper', function() {
       expect('members/123/info').to.match(router.routes[1].regexp);
       expect('members/123/address').to.match(router.routes[2].regexp);
       expect('members/new/quick').to.match(router.routes[3].regexp);
-      expect(router.routes[0].namespace).to.equal('members');
+      expect(router.routes[0].namespace).to.be.null;
+      expect(router.routes[0].resource).to.equal('members');
+      expect(router.routes[0].action).to.equal('special');
+      expect(router.routes[0].container).to.equal('members');
       expect(router.routes[0].component).to.equal('special');
     })
 
@@ -219,9 +238,14 @@ describe('RoutingMapper', function() {
       expect('members/123/addresses/99/edit').to.match(router.routes[4].regexp);
       expect(router.routes[4].keys[0]).to.equal('member_id');
       expect(router.routes[4].keys[1]).to.equal('id');
-      expect(router.routes[0].namespace).to.equal('members');
+      expect(router.routes[0].namespace).to.be.null;
+      expect(router.routes[0].resource).to.equal('members');
+      expect(router.routes[0].action).to.equal('show');
+      expect(router.routes[0].container).to.equal('members');
       expect(router.routes[0].component).to.equal('item');
-      expect(router.routes[4].namespace).to.equal('addresses');
+      expect(router.routes[4].resource).to.equal('members/addresses');
+      expect(router.routes[4].action).to.equal('edit');
+      expect(router.routes[4].container).to.equal('addresses');
       expect(router.routes[4].component).to.equal('form');
     })
   })
@@ -237,15 +261,26 @@ describe('RoutingMapper', function() {
 
       route = router.routes[0];
       expect('member').to.match(route.regexp);
-      expect(route.namespace).to.equal('member');
+      expect(route.namespace).to.be.null;
+      expect(route.resource).to.equal('member');
+      expect(route.action).to.equal('show');
+      expect(route.container).to.equal('member');
       expect(route.component).to.equal('content');
 
       route = router.routes[1];
       expect('member/new').to.match(route.regexp);
+      expect(route.namespace).to.be.null;
+      expect(route.resource).to.equal('member');
+      expect(route.action).to.equal('new');
+      expect(route.container).to.equal('member');
       expect(route.component).to.equal('form');
 
       route = router.routes[2];
       expect('member/edit').to.match(route.regexp);
+      expect(route.namespace).to.be.null;
+      expect(route.resource).to.equal('member');
+      expect(route.action).to.equal('edit');
+      expect(route.container).to.equal('member');
       expect(route.component).to.equal('form');
     })
 
@@ -321,7 +356,10 @@ describe('RoutingMapper', function() {
       expect('my_account/phone').to.match(router.routes[3].regexp);
       expect('my_account/address').to.match(router.routes[4].regexp);
       expect('my_account/new/quick').to.match(router.routes[5].regexp);
-      expect(router.routes[3].namespace).to.equal('my_account');
+      expect(router.routes[3].namespace).to.be.null;
+      expect(router.routes[3].resource).to.equal('my_account');
+      expect(router.routes[3].action).to.equal('phone');
+      expect(router.routes[3].container).to.equal('my_account');
       expect(router.routes[3].component).to.equal('phone');
     })
 
@@ -340,10 +378,10 @@ describe('RoutingMapper', function() {
       expect('member/addresses/99').to.match(router.routes[3].regexp);
       expect('member/addresses/99/edit').to.match(router.routes[4].regexp);
       expect('member/password').to.match(router.routes[5].regexp);
-      expect(router.routes[0].namespace).to.equal('member');
+      expect(router.routes[0].container).to.equal('member');
       expect(router.routes[0].component).to.equal('content');
       expect(router.routes[4].keys[0]).to.equal('id');
-      expect(router.routes[4].namespace).to.equal('addresses');
+      expect(router.routes[4].container).to.equal('addresses');
       expect(router.routes[4].component).to.equal('form');
     })
   })
@@ -429,13 +467,16 @@ describe('RoutingMapper', function() {
       expect('admin/account/edit').to.match(router.routes[9].regexp);
       expect('admin/account/addresses').to.match(router.routes[10].regexp);
       expect('admin/account/password').to.match(router.routes[11].regexp);
-      expect(router.routes[0].namespace).to.equal('admin.messages');
+      expect(router.routes[0].namespace).to.equal('admin');
+      expect(router.routes[0].resource).to.be.null;
+      expect(router.routes[0].action).to.be.null;
+      expect(router.routes[0].container).to.equal('admin.messages');
       expect(router.routes[0].component).to.equal('show');
       expect(router.routes[4].component).to.equal('form');
-      expect(router.routes[5].namespace).to.equal('admin.addresses');
+      expect(router.routes[5].container).to.equal('admin.addresses');
       expect(router.routes[5].component).to.equal('list');
       expect(router.routes[9].component).to.equal('form');
-      expect(router.routes[11].namespace).to.equal('admin.password');
+      expect(router.routes[11].container).to.equal('admin.password');
       expect(router.routes[11].component).to.equal('content');
     })
 
@@ -461,7 +502,10 @@ describe('RoutingMapper', function() {
       expect('app/admin/account').to.match(router.routes[5].regexp);
       expect('app/admin/account/new').to.match(router.routes[6].regexp);
       expect('app/admin/account/edit').to.match(router.routes[7].regexp);
-      expect(router.routes[4].namespace).to.equal('app.admin.members');
+      expect(router.routes[4].namespace).to.equal('app/admin');
+      expect(router.routes[4].resource).to.equal('members');
+      expect(router.routes[4].action).to.equal('edit');
+      expect(router.routes[4].container).to.equal('app.admin.members');
       expect(router.routes[4].component).to.equal('form');
     })
   })

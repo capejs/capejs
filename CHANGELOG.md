@@ -1,5 +1,50 @@
 # CHANGELOG - CapeJS
 
+## 1.0.0-beta.3
+
+* Change APIs to define singular resource routes.
+
+```
+router.draw(function(m) {
+  m.one('account', function(m) {
+    m.view('info');
+    m.new('quick')
+  })
+});
+```
+
+The above code defines the following five routes:
+
+1. `account                  => Account.Content`
+2. `account/new              => Account.Form`
+2. `account/edit             => Account.Form`
+3. `account/info             => Account.Info`
+4. `account/new/quick        => Account.Quick`
+
+* Set route's properties nicely (api change)
+
+If we define a route with
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.namespace('admin', function(m) {
+    m.many('members', { only: [] }, function(m) {
+      m.many('passwords', { only: 'edit' }
+    })
+  })
+})
+```
+
+then the route has following properties:
+
+* `namespace` -- `'admin'`
+* `resource` -- `'members/passwords'`
+* `action` -- `'edit'`
+* `container` -- `'admin.passwords'`
+* `component` -- `'form'`
+
+
 ## 1.0.0-beta.2
 
 ### `Cape.RoutingMapper`
