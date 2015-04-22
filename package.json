@@ -21,6 +21,10 @@
     "url": "https://github.com/oiax/capejs/issues"
   },
   "homepage": "https://github.com/oiax/capejs",
+  "dependencies": {
+    "inflected": "^1.1.6",
+    "virtual-dom": "2.0.1"
+  },
   "devDependencies": {
     "browserify": "^9.0.8",
     "chai": "^2.2.0",
