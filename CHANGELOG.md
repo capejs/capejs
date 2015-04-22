@@ -1,6 +1,6 @@
 # CHANGELOG - CapeJS
 
-## 1.0.0-beta.4
+## 1.0.0-beta.4 (April 22, 2015)
 
 ### `Cape.Router`
 

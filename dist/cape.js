@@ -724,6 +724,7 @@ var Router = function Router() {
   this.container = null;
   this.component = null;
   this.waiting = false;
+  this.flash = {};
 };
 
 Cape.extend(Router.prototype, {
@@ -769,10 +770,15 @@ Cape.extend(Router.prototype, {
     }
     throw new Error("No route match. [" + hash + "]");
   },
-  navigate: function(hash) {
+  navigate: function(hash, options) {
     var self = this, promises, promise, i, len;
+
     this._.currentHash = hash;
     this._.setHash(hash);
+
+    options = options || {};
+    this.flash.notice = options.notice;
+    this.flash.alert = options.alert;
 
     if (this._.beforeNavigationCallbacks.length) {
       promises = [];
@@ -816,6 +822,13 @@ Cape.extend(Router.prototype, {
   },
   errorHandler: function(callback) {
     this._.errorHandler = callback;
+  },
+  notify: function() {
+    var i;
+
+    for (i = this._.attachedComponents.length; i--;) {
+      this._.attachedComponents[i].refresh();
+    }
   }
 });
 
@@ -852,16 +865,18 @@ Cape.extend(_Internal.prototype, {
     componentClass = this.getComponentClassFor(route);
 
     if (componentClass === this.mountedComponentClass) {
-      this.notify();
+      this.main.notify();
     }
     else {
       if (this.mountedComponent) this.mountedComponent.unmount();
-      this.notify();
+      this.main.notify();
       component = new componentClass;
       component.mount(this.targetElementId);
       this.mountedComponentClass = componentClass;
       this.mountedComponent = component;
     }
+
+    this.main.flash = {};
   },
   setHash: function(hash) {
     window.location.hash = hash;
@@ -897,13 +912,6 @@ Cape.extend(_Internal.prototype, {
         + fragments.concat([componentName]).join('.')
         + " is not defined."
     );
-  },
-  notify: function() {
-    var i;
-
-    for (i = this.attachedComponents.length; i--;) {
-      this.attachedComponents[i].refresh();
-    }
   }
 });
 
