@@ -736,17 +736,21 @@ Cape.extend(Router.prototype, {
   start: function() {
     var self = this, callback;
 
-    callback = function() {
-      var hash = window.location.href.split('#')[1] || '';
-      self.navigate(hash);
-    };
     if (window.addEventListener)
-      window.addEventListener('hashchange', callback, false);
+      window.addEventListener('hashchange', self._.eventListener, false);
     else if (window.attachEvent)
-      window.attachEvent('onhashchange', callback);
+      window.attachEvent('onhashchange', self._.eventListener);
 
     this.hash = window.location.href.split('#')[1] || '';
     this.navigate(this.hash);
+  },
+  stop: function() {
+    var self = this;
+
+    if (window.removeEventListener)
+      window.removeEventListener('hashchange', self._.eventListener, false);
+    else if (window.detachEvent)
+      window.detachEvent('onhashchange', self._.eventListener);
   },
   routeFor: function(hash) {
     var i, len, route;
@@ -809,7 +813,12 @@ Cape.extend(Router.prototype, {
 
 // Internal properties of Cape.Router
 var _Internal = function _Internal(main) {
+  var self = this;
   this.main = main;
+  this.eventListener = function() {
+    var hash = window.location.href.split('#')[1] || '';
+    self.main.navigate(hash);
+  };
   this.beforeNavigationCallbacks = [];
   this.components = [];
   this.hash = null;
@@ -936,54 +945,6 @@ Cape.extend(RoutingMapper.prototype, {
   root: function(className) {
     this.page('', className);
   },
-  resources: function(resourceName, options, callback) {
-    var actions, path, resourcePath, classNamePrefix, pathName, mapper;
-
-    if (typeof options === 'function') {
-      callback = options;
-      options = {}
-    }
-    else {
-      options = options || {};
-    }
-
-    options.pathNames = options.pathNames || {};
-
-    actions = [ 'index', 'new', 'show', 'edit' ];
-    this._.filterActions(actions, options);
-
-    path = options.path || resourceName;
-    resourcePath = this._.getResourcePath(path);
-
-    classNamePrefix = resourceName;
-    if (this.classNamePrefix)
-      classNamePrefix = this.classNamePrefix + '.' + classNamePrefix;
-
-    if (actions.indexOf('index') != -1)
-      this.page(resourcePath, resourceName + '.index');
-    if (actions.indexOf('new') != -1) {
-      pathName = options.pathNames.new ? options.pathNames.new : 'new';
-      this.page(resourcePath + '/' + pathName, resourceName + '.new');
-    }
-    if (actions.indexOf('show') != -1)
-      this.page(resourcePath + '/:id', resourceName + '.show', { id: '\\d+' });
-    if (actions.indexOf('edit') != -1) {
-      pathName = options.pathNames.edit ? options.pathNames.edit : 'edit';
-      this.page(resourcePath + '/:id/' + pathName, resourceName + '.edit',
-        { id: '\\d+' });
-    }
-
-    if (typeof callback == 'function') {
-      if (callback.length === 0)
-        throw new Error("Callback requires an argument.");
-      mapper = new RoutingMapper(this.router,
-        { pathPrefix: this.pathPrefix,
-          resourcePath: resourcePath,
-          classNamePrefix: this.classNamePrefix,
-          resourceClassName: resourceName });
-      callback(mapper);
-    }
-  },
   many: function(resourceName, options, callback) {
     var actions, path, resourcePath, classNamePrefix, pathName, mapper;
 
@@ -1025,58 +986,11 @@ Cape.extend(RoutingMapper.prototype, {
       if (callback.length === 0)
         throw new Error("Callback requires an argument.");
       mapper = new RoutingMapper(this.router,
-        { pathPrefix: this.pathPrefix,
-          resourcePath: resourcePath,
-          classNamePrefix: this.classNamePrefix,
-          resourceClassName: resourceName });
-      callback(mapper);
-    }
-  },
-  resource: function(resourceName, options, callback) {
-    var actions, path, resourcePath, pathName, resourceClassName,
-      mapper;
-
-    if (typeof options === 'function') {
-      callback = options;
-      options = {}
-    }
-    else {
-      options = options || {};
-    }
-
-    options.pathNames = options.pathNames || {};
-
-    actions = [ 'new', 'show', 'edit' ];
-    this._.filterActions(actions, options);
-
-    path = options.path || resourceName;
-    resourcePath = this._.getResourcePath(path);
-
-    resourceClassName = Inflector.pluralize(resourceName);
-    classNamePrefix = resourceClassName;
-    if (this.classNamePrefix)
-      classNamePrefix = this.classNamePrefix + '.' + classNamePrefix
-
-    if (actions.indexOf('show') != -1)
-      this.page(resourcePath, resourceClassName + '.show');
-    if (actions.indexOf('new') != -1) {
-      pathName = options.pathNames.new ? options.pathNames.new : 'new';
-      this.page(resourcePath + '/' + pathName, resourceClassName + '.new');
-    }
-    if (actions.indexOf('edit') != -1) {
-      pathName = options.pathNames.edit ? options.pathNames.edit : 'edit';
-      this.page(resourcePath + '/' + pathName, resourceClassName + '.edit');
-    }
-
-    if (typeof callback == 'function') {
-      if (callback.length === 0)
-        throw new Error("Callback requires an argument.");
-      mapper = new RoutingMapper(this.router,
-        { singular: true,
+        { singular: false,
           pathPrefix: this.pathPrefix,
           resourcePath: resourcePath,
           classNamePrefix: this.classNamePrefix,
-          resourceClassName: resourceClassName });
+          resourceClassName: resourceName });
       callback(mapper);
     }
   },
@@ -1128,33 +1042,53 @@ Cape.extend(RoutingMapper.prototype, {
       callback(mapper);
     }
   },
-  get: function() {
-    var args, options;
+  collection: function() {
+    var args;
+
+    if (this.resourcePath === undefined || this.singular)
+      throw new Error("The collection method must be called within a plural resource definition.")
 
     args = Array.prototype.slice.call(arguments, 0);
-    if (typeof args[args.length - 1] === 'object')
-      options = args.pop();
-    else
-      options = {}
+    args.forEach(function(path) {
+      this.page(this.resourcePath + '/' + path,
+        this.resourcePath + '.' + path);
+    }.bind(this))
+  },
+  member: function() {
+    var args;
 
-    if (options.on === 'member') {
-      args.forEach(function(actionName) {
-        this.page(this.resourcePath + '/:id/' + actionName,
-          this.resourcePath + '.' + actionName, { id: '\\d+' });
-      }.bind(this))
-    }
-    else if (options.on === 'new') {
-      args.forEach(function(actionName) {
-        this.page(this.resourcePath + '/new/' + actionName,
-          this.resourcePath + '.' + actionName);
-      }.bind(this))
-    }
-    else {
-      args.forEach(function(actionName) {
-        this.page(this.resourcePath + '/' + actionName,
-          this.resourcePath + '.' + actionName);
-      }.bind(this))
-    }
+    if (this.resourcePath === undefined || this.singular)
+      throw new Error("The member method must be called within a plural resource definition.")
+
+    args = Array.prototype.slice.call(arguments, 0);
+    args.forEach(function(path) {
+      this.page(this.resourcePath + '/:id/' + path,
+        this.resourcePath + '.' + path, { id: '\\d+' });
+    }.bind(this))
+  },
+  new: function() {
+    var args;
+
+    if (this.resourcePath === undefined)
+      throw new Error("The member method must be called within a resource definition.")
+
+    args = Array.prototype.slice.call(arguments, 0);
+    args.forEach(function(path) {
+      this.page(this.resourcePath + '/new/' + path,
+        this.resourcePath + '.' + path);
+    }.bind(this))
+  },
+  view: function() {
+    var args;
+
+    if (this.resourcePath === undefined || !this.singular)
+      throw new Error("The view method must be called within a singular resource definition.")
+
+    args = Array.prototype.slice.call(arguments, 0);
+    args.forEach(function(path) {
+      this.page(this.resourcePath + '/' + path,
+        this.resourcePath + '.' + path);
+    }.bind(this))
   },
   namespace: function(className) {
     var args, callback, options, path, mapper;

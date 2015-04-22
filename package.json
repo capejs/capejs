@@ -1,6 +1,6 @@
 {
   "name": "capejs",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "A lightweight Javascript UI framework based on virtual-dom",
   "main": "lib/cape.js",
   "directories": {
@@ -41,5 +41,12 @@
     "uglify-js": "latest",
     "vinyl-source-stream": "^1.1.0",
     "virtual-dom": "2.0.1"
-  }
+  },
+  "keywords": [
+    "virtual dom",
+    "framework",
+    "data binding",
+    "lightweight",
+    "user interface"
+  ],
 }

@@ -4,7 +4,7 @@
 
 ### `Cape.RoutingMapper`
 
-* Introduce new APIs to define custom routes.
+* Introduce new APIs to define custom resource routes.
 
 ```
 router.draw(function(m) {
