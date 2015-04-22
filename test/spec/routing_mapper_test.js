@@ -237,6 +237,7 @@ describe('RoutingMapper', function() {
 
       route = router.routes[0];
       expect('member').to.match(route.regexp);
+      expect(route.namespace).to.equal('member');
       expect(route.component).to.equal('content');
 
       route = router.routes[1];
@@ -339,7 +340,7 @@ describe('RoutingMapper', function() {
       expect('member/addresses/99').to.match(router.routes[3].regexp);
       expect('member/addresses/99/edit').to.match(router.routes[4].regexp);
       expect('member/password').to.match(router.routes[5].regexp);
-      expect(router.routes[0].namespace).to.equal('members');
+      expect(router.routes[0].namespace).to.equal('member');
       expect(router.routes[0].component).to.equal('content');
       expect(router.routes[4].keys[0]).to.equal('id');
       expect(router.routes[4].namespace).to.equal('addresses');
@@ -434,7 +435,7 @@ describe('RoutingMapper', function() {
       expect(router.routes[5].namespace).to.equal('admin.addresses');
       expect(router.routes[5].component).to.equal('list');
       expect(router.routes[9].component).to.equal('form');
-      expect(router.routes[11].namespace).to.equal('admin.passwords');
+      expect(router.routes[11].namespace).to.equal('admin.password');
       expect(router.routes[11].component).to.equal('content');
     })
 
