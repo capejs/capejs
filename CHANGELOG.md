@@ -4,6 +4,8 @@
 
 ### `Cape.Router`
 
+* Add the `flash` property. This is reset after each navigate call.
+* Users can set flash objects via Router#navigate.
 * Move `#notify` from internal class to main class.
 * Fix a bug that `navigate` method gets called twice.
 
