@@ -749,8 +749,8 @@ Cape.extend(Router.prototype, {
     else if (window.attachEvent)
       window.attachEvent('onhashchange', self._.eventListener);
 
-    this.hash = window.location.href.split('#')[1] || '';
-    this.navigate(this.hash);
+    this.currentHash = window.location.href.split('#')[1] || '';
+    this.navigate(this.currentHash);
   },
   stop: function() {
     var self = this;
@@ -771,7 +771,7 @@ Cape.extend(Router.prototype, {
   },
   navigate: function(hash) {
     var self = this, promises, promise, i, len;
-    this.hash = hash;
+    this._.currentHash = hash;
     this._.setHash(hash);
 
     if (this._.beforeNavigationCallbacks.length) {
@@ -798,15 +798,15 @@ Cape.extend(Router.prototype, {
   },
   attach: function(component) {
     var target = component;
-    for (var i = 0, len = this._.components.length; i < len; i++) {
-      if (this._.components[i] === component) return;
+    for (var i = 0, len = this._.attachedComponents.length; i < len; i++) {
+      if (this._.attachedComponents[i] === component) return;
     }
-    this._.components.push(component);
+    this._.attachedComponents.push(component);
   },
   detach: function(component) {
-    for (var i = 0, len = this._.components.length; i < len; i++) {
-      if (this._.components[i] === component) {
-        this._.components.splice(i, 1);
+    for (var i = 0, len = this._.attachedComponents.length; i < len; i++) {
+      if (this._.attachedComponents[i] === component) {
+        this._.attachedComponents.splice(i, 1);
         break;
       }
     }
@@ -825,11 +825,10 @@ var _Internal = function _Internal(main) {
   this.main = main;
   this.eventListener = function() {
     var hash = window.location.href.split('#')[1] || '';
-    self.main.navigate(hash);
+    if (hash != self.currentHash) self.main.navigate(hash);
   };
   this.beforeNavigationCallbacks = [];
-  this.components = [];
-  this.hash = null;
+  this.attachedComponents = [];
   this.currentHash = null;
   this.mountedComponent = null;
   this.targetElementId = null;
@@ -868,7 +867,7 @@ Cape.extend(_Internal.prototype, {
     window.location.hash = hash;
   },
   setParams: function(route) {
-    var md = this.main.hash.match(route.regexp);
+    var md = this.currentHash.match(route.regexp);
     this.main.params = {};
     route.keys.forEach(function(key, i) {
       this.main.params[key] = md[i + 1];
@@ -902,8 +901,8 @@ Cape.extend(_Internal.prototype, {
   notify: function() {
     var i;
 
-    for (i = this.components.length; i--;) {
-      this.components[i].refresh();
+    for (i = this.attachedComponents.length; i--;) {
+      this.attachedComponents[i].refresh();
     }
   }
 });

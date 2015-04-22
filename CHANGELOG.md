@@ -1,6 +1,12 @@
 # CHANGELOG - CapeJS
 
-## 1.0.0-beta.3
+## 1.0.0-beta.4
+
+### `Cape.Router`
+
+* Fix a bug that `navigate` method gets called twice.
+
+## 1.0.0-beta.3 (April 22, 2015)
 
 ### `Cape.RoutingMapper`
 
@@ -52,7 +58,7 @@ then the route has following properties:
 * Add `Cape.merge`, which merges (but does not override) the properties of
   two or more objects together into the first object.
 
-## 1.0.0-beta.2
+## 1.0.0-beta.2 (April 22, 2015)
 
 ### `Cape.RoutingMapper`
 
