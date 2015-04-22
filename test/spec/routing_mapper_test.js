@@ -347,6 +347,56 @@ describe('RoutingMapper', function() {
     })
   })
 
+  describe('collection', function() {
+    it('should throw error when it is not used under a plural resource', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router);
+
+      expect(function() {
+        mapper.one('account', function(m) {
+          m.collection('emails');
+        })
+      }).to.throw(Error);
+    });
+  })
+
+  describe('member', function() {
+    it('should throw error when it is not used under a plural resource', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router);
+
+      expect(function() {
+        mapper.one('account', function(m) {
+          m.member('address');
+        })
+      }).to.throw(Error);
+    });
+  })
+
+  describe('new', function() {
+    it('should throw error when it is not used under a resource', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router);
+
+      expect(function() {
+        mapper.new('quick');
+      }).to.throw(Error);
+    });
+  })
+
+  describe('view', function() {
+    it('should throw error when it is not used under a singular resource', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router);
+
+      expect(function() {
+        mapper.many('members', function(m) {
+          m.view('info');
+        })
+      }).to.throw(Error);
+    });
+  })
+
   describe('namespace', function() {
     it('should set namespace for routes', function() {
       var router = { routes: [] },
