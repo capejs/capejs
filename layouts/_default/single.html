@@ -14,13 +14,17 @@
 			{{ end }}
       </ul>
     </div>
-
     <div class="col-md-9">
-		{{ range $index, $page := .Site.Pages.ByWeight }}
-			{{ if eq .Section "top" }}
-		    {{ .Render "li" }}
-		  {{ end }}
-		{{ end }}
+      <article>
+        <header>
+          <h2>{{ .Title }}</h2>
+          <div class="post-meta clearfix">
+          </div>
+        </header>
+        <div>
+          {{ .Content }}
+        </div>
+      </article>
 		</div>
   </div>
 </div>

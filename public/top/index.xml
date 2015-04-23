@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cape.JS: Documentation</title>
-    <link>http://oiax.github.io/capejs/</link>
-    <description>Recent content on Cape.JS: Documentation</description>
+    <title>Tops on Cape.JS: Documentation</title>
+    <link>http://oiax.github.io/capejs/top/</link>
+    <description>Recent content in Tops on Cape.JS: Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://oiax.github.io/capejs/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Basics</title>
-      <link>http://oiax.github.io/capejs/components/basics/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/components/basics/</guid>
-      <description></description>
-    </item>
+    <atom:link href="http://oiax.github.io/capejs/top/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>What is Cape.JS</title>
