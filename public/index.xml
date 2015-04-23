@@ -18,6 +18,63 @@
     </item>
     
     <item>
+      <title>Components</title>
+      <link>http://oiax.github.io/capejs/components/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/components/</guid>
+      <description>&lt;h3 id=&#34;basics&#34;&gt;Basics&lt;/h3&gt;
+
+&lt;h3 id=&#34;es6&#34;&gt;ECMAScript 6&lt;/h3&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Index</title>
+      <link>http://oiax.github.io/capejs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/</guid>
+      <description>
+
+&lt;h2 id=&#34;whatis&#34;&gt;What is Cape.JS&lt;/h2&gt;
+
+&lt;p&gt;Cape.JS is a lightweight Javascript UI framework based on &lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; of Matt-Esch.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Small but full stack:&lt;/strong&gt; Cape.JS is consists of three basic but powerful classes; &lt;em&gt;Component, DataStore,&lt;/em&gt; and &lt;em&gt;Router.&lt;/em&gt; You can utilize them to create web widgets and single-page applications (SPAs).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Virtual DOM:&lt;/strong&gt; Cape.JS takes advantage of &lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; for high performance UI rendering. You don&amp;rsquo;t have to rely on &lt;em&gt;jQuery&lt;/em&gt; for DOM manipulation anymore.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Concise syntax:&lt;/strong&gt; The &lt;em&gt;markup builder&lt;/em&gt; helps you to construct HTML DOM trees with its simple, easy to learn syntax. You can add a &lt;code&gt;div&lt;/code&gt; element by calling markup builder&amp;rsquo;s &lt;code&gt;div&lt;/code&gt; method, for example.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The architecture and terminology of Cape.JS are strongly influenced by &lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React&lt;/a&gt;,  &lt;a href=&#34;https://github.com/muut/riotjs&#34;&gt;Riot&lt;/a&gt; and &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;faq&#34;&gt;FAQ&lt;/h2&gt;
+
+&lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
+
+&lt;p&gt;The official name is &lt;strong&gt;Cape.JS.&lt;/strong&gt;
+Its package name for &lt;a href=&#34;https://www.npmjs.com&#34;&gt;npm&lt;/a&gt;
+and &lt;a href=&#34;http://bower.io&#34;&gt;bower&lt;/a&gt; is &lt;strong&gt;capejs&lt;/strong&gt; (without the dot).&lt;/p&gt;
+
+&lt;p&gt;At the very initial phase of development, we called it &amp;ldquo;CapeJS&amp;rdquo;, but
+we don&amp;rsquo;t use it anymore.&lt;/p&gt;
+
+&lt;h3 id=&#34;is-it-production-ready:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it production ready?&lt;/h3&gt;
+
+&lt;p&gt;Not yet. We adopt &lt;a href=&#34;http://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt; for Cape.JS.
+According to this system, major version (0.y.z) zero is for initial development.
+We have released the version 1.0.0-beta.1, but the public API of Cape.JS should
+not be considered stable.&lt;/p&gt;
+
+&lt;h3 id=&#34;how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How can I contribute?&lt;/h3&gt;
+
+&lt;p&gt;The Cape.JS is an open source project. Everyone can help.
+See &lt;a href=&#34;CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt; for details.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>What is Cape.JS</title>
       <link>http://oiax.github.io/capejs/top/what_is_cape_js/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

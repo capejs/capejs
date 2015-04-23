@@ -1,0 +1,19 @@
+---
+top:
+  -
+    id: what_is
+    title: "What is Cape.JS"
+  -
+    id: faq
+    title: "FAQ"
+pages:
+  -
+    name: "components"
+    title: "Components"
+    sections:
+      -
+        id: "basics"
+        title: "Basics"
+      -
+        id: "es6"
+        title: "ECMAScript 6"

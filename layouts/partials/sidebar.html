@@ -1,0 +1,18 @@
+    <div class="col-md-3" id="leftCol">
+      <ul class="nav nav-stacked" id="sidebar">
+			{{ $baseUrl := .Site.BaseUrl }}
+			{{ range $.Site.Data.tree.top }}
+				<li><a href="{{ $baseUrl }}/#{{ .id }}">{{ .title }}</a></li>
+			{{ end}}
+			{{ range $.Site.Data.tree.pages }}
+				<li>
+					<a href="{{ $baseUrl }}/{{ .name }}">{{ .title }}</a>
+					{{ $name := .name }}
+					<ul>
+					{{ range .sections }}
+						<li><a href="{{ $baseUrl }}/{{ $name }}#{{ .id }}">{{ .title }}</a></li>
+					{{ end}}
+					</ul>
+			{{ end}}
+      </ul>
+    </div>
