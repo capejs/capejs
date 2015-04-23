@@ -1,7 +1,7 @@
 ---
 top:
   -
-    id: what_is
+    id: what-is
     title: "What is Cape.JS"
   -
     id: faq
@@ -18,7 +18,7 @@ pages:
         id: "es6"
         title: "ECMAScript 6"
       -
-        id: "dom-tre"
+        id: "dom-tree"
         title: "Building Virtual DOM Tree"
       -
         id: "click-counter"

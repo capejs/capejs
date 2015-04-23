@@ -2,7 +2,8 @@
 title: "Components"
 ---
 
-<h3 id="hello-world">Hello World</h3>
+<a class="anchor" id="hello-world"></a>
+### Hello World
 
 The following example will insert `<div>Hello, World!</div>` into the `div#hello-message` element.
 
@@ -44,7 +45,8 @@ And you can access to `data-name` attributes of the `root` node by
 
 You can find the source code of working demo on https://github.com/oiax/capejs/demo/hello_message.
 
-<h3 id="es6">ECMAScript 6</h3>
+<a class="anchor" id="es6"></a>
+### ECMAScript 6
 
 If you want to write more concisely, try to define class using ECMAScript 6 (ES6) syntax.
 
@@ -65,7 +67,8 @@ You must also have `browserify` to convert `.es6` file to `.js` file.
 
 See [es6-demo/README.md](https://github.com/oiax/capejs/es6-demo/README.md) for details.
 
-<h3 id="dom-tree">Building Virtual DOM Tree</h3>
+<a class="anchor" id="dom-tree"></a>
+### Building Virtual DOM Tree
 
 #### index.html
 
@@ -117,7 +120,8 @@ class HelloMesage2 extends Cape.Component {
 }
 ```
 
-<h3 id="click-counter">Click Counter</h3>
+<a class="anchor" id="click-counter"></a>
+### Click Counter
 
 On this example, your will see the number which gets incremented each time you click on the surrounding `div` box.
 
@@ -178,7 +182,8 @@ is called when the component is mounted.
 
 You can find the source code of working demo on https://github.com/oiax/capejs/demo/click_counter.
 
-<h3 id="todo-list">Todo List</h3>
+<a class="anchor" id="todo-list"></a>
+## Todo List
 
 On this example, your can add a todo item from a HTML form and toggle the
 `completed` property of todo items by clicking check boxes.

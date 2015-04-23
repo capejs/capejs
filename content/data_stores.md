@@ -2,7 +2,8 @@
 title: "Data Stores"
 ---
 
-<h3 id="basics">Basics</h3>
+<a class="anchor" id="basics"></a>
+### Basics
 
 When you develop something larger than a tiny widget, you are recommended to
 create a *data store* for your Cape.JS component.

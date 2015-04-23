@@ -4,7 +4,8 @@ type: "index"
 weight: 0
 ---
 
-<h2 id="whatis">What is Cape.JS</h2>
+<a class="anchor" id="what-is"></a>
+## What is Cape.JS
 
 Cape.JS is a lightweight Javascript UI framework based on [virtual-dom](https://github.com/Matt-Esch/virtual-dom) of Matt-Esch.
 
@@ -14,7 +15,8 @@ Cape.JS is a lightweight Javascript UI framework based on [virtual-dom](https://
 
 The architecture and terminology of Cape.JS are strongly influenced by [React](https://github.com/facebook/react),  [Riot](https://github.com/muut/riotjs) and [Ruby on Rails](https://github.com/rails/rails).
 
-<h2 id="faq">FAQ</h2>
+<a class="anchor" id="faq"></a>
+## FAQ
 
 ### Is it "Cape.JS", "CapeJS", or "capejs"?
 

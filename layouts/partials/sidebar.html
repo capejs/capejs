@@ -10,7 +10,7 @@
 					{{ $name := .name }}
 					<ul>
 					{{ range .sections }}
-						<li><a href="{{ $baseUrl }}/{{ $name }}#{{ .id }}">{{ .title }}</a></li>
+						<li><a href="{{ $baseUrl }}/{{ $name }}/#{{ .id }}">{{ .title }}</a></li>
 					{{ end}}
 					</ul>
 			{{ end}}

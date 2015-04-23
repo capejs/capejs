@@ -2,7 +2,8 @@
 title: "Router"
 ---
 
-<h3 id="simple-routes">Simple Routes</h3>
+<a class="anchor" id="simple-routes"></a>
+### Simple Routes
 
 Cape.JS's router reacts to the changes of URL hash fragment and replace the
 component mounted on the target node.
