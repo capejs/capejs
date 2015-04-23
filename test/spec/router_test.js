@@ -72,6 +72,27 @@ describe('Router', function() {
     })
   })
 
+  describe('constructor', function() {
+    it('should specify the root container of components', function() {
+      var router, method;
+
+      window.App = {}
+      window.App.HomePage = {};
+      window.App.HomePage.Index = function() {};
+      window.App.HomePage.Index.prototype.mount = method = sinon.spy();
+
+      router = new Cape.Router(window.App);
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('', 'home_page.index');
+      })
+      router.mount('main');
+      router.start();
+
+      expect(method.calledWith('main')).to.equal(true);
+    })
+  })
+
   describe('navigate', function() {
     afterEach(function() {
       window.TestMessage = undefined;
