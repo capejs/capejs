@@ -7,23 +7,19 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/components/basics/</loc>
-  </url>
-  
-  <url>
     <loc>http://oiax.github.io/capejs/components/</loc>
   </url>
   
   <url>
+    <loc>http://oiax.github.io/capejs/data_stores/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/router/</loc>
+  </url>
+  
+  <url>
     <loc>http://oiax.github.io/capejs/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/top/what_is_cape_js/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/top/faq/</loc>
   </url>
   
 </urlset>

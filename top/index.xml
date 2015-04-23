@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tops on Cape.JS: Documentation</title>
-    <link>http://oiax.github.io/capejs/top/</link>
+    <link>http://localhost:1313/capejs/top/</link>
     <description>Recent content in Tops on Cape.JS: Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://oiax.github.io/capejs/top/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/capejs/top/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>What is Cape.JS</title>
-      <link>http://oiax.github.io/capejs/top/what_is_cape_js/</link>
+      <link>http://localhost:1313/capejs/top/what_is_cape_js/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/top/what_is_cape_js/</guid>
+      <guid>http://localhost:1313/capejs/top/what_is_cape_js/</guid>
       <description>&lt;p&gt;Cape.JS is a lightweight Javascript UI framework based on &lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; of Matt-Esch.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -28,10 +28,10 @@
     
     <item>
       <title>FAQ</title>
-      <link>http://oiax.github.io/capejs/top/faq/</link>
+      <link>http://localhost:1313/capejs/top/faq/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/top/faq/</guid>
+      <guid>http://localhost:1313/capejs/top/faq/</guid>
       <description>
 
 &lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:4a1318da06786ac52626178ca960109e&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
