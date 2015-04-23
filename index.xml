@@ -283,7 +283,7 @@ You can also set its value with &lt;code&gt;val&lt;/code&gt; method by giving a 
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;what-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Cape.JS&lt;/h2&gt;
+&lt;h2 id=&#34;what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Cape.JS?&lt;/h2&gt;
 
 &lt;p&gt;Cape.JS is a lightweight Javascript UI framework based on &lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; of Matt-Esch.&lt;/p&gt;
 
