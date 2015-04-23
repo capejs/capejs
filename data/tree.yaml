@@ -12,8 +12,31 @@ pages:
     title: "Components"
     sections:
       -
-        id: "basics"
-        title: "Basics"
+        id: "hello-world"
+        title: "Hello World"
       -
         id: "es6"
         title: "ECMAScript 6"
+      -
+        id: "dom-tre"
+        title: "Building Virtual DOM Tree"
+      -
+        id: "click-counter"
+        title: "Click Counter"
+      -
+        id: "todo-list"
+        title: "Todo List"
+  -
+    name: "data_stores"
+    title: "Data Stores"
+    sections:
+      -
+        id: "basics"
+        title: "Basics"
+  -
+    name: "router"
+    title: "Router"
+    sections:
+      -
+        id: "simple-routes"
+        title: "Simple Routes"

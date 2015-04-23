@@ -35,4 +35,16 @@ not be considered stable.
 ### How can I contribute?
 
 The Cape.JS is an open source project. Everyone can help.
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+See [CONTRIBUTING.md](https://github.com/oiax/capejs/CONTRIBUTING.md) for details.
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+
+The logo of Cape.JS is created by [Junya Suzuki](https://github.com/junya-suzuki).
+
+<h2 id="trademarks">Trademarks</h2>
+
+"Cape.JS" and its logo are trademarks of Oiax Inc. All rights reserved.
+
+<h2 id="license">License</h2>
+
+Cape.JS is released under [the MIT License](https://github.com/oiax/capejs/LICENSE).

@@ -9,23 +9,448 @@
     <atom:link href="http://oiax.github.io/capejs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Basics</title>
-      <link>http://oiax.github.io/capejs/components/basics/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/components/basics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Components</title>
       <link>http://oiax.github.io/capejs/components/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://oiax.github.io/capejs/components/</guid>
-      <description>&lt;h3 id=&#34;basics&#34;&gt;Basics&lt;/h3&gt;
+      <description>
+
+&lt;h3 id=&#34;hello-world&#34;&gt;Hello World&lt;/h3&gt;
+
+&lt;p&gt;The following example will insert &lt;code&gt;&amp;lt;div&amp;gt;Hello, World!&amp;lt;/div&amp;gt;&lt;/code&gt; into the &lt;code&gt;div#hello-message&lt;/code&gt; element.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;h1&amp;gt;Greeting from Cape.JS&amp;lt;/h1&amp;gt;
+&amp;lt;div id=&amp;quot;hello-message&amp;quot; data-name=&amp;quot;World&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./hello_message.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var component = new HelloMesage();
+  component.mount(&#39;hello-message&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;hello-message-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;hello_message.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMesage = Cape.createComponentClass({
+  render: function(m) {
+    m.div(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First of all, we &lt;em&gt;must&lt;/em&gt; define the &lt;code&gt;render&lt;/code&gt; method for Cape.JS components.
+The role of this method is to create a &lt;em&gt;virtual&lt;/em&gt; DOM tree.
+Cape.JS updates the &lt;em&gt;real&lt;/em&gt; DOM tree of browsers using this virtual tree.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;render&lt;/code&gt; method should take an argument, which is called &lt;em&gt;markup builder&lt;/em&gt;.
+When you call its &lt;code&gt;div&lt;/code&gt; method, a &lt;code&gt;div&lt;/code&gt; node is added to the virtual DOM tree.
+The markup builder has corresponding methods for all valid tag names of HTML5,
+such as &lt;code&gt;p&lt;/code&gt;, &lt;code&gt;span&lt;/code&gt;, &lt;code&gt;br&lt;/code&gt;, &lt;code&gt;section&lt;/code&gt;, &lt;code&gt;video&lt;/code&gt;, etc.&lt;/p&gt;
+
+&lt;p&gt;You can call &lt;code&gt;this.root&lt;/code&gt; to get the node which the component was mounted on.
+And you can access to &lt;code&gt;data-name&lt;/code&gt; attributes of the &lt;code&gt;root&lt;/code&gt; node by
+&lt;code&gt;this.root.data.name&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can find the source code of working demo on &lt;a href=&#34;https://github.com/oiax/capejs/demo/hello_message&#34;&gt;https://github.com/oiax/capejs/demo/hello_message&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;es6&#34;&gt;ECMAScript 6&lt;/h3&gt;
+
+&lt;p&gt;If you want to write more concisely, try to define class using ECMAScript 6 (ES6) syntax.&lt;/p&gt;
+
+&lt;h4 id=&#34;hello-message-es6:d1b8a910971345212cdb562d8742fa2d&#34;&gt;hello_message.es6&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class HelloMessage extends Cape.Component {
+  render(m) {
+    m.div(`Hello ${this.root.data.name}!`)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can find the source code of working demo on &lt;a href=&#34;https://github.com/oiax/capejs/es6-demo/hello_message&#34;&gt;https://github.com/oiax/capejs/es6-demo/hello_message&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You must have &lt;code&gt;npm&lt;/code&gt; and &lt;code&gt;babel-core&lt;/code&gt; to see this demo page.
+You must also have &lt;code&gt;browserify&lt;/code&gt; to convert &lt;code&gt;.es6&lt;/code&gt; file to &lt;code&gt;.js&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;https://github.com/oiax/capejs/es6-demo/README.md&#34;&gt;es6-demo/README.md&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;h3 id=&#34;dom-tree&#34;&gt;Building Virtual DOM Tree&lt;/h3&gt;
+
+&lt;h4 id=&#34;index-html-1:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;h1&amp;gt;Greeting from Cape.JS&amp;lt;/h1&amp;gt;
+&amp;lt;div id=&amp;quot;hello-message&amp;quot; data-name=&amp;quot;World&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./hello_message2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var component = new HelloMesage2();
+  component.mount(&#39;hello-message&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;hello-message2-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;hello_message2.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMesage2 = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.text(&#39;Hello, &#39;);
+      m.strong(function(m) {
+        m.text(this.root.data.name);
+        m.text(&#39;!&#39;);
+      })
+    })
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This example will generate &lt;code&gt;&amp;lt;p&amp;gt;Hello, &amp;lt;strong&amp;gt;World!&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Note that &lt;code&gt;strong&lt;/code&gt; method takes a function, which create the content of &lt;code&gt;strong&lt;/code&gt; element.
+In this way you can create a deeply-nested DOM tree.&lt;/p&gt;
+
+&lt;p&gt;With ES6 syntax, you can write much tersely:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class HelloMesage2 extends Cape.Component {
+  render(m) {
+    m.p(m =&amp;gt; {
+      m.text(&#39;Hello, &#39;);
+      m.strong(m =&amp;gt; {
+        m.text(this.root.data.name);
+        m.text(&#39;!&#39;);
+      })
+    })
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;click-counter&#34;&gt;Click Counter&lt;/h3&gt;
+
+&lt;p&gt;On this example, your will see the number which gets incremented each time you click on the surrounding &lt;code&gt;div&lt;/code&gt; box.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html-2:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;click-counter&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./click_counter.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var counter = new ClickCounter();
+  counter.mount(&#39;click-counter&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;click-counter-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;click_counter.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var ClickCounter = Cape.createComponentClass({
+  render: function(m) {
+    m.div(String(this.counter), {
+      class: &#39;counter&#39;,
+      onclick: function(e) { this.increment() }
+    })
+  },
+
+  init: function() {
+    this.counter = 0;
+    this.refresh();
+  },
+
+  increment: function() {
+    this.counter++;
+    this.refresh();
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that we give the second argument to the &lt;code&gt;div&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  class: &#39;counter&#39;,
+  onclick: function(e) { this.increment() }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This &lt;em&gt;associative array&lt;/em&gt; represents the attributes of &lt;code&gt;div&lt;/code&gt; element.
+We can attach a handler (function) to the &lt;code&gt;click&lt;/code&gt; event for this element like this.&lt;/p&gt;
+
+&lt;p&gt;Within event handlers, &lt;code&gt;this&lt;/code&gt; denotes the component itself.
+So you can call its &lt;code&gt;increment&lt;/code&gt; method by &lt;code&gt;this.increment()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A method call &lt;code&gt;this.refresh()&lt;/code&gt; redraws the component.
+You should call it at the end of the &lt;code&gt;init&lt;/code&gt; method,
+but if the component lacks the &lt;code&gt;init&lt;/code&gt; method, the &lt;code&gt;refresh&lt;/code&gt; method
+is called when the component is mounted.&lt;/p&gt;
+
+&lt;p&gt;You can find the source code of working demo on &lt;a href=&#34;https://github.com/oiax/capejs/demo/click_counter&#34;&gt;https://github.com/oiax/capejs/demo/click_counter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;todo-list&#34;&gt;Todo List&lt;/h3&gt;
+
+&lt;p&gt;On this example, your can add a todo item from a HTML form and toggle the
+&lt;code&gt;completed&lt;/code&gt; property of todo items by clicking check boxes.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html-3:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./todo_list.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var todoList = new TodoList();
+  todoList.mount(&#39;todo-list&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;todo-list-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;todo_list.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList = Cape.createComponentClass({
+  render: function(m) {
+    m.ul(function(m) {
+      this.items.forEach(function(item) {
+        this.renderItem(m, item);
+      }.bind(this))
+    });
+    this.renderForm(m);
+  },
+
+  renderItem: function(m, item) {
+    m.li(function(m) {
+      m.label({ class: { completed: item.done }}, function(m) {
+        m.input({ type: &#39;checkbox&#39;, checked: item.done,
+          onclick: function(e) { this.toggle(item) } });
+        m.space().text(item.title);
+      })
+    })
+  },
+
+  renderForm: function(m) {
+    m.form(function(m) {
+      m.textField(&#39;title&#39;, { onkeyup: function(e) { this.refresh() } });
+      m.button(&amp;quot;Add&amp;quot;, {
+        disabled: this.val(&#39;title&#39;) === &#39;&#39;,
+        onclick: function(e) { this.addItem() }
+      });
+    });
+  },
+
+  init: function() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+    this.refresh();
+  },
+
+  toggle: function(item) {
+    item.done = !item.done;
+    this.refresh();
+  },
+
+  addItem: function() {
+    this.items.push({ title: this.val(&#39;title&#39;), done: false });
+    this.val(&#39;title&#39;, &#39;&#39;);
+    this.refresh();
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that we use the &lt;code&gt;textField&lt;/code&gt; method of markup builder.
+This method creates an &lt;code&gt;input&lt;/code&gt; element of the type &lt;code&gt;text&lt;/code&gt;.
+If we give &lt;code&gt;&#39;title&#39;&lt;/code&gt; as the first argument of the method,
+it is set to the value of &lt;code&gt;name&lt;/code&gt; attribute of the &lt;code&gt;input&lt;/code&gt; element and
+we can get its value by &lt;code&gt;this.val(&#39;title&#39;)&lt;/code&gt;.
+You can also set its value with &lt;code&gt;val&lt;/code&gt; method by giving a new value as second argument.&lt;/p&gt;
+
+&lt;p&gt;You can find the source code of working demo on &lt;a href=&#34;https://github.com/oiax/capejs/demo/todo_list&#34;&gt;https://github.com/oiax/capejs/demo/todo_list&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Data Stores</title>
+      <link>http://oiax.github.io/capejs/data_stores/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/data_stores/</guid>
+      <description>
+
+&lt;h3 id=&#34;basics&#34;&gt;Basics&lt;/h3&gt;
+
+&lt;p&gt;When you develop something larger than a tiny widget, you are recommended to
+create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
+
+&lt;p&gt;The following example illustrates the basic concept of data stores.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./todo_item_store.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;./todo_list2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var todoList = new TodoList2();
+  todoList.mount(&#39;todo-list&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+    this.propagate();
+  },
+  addItem: function(title) {
+    this.items.push({ title: title, done: false });
+    this.propagate();
+  },
+  toggle: function(item) {
+    item.done = !item.done;
+    this.propagate();
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;TodoItemStore&lt;/code&gt; class has three methods and each of them ends with
+&lt;code&gt;this.propagate()&lt;/code&gt;, which calls the &lt;code&gt;refresh&lt;/code&gt; method of all attached components.&lt;/p&gt;
+
+&lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
+  render: function(m) {
+    m.ul(function(m) {
+      this.ds.items.forEach(function(item) {
+        this.renderItem(m, item);
+      }.bind(this))
+    });
+    this.renderForm(m);
+  },
+
+  renderItem: function(m, item) {
+    m.li(function(m) {
+      m.label({ class: { completed: item.done }}, function(m) {
+        m.input({ type: &#39;checkbox&#39;, checked: item.done,
+          onclick: function(e) { this.ds.toggle(item) } });
+        m.space().text(item.title);
+      })
+    })
+  },
+
+  renderForm: function(m) {
+    m.form(function(m) {
+      m.textField(&#39;title&#39;, { onkeyup: function(e) { this.refresh() } });
+      m.button(&amp;quot;Add&amp;quot;, {
+        disabled: this.val(&#39;title&#39;) === &#39;&#39;,
+        onclick: function(e) { this.ds.addItem(this.val(&#39;title&#39;, &#39;&#39;)) }
+      });
+    });
+  },
+
+  init: function() {
+    this.ds = TodoItemStore.create();
+    this.ds.attach(this);
+    this.ds.init();
+  },
+
+  beforeUnmount: function() {
+    this.ds.detach(this);
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Within the &lt;code&gt;init&lt;/code&gt; method, we create a singleton instance of &lt;code&gt;TodoItemStore&lt;/code&gt; class &lt;em&gt;(data store)&lt;/em&gt;,
+and set it to the &lt;code&gt;ds&lt;/code&gt; property of this component.&lt;/p&gt;
+
+&lt;p&gt;Then we call the &lt;code&gt;attach&lt;/code&gt; method of the data store to register this component
+as a &lt;em&gt;listener&lt;/em&gt; to the &lt;em&gt;change event&lt;/em&gt;. When the content of data store is changed,
+a &lt;em&gt;change event&lt;/em&gt; is emitted to this component.&lt;/p&gt;
+
+&lt;p&gt;When we click a check box, the following code is executed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggle(item)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This inverts the &lt;code&gt;done&lt;/code&gt; attribute of this item and calls &lt;code&gt;this.propagate()&lt;/code&gt;,
+which will cause the re-rendering of this component.&lt;/p&gt;
+
+&lt;p&gt;A working demo is found in the directory &lt;a href=&#34;https://github.com/oiax/capejs/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/demo/todo_list2&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Router</title>
+      <link>http://oiax.github.io/capejs/router/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/router/</guid>
+      <description>
+
+&lt;h3 id=&#34;simple-routes&#34;&gt;Simple Routes&lt;/h3&gt;
+
+&lt;p&gt;Cape.JS&amp;rsquo;s router reacts to the changes of URL hash fragment and replace the
+component mounted on the target node.&lt;/p&gt;
+
+&lt;p&gt;The following example illustrates the basic concept of router and routes.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div&amp;gt;
+  &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;Top&amp;lt;/a&amp;gt;
+  &amp;lt;a href=&amp;quot;#about&amp;quot;&amp;gt;About&amp;lt;/a&amp;gt;
+  &amp;lt;a href=&amp;quot;#help&amp;quot;&amp;gt;Help&amp;lt;/a&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./components.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;./router.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;components-js:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;components.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TopPage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(&#39;This is the top page.&#39;)
+  }
+});
+
+var AboutPage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(&#39;This is the about page.&#39;)
+  }
+});
+
+var HelpPage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(&#39;This is the help page.&#39;)
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;router-js:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;router.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.root(&#39;top_page&#39;);
+  m.page(&#39;about&#39;, &#39;about_page&#39;);
+  m.page(&#39;help&#39;, &#39;help_page&#39;);
+})
+router.mount(&#39;main&#39;);
+router.start();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;m.root(&#39;top_page&#39;)&lt;/code&gt; connects the empty hash to the component &lt;code&gt;TopPage&lt;/code&gt;
+so that the browser displays the top page when we open this site.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;m.page(&#39;about&#39;, &#39;about_page&#39;)&lt;/code&gt; connects the hash &lt;code&gt;#about&lt;/code&gt; to the component &lt;code&gt;AboutPage&lt;/code&gt;.
+When we click the &amp;lsquo;About&amp;rsquo; link, the &lt;code&gt;TopPage&lt;/code&gt; component is removed and
+the &lt;code&gt;AboutPage&lt;/code&gt; component gets mounted.&lt;/p&gt;
+
+&lt;p&gt;Each connection between a hash and a component is called &lt;em&gt;route.&lt;/em&gt;
+The &lt;em&gt;router&lt;/em&gt; continues to watch the changes of URL hash and switches
+components according to the routes.&lt;/p&gt;
+
+&lt;p&gt;You can find the source code of working demo on &lt;a href=&#34;https://github.com/oiax/capejs/demo/simple_routes&#34;&gt;https://github.com/oiax/capejs/demo/simple_routes&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -70,56 +495,19 @@ not be considered stable.&lt;/p&gt;
 &lt;h3 id=&#34;how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How can I contribute?&lt;/h3&gt;
 
 &lt;p&gt;The Cape.JS is an open source project. Everyone can help.
-See &lt;a href=&#34;CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt; for details.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>What is Cape.JS</title>
-      <link>http://oiax.github.io/capejs/top/what_is_cape_js/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/top/what_is_cape_js/</guid>
-      <description>&lt;p&gt;Cape.JS is a lightweight Javascript UI framework based on &lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; of Matt-Esch.&lt;/p&gt;
+See &lt;a href=&#34;https://github.com/oiax/capejs/CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt; for details.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Small but full stack:&lt;/strong&gt; Cape.JS is consists of three basic but powerful classes; &lt;em&gt;Component, DataStore,&lt;/em&gt; and &lt;em&gt;Router.&lt;/em&gt; You can utilize them to create web widgets and single-page applications (SPAs).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Virtual DOM:&lt;/strong&gt; Cape.JS takes advantage of &lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; for high performance UI rendering. You don&amp;rsquo;t have to rely on &lt;em&gt;jQuery&lt;/em&gt; for DOM manipulation anymore.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Concise syntax:&lt;/strong&gt; The &lt;em&gt;markup builder&lt;/em&gt; helps you to construct HTML DOM trees with its simple, easy to learn syntax. You can add a &lt;code&gt;div&lt;/code&gt; element by calling markup builder&amp;rsquo;s &lt;code&gt;div&lt;/code&gt; method, for example.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h2&gt;
 
-&lt;p&gt;The architecture and terminology of Cape.JS are strongly influenced by &lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React&lt;/a&gt;,  &lt;a href=&#34;https://github.com/muut/riotjs&#34;&gt;Riot&lt;/a&gt; and &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>FAQ</title>
-      <link>http://oiax.github.io/capejs/top/faq/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/top/faq/</guid>
-      <description>
+&lt;p&gt;The logo of Cape.JS is created by &lt;a href=&#34;https://github.com/junya-suzuki&#34;&gt;Junya Suzuki&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:4a1318da06786ac52626178ca960109e&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
+&lt;h2 id=&#34;trademarks&#34;&gt;Trademarks&lt;/h2&gt;
 
-&lt;p&gt;The official name is &lt;strong&gt;Cape.JS.&lt;/strong&gt;
-Its package name for &lt;a href=&#34;https://www.npmjs.com&#34;&gt;npm&lt;/a&gt;
-and &lt;a href=&#34;http://bower.io&#34;&gt;bower&lt;/a&gt; is &lt;strong&gt;capejs&lt;/strong&gt; (without the dot).&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Cape.JS&amp;rdquo; and its logo are trademarks of Oiax Inc. All rights reserved.&lt;/p&gt;
 
-&lt;p&gt;At the very initial phase of development, we called it &amp;ldquo;CapeJS&amp;rdquo;, but
-we don&amp;rsquo;t use it anymore.&lt;/p&gt;
+&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
 
-&lt;h3 id=&#34;is-it-production-ready:4a1318da06786ac52626178ca960109e&#34;&gt;Is it production ready?&lt;/h3&gt;
-
-&lt;p&gt;Not yet. We adopt &lt;a href=&#34;http://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt; for Cape.JS.
-According to this system, major version (0.y.z) zero is for initial development.
-We have released the version 1.0.0-beta.1, but the public API of Cape.JS should
-not be considered stable.&lt;/p&gt;
-
-&lt;h3 id=&#34;how-can-i-contribute:4a1318da06786ac52626178ca960109e&#34;&gt;How can I contribute?&lt;/h3&gt;
-
-&lt;p&gt;The Cape.JS is an open source project. Everyone can help.
-See &lt;a href=&#34;CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt; for details.&lt;/p&gt;
+&lt;p&gt;Cape.JS is released under &lt;a href=&#34;https://github.com/oiax/capejs/LICENSE&#34;&gt;the MIT License&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
