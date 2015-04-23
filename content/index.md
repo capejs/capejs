@@ -5,7 +5,7 @@ weight: 0
 ---
 
 <a class="anchor" id="what-is"></a>
-## What is Cape.JS
+## What is Cape.JS?
 
 Cape.JS is a lightweight Javascript UI framework based on [virtual-dom](https://github.com/Matt-Esch/virtual-dom) of Matt-Esch.
 
