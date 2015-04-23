@@ -7,24 +7,27 @@ in your HTML file.
 
 license: MIT
 author: bootply.com
+
+modified by: Oiax, Inc.
 */
 
 body {
  padding-top:50px;
 }
 
-#masthead { 
- min-height:250px;
+#masthead {
+  background-color: #eeeeff;
+  min-height:160px;
 }
 
 #masthead h1 {
- font-size: 30px;
- line-height: 1;
- padding-top:20px;
+  font-size: 30px;
+  line-height: 1;
+  padding-top:20px;
 }
 
 #masthead .well {
- margin-top:8%;
+  margin-top:8%;
 }
 
 @media screen and (min-width: 768px) {
@@ -34,12 +37,12 @@ body {
 }
 
 .navbar-bright {
- background-color:#111155;
- color:#fff;
+  background-color:#111155;
+  color:#fff;
 }
 
 .affix-top,.affix{
- position: static;
+  position: static;
 }
 
 @media (min-width: 979px) {
@@ -48,7 +51,7 @@ body {
   	margin-top:30px;
   	width:228px;
   }
-  
+
   #sidebar.affix {
     position: fixed;
     top:70px;
