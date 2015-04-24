@@ -280,3 +280,13 @@ we can get its value by `this.val('title')`.
 You can also set its value with `val` method by giving a new value as second argument.
 
 You can find the source code of working demo on https://github.com/oiax/capejs/demo/todo_list.
+
+<a class="anchor" id="mix-ins"></a>
+### Mix-ins
+
+This section is not yet prepared.
+
+<a class="anchor" id="partials"></a>
+### Partials
+
+This section is not yet prepared.

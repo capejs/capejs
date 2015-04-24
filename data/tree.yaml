@@ -29,6 +29,12 @@ pages:
       -
         id: "todo-list"
         title: "Todo List"
+      -
+        id: "mix-ins"
+        title: "Mix-ins"
+      -
+        id: "partials"
+        title: "Partials"
   -
     name: "data_stores"
     title: "Data Stores"
@@ -36,6 +42,9 @@ pages:
       -
         id: "basics"
         title: "Basics"
+      -
+        id: "jquery"
+        title: "Working with jQuery"
   -
     name: "router"
     title: "Router"
@@ -43,3 +52,21 @@ pages:
       -
         id: "simple-routes"
         title: "Simple Routes"
+      -
+        id: "resouce-based-routes"
+        title: "Resource Based Routes"
+      -
+        id: "namespaces"
+        title: "Namespaces"
+      -
+        id: "changing-root-container"
+        title: "Changing Root Container"
+      -
+        id: "session"
+        title: "Session"
+      -
+        id: "flash"
+        title: "Flash"
+      -
+        id: "before-navigation-callbacks"
+        title: "Before-navigation Callbacks"

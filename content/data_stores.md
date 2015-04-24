@@ -110,3 +110,9 @@ This inverts the `done` attribute of this item and calls `this.propagate()`,
 which will cause the re-rendering of this component.
 
 A working demo is found in the directory [https://github.com/oiax/capejs/demo/todo_list2](https://github.com/oiax/capejs/demo/todo_list2).
+
+
+<a class="anchor" id="jquery"></a>
+### Working with jQuery
+
+This section is not yet prepared.

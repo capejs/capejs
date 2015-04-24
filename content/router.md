@@ -72,3 +72,33 @@ The *router* continues to watch the changes of URL hash and switches
 components according to the routes.
 
 You can find the source code of working demo on https://github.com/oiax/capejs/demo/simple_routes.
+
+<a class="anchor" id="resource-based-routes"></a>
+### Resource Based Routes
+
+This section is not yet prepared.
+
+<a class="anchor" id="namespaces"></a>
+### Namespaces
+
+This section is not yet prepared.
+
+<a class="anchor" id="changing-root-container"></a>
+### Changing Root Container
+
+This section is not yet prepared.
+
+<a class="anchor" id="session"></a>
+### Session
+
+This section is not yet prepared.
+
+<a class="anchor" id="flash"></a>
+### Flash
+
+This section is not yet prepared.
+
+<a class="anchor" id="before-navigation-callbacks"></a>
+### Before-navigation Callbacks
+
+This section is not yet prepared.
