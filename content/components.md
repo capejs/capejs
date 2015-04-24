@@ -120,6 +120,24 @@ class HelloMesage2 extends Cape.Component {
 }
 ```
 
+All methods of markup builder can be chained. So, you can rewrite the above code as follows:
+
+```javascript
+class HelloMesage2 extends Cape.Component {
+  render(m) {
+    m.p(m =>
+      m.text('Hello, ').strong(m =>
+        m.text(this.root.data.name).text('!');
+      )
+    )
+  }
+}
+```
+
+Note that you can omit braces when the arrow function has only a single expression.
+See MDN's [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+<i class="fa fa-external-link"></i> for details.
+
 <a class="anchor" id="click-counter"></a>
 ### Click Counter
 
