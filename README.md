@@ -1,3 +1,7 @@
 # Cape.JS DOCUMENTATION
 
-![Cape.JS logo](https://cdn.rawgit.com/oiax/capejs/logo1/doc/logo/capejs.svg)
+All files (except this file) of the `gh-pages` branch are generated
+by Hugo (a CMS written in Go language).
+
+DO NOT EDIT THEM BY HAND.
+
