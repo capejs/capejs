@@ -24,7 +24,7 @@ It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&g
 &lt;p&gt;It also has the &lt;code&gt;session&lt;/code&gt; property whose value is a hash object.
 This property can be used to store arbitrary data by developers.&lt;/p&gt;
 
-&lt;h3 id=&#34;classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Classes&lt;/h3&gt;
+&lt;h3 id=&#34;overview-of-classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Overview of classes&lt;/h3&gt;
 
 &lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; consists of following five classes:&lt;/p&gt;
 
@@ -39,21 +39,22 @@ This property can be used to store arbitrary data by developers.&lt;/p&gt;
 &lt;p&gt;These classes are defined as properties of the &lt;code&gt;Cape&lt;/code&gt; object.&lt;/p&gt;
 
 &lt;p&gt;The most basic class is &lt;code&gt;Cape.Component&lt;/code&gt;.
-As a developer, you should define a class extending it to create a web widget
-using Cape.JS.&lt;/p&gt;
+You need to define a class extending it in order to create a web widget using Cape.JS.
+At least, instances of this class must have a method called &lt;code&gt;render&lt;/code&gt;, which defines
+how the component should be rendered in HTML.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; is a class whose instances build a &lt;em&gt;virtual dom tree&lt;/em&gt;
-through their methods. Usually you don&amp;rsquo;t instantiate markup builders by yourself.
+&lt;p&gt;&lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; is a class whose instances build &lt;em&gt;virtual dom trees.&lt;/em&gt;
+Usually you don&amp;rsquo;t instantiate markup builders by yourself.
 Instances of &lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; are passed to the &lt;code&gt;render&lt;/code&gt; method of
-component classes which are defined by developers.&lt;/p&gt;
+component classes.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used
-to render components.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
+components to render themselves.&lt;/p&gt;
 
-&lt;p&gt;If you want to create a single page application (SPA), you need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
-After you start it, it continues to the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
-and replace components according to the &lt;em&gt;routes&lt;/em&gt;
-(associations between hashes and components) defined in advance.&lt;/p&gt;
+&lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
+After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
+and mount components according to the &lt;em&gt;routes&lt;/em&gt;
+(associations between hashes and components) which you defined in advance.&lt;/p&gt;
 
 &lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
 You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;

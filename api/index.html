@@ -113,7 +113,7 @@ It has some utility methods, such as <code>extend</code>, <code>merge</code>, et
 <p>It also has the <code>session</code> property whose value is a hash object.
 This property can be used to store arbitrary data by developers.</p>
 
-<h3 id="classes:d680e8a854a7cbad6d490c445cba2eba">Classes</h3>
+<h3 id="overview-of-classes:d680e8a854a7cbad6d490c445cba2eba">Overview of classes</h3>
 
 <p>The <strong>Cape.JS</strong> consists of following five classes:</p>
 
@@ -128,21 +128,22 @@ This property can be used to store arbitrary data by developers.</p>
 <p>These classes are defined as properties of the <code>Cape</code> object.</p>
 
 <p>The most basic class is <code>Cape.Component</code>.
-As a developer, you should define a class extending it to create a web widget
-using Cape.JS.</p>
+You need to define a class extending it in order to create a web widget using Cape.JS.
+At least, instances of this class must have a method called <code>render</code>, which defines
+how the component should be rendered in HTML.</p>
 
-<p><code>Cape.MarkupBuilder</code> is a class whose instances build a <em>virtual dom tree</em>
-through their methods. Usually you don&rsquo;t instantiate markup builders by yourself.
+<p><code>Cape.MarkupBuilder</code> is a class whose instances build <em>virtual dom trees.</em>
+Usually you don&rsquo;t instantiate markup builders by yourself.
 Instances of <code>Cape.MarkupBuilder</code> are passed to the <code>render</code> method of
-component classes which are defined by developers.</p>
+component classes.</p>
 
-<p><code>Cape.DataStore</code> is a class to store and manipulate data, which is used
-to render components.</p>
+<p><code>Cape.DataStore</code> is a class to store and manipulate data, which is used by
+components to render themselves.</p>
 
-<p>If you want to create a single page application (SPA), you need an instance of <code>Cape.Router</code>.
-After you start it, it continues to the changes of <em>hash fragment</em> of URL
-and replace components according to the <em>routes</em>
-(associations between hashes and components) defined in advance.</p>
+<p>If you want to create a single page application (SPA), you may need an instance of <code>Cape.Router</code>.
+After you start it, it continues to watch the changes of <em>hash fragment</em> of URL
+and mount components according to the <em>routes</em>
+(associations between hashes and components) which you defined in advance.</p>
 
 <p>You have to call methods of <code>Cape.RoutingMapper</code> in order to define the routes.
 You will never instantiate it by youself, but will get its instance through the <code>draw</code>
