@@ -43,7 +43,8 @@ You can call `this.root` to get the node which the component was mounted on.
 And you can access to `data-name` attributes of the `root` node by
 `this.root.data.name`.
 
-You can find the source code of working demo on https://github.com/oiax/capejs/demo/hello_message.
+You can find the source code of working demo on
+https://github.com/oiax/capejs/tree/master/demo/hello_message.
 
 <a class="anchor" id="es6"></a>
 ### ECMAScript 6
@@ -60,12 +61,13 @@ class HelloMessage extends Cape.Component {
 }
 ```
 
-You can find the source code of working demo on https://github.com/oiax/capejs/es6-demo/hello_message.
+You can find the source code of working demo on
+https://github.com/oiax/capejs/tree/master/es6-demo/hello_message.
 
 You must have `npm` and `babel-core` to see this demo page.
 You must also have `browserify` to convert `.es6` file to `.js` file.
 
-See [es6-demo/README.md](https://github.com/oiax/capejs/es6-demo/README.md) for details.
+See https://github.com/oiax/capejs/tree/master/es6-demo/README.md for details.
 
 <a class="anchor" id="dom-tree"></a>
 ### Building Virtual DOM Tree
@@ -198,7 +200,8 @@ You should call it at the end of the `init` method,
 but if the component lacks the `init` method, the `refresh` method
 is called when the component is mounted.
 
-You can find the source code of working demo on https://github.com/oiax/capejs/demo/click_counter.
+You can find the source code of working demo on
+https://github.com/oiax/capejs/tree/master/demo/click_counter.
 
 <a class="anchor" id="todo-list"></a>
 ## Todo List
@@ -279,7 +282,8 @@ it is set to the value of `name` attribute of the `input` element and
 we can get its value by `this.val('title')`.
 You can also set its value with `val` method by giving a new value as second argument.
 
-You can find the source code of working demo on https://github.com/oiax/capejs/demo/todo_list.
+You can find the source code of working demo on
+https://github.com/oiax/capejs/tree/master/demo/todo_list.
 
 <a class="anchor" id="mix-ins"></a>
 ### Mix-ins

@@ -71,7 +71,8 @@ Each connection between a hash and a component is called *route.*
 The *router* continues to watch the changes of URL hash and switches
 components according to the routes.
 
-You can find the source code of working demo on https://github.com/oiax/capejs/demo/simple_routes.
+You can find the source code of working demo on
+https://github.com/oiax/capejs/tree/master/demo/simple_routes.
 
 <a class="anchor" id="resource-based-routes"></a>
 ### Resource Based Routes
