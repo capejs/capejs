@@ -70,26 +70,22 @@ pages:
       -
         id: "before-navigation-callbacks"
         title: "Before-navigation Callbacks"
+api_pages:
   -
-    name: "api/cape_properties"
-    title: "API: Cape Properties"
-    sections:
-      -
-        id: "session"
-        title: "session"
+    name: "api/cape"
+    title: "Cape"
   -
-    name: "api/cape_functions"
-    title: "API: Cape Functions"
-    sections:
-      -
-        id: "create-component-class"
-        title: "Cape.createComponetClass()"
-      -
-        id: "deep-extend"
-        title: "Cape.deepExtend()"
-      -
-        id: "extend"
-        title: "Cape.extend()"
-      -
-        id: "merge"
-        title: "Cape.merge()"
+    name: "api/component"
+    title: "Cape.Component"
+  -
+    name: "api/markup_builder"
+    title: "Cape.MarkupBuilder"
+  -
+    name: "api/data_store"
+    title: "Cape.DataStore"
+  -
+    name: "api/router"
+    title: "Cape.Router"
+  -
+    name: "api/routing_mapper"
+    title: "Cape.RoutingMapper"

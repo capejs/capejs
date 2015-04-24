@@ -1,6 +1,14 @@
 ---
-title: "Cape Functions"
+title: "Cape - API Reference"
+type: "api"
 ---
+
+* [Cape.createComponentClass()](#create-component-class)
+* [Cape.createDataStoreClass()](#create-data-store-class)
+* [Cape.deepExtend()](#deep-extend)
+* [Cape.extend()](#extend)
+* [Cape.merge()](#merge)
+* [Cape.session](#session)
 
 <a class="anchor" id="create-component-class"></a>
 ### Cape.createComponentClass(methods)
@@ -138,4 +146,19 @@ Cape.extend(object1, object2);
 //   cherry: 97,
 //   durian: 100
 // }
+```
+
+<a class="anchor" id="session"></a>
+### Cape.session
+
+This property holds an object (hash). Users may store arbitrary data to this hash.
+
+#### Example
+
+```
+Cape.currentUser = { id: 1, name: 'john', privileged: true }
+
+if (Cape.currentUser.privileged) {
+  // Do something.
+}
 ```
