@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
-	<title>404 Page not found - Cape.JS: Documentation</title>
+	<title>API Reference - Cape.JS: Documentation</title>
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link href="http://oiax.github.io/capejs/css/bootstrap.min.css" rel="stylesheet">
@@ -62,83 +62,92 @@
 
 <div class="container">
 	<div class="row">
-		    <div class="col-md-3" id="leftCol">
+		
+        <div class="col-md-3" id="leftCol">
       <ul class="nav nav-stacked" id="sidebar">
 			
 			
-				<li><a href="http://oiax.github.io/capejs/#what-is">What is Cape.JS?</a></li>
-			
-				<li><a href="http://oiax.github.io/capejs/#installation">Installation</a></li>
-			
-				<li><a href="http://oiax.github.io/capejs/#faq">FAQ</a></li>
-			
+				<li>
+					<a href="http://oiax.github.io/capejs/api/cape">Cape</a>
+        </li>
 			
 				<li>
-					<a href="http://oiax.github.io/capejs/components">Components</a>
-					
-					<ul>
-					
-						<li><a href="http://oiax.github.io/capejs/components/#hello-world">Hello World</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/components/#es6">ECMAScript 6</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/components/#dom-tree">Building Virtual DOM Tree</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/components/#click-counter">Click Counter</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/components/#todo-list">Todo List</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/components/#mix-ins">Mix-ins</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/components/#partials">Partials</a></li>
-					
-					</ul>
+					<a href="http://oiax.github.io/capejs/api/component">Cape.Component</a>
+        </li>
 			
 				<li>
-					<a href="http://oiax.github.io/capejs/data_stores">Data Stores</a>
-					
-					<ul>
-					
-						<li><a href="http://oiax.github.io/capejs/data_stores/#basics">Basics</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/data_stores/#jquery">Working with jQuery</a></li>
-					
-					</ul>
+					<a href="http://oiax.github.io/capejs/api/markup_builder">Cape.MarkupBuilder</a>
+        </li>
 			
 				<li>
-					<a href="http://oiax.github.io/capejs/router">Router</a>
-					
-					<ul>
-					
-						<li><a href="http://oiax.github.io/capejs/router/#simple-routes">Simple Routes</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/router/#resouce-based-routes">Resource Based Routes</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/router/#namespaces">Namespaces</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/router/#changing-root-container">Changing Root Container</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/router/#session">Session</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/router/#flash">Flash</a></li>
-					
-						<li><a href="http://oiax.github.io/capejs/router/#before-navigation-callbacks">Before-navigation Callbacks</a></li>
-					
-					</ul>
+					<a href="http://oiax.github.io/capejs/api/data_store">Cape.DataStore</a>
+        </li>
 			
-        <li><a href="http://oiax.github.io/capejs/api">API Reference</a></li>
+				<li>
+					<a href="http://oiax.github.io/capejs/api/router">Cape.Router</a>
+        </li>
+			
+				<li>
+					<a href="http://oiax.github.io/capejs/api/routing_mapper">Cape.RoutingMapper</a>
+        </li>
+			
       </ul>
     </div>
 
+		
     <div class="col-md-9">
       <article>
         <header>
-          <h2>404</h2>
+          <h2>API Reference</h2>
           <div class="post-meta clearfix">
           </div>
         </header>
         <div>
-          That page doesn't exist!
+          
+
+<h3 id="the-cape-object:d680e8a854a7cbad6d490c445cba2eba">The <code>Cape</code> object</h3>
+
+<p>The <strong>Cape.JS</strong> defines a single global variable <a href="./cape">Cape</a>.
+It has some utility methods, such as <code>extend</code>, <code>merge</code>, etc.</p>
+
+<p>It also has the <code>session</code> property whose value is a hash object.
+This property can be used to store arbitrary data by developers.</p>
+
+<h3 id="classes:d680e8a854a7cbad6d490c445cba2eba">Classes</h3>
+
+<p>The <strong>Cape.JS</strong> consists of following five classes:</p>
+
+<ul>
+<li><a href="./component">Cape.Component</a></li>
+<li><a href="./markup_builder">Cape.MarkupBuilder</a></li>
+<li><a href="./data_store">Cape.DataStore</a></li>
+<li><a href="./router">Cape.Router</a></li>
+<li><a href="./routing_mapper">Cape.RoutingMapper</a></li>
+</ul>
+
+<p>These classes are defined as properties of the <code>Cape</code> object.</p>
+
+<p>The most basic class is <code>Cape.Component</code>.
+As a developer, you should define a class extending it to create a web widget
+using Cape.JS.</p>
+
+<p><code>Cape.MarkupBuilder</code> is a class whose instances build a <em>virtual dom tree</em>
+through their methods. Usually you don&rsquo;t instantiate markup builders by yourself.
+Instances of <code>Cape.MarkupBuilder</code> are passed to the <code>render</code> method of
+component classes which are defined by developers.</p>
+
+<p><code>Cape.DataStore</code> is a class to store and manipulate data, which is used
+to render components.</p>
+
+<p>If you want to create a single page application (SPA), you need an instance of <code>Cape.Router</code>.
+After you start it, it continues to the changes of <em>hash fragment</em> of URL
+and replace components according to the <em>routes</em>
+(associations between hashes and components) defined in advance.</p>
+
+<p>You have to call methods of <code>Cape.RoutingMapper</code> in order to define the routes.
+You will never instantiate it by youself, but will get its instance through the <code>draw</code>
+method of <code>Cape.Router</code>.</p>
+
         </div>
       </article>
 		</div>
