@@ -4,6 +4,9 @@ top:
     id: what-is
     title: "What is Cape.JS?"
   -
+    id: installation
+    title: "Installation"
+  -
     id: faq
     title: "FAQ"
 pages:

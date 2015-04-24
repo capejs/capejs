@@ -15,6 +15,29 @@ Cape.JS is a lightweight Javascript UI framework based on [virtual-dom](https://
 
 The architecture and terminology of Cape.JS are strongly influenced by [React](https://github.com/facebook/react),  [Riot](https://github.com/muut/riotjs) and [Ruby on Rails](https://github.com/rails/rails).
 
+<a class="installation" id="installation"></a>
+## Installation
+
+If you just want to use Cape.JS in your web site, insert the following snippet
+to the `<head>` section of your HTML files.
+
+```html
+<link href="https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.4/dist/cape.min.js"
+  rel="stylesheet">
+```
+
+You can get the package for [npm](https://www.npmjs.com/) with following command:
+
+```
+$ npm install capejs
+```
+
+You can get the package for [bower](http://bower.io/) with following command:
+
+```
+$ bower install capejs
+```
+
 <a class="anchor" id="faq"></a>
 ## FAQ
 
@@ -33,6 +56,13 @@ Not yet. We adopt [Semantic Versioning](http://semver.org/) for Cape.JS.
 According to this system, major version (0.y.z) zero is for initial development.
 We have released the version 1.0.0-beta.1, but the public API of Cape.JS should
 not be considered stable.
+
+### Which browsers are supported?
+
+Currently we test Cape.JS only on the latest versions of Chrome and Firefox.
+We are planning to add support for Internet Explorer (version 8 or higher) and Safari
+until the release of Cape.JS 1.0.
+
 
 ### How can I contribute?
 
