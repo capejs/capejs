@@ -7,9 +7,12 @@
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link href="http://oiax.github.io/capejs/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	
 	<link href="http://oiax.github.io/capejs/css/styles.css" rel="stylesheet">
 	<link href="http://oiax.github.io/capejs/highlight/styles/default.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://oiax.github.io/capejs/images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="http://oiax.github.io/capejs/images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
 </head>
 
 <body>
@@ -230,6 +233,23 @@ In this way you can create a deeply-nested DOM tree.</p>
   }
 }
 </code></pre>
+
+<p>All methods of markup builder can be chained. So, you can rewrite the above code as follows:</p>
+
+<pre><code class="language-javascript">class HelloMesage2 extends Cape.Component {
+  render(m) {
+    m.p(m =&gt;
+      m.text('Hello, ').strong(m =&gt;
+        m.text(this.root.data.name).text('!');
+      )
+    )
+  }
+}
+</code></pre>
+
+<p>Note that you can omit braces when the arrow function has only a single expression.
+See MDN&rsquo;s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow functions</a>
+<i class="fa fa-external-link"></i> for details.</p>
 
 <p><a class="anchor" id="click-counter"></a></p>
 

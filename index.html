@@ -7,9 +7,12 @@
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link href="http://oiax.github.io/capejs/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	
 	<link href="http://oiax.github.io/capejs/css/styles.css" rel="stylesheet">
 	<link href="http://oiax.github.io/capejs/highlight/styles/default.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://oiax.github.io/capejs/images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="http://oiax.github.io/capejs/images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
 </head>
 
 <body>
@@ -109,6 +112,8 @@
     <div class="col-md-9">
 		
 			
+		
+			
 			<article>
 			  <div>
 			    
@@ -117,15 +122,28 @@
 
 <h2 id="what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba">What is Cape.JS?</h2>
 
-<p>Cape.JS is a lightweight Javascript UI framework based on <a href="https://github.com/Matt-Esch/virtual-dom">virtual-dom</a> of Matt-Esch.</p>
+<p>Cape.JS is a lightweight JavaScript UI framework with following features:</p>
 
 <ul>
-<li><strong>Small but full stack:</strong> Cape.JS is consists of three basic but powerful classes; <em>Component, DataStore,</em> and <em>Router.</em> You can utilize them to create web widgets and single-page applications (SPAs).</li>
-<li><strong>Virtual DOM:</strong> Cape.JS takes advantage of <a href="https://github.com/Matt-Esch/virtual-dom">virtual-dom</a> for high performance UI rendering. You don&rsquo;t have to rely on <em>jQuery</em> for DOM manipulation anymore.</li>
-<li><strong>Concise syntax:</strong> The <em>markup builder</em> helps you to construct HTML DOM trees with its simple, easy to learn syntax. You can add a <code>div</code> element by calling markup builder&rsquo;s <code>div</code> method, for example.</li>
+<li><strong>Full stack:</strong> You can build <em>single-page applications</em> (SPAs) with Cape.JS.</li>
+<li><strong>Modular:</strong> You can place <em>web widgets</em> built by Cape.JS to your static web sites.</li>
+<li><strong>Virtual DOM:</strong> Cape.JS takes advantage of
+<a href="https://github.com/Matt-Esch/virtual-dom">virtual-dom</a> <i class="fa fa-external-link"></i>
+of Matt-Esch for high performance rendering.</li>
+<li><strong>Markup builder:</strong> The <em>markup builder</em> helps you to construct HTML DOM trees
+with its simple, easy to learn syntax.</li>
+<li><strong>Form manipulation:</strong> You can get or set the value of form fields
+without <a href="https://jquery.com/">jQuery</a> <i class="fa fa-external-link"></i>.</li>
+<li><strong>Data stores:</strong> Using <em>data stores</em>, you can build web applications
+with <em>unidirectional data flow.</em></li>
+<li><strong>Router:</strong> You can define <em>routes</em> with a DSL (domain specific language)
+similar to that of Ruby on Rails.</li>
 </ul>
 
-<p>The architecture and terminology of Cape.JS are strongly influenced by <a href="https://github.com/facebook/react">React</a>,  <a href="https://github.com/muut/riotjs">Riot</a> and <a href="https://github.com/rails/rails">Ruby on Rails</a>.</p>
+<p>The architecture and terminology of Cape.JS are strongly influenced by
+<a href="https://github.com/facebook/react">React</a> <i class="fa fa-external-link"></i>,
+<a href="https://github.com/muut/riotjs">Riot</a> <i class="fa fa-external-link"></i>
+and <a href="https://github.com/rails/rails">Ruby on Rails</a> <i class="fa fa-external-link"></i>.</p>
 
 <p><a class="installation" id="installation"></a></p>
 
@@ -138,12 +156,12 @@ to the <code>&lt;head&gt;</code> section of your HTML files.</p>
   rel=&quot;stylesheet&quot;&gt;
 </code></pre>
 
-<p>You can get the package for <a href="https://www.npmjs.com/">npm</a> with following command:</p>
+<p>You can get the package for <a href="https://www.npmjs.com/">npm</a> <i class="fa fa-external-link"></i> with following command:</p>
 
 <pre><code>$ npm install capejs
 </code></pre>
 
-<p>You can get the package for <a href="http://bower.io/">bower</a> with following command:</p>
+<p>You can get the package for <a href="http://bower.io/">bower</a> <i class="fa fa-external-link"></i> with following command:</p>
 
 <pre><code>$ bower install capejs
 </code></pre>
@@ -155,15 +173,15 @@ to the <code>&lt;head&gt;</code> section of your HTML files.</p>
 <h3 id="is-it-cape-js-capejs-or-capejs:d680e8a854a7cbad6d490c445cba2eba">Is it &ldquo;Cape.JS&rdquo;, &ldquo;CapeJS&rdquo;, or &ldquo;capejs&rdquo;?</h3>
 
 <p>The official name is <strong>Cape.JS.</strong>
-Its package name for <a href="https://www.npmjs.com">npm</a>
-and <a href="http://bower.io">bower</a> is <strong>capejs</strong> (without the dot).</p>
+Its package name for <a href="https://www.npmjs.com">npm</a> <i class="fa fa-external-link"></i>
+and <a href="http://bower.io">bower</a> <i class="fa fa-external-link"></i> is <strong>capejs</strong> (without the dot).</p>
 
 <p>At the very initial phase of development, we called it &ldquo;CapeJS&rdquo;, but
 we don&rsquo;t use it anymore.</p>
 
 <h3 id="is-it-production-ready:d680e8a854a7cbad6d490c445cba2eba">Is it production ready?</h3>
 
-<p>Not yet. We adopt <a href="http://semver.org/">Semantic Versioning</a> for Cape.JS.
+<p>Not yet. We adopt <a href="http://semver.org/">Semantic Versioning</a> <i class="fa fa-external-link"></i> for Cape.JS.
 According to this system, major version (0.y.z) zero is for initial development.
 We have released the version 1.0.0-beta.1, but the public API of Cape.JS should
 not be considered stable.</p>
@@ -177,11 +195,13 @@ until the release of Cape.JS 1.0.</p>
 <h3 id="how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba">How can I contribute?</h3>
 
 <p>The Cape.JS is an open source project. Everyone can help.
-See <a href="https://github.com/oiax/capejs/CONTRIBUTING.md">CONTRIBUTING.md</a> for details.</p>
+See <a href="https://github.com/oiax/capejs/CONTRIBUTING.md">CONTRIBUTING.md</a>
+<i class="fa fa-external-link"></i>for details.</p>
 
 <h2 id="acknowledgements">Acknowledgements</h2>
 
-<p>The logo of Cape.JS is created by <a href="https://github.com/junya-suzuki">Junya Suzuki</a>.</p>
+<p>The logo of Cape.JS is created by
+<a href="https://github.com/junya-suzuki">Junya Suzuki</a> <i class="fa fa-external-link"></i>.</p>
 
 <h2 id="trademarks">Trademarks</h2>
 
@@ -189,13 +209,12 @@ See <a href="https://github.com/oiax/capejs/CONTRIBUTING.md">CONTRIBUTING.md</a>
 
 <h2 id="license">License</h2>
 
-<p>Cape.JS is released under <a href="https://github.com/oiax/capejs/LICENSE">the MIT License</a>.</p>
+<p>Cape.JS is released under
+<a href="https://github.com/oiax/capejs/LICENSE">the MIT License</a> <i class="fa fa-external-link"></i>.</p>
 
 			  </div>
 			</article>
 		  
-		
-			
 		
 			
 		
