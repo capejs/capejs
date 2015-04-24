@@ -70,3 +70,26 @@ pages:
       -
         id: "before-navigation-callbacks"
         title: "Before-navigation Callbacks"
+  -
+    name: "api/cape_properties"
+    title: "API: Cape Properties"
+    sections:
+      -
+        id: "session"
+        title: "session"
+  -
+    name: "api/cape_functions"
+    title: "API: Cape Functions"
+    sections:
+      -
+        id: "create-component-class"
+        title: "Cape.createComponetClass()"
+      -
+        id: "deep-extend"
+        title: "Cape.deepExtend()"
+      -
+        id: "extend"
+        title: "Cape.extend()"
+      -
+        id: "merge"
+        title: "Cape.merge()"
