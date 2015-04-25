@@ -323,7 +323,7 @@ method has equivalent name:&lt;/p&gt;
 &lt;p&gt;When the first argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; element is treated specially in Cape.JS. See &lt;a href=&#34;#form&#34;&gt;#form&lt;/a&gt; and &lt;a href=&#34;#form&#34;&gt;#formFor&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; element is treated specially in Cape.JS. See &lt;a href=&#34;#form&#34;&gt;#form&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h4 id=&#34;example-1:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
