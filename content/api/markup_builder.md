@@ -200,7 +200,7 @@ render: function(m) {
 }
 ```
 
-As [#attr](#attr) the `#class` method add classes cumulatively and
+As [#attr](#attr), the `#class` method add classes cumulatively and
 affects only the nextly added element.
 
 <a class="anchor" id="data"></a>
@@ -223,7 +223,7 @@ render: function(m) {
 }
 ```
 
-As [#attr](#attr) the `#data` method sets attribute values cumulatively and
+As [#attr](#attr), the `#data` method sets attribute values cumulatively and
 affects only the nextly added element.
 
 <a class="anchor" id="elem"></a>
@@ -255,6 +255,3 @@ render: function(m) {
   //   </div>
 }
 ```
-
-As [#attr](#attr) the `#data` method sets attribute values cumulatively and
-affects only the nextly added element.
