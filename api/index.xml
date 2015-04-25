@@ -381,6 +381,50 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
   }
 });
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attr&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;attr:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#attr&lt;/h3&gt;
+
+&lt;p&gt;This method sets the value of attributes for the element which will be added nextly.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.attr(&#39;alt&#39;, &#39;Logo Image&#39;);
+  m.img({ src: &#39;../images/logo.png&#39; });
+  // These two statements are equivalent to the following single statement:
+  //   m.img({ src: &#39;../images/logo.png&#39;, alt: &#39;Logo Image&#39; })
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The attribute values are set cumulatively.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.attr(&#39;alt&#39;, &#39;Logo Image&#39;);
+  m.attr(&#39;width&#39;, &#39;180&#39;);
+  m.attr(&#39;height&#39;, &#39;120&#39;);
+  m.attr(&#39;title&#39;, &#39;Cape.JS&#39;);
+  m.img({ src: &#39;../images/logo.png&#39; });
+  // These two statements are equivalent to the following single statement:
+  //   m.img({ src: &#39;../images/logo.png&#39;, alt: &#39;Logo Image&#39;,
+  //           width: &#39;180&#39;, height: &#39;120&#39;, title: &#39;Cape.JS&#39; })
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The values set by &lt;code&gt;#attr&lt;/code&gt; does not affect the elements created after the next element.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.attr(&#39;alt&#39;, &#39;Logo Image&#39;);
+  m.img({ src: &#39;../images/logo.png&#39; });
+  m.img({ src: &#39;../images/download.png&#39; });
+  // The last statement creates a &amp;lt;img&amp;gt; tag without alt attribute.
+}
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

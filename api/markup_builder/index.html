@@ -371,6 +371,50 @@ They only accept a hash object to set the attribute values of the element.</p>
 });
 </code></pre>
 
+<p><a class="anchor" id="attr"></a></p>
+
+<h3 id="attr:2f94c9da1a5f7ca2887265bec799d255">#attr</h3>
+
+<p>This method sets the value of attributes for the element which will be added nextly.</p>
+
+<h4 id="example-4:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.attr('alt', 'Logo Image');
+  m.img({ src: '../images/logo.png' });
+  // These two statements are equivalent to the following single statement:
+  //   m.img({ src: '../images/logo.png', alt: 'Logo Image' })
+}
+</code></pre>
+
+<p>The attribute values are set cumulatively.</p>
+
+<h4 id="example-5:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.attr('alt', 'Logo Image');
+  m.attr('width', '180');
+  m.attr('height', '120');
+  m.attr('title', 'Cape.JS');
+  m.img({ src: '../images/logo.png' });
+  // These two statements are equivalent to the following single statement:
+  //   m.img({ src: '../images/logo.png', alt: 'Logo Image',
+  //           width: '180', height: '120', title: 'Cape.JS' })
+}
+</code></pre>
+
+<p>The values set by <code>#attr</code> does not affect the elements created after the next element.</p>
+
+<h4 id="example-6:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.attr('alt', 'Logo Image');
+  m.img({ src: '../images/logo.png' });
+  m.img({ src: '../images/download.png' });
+  // The last statement creates a &lt;img&gt; tag without alt attribute.
+}
+</code></pre>
+
         </div>
       </article>
     </div>
