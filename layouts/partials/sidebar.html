@@ -1,5 +1,5 @@
-    <div class="col-md-3" id="leftCol">
-      <ul class="nav nav-stacked" id="sidebar">
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <ul class="nav">
 			{{ $baseUrl := .Site.BaseUrl }}
 			{{ range $.Site.Data.tree.top }}
 				<li><a href="{{ $baseUrl }}/#{{ .id }}">{{ .title }}</a></li>
