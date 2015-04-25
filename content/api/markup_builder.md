@@ -106,3 +106,49 @@ var LogoMark = Cape.createComponentClass({
   }
 });
 ```
+
+<a class="anchor" id="attr"></a>
+### #attr
+
+This method sets the value of attributes for the element which will be added nextly.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.attr('alt', 'Logo Image');
+  m.img({ src: '../images/logo.png' });
+  // These two statements are equivalent to the following single statement:
+  //   m.img({ src: '../images/logo.png', alt: 'Logo Image' })
+}
+```
+
+The attribute values are set cumulatively.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.attr('alt', 'Logo Image');
+  m.attr('width', '180');
+  m.attr('height', '120');
+  m.attr('title', 'Cape.JS');
+  m.img({ src: '../images/logo.png' });
+  // These two statements are equivalent to the following single statement:
+  //   m.img({ src: '../images/logo.png', alt: 'Logo Image',
+  //           width: '180', height: '120', title: 'Cape.JS' })
+}
+```
+
+The values set by `#attr` does not affect the elements created after the next element.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.attr('alt', 'Logo Image');
+  m.img({ src: '../images/logo.png' });
+  m.img({ src: '../images/download.png' });
+  // The last statement creates a <img> tag without alt attribute.
+}
+```
