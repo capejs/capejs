@@ -473,7 +473,7 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt; the &lt;code&gt;#class&lt;/code&gt; method add classes cumulatively and
+&lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt;, the &lt;code&gt;#class&lt;/code&gt; method add classes cumulatively and
 affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -496,7 +496,7 @@ affects only the nextly added element.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt; the &lt;code&gt;#data&lt;/code&gt; method sets attribute values cumulatively and
+&lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt;, the &lt;code&gt;#data&lt;/code&gt; method sets attribute values cumulatively and
 affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;elem&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -528,9 +528,6 @@ and the optional second argument is a hash object to set attribute values.&lt;/p
   //   &amp;lt;/div&amp;gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt; the &lt;code&gt;#data&lt;/code&gt; method sets attribute values cumulatively and
-affects only the nextly added element.&lt;/p&gt;
 </description>
     </item>
     
