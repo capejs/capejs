@@ -72,20 +72,67 @@ pages:
         title: "Before-navigation Callbacks"
 api_pages:
   -
+    name: "api"
+    title: "API Reference"
+  -
     name: "api/cape"
     title: "Cape"
+    showSections: true
+    sections:
+      -
+        id: create-component-class
+        title: "Cape.createComponentClass()"
+      -
+        id: create-data-store-class
+        title: "Cape.createDataStoreClass()"
+      -
+        id: deep-extend
+        title: "Cape.deepExtend()"
+      -
+        id: extend
+        title: "Cape.extend()"
+      -
+        id: merge
+        title: "Cape.merge()"
+      -
+        id: session
+        title: "Cape.session"
   -
     name: "api/component"
     title: "Cape.Component"
+    showSections: true
+    sections:
+      -
+        id: form-data
+        title: "Cape.Component#formData"
+      -
+        id: mount
+        title: "Cape.Component#mount"
+      -
+        id: refresh
+        title: "Cape.Component#refresh"
+      -
+        id: render-partial
+        title: "Cape.Component#renderPartial"
+      -
+        id: unmount
+        title: "Cape.Component#unmount"
+      -
+        id: val
+        title: "Cape.Component#val"
   -
     name: "api/markup_builder"
     title: "Cape.MarkupBuilder"
+    sections: []
   -
     name: "api/data_store"
     title: "Cape.DataStore"
+    sections: []
   -
     name: "api/router"
     title: "Cape.Router"
+    sections: []
   -
     name: "api/routing_mapper"
     title: "Cape.RoutingMapper"
+    sections: []

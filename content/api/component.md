@@ -2,13 +2,6 @@
 title: "Cape.Component - API Reference"
 ---
 
-* [Cape.Component#formData](#form-data)
-* [Cape.Component#mount](#mount)
-* [Cape.Component#refresh](#refresh)
-* [Cape.Component#renderPartial](#render-partial)
-* [Cape.Component#unmount](#unmount)
-* [Cape.Component#val](#val)
-
 <a class="anchor" id="form-data"></a>
 ### Cape.Component#formData()
 

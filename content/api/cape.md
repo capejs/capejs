@@ -3,13 +3,6 @@ title: "Cape - API Reference"
 type: "api"
 ---
 
-* [Cape.createComponentClass()](#create-component-class)
-* [Cape.createDataStoreClass()](#create-data-store-class)
-* [Cape.deepExtend()](#deep-extend)
-* [Cape.extend()](#extend)
-* [Cape.merge()](#merge)
-* [Cape.session](#session)
-
 <a class="anchor" id="create-component-class"></a>
 ### Cape.createComponentClass(methods)
 

@@ -1,6 +1,6 @@
 ---
 title: "API Reference"
-type: "api-index"
+type: "api"
 ---
 
 ### The `Cape` object
