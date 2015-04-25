@@ -81,22 +81,22 @@ api_pages:
     sections:
       -
         id: create-component-class
-        title: "Cape.createComponentClass()"
+        title: ".createComponentClass()"
       -
         id: create-data-store-class
-        title: "Cape.createDataStoreClass()"
+        title: ".createDataStoreClass()"
       -
         id: deep-extend
-        title: "Cape.deepExtend()"
+        title: ".deepExtend()"
       -
         id: extend
-        title: "Cape.extend()"
+        title: ".extend()"
       -
         id: merge
-        title: "Cape.merge()"
+        title: ".merge()"
       -
         id: session
-        title: "Cape.session"
+        title: ".session"
   -
     name: "api/component"
     title: "Cape.Component"
@@ -104,22 +104,22 @@ api_pages:
     sections:
       -
         id: form-data
-        title: "Cape.Component#formData"
+        title: "#formData"
       -
         id: mount
-        title: "Cape.Component#mount"
+        title: "#mount"
       -
         id: refresh
-        title: "Cape.Component#refresh"
+        title: "#refresh"
       -
         id: render-partial
-        title: "Cape.Component#renderPartial"
+        title: "#renderPartial"
       -
         id: unmount
-        title: "Cape.Component#unmount"
+        title: "#unmount"
       -
         id: val
-        title: "Cape.Component#val"
+        title: "#val"
   -
     name: "api/markup_builder"
     title: "Cape.MarkupBuilder"
