@@ -126,7 +126,10 @@ api_pages:
     showSections: true
     sections:
       -
-        id: normal-elements
+        id: general-notes
+        title: "General notes"
+      -
+        id: a-abbr-address-etc
         title: "#a, #abbr, #address, etc."
       -
         id: attr
