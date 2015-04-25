@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<title>Cape.MarkupBuilder - API Reference - Cape.JS: Documentation</title>
-	<meta name="generator" content="Bootply" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link href="http://oiax.github.io/capejs/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	
-	<link href="http://oiax.github.io/capejs/css/styles.css" rel="stylesheet">
-	<link href="http://oiax.github.io/capejs/highlight/styles/default.css" rel="stylesheet">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Cape.MarkupBuilder - API Reference - Cape.JS: Documentation</title>
+  <meta name="generator" content="Bootply" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="http://oiax.github.io/capejs/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+  <link href="http://oiax.github.io/capejs/css/styles.css" rel="stylesheet">
+  <link href="http://oiax.github.io/capejs/highlight/styles/default.css" rel="stylesheet">
   <link rel="shortcut icon" href="http://oiax.github.io/capejs/images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
   <link rel="icon" href="http://oiax.github.io/capejs/images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
 </head>
@@ -51,7 +51,7 @@
         <div class="well well-lg">
           <div class="row">
             <div class="col-sm-12">
-    	      	<img src="http://oiax.github.io/capejs/images/capejs.svg" class="img-responsive">
+              <img src="http://oiax.github.io/capejs/images/capejs.svg" class="img-responsive">
             </div>
           </div>
         </div>
@@ -61,20 +61,20 @@
 </div>
 
 <div class="container">
-	<div class="row row-offcanvas row-offcanvas-left">
-		
+  <div class="row row-offcanvas row-offcanvas-left">
+    
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
       <ul class="nav" id="sidebar">
-			
-			
-				<li>
-					<a href="http://oiax.github.io/capejs/api">API Reference</a>
+      
+      
+        <li>
+          <a href="http://oiax.github.io/capejs/api">API Reference</a>
           
           
         </li>
-			
-				<li>
-					<a href="http://oiax.github.io/capejs/api/cape">Cape</a>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs/api/cape">Cape</a>
           
           
           <ul>
@@ -94,9 +94,9 @@
           </ul>
           
         </li>
-			
-				<li>
-					<a href="http://oiax.github.io/capejs/api/component">Cape.Component</a>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs/api/component">Cape.Component</a>
           
           
           <ul>
@@ -116,14 +116,16 @@
           </ul>
           
         </li>
-			
-				<li>
-					<a href="http://oiax.github.io/capejs/api/markup_builder">Cape.MarkupBuilder</a>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs/api/markup_builder">Cape.MarkupBuilder</a>
           
           
           <ul>
           
-            <li><a href="http://oiax.github.io/capejs/api/markup_builder#normal-elements">#a, #abbr, #address, etc.</a></li>
+            <li><a href="http://oiax.github.io/capejs/api/markup_builder#general-notes">General notes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/api/markup_builder#a-abbr-address-etc">#a, #abbr, #address, etc.</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#attr">#attr</a></li>
           
@@ -168,9 +170,9 @@
           </ul>
           
         </li>
-			
-				<li>
-					<a href="http://oiax.github.io/capejs/api/data_store">Cape.DataStore</a>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs/api/data_store">Cape.DataStore</a>
           
           
           <ul>
@@ -186,9 +188,9 @@
           </ul>
           
         </li>
-			
-				<li>
-					<a href="http://oiax.github.io/capejs/api/router">Cape.Router</a>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs/api/router">Cape.Router</a>
           
           
           <ul>
@@ -220,9 +222,9 @@
           </ul>
           
         </li>
-			
-				<li>
-					<a href="http://oiax.github.io/capejs/api/routing_mapper">Cape.RoutingMapper</a>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs/api/routing_mapper">Cape.RoutingMapper</a>
           
           
           <ul>
@@ -248,11 +250,11 @@
           </ul>
           
         </li>
-			
+      
       </ul>
     </div>
 
-		
+    
     <div class="col-xs-12 col-sm-9">
       <article>
         <header>
@@ -262,9 +264,116 @@
         </header>
         <div>
           
+
+<p><a class="anchor" id="general-notes"></a></p>
+
+<h3 id="general-notes:2f94c9da1a5f7ca2887265bec799d255">General notes</h3>
+
+<p>All instance methods of <code>Cape.MarkupBuilder</code> are <em>chainable.</em>
+Each method returns the instance itself.</p>
+
+<h4 id="example:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code>var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.text('Hello,').sp().text(this.guest.name).text('!');
+      // The above single statement is equivalent to the following four statement;
+      //   m.text('Hello,');
+      //   m.sp();
+      //   m.text(this.guest.name);
+      //   m.text('!');
+    })
+  }
+})
+</code></pre>
+
+<p><a class="anchor" id="a-abbr-address-etc"></a></p>
+
+<h3 id="a-abbr-address-etc:2f94c9da1a5f7ca2887265bec799d255">#a, #abbr, #address, etc.</h3>
+
+<p>Following HTML 5 elments can be added to the virtual dom tree by the markup builder&rsquo;s
+method has equivalent name:</p>
+
+<blockquote>
+<p>a, abbr, address, article, aside, audio, b, bdi, bdo,
+  blockquote, body, button, canvas, caption, cite, code,
+  colgroup, datalist, dd, del, details, dfn, dialog, div,
+  dl, dt, em, embed, fieldset, figcaption, figure, footer,
+  h1, h2, h3, h4, h5, h6, head, header, html,
+  i, iframe, ins, kbd, label, legend, li, main, map, mark,
+  menu, menuitem, meter, nav, noscript, object, ol, optgroup,
+  option, output, p, pre, progress, q, rp, rt, ruby, s,
+  samp, script, section, select, small, span, strong, style,
+  sub, summary, sup, table, tbody, td, textarea, tfoot,
+  th, thead, time, title, tr, u, ul, var, video</p>
+</blockquote>
+
+<p>When the first argument is a string, it becomes the content of element.
+When the last argument is a function, it creates a dependent virtual dom tree.</p>
+
+<p><strong>Note:</strong> The <code>&lt;form&gt;</code> element is treated specially in Cape.JS. See <a href="#form">#form</a> and <a href="#form">#formFor</a>.</p>
+
+<h4 id="example-1:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code>var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.article(function(m) {
+      m.p('The agenda for the meeting is as follows:');
+      m.ul(function(m) {
+        m.li('Performance of business');
+        m.li('Challenges on business');
+        m.li('Our next goal');
+      })
+    })
+  }
+});
+</code></pre>
+
+<p>You can pass a hash object as <em>options</em> to these methods to set the attribute values
+of the element. The position of this argument should be after the string argument
+and before the function argument.</p>
+
+<h4 id="example-2:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.article({ id: 'agenda' }, function(m) {
+      m.p('The agenda for the meeting is as follows:', { className: 'statement' });
+      m.ul({ style: 'color: blue' }, function(m) {
+        m.li('Performance of business');
+        m.li('Challenges on business');
+        m.li('Our next goal');
+      })
+    })
+  }
+});
+</code></pre>
+
+<p>Following HTML 5 <em>void</em> elments also can be created in the same way:</p>
+
+<blockquote>
+<p>area, base, br, col, embed, hr, img, input, keygen,
+link, menuitem, meta, param, source, track, wbr</p>
+</blockquote>
+
+<p>They don&rsquo;t take a string argument nor a function argument, though.
+They only accept a hash object to set the attribute values of the element.</p>
+
+<h4 id="example-3:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">var LogoMark = Cape.createComponentClass({
+  render: function(m) {
+    m.div({ id: 'agenda' }, function(m) {
+      m.img({ src: '../images/logo.png', alt: 'Logo Image' })
+    })
+  }
+});
+</code></pre>
+
         </div>
       </article>
-		</div>
+    </div>
   </div>
 </div>
 

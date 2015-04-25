@@ -274,7 +274,114 @@ if (Cape.currentUser.privileged) {
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://oiax.github.io/capejs/api/markup_builder/</guid>
-      <description></description>
+      <description>
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;general-notes&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;general-notes:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;General notes&lt;/h3&gt;
+
+&lt;p&gt;All instance methods of &lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; are &lt;em&gt;chainable.&lt;/em&gt;
+Each method returns the instance itself.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.text(&#39;Hello,&#39;).sp().text(this.guest.name).text(&#39;!&#39;);
+      // The above single statement is equivalent to the following four statement;
+      //   m.text(&#39;Hello,&#39;);
+      //   m.sp();
+      //   m.text(this.guest.name);
+      //   m.text(&#39;!&#39;);
+    })
+  }
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;a-abbr-address-etc&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;a-abbr-address-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#a, #abbr, #address, etc.&lt;/h3&gt;
+
+&lt;p&gt;Following HTML 5 elments can be added to the virtual dom tree by the markup builder&amp;rsquo;s
+method has equivalent name:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;a, abbr, address, article, aside, audio, b, bdi, bdo,
+  blockquote, body, button, canvas, caption, cite, code,
+  colgroup, datalist, dd, del, details, dfn, dialog, div,
+  dl, dt, em, embed, fieldset, figcaption, figure, footer,
+  h1, h2, h3, h4, h5, h6, head, header, html,
+  i, iframe, ins, kbd, label, legend, li, main, map, mark,
+  menu, menuitem, meter, nav, noscript, object, ol, optgroup,
+  option, output, p, pre, progress, q, rp, rt, ruby, s,
+  samp, script, section, select, small, span, strong, style,
+  sub, summary, sup, table, tbody, td, textarea, tfoot,
+  th, thead, time, title, tr, u, ul, var, video&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When the first argument is a string, it becomes the content of element.
+When the last argument is a function, it creates a dependent virtual dom tree.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; element is treated specially in Cape.JS. See &lt;a href=&#34;#form&#34;&gt;#form&lt;/a&gt; and &lt;a href=&#34;#form&#34;&gt;#formFor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.article(function(m) {
+      m.p(&#39;The agenda for the meeting is as follows:&#39;);
+      m.ul(function(m) {
+        m.li(&#39;Performance of business&#39;);
+        m.li(&#39;Challenges on business&#39;);
+        m.li(&#39;Our next goal&#39;);
+      })
+    })
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can pass a hash object as &lt;em&gt;options&lt;/em&gt; to these methods to set the attribute values
+of the element. The position of this argument should be after the string argument
+and before the function argument.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.article({ id: &#39;agenda&#39; }, function(m) {
+      m.p(&#39;The agenda for the meeting is as follows:&#39;, { className: &#39;statement&#39; });
+      m.ul({ style: &#39;color: blue&#39; }, function(m) {
+        m.li(&#39;Performance of business&#39;);
+        m.li(&#39;Challenges on business&#39;);
+        m.li(&#39;Our next goal&#39;);
+      })
+    })
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Following HTML 5 &lt;em&gt;void&lt;/em&gt; elments also can be created in the same way:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;area, base, br, col, embed, hr, img, input, keygen,
+link, menuitem, meta, param, source, track, wbr&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;They don&amp;rsquo;t take a string argument nor a function argument, though.
+They only accept a hash object to set the attribute values of the element.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-3:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var LogoMark = Cape.createComponentClass({
+  render: function(m) {
+    m.div({ id: &#39;agenda&#39; }, function(m) {
+      m.img({ src: &#39;../images/logo.png&#39;, alt: &#39;Logo Image&#39; })
+    })
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
