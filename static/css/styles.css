@@ -1,5 +1,6 @@
 body {
   padding-top: 51px;
+  margin-bottom: 60px;
 }
 .text-center {
   padding-top: 20px;
@@ -76,9 +77,9 @@ a.anchor {
   visibility: hidden;
 }
 
-footer {
+div.footer {
   background-color: #f8f8f8;
-  border-color: #e7e7e7 1px solid;
+  border-top: #e7e7e7 1px solid;
   color: #777;
   padding: 5px 30px;
 }
