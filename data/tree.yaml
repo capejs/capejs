@@ -123,16 +123,158 @@ api_pages:
   -
     name: "api/markup_builder"
     title: "Cape.MarkupBuilder"
-    sections: []
+    showSections: true
+    sections:
+      -
+        id: normal-elements
+        title: "#a, #abbr, #address, etc."
+      -
+        id: attr
+        title: "#attr"
+      -
+        id: check-box
+        title: "#checkBox"
+      -
+        id: class
+        title: "#class"
+      -
+        id: data
+        title: "#data"
+      -
+        id: elem
+        title: "#elem"
+      -
+        id: fa
+        title: "#fa"
+      -
+        id: field-for
+        title: "#fieldsFor"
+      -
+        id: form-for
+        title: "#formFor"
+      -
+        id: hidden-field
+        title: "#hiddenField"
+      -
+        id: label-for
+        title: "#labelFor"
+      -
+        id: label-of
+        title: "#labelOf"
+      -
+        id: markup
+        title: "#markup"
+      -
+        id: password-field
+        title: "#passwordField"
+      -
+        id: sp
+        title: "#sp"
+      -
+        id: space
+        title: "#space"
+      -
+        id: text
+        title: "#text"
+      -
+        id: text-field
+        title: "#textField"
+      -
+        id: textarea-field
+        title: "#textareaField"
+      -
+        id: radio-button
+        title: "#radioButton"
+      -
+        id: select-box
+        title: "#selectBox"
   -
     name: "api/data_store"
     title: "Cape.DataStore"
-    sections: []
+    showSections: true
+    sections:
+      -
+        id: attach
+        title: "#attach"
+      -
+        id: detach
+        title: "#detach"
+      -
+        id: propagate
+        title: "#propagate"
+      -
+        id: refresh
+        title: "#refresh"
   -
     name: "api/router"
     title: "Cape.Router"
-    sections: []
+    showSections: true
+    sections:
+      -
+        id: attach
+        title: "#attach"
+      -
+        id: before-navigation
+        title: "#beforeNavigation"
+      -
+        id: detach
+        title: "#detach"
+      -
+        id: draw
+        title: "#draw"
+      -
+        id: error-handler
+        title: "#errorHandler"
+      -
+        id: navigate
+        title: "#navigate"
+      -
+        id: notify
+        title: "#notify"
+      -
+        id: mount
+        title: "#mount"
+      -
+        id: route-for
+        title: "#routeFor"
+      -
+        id: show
+        title: "#show"
+      -
+        id: start
+        title: "#start"
+      -
+        id: stop
+        title: "#stop"
   -
     name: "api/routing_mapper"
     title: "Cape.RoutingMapper"
-    sections: []
+    showSections: true
+    sections:
+      -
+        id: collection
+        title: "#collection"
+      -
+        id: namespace
+        title: "#namespace"
+      -
+        id: new
+        title: "#new"
+      -
+        id: many
+        title: "#many"
+      -
+        id: member
+        title: "#member"
+      -
+        id: one
+        title: "#one"
+      -
+        id: page
+        title: "#page"
+      -
+        id: root
+        title: "#root"
+      -
+        id: view
+        title: "#view"
