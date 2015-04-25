@@ -375,7 +375,7 @@ They only accept a hash object to set the attribute values of the element.</p>
 
 <h3 id="attr:2f94c9da1a5f7ca2887265bec799d255">#attr</h3>
 
-<p>This method sets the value of attributes for the element which will be added nextly.</p>
+<p>Set the value of attributes for the element which will be added nextly.</p>
 
 <h4 id="example-4:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
@@ -414,6 +414,112 @@ They only accept a hash object to set the attribute values of the element.</p>
   // The last statement creates a &lt;img&gt; tag without alt attribute.
 }
 </code></pre>
+
+<p><a class="anchor" id="check-box"></a></p>
+
+<h3 id="checkbox:2f94c9da1a5f7ca2887265bec799d255">#checkBox</h3>
+
+<p>Create a <code>&lt;input type=&quot;checkbox&quot;&gt;</code> tag tailored for form manipulation.
+Its first argument is the base of <code>name</code> attribute value.
+If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
+then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
+See <a href="#formFor">#formFor</a> for details.</p>
+
+<h4 id="example-7:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.formFor('user', function(m) {
+    m.labelOf('privileged', function(m) {
+      m.checkBox('privileged');
+    });
+  });
+  // The above code generates the following HTML tags:
+  //   &lt;form name=&quot;user&quot;&gt;
+  //     &lt;label for=&quot;user-field-privileged&quot;&gt;
+  //       &lt;input type=&quot;checkbox&quot; name=&quot;user.privileged&quot; id=&quot;user-field-privileged&quot;&gt;
+  //     &lt;/label&gt;
+  //   &lt;/form&gt;
+}
+</code></pre>
+
+<p><a class="anchor" id="class"></a></p>
+
+<h3 id="class:2f94c9da1a5f7ca2887265bec799d255">#class</h3>
+
+<p>Set the <code>class</code> attribute value for the element which will be added nextly.</p>
+
+<h4 id="example-8:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.class('container');
+  m.div(function(m) {
+    m.p('Hello, World!')
+  });
+  // The above code generates the following HTML tags
+  //   &lt;div class=&quot;container&quot;&gt;
+  //     &lt;p&gt;Hello, World!&lt;/p&gt;
+  //   &lt;/div&gt;
+}
+</code></pre>
+
+<p>As <a href="#attr">#attr</a> the <code>#class</code> method add classes cumulatively and
+affects only the nextly added element.</p>
+
+<p><a class="anchor" id="data"></a></p>
+
+<h3 id="data:2f94c9da1a5f7ca2887265bec799d255">#data</h3>
+
+<p>Set the <code>data-*</code> attribute value for the element which will be added nextly.</p>
+
+<h4 id="example-9:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.data('id', '7');
+  m.div(function(m) {
+    m.p('Hello, World!')
+  });
+  // The above code generates the following HTML tags
+  //   &lt;div data-id=&quot;7&quot;&gt;
+  //     &lt;p&gt;Hello, World!&lt;/p&gt;
+  //   &lt;/div&gt;
+}
+</code></pre>
+
+<p>As <a href="#attr">#attr</a> the <code>#data</code> method sets attribute values cumulatively and
+affects only the nextly added element.</p>
+
+<p><a class="anchor" id="elem"></a></p>
+
+<h3 id="elem:2f94c9da1a5f7ca2887265bec799d255">#elem</h3>
+
+<p>Create an HTML element. The first argument is a CSS selector, such as <code>&quot;div.container&quot;</code>,
+and the optional second argument is a hash object to set attribute values.</p>
+
+<h4 id="example-10:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.elem('div#wrapper', function(m) {
+    m.elem('div.container', function(m) {
+      m.elem('div.row', function(m) {
+        m.elem('div.col-md-6', 'Hello');
+        m.elem('div.col-md-6', 'World');
+      })
+    })
+  })
+  // The above code generates the following HTML tags
+  //   &lt;div id=&quot;wrapper&quot;&gt;
+  //     &lt;div class=&quot;container&quot;&gt;
+  //       &lt;div class=&quot;row&quot;&gt;
+  //         &lt;div class=&quot;col-md-6&quot;&gt;Hello&lt;/div&gt;
+  //         &lt;div class=&quot;col-md-6&quot;&gt;World&lt;/div&gt;
+  //       &lt;/div&gt;
+  //     &lt;/div&gt;
+  //   &lt;/div&gt;
+}
+</code></pre>
+
+<p>As <a href="#attr">#attr</a> the <code>#data</code> method sets attribute values cumulatively and
+affects only the nextly added element.</p>
 
         </div>
       </article>

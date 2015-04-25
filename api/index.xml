@@ -386,7 +386,7 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;h3 id=&#34;attr:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#attr&lt;/h3&gt;
 
-&lt;p&gt;This method sets the value of attributes for the element which will be added nextly.&lt;/p&gt;
+&lt;p&gt;Set the value of attributes for the element which will be added nextly.&lt;/p&gt;
 
 &lt;h4 id=&#34;example-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
@@ -425,6 +425,112 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
   // The last statement creates a &amp;lt;img&amp;gt; tag without alt attribute.
 }
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;check-box&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;checkbox:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#checkBox&lt;/h3&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;input type=&amp;quot;checkbox&amp;quot;&amp;gt;&lt;/code&gt; tag tailored for form manipulation.
+Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
+If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
+then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.
+See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.labelOf(&#39;privileged&#39;, function(m) {
+      m.checkBox(&#39;privileged&#39;);
+    });
+  });
+  // The above code generates the following HTML tags:
+  //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
+  //     &amp;lt;label for=&amp;quot;user-field-privileged&amp;quot;&amp;gt;
+  //       &amp;lt;input type=&amp;quot;checkbox&amp;quot; name=&amp;quot;user.privileged&amp;quot; id=&amp;quot;user-field-privileged&amp;quot;&amp;gt;
+  //     &amp;lt;/label&amp;gt;
+  //   &amp;lt;/form&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;class:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#class&lt;/h3&gt;
+
+&lt;p&gt;Set the &lt;code&gt;class&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.class(&#39;container&#39;);
+  m.div(function(m) {
+    m.p(&#39;Hello, World!&#39;)
+  });
+  // The above code generates the following HTML tags
+  //   &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+  //     &amp;lt;p&amp;gt;Hello, World!&amp;lt;/p&amp;gt;
+  //   &amp;lt;/div&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt; the &lt;code&gt;#class&lt;/code&gt; method add classes cumulatively and
+affects only the nextly added element.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;data:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#data&lt;/h3&gt;
+
+&lt;p&gt;Set the &lt;code&gt;data-*&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.data(&#39;id&#39;, &#39;7&#39;);
+  m.div(function(m) {
+    m.p(&#39;Hello, World!&#39;)
+  });
+  // The above code generates the following HTML tags
+  //   &amp;lt;div data-id=&amp;quot;7&amp;quot;&amp;gt;
+  //     &amp;lt;p&amp;gt;Hello, World!&amp;lt;/p&amp;gt;
+  //   &amp;lt;/div&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt; the &lt;code&gt;#data&lt;/code&gt; method sets attribute values cumulatively and
+affects only the nextly added element.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;elem&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;elem:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#elem&lt;/h3&gt;
+
+&lt;p&gt;Create an HTML element. The first argument is a CSS selector, such as &lt;code&gt;&amp;quot;div.container&amp;quot;&lt;/code&gt;,
+and the optional second argument is a hash object to set attribute values.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.elem(&#39;div#wrapper&#39;, function(m) {
+    m.elem(&#39;div.container&#39;, function(m) {
+      m.elem(&#39;div.row&#39;, function(m) {
+        m.elem(&#39;div.col-md-6&#39;, &#39;Hello&#39;);
+        m.elem(&#39;div.col-md-6&#39;, &#39;World&#39;);
+      })
+    })
+  })
+  // The above code generates the following HTML tags
+  //   &amp;lt;div id=&amp;quot;wrapper&amp;quot;&amp;gt;
+  //     &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+  //       &amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt;
+  //         &amp;lt;div class=&amp;quot;col-md-6&amp;quot;&amp;gt;Hello&amp;lt;/div&amp;gt;
+  //         &amp;lt;div class=&amp;quot;col-md-6&amp;quot;&amp;gt;World&amp;lt;/div&amp;gt;
+  //       &amp;lt;/div&amp;gt;
+  //     &amp;lt;/div&amp;gt;
+  //   &amp;lt;/div&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt; the &lt;code&gt;#data&lt;/code&gt; method sets attribute values cumulatively and
+affects only the nextly added element.&lt;/p&gt;
 </description>
     </item>
     
