@@ -5,19 +5,19 @@
 <div class="page-container">
 {{ partial "header.html" . }}
 <div class="container">
-	<div class="row row-offcanvas row-offcanvas-left">
-		{{ partial "sidebar.html" . }}
+  <div class="row row-offcanvas row-offcanvas-left">
+    {{ partial "sidebar.html" . }}
     <div class="col-xs-12 col-sm-9">
-		{{ range $index, $page := .Site.Pages.ByWeight }}
-			{{ if eq .Type "index" }}
-			<article>
-			  <div>
-			    {{ .Content }}
-			  </div>
-			</article>
-		  {{ end }}
-		{{ end }}
-		</div>
+    {{ range $index, $page := .Site.Pages.ByWeight }}
+      {{ if eq .Type "index" }}
+      <article>
+        <div>
+          {{ .Content }}
+        </div>
+      </article>
+      {{ end }}
+    {{ end }}
+    </div>
   </div>
 </div>
 </div>
