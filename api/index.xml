@@ -70,15 +70,6 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
       <guid>http://oiax.github.io/capejs/api/cape/</guid>
       <description>
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#create-component-class&#34;&gt;Cape.createComponentClass()&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#create-data-store-class&#34;&gt;Cape.createDataStoreClass()&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#deep-extend&#34;&gt;Cape.deepExtend()&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#extend&#34;&gt;Cape.extend()&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#merge&#34;&gt;Cape.merge()&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#session&#34;&gt;Cape.session&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;cape-createcomponentclass-methods:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createComponentClass(methods)&lt;/h3&gt;
@@ -237,15 +228,6 @@ if (Cape.currentUser.privileged) {
       
       <guid>http://oiax.github.io/capejs/api/component/</guid>
       <description>
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#form-data&#34;&gt;Cape.Component#formData&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#mount&#34;&gt;Cape.Component#mount&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#refresh&#34;&gt;Cape.Component#refresh&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#render-partial&#34;&gt;Cape.Component#renderPartial&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#unmount&#34;&gt;Cape.Component#unmount&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#val&#34;&gt;Cape.Component#val&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
