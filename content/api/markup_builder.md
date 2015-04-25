@@ -229,8 +229,10 @@ affects only the nextly added element.
 <a class="anchor" id="elem"></a>
 ### #elem
 
-Create an HTML element. The first argument is a CSS selector, such as `"div.container"`,
-and the optional second argument is a hash object to set attribute values.
+Create an HTML element. The first argument is a CSS selector, such as `"div.container"`.
+
+When the second argument is a string, it becomes the content of element.
+When the last argument is a function, it creates a dependent virtual dom tree.
 
 #### Example
 
@@ -249,6 +251,34 @@ render: function(m) {
   //     <div class="container">
   //       <div class="row">
   //         <div class="col-md-6">Hello</div>
+  //         <div class="col-md-6">World</div>
+  //       </div>
+  //     </div>
+  //   </div>
+}
+```
+
+You can pass a hash object as *options* to these methods to set the attribute values
+of the element. The position of this argument should be after the string argument
+and before the function argument.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.elem('div#wrapper', { style: 'margin-top: 10px' }, function(m) {
+    m.elem('div.container', function(m) {
+      m.elem('div.row', function(m) {
+        m.elem('div.col-md-6', 'Hello', { style: 'font-weight: bold' });
+        m.elem('div.col-md-6', 'World');
+      })
+    })
+  })
+  // The above code generates the following HTML tags
+  //   <div id="wrapper" style="margin-top: 10px">
+  //     <div class="container">
+  //       <div class="row">
+  //         <div class="col-md-6" style="font-weight: bold">Hello</div>
   //         <div class="col-md-6">World</div>
   //       </div>
   //     </div>
