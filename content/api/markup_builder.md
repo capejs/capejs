@@ -46,7 +46,7 @@ method has equivalent name:
 When the first argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.
 
-**Note:** The `<form>` element is treated specially in Cape.JS. See [#form](#form) and [#formFor](#form).
+**Note:** The `<form>` element is treated specially in Cape.JS. See [#form](#form).
 
 #### Example
 
