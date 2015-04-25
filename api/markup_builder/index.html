@@ -492,8 +492,10 @@ affects only the nextly added element.</p>
 
 <h3 id="elem:2f94c9da1a5f7ca2887265bec799d255">#elem</h3>
 
-<p>Create an HTML element. The first argument is a CSS selector, such as <code>&quot;div.container&quot;</code>,
-and the optional second argument is a hash object to set attribute values.</p>
+<p>Create an HTML element. The first argument is a CSS selector, such as <code>&quot;div.container&quot;</code>.</p>
+
+<p>When the second argument is a string, it becomes the content of element.
+When the last argument is a function, it creates a dependent virtual dom tree.</p>
 
 <h4 id="example-10:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
@@ -511,6 +513,33 @@ and the optional second argument is a hash object to set attribute values.</p>
   //     &lt;div class=&quot;container&quot;&gt;
   //       &lt;div class=&quot;row&quot;&gt;
   //         &lt;div class=&quot;col-md-6&quot;&gt;Hello&lt;/div&gt;
+  //         &lt;div class=&quot;col-md-6&quot;&gt;World&lt;/div&gt;
+  //       &lt;/div&gt;
+  //     &lt;/div&gt;
+  //   &lt;/div&gt;
+}
+</code></pre>
+
+<p>You can pass a hash object as <em>options</em> to these methods to set the attribute values
+of the element. The position of this argument should be after the string argument
+and before the function argument.</p>
+
+<h4 id="example-11:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.elem('div#wrapper', { style: 'margin-top: 10px' }, function(m) {
+    m.elem('div.container', function(m) {
+      m.elem('div.row', function(m) {
+        m.elem('div.col-md-6', 'Hello', { style: 'font-weight: bold' });
+        m.elem('div.col-md-6', 'World');
+      })
+    })
+  })
+  // The above code generates the following HTML tags
+  //   &lt;div id=&quot;wrapper&quot; style=&quot;margin-top: 10px&quot;&gt;
+  //     &lt;div class=&quot;container&quot;&gt;
+  //       &lt;div class=&quot;row&quot;&gt;
+  //         &lt;div class=&quot;col-md-6&quot; style=&quot;font-weight: bold&quot;&gt;Hello&lt;/div&gt;
   //         &lt;div class=&quot;col-md-6&quot;&gt;World&lt;/div&gt;
   //       &lt;/div&gt;
   //     &lt;/div&gt;
