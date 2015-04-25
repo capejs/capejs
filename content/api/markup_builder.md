@@ -110,7 +110,7 @@ var LogoMark = Cape.createComponentClass({
 <a class="anchor" id="attr"></a>
 ### #attr
 
-This method sets the value of attributes for the element which will be added nextly.
+Set the value of attributes for the element which will be added nextly.
 
 #### Example
 
@@ -152,3 +152,109 @@ render: function(m) {
   // The last statement creates a <img> tag without alt attribute.
 }
 ```
+
+<a class="anchor" id="check-box"></a>
+### #checkBox
+
+Create a `<input type="checkbox">` tag tailored for form manipulation.
+Its first argument is the base of `name` attribute value.
+If the surrounding `<form>` tag has a name `"user"`,
+then the `name` attribute becomes `"user.name"`.
+See [#formFor](#formFor) for details.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('user', function(m) {
+    m.labelOf('privileged', function(m) {
+      m.checkBox('privileged');
+    });
+  });
+  // The above code generates the following HTML tags:
+  //   <form name="user">
+  //     <label for="user-field-privileged">
+  //       <input type="checkbox" name="user.privileged" id="user-field-privileged">
+  //     </label>
+  //   </form>
+}
+```
+
+<a class="anchor" id="class"></a>
+### #class
+
+Set the `class` attribute value for the element which will be added nextly.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.class('container');
+  m.div(function(m) {
+    m.p('Hello, World!')
+  });
+  // The above code generates the following HTML tags
+  //   <div class="container">
+  //     <p>Hello, World!</p>
+  //   </div>
+}
+```
+
+As [#attr](#attr) the `#class` method add classes cumulatively and
+affects only the nextly added element.
+
+<a class="anchor" id="data"></a>
+### #data
+
+Set the `data-*` attribute value for the element which will be added nextly.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.data('id', '7');
+  m.div(function(m) {
+    m.p('Hello, World!')
+  });
+  // The above code generates the following HTML tags
+  //   <div data-id="7">
+  //     <p>Hello, World!</p>
+  //   </div>
+}
+```
+
+As [#attr](#attr) the `#data` method sets attribute values cumulatively and
+affects only the nextly added element.
+
+<a class="anchor" id="elem"></a>
+### #elem
+
+Create an HTML element. The first argument is a CSS selector, such as `"div.container"`,
+and the optional second argument is a hash object to set attribute values.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.elem('div#wrapper', function(m) {
+    m.elem('div.container', function(m) {
+      m.elem('div.row', function(m) {
+        m.elem('div.col-md-6', 'Hello');
+        m.elem('div.col-md-6', 'World');
+      })
+    })
+  })
+  // The above code generates the following HTML tags
+  //   <div id="wrapper">
+  //     <div class="container">
+  //       <div class="row">
+  //         <div class="col-md-6">Hello</div>
+  //         <div class="col-md-6">World</div>
+  //       </div>
+  //     </div>
+  //   </div>
+}
+```
+
+As [#attr](#attr) the `#data` method sets attribute values cumulatively and
+affects only the nextly added element.
