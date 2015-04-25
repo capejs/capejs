@@ -285,3 +285,24 @@ render: function(m) {
   //   </div>
 }
 ```
+
+<a class="anchor" id="fa"></a>
+### #fa
+
+Add a [font awesome](http://fortawesome.github.io/Font-Awesome/) icon
+(actually, it is just an empty `<i>` tag) to the virtual dom tree.
+Its first argument is the icon's name, such as `"download"`, `"gear"`, etc.
+You can pass a hash object as the optional second argument to set the
+attribute values of `<i>` tag.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.a({ href: './download.html' }, function(m) {
+    m.fa('download').text(' Download');
+  })
+  // The above code generates the following HTML tags
+  //   <a href="./download.html"><i class="fa fa-download"></i> Download</a>
+}
+```
