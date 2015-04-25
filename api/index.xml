@@ -557,6 +557,27 @@ and before the function argument.&lt;/p&gt;
   //   &amp;lt;/div&amp;gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;fa&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;fa:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fa&lt;/h3&gt;
+
+&lt;p&gt;Add a &lt;a href=&#34;http://fortawesome.github.io/Font-Awesome/&#34;&gt;font awesome&lt;/a&gt; icon
+(actually, it is just an empty &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag) to the virtual dom tree.
+Its first argument is the icon&amp;rsquo;s name, such as &lt;code&gt;&amp;quot;download&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;gear&amp;quot;&lt;/code&gt;, etc.
+You can pass a hash object as the optional second argument to set the
+attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.a({ href: &#39;./download.html&#39; }, function(m) {
+    m.fa(&#39;download&#39;).text(&#39; Download&#39;);
+  })
+  // The above code generates the following HTML tags
+  //   &amp;lt;a href=&amp;quot;./download.html&amp;quot;&amp;gt;&amp;lt;i class=&amp;quot;fa fa-download&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; Download&amp;lt;/a&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
