@@ -118,9 +118,6 @@ div.footer {
     margin-right: 5px;
   }
   #masthead {
-    min-height: 0px;
-  }
-  #masthead .well {
     display: none;
   }
   #sidebar {
