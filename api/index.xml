@@ -401,9 +401,12 @@ Each method returns the instance itself.&lt;/p&gt;
 &lt;h4 id=&#34;usage:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;a(&lt;em&gt;content, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;abbr(&lt;em&gt;content, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;address(&lt;em&gt;content, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;a(&lt;em&gt;content [, options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;a(&lt;em&gt;[options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;abbr(&lt;em&gt;content [, options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;abbr(&lt;em&gt;[options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;address(&lt;em&gt;content [, options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;address(&lt;em&gt;[options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;etc.&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -473,8 +476,8 @@ and before the function argument.&lt;/p&gt;
 &lt;h4 id=&#34;usage-1:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;area(*[options])&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;base(*[options])&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;area(&lt;em&gt;[options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;base(&lt;em&gt;[options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;br(&lt;em&gt;[options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;etc.&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -656,7 +659,7 @@ affects only the nextly added element.&lt;/p&gt;
 &lt;h4 id=&#34;usage-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;elem(&lt;em&gt;content, [options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;elem(&lt;em&gt;content [, options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;elem(&lt;em&gt;[options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -725,7 +728,7 @@ and before the function argument.&lt;/p&gt;
 &lt;h4 id=&#34;usage-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;fa(&lt;em&gt;name, [options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fa(&lt;em&gt;name [, options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Add a &lt;a href=&#34;http://fortawesome.github.io/Font-Awesome/&#34;&gt;font awesome&lt;/a&gt; icon
