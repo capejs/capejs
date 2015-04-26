@@ -44,12 +44,12 @@ var HelloMessage = Cape.createComponentClass({
 
 #### Usage
 
-* **a(*content [, options]*)**
-* **a(*[options,] function*)**
-* **abbr(*content [, options]*)**
-* **abbr(*[options,] function*)**
-* **address(*content [, options]*)**
-* **address(*[options,] function*)**
+* **a(content [, options])**
+* **a([options,] function)**
+* **abbr(content [, options])**
+* **abbr([options,] function)**
+* **address(content [, options])**
+* **address([options,] function)**
 * *etc.*
 
 Following HTML 5 elements can be added to the virtual dom tree by the markup builder's
@@ -117,9 +117,9 @@ var HelloMessage = Cape.createComponentClass({
 
 #### Usage
 
-* **area(*[options]*)**
-* **base(*[options]*)**
-* **br(*[options]*)**
+* **area([options])**
+* **base([options])**
+* **br([options])**
 * *etc.*
 
 Following HTML 5 *void* elements can be added to the virtual dom tree by the markup builder's
@@ -148,7 +148,7 @@ var LogoMark = Cape.createComponentClass({
 
 #### Usage
 
-* **attr(*name, value*)**
+* **attr(name, value)**
 
 Set the value of attributes for the element which will be added nextly.
 
@@ -204,7 +204,7 @@ render: function(m) {
 
 #### Usage
 
-* **checkBox(*name, [options,] function*)**
+* **checkBox(name, [options,] function)**
 
 Create a `<input type="checkbox">` tag tailored for form manipulation.
 Its first argument is the base of `name` attribute value.
@@ -236,7 +236,7 @@ render: function(m) {
 
 #### Usage
 
-* **class(*name, value*)**
+* **class(name, value)**
 
 Set the `class` attribute value for the element which will be added nextly.
 
@@ -263,7 +263,7 @@ affects only the nextly added element.
 
 #### Usage
 
-* **data(*name, value*)**
+* **data(name, value)**
 
 Set the `data-*` attribute value for the element which will be added nextly.
 
@@ -290,8 +290,8 @@ affects only the nextly added element.
 
 #### Usage
 
-* **elem(*content [, options]*)**
-* **elem(*[options,] function*)**
+* **elem(content [, options])**
+* **elem([options,] function)**
 
 Create an HTML element. The first argument is a CSS selector, such as `"div.container"`.
 
@@ -358,7 +358,7 @@ render: function(m) {
 
 #### Usage
 
-* **fa(*name [, options]*)**
+* **fa(name [, options])**
 
 Add a [font awesome](http://fortawesome.github.io/Font-Awesome/) icon
 (actually, it is just an empty `<i>` tag) to the virtual dom tree.
@@ -384,7 +384,7 @@ render: function(m) {
 
 #### Usage
 
-* **fieldsFor(*name, [options,] function*)**
+* **fieldsFor(name, [options,] function)**
 
 Create a scope for nested forms. In this scope, a prefix is
 addded to the name of each form control.
@@ -443,7 +443,7 @@ render: function(m) {
 
 #### Usage
 
-* **form(*[options,] function*)**
+* **form([options,] function)**
 
 Create a `<form>` tag.
 
@@ -473,7 +473,7 @@ render: function(m) {
 
 #### Usage
 
-* **formFor(*name, [options,] function*)**
+* **formFor(name, [options,] function)**
 
 Create a `<form tag>` whose name attribute is *name*.
 
@@ -492,6 +492,111 @@ render: function(m) {
   //     <input type="text" name="user.name">
   //     <input type="hidden" name="user.privileged" value="0">
   //     <input type="checkbox" name="user.privileged" value="1">
+  //   </form>
+}
+```
+
+<a class="anchor" id="hidden-field"></a>
+### #hiddenField
+
+#### Usage
+
+* **hiddenField(name, [options,] function)**
+
+Create a `<input type="hidden">` tag tailored for form manipulation.
+Its first argument is the base of `name` attribute value.
+If the surrounding `<form>` tag has a name `"user"`,
+then the `name` attribute becomes `"user.name"`.
+See [#form](#form) for details.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('user', function(m) {
+    m.hiddenField('privileged');
+  });
+  // The above code generates the following HTML tags:
+  //   <form name="user">
+  //     <input type="hidden" name="user.privileged">
+  //   </form>
+}
+```
+
+<a class="anchor" id="label-for"></a>
+### #label-for
+
+#### Usage
+
+* **labelFor(id, label)**
+
+Create a `<label>` tag whose `for` attribute is `id`. See also [#labelOf](#label-of).
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('user', function(m) {
+    m.labelFor('user-name', 'User name');
+    m.input({ type: 'text', name: 'name', id: 'user-name' });
+  });
+  // The above code generates the following HTML tags:
+  //   <form name="user">
+  //     <label for="user-name">User name</label>
+  //     <input type="type" name="name" id="user-name">
+  //   </form>
+}
+```
+
+<a class="anchor" id="label-of"></a>
+### #label-of
+
+#### Usage
+
+* **labelOf(name, label)**
+
+Create a `<label>` tag whose `name` attribute is `name`.
+Its `for` attribute is set appropriately.
+
+See also [#labelFor](#label-for).
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('user', function(m) {
+    m.div(function(m) {
+      m.labelOf('name', 'User name').sp().textField('name');
+    });
+    m.fieldsFor('home_address', function(m) {
+      m.div(function(m) {
+        m.labelOf('city', 'City').sp().textField('city');
+      });
+      m.div(function(m) {
+        m.labelOf('street', 'Street').sp().textField('street');
+      });
+    });
+  });
+  // The above code generates the following HTML tags:
+  //   <form name="user">
+  //     <div>
+  //       <label for="user-field-name">User name</label>
+  //       <input type="type" name="user.name"
+  //         id="user-field-name">
+  //     </div>
+  //     <div>
+  //       <label for="user-field-home-address-city">
+  //         City</label>
+  //       <input type="type" name="user.home-address/city"
+  //         id="user-field-home-address-city">
+  //     </div>
+  //     <div>
+  //       <label for="user-field-home-address-street">
+  //         Street</label>
+  //       <input type="type"
+  //         name="user.home-address/street"
+  //         id="user-field-home-address-street">
+  //     </div>
   //   </form>
 }
 ```
