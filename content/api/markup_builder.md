@@ -15,7 +15,8 @@ var HelloMessage = Cape.createComponentClass({
   render: function(m) {
     m.p(function(m) {
       m.text('Hello,').sp().text(this.guest.name).text('!');
-      // The above single statement is equivalent to the following four statement;
+      // The above single statement is equivalent to the
+      // following four statement;
       //   m.text('Hello,');
       //   m.sp();
       //   m.text(this.guest.name);
@@ -76,7 +77,8 @@ and before the function argument.
 var HelloMessage = Cape.createComponentClass({
   render: function(m) {
     m.article({ id: 'agenda' }, function(m) {
-      m.p('The agenda for the meeting is as follows:', { className: 'statement' });
+      m.p('The agenda for the meeting is as follows:',
+        { className: 'statement' });
       m.ul({ style: 'color: blue' }, function(m) {
         m.li('Performance of business');
         m.li('Challenges on business');
@@ -118,8 +120,10 @@ Set the value of attributes for the element which will be added nextly.
 render: function(m) {
   m.attr('alt', 'Logo Image');
   m.img({ src: '../images/logo.png' });
-  // These two statements are equivalent to the following single statement:
-  //   m.img({ src: '../images/logo.png', alt: 'Logo Image' })
+  // These two statements are equivalent to the following
+  // single statement:
+  //   m.img({ src: '../images/logo.png',
+  //           alt: 'Logo Image' })
 }
 ```
 
@@ -134,9 +138,12 @@ render: function(m) {
   m.attr('height', '120');
   m.attr('title', 'Cape.JS');
   m.img({ src: '../images/logo.png' });
-  // These two statements are equivalent to the following single statement:
-  //   m.img({ src: '../images/logo.png', alt: 'Logo Image',
-  //           width: '180', height: '120', title: 'Cape.JS' })
+  // These two statements are equivalent to the following
+  // single statement:
+  //   m.img({ src: '../images/logo.png',
+  //           alt: 'Logo Image',
+  //           width: '180', height: '120',
+  //           title: 'Cape.JS' })
 }
 ```
 
@@ -149,7 +156,8 @@ render: function(m) {
   m.attr('alt', 'Logo Image');
   m.img({ src: '../images/logo.png' });
   m.img({ src: '../images/download.png' });
-  // The last statement creates a <img> tag without alt attribute.
+  // The last statement creates a <img> tag without
+  // alt attribute.
 }
 ```
 
@@ -174,7 +182,8 @@ render: function(m) {
   // The above code generates the following HTML tags:
   //   <form name="user">
   //     <label for="user-field-privileged">
-  //       <input type="checkbox" name="user.privileged" id="user-field-privileged">
+  //       <input type="checkbox" name="user.privileged"
+  //         id="user-field-privileged">
   //     </label>
   //   </form>
 }
@@ -278,7 +287,8 @@ render: function(m) {
   //   <div id="wrapper" style="margin-top: 10px">
   //     <div class="container">
   //       <div class="row">
-  //         <div class="col-md-6" style="font-weight: bold">Hello</div>
+  //         <div class="col-md-6"
+  //           style="font-weight: bold">Hello</div>
   //         <div class="col-md-6">World</div>
   //       </div>
   //     </div>
@@ -303,6 +313,7 @@ render: function(m) {
     m.fa('download').text(' Download');
   })
   // The above code generates the following HTML tags
-  //   <a href="./download.html"><i class="fa fa-download"></i> Download</a>
+  //   <a href="./download.html">
+  //     <i class="fa fa-download"></i> Download</a>
 }
 ```
