@@ -275,10 +275,12 @@ and before the function argument.
 
 ```javascript
 render: function(m) {
-  m.elem('div#wrapper', { style: 'margin-top: 10px' }, function(m) {
+  m.elem('div#wrapper', { style: 'margin-top: 10px' },
+    function(m) {
     m.elem('div.container', function(m) {
       m.elem('div.row', function(m) {
-        m.elem('div.col-md-6', 'Hello', { style: 'font-weight: bold' });
+        m.elem('div.col-md-6', 'Hello',
+          { style: 'font-weight: bold' });
         m.elem('div.col-md-6', 'World');
       })
     })

@@ -70,6 +70,13 @@ div.footer {
   #navbar-sm {
     display: block;
   }
+  /*
+   * Hide sidebar toggle button temporarily.
+   * The links within the sidebar don't work (they are not clickable).
+   */
+  #navbar-sm button.navbar-toggle {
+    display: none;
+  }
   .navbar-toggle {
     display: inline;
   }
