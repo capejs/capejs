@@ -6,9 +6,11 @@ body {
   padding-top: 20px;
 }
 .col-xs-12 {
-  background-color: #fff;
+  background-color: #transparent;
 }
-
+#navbar-xs {
+  display: none;
+}
 #masthead {
   background-color: #eeeeff;
   min-height:160px;
@@ -17,11 +19,11 @@ body {
 #masthead h1 {
   font-size: 30px;
   line-height: 1;
-  padding-top:20px;
+  padding-top: 20px;
 }
 
 #masthead .well {
-  margin-top:8%;
+  margin-top: 8%;
 }
 
 #sidebar {
@@ -37,8 +39,34 @@ body {
   border-bottom-width:1px;
 }
 
+a.anchor {
+  display: block;
+  position: relative;
+  top: -50px;
+  visibility: hidden;
+}
+
+div.footer {
+  background-color: #f8f8f8;
+  border-top: #e7e7e7 1px solid;
+  color: #777;
+  padding: 5px 30px;
+}
+#footer-xs {
+  display: none;
+}
+
 /* collapsed sidebar styles */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 992px) {
+  .navbar-toggle {
+    display: inline;
+  }
+  #masthead {
+    min-height: 0px;
+  }
+  #masthead h1 {
+    padding-top: 0px;
+  }
   .row-offcanvas {
     position: relative;
     -webkit-transition: all 0.25s ease-out;
@@ -52,13 +80,17 @@ body {
 
   .row-offcanvas-left
   .sidebar-offcanvas {
-    left: -41.6%;
+    left: -100%;
   }
   .row-offcanvas-right.active {
     right: 41.6%;
   }
   .row-offcanvas-left.active {
     left: 41.6%;
+  }
+  .row-offcanvas-left.active
+  .sidebar-offcanvas {
+    left: -41.6%;
   }
   .sidebar-offcanvas {
     position: absolute;
@@ -70,16 +102,46 @@ body {
   }
 }
 
-a.anchor {
-  display: block;
-  position: relative;
-  top: -50px;
-  visibility: hidden;
-}
-
-div.footer {
-  background-color: #f8f8f8;
-  border-top: #e7e7e7 1px solid;
-  color: #777;
-  padding: 5px 30px;
+@media screen and (max-width: 767px) {
+  body {
+    margin-bottom: 0px;
+  }
+  #navbar-sm {
+    display: none;
+  }
+  #navbar-xs {
+    display: block;
+  }
+  .navbar a.link {
+    display: inline-block;
+    margin-top: 15px;
+    margin-right: 5px;
+  }
+  #masthead {
+    min-height: 0px;
+  }
+  #masthead .well {
+    display: none;
+  }
+  #sidebar {
+    height: auto;
+    padding-right: 0;
+    padding-top: 20px;
+  }
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    display: none;
+  }
+  .row-offcanvas-left.active .sidebar-offcanvas {
+    display: block;
+  }
+  #sidebar {
+    padding-top:0;
+  }
+  #footer-sm {
+    display: none;
+  }
+  #footer-xs {
+    display: block;
+  }
 }
