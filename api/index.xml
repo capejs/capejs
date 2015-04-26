@@ -212,7 +212,8 @@ Cape.extend(object1, object2);
 
 &lt;h4 id=&#34;example-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt;Cape.currentUser = { id: 1, name: &#39;john&#39;, privileged: true }
+&lt;pre&gt;&lt;code&gt;Cape.currentUser =
+  { id: 1, name: &#39;john&#39;, privileged: true }
 
 if (Cape.currentUser.privileged) {
   // Do something.
@@ -289,7 +290,8 @@ Each method returns the instance itself.&lt;/p&gt;
   render: function(m) {
     m.p(function(m) {
       m.text(&#39;Hello,&#39;).sp().text(this.guest.name).text(&#39;!&#39;);
-      // The above single statement is equivalent to the following four statement;
+      // The above single statement is equivalent to the
+      // following four statement;
       //   m.text(&#39;Hello,&#39;);
       //   m.sp();
       //   m.text(this.guest.name);
@@ -350,7 +352,8 @@ and before the function argument.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMessage = Cape.createComponentClass({
   render: function(m) {
     m.article({ id: &#39;agenda&#39; }, function(m) {
-      m.p(&#39;The agenda for the meeting is as follows:&#39;, { className: &#39;statement&#39; });
+      m.p(&#39;The agenda for the meeting is as follows:&#39;,
+        { className: &#39;statement&#39; });
       m.ul({ style: &#39;color: blue&#39; }, function(m) {
         m.li(&#39;Performance of business&#39;);
         m.li(&#39;Challenges on business&#39;);
@@ -393,8 +396,10 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.attr(&#39;alt&#39;, &#39;Logo Image&#39;);
   m.img({ src: &#39;../images/logo.png&#39; });
-  // These two statements are equivalent to the following single statement:
-  //   m.img({ src: &#39;../images/logo.png&#39;, alt: &#39;Logo Image&#39; })
+  // These two statements are equivalent to the following
+  // single statement:
+  //   m.img({ src: &#39;../images/logo.png&#39;,
+  //           alt: &#39;Logo Image&#39; })
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -408,9 +413,12 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
   m.attr(&#39;height&#39;, &#39;120&#39;);
   m.attr(&#39;title&#39;, &#39;Cape.JS&#39;);
   m.img({ src: &#39;../images/logo.png&#39; });
-  // These two statements are equivalent to the following single statement:
-  //   m.img({ src: &#39;../images/logo.png&#39;, alt: &#39;Logo Image&#39;,
-  //           width: &#39;180&#39;, height: &#39;120&#39;, title: &#39;Cape.JS&#39; })
+  // These two statements are equivalent to the following
+  // single statement:
+  //   m.img({ src: &#39;../images/logo.png&#39;,
+  //           alt: &#39;Logo Image&#39;,
+  //           width: &#39;180&#39;, height: &#39;120&#39;,
+  //           title: &#39;Cape.JS&#39; })
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -422,7 +430,8 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
   m.attr(&#39;alt&#39;, &#39;Logo Image&#39;);
   m.img({ src: &#39;../images/logo.png&#39; });
   m.img({ src: &#39;../images/download.png&#39; });
-  // The last statement creates a &amp;lt;img&amp;gt; tag without alt attribute.
+  // The last statement creates a &amp;lt;img&amp;gt; tag without
+  // alt attribute.
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -447,7 +456,8 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
   // The above code generates the following HTML tags:
   //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
   //     &amp;lt;label for=&amp;quot;user-field-privileged&amp;quot;&amp;gt;
-  //       &amp;lt;input type=&amp;quot;checkbox&amp;quot; name=&amp;quot;user.privileged&amp;quot; id=&amp;quot;user-field-privileged&amp;quot;&amp;gt;
+  //       &amp;lt;input type=&amp;quot;checkbox&amp;quot; name=&amp;quot;user.privileged&amp;quot;
+  //         id=&amp;quot;user-field-privileged&amp;quot;&amp;gt;
   //     &amp;lt;/label&amp;gt;
   //   &amp;lt;/form&amp;gt;
 }
@@ -550,7 +560,8 @@ and before the function argument.&lt;/p&gt;
   //   &amp;lt;div id=&amp;quot;wrapper&amp;quot; style=&amp;quot;margin-top: 10px&amp;quot;&amp;gt;
   //     &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
   //       &amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt;
-  //         &amp;lt;div class=&amp;quot;col-md-6&amp;quot; style=&amp;quot;font-weight: bold&amp;quot;&amp;gt;Hello&amp;lt;/div&amp;gt;
+  //         &amp;lt;div class=&amp;quot;col-md-6&amp;quot;
+  //           style=&amp;quot;font-weight: bold&amp;quot;&amp;gt;Hello&amp;lt;/div&amp;gt;
   //         &amp;lt;div class=&amp;quot;col-md-6&amp;quot;&amp;gt;World&amp;lt;/div&amp;gt;
   //       &amp;lt;/div&amp;gt;
   //     &amp;lt;/div&amp;gt;
@@ -575,7 +586,8 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
     m.fa(&#39;download&#39;).text(&#39; Download&#39;);
   })
   // The above code generates the following HTML tags
-  //   &amp;lt;a href=&amp;quot;./download.html&amp;quot;&amp;gt;&amp;lt;i class=&amp;quot;fa fa-download&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; Download&amp;lt;/a&amp;gt;
+  //   &amp;lt;a href=&amp;quot;./download.html&amp;quot;&amp;gt;
+  //     &amp;lt;i class=&amp;quot;fa fa-download&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; Download&amp;lt;/a&amp;gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 </description>

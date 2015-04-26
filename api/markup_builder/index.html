@@ -273,7 +273,8 @@ Each method returns the instance itself.</p>
   render: function(m) {
     m.p(function(m) {
       m.text('Hello,').sp().text(this.guest.name).text('!');
-      // The above single statement is equivalent to the following four statement;
+      // The above single statement is equivalent to the
+      // following four statement;
       //   m.text('Hello,');
       //   m.sp();
       //   m.text(this.guest.name);
@@ -334,7 +335,8 @@ and before the function argument.</p>
 <pre><code class="language-javascript">var HelloMessage = Cape.createComponentClass({
   render: function(m) {
     m.article({ id: 'agenda' }, function(m) {
-      m.p('The agenda for the meeting is as follows:', { className: 'statement' });
+      m.p('The agenda for the meeting is as follows:',
+        { className: 'statement' });
       m.ul({ style: 'color: blue' }, function(m) {
         m.li('Performance of business');
         m.li('Challenges on business');
@@ -377,8 +379,10 @@ They only accept a hash object to set the attribute values of the element.</p>
 <pre><code class="language-javascript">render: function(m) {
   m.attr('alt', 'Logo Image');
   m.img({ src: '../images/logo.png' });
-  // These two statements are equivalent to the following single statement:
-  //   m.img({ src: '../images/logo.png', alt: 'Logo Image' })
+  // These two statements are equivalent to the following
+  // single statement:
+  //   m.img({ src: '../images/logo.png',
+  //           alt: 'Logo Image' })
 }
 </code></pre>
 
@@ -392,9 +396,12 @@ They only accept a hash object to set the attribute values of the element.</p>
   m.attr('height', '120');
   m.attr('title', 'Cape.JS');
   m.img({ src: '../images/logo.png' });
-  // These two statements are equivalent to the following single statement:
-  //   m.img({ src: '../images/logo.png', alt: 'Logo Image',
-  //           width: '180', height: '120', title: 'Cape.JS' })
+  // These two statements are equivalent to the following
+  // single statement:
+  //   m.img({ src: '../images/logo.png',
+  //           alt: 'Logo Image',
+  //           width: '180', height: '120',
+  //           title: 'Cape.JS' })
 }
 </code></pre>
 
@@ -406,7 +413,8 @@ They only accept a hash object to set the attribute values of the element.</p>
   m.attr('alt', 'Logo Image');
   m.img({ src: '../images/logo.png' });
   m.img({ src: '../images/download.png' });
-  // The last statement creates a &lt;img&gt; tag without alt attribute.
+  // The last statement creates a &lt;img&gt; tag without
+  // alt attribute.
 }
 </code></pre>
 
@@ -431,7 +439,8 @@ See <a href="#formFor">#formFor</a> for details.</p>
   // The above code generates the following HTML tags:
   //   &lt;form name=&quot;user&quot;&gt;
   //     &lt;label for=&quot;user-field-privileged&quot;&gt;
-  //       &lt;input type=&quot;checkbox&quot; name=&quot;user.privileged&quot; id=&quot;user-field-privileged&quot;&gt;
+  //       &lt;input type=&quot;checkbox&quot; name=&quot;user.privileged&quot;
+  //         id=&quot;user-field-privileged&quot;&gt;
   //     &lt;/label&gt;
   //   &lt;/form&gt;
 }
@@ -534,7 +543,8 @@ and before the function argument.</p>
   //   &lt;div id=&quot;wrapper&quot; style=&quot;margin-top: 10px&quot;&gt;
   //     &lt;div class=&quot;container&quot;&gt;
   //       &lt;div class=&quot;row&quot;&gt;
-  //         &lt;div class=&quot;col-md-6&quot; style=&quot;font-weight: bold&quot;&gt;Hello&lt;/div&gt;
+  //         &lt;div class=&quot;col-md-6&quot;
+  //           style=&quot;font-weight: bold&quot;&gt;Hello&lt;/div&gt;
   //         &lt;div class=&quot;col-md-6&quot;&gt;World&lt;/div&gt;
   //       &lt;/div&gt;
   //     &lt;/div&gt;
@@ -559,7 +569,8 @@ attribute values of <code>&lt;i&gt;</code> tag.</p>
     m.fa('download').text(' Download');
   })
   // The above code generates the following HTML tags
-  //   &lt;a href=&quot;./download.html&quot;&gt;&lt;i class=&quot;fa fa-download&quot;&gt;&lt;/i&gt; Download&lt;/a&gt;
+  //   &lt;a href=&quot;./download.html&quot;&gt;
+  //     &lt;i class=&quot;fa fa-download&quot;&gt;&lt;/i&gt; Download&lt;/a&gt;
 }
 </code></pre>
 
