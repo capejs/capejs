@@ -56,7 +56,7 @@
 <div class="container">
   <div class="row row-offcanvas row-offcanvas-left">
     
-        <div class="col-xs-12 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
       <ul class="nav" id="sidebar">
       
       
@@ -119,6 +119,8 @@
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#general-notes">General notes</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#a-abbr-address-etc">#a, #abbr, #address, etc.</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/api/markup_builder#area-base-br-etc">#area, #base, #br, etc.</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#attr">#attr</a></li>
           
@@ -260,6 +262,19 @@
         <div>
           
 
+<p><a href="#general-notes">General notes</a> -
+<a href="#a-abbr-address-etc">#a, #abbr, #address</a> -
+<a href="#area-base-br-etc">#area, #base, #br</a> -
+<a href="#attr">#attr</a> -
+<a href="#check-box">#checkBox</a> -
+<a href="#class">#class</a> -
+<a href="#data">#data</a> -
+<a href="#elem">#elem</a> -
+<a href="#fa">#fa</a> -
+<a href="#fields-for">#fieldsFor</a> -
+<a href="#form">#form</a> -
+<a href="#form-for">#formFor</a></p>
+
 <p><a class="anchor" id="general-notes"></a></p>
 
 <h3 id="general-notes:2f94c9da1a5f7ca2887265bec799d255">General notes</h3>
@@ -288,8 +303,17 @@ Each method returns the instance itself.</p>
 
 <h3 id="a-abbr-address-etc:2f94c9da1a5f7ca2887265bec799d255">#a, #abbr, #address, etc.</h3>
 
-<p>Following HTML 5 elments can be added to the virtual dom tree by the markup builder&rsquo;s
-method has equivalent name:</p>
+<h4 id="usage:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>a(<em>content, [options,] function</em>)</strong></li>
+<li><strong>abbr(<em>content, [options,] function</em>)</strong></li>
+<li><strong>address(<em>content, [options,] function</em>)</strong></li>
+<li><em>etc.</em></li>
+</ul>
+
+<p>Following HTML 5 elements can be added to the virtual dom tree by the markup builder&rsquo;s
+method with the same name:</p>
 
 <blockquote>
 <p>a, abbr, address, article, aside, audio, b, bdi, bdo,
@@ -347,7 +371,21 @@ and before the function argument.</p>
 });
 </code></pre>
 
-<p>Following HTML 5 <em>void</em> elments also can be created in the same way:</p>
+<p><a class="anchor" id="area-base-br-etc"></a></p>
+
+<h3 id="area-base-br-etc:2f94c9da1a5f7ca2887265bec799d255">#area, #base, #br, etc.</h3>
+
+<h4 id="usage-1:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>area(*[options])</strong></li>
+<li><strong>base(*[options])</strong></li>
+<li><strong>br(<em>[options]</em>)</strong></li>
+<li><em>etc.</em></li>
+</ul>
+
+<p>Following HTML 5 <em>void</em> elements can be added to the virtual dom tree by the markup builder&rsquo;s
+method with the same name:</p>
 
 <blockquote>
 <p>area, base, br, col, embed, hr, img, input, keygen,
@@ -371,6 +409,12 @@ They only accept a hash object to set the attribute values of the element.</p>
 <p><a class="anchor" id="attr"></a></p>
 
 <h3 id="attr:2f94c9da1a5f7ca2887265bec799d255">#attr</h3>
+
+<h4 id="usage-2:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>attr(<em>name, value</em>)</strong></li>
+</ul>
 
 <p>Set the value of attributes for the element which will be added nextly.</p>
 
@@ -422,6 +466,12 @@ They only accept a hash object to set the attribute values of the element.</p>
 
 <h3 id="checkbox:2f94c9da1a5f7ca2887265bec799d255">#checkBox</h3>
 
+<h4 id="usage-3:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>checkBox(<em>name, [options,] function</em>)</strong></li>
+</ul>
+
 <p>Create a <code>&lt;input type=&quot;checkbox&quot;&gt;</code> tag tailored for form manipulation.
 Its first argument is the base of <code>name</code> attribute value.
 If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
@@ -450,6 +500,12 @@ See <a href="#formFor">#formFor</a> for details.</p>
 
 <h3 id="class:2f94c9da1a5f7ca2887265bec799d255">#class</h3>
 
+<h4 id="usage-4:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>class(<em>name, value</em>)</strong></li>
+</ul>
+
 <p>Set the <code>class</code> attribute value for the element which will be added nextly.</p>
 
 <h4 id="example-8:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
@@ -473,6 +529,12 @@ affects only the nextly added element.</p>
 
 <h3 id="data:2f94c9da1a5f7ca2887265bec799d255">#data</h3>
 
+<h4 id="usage-5:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>data(<em>name, value</em>)</strong></li>
+</ul>
+
 <p>Set the <code>data-*</code> attribute value for the element which will be added nextly.</p>
 
 <h4 id="example-9:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
@@ -495,6 +557,13 @@ affects only the nextly added element.</p>
 <p><a class="anchor" id="elem"></a></p>
 
 <h3 id="elem:2f94c9da1a5f7ca2887265bec799d255">#elem</h3>
+
+<h4 id="usage-6:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>elem(<em>content, [options]</em>)</strong></li>
+<li><strong>elem(<em>[options,] function</em>)</strong></li>
+</ul>
 
 <p>Create an HTML element. The first argument is a CSS selector, such as <code>&quot;div.container&quot;</code>.</p>
 
@@ -558,6 +627,12 @@ and before the function argument.</p>
 
 <h3 id="fa:2f94c9da1a5f7ca2887265bec799d255">#fa</h3>
 
+<h4 id="usage-7:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>fa(<em>name, [options]</em>)</strong></li>
+</ul>
+
 <p>Add a <a href="http://fortawesome.github.io/Font-Awesome/">font awesome</a> icon
 (actually, it is just an empty <code>&lt;i&gt;</code> tag) to the virtual dom tree.
 Its first argument is the icon&rsquo;s name, such as <code>&quot;download&quot;</code>, <code>&quot;gear&quot;</code>, etc.
@@ -573,6 +648,126 @@ attribute values of <code>&lt;i&gt;</code> tag.</p>
   // The above code generates the following HTML tags
   //   &lt;a href=&quot;./download.html&quot;&gt;
   //     &lt;i class=&quot;fa fa-download&quot;&gt;&lt;/i&gt; Download&lt;/a&gt;
+}
+</code></pre>
+
+<p><a class="anchor" id="fields-for"></a></p>
+
+<h3 id="fieldsfor:2f94c9da1a5f7ca2887265bec799d255">#fieldsFor</h3>
+
+<h4 id="usage-8:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>fieldsFor(<em>name, [options,] function</em>)</strong></li>
+</ul>
+
+<p>Create a scope for nested forms. In this scope, a prefix is
+addded to the name of each form control.</p>
+
+<h4 id="example-13:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.form(function(m) {
+    m.textField('name');
+    m.fieldsFor('home_address', function(m) {
+      m.textField('city');
+      m.textField('street');
+    })
+  })
+  // The above code generates the following HTML tags
+  //   &lt;form&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;home_address/city&quot;&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;home_address/street&quot;&gt;
+  //   &lt;/form&gt;
+}
+</code></pre>
+
+<p>If you pass the <code>index</code> option to this method, the prefix is numbered:</p>
+
+<h4 id="example-14:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.form(function(m) {
+    m.textField('name');
+    m.fieldsFor('address', { index: 1 } function(m) {
+      m.textField('city');
+      m.textField('street');
+    })
+    m.fieldsFor('address', { index: 2 } function(m) {
+      m.textField('city');
+      m.textField('street');
+    })
+  })
+  // The above code generates the following HTML tags
+  //   &lt;form&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;address/1/city&quot;&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;address/1/street&quot;&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;address/2/city&quot;&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;address/2/street&quot;&gt;
+  //   &lt;/form&gt;
+}
+</code></pre>
+
+<p><a class="anchor" id="form"></a></p>
+
+<h3 id="form:2f94c9da1a5f7ca2887265bec799d255">#form</h3>
+
+<h4 id="usage-9:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>form(<em>[options,] function</em>)</strong></li>
+</ul>
+
+<p>Create a <code>&lt;form&gt;</code> tag.</p>
+
+<p>When the <code>name</code> option is given, it adds the form name prefix to the name
+of subordinate form controls.</p>
+
+<h4 id="example-15:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.form({ name: 'user' }, function(m) {
+    m.textField('name');
+    m.checkBox('privileged');
+  })
+  // The above code generates the following HTML tags
+  //   &lt;form name=&quot;user&quot;&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;user.name&quot;&gt;
+  //     &lt;input type=&quot;hidden&quot; name=&quot;user.privileged&quot; value=&quot;0&quot;&gt;
+  //     &lt;input type=&quot;checkbox&quot; name=&quot;user.privileged&quot; value=&quot;1&quot;&gt;
+  //   &lt;/form&gt;
+}
+</code></pre>
+
+<p><a class="anchor" id="form-for"></a></p>
+
+<h3 id="formfor:2f94c9da1a5f7ca2887265bec799d255">#formFor</h3>
+
+<h4 id="usage-10:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>formFor(<em>name, [options,] function</em>)</strong></li>
+</ul>
+
+<p>Create a <code>&lt;form tag&gt;</code> whose name attribute is <em>name</em>.</p>
+
+<p>This is a wrapper method for <a href="#form">#form</a>.</p>
+
+<h4 id="example-16:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.formFor('user', function(m) {
+    m.textField('name');
+    m.checkBox('privileged');
+  })
+  // The above code generates the following HTML tags
+  //   &lt;form name=&quot;user&quot;&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;user.name&quot;&gt;
+  //     &lt;input type=&quot;hidden&quot; name=&quot;user.privileged&quot; value=&quot;0&quot;&gt;
+  //     &lt;input type=&quot;checkbox&quot; name=&quot;user.privileged&quot; value=&quot;1&quot;&gt;
+  //   &lt;/form&gt;
 }
 </code></pre>
 

@@ -56,7 +56,7 @@
 <div class="container">
   <div class="row row-offcanvas row-offcanvas-left">
     
-        <div class="col-xs-12 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
       <ul class="nav" id="sidebar">
       
       
@@ -119,6 +119,8 @@
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#general-notes">General notes</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#a-abbr-address-etc">#a, #abbr, #address, etc.</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/api/markup_builder#area-base-br-etc">#area, #base, #br, etc.</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#attr">#attr</a></li>
           
@@ -260,9 +262,22 @@
         <div>
           
 
+<p><a href="#create-component-class">Cape.createComponentClass</a> -
+<a href="#create-data-store-class">Cape.createDataStoreClass</a> -
+<a href="#deep-extend">Cape.deepExtend</a> -
+<a href="#extend">Cape.extend</a> -
+<a href="#merge">Cape.merge</a> -
+<a href="#session">Cape.session</a></p>
+
 <p><a class="anchor" id="create-component-class"></a></p>
 
-<h3 id="cape-createcomponentclass-methods:e3a066ada4b0c96341f2c8dadc13df88">Cape.createComponentClass(methods)</h3>
+<h3 id="cape-createcomponentclass:e3a066ada4b0c96341f2c8dadc13df88">Cape.createComponentClass</h3>
+
+<h4 id="usage:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
+
+<ul>
+<li><strong>Cape.createComponentClass(<em>methods</em>)</strong></li>
+</ul>
 
 <p>Create a class extending <code>Cape.Component</code> with <code>methods</code>.</p>
 
@@ -286,7 +301,13 @@
 
 <p><a class="anchor" id="create-component-class"></a></p>
 
-<h3 id="cape-createdatastoreclass-methods:e3a066ada4b0c96341f2c8dadc13df88">Cape.createDataStoreClass(methods)</h3>
+<h3 id="cape-createdatastoreclass:e3a066ada4b0c96341f2c8dadc13df88">Cape.createDataStoreClass</h3>
+
+<h4 id="usage-1:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
+
+<ul>
+<li><strong>Cape.createDataStoreClass(<em>methods</em>)</strong></li>
+</ul>
 
 <p>Create a class extending <code>Cape.DataStore</code> with <code>methods</code>.</p>
 
@@ -332,13 +353,55 @@
 }
 </code></pre>
 
+<p><a class="anchor" id="deep-extend"></a></p>
+
+<h3 id="cape-deepextend:e3a066ada4b0c96341f2c8dadc13df88">Cape.deepExtend</h3>
+
+<h4 id="usage-2:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
+
+<ul>
+<li><strong>Cape.extend(<em>target[, object1, object2, &hellip; objectN]</em>)</strong></li>
+</ul>
+
+<p>Merge the properties of two or more objects together into the first object recursively.</p>
+
+<h4 id="example-2:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
+
+<pre><code>var object1 = {
+  apple: 0,
+  banana: { weight: 52, price: 100 },
+  cherry: 97
+};
+var object2 = {
+  banana: { price: 200 },
+  durian: 100
+};
+
+Cape.extend(object1, object2);
+
+// [Result]
+//
+// object1 =&gt; {
+//   apple: 0,
+//   banana: { weight: 52, price: 200 },
+//   cherry: 97,
+//   durian: 100
+// }
+</code></pre>
+
 <p><a class="anchor" id="extend"></a></p>
 
-<h3 id="cape-extend-target-object1-object2-objectn:e3a066ada4b0c96341f2c8dadc13df88">Cape.extend(target[, object1, object2, &hellip; objectN])</h3>
+<h3 id="cape-extend:e3a066ada4b0c96341f2c8dadc13df88">Cape.extend</h3>
+
+<h4 id="usage-3:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
+
+<ul>
+<li><strong>Cape.extend(<em>target[, object1, object2, &hellip; objectN]</em>)</strong></li>
+</ul>
 
 <p>Merge the properties of two or more objects together into the first object.</p>
 
-<h4 id="example-2:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
+<h4 id="example-3:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
 
 <pre><code>var object1 = {
   apple: 0,
@@ -364,12 +427,18 @@ Cape.extend(object1, object2);
 
 <p><a class="anchor" id="merge"></a></p>
 
-<h3 id="cape-merge-target-object1-object2-objectn:e3a066ada4b0c96341f2c8dadc13df88">Cape.merge(target[, object1, object2, &hellip; objectN])</h3>
+<h3 id="cape-merge:e3a066ada4b0c96341f2c8dadc13df88">Cape.merge</h3>
+
+<h4 id="usage-4:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
+
+<ul>
+<li><strong>Cape.merge(target<em>[, object1, object2, &hellip; objectN]</em>)</strong></li>
+</ul>
 
 <p>Merge (but not override) the properties of two or more objects together
 into the first object</p>
 
-<h4 id="example-3:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
+<h4 id="example-4:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
 
 <pre><code>var object1 = {
   apple: 0,
@@ -396,16 +465,22 @@ Cape.extend(object1, object2);
 
 <p><a class="anchor" id="session"></a></p>
 
-<h3 id="cape-session:e3a066ada4b0c96341f2c8dadc13df88">Cape.session</h3>
+<h3 id="cape-session-property:e3a066ada4b0c96341f2c8dadc13df88">Cape.session (property)</h3>
 
-<p>This property holds an object (hash). Users may store arbitrary data to this hash.</p>
+<h4 id="usage-5:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
 
-<h4 id="example-4:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
+<ul>
+<li><strong>Cape.session<em>[key]</em> = <em>value</em></strong></li>
+</ul>
 
-<pre><code>Cape.currentUser =
+<p>This property just holds an ordinary object. Users may store arbitrary data to this object.</p>
+
+<h4 id="example-5:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
+
+<pre><code>Cape.session.currentUser =
   { id: 1, name: 'john', privileged: true }
 
-if (Cape.currentUser.privileged) {
+if (Cape.session.currentUser.privileged) {
   // Do something.
 }
 </code></pre>

@@ -16,6 +16,13 @@
       <guid>http://oiax.github.io/capejs/api/</guid>
       <description>
 
+&lt;p&gt;&lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt; -
+&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt; -
+&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt; -
+&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt; -
+&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
+&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3 id=&#34;the-cape-object:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;The &lt;code&gt;Cape&lt;/code&gt; object&lt;/h3&gt;
 
 &lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; defines a single global variable &lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt;.
@@ -70,9 +77,22 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
       <guid>http://oiax.github.io/capejs/api/cape/</guid>
       <description>
 
+&lt;p&gt;&lt;a href=&#34;#create-component-class&#34;&gt;Cape.createComponentClass&lt;/a&gt; -
+&lt;a href=&#34;#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt; -
+&lt;a href=&#34;#deep-extend&#34;&gt;Cape.deepExtend&lt;/a&gt; -
+&lt;a href=&#34;#extend&#34;&gt;Cape.extend&lt;/a&gt; -
+&lt;a href=&#34;#merge&#34;&gt;Cape.merge&lt;/a&gt; -
+&lt;a href=&#34;#session&#34;&gt;Cape.session&lt;/a&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-createcomponentclass-methods:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createComponentClass(methods)&lt;/h3&gt;
+&lt;h3 id=&#34;cape-createcomponentclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createComponentClass&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.createComponentClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Create a class extending &lt;code&gt;Cape.Component&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
 
@@ -96,7 +116,13 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-createdatastoreclass-methods:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createDataStoreClass(methods)&lt;/h3&gt;
+&lt;h3 id=&#34;cape-createdatastoreclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createDataStoreClass&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.createDataStoreClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Create a class extending &lt;code&gt;Cape.DataStore&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
 
@@ -142,13 +168,55 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;deep-extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-deepextend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.deepExtend&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Merge the properties of two or more objects together into the first object recursively.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var object1 = {
+  apple: 0,
+  banana: { weight: 52, price: 100 },
+  cherry: 97
+};
+var object2 = {
+  banana: { price: 200 },
+  durian: 100
+};
+
+Cape.extend(object1, object2);
+
+// [Result]
+//
+// object1 =&amp;gt; {
+//   apple: 0,
+//   banana: { weight: 52, price: 200 },
+//   cherry: 97,
+//   durian: 100
+// }
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-extend-target-object1-object2-objectn:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.extend(target[, object1, object2, &amp;hellip; objectN])&lt;/h3&gt;
+&lt;h3 id=&#34;cape-extend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.extend&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Merge the properties of two or more objects together into the first object.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var object1 = {
   apple: 0,
@@ -174,12 +242,18 @@ Cape.extend(object1, object2);
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;merge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-merge-target-object1-object2-objectn:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.merge(target[, object1, object2, &amp;hellip; objectN])&lt;/h3&gt;
+&lt;h3 id=&#34;cape-merge:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.merge&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.merge(target&lt;em&gt;[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Merge (but not override) the properties of two or more objects together
 into the first object&lt;/p&gt;
 
-&lt;h4 id=&#34;example-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var object1 = {
   apple: 0,
@@ -206,16 +280,22 @@ Cape.extend(object1, object2);
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-session:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.session&lt;/h3&gt;
+&lt;h3 id=&#34;cape-session-property:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.session (property)&lt;/h3&gt;
 
-&lt;p&gt;This property holds an object (hash). Users may store arbitrary data to this hash.&lt;/p&gt;
+&lt;h4 id=&#34;usage-5:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
 
-&lt;h4 id=&#34;example-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.session&lt;em&gt;[key]&lt;/em&gt; = &lt;em&gt;value&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;pre&gt;&lt;code&gt;Cape.currentUser =
+&lt;p&gt;This property just holds an ordinary object. Users may store arbitrary data to this object.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-5:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;Cape.session.currentUser =
   { id: 1, name: &#39;john&#39;, privileged: true }
 
-if (Cape.currentUser.privileged) {
+if (Cape.session.currentUser.privileged) {
   // Do something.
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -277,6 +357,19 @@ if (Cape.currentUser.privileged) {
       <guid>http://oiax.github.io/capejs/api/markup_builder/</guid>
       <description>
 
+&lt;p&gt;&lt;a href=&#34;#general-notes&#34;&gt;General notes&lt;/a&gt; -
+&lt;a href=&#34;#a-abbr-address-etc&#34;&gt;#a, #abbr, #address&lt;/a&gt; -
+&lt;a href=&#34;#area-base-br-etc&#34;&gt;#area, #base, #br&lt;/a&gt; -
+&lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt; -
+&lt;a href=&#34;#check-box&#34;&gt;#checkBox&lt;/a&gt; -
+&lt;a href=&#34;#class&#34;&gt;#class&lt;/a&gt; -
+&lt;a href=&#34;#data&#34;&gt;#data&lt;/a&gt; -
+&lt;a href=&#34;#elem&#34;&gt;#elem&lt;/a&gt; -
+&lt;a href=&#34;#fa&#34;&gt;#fa&lt;/a&gt; -
+&lt;a href=&#34;#fields-for&#34;&gt;#fieldsFor&lt;/a&gt; -
+&lt;a href=&#34;#form&#34;&gt;#form&lt;/a&gt; -
+&lt;a href=&#34;#form-for&#34;&gt;#formFor&lt;/a&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;general-notes&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;general-notes:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;General notes&lt;/h3&gt;
@@ -305,8 +398,17 @@ Each method returns the instance itself.&lt;/p&gt;
 
 &lt;h3 id=&#34;a-abbr-address-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#a, #abbr, #address, etc.&lt;/h3&gt;
 
-&lt;p&gt;Following HTML 5 elments can be added to the virtual dom tree by the markup builder&amp;rsquo;s
-method has equivalent name:&lt;/p&gt;
+&lt;h4 id=&#34;usage:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;a(&lt;em&gt;content, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;abbr(&lt;em&gt;content, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;address(&lt;em&gt;content, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;etc.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Following HTML 5 elements can be added to the virtual dom tree by the markup builder&amp;rsquo;s
+method with the same name:&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;a, abbr, address, article, aside, audio, b, bdi, bdo,
@@ -364,7 +466,21 @@ and before the function argument.&lt;/p&gt;
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Following HTML 5 &lt;em&gt;void&lt;/em&gt; elments also can be created in the same way:&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;area-base-br-etc&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;area-base-br-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#area, #base, #br, etc.&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;area(*[options])&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;base(*[options])&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;br(&lt;em&gt;[options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;etc.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Following HTML 5 &lt;em&gt;void&lt;/em&gt; elements can be added to the virtual dom tree by the markup builder&amp;rsquo;s
+method with the same name:&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;area, base, br, col, embed, hr, img, input, keygen,
@@ -388,6 +504,12 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attr&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;attr:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#attr&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;attr(&lt;em&gt;name, value&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Set the value of attributes for the element which will be added nextly.&lt;/p&gt;
 
@@ -439,6 +561,12 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;h3 id=&#34;checkbox:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#checkBox&lt;/h3&gt;
 
+&lt;h4 id=&#34;usage-3:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;checkBox(&lt;em&gt;name, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;Create a &lt;code&gt;&amp;lt;input type=&amp;quot;checkbox&amp;quot;&amp;gt;&lt;/code&gt; tag tailored for form manipulation.
 Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
@@ -467,6 +595,12 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;h3 id=&#34;class:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#class&lt;/h3&gt;
 
+&lt;h4 id=&#34;usage-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;class(&lt;em&gt;name, value&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;Set the &lt;code&gt;class&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
 &lt;h4 id=&#34;example-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
@@ -490,6 +624,12 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;h3 id=&#34;data:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#data&lt;/h3&gt;
 
+&lt;h4 id=&#34;usage-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;data(&lt;em&gt;name, value&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;Set the &lt;code&gt;data-*&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
 &lt;h4 id=&#34;example-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
@@ -512,6 +652,13 @@ affects only the nextly added element.&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;elem&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;elem:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#elem&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;elem(&lt;em&gt;content, [options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;elem(&lt;em&gt;[options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Create an HTML element. The first argument is a CSS selector, such as &lt;code&gt;&amp;quot;div.container&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
@@ -575,6 +722,12 @@ and before the function argument.&lt;/p&gt;
 
 &lt;h3 id=&#34;fa:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fa&lt;/h3&gt;
 
+&lt;h4 id=&#34;usage-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;fa(&lt;em&gt;name, [options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;Add a &lt;a href=&#34;http://fortawesome.github.io/Font-Awesome/&#34;&gt;font awesome&lt;/a&gt; icon
 (actually, it is just an empty &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag) to the virtual dom tree.
 Its first argument is the icon&amp;rsquo;s name, such as &lt;code&gt;&amp;quot;download&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;gear&amp;quot;&lt;/code&gt;, etc.
@@ -590,6 +743,126 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
   // The above code generates the following HTML tags
   //   &amp;lt;a href=&amp;quot;./download.html&amp;quot;&amp;gt;
   //     &amp;lt;i class=&amp;quot;fa fa-download&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; Download&amp;lt;/a&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;fields-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;fieldsfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fieldsFor&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;fieldsFor(&lt;em&gt;name, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a scope for nested forms. In this scope, a prefix is
+addded to the name of each form control.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.form(function(m) {
+    m.textField(&#39;name&#39;);
+    m.fieldsFor(&#39;home_address&#39;, function(m) {
+      m.textField(&#39;city&#39;);
+      m.textField(&#39;street&#39;);
+    })
+  })
+  // The above code generates the following HTML tags
+  //   &amp;lt;form&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;name&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;home_address/city&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;home_address/street&amp;quot;&amp;gt;
+  //   &amp;lt;/form&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you pass the &lt;code&gt;index&lt;/code&gt; option to this method, the prefix is numbered:&lt;/p&gt;
+
+&lt;h4 id=&#34;example-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.form(function(m) {
+    m.textField(&#39;name&#39;);
+    m.fieldsFor(&#39;address&#39;, { index: 1 } function(m) {
+      m.textField(&#39;city&#39;);
+      m.textField(&#39;street&#39;);
+    })
+    m.fieldsFor(&#39;address&#39;, { index: 2 } function(m) {
+      m.textField(&#39;city&#39;);
+      m.textField(&#39;street&#39;);
+    })
+  })
+  // The above code generates the following HTML tags
+  //   &amp;lt;form&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;name&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;address/1/city&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;address/1/street&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;address/2/city&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;address/2/street&amp;quot;&amp;gt;
+  //   &amp;lt;/form&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;form:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#form&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;form(&lt;em&gt;[options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
+
+&lt;p&gt;When the &lt;code&gt;name&lt;/code&gt; option is given, it adds the form name prefix to the name
+of subordinate form controls.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.form({ name: &#39;user&#39; }, function(m) {
+    m.textField(&#39;name&#39;);
+    m.checkBox(&#39;privileged&#39;);
+  })
+  // The above code generates the following HTML tags
+  //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;user.name&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;hidden&amp;quot; name=&amp;quot;user.privileged&amp;quot; value=&amp;quot;0&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;checkbox&amp;quot; name=&amp;quot;user.privileged&amp;quot; value=&amp;quot;1&amp;quot;&amp;gt;
+  //   &amp;lt;/form&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;formfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#formFor&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;formFor(&lt;em&gt;name, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;form tag&amp;gt;&lt;/code&gt; whose name attribute is &lt;em&gt;name&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is a wrapper method for &lt;a href=&#34;#form&#34;&gt;#form&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.textField(&#39;name&#39;);
+    m.checkBox(&#39;privileged&#39;);
+  })
+  // The above code generates the following HTML tags
+  //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;user.name&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;hidden&amp;quot; name=&amp;quot;user.privileged&amp;quot; value=&amp;quot;0&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;checkbox&amp;quot; name=&amp;quot;user.privileged&amp;quot; value=&amp;quot;1&amp;quot;&amp;gt;
+  //   &amp;lt;/form&amp;gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 </description>

@@ -43,6 +43,11 @@ body {
   border-bottom-width:1px;
 }
 
+code {
+  background-color: #eee;
+  color: black;
+}
+
 a.anchor {
   display: block;
   position: relative;
