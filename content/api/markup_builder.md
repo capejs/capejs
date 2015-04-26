@@ -518,7 +518,8 @@ render: function(m) {
   });
   // The above code generates the following HTML tags:
   //   <form name="user">
-  //     <input type="hidden" name="user.privileged">
+  //     <input type="hidden" name="user.privileged"
+  //       id="user-field-privileged">
   //   </form>
 }
 ```
@@ -543,7 +544,7 @@ render: function(m) {
   // The above code generates the following HTML tags:
   //   <form name="user">
   //     <label for="user-name">User name</label>
-  //     <input type="type" name="name" id="user-name">
+  //     <input type="text" name="name" id="user-name">
   //   </form>
 }
 ```
@@ -581,19 +582,19 @@ render: function(m) {
   //   <form name="user">
   //     <div>
   //       <label for="user-field-name">User name</label>
-  //       <input type="type" name="user.name"
+  //       <input type="text" name="user.name"
   //         id="user-field-name">
   //     </div>
   //     <div>
   //       <label for="user-field-home-address-city">
   //         City</label>
-  //       <input type="type" name="user.home-address/city"
+  //       <input type="text" name="user.home-address/city"
   //         id="user-field-home-address-city">
   //     </div>
   //     <div>
   //       <label for="user-field-home-address-street">
   //         Street</label>
-  //       <input type="type"
+  //       <input type="text"
   //         name="user.home-address/street"
   //         id="user-field-home-address-street">
   //     </div>
