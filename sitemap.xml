@@ -27,15 +27,19 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/router/</loc>
-  </url>
-  
-  <url>
     <loc>http://oiax.github.io/capejs/api/routing_mapper/</loc>
   </url>
   
   <url>
+    <loc>http://oiax.github.io/capejs/api/router/</loc>
+  </url>
+  
+  <url>
     <loc>http://oiax.github.io/capejs/data_stores/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/components/</loc>
   </url>
   
   <url>
@@ -44,10 +48,6 @@
   
   <url>
     <loc>http://oiax.github.io/capejs/router/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/components/</loc>
   </url>
   
 </urlset>
