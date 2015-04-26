@@ -893,7 +893,8 @@ See &lt;a href=&#34;#form&#34;&gt;#form&lt;/a&gt; for details.&lt;/p&gt;
   });
   // The above code generates the following HTML tags:
   //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
-  //     &amp;lt;input type=&amp;quot;hidden&amp;quot; name=&amp;quot;user.privileged&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;hidden&amp;quot; name=&amp;quot;user.privileged&amp;quot;
+  //       id=&amp;quot;user-field-privileged&amp;quot;&amp;gt;
   //   &amp;lt;/form&amp;gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -920,7 +921,7 @@ See &lt;a href=&#34;#form&#34;&gt;#form&lt;/a&gt; for details.&lt;/p&gt;
   // The above code generates the following HTML tags:
   //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
   //     &amp;lt;label for=&amp;quot;user-name&amp;quot;&amp;gt;User name&amp;lt;/label&amp;gt;
-  //     &amp;lt;input type=&amp;quot;type&amp;quot; name=&amp;quot;name&amp;quot; id=&amp;quot;user-name&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;name&amp;quot; id=&amp;quot;user-name&amp;quot;&amp;gt;
   //   &amp;lt;/form&amp;gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -960,19 +961,19 @@ Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
   //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
   //     &amp;lt;div&amp;gt;
   //       &amp;lt;label for=&amp;quot;user-field-name&amp;quot;&amp;gt;User name&amp;lt;/label&amp;gt;
-  //       &amp;lt;input type=&amp;quot;type&amp;quot; name=&amp;quot;user.name&amp;quot;
+  //       &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;user.name&amp;quot;
   //         id=&amp;quot;user-field-name&amp;quot;&amp;gt;
   //     &amp;lt;/div&amp;gt;
   //     &amp;lt;div&amp;gt;
   //       &amp;lt;label for=&amp;quot;user-field-home-address-city&amp;quot;&amp;gt;
   //         City&amp;lt;/label&amp;gt;
-  //       &amp;lt;input type=&amp;quot;type&amp;quot; name=&amp;quot;user.home-address/city&amp;quot;
+  //       &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;user.home-address/city&amp;quot;
   //         id=&amp;quot;user-field-home-address-city&amp;quot;&amp;gt;
   //     &amp;lt;/div&amp;gt;
   //     &amp;lt;div&amp;gt;
   //       &amp;lt;label for=&amp;quot;user-field-home-address-street&amp;quot;&amp;gt;
   //         Street&amp;lt;/label&amp;gt;
-  //       &amp;lt;input type=&amp;quot;type&amp;quot;
+  //       &amp;lt;input type=&amp;quot;text&amp;quot;
   //         name=&amp;quot;user.home-address/street&amp;quot;
   //         id=&amp;quot;user-field-home-address-street&amp;quot;&amp;gt;
   //     &amp;lt;/div&amp;gt;

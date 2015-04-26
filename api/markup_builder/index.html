@@ -798,7 +798,8 @@ See <a href="#form">#form</a> for details.</p>
   });
   // The above code generates the following HTML tags:
   //   &lt;form name=&quot;user&quot;&gt;
-  //     &lt;input type=&quot;hidden&quot; name=&quot;user.privileged&quot;&gt;
+  //     &lt;input type=&quot;hidden&quot; name=&quot;user.privileged&quot;
+  //       id=&quot;user-field-privileged&quot;&gt;
   //   &lt;/form&gt;
 }
 </code></pre>
@@ -825,7 +826,7 @@ See <a href="#form">#form</a> for details.</p>
   // The above code generates the following HTML tags:
   //   &lt;form name=&quot;user&quot;&gt;
   //     &lt;label for=&quot;user-name&quot;&gt;User name&lt;/label&gt;
-  //     &lt;input type=&quot;type&quot; name=&quot;name&quot; id=&quot;user-name&quot;&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;user-name&quot;&gt;
   //   &lt;/form&gt;
 }
 </code></pre>
@@ -865,19 +866,19 @@ Its <code>for</code> attribute is set appropriately.</p>
   //   &lt;form name=&quot;user&quot;&gt;
   //     &lt;div&gt;
   //       &lt;label for=&quot;user-field-name&quot;&gt;User name&lt;/label&gt;
-  //       &lt;input type=&quot;type&quot; name=&quot;user.name&quot;
+  //       &lt;input type=&quot;text&quot; name=&quot;user.name&quot;
   //         id=&quot;user-field-name&quot;&gt;
   //     &lt;/div&gt;
   //     &lt;div&gt;
   //       &lt;label for=&quot;user-field-home-address-city&quot;&gt;
   //         City&lt;/label&gt;
-  //       &lt;input type=&quot;type&quot; name=&quot;user.home-address/city&quot;
+  //       &lt;input type=&quot;text&quot; name=&quot;user.home-address/city&quot;
   //         id=&quot;user-field-home-address-city&quot;&gt;
   //     &lt;/div&gt;
   //     &lt;div&gt;
   //       &lt;label for=&quot;user-field-home-address-street&quot;&gt;
   //         Street&lt;/label&gt;
-  //       &lt;input type=&quot;type&quot;
+  //       &lt;input type=&quot;text&quot;
   //         name=&quot;user.home-address/street&quot;
   //         id=&quot;user-field-home-address-street&quot;&gt;
   //     &lt;/div&gt;
