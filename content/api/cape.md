@@ -15,7 +15,7 @@ type: "api"
 
 #### Usage
 
-**Cape.createComponentClass(*methods*)**
+* **Cape.createComponentClass(*methods*)**
 
 Create a class extending `Cape.Component` with `methods`.
 
@@ -45,7 +45,7 @@ class HelloMessage extends Cape.Component {
 
 #### Usage
 
-**Cape.createDataStoreClass(*methods*)**
+* **Cape.createDataStoreClass(*methods*)**
 
 Create a class extending `Cape.DataStore` with `methods`.
 
@@ -99,7 +99,7 @@ class TodoItemStore extends Cape.DataStore {
 
 #### Usage
 
-**Cape.extend(*target[, object1, object2, ... objectN]*)**
+* **Cape.extend(*target[, object1, object2, ... objectN]*)**
 
 Merge the properties of two or more objects together into the first object recursively.
 
@@ -133,7 +133,7 @@ Cape.extend(object1, object2);
 
 #### Usage
 
-**Cape.extend(*target[, object1, object2, ... objectN]*)**
+* **Cape.extend(*target[, object1, object2, ... objectN]*)**
 
 Merge the properties of two or more objects together into the first object.
 
@@ -167,7 +167,7 @@ Cape.extend(object1, object2);
 
 #### Usage
 
-**Cape.merge(target*[, object1, object2, ... objectN]*)**
+* **Cape.merge(target*[, object1, object2, ... objectN]*)**
 
 Merge (but not override) the properties of two or more objects together
 into the first object
@@ -201,15 +201,19 @@ Cape.extend(object1, object2);
 <a class="anchor" id="session"></a>
 ### Cape.session (property)
 
-This property holds an object (hash). Users may store arbitrary data to this hash.
+#### Usage
+
+* **Cape.session_[key]_ = _value_**
+
+This property just holds an ordinary object. Users may store arbitrary data to this object.
 
 #### Example
 
 ```
-Cape.currentUser =
+Cape.session.currentUser =
   { id: 1, name: 'john', privileged: true }
 
-if (Cape.currentUser.privileged) {
+if (Cape.session.currentUser.privileged) {
   // Do something.
 }
 ```
