@@ -2,6 +2,19 @@
 title: "Cape.MarkupBuilder - API Reference"
 ---
 
+[General notes](#general-notes) -
+[#a, #abbr, #address](#a-abbr-address-etc) -
+[#area, #base, #br](#area-base-br-etc) -
+[#attr](#attr) -
+[#checkBox](#check-box) -
+[#class](#class) -
+[#data](#data) -
+[#elem](#elem) -
+[#fa](#fa) -
+[#fieldsFor](#fields-for) -
+[#form](#form) -
+[#formFor](#form-for)
+
 <a class="anchor" id="general-notes"></a>
 ### General notes
 

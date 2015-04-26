@@ -3,6 +3,13 @@ title: "API Reference"
 type: "api"
 ---
 
+[Cape](./cape) -
+[Cape.Component](./component) -
+[Cape.MarkupBuilder](./markup_builder) -
+[Cape.DataStore](./data_store) -
+[Cape.Router](./router) -
+[Cape.RoutingMapper](./routing_mapper)
+
 ### The `Cape` object
 
 The **Cape.JS** defines a single global variable [Cape](./cape).
