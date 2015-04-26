@@ -44,9 +44,12 @@ var HelloMessage = Cape.createComponentClass({
 
 #### Usage
 
-* **a(*content, [options,] function*)**
-* **abbr(*content, [options,] function*)**
-* **address(*content, [options,] function*)**
+* **a(*content [, options]*)**
+* **a(*[options,] function*)**
+* **abbr(*content [, options]*)**
+* **abbr(*[options,] function*)**
+* **address(*content [, options]*)**
+* **address(*[options,] function*)**
 * *etc.*
 
 Following HTML 5 elements can be added to the virtual dom tree by the markup builder's
@@ -114,8 +117,8 @@ var HelloMessage = Cape.createComponentClass({
 
 #### Usage
 
-* **area(*[options])**
-* **base(*[options])**
+* **area(*[options]*)**
+* **base(*[options]*)**
 * **br(*[options]*)**
 * *etc.*
 
@@ -287,7 +290,7 @@ affects only the nextly added element.
 
 #### Usage
 
-* **elem(*content, [options]*)**
+* **elem(*content [, options]*)**
 * **elem(*[options,] function*)**
 
 Create an HTML element. The first argument is a CSS selector, such as `"div.container"`.
@@ -355,7 +358,7 @@ render: function(m) {
 
 #### Usage
 
-* **fa(*name, [options]*)**
+* **fa(*name [, options]*)**
 
 Add a [font awesome](http://fortawesome.github.io/Font-Awesome/) icon
 (actually, it is just an empty `<i>` tag) to the virtual dom tree.
