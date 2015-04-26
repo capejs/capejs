@@ -29,8 +29,15 @@ var HelloMessage = Cape.createComponentClass({
 <a class="anchor" id="a-abbr-address-etc"></a>
 ### #a, #abbr, #address, etc.
 
-Following HTML 5 elments can be added to the virtual dom tree by the markup builder's
-method has equivalent name:
+#### Usage
+
+* **a(*content, [options,] function*)**
+* **abbr(*content, [options,] function*)**
+* **address(*content, [options,] function*)**
+* *etc.*
+
+Following HTML 5 elements can be added to the virtual dom tree by the markup builder's
+method with the same name:
 
 > a, abbr, address, article, aside, audio, b, bdi, bdo,
   blockquote, body, button, canvas, caption, cite, code,
@@ -89,7 +96,18 @@ var HelloMessage = Cape.createComponentClass({
 });
 ```
 
-Following HTML 5 *void* elments also can be created in the same way:
+<a class="anchor" id="area-base-br-etc"></a>
+### #area, #base, #br, etc.
+
+#### Usage
+
+* **area(*[options])**
+* **base(*[options])**
+* **br(*[options]*)**
+* *etc.*
+
+Following HTML 5 *void* elements can be added to the virtual dom tree by the markup builder's
+method with the same name:
 
 > area, base, br, col, embed, hr, img, input, keygen,
 link, menuitem, meta, param, source, track, wbr
@@ -111,6 +129,10 @@ var LogoMark = Cape.createComponentClass({
 
 <a class="anchor" id="attr"></a>
 ### #attr
+
+#### Usage
+
+* **attr(*name, value*)**
 
 Set the value of attributes for the element which will be added nextly.
 
@@ -164,6 +186,10 @@ render: function(m) {
 <a class="anchor" id="check-box"></a>
 ### #checkBox
 
+#### Usage
+
+* **checkBox(*name, [options,] function*)**
+
 Create a `<input type="checkbox">` tag tailored for form manipulation.
 Its first argument is the base of `name` attribute value.
 If the surrounding `<form>` tag has a name `"user"`,
@@ -192,6 +218,10 @@ render: function(m) {
 <a class="anchor" id="class"></a>
 ### #class
 
+#### Usage
+
+* **class(*name, value*)**
+
 Set the `class` attribute value for the element which will be added nextly.
 
 #### Example
@@ -215,6 +245,10 @@ affects only the nextly added element.
 <a class="anchor" id="data"></a>
 ### #data
 
+#### Usage
+
+* **data(*name, value*)**
+
 Set the `data-*` attribute value for the element which will be added nextly.
 
 #### Example
@@ -237,6 +271,11 @@ affects only the nextly added element.
 
 <a class="anchor" id="elem"></a>
 ### #elem
+
+#### Usage
+
+* **elem(*content, [options]*)**
+* **elem(*[options,] function*)**
 
 Create an HTML element. The first argument is a CSS selector, such as `"div.container"`.
 
@@ -301,6 +340,10 @@ render: function(m) {
 <a class="anchor" id="fa"></a>
 ### #fa
 
+#### Usage
+
+* **fa(*name, [options]*)**
+
 Add a [font awesome](http://fortawesome.github.io/Font-Awesome/) icon
 (actually, it is just an empty `<i>` tag) to the virtual dom tree.
 Its first argument is the icon's name, such as `"download"`, `"gear"`, etc.
@@ -317,5 +360,122 @@ render: function(m) {
   // The above code generates the following HTML tags
   //   <a href="./download.html">
   //     <i class="fa fa-download"></i> Download</a>
+}
+```
+
+<a class="anchor" id="fields-for"></a>
+### #fieldsFor
+
+#### Usage
+
+* **fieldsFor(*name, [options,] function*)**
+
+Create a scope for nested forms. In this scope, a prefix is
+addded to the name of each form control.
+
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.form(function(m) {
+    m.textField('name');
+    m.fieldsFor('home_address', function(m) {
+      m.textField('city');
+      m.textField('street');
+    })
+  })
+  // The above code generates the following HTML tags
+  //   <form>
+  //     <input type="text" name="name">
+  //     <input type="text" name="home_address/city">
+  //     <input type="text" name="home_address/street">
+  //   </form>
+}
+```
+
+If you pass the `index` option to this method, the prefix is numbered:
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.form(function(m) {
+    m.textField('name');
+    m.fieldsFor('address', { index: 1 } function(m) {
+      m.textField('city');
+      m.textField('street');
+    })
+    m.fieldsFor('address', { index: 2 } function(m) {
+      m.textField('city');
+      m.textField('street');
+    })
+  })
+  // The above code generates the following HTML tags
+  //   <form>
+  //     <input type="text" name="name">
+  //     <input type="text" name="address/1/city">
+  //     <input type="text" name="address/1/street">
+  //     <input type="text" name="address/2/city">
+  //     <input type="text" name="address/2/street">
+  //   </form>
+}
+```
+
+<a class="anchor" id="form"></a>
+### #form
+
+#### Usage
+
+* **form(*[options,] function*)**
+
+Create a `<form>` tag.
+
+When the `name` option is given, it adds the form name prefix to the name
+of subordinate form controls.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.form({ name: 'user' }, function(m) {
+    m.textField('name');
+    m.checkBox('privileged');
+  })
+  // The above code generates the following HTML tags
+  //   <form name="user">
+  //     <input type="text" name="user.name">
+  //     <input type="hidden" name="user.privileged" value="0">
+  //     <input type="checkbox" name="user.privileged" value="1">
+  //   </form>
+}
+```
+
+
+<a class="anchor" id="form-for"></a>
+### #formFor
+
+#### Usage
+
+* **formFor(*name, [options,] function*)**
+
+Create a `<form tag>` whose name attribute is *name*.
+
+This is a wrapper method for [#form](#form).
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('user', function(m) {
+    m.textField('name');
+    m.checkBox('privileged');
+  })
+  // The above code generates the following HTML tags
+  //   <form name="user">
+  //     <input type="text" name="user.name">
+  //     <input type="hidden" name="user.privileged" value="0">
+  //     <input type="checkbox" name="user.privileged" value="1">
+  //   </form>
 }
 ```

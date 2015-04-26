@@ -132,6 +132,9 @@ api_pages:
         id: a-abbr-address-etc
         title: "#a, #abbr, #address, etc."
       -
+        id: area-base-br-etc
+        title: "#area, #base, #br, etc."
+      -
         id: attr
         title: "#attr"
       -
