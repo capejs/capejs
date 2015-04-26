@@ -490,15 +490,6 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Cape.Router - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/router/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/router/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>API Reference</title>
       <link>http://oiax.github.io/capejs/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -549,6 +540,185 @@ and mount components according to the &lt;em&gt;routes&lt;/em&gt;
 &lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
 You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
 method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.Component - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/component/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/component/</guid>
+      <description>
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#formData()&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-mount-id:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#mount(id)&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#refresh()&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;render-partial&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-renderpartial-builder-componentname-thisobj:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#renderPartial(builder, componentName, thisObj)&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#unmount()&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val()&lt;/h3&gt;
+
+&lt;h4 id=&#34;cape-component-val-name:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name)&lt;/h4&gt;
+
+&lt;h4 id=&#34;cape-component-val-name-value:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name, value)&lt;/h4&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.RoutingMapper - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cape.Router - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/router/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/router/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Stores</title>
+      <link>http://oiax.github.io/capejs/data_stores/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/data_stores/</guid>
+      <description>
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;basics:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Basics&lt;/h3&gt;
+
+&lt;p&gt;When you develop something larger than a tiny widget, you are recommended to
+create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
+
+&lt;p&gt;The following example illustrates the basic concept of data stores.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./todo_item_store.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;./todo_list2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var todoList = new TodoList2();
+  todoList.mount(&#39;todo-list&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+    this.propagate();
+  },
+  addItem: function(title) {
+    this.items.push({ title: title, done: false });
+    this.propagate();
+  },
+  toggle: function(item) {
+    item.done = !item.done;
+    this.propagate();
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;TodoItemStore&lt;/code&gt; class has three methods and each of them ends with
+&lt;code&gt;this.propagate()&lt;/code&gt;, which calls the &lt;code&gt;refresh&lt;/code&gt; method of all attached components.&lt;/p&gt;
+
+&lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
+  render: function(m) {
+    m.ul(function(m) {
+      this.ds.items.forEach(function(item) {
+        this.renderItem(m, item);
+      }.bind(this))
+    });
+    this.renderForm(m);
+  },
+
+  renderItem: function(m, item) {
+    m.li(function(m) {
+      m.label({ class: { completed: item.done }}, function(m) {
+        m.input({ type: &#39;checkbox&#39;, checked: item.done,
+          onclick: function(e) { this.ds.toggle(item) } });
+        m.space().text(item.title);
+      })
+    })
+  },
+
+  renderForm: function(m) {
+    m.form(function(m) {
+      m.textField(&#39;title&#39;, { onkeyup: function(e) { this.refresh() } });
+      m.button(&amp;quot;Add&amp;quot;, {
+        disabled: this.val(&#39;title&#39;) === &#39;&#39;,
+        onclick: function(e) { this.ds.addItem(this.val(&#39;title&#39;, &#39;&#39;)) }
+      });
+    });
+  },
+
+  init: function() {
+    this.ds = TodoItemStore.create();
+    this.ds.attach(this);
+    this.ds.init();
+  },
+
+  beforeUnmount: function() {
+    this.ds.detach(this);
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Within the &lt;code&gt;init&lt;/code&gt; method, we create a singleton instance of &lt;code&gt;TodoItemStore&lt;/code&gt; class &lt;em&gt;(data store)&lt;/em&gt;,
+and set it to the &lt;code&gt;ds&lt;/code&gt; property of this component.&lt;/p&gt;
+
+&lt;p&gt;Then we call the &lt;code&gt;attach&lt;/code&gt; method of the data store to register this component
+as a &lt;em&gt;listener&lt;/em&gt; to the &lt;em&gt;change event&lt;/em&gt;. When the content of data store is changed,
+a &lt;em&gt;change event&lt;/em&gt; is emitted to this component.&lt;/p&gt;
+
+&lt;p&gt;When we click a check box, the following code is executed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggle(item)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This inverts the &lt;code&gt;done&lt;/code&gt; attribute of this item and calls &lt;code&gt;this.propagate()&lt;/code&gt;,
+which will cause the re-rendering of this component.&lt;/p&gt;
+
+&lt;p&gt;A working demo is found at
+&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;jquery&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;working-with-jquery:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Working with jQuery&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
 </description>
     </item>
     
@@ -848,176 +1018,6 @@ You can also set its value with &lt;code&gt;val&lt;/code&gt; method by giving a 
 
 &lt;p&gt;This section is not yet prepared.&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Cape.Component - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/component/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/component/</guid>
-      <description>
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#formData()&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-mount-id:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#mount(id)&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#refresh()&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;render-partial&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-renderpartial-builder-componentname-thisobj:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#renderPartial(builder, componentName, thisObj)&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#unmount()&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val()&lt;/h3&gt;
-
-&lt;h4 id=&#34;cape-component-val-name:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name)&lt;/h4&gt;
-
-&lt;h4 id=&#34;cape-component-val-name-value:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name, value)&lt;/h4&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Data Stores</title>
-      <link>http://oiax.github.io/capejs/data_stores/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/data_stores/</guid>
-      <description>
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;basics:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Basics&lt;/h3&gt;
-
-&lt;p&gt;When you develop something larger than a tiny widget, you are recommended to
-create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
-
-&lt;p&gt;The following example illustrates the basic concept of data stores.&lt;/p&gt;
-
-&lt;h4 id=&#34;index-html:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;index.html&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script src=&amp;quot;./todo_item_store.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&amp;quot;./todo_list2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script&amp;gt;
-  var todoList = new TodoList2();
-  todoList.mount(&#39;todo-list&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [
-      { title: &#39;Foo&#39;, done: false },
-      { title: &#39;Bar&#39;, done: true }
-    ];
-    this.propagate();
-  },
-  addItem: function(title) {
-    this.items.push({ title: title, done: false });
-    this.propagate();
-  },
-  toggle: function(item) {
-    item.done = !item.done;
-    this.propagate();
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;TodoItemStore&lt;/code&gt; class has three methods and each of them ends with
-&lt;code&gt;this.propagate()&lt;/code&gt;, which calls the &lt;code&gt;refresh&lt;/code&gt; method of all attached components.&lt;/p&gt;
-
-&lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
-  render: function(m) {
-    m.ul(function(m) {
-      this.ds.items.forEach(function(item) {
-        this.renderItem(m, item);
-      }.bind(this))
-    });
-    this.renderForm(m);
-  },
-
-  renderItem: function(m, item) {
-    m.li(function(m) {
-      m.label({ class: { completed: item.done }}, function(m) {
-        m.input({ type: &#39;checkbox&#39;, checked: item.done,
-          onclick: function(e) { this.ds.toggle(item) } });
-        m.space().text(item.title);
-      })
-    })
-  },
-
-  renderForm: function(m) {
-    m.form(function(m) {
-      m.textField(&#39;title&#39;, { onkeyup: function(e) { this.refresh() } });
-      m.button(&amp;quot;Add&amp;quot;, {
-        disabled: this.val(&#39;title&#39;) === &#39;&#39;,
-        onclick: function(e) { this.ds.addItem(this.val(&#39;title&#39;, &#39;&#39;)) }
-      });
-    });
-  },
-
-  init: function() {
-    this.ds = TodoItemStore.create();
-    this.ds.attach(this);
-    this.ds.init();
-  },
-
-  beforeUnmount: function() {
-    this.ds.detach(this);
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Within the &lt;code&gt;init&lt;/code&gt; method, we create a singleton instance of &lt;code&gt;TodoItemStore&lt;/code&gt; class &lt;em&gt;(data store)&lt;/em&gt;,
-and set it to the &lt;code&gt;ds&lt;/code&gt; property of this component.&lt;/p&gt;
-
-&lt;p&gt;Then we call the &lt;code&gt;attach&lt;/code&gt; method of the data store to register this component
-as a &lt;em&gt;listener&lt;/em&gt; to the &lt;em&gt;change event&lt;/em&gt;. When the content of data store is changed,
-a &lt;em&gt;change event&lt;/em&gt; is emitted to this component.&lt;/p&gt;
-
-&lt;p&gt;When we click a check box, the following code is executed:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggle(item)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This inverts the &lt;code&gt;done&lt;/code&gt; attribute of this item and calls &lt;code&gt;this.propagate()&lt;/code&gt;,
-which will cause the re-rendering of this component.&lt;/p&gt;
-
-&lt;p&gt;A working demo is found at
-&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list2&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;jquery&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;working-with-jquery:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Working with jQuery&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Cape.RoutingMapper - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
-      <description></description>
     </item>
     
     <item>
