@@ -306,12 +306,12 @@ Each method returns the instance itself.</p>
 <h4 id="usage:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>a(<em>content [, options]</em>)</strong></li>
-<li><strong>a(<em>[options,] function</em>)</strong></li>
-<li><strong>abbr(<em>content [, options]</em>)</strong></li>
-<li><strong>abbr(<em>[options,] function</em>)</strong></li>
-<li><strong>address(<em>content [, options]</em>)</strong></li>
-<li><strong>address(<em>[options,] function</em>)</strong></li>
+<li><strong>a(content [, options])</strong></li>
+<li><strong>a([options,] function)</strong></li>
+<li><strong>abbr(content [, options])</strong></li>
+<li><strong>abbr([options,] function)</strong></li>
+<li><strong>address(content [, options])</strong></li>
+<li><strong>address([options,] function)</strong></li>
 <li><em>etc.</em></li>
 </ul>
 
@@ -381,9 +381,9 @@ and before the function argument.</p>
 <h4 id="usage-1:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>area(<em>[options]</em>)</strong></li>
-<li><strong>base(<em>[options]</em>)</strong></li>
-<li><strong>br(<em>[options]</em>)</strong></li>
+<li><strong>area([options])</strong></li>
+<li><strong>base([options])</strong></li>
+<li><strong>br([options])</strong></li>
 <li><em>etc.</em></li>
 </ul>
 
@@ -416,7 +416,7 @@ They only accept a hash object to set the attribute values of the element.</p>
 <h4 id="usage-2:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>attr(<em>name, value</em>)</strong></li>
+<li><strong>attr(name, value)</strong></li>
 </ul>
 
 <p>Set the value of attributes for the element which will be added nextly.</p>
@@ -472,7 +472,7 @@ They only accept a hash object to set the attribute values of the element.</p>
 <h4 id="usage-3:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>checkBox(<em>name, [options,] function</em>)</strong></li>
+<li><strong>checkBox(name, [options,] function)</strong></li>
 </ul>
 
 <p>Create a <code>&lt;input type=&quot;checkbox&quot;&gt;</code> tag tailored for form manipulation.
@@ -506,7 +506,7 @@ See <a href="#formFor">#formFor</a> for details.</p>
 <h4 id="usage-4:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>class(<em>name, value</em>)</strong></li>
+<li><strong>class(name, value)</strong></li>
 </ul>
 
 <p>Set the <code>class</code> attribute value for the element which will be added nextly.</p>
@@ -535,7 +535,7 @@ affects only the nextly added element.</p>
 <h4 id="usage-5:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>data(<em>name, value</em>)</strong></li>
+<li><strong>data(name, value)</strong></li>
 </ul>
 
 <p>Set the <code>data-*</code> attribute value for the element which will be added nextly.</p>
@@ -564,8 +564,8 @@ affects only the nextly added element.</p>
 <h4 id="usage-6:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>elem(<em>content [, options]</em>)</strong></li>
-<li><strong>elem(<em>[options,] function</em>)</strong></li>
+<li><strong>elem(content [, options])</strong></li>
+<li><strong>elem([options,] function)</strong></li>
 </ul>
 
 <p>Create an HTML element. The first argument is a CSS selector, such as <code>&quot;div.container&quot;</code>.</p>
@@ -633,7 +633,7 @@ and before the function argument.</p>
 <h4 id="usage-7:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>fa(<em>name [, options]</em>)</strong></li>
+<li><strong>fa(name [, options])</strong></li>
 </ul>
 
 <p>Add a <a href="http://fortawesome.github.io/Font-Awesome/">font awesome</a> icon
@@ -661,7 +661,7 @@ attribute values of <code>&lt;i&gt;</code> tag.</p>
 <h4 id="usage-8:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>fieldsFor(<em>name, [options,] function</em>)</strong></li>
+<li><strong>fieldsFor(name, [options,] function)</strong></li>
 </ul>
 
 <p>Create a scope for nested forms. In this scope, a prefix is
@@ -720,7 +720,7 @@ addded to the name of each form control.</p>
 <h4 id="usage-9:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>form(<em>[options,] function</em>)</strong></li>
+<li><strong>form([options,] function)</strong></li>
 </ul>
 
 <p>Create a <code>&lt;form&gt;</code> tag.</p>
@@ -751,7 +751,7 @@ of subordinate form controls.</p>
 <h4 id="usage-10:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>formFor(<em>name, [options,] function</em>)</strong></li>
+<li><strong>formFor(name, [options,] function)</strong></li>
 </ul>
 
 <p>Create a <code>&lt;form tag&gt;</code> whose name attribute is <em>name</em>.</p>
@@ -770,6 +770,117 @@ of subordinate form controls.</p>
   //     &lt;input type=&quot;text&quot; name=&quot;user.name&quot;&gt;
   //     &lt;input type=&quot;hidden&quot; name=&quot;user.privileged&quot; value=&quot;0&quot;&gt;
   //     &lt;input type=&quot;checkbox&quot; name=&quot;user.privileged&quot; value=&quot;1&quot;&gt;
+  //   &lt;/form&gt;
+}
+</code></pre>
+
+<p><a class="anchor" id="hidden-field"></a></p>
+
+<h3 id="hiddenfield:2f94c9da1a5f7ca2887265bec799d255">#hiddenField</h3>
+
+<h4 id="usage-11:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>hiddenField(name, [options,] function)</strong></li>
+</ul>
+
+<p>Create a <code>&lt;input type=&quot;hidden&quot;&gt;</code> tag tailored for form manipulation.
+Its first argument is the base of <code>name</code> attribute value.
+If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
+then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
+See <a href="#form">#form</a> for details.</p>
+
+<h4 id="example-17:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.formFor('user', function(m) {
+    m.hiddenField('privileged');
+  });
+  // The above code generates the following HTML tags:
+  //   &lt;form name=&quot;user&quot;&gt;
+  //     &lt;input type=&quot;hidden&quot; name=&quot;user.privileged&quot;&gt;
+  //   &lt;/form&gt;
+}
+</code></pre>
+
+<p><a class="anchor" id="label-for"></a></p>
+
+<h3 id="label-for:2f94c9da1a5f7ca2887265bec799d255">#label-for</h3>
+
+<h4 id="usage-12:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>labelFor(id, label)</strong></li>
+</ul>
+
+<p>Create a <code>&lt;label&gt;</code> tag whose <code>for</code> attribute is <code>id</code>. See also <a href="#label-of">#labelOf</a>.</p>
+
+<h4 id="example-18:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.formFor('user', function(m) {
+    m.labelFor('user-name', 'User name');
+    m.input({ type: 'text', name: 'name', id: 'user-name' });
+  });
+  // The above code generates the following HTML tags:
+  //   &lt;form name=&quot;user&quot;&gt;
+  //     &lt;label for=&quot;user-name&quot;&gt;User name&lt;/label&gt;
+  //     &lt;input type=&quot;type&quot; name=&quot;name&quot; id=&quot;user-name&quot;&gt;
+  //   &lt;/form&gt;
+}
+</code></pre>
+
+<p><a class="anchor" id="label-of"></a></p>
+
+<h3 id="label-of:2f94c9da1a5f7ca2887265bec799d255">#label-of</h3>
+
+<h4 id="usage-13:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>labelOf(name, label)</strong></li>
+</ul>
+
+<p>Create a <code>&lt;label&gt;</code> tag whose <code>name</code> attribute is <code>name</code>.
+Its <code>for</code> attribute is set appropriately.</p>
+
+<p>See also <a href="#label-for">#labelFor</a>.</p>
+
+<h4 id="example-19:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.formFor('user', function(m) {
+    m.div(function(m) {
+      m.labelOf('name', 'User name').sp().textField('name');
+    });
+    m.fieldsFor('home_address', function(m) {
+      m.div(function(m) {
+        m.labelOf('city', 'City').sp().textField('city');
+      });
+      m.div(function(m) {
+        m.labelOf('street', 'Street').sp().textField('street');
+      });
+    });
+  });
+  // The above code generates the following HTML tags:
+  //   &lt;form name=&quot;user&quot;&gt;
+  //     &lt;div&gt;
+  //       &lt;label for=&quot;user-field-name&quot;&gt;User name&lt;/label&gt;
+  //       &lt;input type=&quot;type&quot; name=&quot;user.name&quot;
+  //         id=&quot;user-field-name&quot;&gt;
+  //     &lt;/div&gt;
+  //     &lt;div&gt;
+  //       &lt;label for=&quot;user-field-home-address-city&quot;&gt;
+  //         City&lt;/label&gt;
+  //       &lt;input type=&quot;type&quot; name=&quot;user.home-address/city&quot;
+  //         id=&quot;user-field-home-address-city&quot;&gt;
+  //     &lt;/div&gt;
+  //     &lt;div&gt;
+  //       &lt;label for=&quot;user-field-home-address-street&quot;&gt;
+  //         Street&lt;/label&gt;
+  //       &lt;input type=&quot;type&quot;
+  //         name=&quot;user.home-address/street&quot;
+  //         id=&quot;user-field-home-address-street&quot;&gt;
+  //     &lt;/div&gt;
   //   &lt;/form&gt;
 }
 </code></pre>

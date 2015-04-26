@@ -401,12 +401,12 @@ Each method returns the instance itself.&lt;/p&gt;
 &lt;h4 id=&#34;usage:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;a(&lt;em&gt;content [, options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;a(&lt;em&gt;[options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;abbr(&lt;em&gt;content [, options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;abbr(&lt;em&gt;[options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;address(&lt;em&gt;content [, options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;address(&lt;em&gt;[options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;a(content [, options])&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;a([options,] function)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;abbr(content [, options])&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;abbr([options,] function)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;address(content [, options])&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;address([options,] function)&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;etc.&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -476,9 +476,9 @@ and before the function argument.&lt;/p&gt;
 &lt;h4 id=&#34;usage-1:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;area(&lt;em&gt;[options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;base(&lt;em&gt;[options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;br(&lt;em&gt;[options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;area([options])&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;base([options])&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;br([options])&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;etc.&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -511,7 +511,7 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 &lt;h4 id=&#34;usage-2:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;attr(&lt;em&gt;name, value&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;attr(name, value)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Set the value of attributes for the element which will be added nextly.&lt;/p&gt;
@@ -567,7 +567,7 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 &lt;h4 id=&#34;usage-3:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;checkBox(&lt;em&gt;name, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;checkBox(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Create a &lt;code&gt;&amp;lt;input type=&amp;quot;checkbox&amp;quot;&amp;gt;&lt;/code&gt; tag tailored for form manipulation.
@@ -601,7 +601,7 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 &lt;h4 id=&#34;usage-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;class(&lt;em&gt;name, value&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;class(name, value)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Set the &lt;code&gt;class&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
@@ -630,7 +630,7 @@ affects only the nextly added element.&lt;/p&gt;
 &lt;h4 id=&#34;usage-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;data(&lt;em&gt;name, value&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;data(name, value)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Set the &lt;code&gt;data-*&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
@@ -659,8 +659,8 @@ affects only the nextly added element.&lt;/p&gt;
 &lt;h4 id=&#34;usage-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;elem(&lt;em&gt;content [, options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;elem(&lt;em&gt;[options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;elem(content [, options])&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;elem([options,] function)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Create an HTML element. The first argument is a CSS selector, such as &lt;code&gt;&amp;quot;div.container&amp;quot;&lt;/code&gt;.&lt;/p&gt;
@@ -728,7 +728,7 @@ and before the function argument.&lt;/p&gt;
 &lt;h4 id=&#34;usage-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;fa(&lt;em&gt;name [, options]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fa(name [, options])&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Add a &lt;a href=&#34;http://fortawesome.github.io/Font-Awesome/&#34;&gt;font awesome&lt;/a&gt; icon
@@ -756,7 +756,7 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 &lt;h4 id=&#34;usage-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;fieldsFor(&lt;em&gt;name, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fieldsFor(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Create a scope for nested forms. In this scope, a prefix is
@@ -815,7 +815,7 @@ addded to the name of each form control.&lt;/p&gt;
 &lt;h4 id=&#34;usage-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;form(&lt;em&gt;[options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;form([options,] function)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Create a &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
@@ -846,7 +846,7 @@ of subordinate form controls.&lt;/p&gt;
 &lt;h4 id=&#34;usage-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;formFor(&lt;em&gt;name, [options,] function&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;formFor(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Create a &lt;code&gt;&amp;lt;form tag&amp;gt;&lt;/code&gt; whose name attribute is &lt;em&gt;name&lt;/em&gt;.&lt;/p&gt;
@@ -865,6 +865,117 @@ of subordinate form controls.&lt;/p&gt;
   //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;user.name&amp;quot;&amp;gt;
   //     &amp;lt;input type=&amp;quot;hidden&amp;quot; name=&amp;quot;user.privileged&amp;quot; value=&amp;quot;0&amp;quot;&amp;gt;
   //     &amp;lt;input type=&amp;quot;checkbox&amp;quot; name=&amp;quot;user.privileged&amp;quot; value=&amp;quot;1&amp;quot;&amp;gt;
+  //   &amp;lt;/form&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;hidden-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;hiddenfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#hiddenField&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;hiddenField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;input type=&amp;quot;hidden&amp;quot;&amp;gt;&lt;/code&gt; tag tailored for form manipulation.
+Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
+If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
+then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.
+See &lt;a href=&#34;#form&#34;&gt;#form&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.hiddenField(&#39;privileged&#39;);
+  });
+  // The above code generates the following HTML tags:
+  //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;hidden&amp;quot; name=&amp;quot;user.privileged&amp;quot;&amp;gt;
+  //   &amp;lt;/form&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;label-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;label-for:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#label-for&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;labelFor(id, label)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; tag whose &lt;code&gt;for&lt;/code&gt; attribute is &lt;code&gt;id&lt;/code&gt;. See also &lt;a href=&#34;#label-of&#34;&gt;#labelOf&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.labelFor(&#39;user-name&#39;, &#39;User name&#39;);
+    m.input({ type: &#39;text&#39;, name: &#39;name&#39;, id: &#39;user-name&#39; });
+  });
+  // The above code generates the following HTML tags:
+  //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
+  //     &amp;lt;label for=&amp;quot;user-name&amp;quot;&amp;gt;User name&amp;lt;/label&amp;gt;
+  //     &amp;lt;input type=&amp;quot;type&amp;quot; name=&amp;quot;name&amp;quot; id=&amp;quot;user-name&amp;quot;&amp;gt;
+  //   &amp;lt;/form&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;label-of&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;label-of:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#label-of&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;labelOf(name, label)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; tag whose &lt;code&gt;name&lt;/code&gt; attribute is &lt;code&gt;name&lt;/code&gt;.
+Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
+
+&lt;p&gt;See also &lt;a href=&#34;#label-for&#34;&gt;#labelFor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.div(function(m) {
+      m.labelOf(&#39;name&#39;, &#39;User name&#39;).sp().textField(&#39;name&#39;);
+    });
+    m.fieldsFor(&#39;home_address&#39;, function(m) {
+      m.div(function(m) {
+        m.labelOf(&#39;city&#39;, &#39;City&#39;).sp().textField(&#39;city&#39;);
+      });
+      m.div(function(m) {
+        m.labelOf(&#39;street&#39;, &#39;Street&#39;).sp().textField(&#39;street&#39;);
+      });
+    });
+  });
+  // The above code generates the following HTML tags:
+  //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
+  //     &amp;lt;div&amp;gt;
+  //       &amp;lt;label for=&amp;quot;user-field-name&amp;quot;&amp;gt;User name&amp;lt;/label&amp;gt;
+  //       &amp;lt;input type=&amp;quot;type&amp;quot; name=&amp;quot;user.name&amp;quot;
+  //         id=&amp;quot;user-field-name&amp;quot;&amp;gt;
+  //     &amp;lt;/div&amp;gt;
+  //     &amp;lt;div&amp;gt;
+  //       &amp;lt;label for=&amp;quot;user-field-home-address-city&amp;quot;&amp;gt;
+  //         City&amp;lt;/label&amp;gt;
+  //       &amp;lt;input type=&amp;quot;type&amp;quot; name=&amp;quot;user.home-address/city&amp;quot;
+  //         id=&amp;quot;user-field-home-address-city&amp;quot;&amp;gt;
+  //     &amp;lt;/div&amp;gt;
+  //     &amp;lt;div&amp;gt;
+  //       &amp;lt;label for=&amp;quot;user-field-home-address-street&amp;quot;&amp;gt;
+  //         Street&amp;lt;/label&amp;gt;
+  //       &amp;lt;input type=&amp;quot;type&amp;quot;
+  //         name=&amp;quot;user.home-address/street&amp;quot;
+  //         id=&amp;quot;user-field-home-address-street&amp;quot;&amp;gt;
+  //     &amp;lt;/div&amp;gt;
   //   &amp;lt;/form&amp;gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
