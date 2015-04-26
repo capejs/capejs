@@ -548,10 +548,12 @@ and before the function argument.&lt;/p&gt;
 &lt;h4 id=&#34;example-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
-  m.elem(&#39;div#wrapper&#39;, { style: &#39;margin-top: 10px&#39; }, function(m) {
+  m.elem(&#39;div#wrapper&#39;, { style: &#39;margin-top: 10px&#39; },
+    function(m) {
     m.elem(&#39;div.container&#39;, function(m) {
       m.elem(&#39;div.row&#39;, function(m) {
-        m.elem(&#39;div.col-md-6&#39;, &#39;Hello&#39;, { style: &#39;font-weight: bold&#39; });
+        m.elem(&#39;div.col-md-6&#39;, &#39;Hello&#39;,
+          { style: &#39;font-weight: bold&#39; });
         m.elem(&#39;div.col-md-6&#39;, &#39;World&#39;);
       })
     })

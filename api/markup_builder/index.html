@@ -531,10 +531,12 @@ and before the function argument.</p>
 <h4 id="example-11:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
-  m.elem('div#wrapper', { style: 'margin-top: 10px' }, function(m) {
+  m.elem('div#wrapper', { style: 'margin-top: 10px' },
+    function(m) {
     m.elem('div.container', function(m) {
       m.elem('div.row', function(m) {
-        m.elem('div.col-md-6', 'Hello', { style: 'font-weight: bold' });
+        m.elem('div.col-md-6', 'Hello',
+          { style: 'font-weight: bold' });
         m.elem('div.col-md-6', 'World');
       })
     })
