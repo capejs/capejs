@@ -8,7 +8,7 @@ body {
 .col-xs-12 {
   background-color: #transparent;
 }
-#navbar-xs {
+#navbar-sm {
   display: none;
 }
 #masthead {
@@ -24,6 +24,10 @@ body {
 
 #masthead .well {
   margin-top: 8%;
+}
+
+#masthead-small {
+  display: none;
 }
 
 #sidebar {
@@ -56,61 +60,18 @@ div.footer {
   display: none;
 }
 
-/* collapsed sidebar styles */
 @media screen and (max-width: 992px) {
-  .navbar-toggle {
-    display: inline;
-  }
-  #masthead {
-    min-height: 0px;
-  }
-  #masthead h1 {
-    padding-top: 0px;
-  }
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: -41.6%;
-  }
-
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -100%;
-  }
-  .row-offcanvas-right.active {
-    right: 41.6%;
-  }
-  .row-offcanvas-left.active {
-    left: 41.6%;
-  }
-  .row-offcanvas-left.active
-  .sidebar-offcanvas {
-    left: -41.6%;
-  }
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 41.6%;
-  }
-  #sidebar {
-    padding-top:0;
-  }
-}
-
-@media screen and (max-width: 767px) {
   body {
     margin-bottom: 0px;
   }
-  #navbar-sm {
+  #navbar-md {
     display: none;
   }
-  #navbar-xs {
+  #navbar-sm {
     display: block;
+  }
+  .navbar-toggle {
+    display: inline;
   }
   .navbar a.link {
     display: inline-block;
@@ -118,10 +79,20 @@ div.footer {
     margin-right: 5px;
   }
   #masthead {
+    display: none;
+  }
+  #masthead-small {
+    background-color: #eeeeff;
+    display: block;
+    margin-top: 15px;
     min-height: 0px;
   }
-  #masthead .well {
-    display: none;
+  #masthead-small h1 {
+    padding-top: 0px;
+  }
+
+  #masthead-small .well {
+    margin-top: 8%;
   }
   #sidebar {
     height: auto;
@@ -143,5 +114,11 @@ div.footer {
   }
   #footer-xs {
     display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #masthead {
+    display: none;
   }
 }

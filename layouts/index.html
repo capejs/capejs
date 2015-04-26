@@ -4,10 +4,12 @@
 <body>
 <div class="page-container">
 {{ partial "header.html" . }}
+{{ partial "masthead.html" . }}
 <div class="container-fluid">
   <div class="row row-offcanvas row-offcanvas-left">
     {{ partial "sidebar.html" . }}
-    <div class="col-xs-12 col-sm-9">
+    <div class="col-xs-12 col-md-9">
+    {{ partial "masthead_small.html" . }}
     {{ range $index, $page := .Site.Pages.ByWeight }}
       {{ if eq .Type "index" }}
       <article>
