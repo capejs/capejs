@@ -136,15 +136,11 @@
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#field-for">#fieldsFor</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/api/markup_builder#form">#form</a></li>
-          
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#form-for">#formFor</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#hidden-field">#hiddenField</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#label-for">#labelFor</a></li>
-          
-            <li><a href="http://oiax.github.io/capejs/api/markup_builder#label-of">#labelOf</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#markup">#markup</a></li>
           
@@ -272,8 +268,9 @@
 <a href="#elem">#elem</a> -
 <a href="#fa">#fa</a> -
 <a href="#fields-for">#fieldsFor</a> -
-<a href="#form">#form</a> -
-<a href="#form-for">#formFor</a></p>
+<a href="#form-for">#formFor</a> -
+<a href="#hidden-field">#hiddenField</a> -
+<a href="#label-for">#labelFor</a></p>
 
 <p><a class="anchor" id="general-notes"></a></p>
 
@@ -334,8 +331,6 @@ method with the same name:</p>
 
 <p>When the first argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.</p>
-
-<p><strong>Note:</strong> The <code>&lt;form&gt;</code> element is treated specially in Cape.JS. See <a href="#form">#form</a>.</p>
 
 <h4 id="example-1:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
@@ -713,52 +708,25 @@ addded to the name of each form control.</p>
 }
 </code></pre>
 
-<p><a class="anchor" id="form"></a></p>
-
-<h3 id="form:2f94c9da1a5f7ca2887265bec799d255">#form</h3>
-
-<h4 id="usage-9:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
-
-<ul>
-<li><strong>form([options,] function)</strong></li>
-</ul>
-
-<p>Create a <code>&lt;form&gt;</code> tag.</p>
-
-<p>When the <code>name</code> option is given, it adds the form name prefix to the name
-of subordinate form controls.</p>
-
-<h4 id="example-15:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
-
-<pre><code class="language-javascript">render: function(m) {
-  m.form({ name: 'user' }, function(m) {
-    m.textField('name');
-    m.checkBox('privileged');
-  })
-  // The above code generates the following HTML tags
-  //   &lt;form name=&quot;user&quot;&gt;
-  //     &lt;input type=&quot;text&quot; name=&quot;user.name&quot;&gt;
-  //     &lt;input type=&quot;hidden&quot; name=&quot;user.privileged&quot; value=&quot;0&quot;&gt;
-  //     &lt;input type=&quot;checkbox&quot; name=&quot;user.privileged&quot; value=&quot;1&quot;&gt;
-  //   &lt;/form&gt;
-}
-</code></pre>
-
 <p><a class="anchor" id="form-for"></a></p>
 
 <h3 id="formfor:2f94c9da1a5f7ca2887265bec799d255">#formFor</h3>
 
-<h4 id="usage-10:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-9:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>formFor(name, [options,] function)</strong></li>
 </ul>
 
-<p>Create a <code>&lt;form tag&gt;</code> whose name attribute is <em>name</em>.</p>
+<p>Create a <code>&lt;form&gt;</code> tag whose name attribute is <em>name</em>.</p>
 
-<p>This is a wrapper method for <a href="#form">#form</a>.</p>
+<p>Using this method instead of <code>#form</code> method, the form name prefix is
+added to the name` attribute of subordinate form controls.</p>
 
-<h4 id="example-16:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<p>The <code>id</code> attribute is set automatically. When the form name is <code>'foo'</code>,
+the <code>id</code> attribute of a form control whose name is <code>bar</code> becomes <code>'foo-field-bar'</code>.</p>
+
+<h4 id="example-15:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -778,7 +746,7 @@ of subordinate form controls.</p>
 
 <h3 id="hiddenfield:2f94c9da1a5f7ca2887265bec799d255">#hiddenField</h3>
 
-<h4 id="usage-11:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-10:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>hiddenField(name, [options,] function)</strong></li>
@@ -787,10 +755,9 @@ of subordinate form controls.</p>
 <p>Create a <code>&lt;input type=&quot;hidden&quot;&gt;</code> tag tailored for form manipulation.
 Its first argument is the base of <code>name</code> attribute value.
 If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
-then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
-See <a href="#form">#form</a> for details.</p>
+then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.</p>
 
-<h4 id="example-17:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-16:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -806,59 +773,30 @@ See <a href="#form">#form</a> for details.</p>
 
 <p><a class="anchor" id="label-for"></a></p>
 
-<h3 id="label-for:2f94c9da1a5f7ca2887265bec799d255">#label-for</h3>
+<h3 id="labelfor:2f94c9da1a5f7ca2887265bec799d255">#labelFor</h3>
 
-<h4 id="usage-12:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
-
-<ul>
-<li><strong>labelFor(id, label)</strong></li>
-</ul>
-
-<p>Create a <code>&lt;label&gt;</code> tag whose <code>for</code> attribute is <code>id</code>. See also <a href="#label-of">#labelOf</a>.</p>
-
-<h4 id="example-18:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
-
-<pre><code class="language-javascript">render: function(m) {
-  m.formFor('user', function(m) {
-    m.labelFor('user-name', 'User name');
-    m.input({ type: 'text', name: 'name', id: 'user-name' });
-  });
-  // The above code generates the following HTML tags:
-  //   &lt;form name=&quot;user&quot;&gt;
-  //     &lt;label for=&quot;user-name&quot;&gt;User name&lt;/label&gt;
-  //     &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;user-name&quot;&gt;
-  //   &lt;/form&gt;
-}
-</code></pre>
-
-<p><a class="anchor" id="label-of"></a></p>
-
-<h3 id="label-of:2f94c9da1a5f7ca2887265bec799d255">#label-of</h3>
-
-<h4 id="usage-13:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-11:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
-<li><strong>labelOf(name, label)</strong></li>
+<li><strong>labelFor(name, label)</strong></li>
 </ul>
 
 <p>Create a <code>&lt;label&gt;</code> tag whose <code>name</code> attribute is <code>name</code>.
 Its <code>for</code> attribute is set appropriately.</p>
 
-<p>See also <a href="#label-for">#labelFor</a>.</p>
-
-<h4 id="example-19:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-17:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
     m.div(function(m) {
-      m.labelOf('name', 'User name').sp().textField('name');
+      m.labelFor('name', 'User name').sp().textField('name');
     });
     m.fieldsFor('home_address', function(m) {
       m.div(function(m) {
-        m.labelOf('city', 'City').sp().textField('city');
+        m.labelFor('city', 'City').sp().textField('city');
       });
       m.div(function(m) {
-        m.labelOf('street', 'Street').sp().textField('street');
+        m.labelFor('street', 'Street').sp().textField('street');
       });
     });
   });
