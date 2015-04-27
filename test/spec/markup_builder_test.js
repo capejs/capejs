@@ -107,7 +107,7 @@ describe('MarkupBuilder', function() {
     })
   })
 
-  describe('form', function() {
+  describe('formFor', function() {
     it('should create form with appropriate id attribute', function() {
       var target, form, c, e;
 
@@ -179,6 +179,10 @@ describe('MarkupBuilder', function() {
       e = form.getElementsByTagName('input')[1];
       expect(e.id).to.equal('field-size-l');
       e = form.getElementsByTagName('input')[3];
+      expect(e.type).to.equal('hidden');
+      expect(e.id).to.equal('');
+      e = form.getElementsByTagName('input')[4];
+      expect(e.type).to.equal('checkbox');
       expect(e.id).to.equal('field-confirm');
       e = form.getElementsByTagName('label')[6];
       expect(e.htmlFor).to.equal('field-variants-1-variant-name');
@@ -200,7 +204,7 @@ describe('MarkupBuilder', function() {
       expect(e.id).to.equal('product-field-color');
       e = form.getElementsByTagName('input')[1];
       expect(e.id).to.equal('product-field-size-l');
-      e = form.getElementsByTagName('input')[3];
+      e = form.getElementsByTagName('input')[4];
       expect(e.id).to.equal('product-field-confirm');
       e = form.getElementsByTagName('label')[6];
       expect(e.htmlFor).to.equal('product-field-variants-1-variant-name');
@@ -210,6 +214,28 @@ describe('MarkupBuilder', function() {
       expect(e.id).to.equal('product-field-variants-1-color');
 
       c.unmount();
+    })
+  })
+
+  describe('checkBox', function() {
+    it('should not set the id attribute of hidden field', function() {
+      var target, form, c, e;
+
+      var C = Cape.createComponentClass({
+        render: function(m) {
+          m.formFor('', function(m) {
+            m.checkBox('name');
+          })
+        }
+      })
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+
+      form = target.getElementsByTagName('form')[0];
+      e = form.getElementsByTagName('input')[0];
+      expect(e.id).to.equal('');
     })
   })
 })
