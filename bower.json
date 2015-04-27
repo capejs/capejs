@@ -1,6 +1,6 @@
 {
   "name": "capejs",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "homepage": "https://github.com/oiax/capejs",
   "repository": { "type": "git", "url": "git://github.com/oiax/capejs" },
   "authors": ["Oiax Inc. and contributors"],

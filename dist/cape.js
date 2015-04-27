@@ -357,7 +357,7 @@ Cape.extend(MarkupBuilder.prototype, {
     this.space();
     return this;
   },
-  form: function() {
+  formFor: function(name) {
     var args, options, callback, name, builder, attributes;
 
     args = Array.prototype.slice.call(arguments);
@@ -368,26 +368,16 @@ Cape.extend(MarkupBuilder.prototype, {
       throw new Error("One of arguments must be a function.");
     if (callback.length === 0)
       throw new Error("Callback requires an argument.");
-    name = options.name || '';
+
     builder = new MarkupBuilder(this.component, { formName: name });
     callback.call(this.component, builder);
     options = options || {};
+    options.name = name;
     if (options.onsubmit === undefined) {
       options.onsubmit = function(e) { return false };
     }
     attributes = this._.generateAttributes(options);
     this._.elements.push(this._.h('form', attributes, builder._.elements));
-    return this;
-  },
-  formFor: function() {
-    var args, options, callback, name;
-
-    args = Array.prototype.slice.call(arguments);
-    name = args.shift();
-    options = this._.extractOptions(args) || {};
-    callback = this._.extractCallback(args);
-    options.name = name;
-    this.form(options, callback);
     return this;
   },
   fieldsFor: function(name) {
@@ -418,13 +408,7 @@ Cape.extend(MarkupBuilder.prototype, {
 
     return this;
   },
-  labelFor: function(id, content, options) {
-    options = options || {};
-    options.htmlFor = id;
-    this.elem('label', content, options)
-    return this;
-  },
-  labelOf: function(name, content, options) {
+  labelFor: function(name, content, options) {
     var fieldName;
 
     options = options || {};
@@ -669,7 +653,7 @@ var normalElementNames = [
   'blockquote', 'body', 'button', 'canvas', 'caption', 'cite', 'code',
   'colgroup', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div',
   'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer',
-  'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'html',
+  'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'html',
   'i', 'iframe', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark',
   'menu', 'menuitem', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup',
   'option', 'output', 'p', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's',
@@ -714,8 +698,9 @@ var Cape = require('./utilities');
 //   component: the name of component
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
-var Router = function Router() {
+var Router = function Router(rootContainer) {
   this._ = new _Internal(this);
+  this.rootContainer = rootContainer || window;
   this.routes = [];
   this.params = {};
   this.namespace = null;
@@ -723,7 +708,6 @@ var Router = function Router() {
   this.action = null;
   this.container = null;
   this.component = null;
-  this.waiting = false;
   this.flash = {};
 };
 
@@ -898,7 +882,7 @@ Cape.extend(_Internal.prototype, {
       })
     }
 
-    obj = window;
+    obj = this.main.rootContainer;
     for (i = 0; obj && i < fragments.length; i++) {
       if (obj[fragments[i]]) obj = obj[fragments[i]];
       else obj = null;
