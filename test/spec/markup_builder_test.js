@@ -113,7 +113,7 @@ describe('MarkupBuilder', function() {
 
       var C = Cape.createComponentClass({
         render: function(m) {
-          m.form(function(m) {
+          m.formFor('', function(m) {
             m.labelFor('name', 'Name').sp().textField('name').br();
             m.labelFor('remarks', 'Remarks').sp().textareaField('remarks').br();
             m.labelFor('color', 'Color').sp();
@@ -136,7 +136,7 @@ describe('MarkupBuilder', function() {
               })
             })
           })
-          m.form({ name: 'product' }, function(m) {
+          m.formFor('product', function(m) {
             m.labelFor('name', 'Name').sp().textField('name').br();
             m.labelFor('remarks', 'Remarks').sp().textareaField('remarks').br();
             m.labelFor('color', 'Color').sp();

@@ -9,6 +9,8 @@
 
 ### `Cape.MarkupBuilder`
 
+* Remove special functionality from `#form` method. Use `#formFor` to add a prefix
+  to the name of form fields.
 * Rename `#labelOf` to `#labelFor`. The functionality of old `#labelFor` is removed.
 
 ## 1.0.0-beta.4 (April 22, 2015)
