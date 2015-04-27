@@ -7,6 +7,10 @@
 * Users can set the *root container* of components by passing it to the first
   argument of the router's constructor. The default root container is `window`.
 
+### `Cape.MarkupBuilder`
+
+* Rename `#labelOf` to `#labelFor`. The functionality of old `#labelFor` is removed.
+
 ## 1.0.0-beta.4 (April 22, 2015)
 
 ### `Cape.Router`

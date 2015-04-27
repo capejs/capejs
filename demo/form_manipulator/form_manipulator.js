@@ -12,8 +12,8 @@ var FormManipulator = Cape.createComponentClass({
 
   renderForm1: function(m) {
     m.formFor('foo', function(m) {
-      m.labelOf('title', 'Title').sp().textField('title');
-      m.labelOf('genre', 'Genre').sp();
+      m.labelFor('title', 'Title').sp().textField('title');
+      m.labelFor('genre', 'Genre').sp();
       m.selectBox('genre', function(m) {
         m.option('A', { value: 'a' });
         m.option('B', { value: 'b' });
@@ -30,8 +30,8 @@ var FormManipulator = Cape.createComponentClass({
       ]
       items.forEach(function(item, i) {
         m.fieldsFor('items', { index: i }, function(m) {
-          m.labelOf('title', 'Title').sp().textField('title');
-          m.labelOf('genre', 'Genre').sp();
+          m.labelFor('title', 'Title').sp().textField('title');
+          m.labelFor('genre', 'Genre').sp();
           m.selectBox('genre', function(m) {
             m.option('X', { value: 'x' });
             m.option('Y', { value: 'y' });

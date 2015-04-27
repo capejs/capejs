@@ -114,21 +114,21 @@ describe('MarkupBuilder', function() {
       var C = Cape.createComponentClass({
         render: function(m) {
           m.form(function(m) {
-            m.labelOf('name', 'Name').sp().textField('name').br();
-            m.labelOf('remarks', 'Remarks').sp().textareaField('remarks').br();
-            m.labelOf('color', 'Color').sp();
+            m.labelFor('name', 'Name').sp().textField('name').br();
+            m.labelFor('remarks', 'Remarks').sp().textareaField('remarks').br();
+            m.labelFor('color', 'Color').sp();
             m.selectBox('color', function(m) {
               m.option('White', { value: 'white'} );
               m.option('Black', { value: 'black'} );
             }).br();
-            m.radioButton('size', 'l').sp().labelOf('gender-l', 'L').sp();
-            m.radioButton('size', 'm').sp().labelOf('gender-m', 'M').sp();
-            m.checkBox('confirm').sp().labelOf('confirm', 'OK').sp();
+            m.radioButton('size', 'l').sp().labelFor('gender-l', 'L').sp();
+            m.radioButton('size', 'm').sp().labelFor('gender-m', 'M').sp();
+            m.checkBox('confirm').sp().labelFor('confirm', 'OK').sp();
             [1, 2].forEach(function(i) {
               m.fieldsFor('variants', { index: i }, function(m) {
-                m.labelOf('variant_name', 'Name').sp().textField('variant_name').br();
-                m.labelOf('remarks', 'Remarks').sp().textareaField('remarks').br();
-                m.labelOf('color', 'Color').sp();
+                m.labelFor('variant_name', 'Name').sp().textField('variant_name').br();
+                m.labelFor('remarks', 'Remarks').sp().textareaField('remarks').br();
+                m.labelFor('color', 'Color').sp();
                 m.selectBox('color', function(m) {
                   m.option('White', { value: 'white'} );
                   m.option('Black', { value: 'black'} );
@@ -137,21 +137,21 @@ describe('MarkupBuilder', function() {
             })
           })
           m.form({ name: 'product' }, function(m) {
-            m.labelOf('name', 'Name').sp().textField('name').br();
-            m.labelOf('remarks', 'Remarks').sp().textareaField('remarks').br();
-            m.labelOf('color', 'Color').sp();
+            m.labelFor('name', 'Name').sp().textField('name').br();
+            m.labelFor('remarks', 'Remarks').sp().textareaField('remarks').br();
+            m.labelFor('color', 'Color').sp();
             m.selectBox('color', function(m) {
               m.option('White', { value: 'white'} );
               m.option('Black', { value: 'black'} );
             }).br();
-            m.radioButton('size', 'l').sp().labelOf('gender-l', 'L').sp();
-            m.radioButton('size', 'm').sp().labelOf('gender-m', 'M').sp();
-            m.checkBox('confirm').sp().labelOf('confirm', 'OK').sp();
+            m.radioButton('size', 'l').sp().labelFor('gender-l', 'L').sp();
+            m.radioButton('size', 'm').sp().labelFor('gender-m', 'M').sp();
+            m.checkBox('confirm').sp().labelFor('confirm', 'OK').sp();
             [1, 2].forEach(function(i) {
               m.fieldsFor('variants', { index: i }, function(m) {
-                m.labelOf('variant_name', 'Name').sp().textField('variant_name').br();
-                m.labelOf('remarks', 'Remarks').sp().textareaField('remarks').br();
-                m.labelOf('color', 'Color').sp();
+                m.labelFor('variant_name', 'Name').sp().textField('variant_name').br();
+                m.labelFor('remarks', 'Remarks').sp().textareaField('remarks').br();
+                m.labelFor('color', 'Color').sp();
                 m.selectBox('color', function(m) {
                   m.option('White', { value: 'white'} );
                   m.option('Black', { value: 'black'} );
