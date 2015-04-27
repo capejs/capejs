@@ -819,8 +819,8 @@ addded to the name of each form control.&lt;/p&gt;
 
 &lt;p&gt;Create a &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag whose name attribute is &lt;em&gt;name&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;Using this method instead of &lt;code&gt;#form&lt;/code&gt; method, the form name prefix is
-added to the name` attribute of subordinate form controls.&lt;/p&gt;
+&lt;p&gt;Using this method instead of &lt;code&gt;#form&lt;/code&gt;, the form name prefix is
+added to the &lt;code&gt;name&lt;/code&gt; attribute of subordinate form controls.&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;id&lt;/code&gt; attribute is set automatically. When the form name is &lt;code&gt;&#39;foo&#39;&lt;/code&gt;,
 the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;code&gt;bar&lt;/code&gt; becomes &lt;code&gt;&#39;foo-field-bar&#39;&lt;/code&gt;.&lt;/p&gt;
@@ -834,9 +834,12 @@ the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;co
   })
   // The above code generates the following HTML tags
   //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
-  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;user.name&amp;quot;&amp;gt;
-  //     &amp;lt;input type=&amp;quot;hidden&amp;quot; name=&amp;quot;user.privileged&amp;quot; value=&amp;quot;0&amp;quot;&amp;gt;
-  //     &amp;lt;input type=&amp;quot;checkbox&amp;quot; name=&amp;quot;user.privileged&amp;quot; value=&amp;quot;1&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;user.name&amp;quot;
+  //       id=&amp;quot;user-field-name&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;hidden&amp;quot; name=&amp;quot;user.privileged&amp;quot;
+  //       value=&amp;quot;0&amp;quot;&amp;gt;
+  //     &amp;lt;input type=&amp;quot;checkbox&amp;quot; name=&amp;quot;user.privileged&amp;quot;
+  //       id=&amp;quot;user-field-privileged&amp;quot; value=&amp;quot;1&amp;quot;&amp;gt;
   //   &amp;lt;/form&amp;gt;
 }
 &lt;/code&gt;&lt;/pre&gt;

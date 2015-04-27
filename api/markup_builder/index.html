@@ -720,8 +720,8 @@ addded to the name of each form control.</p>
 
 <p>Create a <code>&lt;form&gt;</code> tag whose name attribute is <em>name</em>.</p>
 
-<p>Using this method instead of <code>#form</code> method, the form name prefix is
-added to the name` attribute of subordinate form controls.</p>
+<p>Using this method instead of <code>#form</code>, the form name prefix is
+added to the <code>name</code> attribute of subordinate form controls.</p>
 
 <p>The <code>id</code> attribute is set automatically. When the form name is <code>'foo'</code>,
 the <code>id</code> attribute of a form control whose name is <code>bar</code> becomes <code>'foo-field-bar'</code>.</p>
@@ -735,9 +735,12 @@ the <code>id</code> attribute of a form control whose name is <code>bar</code> b
   })
   // The above code generates the following HTML tags
   //   &lt;form name=&quot;user&quot;&gt;
-  //     &lt;input type=&quot;text&quot; name=&quot;user.name&quot;&gt;
-  //     &lt;input type=&quot;hidden&quot; name=&quot;user.privileged&quot; value=&quot;0&quot;&gt;
-  //     &lt;input type=&quot;checkbox&quot; name=&quot;user.privileged&quot; value=&quot;1&quot;&gt;
+  //     &lt;input type=&quot;text&quot; name=&quot;user.name&quot;
+  //       id=&quot;user-field-name&quot;&gt;
+  //     &lt;input type=&quot;hidden&quot; name=&quot;user.privileged&quot;
+  //       value=&quot;0&quot;&gt;
+  //     &lt;input type=&quot;checkbox&quot; name=&quot;user.privileged&quot;
+  //       id=&quot;user-field-privileged&quot; value=&quot;1&quot;&gt;
   //   &lt;/form&gt;
 }
 </code></pre>
