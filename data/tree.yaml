@@ -156,9 +156,6 @@ api_pages:
         id: field-for
         title: "#fieldsFor"
       -
-        id: form
-        title: "#form"
-      -
         id: form-for
         title: "#formFor"
       -
@@ -167,9 +164,6 @@ api_pages:
       -
         id: label-for
         title: "#labelFor"
-      -
-        id: label-of
-        title: "#labelOf"
       -
         id: markup
         title: "#markup"

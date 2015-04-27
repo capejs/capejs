@@ -12,8 +12,9 @@ title: "Cape.MarkupBuilder - API Reference"
 [#elem](#elem) -
 [#fa](#fa) -
 [#fieldsFor](#fields-for) -
-[#form](#form) -
-[#formFor](#form-for)
+[#formFor](#form-for) -
+[#hiddenField](#hidden-field) -
+[#labelFor](#label-for)
 
 <a class="anchor" id="general-notes"></a>
 ### General notes
@@ -69,8 +70,6 @@ method with the same name:
 
 When the first argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.
-
-**Note:** The `<form>` element is treated specially in Cape.JS. See [#form](#form).
 
 #### Example
 
@@ -438,36 +437,6 @@ render: function(m) {
 }
 ```
 
-<a class="anchor" id="form"></a>
-### #form
-
-#### Usage
-
-* **form([options,] function)**
-
-Create a `<form>` tag.
-
-When the `name` option is given, it adds the form name prefix to the name
-of subordinate form controls.
-
-#### Example
-
-```javascript
-render: function(m) {
-  m.form({ name: 'user' }, function(m) {
-    m.textField('name');
-    m.checkBox('privileged');
-  })
-  // The above code generates the following HTML tags
-  //   <form name="user">
-  //     <input type="text" name="user.name">
-  //     <input type="hidden" name="user.privileged" value="0">
-  //     <input type="checkbox" name="user.privileged" value="1">
-  //   </form>
-}
-```
-
-
 <a class="anchor" id="form-for"></a>
 ### #formFor
 
@@ -475,9 +444,13 @@ render: function(m) {
 
 * **formFor(name, [options,] function)**
 
-Create a `<form tag>` whose name attribute is *name*.
+Create a `<form>` tag whose name attribute is *name*.
 
-This is a wrapper method for [#form](#form).
+Using this method instead of `#form` method, the form name prefix is
+added to the name` attribute of subordinate form controls.
+
+The `id` attribute is set automatically. When the form name is `'foo'`,
+the `id` attribute of a form control whose name is `bar` becomes `'foo-field-bar'`.
 
 #### Example
 
@@ -507,7 +480,6 @@ Create a `<input type="hidden">` tag tailored for form manipulation.
 Its first argument is the base of `name` attribute value.
 If the surrounding `<form>` tag has a name `"user"`,
 then the `name` attribute becomes `"user.name"`.
-See [#form](#form) for details.
 
 #### Example
 
@@ -525,41 +497,14 @@ render: function(m) {
 ```
 
 <a class="anchor" id="label-for"></a>
-### #label-for
+### #labelFor
 
 #### Usage
 
-* **labelFor(id, label)**
-
-Create a `<label>` tag whose `for` attribute is `id`. See also [#labelOf](#label-of).
-
-#### Example
-
-```javascript
-render: function(m) {
-  m.formFor('user', function(m) {
-    m.labelFor('user-name', 'User name');
-    m.input({ type: 'text', name: 'name', id: 'user-name' });
-  });
-  // The above code generates the following HTML tags:
-  //   <form name="user">
-  //     <label for="user-name">User name</label>
-  //     <input type="text" name="name" id="user-name">
-  //   </form>
-}
-```
-
-<a class="anchor" id="label-of"></a>
-### #label-of
-
-#### Usage
-
-* **labelOf(name, label)**
+* **labelFor(name, label)**
 
 Create a `<label>` tag whose `name` attribute is `name`.
 Its `for` attribute is set appropriately.
-
-See also [#labelFor](#label-for).
 
 #### Example
 
@@ -567,14 +512,14 @@ See also [#labelFor](#label-for).
 render: function(m) {
   m.formFor('user', function(m) {
     m.div(function(m) {
-      m.labelOf('name', 'User name').sp().textField('name');
+      m.labelFor('name', 'User name').sp().textField('name');
     });
     m.fieldsFor('home_address', function(m) {
       m.div(function(m) {
-        m.labelOf('city', 'City').sp().textField('city');
+        m.labelFor('city', 'City').sp().textField('city');
       });
       m.div(function(m) {
-        m.labelOf('street', 'Street').sp().textField('street');
+        m.labelFor('street', 'Street').sp().textField('street');
       });
     });
   });
