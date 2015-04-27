@@ -446,8 +446,8 @@ render: function(m) {
 
 Create a `<form>` tag whose name attribute is *name*.
 
-Using this method instead of `#form` method, the form name prefix is
-added to the name` attribute of subordinate form controls.
+Using this method instead of `#form`, the form name prefix is
+added to the `name` attribute of subordinate form controls.
 
 The `id` attribute is set automatically. When the form name is `'foo'`,
 the `id` attribute of a form control whose name is `bar` becomes `'foo-field-bar'`.
@@ -462,9 +462,12 @@ render: function(m) {
   })
   // The above code generates the following HTML tags
   //   <form name="user">
-  //     <input type="text" name="user.name">
-  //     <input type="hidden" name="user.privileged" value="0">
-  //     <input type="checkbox" name="user.privileged" value="1">
+  //     <input type="text" name="user.name"
+  //       id="user-field-name">
+  //     <input type="hidden" name="user.privileged"
+  //       value="0">
+  //     <input type="checkbox" name="user.privileged"
+  //       id="user-field-privileged" value="1">
   //   </form>
 }
 ```
