@@ -141,6 +141,9 @@ api_pages:
         id: class
         title: "#class()"
       -
+        id: css
+        title: "#css()"
+      -
         id: data
         title: "#data()"
       -
@@ -168,6 +171,12 @@ api_pages:
         id: password-field
         title: "#passwordField()"
       -
+        id: radio-button
+        title: "#radioButton()"
+      -
+        id: select-box
+        title: "#selectBox()"
+      -
         id: sp
         title: "#sp()"
       -
@@ -177,17 +186,11 @@ api_pages:
         id: text
         title: "#text()"
       -
-        id: text-field
-        title: "#textField()"
-      -
         id: textarea-field
         title: "#textareaField()"
       -
-        id: radio-button
-        title: "#radioButton()"
-      -
-        id: select-box
-        title: "#selectBox()"
+        id: text-field
+        title: "#textField()"
   -
     name: "api/data_store"
     title: "Cape.DataStore"

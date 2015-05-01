@@ -8,6 +8,7 @@ title: "Cape.MarkupBuilder - API Reference"
 [#attr()](#attr) -
 [#checkBox()](#check-box) -
 [#class()](#class) -
+[#css()](#css) -
 [#data()](#data) -
 [#elem()](#elem) -
 [#fa()](#fa) -
@@ -17,13 +18,13 @@ title: "Cape.MarkupBuilder - API Reference"
 [#labelFor()](#label-for) -
 [#markup()](#markup) -
 [#passwordField()](#password-field) -
+[#radioButton()](#radio-button) -
+[#selectBox()](#select-box) -
 [#sp()](#sp) -
 [#space()](#space) -
 [#text()](#text) -
-[#textField()](#text-field) -
 [#textareaField()](#textarea-field) -
-[#radioButton()](#radio-button) -
-[#selectBox()](#select-box)
+[#textField()](#text-field)
 
 <a class="anchor" id="general-notes"></a>
 ### General notes
@@ -265,6 +266,11 @@ render: function(m) {
 
 As [#attr](#attr), the `#class` method add classes cumulatively and
 affects only the nextly added element.
+
+<a class="anchor" id="css"></a>
+### #css()
+
+*Not yet written.*
 
 <a class="anchor" id="data"></a>
 ### #data()
@@ -595,6 +601,16 @@ render: function(m) {
 }
 ```
 
+<a class="anchor" id="radio-button"></a>
+### #radioButton()
+
+*Not yet written.*
+
+<a class="anchor" id="select-box"></a>
+### #selectBox()
+
+*Not yet written.*
+
 <a class="anchor" id="sp"></a>
 ### #sp()
 
@@ -651,3 +667,13 @@ render: function(m) {
   m.p({ innerHTML: '&copy; <span>Foo Bar, Inc.</span>' })
 }
 ```
+
+<a class="anchor" id="textarea-field"></a>
+### #textareaField()
+
+*Not yet written.*
+
+<a class="anchor" id="text-field"></a>
+### #textField()
+
+*Not yet written.*
