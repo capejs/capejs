@@ -81,8 +81,7 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 &lt;a href=&#34;#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt; -
 &lt;a href=&#34;#deep-extend&#34;&gt;Cape.deepExtend&lt;/a&gt; -
 &lt;a href=&#34;#extend&#34;&gt;Cape.extend&lt;/a&gt; -
-&lt;a href=&#34;#merge&#34;&gt;Cape.merge&lt;/a&gt; -
-&lt;a href=&#34;#session&#34;&gt;Cape.session&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;#merge&#34;&gt;Cape.merge&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -277,28 +276,6 @@ Cape.extend(object1, object2);
 //   durian: 100
 // }
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-session-property:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.session (property)&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-5:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cape.session&lt;em&gt;[key]&lt;/em&gt; = &lt;em&gt;value&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This property just holds an ordinary object. Users may store arbitrary data to this object.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-5:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;Cape.session.currentUser =
-  { id: 1, name: &#39;john&#39;, privileged: true }
-
-if (Cape.session.currentUser.privileged) {
-  // Do something.
-}
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -358,18 +335,18 @@ if (Cape.session.currentUser.privileged) {
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#general-notes&#34;&gt;General notes&lt;/a&gt; -
-&lt;a href=&#34;#a-abbr-address-etc&#34;&gt;#a, #abbr, #address&lt;/a&gt; -
-&lt;a href=&#34;#area-base-br-etc&#34;&gt;#area, #base, #br&lt;/a&gt; -
-&lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt; -
-&lt;a href=&#34;#check-box&#34;&gt;#checkBox&lt;/a&gt; -
-&lt;a href=&#34;#class&#34;&gt;#class&lt;/a&gt; -
-&lt;a href=&#34;#data&#34;&gt;#data&lt;/a&gt; -
-&lt;a href=&#34;#elem&#34;&gt;#elem&lt;/a&gt; -
-&lt;a href=&#34;#fa&#34;&gt;#fa&lt;/a&gt; -
-&lt;a href=&#34;#fields-for&#34;&gt;#fieldsFor&lt;/a&gt; -
-&lt;a href=&#34;#form-for&#34;&gt;#formFor&lt;/a&gt; -
-&lt;a href=&#34;#hidden-field&#34;&gt;#hiddenField&lt;/a&gt; -
-&lt;a href=&#34;#label-for&#34;&gt;#labelFor&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;#a-abbr-address-etc&#34;&gt;#a(), #abbr(), #address()&lt;/a&gt; -
+&lt;a href=&#34;#area-base-br-etc&#34;&gt;#area(), #base(), #br()&lt;/a&gt; -
+&lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt; -
+&lt;a href=&#34;#check-box&#34;&gt;#checkBox()&lt;/a&gt; -
+&lt;a href=&#34;#class&#34;&gt;#class()&lt;/a&gt; -
+&lt;a href=&#34;#data&#34;&gt;#data()&lt;/a&gt; -
+&lt;a href=&#34;#elem&#34;&gt;#elem()&lt;/a&gt; -
+&lt;a href=&#34;#fa&#34;&gt;#fa()&lt;/a&gt; -
+&lt;a href=&#34;#fields-for&#34;&gt;#fieldsFor()&lt;/a&gt; -
+&lt;a href=&#34;#form-for&#34;&gt;#formFor()&lt;/a&gt; -
+&lt;a href=&#34;#hidden-field&#34;&gt;#hiddenField()&lt;/a&gt; -
+&lt;a href=&#34;#label-for&#34;&gt;#labelFor()&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;general-notes&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -397,7 +374,7 @@ Each method returns the instance itself.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;a-abbr-address-etc&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;a-abbr-address-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#a, #abbr, #address, etc.&lt;/h3&gt;
+&lt;h3 id=&#34;a-abbr-address-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#a(), #abbr(), #address(), etc.&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -470,7 +447,7 @@ and before the function argument.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;area-base-br-etc&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;area-base-br-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#area, #base, #br, etc.&lt;/h3&gt;
+&lt;h3 id=&#34;area-base-br-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#area(), #base(), #br(), etc.&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-1:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -505,7 +482,7 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attr&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;attr:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#attr&lt;/h3&gt;
+&lt;h3 id=&#34;attr:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#attr()&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-2:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -561,7 +538,7 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;check-box&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;checkbox:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#checkBox&lt;/h3&gt;
+&lt;h3 id=&#34;checkbox:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#checkBox()&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-3:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -595,7 +572,7 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;class:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#class&lt;/h3&gt;
+&lt;h3 id=&#34;class:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#class()&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -624,7 +601,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;data:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#data&lt;/h3&gt;
+&lt;h3 id=&#34;data:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#data()&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -653,7 +630,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;elem&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;elem:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#elem&lt;/h3&gt;
+&lt;h3 id=&#34;elem:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#elem()&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -722,7 +699,7 @@ and before the function argument.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;fa&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;fa:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fa&lt;/h3&gt;
+&lt;h3 id=&#34;fa:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fa()&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -750,7 +727,7 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;fields-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;fieldsfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fieldsFor&lt;/h3&gt;
+&lt;h3 id=&#34;fieldsfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fieldsFor()&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -809,7 +786,7 @@ addded to the name of each form control.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;formfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#formFor&lt;/h3&gt;
+&lt;h3 id=&#34;formfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#formFor()&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -846,7 +823,7 @@ the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;co
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;hidden-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;hiddenfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#hiddenField&lt;/h3&gt;
+&lt;h3 id=&#34;hiddenfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#hiddenField()&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -875,7 +852,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;label-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;labelfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#labelFor&lt;/h3&gt;
+&lt;h3 id=&#34;labelfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#labelFor()&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
@@ -934,7 +911,50 @@ Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://oiax.github.io/capejs/api/router/</guid>
-      <description></description>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
+&lt;a href=&#34;#session&#34;&gt;#session&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
+which is emptied after each navigation.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
+router.navigate(&#39;articles&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;session:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#session&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;session[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;session.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;session&lt;/em&gt; object.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.session.signedIn = Date.now();
+router.session.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
