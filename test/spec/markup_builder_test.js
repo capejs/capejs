@@ -154,6 +154,51 @@ describe('MarkupBuilder', function() {
       })
     }
   })
+  describe('css', function() {
+    it('should set attribute of next element', function() {
+      var target, c, p;
+
+      var C = Cape.createComponentClass({
+        render: function(m) {
+          m.css('color', 'red').css('font-size', '90%')
+            .p('One', { style: { fontWeight: 'bold' } })
+            .p('Two', { style: { color: 'blue', fontWeight: 'bold'  } })
+        }
+      });
+
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+      p = target.getElementsByTagName('p');
+      expect(p[0].style.color).to.equal('red')
+      expect(p[1].style.color).to.equal('blue')
+
+      c.unmount();
+    })
+
+    it('should take a hash', function() {
+      var target, c, p;
+
+      var C = Cape.createComponentClass({
+        render: function(m) {
+          m.css({ color: 'red' }).css({ fontSize: '90%' })
+            .p('One', { style: { fontWeight: 'bold' } })
+            .p('Two', { style: { color: 'blue', fontWeight: 'bold'  } })
+        }
+      });
+
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+      p = target.getElementsByTagName('p');
+      expect(p[0].style.color).to.equal('red')
+      expect(p[1].style.color).to.equal('blue')
+
+      c.unmount();
+    })
+  })
 
   describe('fa', function() {
     it('should add a font-awesome icon', function() {
