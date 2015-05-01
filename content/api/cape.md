@@ -7,8 +7,7 @@ type: "api"
 [Cape.createDataStoreClass](#create-data-store-class) -
 [Cape.deepExtend](#deep-extend) -
 [Cape.extend](#extend) -
-[Cape.merge](#merge) -
-[Cape.session](#session)
+[Cape.merge](#merge)
 
 <a class="anchor" id="create-component-class"></a>
 ### Cape.createComponentClass
@@ -196,24 +195,4 @@ Cape.extend(object1, object2);
 //   cherry: 97,
 //   durian: 100
 // }
-```
-
-<a class="anchor" id="session"></a>
-### Cape.session (property)
-
-#### Usage
-
-* **Cape.session_[key]_ = _value_**
-
-This property just holds an ordinary object. Users may store arbitrary data to this object.
-
-#### Example
-
-```
-Cape.session.currentUser =
-  { id: 1, name: 'john', privileged: true }
-
-if (Cape.session.currentUser.privileged) {
-  // Do something.
-}
 ```

@@ -94,9 +94,6 @@ api_pages:
       -
         id: merge
         title: ".merge()"
-      -
-        id: session
-        title: ".session"
   -
     name: "api/component"
     title: "Cape.Component"
@@ -104,22 +101,22 @@ api_pages:
     sections:
       -
         id: form-data
-        title: "#formData"
+        title: "#formData()"
       -
         id: mount
-        title: "#mount"
+        title: "#mount()"
       -
         id: refresh
-        title: "#refresh"
+        title: "#refresh()"
       -
         id: render-partial
-        title: "#renderPartial"
+        title: "#renderPartial()"
       -
         id: unmount
-        title: "#unmount"
+        title: "#unmount()"
       -
         id: val
-        title: "#val"
+        title: "#val()"
   -
     name: "api/markup_builder"
     title: "Cape.MarkupBuilder"
@@ -130,67 +127,67 @@ api_pages:
         title: "General notes"
       -
         id: a-abbr-address-etc
-        title: "#a, #abbr, #address, etc."
+        title: "#a(), #abbr(), #address(), etc."
       -
         id: area-base-br-etc
-        title: "#area, #base, #br, etc."
+        title: "#area(), #base(), #br(), etc."
       -
         id: attr
-        title: "#attr"
+        title: "#attr()"
       -
         id: check-box
-        title: "#checkBox"
+        title: "#checkBox()"
       -
         id: class
-        title: "#class"
+        title: "#class()"
       -
         id: data
-        title: "#data"
+        title: "#data()"
       -
         id: elem
-        title: "#elem"
+        title: "#elem()"
       -
         id: fa
-        title: "#fa"
+        title: "#fa()"
       -
         id: field-for
-        title: "#fieldsFor"
+        title: "#fieldsFor()"
       -
         id: form-for
-        title: "#formFor"
+        title: "#formFor()"
       -
         id: hidden-field
-        title: "#hiddenField"
+        title: "#hiddenField()"
       -
         id: label-for
-        title: "#labelFor"
+        title: "#labelFor()"
       -
         id: markup
-        title: "#markup"
+        title: "#markup()"
       -
         id: password-field
-        title: "#passwordField"
+        title: "#passwordField()"
       -
         id: sp
-        title: "#sp"
+        title: "#sp()"
       -
         id: space
-        title: "#space"
+        title: "#space()"
       -
         id: text
-        title: "#text"
+        title: "#text()"
       -
         id: text-field
-        title: "#textField"
+        title: "#textField()"
       -
         id: textarea-field
-        title: "#textareaField"
+        title: "#textareaField()"
       -
         id: radio-button
-        title: "#radioButton"
+        title: "#radioButton()"
       -
         id: select-box
-        title: "#selectBox"
+        title: "#selectBox()"
   -
     name: "api/data_store"
     title: "Cape.DataStore"
@@ -198,57 +195,84 @@ api_pages:
     sections:
       -
         id: attach
-        title: "#attach"
+        title: "#attach()"
       -
         id: detach
-        title: "#detach"
+        title: "#detach()"
       -
         id: propagate
-        title: "#propagate"
+        title: "#propagate()"
       -
         id: refresh
-        title: "#refresh"
+        title: "#refresh()"
   -
     name: "api/router"
     title: "Cape.Router"
     showSections: true
     sections:
       -
+        id: action
+        title: "#action"
+      -
         id: attach
-        title: "#attach"
+        title: "#attach()"
       -
         id: before-navigation
-        title: "#beforeNavigation"
+        title: "#beforeNavigation()"
+      -
+        id: component
+        title: "#component"
+      -
+        id: container
+        title: "#container"
       -
         id: detach
-        title: "#detach"
+        title: "#detach()"
       -
         id: draw
-        title: "#draw"
+        title: "#draw()"
       -
         id: error-handler
-        title: "#errorHandler"
+        title: "#errorHandler()"
+      -
+        id: flash
+        title: "#flash"
+      -
+        id: namespace
+        title: "#namespace"
       -
         id: navigate
-        title: "#navigate"
+        title: "#navigate()"
       -
         id: notify
-        title: "#notify"
+        title: "#notify()"
       -
         id: mount
-        title: "#mount"
+        title: "#mount()"
+      -
+        id: params
+        title: "#params"
+      -
+        id: query
+        title: "#query"
+      -
+        id: resource
+        title: "#resource"
       -
         id: route-for
-        title: "#routeFor"
+        title: "#routeFor()"
+      -
+        id: session
+        title: "#session"
       -
         id: show
-        title: "#show"
+        title: "#show()"
       -
         id: start
-        title: "#start"
+        title: "#start()"
       -
         id: stop
-        title: "#stop"
+        title: "#stop()"
   -
     name: "api/routing_mapper"
     title: "Cape.RoutingMapper"
@@ -256,28 +280,28 @@ api_pages:
     sections:
       -
         id: collection
-        title: "#collection"
+        title: "#collection()"
       -
         id: namespace
-        title: "#namespace"
+        title: "#namespace()"
       -
         id: new
-        title: "#new"
+        title: "#new()"
       -
         id: many
-        title: "#many"
+        title: "#many()"
       -
         id: member
-        title: "#member"
+        title: "#member()"
       -
         id: one
-        title: "#one"
+        title: "#one()"
       -
         id: page
-        title: "#page"
+        title: "#page()"
       -
         id: root
-        title: "#root"
+        title: "#root()"
       -
         id: view
-        title: "#view"
+        title: "#view()"

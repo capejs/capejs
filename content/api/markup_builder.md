@@ -3,18 +3,18 @@ title: "Cape.MarkupBuilder - API Reference"
 ---
 
 [General notes](#general-notes) -
-[#a, #abbr, #address](#a-abbr-address-etc) -
-[#area, #base, #br](#area-base-br-etc) -
-[#attr](#attr) -
-[#checkBox](#check-box) -
-[#class](#class) -
-[#data](#data) -
-[#elem](#elem) -
-[#fa](#fa) -
-[#fieldsFor](#fields-for) -
-[#formFor](#form-for) -
-[#hiddenField](#hidden-field) -
-[#labelFor](#label-for)
+[#a(), #abbr(), #address()](#a-abbr-address-etc) -
+[#area(), #base(), #br()](#area-base-br-etc) -
+[#attr()](#attr) -
+[#checkBox()](#check-box) -
+[#class()](#class) -
+[#data()](#data) -
+[#elem()](#elem) -
+[#fa()](#fa) -
+[#fieldsFor()](#fields-for) -
+[#formFor()](#form-for) -
+[#hiddenField()](#hidden-field) -
+[#labelFor()](#label-for)
 
 <a class="anchor" id="general-notes"></a>
 ### General notes
@@ -41,7 +41,7 @@ var HelloMessage = Cape.createComponentClass({
 ```
 
 <a class="anchor" id="a-abbr-address-etc"></a>
-### #a, #abbr, #address, etc.
+### #a(), #abbr(), #address(), etc.
 
 #### Usage
 
@@ -112,7 +112,7 @@ var HelloMessage = Cape.createComponentClass({
 ```
 
 <a class="anchor" id="area-base-br-etc"></a>
-### #area, #base, #br, etc.
+### #area(), #base(), #br(), etc.
 
 #### Usage
 
@@ -143,7 +143,7 @@ var LogoMark = Cape.createComponentClass({
 ```
 
 <a class="anchor" id="attr"></a>
-### #attr
+### #attr()
 
 #### Usage
 
@@ -199,7 +199,7 @@ render: function(m) {
 ```
 
 <a class="anchor" id="check-box"></a>
-### #checkBox
+### #checkBox()
 
 #### Usage
 
@@ -231,7 +231,7 @@ render: function(m) {
 ```
 
 <a class="anchor" id="class"></a>
-### #class
+### #class()
 
 #### Usage
 
@@ -258,7 +258,7 @@ As [#attr](#attr), the `#class` method add classes cumulatively and
 affects only the nextly added element.
 
 <a class="anchor" id="data"></a>
-### #data
+### #data()
 
 #### Usage
 
@@ -285,7 +285,7 @@ As [#attr](#attr), the `#data` method sets attribute values cumulatively and
 affects only the nextly added element.
 
 <a class="anchor" id="elem"></a>
-### #elem
+### #elem()
 
 #### Usage
 
@@ -353,7 +353,7 @@ render: function(m) {
 ```
 
 <a class="anchor" id="fa"></a>
-### #fa
+### #fa()
 
 #### Usage
 
@@ -379,7 +379,7 @@ render: function(m) {
 ```
 
 <a class="anchor" id="fields-for"></a>
-### #fieldsFor
+### #fieldsFor()
 
 #### Usage
 
@@ -438,7 +438,7 @@ render: function(m) {
 ```
 
 <a class="anchor" id="form-for"></a>
-### #formFor
+### #formFor()
 
 #### Usage
 
@@ -473,7 +473,7 @@ render: function(m) {
 ```
 
 <a class="anchor" id="hidden-field"></a>
-### #hiddenField
+### #hiddenField()
 
 #### Usage
 
@@ -500,7 +500,7 @@ render: function(m) {
 ```
 
 <a class="anchor" id="label-for"></a>
-### #labelFor
+### #labelFor()
 
 #### Usage
 
