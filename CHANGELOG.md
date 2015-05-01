@@ -1,5 +1,12 @@
 # CHANGELOG - CapeJS
 
+## 1.0.0-beta.6 (Not yet released)
+
+### `Cape.MarkupBuilder`
+
+* `#attr`, `#class`, `#data` should also take a hash as the first argument.
+* Add `#css` to set the style attribue of next element.
+
 ## 1.0.0-beta.5 (April 28, 2015)
 
 ### `Cape.Router`
