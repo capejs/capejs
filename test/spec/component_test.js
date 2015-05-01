@@ -90,8 +90,47 @@ describe('Component', function() {
       expect(component.val('foo.title')).to.equal('A');
       expect(component.val('foo.name')).to.equal('B');
     })
-  })
 
+    it('should set the value of a form field by a hash', function() {
+      var Klass, component;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.form(function(m) {
+            m.textField('title');
+            m.textField('name');
+          });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+      component.val({ title: 'A', name: 'B' });
+      component.refresh();
+      expect(component.val('title')).to.equal('A');
+      expect(component.val('name')).to.equal('B');
+    })
+
+    it('should set the value of a field of named form by a hash', function() {
+      var Klass, component;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.form({ name: 'foo' }, function(m) {
+            m.textField('title');
+            m.textField('name');
+          });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+      component.val({ foo: { title: 'A', name: 'B'} });
+      component.refresh();
+      expect(component.val('foo.title')).to.equal('A');
+      expect(component.val('foo.name')).to.equal('B');
+    })
+  })
 
   describe('renderPartial', function() {
     beforeEach(function() {

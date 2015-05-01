@@ -2,6 +2,10 @@
 
 ## 1.0.0-beta.6 (Not yet released)
 
+### `Cape.Component`
+
+* `#val` should take a hash as its first argument.
+
 ### `Cape.MarkupBuilder`
 
 * `#attr`, `#class`, `#data` should also take a hash as the first argument.
