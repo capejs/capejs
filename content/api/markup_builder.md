@@ -14,7 +14,16 @@ title: "Cape.MarkupBuilder - API Reference"
 [#fieldsFor()](#fields-for) -
 [#formFor()](#form-for) -
 [#hiddenField()](#hidden-field) -
-[#labelFor()](#label-for)
+[#labelFor()](#label-for) -
+[#markup()](#markup) -
+[#passwordField()](#password-field) -
+[#sp()](#sp) -
+[#space()](#space) -
+[#text()](#text) -
+[#textField()](#text-field) -
+[#textareaField()](#textarea-field) -
+[#radioButton()](#radio-button) -
+[#selectBox()](#select-box)
 
 <a class="anchor" id="general-notes"></a>
 ### General notes
@@ -547,5 +556,98 @@ render: function(m) {
   //         id="user-field-home-address-street">
   //     </div>
   //   </form>
+}
+```
+
+<a class="anchor" id="markup"></a>
+### #markup()
+
+This method is for internal use. Do not override it.
+
+<a class="anchor" id="password-field"></a>
+### #passwordField()
+
+#### Usage
+
+* **passwordField(name, [options,] function)**
+
+Create a `<input type="password">` tag tailored for form manipulation.
+Its first argument is the base of `name` attribute value.
+If the surrounding `<form>` tag has a name `"user"`,
+then the `name` attribute becomes `"user.name"`.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('user', function(m) {
+    m.passwordField('password');
+    m.passwordField('password_confirmation');
+  });
+  // The above code generates the following HTML tags:
+  //   <form name="user">
+  //     <input type="password" name="user.password"
+  //       id="user-field-password">
+  //     <input type="password"
+  //       name="user.password_confirmation"
+  //       id="user-field-password-confirmation">
+  //   </form>
+}
+```
+
+<a class="anchor" id="sp"></a>
+### #sp()
+
+This is an alias to [#space()](#space).
+
+<a class="anchor" id="space"></a>
+### #space()
+
+#### Usage
+
+* **space()**
+
+Add a single space character. Same as `text(' ')`.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.p(function(m) {
+    m.text(this.message);
+    m.space();
+    m.strong(this.name);
+    m.text('!');
+  })
+}
+```
+
+<a class="anchor" id="text"></a>
+### #text()
+
+#### Usage
+
+* **text(string)**
+
+Add *string* as a text node to the virtual dom tree.
+The special characters (`<`, `>`, `&`) are escaped automatically.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.h1(function(m) {
+    m.text(this.title).sp();
+    m.small(this.subtitle);
+  })
+}
+```
+
+If you want to create a content from a string without escaping it,
+use `innerHTML` property:
+
+```javascript
+render: function(m) {
+  m.p({ innerHTML: '&copy; <span>Foo Bar, Inc.</span>' })
 }
 ```
