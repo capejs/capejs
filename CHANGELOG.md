@@ -20,8 +20,7 @@
 
 * Allow the URL hash to include query part such as `?name=John&page=3`.
   These parameters are set to the `query` property of router.
-* Add `session` property which users can store arbitary data to, but is erased
-  after each navigation.
+* Add `session` property which users can store arbitary data to.
 
 ## 1.0.0-beta.5 (April 28, 2015)
 
