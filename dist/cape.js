@@ -102,9 +102,30 @@ Cape.extend(Component.prototype, {
     this._.virtualForms = {};
     this._.serialized = false;
   },
-  val: function(name, value) {
-    if (arguments.length === 1) return this._.getValue(name);
-    else return this._.setValue(name, value);
+  val: function(arg1, arg2) {
+    var key1, key2, value;
+
+    if (typeof arg1 === 'object') {
+      for (key1 in arg1) {
+        if (arg1.hasOwnProperty(key1)) {
+          value = arg1[key1];
+          if (typeof value === 'object') {
+            for (key2 in value) {
+              if (value.hasOwnProperty(key2)) {
+                this._.setValue(key1 + '.' + key2, value[key2]);
+              }
+            }
+          }
+          else {
+            this._.setValue(key1, value);
+          }
+        }
+      }
+    }
+    else {
+      if (arguments.length === 1) return this._.getValue(arg1);
+      else return this._.setValue(arg1, arg2);
+    }
   },
   formData: function(formName) {
     this._.serializeForms();
@@ -501,15 +522,33 @@ Cape.extend(MarkupBuilder.prototype, {
     return this;
   },
   attr: function(name, value) {
-    this._.attr[name] = value;
+    if (typeof name === 'object')
+      Cape.extend(this._.attr, name)
+    else if (typeof name === 'string')
+      this._.attr[name] = value;
+
     return this;
   },
   class: function(name) {
-    this._.classNames.push(name);
+    if (typeof name === 'object')
+      Cape.extend(this._.classNames, name)
+    else if (typeof name === 'string')
+      this._.classNames[name] = true;
     return this;
   },
   data: function(name, value) {
-    this._.data[name] = value;
+    if (typeof name === 'object')
+      Cape.extend(this._.data, name)
+    else if (typeof name === 'string')
+      this._.data[name] = value;
+    return this;
+  },
+  css: function(name, value) {
+    if (typeof name === 'object')
+      Cape.extend(this._.style, name)
+    else if (typeof name === 'string')
+      this._.style[name] = value;
+
     return this;
   },
   fa: function(iconName, options) {
@@ -532,9 +571,10 @@ var _Internal = function _Internal(main) {
   this.main = main;
   this.h = virtualDom.h;
   this.elements = [];
-  this.classNames = [];
+  this.classNames = {};
   this.attr = {};
   this.data = {};
+  this.style = {};
 }
 
 // Internal methods of Cape.MarkupBuilder
@@ -607,8 +647,12 @@ Cape.extend(_Internal.prototype, {
       delete options['for'];
     }
 
-    classNames = this.classNames.slice(0);
+    classNames = []
+    for (key in this.classNames)
+      if (this.classNames.hasOwnProperty(key) && this.classNames[key])
+        classNames.push(key)
     this.classNames = [];
+
     if (typeof options['className'] === 'object') {
       for (var name in options['className']) {
         if (options['className'][name]) {
@@ -640,6 +684,12 @@ Cape.extend(_Internal.prototype, {
     data = global.Cape.extend({}, this.data, data);
     this.data = {};
     options.dataset = data;
+
+    if (typeof options.style === 'object')
+      options.style = global.Cape.extend({}, this.style, options.style);
+    else
+      options.style = this.style
+    this.style = {}
 
     for (var key in options) {
       if (typeof options[key] === 'function') {
@@ -693,11 +743,15 @@ var Cape = require('./utilities');
 // public properties:
 //   routes: array of hashes that contains routing information.
 //   params: the parameters that are extracted from URL hash fragment.
-//   namespace: the namespace part of URL hash fragment
-//   resource: the resource part of URL hash fragment
-//   action: the action name of current route
-//   container: the name of container of component
-//   component: the name of component
+//   query: the parameters that are extracted from the query part of URL hash fragment.
+//   namespace: the namespace part of URL hash fragment.
+//   resource: the resource part of URL hash fragment.
+//   action: the action name of current route.
+//   container: the name of container of component.
+//   component: the name of component.
+//   session: an object which users can store arbitary data to.
+//   flash: an object which users can store arbitary data to, but is erased after each
+//          navigation.
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
 var Router = function Router(rootContainer) {
@@ -705,11 +759,13 @@ var Router = function Router(rootContainer) {
   this.rootContainer = rootContainer || window;
   this.routes = [];
   this.params = {};
+  this.query = {};
   this.namespace = null;
   this.resource = null;
   this.action = null;
   this.container = null;
   this.component = null;
+  this.session = {};
   this.flash = {};
 };
 
@@ -848,6 +904,7 @@ Cape.extend(_Internal.prototype, {
     this.main.container = route.container;
     this.main.component = route.component;
     this.setParams(route);
+    this.setQuery(route);
     componentClass = this.getComponentClassFor(route);
 
     if (componentClass === this.mountedComponentClass) {
@@ -873,6 +930,18 @@ Cape.extend(_Internal.prototype, {
     route.keys.forEach(function(key, i) {
       this.main.params[key] = md[i + 1];
     }.bind(this));
+  },
+  setQuery: function(route) {
+    var queryString, pairs;
+
+    this.main.query = {};
+    queryString = this.currentHash.split('?')[1];
+    if (queryString === undefined) return;
+    pairs = queryString.split('&');
+    pairs.forEach(function(pair) {
+      var parts = pair.split('=');
+      this.main.query[parts[0]] = parts[1] || '';
+    }.bind(this))
   },
   getComponentClassFor: function(route) {
     var fragments, obj, i, componentName;
@@ -1085,7 +1154,8 @@ Cape.extend(_Internal.prototype, {
         fragments.push(fragment);
       }
     })
-    return new RegExp('^' + fragments.join('/') + '$');
+    return new RegExp('^' + fragments.join('/') +
+      '(?:\\?[\\w-]+(?:=[\\w-]*)?(?:&[\\w-]+(?:=[\\w-]*)?)*)?$')
   },
   extractOptions: function(arguments) {
     if (typeof arguments[1] === 'function') return {}
@@ -1195,9 +1265,6 @@ module.exports = RoutingMapper;
 },{"./utilities":7,"inflected":10}],7:[function(require,module,exports){
 (function (global){
 var Cape = {};
-
-// Users may store arbitrary data to this hash.
-Cape.session = {};
 
 // Merge the properties of two or more objects together into the first object.
 Cape.extend = function() {

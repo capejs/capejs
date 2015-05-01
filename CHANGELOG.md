@@ -1,6 +1,6 @@
 # CHANGELOG - CapeJS
 
-## 1.0.0-beta.6 (Not yet released)
+## 1.0.0-beta.6 (May 1, 2015)
 
 ### `Cape`
 
