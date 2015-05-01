@@ -1,0 +1,5 @@
+require('./utilities_test.js')
+require('./component_test.js')
+require('./markup_builder_test.js')
+require('./routing_mapper_test.js')
+require('./router_test.js')
