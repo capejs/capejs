@@ -257,6 +257,76 @@ Cape.extend(object1, object2);
     </item>
     
     <item>
+      <title>Cape.DataStore - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>API Reference</title>
+      <link>http://oiax.github.io/capejs/api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt; -
+&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt; -
+&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt; -
+&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt; -
+&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
+&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;the-cape-object:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;The &lt;code&gt;Cape&lt;/code&gt; object&lt;/h3&gt;
+
+&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; defines a single global variable &lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt;.
+It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, etc.&lt;/p&gt;
+
+&lt;p&gt;It also has the &lt;code&gt;session&lt;/code&gt; property whose value is a hash object.
+This property can be used to store arbitrary data by developers.&lt;/p&gt;
+
+&lt;h3 id=&#34;overview-of-classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Overview of classes&lt;/h3&gt;
+
+&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; consists of following five classes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These classes are defined as properties of the &lt;code&gt;Cape&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;p&gt;The most basic class is &lt;code&gt;Cape.Component&lt;/code&gt;.
+You need to define a class extending it in order to create a web widget using Cape.JS.
+At least, instances of this class must have a method called &lt;code&gt;render&lt;/code&gt;, which defines
+how the component should be rendered in HTML.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; is a class whose instances build &lt;em&gt;virtual dom trees.&lt;/em&gt;
+Usually you don&amp;rsquo;t instantiate markup builders by yourself.
+Instances of &lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; are passed to the &lt;code&gt;render&lt;/code&gt; method of
+component classes.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
+components to render themselves.&lt;/p&gt;
+
+&lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
+After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
+and mount components according to the &lt;em&gt;routes&lt;/em&gt;
+(associations between hashes and components) which you defined in advance.&lt;/p&gt;
+
+&lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
+You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
+method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Cape.MarkupBuilder - API Reference</title>
       <link>http://oiax.github.io/capejs/api/markup_builder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -270,6 +340,7 @@ Cape.extend(object1, object2);
 &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt; -
 &lt;a href=&#34;#check-box&#34;&gt;#checkBox()&lt;/a&gt; -
 &lt;a href=&#34;#class&#34;&gt;#class()&lt;/a&gt; -
+&lt;a href=&#34;#css&#34;&gt;#css()&lt;/a&gt; -
 &lt;a href=&#34;#data&#34;&gt;#data()&lt;/a&gt; -
 &lt;a href=&#34;#elem&#34;&gt;#elem()&lt;/a&gt; -
 &lt;a href=&#34;#fa&#34;&gt;#fa()&lt;/a&gt; -
@@ -279,13 +350,13 @@ Cape.extend(object1, object2);
 &lt;a href=&#34;#label-for&#34;&gt;#labelFor()&lt;/a&gt; -
 &lt;a href=&#34;#markup&#34;&gt;#markup()&lt;/a&gt; -
 &lt;a href=&#34;#password-field&#34;&gt;#passwordField()&lt;/a&gt; -
+&lt;a href=&#34;#radio-button&#34;&gt;#radioButton()&lt;/a&gt; -
+&lt;a href=&#34;#select-box&#34;&gt;#selectBox()&lt;/a&gt; -
 &lt;a href=&#34;#sp&#34;&gt;#sp()&lt;/a&gt; -
 &lt;a href=&#34;#space&#34;&gt;#space()&lt;/a&gt; -
 &lt;a href=&#34;#text&#34;&gt;#text()&lt;/a&gt; -
-&lt;a href=&#34;#text-field&#34;&gt;#textField()&lt;/a&gt; -
 &lt;a href=&#34;#textarea-field&#34;&gt;#textareaField()&lt;/a&gt; -
-&lt;a href=&#34;#radio-button&#34;&gt;#radioButton()&lt;/a&gt; -
-&lt;a href=&#34;#select-box&#34;&gt;#selectBox()&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;#text-field&#34;&gt;#textField()&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;general-notes&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -537,6 +608,12 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt;, the &lt;code&gt;#class&lt;/code&gt; method add classes cumulatively and
 affects only the nextly added element.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;css&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;css:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#css()&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -881,6 +958,18 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;radio-button&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;radiobutton:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#radioButton()&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;select-box&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;selectbox:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#selectBox()&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;sp&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;sp:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#sp()&lt;/h3&gt;
@@ -941,128 +1030,18 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
   m.p({ innerHTML: &#39;&amp;amp;copy; &amp;lt;span&amp;gt;Foo Bar, Inc.&amp;lt;/span&amp;gt;&#39; })
 }
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Cape.DataStore - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/data_store/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>API Reference</title>
-      <link>http://oiax.github.io/capejs/api/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/</guid>
-      <description>
 
-&lt;p&gt;&lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt; -
-&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt; -
-&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt; -
-&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt; -
-&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
-&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;textarea-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;the-cape-object:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;The &lt;code&gt;Cape&lt;/code&gt; object&lt;/h3&gt;
+&lt;h3 id=&#34;textareafield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#textareaField()&lt;/h3&gt;
 
-&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; defines a single global variable &lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt;.
-It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, etc.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;It also has the &lt;code&gt;session&lt;/code&gt; property whose value is a hash object.
-This property can be used to store arbitrary data by developers.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;text-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;overview-of-classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Overview of classes&lt;/h3&gt;
+&lt;h3 id=&#34;textfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#textField()&lt;/h3&gt;
 
-&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; consists of following five classes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These classes are defined as properties of the &lt;code&gt;Cape&lt;/code&gt; object.&lt;/p&gt;
-
-&lt;p&gt;The most basic class is &lt;code&gt;Cape.Component&lt;/code&gt;.
-You need to define a class extending it in order to create a web widget using Cape.JS.
-At least, instances of this class must have a method called &lt;code&gt;render&lt;/code&gt;, which defines
-how the component should be rendered in HTML.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; is a class whose instances build &lt;em&gt;virtual dom trees.&lt;/em&gt;
-Usually you don&amp;rsquo;t instantiate markup builders by yourself.
-Instances of &lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; are passed to the &lt;code&gt;render&lt;/code&gt; method of
-component classes.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
-components to render themselves.&lt;/p&gt;
-
-&lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
-After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
-and mount components according to the &lt;em&gt;routes&lt;/em&gt;
-(associations between hashes and components) which you defined in advance.&lt;/p&gt;
-
-&lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
-You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
-method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Cape.Router - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/router/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/router/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
-&lt;a href=&#34;#session&#34;&gt;#session&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
-which is emptied after each navigation.&lt;/p&gt;
-
-&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
-router.navigate(&#39;articles&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;session:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#session&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;session[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;session.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;session&lt;/em&gt; object.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.session.signedIn = Date.now();
-router.session.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -1493,6 +1472,58 @@ which will cause the re-rendering of this component.&lt;/p&gt;
 &lt;h3 id=&#34;working-with-jquery:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Working with jQuery&lt;/h3&gt;
 
 &lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.Router - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/router/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/router/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
+&lt;a href=&#34;#session&#34;&gt;#session&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
+which is emptied after each navigation.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
+router.navigate(&#39;articles&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;session:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#session&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;session[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;session.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;session&lt;/em&gt; object.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.session.signedIn = Date.now();
+router.session.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

@@ -340,6 +340,7 @@ Cape.extend(object1, object2);
 &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt; -
 &lt;a href=&#34;#check-box&#34;&gt;#checkBox()&lt;/a&gt; -
 &lt;a href=&#34;#class&#34;&gt;#class()&lt;/a&gt; -
+&lt;a href=&#34;#css&#34;&gt;#css()&lt;/a&gt; -
 &lt;a href=&#34;#data&#34;&gt;#data()&lt;/a&gt; -
 &lt;a href=&#34;#elem&#34;&gt;#elem()&lt;/a&gt; -
 &lt;a href=&#34;#fa&#34;&gt;#fa()&lt;/a&gt; -
@@ -349,13 +350,13 @@ Cape.extend(object1, object2);
 &lt;a href=&#34;#label-for&#34;&gt;#labelFor()&lt;/a&gt; -
 &lt;a href=&#34;#markup&#34;&gt;#markup()&lt;/a&gt; -
 &lt;a href=&#34;#password-field&#34;&gt;#passwordField()&lt;/a&gt; -
+&lt;a href=&#34;#radio-button&#34;&gt;#radioButton()&lt;/a&gt; -
+&lt;a href=&#34;#select-box&#34;&gt;#selectBox()&lt;/a&gt; -
 &lt;a href=&#34;#sp&#34;&gt;#sp()&lt;/a&gt; -
 &lt;a href=&#34;#space&#34;&gt;#space()&lt;/a&gt; -
 &lt;a href=&#34;#text&#34;&gt;#text()&lt;/a&gt; -
-&lt;a href=&#34;#text-field&#34;&gt;#textField()&lt;/a&gt; -
 &lt;a href=&#34;#textarea-field&#34;&gt;#textareaField()&lt;/a&gt; -
-&lt;a href=&#34;#radio-button&#34;&gt;#radioButton()&lt;/a&gt; -
-&lt;a href=&#34;#select-box&#34;&gt;#selectBox()&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;#text-field&#34;&gt;#textField()&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;general-notes&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -607,6 +608,12 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt;, the &lt;code&gt;#class&lt;/code&gt; method add classes cumulatively and
 affects only the nextly added element.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;css&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;css:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#css()&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -951,6 +958,18 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;radio-button&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;radiobutton:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#radioButton()&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;select-box&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;selectbox:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#selectBox()&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;sp&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;sp:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#sp()&lt;/h3&gt;
@@ -1011,6 +1030,18 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
   m.p({ innerHTML: &#39;&amp;amp;copy; &amp;lt;span&amp;gt;Foo Bar, Inc.&amp;lt;/span&amp;gt;&#39; })
 }
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;textarea-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;textareafield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#textareaField()&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;text-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;textfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#textField()&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
