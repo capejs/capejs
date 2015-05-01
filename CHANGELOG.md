@@ -2,6 +2,11 @@
 
 ## 1.0.0-beta.6 (Not yet released)
 
+### `Cape`
+
+* Cape's `session` property is abolished. Users should store data to the `session`
+  property of `Cape.Router` instances.
+
 ### `Cape.Component`
 
 * `#val` should take a hash as its first argument.
@@ -10,6 +15,11 @@
 
 * `#attr`, `#class`, `#data` should also take a hash as the first argument.
 * Add `#css` to set the style attribue of next element.
+
+### `Cape.Router`
+
+* Add `session` property which users can store arbitary data to, but is erased
+  after each navigation.
 
 ## 1.0.0-beta.5 (April 28, 2015)
 
