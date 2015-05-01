@@ -18,6 +18,8 @@
 
 ### `Cape.Router`
 
+* Allow the URL hash to include query part such as `?name=John&page=3`.
+  These parameters are set to the `query` property of router.
 * Add `session` property which users can store arbitary data to, but is erased
   after each navigation.
 

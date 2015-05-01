@@ -119,6 +119,26 @@ describe('Router', function() {
       expect(router.component).to.equal('test_message');
     })
 
+    it('should recognize query part of the URL hash', function() {
+      var router, method;
+
+      window.TestMessage = function() {};
+      window.TestMessage.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('hello', 'test_message');
+      })
+      router.mount('main');
+      router.navigate('hello?name=John&message=Goodby&x');
+
+      expect(method.calledWith('main')).to.equal(true);
+      expect(router.component).to.equal('test_message');
+      expect(router.query.name).to.equal('John');
+      expect(router.query.message).to.equal('Goodby');
+      expect(router.query.x).to.equal('');
+    })
+
     it('should mount the matched component and set Router#params', function() {
       var router, method;
 
