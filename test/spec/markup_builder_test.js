@@ -34,6 +34,28 @@ describe('MarkupBuilder', function() {
 
       c.unmount();
     })
+
+    it('should take a hash object', function() {
+      var target, c, p;
+
+      var C = Cape.createComponentClass({
+        render: function(m) {
+          m.attr({ title: 'x', id: 'y' }).attr({ title: 'xx' })
+            .p('One', { id: 'z' })
+            .p('Two') }
+      });
+
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+      p = target.getElementsByTagName('p');
+      expect(p[0].getAttribute('title')).to.equal('xx')
+      expect(p[0].getAttribute('id')).to.equal('z')
+      expect(p[1].getAttribute('title')).to.null
+
+      c.unmount();
+    })
   })
 
   describe('class', function() {
@@ -43,6 +65,28 @@ describe('MarkupBuilder', function() {
       var C = Cape.createComponentClass({
         render: function(m) {
           m.class('foo').class('bar')
+            .p('One', { class: 'baz foo' })
+            .p('Two', { class: { foo: true, bar: false } })
+        }
+      });
+
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+      p = target.getElementsByTagName('p');
+      expect(p[0].className).to.equal('foo bar baz')
+      expect(p[1].className).to.equal('foo')
+
+      c.unmount();
+    })
+
+    it('should take a hash', function() {
+      var target, c, p;
+
+      var C = Cape.createComponentClass({
+        render: function(m) {
+          m.class({ foo: true, bar: true }).class({ active: false })
             .p('One', { class: 'baz foo' })
             .p('Two', { class: { foo: true, bar: false } })
         }
@@ -80,6 +124,29 @@ describe('MarkupBuilder', function() {
         target = document.getElementById('target');
         p = target.getElementsByTagName('p');
         expect(p[0].getAttribute('data-title')).to.equal('x')
+        expect(p[0].getAttribute('data-name')).to.equal('z')
+        expect(p[1].getAttribute('data-title')).to.null
+
+        c.unmount();
+      })
+
+      it('should take a hash', function() {
+        var target, c, p;
+
+        var C = Cape.createComponentClass({
+          render: function(m) {
+            m.data({ title: 'x', name: 'y' })
+              .data({ title: 'xx' })
+              .p('One', { data: { name: 'z' } })
+              .p('Two') }
+        });
+
+        c = new C();
+        c.mount('target');
+
+        target = document.getElementById('target');
+        p = target.getElementsByTagName('p');
+        expect(p[0].getAttribute('data-title')).to.equal('xx')
         expect(p[0].getAttribute('data-name')).to.equal('z')
         expect(p[1].getAttribute('data-title')).to.null
 
