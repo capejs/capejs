@@ -219,6 +219,15 @@ Cape.extend(object1, object2);
     </item>
     
     <item>
+      <title>Cape.DataStore - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Cape.Component - API Reference</title>
       <link>http://oiax.github.io/capejs/api/component/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -311,12 +320,64 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Cape.DataStore - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <title>Cape.RoutingMapper - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Cape.Router - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/router/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/router/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
+&lt;a href=&#34;#session&#34;&gt;#session&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
+which is emptied after each navigation.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
+router.navigate(&#39;articles&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;session:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#session&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;session[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;session.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;session&lt;/em&gt; object.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.session.signedIn = Date.now();
+router.session.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
@@ -1076,251 +1137,6 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
     </item>
     
     <item>
-      <title>Cape.RoutingMapper - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cape.Router - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/router/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/router/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
-&lt;a href=&#34;#session&#34;&gt;#session&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
-which is emptied after each navigation.&lt;/p&gt;
-
-&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
-router.navigate(&#39;articles&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;session:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#session&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;session[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;session.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;session&lt;/em&gt; object.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.session.signedIn = Date.now();
-router.session.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Data Stores</title>
-      <link>http://oiax.github.io/capejs/data_stores/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/data_stores/</guid>
-      <description>
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;basics:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Basics&lt;/h3&gt;
-
-&lt;p&gt;When you develop something larger than a tiny widget, you are recommended to
-create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
-
-&lt;p&gt;The following example illustrates the basic concept of data stores.&lt;/p&gt;
-
-&lt;h4 id=&#34;index-html:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;index.html&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script src=&amp;quot;./todo_item_store.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&amp;quot;./todo_list2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script&amp;gt;
-  var todoList = new TodoList2();
-  todoList.mount(&#39;todo-list&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [
-      { title: &#39;Foo&#39;, done: false },
-      { title: &#39;Bar&#39;, done: true }
-    ];
-    this.propagate();
-  },
-  addItem: function(title) {
-    this.items.push({ title: title, done: false });
-    this.propagate();
-  },
-  toggle: function(item) {
-    item.done = !item.done;
-    this.propagate();
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;TodoItemStore&lt;/code&gt; class has three methods and each of them ends with
-&lt;code&gt;this.propagate()&lt;/code&gt;, which calls the &lt;code&gt;refresh&lt;/code&gt; method of all attached components.&lt;/p&gt;
-
-&lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
-  render: function(m) {
-    m.ul(function(m) {
-      this.ds.items.forEach(function(item) {
-        this.renderItem(m, item);
-      }.bind(this))
-    });
-    this.renderForm(m);
-  },
-
-  renderItem: function(m, item) {
-    m.li(function(m) {
-      m.label({ class: { completed: item.done }}, function(m) {
-        m.input({ type: &#39;checkbox&#39;, checked: item.done,
-          onclick: function(e) { this.ds.toggle(item) } });
-        m.space().text(item.title);
-      })
-    })
-  },
-
-  renderForm: function(m) {
-    m.form(function(m) {
-      m.textField(&#39;title&#39;, { onkeyup: function(e) { this.refresh() } });
-      m.button(&amp;quot;Add&amp;quot;, {
-        disabled: this.val(&#39;title&#39;) === &#39;&#39;,
-        onclick: function(e) { this.ds.addItem(this.val(&#39;title&#39;, &#39;&#39;)) }
-      });
-    });
-  },
-
-  init: function() {
-    this.ds = TodoItemStore.create();
-    this.ds.attach(this);
-    this.ds.init();
-  },
-
-  beforeUnmount: function() {
-    this.ds.detach(this);
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Within the &lt;code&gt;init&lt;/code&gt; method, we create a singleton instance of &lt;code&gt;TodoItemStore&lt;/code&gt; class &lt;em&gt;(data store)&lt;/em&gt;,
-and set it to the &lt;code&gt;ds&lt;/code&gt; property of this component.&lt;/p&gt;
-
-&lt;p&gt;Then we call the &lt;code&gt;attach&lt;/code&gt; method of the data store to register this component
-as a &lt;em&gt;listener&lt;/em&gt; to the &lt;em&gt;change event&lt;/em&gt;. When the content of data store is changed,
-a &lt;em&gt;change event&lt;/em&gt; is emitted to this component.&lt;/p&gt;
-
-&lt;p&gt;When we click a check box, the following code is executed:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggle(item)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This inverts the &lt;code&gt;done&lt;/code&gt; attribute of this item and calls &lt;code&gt;this.propagate()&lt;/code&gt;,
-which will cause the re-rendering of this component.&lt;/p&gt;
-
-&lt;p&gt;A working demo is found at
-&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list2&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;ajax:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Ajax&lt;/h3&gt;
-
-&lt;p&gt;In this section, we assume that an api server is working behind.
-When we access it with &lt;code&gt;GET /api/items.json&lt;/code&gt;, it responds with a JSON string
-such as &lt;code&gt;[{ title: &#39;Foo&#39;, done: false },{ title: &#39;Bar&#39;, done: true }]&lt;/code&gt;.
-When we post to the server a JSON string such as &lt;code&gt;{ title: &#39;Baz&#39; }&lt;/code&gt;
-with &lt;code&gt;POST /api/items&lt;/code&gt;, it stores this new item to the database.
-If we post to the server a JSON string such as &lt;code&gt;{ done: true }&lt;/code&gt;
-with &lt;code&gt;PATCH /api/items/123&lt;/code&gt; (&lt;code&gt;123&lt;/code&gt; is the &lt;code&gt;id&lt;/code&gt; of an item),
-it toggle on the &lt;code&gt;done&lt;/code&gt; column of this item.&lt;/p&gt;
-
-&lt;p&gt;In this environment, we can rewrite the &lt;code&gt;todo_item_store.js&lt;/code&gt; of the previous
-example as follows:&lt;/p&gt;
-
-&lt;h4 id=&#34;todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [];
-    this.refresh();
-  },
-
-  addItem: function(title) {
-    var self = this;
-    $.ajax({
-      type: &#39;POST&#39;,
-      url: &#39;/api/items&#39;,
-      data: { title: title }
-    }).done(function(data) {
-      self.refresh();
-    });
-  },
-
-  toggle: function(item) {
-    var self = this;
-    $.ajax({
-      type: &#39;PATCH&#39;,
-      url: &#39;/api/items/&#39; + item.id,
-      data: { done: !item.done }
-    }).done(function(data) {
-      self.refresh();
-    });
-  },
-
-  refresh: function() {
-    var self = this;
-    $.ajax({
-      type: &#39;GET&#39;,
-      url: &#39;/api/items.json&#39;
-    }).done(function(data) {
-      self.items.length = 0;
-      data.forEach(function(item) { self.items.push(item) });
-      self.propagate();
-    });
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;$.ajax&lt;/code&gt; is a jQuery&amp;rsquo;s method to make an Ajax request.
-See &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;http://api.jquery.com/jquery.ajax/&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;You can find a working demo using Ajax techniques on
-&lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;.
-This demo is built as a Ruby on Rails application.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Components</title>
       <link>http://oiax.github.io/capejs/components/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1684,106 +1500,186 @@ within the definition of &lt;code&gt;SimpleForm&lt;/code&gt; class.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Index</title>
-      <link>http://oiax.github.io/capejs/</link>
+      <title>Data Stores</title>
+      <link>http://oiax.github.io/capejs/data_stores/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/</guid>
+      <guid>http://oiax.github.io/capejs/data_stores/</guid>
       <description>
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;what-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Cape.JS?&lt;/h2&gt;
+&lt;h3 id=&#34;basics:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Basics&lt;/h3&gt;
 
-&lt;p&gt;Cape.JS is a lightweight JavaScript UI framework with following features:&lt;/p&gt;
+&lt;p&gt;When you develop something larger than a tiny widget, you are recommended to
+create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Full stack:&lt;/strong&gt; You can build &lt;em&gt;single-page applications&lt;/em&gt; (SPAs) with Cape.JS.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Modular:&lt;/strong&gt; You can place &lt;em&gt;web widgets&lt;/em&gt; built by Cape.JS to your static web sites.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Virtual DOM:&lt;/strong&gt; Cape.JS takes advantage of
-&lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-of Matt-Esch for high performance rendering.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Markup builder:&lt;/strong&gt; The &lt;em&gt;markup builder&lt;/em&gt; helps you to construct HTML DOM trees
-with its simple, easy to learn syntax.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Form manipulation:&lt;/strong&gt; You can get or set the value of form fields
-without &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Data stores:&lt;/strong&gt; Using &lt;em&gt;data stores&lt;/em&gt;, you can build web applications
-with &lt;em&gt;unidirectional data flow.&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Router:&lt;/strong&gt; You can define &lt;em&gt;routes&lt;/em&gt; with a DSL (domain specific language)
-similar to that of Ruby on Rails.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;The following example illustrates the basic concept of data stores.&lt;/p&gt;
 
-&lt;p&gt;The architecture and terminology of Cape.JS are strongly influenced by
-&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;,
-&lt;a href=&#34;https://github.com/muut/riotjs&#34;&gt;Riot&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-and &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+&lt;h4 id=&#34;index-html:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;index.html&lt;/h4&gt;
 
-&lt;p&gt;&lt;a class=&#34;installation&#34; id=&#34;installation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 
-&lt;h2 id=&#34;installation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Installation&lt;/h2&gt;
-
-&lt;p&gt;If you just want to use Cape.JS in your web site, insert the following snippet
-to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.6/dist/cape.min.js&amp;quot;
-  rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&amp;lt;script src=&amp;quot;./todo_item_store.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;./todo_list2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var todoList = new TodoList2();
+  todoList.mount(&#39;todo-list&#39;);
+&amp;lt;/script&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You can get the package for &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+&lt;h4 id=&#34;todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt;$ npm install capejs
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+    this.propagate();
+  },
+  addItem: function(title) {
+    this.items.push({ title: title, done: false });
+    this.propagate();
+  },
+  toggle: function(item) {
+    item.done = !item.done;
+    this.propagate();
+  }
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You can get the package for &lt;a href=&#34;http://bower.io/&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;TodoItemStore&lt;/code&gt; class has three methods and each of them ends with
+&lt;code&gt;this.propagate()&lt;/code&gt;, which calls the &lt;code&gt;refresh&lt;/code&gt; method of all attached components.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ bower install capejs
+&lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
+  render: function(m) {
+    m.ul(function(m) {
+      this.ds.items.forEach(function(item) {
+        this.renderItem(m, item);
+      }.bind(this))
+    });
+    this.renderForm(m);
+  },
+
+  renderItem: function(m, item) {
+    m.li(function(m) {
+      m.label({ class: { completed: item.done }}, function(m) {
+        m.input({ type: &#39;checkbox&#39;, checked: item.done,
+          onclick: function(e) { this.ds.toggle(item) } });
+        m.space().text(item.title);
+      })
+    })
+  },
+
+  renderForm: function(m) {
+    m.form(function(m) {
+      m.textField(&#39;title&#39;, { onkeyup: function(e) { this.refresh() } });
+      m.button(&amp;quot;Add&amp;quot;, {
+        disabled: this.val(&#39;title&#39;) === &#39;&#39;,
+        onclick: function(e) { this.ds.addItem(this.val(&#39;title&#39;, &#39;&#39;)) }
+      });
+    });
+  },
+
+  init: function() {
+    this.ds = TodoItemStore.create();
+    this.ds.attach(this);
+    this.ds.init();
+  },
+
+  beforeUnmount: function() {
+    this.ds.detach(this);
+  }
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;faq&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Within the &lt;code&gt;init&lt;/code&gt; method, we create a singleton instance of &lt;code&gt;TodoItemStore&lt;/code&gt; class &lt;em&gt;(data store)&lt;/em&gt;,
+and set it to the &lt;code&gt;ds&lt;/code&gt; property of this component.&lt;/p&gt;
 
-&lt;h2 id=&#34;faq:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;FAQ&lt;/h2&gt;
+&lt;p&gt;Then we call the &lt;code&gt;attach&lt;/code&gt; method of the data store to register this component
+as a &lt;em&gt;listener&lt;/em&gt; to the &lt;em&gt;change event&lt;/em&gt;. When the content of data store is changed,
+a &lt;em&gt;change event&lt;/em&gt; is emitted to this component.&lt;/p&gt;
 
-&lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
+&lt;p&gt;When we click a check box, the following code is executed:&lt;/p&gt;
 
-&lt;p&gt;The official name is &lt;strong&gt;Cape.JS.&lt;/strong&gt;
-Its package name for &lt;a href=&#34;https://www.npmjs.com&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-and &lt;a href=&#34;http://bower.io&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; is &lt;strong&gt;capejs&lt;/strong&gt; (without the dot).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggle(item)
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;At the very initial phase of development, we called it &amp;ldquo;CapeJS&amp;rdquo;, but
-we don&amp;rsquo;t use it anymore.&lt;/p&gt;
+&lt;p&gt;This inverts the &lt;code&gt;done&lt;/code&gt; attribute of this item and calls &lt;code&gt;this.propagate()&lt;/code&gt;,
+which will cause the re-rendering of this component.&lt;/p&gt;
 
-&lt;h3 id=&#34;is-it-production-ready:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it production ready?&lt;/h3&gt;
+&lt;p&gt;A working demo is found at
+&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list2&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Not yet. We adopt &lt;a href=&#34;http://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; for Cape.JS.
-According to this system, major version (0.y.z) zero is for initial development.
-We have released the version 1.0.0-beta.x, but the public API of Cape.JS should
-not be considered stable.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;which-browsers-are-supported:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Which browsers are supported?&lt;/h3&gt;
+&lt;h3 id=&#34;ajax:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Ajax&lt;/h3&gt;
 
-&lt;p&gt;Currently we test Cape.JS only on the latest versions of Chrome and Firefox.
-We are planning to add support for Internet Explorer (version 8 or higher) and Safari
-until the release of Cape.JS 1.0.&lt;/p&gt;
+&lt;p&gt;In this section, we assume that an API server is running behind.
+When we access it with &lt;code&gt;GET /api/items.json&lt;/code&gt;, it responds with a JSON string
+such as &lt;code&gt;[{ title: &#39;Foo&#39;, done: false },{ title: &#39;Bar&#39;, done: true }]&lt;/code&gt;.
+When we post to the server a JSON string such as &lt;code&gt;{ title: &#39;Baz&#39; }&lt;/code&gt;
+using &lt;code&gt;POST /api/items&lt;/code&gt; interface, it stores this new item to the database.
+If we post to the server a JSON string such as &lt;code&gt;{ done: true }&lt;/code&gt;
+using &lt;code&gt;PATCH /api/items/123&lt;/code&gt; interface (&lt;code&gt;123&lt;/code&gt; is the &lt;code&gt;id&lt;/code&gt; value of an item),
+it records this item as &amp;ldquo;done&amp;rdquo; on the database.&lt;/p&gt;
 
-&lt;h3 id=&#34;how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How can I contribute?&lt;/h3&gt;
+&lt;p&gt;In this settings, we can rewrite the &lt;code&gt;todo_item_store.js&lt;/code&gt; of the previous
+example as follows:&lt;/p&gt;
 
-&lt;p&gt;The Cape.JS is an open source project. Everyone can help.
-See &lt;a href=&#34;https://github.com/oiax/capejs/CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt;
-&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;for details.&lt;/p&gt;
+&lt;h4 id=&#34;todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
 
-&lt;h2 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [];
+    this.refresh();
+  },
 
-&lt;p&gt;The logo of Cape.JS is created by
-&lt;a href=&#34;https://github.com/junya-suzuki&#34;&gt;Junya Suzuki&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+  addItem: function(title) {
+    var self = this;
+    $.ajax({
+      type: &#39;POST&#39;,
+      url: &#39;/api/items&#39;,
+      data: { title: title }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
 
-&lt;h2 id=&#34;trademarks&#34;&gt;Trademarks&lt;/h2&gt;
+  toggle: function(item) {
+    var self = this;
+    $.ajax({
+      type: &#39;PATCH&#39;,
+      url: &#39;/api/items/&#39; + item.id,
+      data: { done: !item.done }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
 
-&lt;p&gt;&amp;ldquo;Cape.JS&amp;rdquo; and its logo are trademarks of Oiax Inc. All rights reserved.&lt;/p&gt;
+  refresh: function() {
+    var self = this;
+    $.ajax({
+      type: &#39;GET&#39;,
+      url: &#39;/api/items.json&#39;
+    }).done(function(data) {
+      self.items.length = 0;
+      data.forEach(function(item) { self.items.push(item) });
+      self.propagate();
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;$.ajax&lt;/code&gt; is a jQuery&amp;rsquo;s method to make an Ajax request.
+See &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;http://api.jquery.com/jquery.ajax/&lt;/a&gt; for details.&lt;/p&gt;
 
-&lt;p&gt;Cape.JS is released under
-&lt;a href=&#34;https://github.com/oiax/capejs/LICENSE&#34;&gt;the MIT License&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+&lt;p&gt;You can find a working demo using Ajax techniques on
+&lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;.
+This demo is built as a Ruby on Rails application.&lt;/p&gt;
 </description>
     </item>
     
@@ -1900,6 +1796,110 @@ components according to the routes.&lt;/p&gt;
 &lt;h3 id=&#34;before-navigation-callbacks:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Before-navigation Callbacks&lt;/h3&gt;
 
 &lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Index</title>
+      <link>http://oiax.github.io/capejs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/</guid>
+      <description>
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;what-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Cape.JS?&lt;/h2&gt;
+
+&lt;p&gt;Cape.JS is a lightweight JavaScript UI framework with following features:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Full stack:&lt;/strong&gt; You can build &lt;em&gt;single-page applications&lt;/em&gt; (SPAs) with Cape.JS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modular:&lt;/strong&gt; You can place &lt;em&gt;web widgets&lt;/em&gt; built by Cape.JS to your static web sites.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Virtual DOM:&lt;/strong&gt; Cape.JS takes advantage of
+&lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+of Matt-Esch for high performance rendering.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Markup builder:&lt;/strong&gt; The &lt;em&gt;markup builder&lt;/em&gt; helps you to construct HTML DOM trees
+with its simple, easy to learn syntax.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Form manipulation:&lt;/strong&gt; You can get or set the value of form fields
+without &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data stores:&lt;/strong&gt; Using &lt;em&gt;data stores&lt;/em&gt;, you can build web applications
+with &lt;em&gt;unidirectional data flow.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Router:&lt;/strong&gt; You can define &lt;em&gt;routes&lt;/em&gt; with a DSL (domain specific language)
+similar to that of Ruby on Rails.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The architecture and terminology of Cape.JS are strongly influenced by
+&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;,
+&lt;a href=&#34;https://github.com/muut/riotjs&#34;&gt;Riot&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+and &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;installation&#34; id=&#34;installation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;installation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;If you just want to use Cape.JS in your web site, insert the following snippet
+to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.6/dist/cape.min.js&amp;quot;
+  rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can get the package for &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm install capejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can get the package for &lt;a href=&#34;http://bower.io/&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bower install capejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;faq&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;faq:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;FAQ&lt;/h2&gt;
+
+&lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
+
+&lt;p&gt;The official name is &lt;strong&gt;Cape.JS.&lt;/strong&gt;
+Its package name for &lt;a href=&#34;https://www.npmjs.com&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+and &lt;a href=&#34;http://bower.io&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; is &lt;strong&gt;capejs&lt;/strong&gt; (without the dot).&lt;/p&gt;
+
+&lt;p&gt;At the very initial phase of development, we called it &amp;ldquo;CapeJS&amp;rdquo;, but
+we don&amp;rsquo;t use it anymore.&lt;/p&gt;
+
+&lt;h3 id=&#34;is-it-production-ready:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it production ready?&lt;/h3&gt;
+
+&lt;p&gt;Not yet. We adopt &lt;a href=&#34;http://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; for Cape.JS.
+According to this system, major version (0.y.z) zero is for initial development.
+We have released the version 1.0.0-beta.x, but the public API of Cape.JS should
+not be considered stable.&lt;/p&gt;
+
+&lt;h3 id=&#34;which-browsers-are-supported:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Which browsers are supported?&lt;/h3&gt;
+
+&lt;p&gt;Currently we test Cape.JS only on the latest versions of Chrome and Firefox.
+We are planning to add support for Internet Explorer (version 8 or higher) and Safari
+until the release of Cape.JS 1.0.&lt;/p&gt;
+
+&lt;h3 id=&#34;how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How can I contribute?&lt;/h3&gt;
+
+&lt;p&gt;The Cape.JS is an open source project. Everyone can help.
+See &lt;a href=&#34;https://github.com/oiax/capejs/CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt;
+&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;for details.&lt;/p&gt;
+
+&lt;h2 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h2&gt;
+
+&lt;p&gt;The logo of Cape.JS is created by
+&lt;a href=&#34;https://github.com/junya-suzuki&#34;&gt;Junya Suzuki&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;trademarks&#34;&gt;Trademarks&lt;/h2&gt;
+
+&lt;p&gt;&amp;ldquo;Cape.JS&amp;rdquo; and its logo are trademarks of Oiax Inc. All rights reserved.&lt;/p&gt;
+
+&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+
+&lt;p&gt;Cape.JS is released under
+&lt;a href=&#34;https://github.com/oiax/capejs/LICENSE&#34;&gt;the MIT License&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
 </description>
     </item>
     

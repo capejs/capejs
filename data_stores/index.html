@@ -253,16 +253,16 @@ which will cause the re-rendering of this component.</p>
 
 <h3 id="ajax:f92bcc195ac1a154137ec3cd72983d7f">Ajax</h3>
 
-<p>In this section, we assume that an api server is working behind.
+<p>In this section, we assume that an API server is running behind.
 When we access it with <code>GET /api/items.json</code>, it responds with a JSON string
 such as <code>[{ title: 'Foo', done: false },{ title: 'Bar', done: true }]</code>.
 When we post to the server a JSON string such as <code>{ title: 'Baz' }</code>
-with <code>POST /api/items</code>, it stores this new item to the database.
+using <code>POST /api/items</code> interface, it stores this new item to the database.
 If we post to the server a JSON string such as <code>{ done: true }</code>
-with <code>PATCH /api/items/123</code> (<code>123</code> is the <code>id</code> of an item),
-it toggle on the <code>done</code> column of this item.</p>
+using <code>PATCH /api/items/123</code> interface (<code>123</code> is the <code>id</code> value of an item),
+it records this item as &ldquo;done&rdquo; on the database.</p>
 
-<p>In this environment, we can rewrite the <code>todo_item_store.js</code> of the previous
+<p>In this settings, we can rewrite the <code>todo_item_store.js</code> of the previous
 example as follows:</p>
 
 <h4 id="todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f">todo_item_store.js</h4>
