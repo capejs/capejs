@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MIXINS | Cape.JS Demo</title>
+  <link rel="stylesheet" type="text/css"
+     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="../../dist/cape.js" charset="UTF-8"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>MIXINS <small>Cape.JS Demo</small></h1>
+    </div>
+
+    <div id="main"></div>
+  </div>
+
+  <script src="./form_controls.js"></script>
+  <script src="./simple_form.js"></script>
+  <script>
+    var simple_form = new SimpleForm();
+    simple_form.mount('main');
+  </script>
+</body>
+</html>
