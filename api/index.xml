@@ -296,10 +296,6 @@ Cape.extend(object1, object2);
 
 &lt;h3 id=&#34;cape-component-refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#refresh()&lt;/h3&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;render-partial&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-renderpartial-builder-componentname-thisobj:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#renderPartial(builder, componentName, thisObj)&lt;/h3&gt;
-
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;cape-component-unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#unmount()&lt;/h3&gt;
