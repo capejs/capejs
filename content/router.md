@@ -2,6 +2,14 @@
 title: "Router"
 ---
 
+[Simple Routes](#simple-routes) -
+[Resource Based Routes](#resource-based-routes) -
+[Namespaces](#namespaces) -
+[Changing Root Container](#changing-root-container) -
+[Session](#session) -
+[Flash](#flash) -
+[Before-navigation Callbacks](#before-navigation-callbacks)
+
 <a class="anchor" id="simple-routes"></a>
 ### Simple Routes
 

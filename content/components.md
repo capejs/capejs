@@ -2,6 +2,13 @@
 title: "Components"
 ---
 
+[Hello World](#hello-world) -
+[ECMAScript 6](#es6) -
+[Building Virtual DOM Tree](#dom-tree) -
+[Click Counter](#click-counter) -
+[Todo List](#todo-list) -
+[Mixins](#mixins)
+
 <a class="anchor" id="hello-world"></a>
 ### Hello World
 

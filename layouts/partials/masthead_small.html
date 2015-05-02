@@ -16,5 +16,25 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-12" style="padding-bottom: 10px">
+        {{ $baseUrl := .Site.BaseUrl }}
+        {{ range $.Site.Data.tree.top }}
+        <a href="{{ $baseUrl }}/#{{ .id }}">{{ .title }}</a> -
+        {{ end}}
+        <a href="{{ $baseUrl }}/#acknowledgements">Acknowledgements</a> -
+        <a href="{{ $baseUrl }}/#trademarks">Trademarks</a> -
+        <a href="{{ $baseUrl }}/#license">License</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12" style="padding-bottom: 10px">
+        {{ $baseUrl := .Site.BaseUrl }}
+        {{ range $.Site.Data.tree.pages }}
+        <a href="{{ $baseUrl }}/{{ .name }}">{{ .title }}</a> -
+        {{ end}}
+        <a href="{{ $baseUrl }}/api">API Reference</a>
+      </div>
+    </div>
   </div>
 </div>

@@ -2,6 +2,9 @@
 title: "Data Stores"
 ---
 
+[Basics](#basics) -
+[Ajax](#ajax)
+
 <a class="anchor" id="basics"></a>
 ### Basics
 
