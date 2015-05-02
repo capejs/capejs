@@ -253,15 +253,6 @@ Cape.extend(object1, object2);
     </item>
     
     <item>
-      <title>Cape.DataStore - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/data_store/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>API Reference</title>
       <link>http://oiax.github.io/capejs/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -317,6 +308,15 @@ and mount components according to the &lt;em&gt;routes&lt;/em&gt;
 You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
 method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Cape.DataStore - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -1076,6 +1076,67 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
     </item>
     
     <item>
+      <title>Cape.RoutingMapper - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cape.Router - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/router/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/router/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
+&lt;a href=&#34;#session&#34;&gt;#session&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
+which is emptied after each navigation.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
+router.navigate(&#39;articles&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;session:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#session&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;session[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;session.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;session&lt;/em&gt; object.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.session.signedIn = Date.now();
+router.session.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Data Stores</title>
       <link>http://oiax.github.io/capejs/data_stores/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1190,11 +1251,72 @@ which will cause the re-rendering of this component.&lt;/p&gt;
 &lt;p&gt;A working demo is found at
 &lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list2&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;jquery&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;working-with-jquery:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Working with jQuery&lt;/h3&gt;
+&lt;h3 id=&#34;ajax:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Ajax&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;p&gt;In this section, we assume that an api server is working behind.
+When we access it with &lt;code&gt;GET /api/items.json&lt;/code&gt;, it responds with a JSON string
+such as &lt;code&gt;[{ title: &#39;Foo&#39;, done: false },{ title: &#39;Bar&#39;, done: true }]&lt;/code&gt;.
+When we post to the server a JSON string such as &lt;code&gt;{ title: &#39;Baz&#39; }&lt;/code&gt;
+with &lt;code&gt;POST /api/items&lt;/code&gt;, it stores this new item to the database.
+If we post to the server a JSON string such as &lt;code&gt;{ done: true }&lt;/code&gt;
+with &lt;code&gt;PATCH /api/items/123&lt;/code&gt; (&lt;code&gt;123&lt;/code&gt; is the &lt;code&gt;id&lt;/code&gt; of an item),
+it toggle on the &lt;code&gt;done&lt;/code&gt; column of this item.&lt;/p&gt;
+
+&lt;p&gt;In this environment, we can rewrite the &lt;code&gt;todo_item_store.js&lt;/code&gt; of the previous
+example as follows:&lt;/p&gt;
+
+&lt;h4 id=&#34;todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [];
+    this.refresh();
+  },
+
+  addItem: function(title) {
+    var self = this;
+    $.ajax({
+      type: &#39;POST&#39;,
+      url: &#39;/api/items&#39;,
+      data: { title: title }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
+
+  toggle: function(item) {
+    var self = this;
+    $.ajax({
+      type: &#39;PATCH&#39;,
+      url: &#39;/api/items/&#39; + item.id,
+      data: { done: !item.done }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
+
+  refresh: function() {
+    var self = this;
+    $.ajax({
+      type: &#39;GET&#39;,
+      url: &#39;/api/items.json&#39;
+    }).done(function(data) {
+      self.items.length = 0;
+      data.forEach(function(item) { self.items.push(item) });
+      self.propagate();
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;$.ajax&lt;/code&gt; is a jQuery&amp;rsquo;s method to make an Ajax request.
+See &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;http://api.jquery.com/jquery.ajax/&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;You can find a working demo using Ajax techniques on
+&lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;.
+This demo is built as a Ruby on Rails application.&lt;/p&gt;
 </description>
     </item>
     
@@ -1562,58 +1684,6 @@ within the definition of &lt;code&gt;SimpleForm&lt;/code&gt; class.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Cape.Router - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/router/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/router/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
-&lt;a href=&#34;#session&#34;&gt;#session&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
-which is emptied after each navigation.&lt;/p&gt;
-
-&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
-router.navigate(&#39;articles&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;session:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#session&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;session[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;session.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;session&lt;/em&gt; object.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.session.signedIn = Date.now();
-router.session.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Index</title>
       <link>http://oiax.github.io/capejs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1853,15 +1923,6 @@ you can find a demo Cape.JS application built upon the Ruby on Rails.&lt;/p&gt;
 &lt;p&gt;Reading through its source code, you will learn how to integrate
 a Rails app with Cape.JS and organize your JavaScript files.&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Cape.RoutingMapper - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
-      <description></description>
     </item>
     
   </channel>

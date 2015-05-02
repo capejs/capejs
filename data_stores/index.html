@@ -93,7 +93,7 @@
           
             <li><a href="http://oiax.github.io/capejs/data_stores/#basics">Basics</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/data_stores/#jquery">Working with jQuery</a></li>
+            <li><a href="http://oiax.github.io/capejs/data_stores/#ajax">Ajax</a></li>
           
           </ul>
       
@@ -249,11 +249,72 @@ which will cause the re-rendering of this component.</p>
 <p>A working demo is found at
 <a href="https://github.com/oiax/capejs/tree/master/demo/todo_list2">https://github.com/oiax/capejs/tree/master/demo/todo_list2</a></p>
 
-<p><a class="anchor" id="jquery"></a></p>
+<p><a class="anchor" id="ajax"></a></p>
 
-<h3 id="working-with-jquery:f92bcc195ac1a154137ec3cd72983d7f">Working with jQuery</h3>
+<h3 id="ajax:f92bcc195ac1a154137ec3cd72983d7f">Ajax</h3>
 
-<p>This section is not yet prepared.</p>
+<p>In this section, we assume that an api server is working behind.
+When we access it with <code>GET /api/items.json</code>, it responds with a JSON string
+such as <code>[{ title: 'Foo', done: false },{ title: 'Bar', done: true }]</code>.
+When we post to the server a JSON string such as <code>{ title: 'Baz' }</code>
+with <code>POST /api/items</code>, it stores this new item to the database.
+If we post to the server a JSON string such as <code>{ done: true }</code>
+with <code>PATCH /api/items/123</code> (<code>123</code> is the <code>id</code> of an item),
+it toggle on the <code>done</code> column of this item.</p>
+
+<p>In this environment, we can rewrite the <code>todo_item_store.js</code> of the previous
+example as follows:</p>
+
+<h4 id="todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f">todo_item_store.js</h4>
+
+<pre><code class="language-javascript">var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [];
+    this.refresh();
+  },
+
+  addItem: function(title) {
+    var self = this;
+    $.ajax({
+      type: 'POST',
+      url: '/api/items',
+      data: { title: title }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
+
+  toggle: function(item) {
+    var self = this;
+    $.ajax({
+      type: 'PATCH',
+      url: '/api/items/' + item.id,
+      data: { done: !item.done }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
+
+  refresh: function() {
+    var self = this;
+    $.ajax({
+      type: 'GET',
+      url: '/api/items.json'
+    }).done(function(data) {
+      self.items.length = 0;
+      data.forEach(function(item) { self.items.push(item) });
+      self.propagate();
+    });
+  }
+});
+</code></pre>
+
+<p><code>$.ajax</code> is a jQuery&rsquo;s method to make an Ajax request.
+See <a href="http://api.jquery.com/jquery.ajax/">http://api.jquery.com/jquery.ajax/</a> for details.</p>
+
+<p>You can find a working demo using Ajax techniques on
+<a href="https://github.com/oiax/capejs-demo-on-rails">https://github.com/oiax/capejs-demo-on-rails</a>.
+This demo is built as a Ruby on Rails application.</p>
 
         </div>
       </article>
