@@ -15,4 +15,4 @@ Run the following command on the `demo/es6` directory:
 In order to convert `hello_message.es6` to `hello_message.js`,
 run the following command:
 
-    $ browserify hello_message.es6 -t babelify --outfile hello_message.js
+    $ npm run build
