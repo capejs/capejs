@@ -82,7 +82,7 @@
           
             <li><a href="http://oiax.github.io/capejs/components/#todo-list">Todo List</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/components/#mix-ins">Mix-ins</a></li>
+            <li><a href="http://oiax.github.io/capejs/components/#mixins">Mixins</a></li>
           
             <li><a href="http://oiax.github.io/capejs/components/#partials">Partials</a></li>
           
@@ -420,11 +420,82 @@ You can also set its value with <code>val</code> method by giving a new value as
 <p>You can find the source code of working demo on
 <a href="https://github.com/oiax/capejs/tree/master/demo/todo_list">https://github.com/oiax/capejs/tree/master/demo/todo_list</a>.</p>
 
-<p><a class="anchor" id="mix-ins"></a></p>
+<p><a class="anchor" id="mixins"></a></p>
 
-<h3 id="mix-ins:d1b8a910971345212cdb562d8742fa2d">Mix-ins</h3>
+<h3 id="mixins:d1b8a910971345212cdb562d8742fa2d">Mixins</h3>
 
-<p>This section is not yet prepared.</p>
+<p>When you build a large application with many similar components,
+you will want to extract common methods to <em>mixins</em>,
+objects that contain a combination of methods.</p>
+
+<p>The following example illustrates how to create <em>mixins</em> and incorporate them
+into component classes.</p>
+
+<h4 id="index-html-4:d1b8a910971345212cdb562d8742fa2d">index.html</h4>
+
+<pre><code class="language-html">&lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
+
+&lt;script src=&quot;./form_controls.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;./simple_form.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  var simple_form = new SimpleForm();
+  simple_form.mount('main');
+&lt;/script&gt;
+</code></pre>
+
+<h4 id="form-controls-js:d1b8a910971345212cdb562d8742fa2d">form_controls.js</h4>
+
+<pre><code class="language-javascript">var FormControls = {
+  renderTextField: function(markup, fieldName, labelText) {
+    markup.div({ class: 'form-group' }, function(m) {
+      m.labelFor(fieldName, labelText).sp();
+      m.textField(fieldName, { class: 'form-control' });
+    })
+  },
+
+  renderTextareaField: function(markup, fieldName, labelText) {
+    markup.div({ class: 'form-group' }, function(m) {
+      m.labelFor(fieldName, labelText).sp();
+      m.textareaField(fieldName, { class: 'form-control' });
+    })
+  },
+
+  renderButtons: function(markup) {
+    markup.div({ class: 'form-group' }, function(m) {
+      m.button('Submit', { class: 'btn btn-primary' }).sp();
+      m.button('Cancel', { class: 'btn btn-default' })
+    })
+  }
+}
+</code></pre>
+
+<h4 id="simple-form-js:d1b8a910971345212cdb562d8742fa2d">simple_form.js</h4>
+
+<pre><code class="language-javascript">var SimpleForm = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.formFor('user', function(m) {
+        this.renderTextField(m, 'family_name', 'Family Name');
+        this.renderTextField(m, 'given_name', 'Given Name');
+        this.renderTextareaField(m, 'remarks', 'Remarks');
+        this.renderButtons(m);
+      })
+    })
+  }
+});
+
+Cape.merge(SimpleForm.prototype, FormControls);
+</code></pre>
+
+<p>The <code>Cape.merge</code> method imports all properties (methods) of <code>FormControls</code>
+into <code>SimpleForm.prototype</code>.</p>
+
+<p>Note that <code>Cape.merge</code> does not rewrite existing properties of <code>SimpleForm.prototype</code>
+so that you can override one or more methods of <code>FormControls</code>
+within the definition of <code>SimpleForm</code> class.</p>
+
+<p>You can find the source code of working demo on
+<a href="https://github.com/oiax/capejs/tree/master/demo/mixins">https://github.com/oiax/capejs/tree/master/demo/mixins</a>.</p>
 
 <p><a class="anchor" id="partials"></a></p>
 
