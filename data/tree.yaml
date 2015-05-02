@@ -40,8 +40,8 @@ pages:
         id: "basics"
         title: "Basics"
       -
-        id: "jquery"
-        title: "Working with jQuery"
+        id: "ajax"
+        title: "Ajax"
   -
     name: "router"
     title: "Router"
