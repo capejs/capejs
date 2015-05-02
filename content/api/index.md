@@ -15,9 +15,6 @@ type: "api"
 The **Cape.JS** defines a single global variable [Cape](./cape).
 It has some utility methods, such as `extend`, `merge`, etc.
 
-It also has the `session` property whose value is a hash object.
-This property can be used to store arbitrary data by developers.
-
 ### Overview of classes
 
 The **Cape.JS** consists of following five classes:
