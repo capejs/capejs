@@ -70,6 +70,13 @@ pages:
       -
         id: "before-navigation-callbacks"
         title: "Before-navigation Callbacks"
+  -
+    name: "tutorials"
+    title: "Tutorials and Demos"
+    sections:
+      -
+        id: "setting-up-rails-with-capejs"
+        title: "Setting up Rails with Cape.JS"
 api_pages:
   -
     name: "api"

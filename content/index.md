@@ -35,7 +35,7 @@ If you just want to use Cape.JS in your web site, insert the following snippet
 to the `<head>` section of your HTML files.
 
 ```html
-<link href="https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.4/dist/cape.min.js"
+<link href="https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.6/dist/cape.min.js"
   rel="stylesheet">
 ```
 
@@ -67,7 +67,7 @@ we don't use it anymore.
 
 Not yet. We adopt [Semantic Versioning](http://semver.org/) <i class="fa fa-external-link"></i> for Cape.JS.
 According to this system, major version (0.y.z) zero is for initial development.
-We have released the version 1.0.0-beta.1, but the public API of Cape.JS should
+We have released the version 1.0.0-beta.x, but the public API of Cape.JS should
 not be considered stable.
 
 ### Which browsers are supported?
