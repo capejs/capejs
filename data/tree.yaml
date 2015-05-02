@@ -113,9 +113,6 @@ api_pages:
         id: refresh
         title: "#refresh()"
       -
-        id: render-partial
-        title: "#renderPartial()"
-      -
         id: unmount
         title: "#unmount()"
       -

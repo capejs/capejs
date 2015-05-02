@@ -11,9 +11,6 @@ title: "Cape.Component - API Reference"
 <a class="anchor" id="refresh"></a>
 ### Cape.Component#refresh()
 
-<a class="anchor" id="render-partial"></a>
-### Cape.Component#renderPartial(builder, componentName, thisObj)
-
 <a class="anchor" id="unmount"></a>
 ### Cape.Component#unmount()
 
