@@ -285,10 +285,84 @@ You can also set its value with `val` method by giving a new value as second arg
 You can find the source code of working demo on
 https://github.com/oiax/capejs/tree/master/demo/todo_list.
 
-<a class="anchor" id="mix-ins"></a>
-### Mix-ins
+<a class="anchor" id="mixins"></a>
+### Mixins
 
-This section is not yet prepared.
+When you build a large application with many similar components,
+you will want to extract common methods to *mixins*,
+objects that contain a combination of methods.
+
+The following example illustrates how to create *mixins* and incorporate them
+into component classes.
+
+#### index.html
+
+```html
+<div id="main"></div>
+
+<script src="./form_controls.js"></script>
+<script src="./simple_form.js"></script>
+<script>
+  var simple_form = new SimpleForm();
+  simple_form.mount('main');
+</script>
+```
+
+#### form_controls.js
+
+```javascript
+var FormControls = {
+  renderTextField: function(markup, fieldName, labelText) {
+    markup.div({ class: 'form-group' }, function(m) {
+      m.labelFor(fieldName, labelText).sp();
+      m.textField(fieldName, { class: 'form-control' });
+    })
+  },
+
+  renderTextareaField: function(markup, fieldName, labelText) {
+    markup.div({ class: 'form-group' }, function(m) {
+      m.labelFor(fieldName, labelText).sp();
+      m.textareaField(fieldName, { class: 'form-control' });
+    })
+  },
+
+  renderButtons: function(markup) {
+    markup.div({ class: 'form-group' }, function(m) {
+      m.button('Submit', { class: 'btn btn-primary' }).sp();
+      m.button('Cancel', { class: 'btn btn-default' })
+    })
+  }
+}
+```
+
+#### simple_form.js
+
+```javascript
+var SimpleForm = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.formFor('user', function(m) {
+        this.renderTextField(m, 'family_name', 'Family Name');
+        this.renderTextField(m, 'given_name', 'Given Name');
+        this.renderTextareaField(m, 'remarks', 'Remarks');
+        this.renderButtons(m);
+      })
+    })
+  }
+});
+
+Cape.merge(SimpleForm.prototype, FormControls);
+```
+
+The `Cape.merge` method imports all properties (methods) of `FormControls`
+into `SimpleForm.prototype`.
+
+Note that `Cape.merge` does not rewrite existing properties of `SimpleForm.prototype`
+so that you can override one or more methods of `FormControls`
+within the definition of `SimpleForm` class.
+
+You can find the source code of working demo on
+https://github.com/oiax/capejs/tree/master/demo/mixins.
 
 <a class="anchor" id="partials"></a>
 ### Partials
