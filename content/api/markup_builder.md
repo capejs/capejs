@@ -50,6 +50,45 @@ var HelloMessage = Cape.createComponentClass({
 })
 ```
 
+All instance methods except `#attr`, `#class`, `#css`, `#data`, `#sp`, `#space`
+and `#text` take the *options* argument, which will be translated into the
+attributes of element to be created.
+
+#### Example
+
+```javascrpt
+var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.p('Hello, world!', { title: 'greeting' });
+      // The above code generates the following <p> tag:
+      //   <p title="greeting">Hello, world!</p>
+    })
+  }
+})
+```
+
+When the *options* argument has a `visible` key and its value is *falsey*
+(`false`, `null`, `0`, `[]`, *etc.*),
+it sets the `display` style to `none` to make this element invisible.
+
+#### Example
+
+```javascrpt
+var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.p('Hello, world!',
+        { visible: Date.now().getDay() === 0 });
+      // On sunday, the above code generates the following:
+      //   <p>Hello, world!</p>
+      // On other days:
+      //   <p style="display: none">Hello, world!</p>
+    })
+  }
+})
+```
+
 <a class="anchor" id="a-abbr-address-etc"></a>
 ### #a(), #abbr(), #address(), etc.
 
