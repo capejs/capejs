@@ -28,9 +28,6 @@
 &lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; defines a single global variable &lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt;.
 It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, etc.&lt;/p&gt;
 
-&lt;p&gt;It also has the &lt;code&gt;session&lt;/code&gt; property whose value is a hash object.
-This property can be used to store arbitrary data by developers.&lt;/p&gt;
-
 &lt;h3 id=&#34;overview-of-classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Overview of classes&lt;/h3&gt;
 
 &lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; consists of following five classes:&lt;/p&gt;
@@ -382,6 +379,43 @@ Each method returns the instance itself.&lt;/p&gt;
 })
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;All instance methods except &lt;code&gt;#attr&lt;/code&gt;, &lt;code&gt;#class&lt;/code&gt;, &lt;code&gt;#css&lt;/code&gt;, &lt;code&gt;#data&lt;/code&gt;, &lt;code&gt;#sp&lt;/code&gt;, &lt;code&gt;#space&lt;/code&gt;
+and &lt;code&gt;#text&lt;/code&gt; take the &lt;em&gt;options&lt;/em&gt; argument, which will be translated into the
+attributes of element to be created.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascrpt&#34;&gt;var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.p(&#39;Hello, world!&#39;, { title: &#39;greeting&#39; });
+      // The above code generates the following &amp;lt;p&amp;gt; tag:
+      //   &amp;lt;p title=&amp;quot;greeting&amp;quot;&amp;gt;Hello, world!&amp;lt;/p&amp;gt;
+    })
+  }
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When the &lt;em&gt;options&lt;/em&gt; argument has a &lt;code&gt;visible&lt;/code&gt; key and its value is &lt;em&gt;falsey&lt;/em&gt;
+(&lt;code&gt;false&lt;/code&gt;, &lt;code&gt;null&lt;/code&gt;, &lt;code&gt;0&lt;/code&gt;, &lt;code&gt;[]&lt;/code&gt;, &lt;em&gt;etc.&lt;/em&gt;),
+it sets the &lt;code&gt;display&lt;/code&gt; style to &lt;code&gt;none&lt;/code&gt; to make this element invisible.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascrpt&#34;&gt;var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.p(&#39;Hello, world!&#39;,
+        { visible: Date.now().getDay() === 0 });
+      // On sunday, the above code generates the following:
+      //   &amp;lt;p&amp;gt;Hello, world!&amp;lt;/p&amp;gt;
+      // On other days:
+      //   &amp;lt;p style=&amp;quot;display: none&amp;quot;&amp;gt;Hello, world!&amp;lt;/p&amp;gt;
+    })
+  }
+})
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;a-abbr-address-etc&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;a-abbr-address-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#a(), #abbr(), #address(), etc.&lt;/h3&gt;
@@ -418,7 +452,7 @@ method with the same name:&lt;/p&gt;
 &lt;p&gt;When the first argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-3:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -438,7 +472,7 @@ When the last argument is a function, it creates a dependent virtual dom tree.&l
 of the element. The position of this argument should be after the string argument
 and before the function argument.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -479,7 +513,7 @@ link, menuitem, meta, param, source, track, wbr&lt;/p&gt;
 &lt;p&gt;They don&amp;rsquo;t take a string argument nor a function argument, though.
 They only accept a hash object to set the attribute values of the element.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-3:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var LogoMark = Cape.createComponentClass({
   render: function(m) {
@@ -502,7 +536,7 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;p&gt;Set the value of attributes for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.attr(&#39;alt&#39;, &#39;Logo Image&#39;);
@@ -516,7 +550,7 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;p&gt;The attribute values are set cumulatively.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.attr(&#39;alt&#39;, &#39;Logo Image&#39;);
@@ -535,7 +569,7 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;p&gt;The values set by &lt;code&gt;#attr&lt;/code&gt; does not affect the elements created after the next element.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.attr(&#39;alt&#39;, &#39;Logo Image&#39;);
@@ -562,7 +596,7 @@ If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name 
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.
 See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -592,7 +626,7 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;p&gt;Set the &lt;code&gt;class&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.class(&#39;container&#39;);
@@ -627,7 +661,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;Set the &lt;code&gt;data-*&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.data(&#39;id&#39;, &#39;7&#39;);
@@ -660,7 +694,7 @@ affects only the nextly added element.&lt;/p&gt;
 &lt;p&gt;When the second argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.elem(&#39;div#wrapper&#39;, function(m) {
@@ -687,7 +721,7 @@ When the last argument is a function, it creates a dependent virtual dom tree.&l
 of the element. The position of this argument should be after the string argument
 and before the function argument.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.elem(&#39;div#wrapper&#39;, { style: &#39;margin-top: 10px&#39; },
@@ -729,7 +763,7 @@ Its first argument is the icon&amp;rsquo;s name, such as &lt;code&gt;&amp;quot;d
 You can pass a hash object as the optional second argument to set the
 attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.a({ href: &#39;./download.html&#39; }, function(m) {
@@ -754,7 +788,7 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 &lt;p&gt;Create a scope for nested forms. In this scope, a prefix is
 addded to the name of each form control.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -775,7 +809,7 @@ addded to the name of each form control.&lt;/p&gt;
 
 &lt;p&gt;If you pass the &lt;code&gt;index&lt;/code&gt; option to this method, the prefix is numbered:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -818,7 +852,7 @@ added to the &lt;code&gt;name&lt;/code&gt; attribute of subordinate form control
 &lt;p&gt;The &lt;code&gt;id&lt;/code&gt; attribute is set automatically. When the form name is &lt;code&gt;&#39;foo&#39;&lt;/code&gt;,
 the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;code&gt;bar&lt;/code&gt; becomes &lt;code&gt;&#39;foo-field-bar&#39;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -852,7 +886,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -879,7 +913,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;Create a &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; tag whose &lt;code&gt;name&lt;/code&gt; attribute is &lt;code&gt;name&lt;/code&gt;.
 Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -940,7 +974,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -988,7 +1022,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;Add a single space character. Same as &lt;code&gt;text(&#39; &#39;)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-21:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.p(function(m) {
@@ -1013,7 +1047,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;Add &lt;em&gt;string&lt;/em&gt; as a text node to the virtual dom tree.
 The special characters (&lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;) are escaped automatically.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-22:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.h1(function(m) {

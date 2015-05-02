@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>Data Stores - Cape.JS: Documentation</title>
+  <title>Tutorials and Demos - Cape.JS: Documentation</title>
   <meta name="generator" content="Bootply" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="http://oiax.github.io/capejs/css/bootstrap.min.css" rel="stylesheet">
@@ -137,125 +137,24 @@
     <div class="col-sm-12 col-md-9">
       <article>
         <header>
-          <h2>Data Stores</h2>
+          <h2>Tutorials and Demos</h2>
           <div class="post-meta clearfix">
           </div>
         </header>
         <div>
           
 
-<p><a class="anchor" id="basics"></a></p>
+<p><a class="anchor" id="setting-up-rails-with-capejs"></a></p>
 
-<h3 id="basics:f92bcc195ac1a154137ec3cd72983d7f">Basics</h3>
+<h3 id="setting-up-rails-with-cape-js:2f9666f86bd8527efa1103fc382863ca">Setting up Rails with Cape.JS</h3>
 
-<p>When you develop something larger than a tiny widget, you are recommended to
-create a <em>data store</em> for your Cape.JS component.</p>
+<p>This tutorial has not been written yet.</p>
 
-<p>The following example illustrates the basic concept of data stores.</p>
+<p>At <a href="https://github.com/oiax/capejs-demo-on-rails">https://github.com/oiax/capejs-demo-on-rails</a>,
+you can find a demo Cape.JS application built upon the Ruby on Rails.</p>
 
-<h4 id="index-html:f92bcc195ac1a154137ec3cd72983d7f">index.html</h4>
-
-<pre><code class="language-html">&lt;div id=&quot;todo-list&quot;&gt;&lt;/div&gt;
-
-&lt;script src=&quot;./todo_item_store.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;./todo_list2.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-  var todoList = new TodoList2();
-  todoList.mount('todo-list');
-&lt;/script&gt;
-</code></pre>
-
-<h4 id="todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f">todo_item_store.js</h4>
-
-<pre><code class="language-javascript">var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [
-      { title: 'Foo', done: false },
-      { title: 'Bar', done: true }
-    ];
-    this.propagate();
-  },
-  addItem: function(title) {
-    this.items.push({ title: title, done: false });
-    this.propagate();
-  },
-  toggle: function(item) {
-    item.done = !item.done;
-    this.propagate();
-  }
-});
-</code></pre>
-
-<p>The <code>TodoItemStore</code> class has three methods and each of them ends with
-<code>this.propagate()</code>, which calls the <code>refresh</code> method of all attached components.</p>
-
-<h4 id="todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f">todo_list2.js</h4>
-
-<pre><code class="language-javascript">var TodoList2 = Cape.createComponentClass({
-  render: function(m) {
-    m.ul(function(m) {
-      this.ds.items.forEach(function(item) {
-        this.renderItem(m, item);
-      }.bind(this))
-    });
-    this.renderForm(m);
-  },
-
-  renderItem: function(m, item) {
-    m.li(function(m) {
-      m.label({ class: { completed: item.done }}, function(m) {
-        m.input({ type: 'checkbox', checked: item.done,
-          onclick: function(e) { this.ds.toggle(item) } });
-        m.space().text(item.title);
-      })
-    })
-  },
-
-  renderForm: function(m) {
-    m.form(function(m) {
-      m.textField('title', { onkeyup: function(e) { this.refresh() } });
-      m.button(&quot;Add&quot;, {
-        disabled: this.val('title') === '',
-        onclick: function(e) { this.ds.addItem(this.val('title', '')) }
-      });
-    });
-  },
-
-  init: function() {
-    this.ds = TodoItemStore.create();
-    this.ds.attach(this);
-    this.ds.init();
-  },
-
-  beforeUnmount: function() {
-    this.ds.detach(this);
-  }
-});
-</code></pre>
-
-<p>Within the <code>init</code> method, we create a singleton instance of <code>TodoItemStore</code> class <em>(data store)</em>,
-and set it to the <code>ds</code> property of this component.</p>
-
-<p>Then we call the <code>attach</code> method of the data store to register this component
-as a <em>listener</em> to the <em>change event</em>. When the content of data store is changed,
-a <em>change event</em> is emitted to this component.</p>
-
-<p>When we click a check box, the following code is executed:</p>
-
-<pre><code class="language-javascript">this.ds.toggle(item)
-</code></pre>
-
-<p>This inverts the <code>done</code> attribute of this item and calls <code>this.propagate()</code>,
-which will cause the re-rendering of this component.</p>
-
-<p>A working demo is found at
-<a href="https://github.com/oiax/capejs/tree/master/demo/todo_list2">https://github.com/oiax/capejs/tree/master/demo/todo_list2</a></p>
-
-<p><a class="anchor" id="jquery"></a></p>
-
-<h3 id="working-with-jquery:f92bcc195ac1a154137ec3cd72983d7f">Working with jQuery</h3>
-
-<p>This section is not yet prepared.</p>
+<p>Reading through its source code, you will learn how to integrate
+a Rails app with Cape.JS and organize your JavaScript files.</p>
 
         </div>
       </article>
