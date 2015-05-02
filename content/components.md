@@ -363,8 +363,3 @@ within the definition of `SimpleForm` class.
 
 You can find the source code of working demo on
 https://github.com/oiax/capejs/tree/master/demo/mixins.
-
-<a class="anchor" id="partials"></a>
-### Partials
-
-This section is not yet prepared.

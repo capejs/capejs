@@ -32,9 +32,6 @@ pages:
       -
         id: "mixins"
         title: "Mixins"
-      -
-        id: "partials"
-        title: "Partials"
   -
     name: "data_stores"
     title: "Data Stores"
