@@ -732,7 +732,7 @@ the process continues to the next callback which takes this hash as its first ar
 When all callbacks are executed successfully, the hash which is specified by the last callback
 determines the component to be mounted.</p>
 
-<p>If we call the <code>reject</code>, the next and subsequent callbacks are not executed and
+<p>If we call the <code>reject</code> method, the next and subsequent callbacks are skipped and
 the error handler is executed if it exists.</p>
 
 <p>The <code>show</code> method of router mounts the specified component (<code>Errors.NetworkError</code>)
