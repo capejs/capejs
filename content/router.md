@@ -238,7 +238,51 @@ Articles.Form = Cape.createComponentClass({
 <a class="anchor" id="singular-resources"></a>
 ### Singular Resources
 
-This section is not yet prepared.
+When you want to define routes for a resource that can have only zero or
+one instance, you should use `one` method as follows:
+
+```
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account');
+})
+```
+
+The routes defined by the above code are summarized in the next table:
+
+<table class="table">
+<tr>
+  <th>Hash pattern</th>
+  <th>Container</th>
+  <th>Component</th>
+  <th>Resource</th>
+  <th>Action</th>
+</tr>
+<tr>
+  <td>account</td>
+  <td>Account</td>
+  <td>Content</td>
+  <td>account</td>
+  <td>show</td>
+</tr>
+<tr>
+  <td>account/new</td>
+  <td>Account</td>
+  <td>Form</td>
+  <td>account</td>
+  <td>new</td>
+</tr>
+<tr>
+  <td>account/edit</td>
+  <td>Account</td>
+  <td>Form</td>
+  <td>account</td>
+  <td>edit</td>
+</tr>
+</table>
+
+Note that the naming convension is different from that of Ruby on Rails.
+The container's name is singular, not plural.
 
 <a class="anchor" id="nested-resources"></a>
 ### Nested Resources
