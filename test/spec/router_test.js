@@ -1,4 +1,17 @@
 describe('Router', function() {
+  describe('constructor', function() {
+    it('should have complete set of properties', function() {
+      var router = new Cape.Router();
+
+      expect(router.rootContainer).to.equal(window);
+      expect(Array.isArray(router.routes)).to.be.true;
+      expect(typeof router.params).to.equal('object');
+      expect(typeof router.query).to.equal('object');
+      expect(typeof router.vars).to.equal('object');
+      expect(typeof router.flash).to.equal('object');
+    })
+  })
+
   describe('attach', function() {
     it('should register a component as an event listener', function() {
       var router, component;

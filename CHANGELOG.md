@@ -6,6 +6,12 @@
 
 * Remove `#renderPartial`. We can cover this functionality with *mixins*.
 
+### `Cape.Router`
+
+* The `session` property is renamed to `vars`, because it has no relation
+  with the session concept.
+
+
 ## 1.0.0-beta.6 (May 1, 2015)
 
 ### `Cape`
