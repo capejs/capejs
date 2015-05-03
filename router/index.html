@@ -104,7 +104,11 @@
           
             <li><a href="http://oiax.github.io/capejs/router/#simple-routes">Simple Routes</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/router/#resouce-based-routes">Resource Based Routes</a></li>
+            <li><a href="http://oiax.github.io/capejs/router/#containers">Containers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/router/#resource-based-routes">Resource Based Routes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/router/#nested-resources">Nested Resources</a></li>
           
             <li><a href="http://oiax.github.io/capejs/router/#namespaces">Namespaces</a></li>
           
@@ -220,9 +224,162 @@ components according to the routes.</p>
 <p>You can find the source code of working demo on
 <a href="https://github.com/oiax/capejs/tree/master/demo/simple_routes">https://github.com/oiax/capejs/tree/master/demo/simple_routes</a>.</p>
 
+<p><a class="anchor" id="containers"></a></p>
+
+<h3 id="containers:b440f93c1d3adda104fcdb9ed5aa5063">Containers</h3>
+
+<p>When the number of components is getting larger, you may want to organize
+them in a hyerarchical structure. In this case, you can create some objects
+to contain component classes as follows:</p>
+
+<pre><code class="language-javascript">var Top = {};
+Top.IndexPage = Cape.createComponentClass({
+  render: function(m) {
+    m.p('This is the top page.')
+  }
+});
+
+Top.AboutPage = Cape.createComponentClass({
+  render: function(m) {
+    m.p('This is the about page.')
+  }
+});
+
+Top.HelpPage = Cape.createComponentClass({
+  render: function(m) {
+    m.p('This is the help page.')
+  }
+});
+</code></pre>
+
+<p>We call objects of this kind <em>containers</em>.</p>
+
+<p>When you define routes to classes under a container, you should connect
+the container&rsquo;s name and the class name with a dot like this:</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.root('top.index_page');
+  m.page('about', 'top.about_page');
+  m.page('help', 'top.help_page');
+})
+</code></pre>
+
 <p><a class="anchor" id="resource-based-routes"></a></p>
 
 <h3 id="resource-based-routes:b440f93c1d3adda104fcdb9ed5aa5063">Resource Based Routes</h3>
+
+<p>When you create a user interface for CRUD operations on a database table, say <code>articles</code>,
+you will need four pages typically:</p>
+
+<ol>
+<li>A page for listing articles</li>
+<li>A page for showing the details of an existing article</li>
+<li>A page to add a new article</li>
+<li>A page to update an existing article</li>
+</ol>
+
+<p>As a framework, Cape.JS recommends you to create following routes for these pages:</p>
+
+<ol>
+<li><code>articles =&gt; Articles.List</code></li>
+<li><code>articles/:id =&gt; Articles.Item</code></li>
+<li><code>articles/new =&gt; Articles.Form</code></li>
+<li><code>articles/:id/edit =&gt; Articles.Form</code></li>
+</ol>
+
+<p>In line with this, you will create three component classes under a container called <code>Articles</code>
+and define routes as follows:</p>
+
+<pre><code>var router = new Cape.Router();
+router.draw(function(m) {
+  m.page('articles', 'articles.list');
+  m.page('articles/:id', 'articles.item');
+  m.page('articles/new', 'articles.form');
+  m.page('articles/:id/edit', 'articles.form');
+})
+</code></pre>
+
+<p>Using <code>many</code> method, you can define them in much easier way, though.</p>
+
+<pre><code>var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles');
+})
+</code></pre>
+
+<p>The routes defined by the above code are summarized in the next table:</p>
+
+<table class="table">
+<tr>
+  <th>Hash pattern</th>
+  <th>Container</th>
+  <th>Component</th>
+  <th>Resource</th>
+  <th>Action</th>
+</tr>
+<tr>
+  <td>articles</td>
+  <td>Articles</td>
+  <td>List</td>
+  <td>articles</td>
+  <td>index</td>
+</tr>
+<tr>
+  <td>articles/:id</td>
+  <td>Articles</td>
+  <td>Item</td>
+  <td>articles</td>
+  <td>show</td>
+</tr>
+<tr>
+  <td>articles/new</td>
+  <td>Articles</td>
+  <td>Form</td>
+  <td>articles</td>
+  <td>new</td>
+</tr>
+<tr>
+  <td>articles/:id/edit</td>
+  <td>Articles</td>
+  <td>Form</td>
+  <td>articles</td>
+  <td>edit</td>
+</tr>
+</table>
+
+<p>The fourth and fifth rows of the table contain the <em>resource name</em> and <em>action name</em> of routes.
+In Cape.JS, unlike in Ruby on Rails, the concepts of resource and action don&rsquo;t play important role,
+but we use them occasionally.</p>
+
+<p>Firstly, we specify action names to the <code>only</code> and <code>except</code> option in order
+to exclude some routes from definition:</p>
+
+<pre><code>var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', only: [ 'index', 'show' ]);
+  m.many('comments', except: [ 'new', 'edit' ]);
+})
+</code></pre>
+
+<p>Secondly, we want to know the current resource and action names in order to
+control the flow of processing when we render components:</p>
+
+<pre><code class="language-javascript">Articles.Form = Cape.createComponentClass({
+  render: function(m) {
+    if (router.action === 'new') {
+      // ...
+    }
+    else {
+      // ...
+    }
+  }
+});
+</code></pre>
+
+<p><a class="anchor" id="nested-resources"></a></p>
+
+<h3 id="nested-resources:b440f93c1d3adda104fcdb9ed5aa5063">Nested Resources</h3>
 
 <p>This section is not yet prepared.</p>
 
