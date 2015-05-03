@@ -35,8 +35,7 @@ If you just want to use Cape.JS in your web site, insert the following snippet
 to the `<head>` section of your HTML files.
 
 ```html
-<link href="https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.6/dist/cape.min.js"
-  rel="stylesheet">
+<link href="https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.7/dist/cape.min.js" rel="stylesheet">
 ```
 
 You can get the package for [npm](https://www.npmjs.com/) <i class="fa fa-external-link"></i> with following command:
@@ -72,9 +71,9 @@ not be considered stable.
 
 ### Which browsers are supported?
 
-Currently we test Cape.JS only on the latest versions of Chrome and Firefox.
-We are planning to add support for Internet Explorer (version 8 or higher) and Safari
-until the release of Cape.JS 1.0.
+We test Cape.JS on Internet Explorer 11 and the latest versions of Chrome, Firefox and Safari.
+
+Note that we have no plan to support the Internet Explorer 8, 9, and 10.
 
 
 ### How can I contribute?
