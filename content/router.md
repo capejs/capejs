@@ -6,7 +6,7 @@ title: "Router"
 [Resource Based Routes](#resource-based-routes) -
 [Namespaces](#namespaces) -
 [Changing Root Container](#changing-root-container) -
-[Session](#session) -
+[Vars](#vars) -
 [Flash](#flash) -
 [Before-navigation Callbacks](#before-navigation-callbacks)
 
@@ -97,15 +97,53 @@ This section is not yet prepared.
 
 This section is not yet prepared.
 
-<a class="anchor" id="session"></a>
-### Session
+<a class="anchor" id="vars"></a>
+### Vars
 
-This section is not yet prepared.
+Routers have a property named `vars`, which developers can store arbitrary data to.
+
+For example, you can store the data of current user as follows:
+
+```javascript
+var router = new Cape.Router();
+router.vars.current_user = { id: 123, name: 'john', privileged: true }
+```
+
+You can use this data in the `render` method of a component like this:
+
+```javascript
+render: function(m) {
+  if (router.vars.current_user.privileged)
+    m.attr(onclick: function(e) { this.deleteItem() } );
+  else
+    m.class('disabled')
+  m.button('Delete');
+}
+```
 
 <a class="anchor" id="flash"></a>
 ### Flash
 
-This section is not yet prepared.
+Routers have a property named `flash`, which developers can store arbitrary data to,
+but is erased after each navigation.
+
+For example, you can store the alert message to be displayed in the next page:
+
+```javascript
+var router = new Cape.Router();
+router.flash.alert = "You can't delete this item.";
+```
+
+You can use this data in the `render` method of a component like this:
+
+```javascript
+render: function(m) {
+  if (router.flash.alert !== undefined) {
+    m.div(router.flash.alert, { class: 'alert' });
+  }
+}
+```
+
 
 <a class="anchor" id="before-navigation-callbacks"></a>
 ### Before-navigation Callbacks

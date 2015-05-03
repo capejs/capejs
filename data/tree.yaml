@@ -59,8 +59,8 @@ pages:
         id: "changing-root-container"
         title: "Changing Root Container"
       -
-        id: "session"
-        title: "Session"
+        id: "vars"
+        title: "Vars"
       -
         id: "flash"
         title: "Flash"

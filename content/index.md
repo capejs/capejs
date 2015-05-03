@@ -28,7 +28,7 @@ The architecture and terminology of Cape.JS are strongly influenced by
 [Riot](https://github.com/muut/riotjs) <i class="fa fa-external-link"></i>
 and [Ruby on Rails](https://github.com/rails/rails) <i class="fa fa-external-link"></i>.
 
-<a class="installation" id="installation"></a>
+<a class="anchor" id="installation"></a>
 ## Installation
 
 If you just want to use Cape.JS in your web site, insert the following snippet
