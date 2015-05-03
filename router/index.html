@@ -110,7 +110,7 @@
           
             <li><a href="http://oiax.github.io/capejs/router/#changing-root-container">Changing Root Container</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/router/#session">Session</a></li>
+            <li><a href="http://oiax.github.io/capejs/router/#vars">Vars</a></li>
           
             <li><a href="http://oiax.github.io/capejs/router/#flash">Flash</a></li>
           
@@ -146,7 +146,7 @@
 <a href="#resource-based-routes">Resource Based Routes</a> -
 <a href="#namespaces">Namespaces</a> -
 <a href="#changing-root-container">Changing Root Container</a> -
-<a href="#session">Session</a> -
+<a href="#vars">Vars</a> -
 <a href="#flash">Flash</a> -
 <a href="#before-navigation-callbacks">Before-navigation Callbacks</a></p>
 
@@ -238,17 +238,50 @@ components according to the routes.</p>
 
 <p>This section is not yet prepared.</p>
 
-<p><a class="anchor" id="session"></a></p>
+<p><a class="anchor" id="vars"></a></p>
 
-<h3 id="session:b440f93c1d3adda104fcdb9ed5aa5063">Session</h3>
+<h3 id="vars:b440f93c1d3adda104fcdb9ed5aa5063">Vars</h3>
 
-<p>This section is not yet prepared.</p>
+<p>Routers have a property named <code>vars</code>, which developers can store arbitrary data to.</p>
+
+<p>For example, you can store the data of current user as follows:</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.vars.current_user = { id: 123, name: 'john', privileged: true }
+</code></pre>
+
+<p>You can use this data in the <code>render</code> method of a component like this:</p>
+
+<pre><code class="language-javascript">render: function(m) {
+  if (router.vars.current_user.privileged)
+    m.attr(onclick: function(e) { this.deleteItem() } );
+  else
+    m.class('disabled')
+  m.button('Delete');
+}
+</code></pre>
 
 <p><a class="anchor" id="flash"></a></p>
 
 <h3 id="flash:b440f93c1d3adda104fcdb9ed5aa5063">Flash</h3>
 
-<p>This section is not yet prepared.</p>
+<p>Routers have a property named <code>flash</code>, which developers can store arbitrary data to,
+but is erased after each navigation.</p>
+
+<p>For example, you can store the alert message to be displayed in the next page:</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.flash.alert = &quot;You can't delete this item.&quot;;
+</code></pre>
+
+<p>You can use this data in the <code>render</code> method of a component like this:</p>
+
+<pre><code class="language-javascript">render: function(m) {
+  if (router.flash.alert !== undefined) {
+    m.div(router.flash.alert, { class: 'alert' });
+  }
+}
+</code></pre>
 
 <p><a class="anchor" id="before-navigation-callbacks"></a></p>
 
