@@ -56,11 +56,17 @@ pages:
         id: "resource-based-routes"
         title: "Resource Based Routes"
       -
+        id: "singular-resources"
+        title: "Singular Resources"
+      -
         id: "nested-resources"
         title: "Nested Resources"
       -
         id: "namespaces"
         title: "Namespaces"
+      -
+        id: "adding-custom-actions"
+        title: "Adding Custom Actions"
       -
         id: "changing-root-container"
         title: "Changing Root Container"

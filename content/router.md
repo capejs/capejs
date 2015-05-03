@@ -235,6 +235,11 @@ Articles.Form = Cape.createComponentClass({
 });
 ```
 
+<a class="anchor" id="singular-resources"></a>
+### Singular Resources
+
+This section is not yet prepared.
+
 <a class="anchor" id="nested-resources"></a>
 ### Nested Resources
 
@@ -295,6 +300,66 @@ They are not `Articles.Comments.List`, `Articles.Comments.Item` and `Articles.Co
 
 <a class="anchor" id="namespaces"></a>
 ### Namespaces
+
+You can define resources under a *namespace* as follows:
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.namespace('admin', function(m) {
+    m.many('articles');
+  })
+})
+```
+
+The routes defined by the above code are summarized in the next table:
+
+<table class="table">
+<tr>
+  <th>Hash pattern</th>
+  <th>Container</th>
+  <th>Component</th>
+  <th>Namespace</th>
+  <th>Resource</th>
+  <th>Action</th>
+</tr>
+<tr>
+  <td>admin/articles</td>
+  <td>Admin.Articles</td>
+  <td>List</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>index</td>
+</tr>
+<tr>
+  <td>admin/articles/:id</td>
+  <td>Admin.Articles</td>
+  <td>Item</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>show</td>
+</tr>
+<tr>
+  <td>admin/articles/new</td>
+  <td>Admin.Articles</td>
+  <td>Form</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>new</td>
+</tr>
+<tr>
+  <td>admin/articles/:id/edit</td>
+  <td>Admin.Articles</td>
+  <td>Form</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>edit</td>
+</tr>
+</table>
+
+
+<a class="anchor" id="adding-custom-actions"></a>
+### Adding Custome Actions
 
 This section is not yet prepared.
 
