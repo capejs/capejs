@@ -219,40 +219,6 @@ Cape.extend(object1, object2);
     </item>
     
     <item>
-      <title>Cape.Component - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/component/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/component/</guid>
-      <description>
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#formData()&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-mount-id:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#mount(id)&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#refresh()&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#unmount()&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val()&lt;/h3&gt;
-
-&lt;h4 id=&#34;cape-component-val-name:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name)&lt;/h4&gt;
-
-&lt;h4 id=&#34;cape-component-val-name-value:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name, value)&lt;/h4&gt;
-</description>
-    </item>
-    
-    <item>
       <title>API Reference</title>
       <link>http://oiax.github.io/capejs/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -311,64 +277,46 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Cape.Router - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/router/</link>
+      <title>Cape.DataStore - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/data_store/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/router/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
-&lt;a href=&#34;#session&#34;&gt;#session&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
-which is emptied after each navigation.&lt;/p&gt;
-
-&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
-router.navigate(&#39;articles&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;session:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#session&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;session[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;session.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;session&lt;/em&gt; object.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.session.signedIn = Date.now();
-router.session.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <description></description>
     </item>
     
     <item>
-      <title>Cape.RoutingMapper - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
+      <title>Cape.Component - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/component/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
-      <description></description>
+      <guid>http://oiax.github.io/capejs/api/component/</guid>
+      <description>
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#formData()&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-mount-id:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#mount(id)&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#refresh()&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#unmount()&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val()&lt;/h3&gt;
+
+&lt;h4 id=&#34;cape-component-val-name:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name)&lt;/h4&gt;
+
+&lt;h4 id=&#34;cape-component-val-name-value:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name, value)&lt;/h4&gt;
+</description>
     </item>
     
     <item>
@@ -1128,6 +1076,67 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
     </item>
     
     <item>
+      <title>Cape.Router - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/router/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/router/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
+&lt;a href=&#34;#session&#34;&gt;#session&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
+which is emptied after each navigation.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
+router.navigate(&#39;articles&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;session:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#session&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;session[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;session.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;session&lt;/em&gt; object.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.session.signedIn = Date.now();
+router.session.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.RoutingMapper - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Data Stores</title>
       <link>http://oiax.github.io/capejs/data_stores/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1789,28 +1798,6 @@ See &lt;a href=&#34;https://github.com/oiax/capejs/CONTRIBUTING.md&#34;&gt;CONTR
     </item>
     
     <item>
-      <title>Tutorials and Demos</title>
-      <link>http://oiax.github.io/capejs/tutorials/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/tutorials/</guid>
-      <description>
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;setting-up-rails-with-capejs&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;setting-up-rails-with-cape-js:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Setting up Rails with Cape.JS&lt;/h3&gt;
-
-&lt;p&gt;This tutorial has not been written yet.&lt;/p&gt;
-
-&lt;p&gt;At &lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;,
-you can find a demo Cape.JS application built upon the Ruby on Rails.&lt;/p&gt;
-
-&lt;p&gt;Reading through its source code, you will learn how to integrate
-a Rails app with Cape.JS and organize your JavaScript files.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Router</title>
       <link>http://oiax.github.io/capejs/router/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -2225,19 +2212,21 @@ router.draw(function(m) {
 
 &lt;h3 id=&#34;changing-root-container:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Changing Root Container&lt;/h3&gt;
 
-&lt;p&gt;By default, components and containers are defined globally,
-but you can specify the root container as the first argument of &lt;code&gt;Router&lt;/code&gt;&amp;rsquo;s constructor:&lt;/p&gt;
+&lt;p&gt;By default, the root container is &lt;code&gt;window&lt;/code&gt; object.
+In other words, variables for components and containers are defined globally.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var App = {};
-var router = new Cape.Router(App);
+&lt;p&gt;But you can change it by passing an object to the &lt;code&gt;Cape.Router&lt;/code&gt;&amp;rsquo;s constructor:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var MyApp = {};
+var router = new Cape.Router(MyApp);
 router.draw(function(m) {
   m.root(&#39;top_page&#39;)
   m.many(&#39;articles&#39;);
 })
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Then the component class for root page becomes &lt;code&gt;App.TopPage&lt;/code&gt;,
-and the container for the &lt;code&gt;articles&lt;/code&gt; resource becomes &lt;code&gt;App.Articles&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Then the component class for root page becomes &lt;code&gt;MyApp.TopPage&lt;/code&gt;,
+and the container for the &lt;code&gt;articles&lt;/code&gt; resource becomes &lt;code&gt;MyApp.Articles&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;vars&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2245,7 +2234,7 @@ and the container for the &lt;code&gt;articles&lt;/code&gt; resource becomes &lt
 
 &lt;p&gt;Routers have a property named &lt;code&gt;vars&lt;/code&gt;, which developers can store arbitrary data to.&lt;/p&gt;
 
-&lt;p&gt;For example, you can store the data of current user as follows:&lt;/p&gt;
+&lt;p&gt;For example, you can store attributes of the current user:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.vars.current_user = { id: 123, name: &#39;john&#39;, privileged: true }
@@ -2293,12 +2282,25 @@ router.flash.alert = &amp;quot;You can&#39;t delete this item.&amp;quot;;
     </item>
     
     <item>
-      <title>Cape.DataStore - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <title>Tutorials and Demos</title>
+      <link>http://oiax.github.io/capejs/tutorials/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
-      <description></description>
+      <guid>http://oiax.github.io/capejs/tutorials/</guid>
+      <description>
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;setting-up-rails-with-capejs&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;setting-up-rails-with-cape-js:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Setting up Rails with Cape.JS&lt;/h3&gt;
+
+&lt;p&gt;This tutorial has not been written yet.&lt;/p&gt;
+
+&lt;p&gt;At &lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;,
+you can find a demo Cape.JS application built upon the Ruby on Rails.&lt;/p&gt;
+
+&lt;p&gt;Reading through its source code, you will learn how to integrate
+a Rails app with Cape.JS and organize your JavaScript files.&lt;/p&gt;
+</description>
     </item>
     
   </channel>
