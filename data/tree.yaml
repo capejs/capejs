@@ -50,8 +50,14 @@ pages:
         id: "simple-routes"
         title: "Simple Routes"
       -
-        id: "resouce-based-routes"
+        id: "containers"
+        title: "Containers"
+      -
+        id: "resource-based-routes"
         title: "Resource Based Routes"
+      -
+        id: "nested-resources"
+        title: "Nested Resources"
       -
         id: "namespaces"
         title: "Namespaces"
