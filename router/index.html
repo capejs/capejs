@@ -385,7 +385,50 @@ control the flow of processing when we render components:</p>
 
 <h3 id="singular-resources:b440f93c1d3adda104fcdb9ed5aa5063">Singular Resources</h3>
 
-<p>This section is not yet prepared.</p>
+<p>When you want to define routes for a resource that can have only zero or
+one instance, you should use <code>one</code> method as follows:</p>
+
+<pre><code>var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account');
+})
+</code></pre>
+
+<p>The routes defined by the above code are summarized in the next table:</p>
+
+<table class="table">
+<tr>
+  <th>Hash pattern</th>
+  <th>Container</th>
+  <th>Component</th>
+  <th>Resource</th>
+  <th>Action</th>
+</tr>
+<tr>
+  <td>account</td>
+  <td>Account</td>
+  <td>Content</td>
+  <td>account</td>
+  <td>show</td>
+</tr>
+<tr>
+  <td>account/new</td>
+  <td>Account</td>
+  <td>Form</td>
+  <td>account</td>
+  <td>new</td>
+</tr>
+<tr>
+  <td>account/edit</td>
+  <td>Account</td>
+  <td>Form</td>
+  <td>account</td>
+  <td>edit</td>
+</tr>
+</table>
+
+<p>Note that the naming convension is different from that of Ruby on Rails.
+The container&rsquo;s name is singular, not plural.</p>
 
 <p><a class="anchor" id="nested-resources"></a></p>
 
