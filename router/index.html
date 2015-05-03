@@ -551,7 +551,75 @@ router.draw(function(m) {
 
 <h3 id="adding-custom-actions:b440f93c1d3adda104fcdb9ed5aa5063">Adding Custom Actions</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="adding-collection-routes:b440f93c1d3adda104fcdb9ed5aa5063">Adding Collection Routes</h4>
+
+<p>To add a <em>collection</em> route (a route which deals with multiple items), use <code>collection</code> method:</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', function(m) {
+    m.collection 'draft'
+  });
+})
+</code></pre>
+
+<p>This defines a route from <code>articles/draft</code> to <code>Articles.Draft</code>.</p>
+
+<h4 id="adding-member-routes:b440f93c1d3adda104fcdb9ed5aa5063">Adding Member Routes</h4>
+
+<p>To add a <em>member</em> route (a route which deals with a specific item), use <code>member</code> method:</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', function(m) {
+    m.member 'info'
+  });
+})
+</code></pre>
+
+<p>This defines a route from <code>articles/:id/info</code> to <code>Articles.Info</code>.</p>
+
+<h4 id="adding-routes-for-additional-new-actions:b440f93c1d3adda104fcdb9ed5aa5063">Adding Routes for Additional New Actions</h4>
+
+<p>To add an alternate new action, use <code>new</code> method:</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', function(m) {
+    m.new 'preview'
+  });
+})
+</code></pre>
+
+<p>This defines a route from <code>articles/new/preview</code> to <code>Articles.Preview</code>.</p>
+
+<h4 id="adding-additional-routes-to-singular-resources:b440f93c1d3adda104fcdb9ed5aa5063">Adding Additional Routes to Singular Resources</h4>
+
+<p>To add an additional route to singular resources, use <code>view</code> method:</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account', function(m) {
+    m.view 'photo'
+  });
+})
+</code></pre>
+
+<p>This defines a route from <code>account/photo</code> to <code>Account.Photo</code>.</p>
+
+<h4 id="adding-routes-for-additional-new-actions-of-singular-resources:b440f93c1d3adda104fcdb9ed5aa5063">Adding Routes for Additional New Actions of Singular Resources</h4>
+
+<p>To add an alternate new action to singular resources, use <code>new</code> method:</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account', function(m) {
+    m.new 'preview'
+  });
+})
+</code></pre>
+
+<p>This defines a route from <code>account/new/preview</code> to <code>Account.Preview</code>.</p>
 
 <p><a class="anchor" id="changing-root-container"></a></p>
 

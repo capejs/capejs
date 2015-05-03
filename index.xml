@@ -9,6 +9,40 @@
     <atom:link href="http://oiax.github.io/capejs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Cape.Component - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/component/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/component/</guid>
+      <description>
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#formData()&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-mount-id:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#mount(id)&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#refresh()&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#unmount()&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-component-val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val()&lt;/h3&gt;
+
+&lt;h4 id=&#34;cape-component-val-name:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name)&lt;/h4&gt;
+
+&lt;h4 id=&#34;cape-component-val-name-value:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name, value)&lt;/h4&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Cape - API Reference</title>
       <link>http://oiax.github.io/capejs/api/cape/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -219,6 +253,15 @@ Cape.extend(object1, object2);
     </item>
     
     <item>
+      <title>Cape.DataStore - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>API Reference</title>
       <link>http://oiax.github.io/capejs/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -273,49 +316,6 @@ and mount components according to the &lt;em&gt;routes&lt;/em&gt;
 &lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
 You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
 method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Cape.DataStore - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/data_store/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cape.Component - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/component/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/component/</guid>
-      <description>
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#formData()&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-mount-id:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#mount(id)&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#refresh()&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#unmount()&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-component-val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val()&lt;/h3&gt;
-
-&lt;h4 id=&#34;cape-component-val-name:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name)&lt;/h4&gt;
-
-&lt;h4 id=&#34;cape-component-val-name-value:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Cape.Component#val(name, value)&lt;/h4&gt;
 </description>
     </item>
     
@@ -2206,7 +2206,75 @@ router.draw(function(m) {
 
 &lt;h3 id=&#34;adding-custom-actions:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Adding Custom Actions&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;adding-collection-routes:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Adding Collection Routes&lt;/h4&gt;
+
+&lt;p&gt;To add a &lt;em&gt;collection&lt;/em&gt; route (a route which deals with multiple items), use &lt;code&gt;collection&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;, function(m) {
+    m.collection &#39;draft&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;articles/draft&lt;/code&gt; to &lt;code&gt;Articles.Draft&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;adding-member-routes:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Adding Member Routes&lt;/h4&gt;
+
+&lt;p&gt;To add a &lt;em&gt;member&lt;/em&gt; route (a route which deals with a specific item), use &lt;code&gt;member&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;, function(m) {
+    m.member &#39;info&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;articles/:id/info&lt;/code&gt; to &lt;code&gt;Articles.Info&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;adding-routes-for-additional-new-actions:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Adding Routes for Additional New Actions&lt;/h4&gt;
+
+&lt;p&gt;To add an alternate new action, use &lt;code&gt;new&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;, function(m) {
+    m.new &#39;preview&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;articles/new/preview&lt;/code&gt; to &lt;code&gt;Articles.Preview&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;adding-additional-routes-to-singular-resources:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Adding Additional Routes to Singular Resources&lt;/h4&gt;
+
+&lt;p&gt;To add an additional route to singular resources, use &lt;code&gt;view&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;, function(m) {
+    m.view &#39;photo&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;account/photo&lt;/code&gt; to &lt;code&gt;Account.Photo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;adding-routes-for-additional-new-actions-of-singular-resources:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Adding Routes for Additional New Actions of Singular Resources&lt;/h4&gt;
+
+&lt;p&gt;To add an alternate new action to singular resources, use &lt;code&gt;new&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;, function(m) {
+    m.new &#39;preview&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;account/new/preview&lt;/code&gt; to &lt;code&gt;Account.Preview&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;changing-root-container&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
