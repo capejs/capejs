@@ -131,28 +131,6 @@ Cape.extend(Component.prototype, {
     this._.serializeForms();
     if (formName === undefined) formName = '';
     return this._.forms[formName] || {};
-  },
-  renderPartial: function(builder, componentName, thisObj) {
-    var fragments = componentName.split('.'),
-        klassName = fragments.pop(),
-        obj, i, camelized, partial;
-
-    klassName = Inflector.camelize(klassName);
-
-    obj = window;
-    for (i = 0; obj && i < fragments.length; i++) {
-      camelized = Inflector.camelize(fragments[i]);
-      if (obj[camelized]) obj = obj[camelized];
-      else obj = null;
-    }
-    if (!obj || !obj['_' + klassName]) {
-      throw new Error(
-        "Partial component class not found for '" + componentName + "'");
-    }
-
-    partial = new obj['_' + klassName];
-    if (typeof thisObj === 'object') Cape.extend(partial, thisObj);
-    partial.render(builder);
   }
 });
 
@@ -749,8 +727,8 @@ var Cape = require('./utilities');
 //   action: the action name of current route.
 //   container: the name of container of component.
 //   component: the name of component.
-//   session: an object which users can store arbitary data to.
-//   flash: an object which users can store arbitary data to, but is erased after each
+//   session: an object which users can store arbitrary data to.
+//   flash: an object which users can store arbitrary data to, but is erased after each
 //          navigation.
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
