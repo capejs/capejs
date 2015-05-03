@@ -3,7 +3,7 @@ title: "Cape.Router - API Reference"
 ---
 
 [#flash](#flash) -
-[#session](#session)
+[#vars](#vars)
 
 
 <a class="anchor" id="flash"></a>
@@ -24,19 +24,19 @@ router.flash.alert = 'The specified article has been deleted.';
 router.navigate('articles');
 ```
 
-<a class="anchor" id="session"></a>
-### #session
+<a class="anchor" id="vars"></a>
+### #vars
 
 #### Usage
 
-* **session[key] = value**
-* **session.key = value**
+* **vars[key] = value**
+* **vars.key = value**
 
-Set an arbitrary value (object, string, integer, etc.) to the _session_ object.
+Set an arbitrary value (object, string, integer, etc.) to the _vars_ object.
 
 #### Example
 
 ```javascript
-router.session.signedIn = Date.now();
-router.session.currentUser = { id: 99, name: 'john', privileged: true };
+router.vars.signedIn = Date.now();
+router.vars.currentUser = { id: 99, name: 'john', privileged: true };
 ```

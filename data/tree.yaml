@@ -278,9 +278,6 @@ api_pages:
         id: route-for
         title: "#routeFor()"
       -
-        id: session
-        title: "#session"
-      -
         id: show
         title: "#show()"
       -
@@ -289,6 +286,9 @@ api_pages:
       -
         id: stop
         title: "#stop()"
+      -
+        id: vars
+        title: "#vars"
   -
     name: "api/routing_mapper"
     title: "Cape.RoutingMapper"
