@@ -122,7 +122,7 @@
           
             <li><a href="http://oiax.github.io/capejs/router/#flash">Flash</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/router/#before-navigation-callbacks">Before-navigation Callbacks</a></li>
+            <li><a href="http://oiax.github.io/capejs/router/#before-navigation-callbacks">Before-Navigation Callbacks</a></li>
           
           </ul>
       
@@ -151,12 +151,16 @@
           
 
 <p><a href="#simple-routes">Simple Routes</a> -
+<a href="#containers">Containers</a> -
 <a href="#resource-based-routes">Resource Based Routes</a> -
+<a href="#singular-resources">Singular Resources</a> -
+<a href="#nested-resources">Nested Resources</a> -
 <a href="#namespaces">Namespaces</a> -
+<a href="#adding-custom-actions">Adding Custom Actions</a> -
 <a href="#changing-root-container">Changing Root Container</a> -
 <a href="#vars">Vars</a> -
 <a href="#flash">Flash</a> -
-<a href="#before-navigation-callbacks">Before-navigation Callbacks</a></p>
+<a href="#before-navigation-callbacks">Before-Navigation Callbacks</a></p>
 
 <p><a class="anchor" id="simple-routes"></a></p>
 
@@ -688,9 +692,76 @@ router.flash.alert = &quot;You can't delete this item.&quot;;
 
 <p><a class="anchor" id="before-navigation-callbacks"></a></p>
 
-<h3 id="before-navigation-callbacks:b440f93c1d3adda104fcdb9ed5aa5063">Before-navigation Callbacks</h3>
+<h3 id="before-navigation-callbacks:b440f93c1d3adda104fcdb9ed5aa5063">Before-Navigation Callbacks</h3>
 
-<p>This section is not yet prepared.</p>
+<p>You can register one or more callbacks which are executed before each <em>navigation</em>.</p>
+
+<p>Here is an example:</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.beforeNavigation(function(hash) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      type: 'GET',
+      url: '/session'
+    }).done(function(data) {
+      if (data.text == 'OK') {
+        router.vars.currentUser = data.user;
+        resolve(hash);
+      }
+      else {
+        router.vars.currentUser = null;
+        resolve('login');
+      }
+    }).error(function() {
+      reject(Error('ERROR'));
+    });
+  });
+});
+router.errorHandler(function(err) {
+  router.show(Errors.NetworkError);
+});
+</code></pre>
+
+<p>In the above code, we get attributes of the user who is signing in to this
+application through an Ajax request.</p>
+
+<p>The <code>resolve</code> and <code>reject</code> are functions.
+If we call the <code>resolve</code> passing a hash as the first argument,
+the process continues to the next callback which takes this hash as its first argument.
+When all callbacks are executed successfully, the hash which is specified by the last callback
+determines the component to be mounted.</p>
+
+<p>If we call the <code>reject</code>, the next and subsequent callbacks are not executed and
+the error handler is executed if it exists.</p>
+
+<p>The <code>show</code> method of router mounts the specified component (<code>Errors.NetworkError</code>)
+immediately without executing before-navigation callbacks.</p>
+
+<h4 id="notes-on-the-promise:b440f93c1d3adda104fcdb9ed5aa5063">Notes on the <em>Promise</em></h4>
+
+<p>In this example, we use a
+<a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+<i class="fa fa-external-link"></i>
+object to assure that the callbacks are executed one by one in order before navigation.
+Because Ajax requests are processed <em>asynchronously,</em>
+we can&rsquo;t assure this without the help of <em>Promise</em> objects.</p>
+
+<p>Note that all browsers currently in use in the world do not support the <em>Promise</em> interface.
+See <a href="http://caniuse.com/#feat=promises">http://caniuse.com/#feat=promises</a>.</p>
+
+<p>For browsers that do not support it, you should use one of these <em>Promise polyfills:</em></p>
+
+<ul>
+<li><a href="https://github.com/taylorhakes/promise-polyfill">https://github.com/taylorhakes/promise-polyfill</a></li>
+<li><a href="https://github.com/jakearchibald/es6-promise">https://github.com/jakearchibald/es6-promise</a></li>
+</ul>
+
+<p>If you choose the former, just place the following snippet
+to the <code>&lt;head&gt;</code> section of your HTML files.</p>
+
+<pre><code class="language-html">&lt;link href=&quot;https://cdn.rawgit.com/taylorhakes/promise-polyfill/master/Promise.min.js&quot; rel=&quot;stylesheet&quot;&gt;
+</code></pre>
 
         </div>
       </article>
