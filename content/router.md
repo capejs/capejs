@@ -405,7 +405,85 @@ The routes defined by the above code are summarized in the next table:
 <a class="anchor" id="adding-custom-actions"></a>
 ### Adding Custom Actions
 
-This section is not yet prepared.
+#### Adding Collection Routes
+
+To add a *collection* route (a route which deals with multiple items), use `collection` method:
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', function(m) {
+    m.collection 'draft'
+  });
+})
+```
+
+This defines a route from `articles/draft` to `Articles.Draft`.
+
+
+#### Adding Member Routes
+
+To add a *member* route (a route which deals with a specific item), use `member` method:
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', function(m) {
+    m.member 'info'
+  });
+})
+```
+
+This defines a route from `articles/:id/info` to `Articles.Info`.
+
+
+#### Adding Routes for Additional New Actions
+
+To add an alternate new action, use `new` method:
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', function(m) {
+    m.new 'preview'
+  });
+})
+```
+
+This defines a route from `articles/new/preview` to `Articles.Preview`.
+
+
+#### Adding Additional Routes to Singular Resources
+
+To add an additional route to singular resources, use `view` method:
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account', function(m) {
+    m.view 'photo'
+  });
+})
+```
+
+This defines a route from `account/photo` to `Account.Photo`.
+
+
+
+#### Adding Routes for Additional New Actions of Singular Resources
+
+To add an alternate new action to singular resources, use `new` method:
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account', function(m) {
+    m.new 'preview'
+  });
+})
+```
+
+This defines a route from `account/new/preview` to `Account.Preview`.
 
 <a class="anchor" id="changing-root-container"></a>
 ### Changing Root Container
