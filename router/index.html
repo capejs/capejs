@@ -108,9 +108,13 @@
           
             <li><a href="http://oiax.github.io/capejs/router/#resource-based-routes">Resource Based Routes</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/router/#singular-resources">Singular Resources</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/router/#nested-resources">Nested Resources</a></li>
           
             <li><a href="http://oiax.github.io/capejs/router/#namespaces">Namespaces</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/router/#adding-custom-actions">Adding Custom Actions</a></li>
           
             <li><a href="http://oiax.github.io/capejs/router/#changing-root-container">Changing Root Container</a></li>
           
@@ -357,8 +361,8 @@ to exclude some routes from definition:</p>
 
 <pre><code>var router = new Cape.Router();
 router.draw(function(m) {
-  m.many('articles', only: [ 'index', 'show' ]);
-  m.many('comments', except: [ 'new', 'edit' ]);
+  m.many('articles', except: [ 'new', 'edit' ]);
+  m.many('announcement', only: [ 'index' ]);
 })
 </code></pre>
 
@@ -377,15 +381,132 @@ control the flow of processing when we render components:</p>
 });
 </code></pre>
 
+<p><a class="anchor" id="singular-resources"></a></p>
+
+<h3 id="singular-resources:b440f93c1d3adda104fcdb9ed5aa5063">Singular Resources</h3>
+
+<p>This section is not yet prepared.</p>
+
 <p><a class="anchor" id="nested-resources"></a></p>
 
 <h3 id="nested-resources:b440f93c1d3adda104fcdb9ed5aa5063">Nested Resources</h3>
 
-<p>This section is not yet prepared.</p>
+<p>You can define resources which are logically children
+of other resources as follows:</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', { only: [] }, function(m) {
+    m.many('comments')
+  });
+})
+</code></pre>
+
+<p>The routes defined by the above code are summarized in the next table:</p>
+
+<table class="table">
+<tr>
+  <th>Hash pattern</th>
+  <th>Container</th>
+  <th>Component</th>
+  <th>Resource</th>
+  <th>Action</th>
+</tr>
+<tr>
+  <td>articles/:article_id/comments</td>
+  <td>Comments</td>
+  <td>List</td>
+  <td>articles/comments</td>
+  <td>index</td>
+</tr>
+<tr>
+  <td>articles/:article_id/comments/:id</td>
+  <td>Comments</td>
+  <td>Item</td>
+  <td>articles/comments</td>
+  <td>show</td>
+</tr>
+<tr>
+  <td>articles/:article_id/comments/new</td>
+  <td>Comments</td>
+  <td>Form</td>
+  <td>articles/comments</td>
+  <td>new</td>
+</tr>
+<tr>
+  <td>articles/:article_id/comments/:id/edit</td>
+  <td>Comments</td>
+  <td>Form</td>
+  <td>articles/comments</td>
+  <td>edit</td>
+</tr>
+</table>
+
+<p>Note that you should define <code>Comments.List</code>, <code>Comments.Item</code> and <code>Comments.Form</code>.
+They are not <code>Articles.Comments.List</code>, <code>Articles.Comments.Item</code> and <code>Articles.Comments.Form</code>.</p>
 
 <p><a class="anchor" id="namespaces"></a></p>
 
 <h3 id="namespaces:b440f93c1d3adda104fcdb9ed5aa5063">Namespaces</h3>
+
+<p>You can define resources under a <em>namespace</em> as follows:</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.namespace('admin', function(m) {
+    m.many('articles');
+  })
+})
+</code></pre>
+
+<p>The routes defined by the above code are summarized in the next table:</p>
+
+<table class="table">
+<tr>
+  <th>Hash pattern</th>
+  <th>Container</th>
+  <th>Component</th>
+  <th>Namespace</th>
+  <th>Resource</th>
+  <th>Action</th>
+</tr>
+<tr>
+  <td>admin/articles</td>
+  <td>Admin.Articles</td>
+  <td>List</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>index</td>
+</tr>
+<tr>
+  <td>admin/articles/:id</td>
+  <td>Admin.Articles</td>
+  <td>Item</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>show</td>
+</tr>
+<tr>
+  <td>admin/articles/new</td>
+  <td>Admin.Articles</td>
+  <td>Form</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>new</td>
+</tr>
+<tr>
+  <td>admin/articles/:id/edit</td>
+  <td>Admin.Articles</td>
+  <td>Form</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>edit</td>
+</tr>
+</table>
+
+<p><a class="anchor" id="adding-custom-actions"></a></p>
+
+<h3 id="adding-custome-actions:b440f93c1d3adda104fcdb9ed5aa5063">Adding Custome Actions</h3>
 
 <p>This section is not yet prepared.</p>
 
