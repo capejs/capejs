@@ -214,8 +214,8 @@ to exclude some routes from definition:
 ```
 var router = new Cape.Router();
 router.draw(function(m) {
-  m.many('articles', only: [ 'index', 'show' ]);
-  m.many('comments', except: [ 'new', 'edit' ]);
+  m.many('articles', except: [ 'new', 'edit' ]);
+  m.many('announcement', only: [ 'index' ]);
 })
 ```
 
@@ -238,7 +238,60 @@ Articles.Form = Cape.createComponentClass({
 <a class="anchor" id="nested-resources"></a>
 ### Nested Resources
 
-This section is not yet prepared.
+You can define resources which are logically children
+of other resources as follows:
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', { only: [] }, function(m) {
+    m.many('comments')
+  });
+})
+```
+
+The routes defined by the above code are summarized in the next table:
+
+<table class="table">
+<tr>
+  <th>Hash pattern</th>
+  <th>Container</th>
+  <th>Component</th>
+  <th>Resource</th>
+  <th>Action</th>
+</tr>
+<tr>
+  <td>articles/:article_id/comments</td>
+  <td>Comments</td>
+  <td>List</td>
+  <td>articles/comments</td>
+  <td>index</td>
+</tr>
+<tr>
+  <td>articles/:article_id/comments/:id</td>
+  <td>Comments</td>
+  <td>Item</td>
+  <td>articles/comments</td>
+  <td>show</td>
+</tr>
+<tr>
+  <td>articles/:article_id/comments/new</td>
+  <td>Comments</td>
+  <td>Form</td>
+  <td>articles/comments</td>
+  <td>new</td>
+</tr>
+<tr>
+  <td>articles/:article_id/comments/:id/edit</td>
+  <td>Comments</td>
+  <td>Form</td>
+  <td>articles/comments</td>
+  <td>edit</td>
+</tr>
+</table>
+
+Note that you should define `Comments.List`, `Comments.Item` and `Comments.Form`.
+They are not `Articles.Comments.List`, `Articles.Comments.Item` and `Articles.Comments.Form`.
 
 <a class="anchor" id="namespaces"></a>
 ### Namespaces
