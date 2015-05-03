@@ -1084,7 +1084,7 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
-&lt;a href=&#34;#session&#34;&gt;#session&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;#vars&#34;&gt;#vars&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1106,23 +1106,23 @@ which is emptied after each navigation.&lt;/p&gt;
 router.navigate(&#39;articles&#39;);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;session&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;vars&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;session:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#session&lt;/h3&gt;
+&lt;h3 id=&#34;vars:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#vars&lt;/h3&gt;
 
 &lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;session[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;session.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vars[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vars.key = value&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;session&lt;/em&gt; object.&lt;/p&gt;
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;vars&lt;/em&gt; object.&lt;/p&gt;
 
 &lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.session.signedIn = Date.now();
-router.session.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.vars.signedIn = Date.now();
+router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>

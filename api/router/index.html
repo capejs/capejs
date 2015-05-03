@@ -220,13 +220,13 @@
           
             <li><a href="http://oiax.github.io/capejs/api/router#route-for">#routeFor()</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/api/router#session">#session</a></li>
-          
             <li><a href="http://oiax.github.io/capejs/api/router#show">#show()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/router#start">#start()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/router#stop">#stop()</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/api/router#vars">#vars</a></li>
           
           </ul>
           
@@ -275,7 +275,7 @@
           
 
 <p><a href="#flash">#flash</a> -
-<a href="#session">#session</a></p>
+<a href="#vars">#vars</a></p>
 
 <p><a class="anchor" id="flash"></a></p>
 
@@ -297,23 +297,23 @@ which is emptied after each navigation.</p>
 router.navigate('articles');
 </code></pre>
 
-<p><a class="anchor" id="session"></a></p>
+<p><a class="anchor" id="vars"></a></p>
 
-<h3 id="session:b440f93c1d3adda104fcdb9ed5aa5063">#session</h3>
+<h3 id="vars:b440f93c1d3adda104fcdb9ed5aa5063">#vars</h3>
 
 <h4 id="usage-1:b440f93c1d3adda104fcdb9ed5aa5063">Usage</h4>
 
 <ul>
-<li><strong>session[key] = value</strong></li>
-<li><strong>session.key = value</strong></li>
+<li><strong>vars[key] = value</strong></li>
+<li><strong>vars.key = value</strong></li>
 </ul>
 
-<p>Set an arbitrary value (object, string, integer, etc.) to the <em>session</em> object.</p>
+<p>Set an arbitrary value (object, string, integer, etc.) to the <em>vars</em> object.</p>
 
 <h4 id="example-1:b440f93c1d3adda104fcdb9ed5aa5063">Example</h4>
 
-<pre><code class="language-javascript">router.session.signedIn = Date.now();
-router.session.currentUser = { id: 99, name: 'john', privileged: true };
+<pre><code class="language-javascript">router.vars.signedIn = Date.now();
+router.vars.currentUser = { id: 99, name: 'john', privileged: true };
 </code></pre>
 
         </div>
