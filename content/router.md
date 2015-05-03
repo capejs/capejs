@@ -410,20 +410,22 @@ This section is not yet prepared.
 <a class="anchor" id="changing-root-container"></a>
 ### Changing Root Container
 
-By default, components and containers are defined globally,
-but you can specify the root container as the first argument of `Router`'s constructor:
+By default, the root container is `window` object.
+In other words, variables for components and containers are defined globally.
+
+But you can change it by passing an object to the `Cape.Router`'s constructor:
 
 ```javascript
-var App = {};
-var router = new Cape.Router(App);
+var MyApp = {};
+var router = new Cape.Router(MyApp);
 router.draw(function(m) {
   m.root('top_page')
   m.many('articles');
 })
 ```
 
-Then the component class for root page becomes `App.TopPage`,
-and the container for the `articles` resource becomes `App.Articles`.
+Then the component class for root page becomes `MyApp.TopPage`,
+and the container for the `articles` resource becomes `MyApp.Articles`.
 
 
 <a class="anchor" id="vars"></a>
@@ -431,7 +433,7 @@ and the container for the `articles` resource becomes `App.Articles`.
 
 Routers have a property named `vars`, which developers can store arbitrary data to.
 
-For example, you can store the data of current user as follows:
+For example, you can store attributes of the current user:
 
 ```javascript
 var router = new Cape.Router();
