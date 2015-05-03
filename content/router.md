@@ -403,14 +403,28 @@ The routes defined by the above code are summarized in the next table:
 
 
 <a class="anchor" id="adding-custom-actions"></a>
-### Adding Custome Actions
+### Adding Custom Actions
 
 This section is not yet prepared.
 
 <a class="anchor" id="changing-root-container"></a>
 ### Changing Root Container
 
-This section is not yet prepared.
+By default, components and containers are defined globally,
+but you can specify the root container as the first argument of `Router`'s constructor:
+
+```javascript
+var App = {};
+var router = new Cape.Router(App);
+router.draw(function(m) {
+  m.root('top_page')
+  m.many('articles');
+})
+```
+
+Then the component class for root page becomes `App.TopPage`,
+and the container for the `articles` resource becomes `App.Articles`.
+
 
 <a class="anchor" id="vars"></a>
 ### Vars
