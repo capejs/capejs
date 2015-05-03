@@ -3,12 +3,16 @@ title: "Router"
 ---
 
 [Simple Routes](#simple-routes) -
+[Containers](#containers) -
 [Resource Based Routes](#resource-based-routes) -
+[Singular Resources](#singular-resources) -
+[Nested Resources](#nested-resources) -
 [Namespaces](#namespaces) -
+[Adding Custom Actions](#adding-custom-actions) -
 [Changing Root Container](#changing-root-container) -
 [Vars](#vars) -
 [Flash](#flash) -
-[Before-navigation Callbacks](#before-navigation-callbacks)
+[Before-Navigation Callbacks](#before-navigation-callbacks)
 
 <a class="anchor" id="simple-routes"></a>
 ### Simple Routes
@@ -555,6 +559,73 @@ render: function(m) {
 
 
 <a class="anchor" id="before-navigation-callbacks"></a>
-### Before-navigation Callbacks
+### Before-Navigation Callbacks
 
-This section is not yet prepared.
+You can register one or more callbacks which are executed before each *navigation*.
+
+Here is an example:
+
+```javascript
+var router = new Cape.Router();
+router.beforeNavigation(function(hash) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      type: 'GET',
+      url: '/session'
+    }).done(function(data) {
+      if (data.text == 'OK') {
+        router.vars.currentUser = data.user;
+        resolve(hash);
+      }
+      else {
+        router.vars.currentUser = null;
+        resolve('login');
+      }
+    }).error(function() {
+      reject(Error('ERROR'));
+    });
+  });
+});
+router.errorHandler(function(err) {
+  router.show(Errors.NetworkError);
+});
+```
+
+In the above code, we get attributes of the user who is signing in to this
+application through an Ajax request.
+
+The `resolve` and `reject` are functions.
+If we call the `resolve` passing a hash as the first argument,
+the process continues to the next callback which takes this hash as its first argument.
+When all callbacks are executed successfully, the hash which is specified by the last callback
+determines the component to be mounted.
+
+If we call the `reject`, the next and subsequent callbacks are not executed and
+the error handler is executed if it exists.
+
+The `show` method of router mounts the specified component (`Errors.NetworkError`)
+immediately without executing before-navigation callbacks.
+
+#### Notes on the *Promise*
+
+In this example, we use a
+[Promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+<i class="fa fa-external-link"></i>
+object to assure that the callbacks are executed one by one in order before navigation.
+Because Ajax requests are processed *asynchronously,*
+we can't assure this without the help of *Promise* objects.
+
+Note that all browsers currently in use in the world do not support the *Promise* interface.
+See http://caniuse.com/#feat=promises.
+
+For browsers that do not support it, you should use one of these *Promise polyfills:*
+
+* https://github.com/taylorhakes/promise-polyfill
+* https://github.com/jakearchibald/es6-promise
+
+If you choose the former, just place the following snippet
+to the `<head>` section of your HTML files.
+
+```html
+<link href="https://cdn.rawgit.com/taylorhakes/promise-polyfill/master/Promise.min.js" rel="stylesheet">
+```

@@ -78,7 +78,7 @@ pages:
         title: "Flash"
       -
         id: "before-navigation-callbacks"
-        title: "Before-navigation Callbacks"
+        title: "Before-Navigation Callbacks"
   -
     name: "tutorials"
     title: "Tutorials and Demos"
