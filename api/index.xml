@@ -1083,7 +1083,27 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
       <guid>http://oiax.github.io/capejs/api/router/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
+&lt;p&gt;&lt;a href=&#34;#action&#34;&gt;#action&lt;/a&gt; -
+&lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
+&lt;a href=&#34;#before-navigation&#34;&gt;#beforeNavigation()&lt;/a&gt; -
+&lt;a href=&#34;#component&#34;&gt;#component&lt;/a&gt; -
+&lt;a href=&#34;#container&#34;&gt;#container&lt;/a&gt; -
+&lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
+&lt;a href=&#34;#draw&#34;&gt;#draw()&lt;/a&gt; -
+&lt;a href=&#34;#error-handler&#34;&gt;#errorHandler()&lt;/a&gt; -
+&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
+&lt;a href=&#34;#namespace&#34;&gt;#namespace&lt;/a&gt; -
+&lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; -
+&lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; -
+&lt;a href=&#34;#mount&#34;&gt;#mount()&lt;/a&gt; -
+&lt;a href=&#34;#params&#34;&gt;#params&lt;/a&gt; -
+&lt;a href=&#34;#query&#34;&gt;#query&lt;/a&gt; -
+&lt;a href=&#34;#redirect-to&#34;&gt;#redirectTo&lt;/a&gt; -
+&lt;a href=&#34;#resource&#34;&gt;#resource&lt;/a&gt; -
+&lt;a href=&#34;#route-for&#34;&gt;#routeFor()&lt;/a&gt; -
+&lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; -
+&lt;a href=&#34;#start&#34;&gt;#start()&lt;/a&gt; -
+&lt;a href=&#34;#stop&#34;&gt;#stop()&lt;/a&gt; -
 &lt;a href=&#34;#vars&#34;&gt;#vars&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
