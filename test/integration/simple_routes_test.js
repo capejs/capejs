@@ -14,6 +14,7 @@ describe('Demo', function() {
     it('should switch components', function() {
       var main, p;
 
+      simple_router._.setHash = function() {};
       simple_router.mount('main');
       simple_router.start();
 

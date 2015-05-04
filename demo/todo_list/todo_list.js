@@ -25,7 +25,7 @@ var TodoList = Cape.createComponentClass({
       m.textField('title', { onkeyup: function(e) { this.refresh() } });
       m.button("Add", {
         disabled: this.val('title') === '',
-        onclick: function(e) { this.addItem() }
+        onclick: function(e) { this.addItem(); return false; }
       });
     });
   },

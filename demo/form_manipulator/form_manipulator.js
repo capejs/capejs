@@ -84,7 +84,7 @@ var FormManipulator = Cape.createComponentClass({
       m.button('Reset', { class: htmlClass,
         onclick: function(e) { this.init() } }).space()
       m.button('Submit', { class: htmlClass,
-        onclick: function(e) { this.refresh() } })
+        onclick: function(e) { this.refresh(); return false } })
     })
   },
 
