@@ -6,6 +6,7 @@ title: "Cape.MarkupBuilder - API Reference"
 [#a(), #abbr(), #address()](#a-abbr-address-etc) -
 [#area(), #base(), #br()](#area-base-br-etc) -
 [#attr()](#attr) -
+[#btn()](#btn) -
 [#checkBox()](#check-box) -
 [#class()](#class) -
 [#css()](#css) -
@@ -276,6 +277,30 @@ render: function(m) {
   //         id="user-field-privileged">
   //     </label>
   //   </form>
+}
+```
+
+<a class="anchor" id="btn"></a>
+### #btn()
+
+#### Usage
+
+* **btn(content, options)**
+* **btn(options, callback)**
+
+Create a `<button>` element whose `type` attribute is set to `button` by default.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('test', function(m) {
+    m.btn('Click');
+  });
+  // The above code generates the following HTML tags
+  //   <form name="test">
+  //     <button type="button">Click</button>
+  //   </div>
 }
 ```
 
