@@ -269,6 +269,9 @@ api_pages:
         id: query
         title: "#query"
       -
+        id: redirect-to
+        title: "#redirectTo()"
+      -
         id: resource
         title: "#resource"
       -

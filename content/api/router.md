@@ -2,9 +2,28 @@
 title: "Cape.Router - API Reference"
 ---
 
+[#action](#action) -
+[#attach()](#attach) -
+[#beforeNavigation()](#before-navigation) -
+[#component](#component) -
+[#container](#container) -
+[#detach()](#detach) -
+[#draw()](#draw) -
+[#errorHandler()](#error-handler) -
 [#flash](#flash) -
+[#namespace](#namespace) -
+[#navigate()](#navigate) -
+[#notify()](#notify) -
+[#mount()](#mount) -
+[#params](#params) -
+[#query](#query) -
+[#redirectTo](#redirect-to) -
+[#resource](#resource) -
+[#routeFor()](#route-for) -
+[#show()](#show) -
+[#start()](#start) -
+[#stop()](#stop) -
 [#vars](#vars)
-
 
 <a class="anchor" id="flash"></a>
 ### #flash
