@@ -1106,6 +1106,94 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
 &lt;a href=&#34;#stop&#34;&gt;#stop()&lt;/a&gt; -
 &lt;a href=&#34;#vars&#34;&gt;#vars&lt;/a&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;action&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;action:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#action&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;action name&lt;/em&gt; of the current route.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.action); // =&amp;gt; &amp;quot;edit&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;attach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#attach()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;before-navigation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;beforenavigation:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#beforeNavigation()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;component&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;component:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#component&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;component name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;container&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;container:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;container name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.container); // =&amp;gt; &amp;quot;articles&amp;quot;
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.container); // =&amp;gt; &amp;quot;admin.articles&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;detach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#detach()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;draw&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;draw:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#draw()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;error-handler&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;errorhandler:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#errorHandler()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
@@ -1120,11 +1208,120 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
 &lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
 which is emptied after each navigation.&lt;/p&gt;
 
-&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-3:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
 router.navigate(&#39;articles&#39;);
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;container-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;namespace&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-4:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.namespace); // =&amp;gt; null
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.namespace); // =&amp;gt; &amp;quot;admin&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;navigage&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;navigate:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#navigate()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;notify&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;notify:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#notify()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;mount:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#mount()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;params:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#params&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;query&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;query:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#query&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;redirect-to&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;redirectto:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#redirectTo()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;resource:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#resource&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;resource name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-5:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;);
+  m.many(&#39;articles&#39;, function(m) {
+    m.many(&#39;comments&#39;);
+  });
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+router.navigate(&#39;account/edit&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;account&amp;quot;
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
+router.navigate(&#39;articles/123/comments&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;articles/comments&amp;quot;
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;routeFor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;routefor:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#routeFor()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;show&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;show:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#show()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;start&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;start:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#start()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;stop&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;stop:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#stop()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;vars&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1139,7 +1336,7 @@ router.navigate(&#39;articles&#39;);
 
 &lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;vars&lt;/em&gt; object.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-6:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.vars.signedIn = Date.now();
 router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };

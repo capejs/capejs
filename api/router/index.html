@@ -297,6 +297,94 @@
 <a href="#stop">#stop()</a> -
 <a href="#vars">#vars</a></p>
 
+<p><a class="anchor" id="action"></a></p>
+
+<h3 id="action:b440f93c1d3adda104fcdb9ed5aa5063">#action</h3>
+
+<p>This property holds the <em>action name</em> of the current route.</p>
+
+<h4 id="example:b440f93c1d3adda104fcdb9ed5aa5063">Example</h4>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles');
+});
+router.navigate('articles/123/edit');
+console.log(router.action); // =&gt; &quot;edit&quot;
+</code></pre>
+
+<p><a class="anchor" id="attach"></a></p>
+
+<h3 id="attach:b440f93c1d3adda104fcdb9ed5aa5063">#attach()</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="before-navigation"></a></p>
+
+<h3 id="beforenavigation:b440f93c1d3adda104fcdb9ed5aa5063">#beforeNavigation()</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="component"></a></p>
+
+<h3 id="component:b440f93c1d3adda104fcdb9ed5aa5063">#component</h3>
+
+<p>This property holds the <em>component name</em> of the current route in lower case.</p>
+
+<h4 id="example-1:b440f93c1d3adda104fcdb9ed5aa5063">Example</h4>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles');
+  m.namespace('admin', function(m) {
+    m.many('articles');
+  });
+});
+router.navigate('articles/123/edit');
+console.log(router.component); // =&gt; &quot;edit&quot;
+router.navigate('admin/articles/123/edit');
+console.log(router.component); // =&gt; &quot;edit&quot;
+</code></pre>
+
+<p><a class="anchor" id="container"></a></p>
+
+<h3 id="container:b440f93c1d3adda104fcdb9ed5aa5063">#container</h3>
+
+<p>This property holds the <em>container name</em> of the current route in lower case.</p>
+
+<h4 id="example-2:b440f93c1d3adda104fcdb9ed5aa5063">Example</h4>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles');
+  m.namespace('admin', function(m) {
+    m.many('articles');
+  });
+});
+router.navigate('articles/123/edit');
+console.log(router.container); // =&gt; &quot;articles&quot;
+router.navigate('admin/articles/123/edit');
+console.log(router.container); // =&gt; &quot;admin.articles&quot;
+</code></pre>
+
+<p><a class="anchor" id="detach"></a></p>
+
+<h3 id="detach:b440f93c1d3adda104fcdb9ed5aa5063">#detach()</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="draw"></a></p>
+
+<h3 id="draw:b440f93c1d3adda104fcdb9ed5aa5063">#draw()</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="error-handler"></a></p>
+
+<h3 id="errorhandler:b440f93c1d3adda104fcdb9ed5aa5063">#errorHandler()</h3>
+
+<p>This section is not yet prepared.</p>
+
 <p><a class="anchor" id="flash"></a></p>
 
 <h3 id="flash:b440f93c1d3adda104fcdb9ed5aa5063">#flash</h3>
@@ -311,11 +399,120 @@
 <p>Set an arbitrary value (object, string, integer, etc.) to the <em>flash</em> object,
 which is emptied after each navigation.</p>
 
-<h4 id="example:b440f93c1d3adda104fcdb9ed5aa5063">Example</h4>
+<h4 id="example-3:b440f93c1d3adda104fcdb9ed5aa5063">Example</h4>
 
 <pre><code class="language-javascript">router.flash.alert = 'The specified article has been deleted.';
 router.navigate('articles');
 </code></pre>
+
+<p><a class="anchor" id="namespace"></a></p>
+
+<h3 id="container-1:b440f93c1d3adda104fcdb9ed5aa5063">#container</h3>
+
+<p>This property holds the <em>namespace</em> of the current route in lower case.</p>
+
+<h4 id="example-4:b440f93c1d3adda104fcdb9ed5aa5063">Example</h4>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles');
+  m.namespace('admin', function(m) {
+    m.many('articles');
+  });
+});
+router.navigate('articles/123/edit');
+console.log(router.namespace); // =&gt; null
+router.navigate('admin/articles/123/edit');
+console.log(router.namespace); // =&gt; &quot;admin&quot;
+</code></pre>
+
+<p><a class="anchor" id="navigage"></a></p>
+
+<h3 id="navigate:b440f93c1d3adda104fcdb9ed5aa5063">#navigate()</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="notify"></a></p>
+
+<h3 id="notify:b440f93c1d3adda104fcdb9ed5aa5063">#notify()</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="mount"></a></p>
+
+<h3 id="mount:b440f93c1d3adda104fcdb9ed5aa5063">#mount()</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="params"></a></p>
+
+<h3 id="params:b440f93c1d3adda104fcdb9ed5aa5063">#params</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="query"></a></p>
+
+<h3 id="query:b440f93c1d3adda104fcdb9ed5aa5063">#query</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="redirect-to"></a></p>
+
+<h3 id="redirectto:b440f93c1d3adda104fcdb9ed5aa5063">#redirectTo()</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="resource"></a></p>
+
+<h3 id="resource:b440f93c1d3adda104fcdb9ed5aa5063">#resource</h3>
+
+<p>This property holds the <em>resource name</em> of the current route in lower case.</p>
+
+<h4 id="example-5:b440f93c1d3adda104fcdb9ed5aa5063">Example</h4>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account');
+  m.many('articles', function(m) {
+    m.many('comments');
+  });
+  m.namespace('admin', function(m) {
+    m.many('articles');
+  });
+});
+router.navigate('account/edit');
+console.log(router.resource); // =&gt; &quot;account&quot;
+router.navigate('articles/123/edit');
+console.log(router.resource); // =&gt; &quot;articles&quot;
+router.navigate('articles/123/comments');
+console.log(router.resource); // =&gt; &quot;articles/comments&quot;
+router.navigate('admin/articles/123/edit');
+console.log(router.resource); // =&gt; &quot;articles&quot;
+</code></pre>
+
+<p><a class="anchor" id="routeFor"></a></p>
+
+<h3 id="routefor:b440f93c1d3adda104fcdb9ed5aa5063">#routeFor()</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="show"></a></p>
+
+<h3 id="show:b440f93c1d3adda104fcdb9ed5aa5063">#show()</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="start"></a></p>
+
+<h3 id="start:b440f93c1d3adda104fcdb9ed5aa5063">#start()</h3>
+
+<p>This section is not yet prepared.</p>
+
+<p><a class="anchor" id="stop"></a></p>
+
+<h3 id="stop:b440f93c1d3adda104fcdb9ed5aa5063">#stop()</h3>
+
+<p>This section is not yet prepared.</p>
 
 <p><a class="anchor" id="vars"></a></p>
 
@@ -330,7 +527,7 @@ router.navigate('articles');
 
 <p>Set an arbitrary value (object, string, integer, etc.) to the <em>vars</em> object.</p>
 
-<h4 id="example-1:b440f93c1d3adda104fcdb9ed5aa5063">Example</h4>
+<h4 id="example-6:b440f93c1d3adda104fcdb9ed5aa5063">Example</h4>
 
 <pre><code class="language-javascript">router.vars.signedIn = Date.now();
 router.vars.currentUser = { id: 99, name: 'john', privileged: true };
