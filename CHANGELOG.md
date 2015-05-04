@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 1.0.0-beta.10 (May 4, 2015)
+
+### `Cape.DataStore`
+
+* Bug fix: Remove `this.refresh()`.
+
 ## 1.0.0-beta.9 (May 4, 2015)
 
 ### `Cape.Router`
