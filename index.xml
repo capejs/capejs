@@ -9,128 +9,6 @@
     <atom:link href="http://oiax.github.io/capejs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Cape.Component - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/component/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/component/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#form-data&#34;&gt;formData()&lt;/a&gt; -
-&lt;a href=&#34;#mount&#34;&gt;mount()&lt;/a&gt; -
-&lt;a href=&#34;#refresh&#34;&gt;refresh()&lt;/a&gt; -
-&lt;a href=&#34;#unmount&#34;&gt;unmount()&lt;/a&gt; -
-&lt;a href=&#34;#val&#34;&gt;val()&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#formData()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;mount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#mount()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#refresh()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#unmount()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#val()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;val(name)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;val(name, value)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;val({ name1: value1, name2: value2, &amp;hellip; })&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Get or set the value of a form field.&lt;/p&gt;
-
-&lt;p&gt;When the number of arguments is one and that argument is a string,
-this method returns the value of the corresponding field.&lt;/p&gt;
-
-&lt;h4 id=&#34;example:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
-  m.formFor(&#39;user&#39;, function(m) {
-    m.textField(&#39;family_name&#39;).sp()
-      .textField(&#39;given_name&#39;);
-    m.button(&#39;Check&#39;, {
-      onclick: function(e) {
-        console.log(val(&#39;user.family_name&#39;));
-        console.log(val(&#39;user.given_name&#39;));
-        return false;
-      }
-    })
-  });
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When the number of arguments is two,
-this method sets the value of a field whose name is corresponding
-to the first argument to the second argument and returns
-the original value of the field.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
-  m.formFor(&#39;message&#39;, function(m) {
-    m.textField(&#39;body&#39;);
-    m.button(&#39;Send&#39;, {
-      onclick: function(e) {
-        var body = val(&#39;message.body&#39;, &#39;&#39;),
-            self = this;
-        $.post(&#39;/api/messages&#39;, { body: body }, function() {
-          self.refresh();
-        });
-        return false;
-      }
-    });
-  });
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When the number of arguments is one and that argument is an object,
-this method sets the value of corresponding fields.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
-  m.formFor(&#39;user&#39;, function(m) {
-    m.textField(&#39;family_name&#39;).sp()
-      .textField(&#39;given_name&#39;);
-    m.button(&#39;Check&#39;, {
-      onclick: function(e) {
-        var self = this,
-            data = self.formData();
-        self.val({ user: { family_name: &#39;&#39;, given_name: &#39;&#39; } });
-        $.post(&#39;/api/users&#39;, data, function() {
-          self.refresh();
-        })
-        return false;
-      }
-    })
-  });
-}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Cape - API Reference</title>
       <link>http://oiax.github.io/capejs/api/cape/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -341,6 +219,137 @@ Cape.extend(object1, object2);
     </item>
     
     <item>
+      <title>Cape.Component - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/component/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/component/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#form-data&#34;&gt;formData()&lt;/a&gt; -
+&lt;a href=&#34;#mount&#34;&gt;mount()&lt;/a&gt; -
+&lt;a href=&#34;#refresh&#34;&gt;refresh()&lt;/a&gt; -
+&lt;a href=&#34;#unmount&#34;&gt;unmount()&lt;/a&gt; -
+&lt;a href=&#34;#val&#34;&gt;val()&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#formData()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;mount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#mount()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#refresh()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#unmount()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#val()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;val(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;val(name, value)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;val({ name1: value1, name2: value2, &amp;hellip; })&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Get or set the value of a form field.&lt;/p&gt;
+
+&lt;p&gt;When the number of arguments is one and that argument is a string,
+this method returns the value of the corresponding field.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.textField(&#39;family_name&#39;).sp()
+      .textField(&#39;given_name&#39;);
+    m.button(&#39;Check&#39;, {
+      onclick: function(e) {
+        console.log(val(&#39;user.family_name&#39;));
+        console.log(val(&#39;user.given_name&#39;));
+        return false;
+      }
+    })
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When the number of arguments is two,
+this method sets the value of a field whose name is corresponding
+to the first argument to the second argument and returns
+the original value of the field.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;message&#39;, function(m) {
+    m.textField(&#39;body&#39;);
+    m.button(&#39;Send&#39;, {
+      onclick: function(e) {
+        var body = val(&#39;message.body&#39;, &#39;&#39;),
+            self = this;
+        $.post(&#39;/api/messages&#39;, { body: body }, function() {
+          self.refresh();
+        });
+        return false;
+      }
+    });
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When the number of arguments is one and that argument is an object,
+this method sets the value of corresponding fields.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.textField(&#39;family_name&#39;).sp()
+      .textField(&#39;given_name&#39;);
+    m.button(&#39;Check&#39;, {
+      onclick: function(e) {
+        var self = this,
+            data = self.formData();
+        self.val({ user: { family_name: &#39;&#39;, given_name: &#39;&#39; } });
+        $.post(&#39;/api/users&#39;, data, function() {
+          self.refresh();
+        })
+        return false;
+      }
+    })
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.DataStore - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>API Reference</title>
       <link>http://oiax.github.io/capejs/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -396,15 +405,6 @@ and mount components according to the &lt;em&gt;routes&lt;/em&gt;
 You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
 method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Cape.DataStore - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/data_store/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
-      <description></description>
     </item>
     
     <item>
@@ -673,6 +673,80 @@ console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.vars.signedIn = Date.now();
 router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.RoutingMapper - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#collection&#34;&gt;collection()&lt;/a&gt; -
+&lt;a href=&#34;#namespace&#34;&gt;namespace()&lt;/a&gt; -
+&lt;a href=&#34;#new&#34;&gt;new()&lt;/a&gt; -
+&lt;a href=&#34;#many&#34;&gt;many()&lt;/a&gt; -
+&lt;a href=&#34;#member&#34;&gt;member()&lt;/a&gt; -
+&lt;a href=&#34;#one&#34;&gt;one()&lt;/a&gt; -
+&lt;a href=&#34;#page&#34;&gt;page()&lt;/a&gt; -
+&lt;a href=&#34;#root&#34;&gt;root()&lt;/a&gt; -
+&lt;a href=&#34;#view&#34;&gt;view()&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;collection:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#collection()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;namespace:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#namespace()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;new&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;new:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#new()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;many&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;many:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#many()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;member:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#member()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;one&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;one:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#one()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;page&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;page:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#page()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;root&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;root:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#root()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;view&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;view:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#view()&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
 </description>
     </item>
     
@@ -1047,267 +1121,6 @@ within the definition of &lt;code&gt;SimpleForm&lt;/code&gt; class.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Cape.RoutingMapper - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#collection&#34;&gt;collection()&lt;/a&gt; -
-&lt;a href=&#34;#namespace&#34;&gt;namespace()&lt;/a&gt; -
-&lt;a href=&#34;#new&#34;&gt;new()&lt;/a&gt; -
-&lt;a href=&#34;#many&#34;&gt;many()&lt;/a&gt; -
-&lt;a href=&#34;#member&#34;&gt;member()&lt;/a&gt; -
-&lt;a href=&#34;#one&#34;&gt;one()&lt;/a&gt; -
-&lt;a href=&#34;#page&#34;&gt;page()&lt;/a&gt; -
-&lt;a href=&#34;#root&#34;&gt;root()&lt;/a&gt; -
-&lt;a href=&#34;#view&#34;&gt;view()&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;collection:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#collection()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;namespace:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#namespace()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;new&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;new:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#new()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;many&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;many:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#many()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;member:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#member()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;one&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;one:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#one()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;page&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;page:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#page()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;root&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;root:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#root()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;view&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;view:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#view()&lt;/h3&gt;
-
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Data Stores</title>
-      <link>http://oiax.github.io/capejs/data_stores/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/data_stores/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#basics&#34;&gt;Basics&lt;/a&gt; -
-&lt;a href=&#34;#ajax&#34;&gt;Ajax&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;basics:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Basics&lt;/h3&gt;
-
-&lt;p&gt;When you develop something larger than a tiny widget, you are recommended to
-create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
-
-&lt;p&gt;The following example illustrates the basic concept of data stores.&lt;/p&gt;
-
-&lt;h4 id=&#34;index-html:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;index.html&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script src=&amp;quot;./todo_item_store.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&amp;quot;./todo_list2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script&amp;gt;
-  var todoList = new TodoList2();
-  todoList.mount(&#39;todo-list&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [
-      { title: &#39;Foo&#39;, done: false },
-      { title: &#39;Bar&#39;, done: true }
-    ];
-    this.propagate();
-  },
-  addItem: function(title) {
-    this.items.push({ title: title, done: false });
-    this.propagate();
-  },
-  toggle: function(item) {
-    item.done = !item.done;
-    this.propagate();
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;TodoItemStore&lt;/code&gt; class has three methods and each of them ends with
-&lt;code&gt;this.propagate()&lt;/code&gt;, which calls the &lt;code&gt;refresh&lt;/code&gt; method of all attached components.&lt;/p&gt;
-
-&lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
-  render: function(m) {
-    m.ul(function(m) {
-      this.ds.items.forEach(function(item) {
-        this.renderItem(m, item);
-      }.bind(this))
-    });
-    this.renderForm(m);
-  },
-
-  renderItem: function(m, item) {
-    m.li(function(m) {
-      m.label({ class: { completed: item.done }}, function(m) {
-        m.input({ type: &#39;checkbox&#39;, checked: item.done,
-          onclick: function(e) { this.ds.toggle(item) } });
-        m.space().text(item.title);
-      })
-    })
-  },
-
-  renderForm: function(m) {
-    m.form(function(m) {
-      m.textField(&#39;title&#39;, { onkeyup: function(e) { this.refresh() } });
-      m.button(&amp;quot;Add&amp;quot;, {
-        disabled: this.val(&#39;title&#39;) === &#39;&#39;,
-        onclick: function(e) { this.ds.addItem(this.val(&#39;title&#39;, &#39;&#39;)) }
-      });
-    });
-  },
-
-  init: function() {
-    this.ds = TodoItemStore.create();
-    this.ds.attach(this);
-    this.ds.init();
-  },
-
-  beforeUnmount: function() {
-    this.ds.detach(this);
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Within the &lt;code&gt;init&lt;/code&gt; method, we create a singleton instance of &lt;code&gt;TodoItemStore&lt;/code&gt; class &lt;em&gt;(data store)&lt;/em&gt;,
-and set it to the &lt;code&gt;ds&lt;/code&gt; property of this component.&lt;/p&gt;
-
-&lt;p&gt;Then we call the &lt;code&gt;attach&lt;/code&gt; method of the data store to register this component
-as a &lt;em&gt;listener&lt;/em&gt; to the &lt;em&gt;change event&lt;/em&gt;. When the content of data store is changed,
-a &lt;em&gt;change event&lt;/em&gt; is emitted to this component.&lt;/p&gt;
-
-&lt;p&gt;When we click a check box, the following code is executed:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggle(item)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This inverts the &lt;code&gt;done&lt;/code&gt; attribute of this item and calls &lt;code&gt;this.propagate()&lt;/code&gt;,
-which will cause the re-rendering of this component.&lt;/p&gt;
-
-&lt;p&gt;A working demo is found at
-&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list2&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;ajax:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Ajax&lt;/h3&gt;
-
-&lt;p&gt;In this section, we assume that an API server is running behind.
-When we access it with &lt;code&gt;GET /api/items.json&lt;/code&gt;, it responds with a JSON string
-such as &lt;code&gt;[{ title: &#39;Foo&#39;, done: false },{ title: &#39;Bar&#39;, done: true }]&lt;/code&gt;.
-When we post to the server a JSON string such as &lt;code&gt;{ title: &#39;Baz&#39; }&lt;/code&gt;
-using &lt;code&gt;POST /api/items&lt;/code&gt; interface, it stores this new item to the database.
-If we post to the server a JSON string such as &lt;code&gt;{ done: true }&lt;/code&gt;
-using &lt;code&gt;PATCH /api/items/123&lt;/code&gt; interface (&lt;code&gt;123&lt;/code&gt; is the &lt;code&gt;id&lt;/code&gt; value of an item),
-it records this item as &amp;ldquo;done&amp;rdquo; on the database.&lt;/p&gt;
-
-&lt;p&gt;In this settings, we can rewrite the &lt;code&gt;todo_item_store.js&lt;/code&gt; of the previous
-example as follows:&lt;/p&gt;
-
-&lt;h4 id=&#34;todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [];
-    this.refresh();
-  },
-
-  addItem: function(title) {
-    var self = this;
-    $.ajax({
-      type: &#39;POST&#39;,
-      url: &#39;/api/items&#39;,
-      data: { title: title }
-    }).done(function(data) {
-      self.refresh();
-    });
-  },
-
-  toggle: function(item) {
-    var self = this;
-    $.ajax({
-      type: &#39;PATCH&#39;,
-      url: &#39;/api/items/&#39; + item.id,
-      data: { done: !item.done }
-    }).done(function(data) {
-      self.refresh();
-    });
-  },
-
-  refresh: function() {
-    var self = this;
-    $.ajax({
-      type: &#39;GET&#39;,
-      url: &#39;/api/items.json&#39;
-    }).done(function(data) {
-      self.items.length = 0;
-      data.forEach(function(item) { self.items.push(item) });
-      self.propagate();
-    });
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;$.ajax&lt;/code&gt; is a jQuery&amp;rsquo;s method to make an Ajax request.
-See &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;http://api.jquery.com/jquery.ajax/&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;You can find a working demo using Ajax techniques on
-&lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;.
-This demo is built as a Ruby on Rails application.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Cape.MarkupBuilder - API Reference</title>
       <link>http://oiax.github.io/capejs/api/markup_builder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1319,6 +1132,7 @@ This demo is built as a Ruby on Rails application.&lt;/p&gt;
 &lt;a href=&#34;#a-abbr-address-etc&#34;&gt;#a(), #abbr(), #address()&lt;/a&gt; -
 &lt;a href=&#34;#area-base-br-etc&#34;&gt;#area(), #base(), #br()&lt;/a&gt; -
 &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt; -
+&lt;a href=&#34;#btn&#34;&gt;#btn()&lt;/a&gt; -
 &lt;a href=&#34;#check-box&#34;&gt;#checkBox()&lt;/a&gt; -
 &lt;a href=&#34;#class&#34;&gt;#class()&lt;/a&gt; -
 &lt;a href=&#34;#css&#34;&gt;#css()&lt;/a&gt; -
@@ -1598,11 +1412,37 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;btn&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;btn:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#btn()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;btn(content, options)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;btn(options, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;button&amp;gt;&lt;/code&gt; element whose &lt;code&gt;type&lt;/code&gt; attribute is set to &lt;code&gt;button&lt;/code&gt; by default.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;test&#39;, function(m) {
+    m.btn(&#39;Click&#39;);
+  });
+  // The above code generates the following HTML tags
+  //   &amp;lt;form name=&amp;quot;test&amp;quot;&amp;gt;
+  //     &amp;lt;button type=&amp;quot;button&amp;quot;&amp;gt;Click&amp;lt;/button&amp;gt;
+  //   &amp;lt;/div&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;class:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#class()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;class(name, value)&lt;/strong&gt;&lt;/li&gt;
@@ -1610,7 +1450,7 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;p&gt;Set the &lt;code&gt;class&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.class(&#39;container&#39;);
@@ -1637,7 +1477,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;h3 id=&#34;data:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#data()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;data(name, value)&lt;/strong&gt;&lt;/li&gt;
@@ -1645,7 +1485,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;Set the &lt;code&gt;data-*&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.data(&#39;id&#39;, &#39;7&#39;);
@@ -1666,7 +1506,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;h3 id=&#34;elem:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#elem()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;elem(content [, options])&lt;/strong&gt;&lt;/li&gt;
@@ -1678,7 +1518,7 @@ affects only the nextly added element.&lt;/p&gt;
 &lt;p&gt;When the second argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.elem(&#39;div#wrapper&#39;, function(m) {
@@ -1705,7 +1545,7 @@ When the last argument is a function, it creates a dependent virtual dom tree.&l
 of the element. The position of this argument should be after the string argument
 and before the function argument.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.elem(&#39;div#wrapper&#39;, { style: &#39;margin-top: 10px&#39; },
@@ -1735,7 +1575,7 @@ and before the function argument.&lt;/p&gt;
 
 &lt;h3 id=&#34;fa:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fa()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;fa(name [, options])&lt;/strong&gt;&lt;/li&gt;
@@ -1747,7 +1587,7 @@ Its first argument is the icon&amp;rsquo;s name, such as &lt;code&gt;&amp;quot;d
 You can pass a hash object as the optional second argument to set the
 attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.a({ href: &#39;./download.html&#39; }, function(m) {
@@ -1763,7 +1603,7 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 
 &lt;h3 id=&#34;fieldsfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fieldsFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;fieldsFor(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1772,7 +1612,7 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 &lt;p&gt;Create a scope for nested forms. In this scope, a prefix is
 addded to the name of each form control.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -1793,7 +1633,7 @@ addded to the name of each form control.&lt;/p&gt;
 
 &lt;p&gt;If you pass the &lt;code&gt;index&lt;/code&gt; option to this method, the prefix is numbered:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -1822,7 +1662,7 @@ addded to the name of each form control.&lt;/p&gt;
 
 &lt;h3 id=&#34;formfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#formFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;formFor(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1836,7 +1676,7 @@ added to the &lt;code&gt;name&lt;/code&gt; attribute of subordinate form control
 &lt;p&gt;The &lt;code&gt;id&lt;/code&gt; attribute is set automatically. When the form name is &lt;code&gt;&#39;foo&#39;&lt;/code&gt;,
 the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;code&gt;bar&lt;/code&gt; becomes &lt;code&gt;&#39;foo-field-bar&#39;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1859,7 +1699,7 @@ the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;co
 
 &lt;h3 id=&#34;hiddenfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#hiddenField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;hiddenField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1870,7 +1710,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1888,7 +1728,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;labelfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#labelFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;labelFor(name, label)&lt;/strong&gt;&lt;/li&gt;
@@ -1897,7 +1737,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;Create a &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; tag whose &lt;code&gt;name&lt;/code&gt; attribute is &lt;code&gt;name&lt;/code&gt;.
 Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1947,7 +1787,7 @@ Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
 
 &lt;h3 id=&#34;passwordfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#passwordField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;passwordField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1958,7 +1798,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-21:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1998,7 +1838,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;space:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#space()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;space()&lt;/strong&gt;&lt;/li&gt;
@@ -2006,7 +1846,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;Add a single space character. Same as &lt;code&gt;text(&#39; &#39;)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-21:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-22:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.p(function(m) {
@@ -2022,7 +1862,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;text:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#text()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;text(string)&lt;/strong&gt;&lt;/li&gt;
@@ -2031,7 +1871,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;Add &lt;em&gt;string&lt;/em&gt; as a text node to the virtual dom tree.
 The special characters (&lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;) are escaped automatically.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-22:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-23:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.h1(function(m) {
@@ -2060,6 +1900,296 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
 &lt;h3 id=&#34;textfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#textField()&lt;/h3&gt;
 
 &lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Data Stores</title>
+      <link>http://oiax.github.io/capejs/data_stores/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/data_stores/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#basics&#34;&gt;Basics&lt;/a&gt; -
+&lt;a href=&#34;#ajax&#34;&gt;Ajax&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;basics:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Basics&lt;/h3&gt;
+
+&lt;p&gt;When you develop something larger than a tiny widget, you are recommended to
+create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
+
+&lt;p&gt;The following example illustrates the basic concept of data stores.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./todo_item_store.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;./todo_list2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var todoList = new TodoList2();
+  todoList.mount(&#39;todo-list&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+    this.propagate();
+  },
+  addItem: function(title) {
+    this.items.push({ title: title, done: false });
+    this.propagate();
+  },
+  toggle: function(item) {
+    item.done = !item.done;
+    this.propagate();
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;TodoItemStore&lt;/code&gt; class has three methods and each of them ends with
+&lt;code&gt;this.propagate()&lt;/code&gt;, which calls the &lt;code&gt;refresh&lt;/code&gt; method of all attached components.&lt;/p&gt;
+
+&lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
+  render: function(m) {
+    m.ul(function(m) {
+      this.ds.items.forEach(function(item) {
+        this.renderItem(m, item);
+      }.bind(this))
+    });
+    this.renderForm(m);
+  },
+
+  renderItem: function(m, item) {
+    m.li(function(m) {
+      m.label({ class: { completed: item.done }}, function(m) {
+        m.input({ type: &#39;checkbox&#39;, checked: item.done,
+          onclick: function(e) { this.ds.toggle(item) } });
+        m.space().text(item.title);
+      })
+    })
+  },
+
+  renderForm: function(m) {
+    m.form(function(m) {
+      m.textField(&#39;title&#39;, { onkeyup: function(e) { this.refresh() } });
+      m.button(&amp;quot;Add&amp;quot;, {
+        disabled: this.val(&#39;title&#39;) === &#39;&#39;,
+        onclick: function(e) { this.ds.addItem(this.val(&#39;title&#39;, &#39;&#39;)) }
+      });
+    });
+  },
+
+  init: function() {
+    this.ds = TodoItemStore.create();
+    this.ds.attach(this);
+    this.ds.init();
+  },
+
+  beforeUnmount: function() {
+    this.ds.detach(this);
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Within the &lt;code&gt;init&lt;/code&gt; method, we create a singleton instance of &lt;code&gt;TodoItemStore&lt;/code&gt; class &lt;em&gt;(data store)&lt;/em&gt;,
+and set it to the &lt;code&gt;ds&lt;/code&gt; property of this component.&lt;/p&gt;
+
+&lt;p&gt;Then we call the &lt;code&gt;attach&lt;/code&gt; method of the data store to register this component
+as a &lt;em&gt;listener&lt;/em&gt; to the &lt;em&gt;change event&lt;/em&gt;. When the content of data store is changed,
+a &lt;em&gt;change event&lt;/em&gt; is emitted to this component.&lt;/p&gt;
+
+&lt;p&gt;When we click a check box, the following code is executed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggle(item)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This inverts the &lt;code&gt;done&lt;/code&gt; attribute of this item and calls &lt;code&gt;this.propagate()&lt;/code&gt;,
+which will cause the re-rendering of this component.&lt;/p&gt;
+
+&lt;p&gt;A working demo is found at
+&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;ajax:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Ajax&lt;/h3&gt;
+
+&lt;p&gt;In this section, we assume that an API server is running behind.
+When we access it with &lt;code&gt;GET /api/items.json&lt;/code&gt;, it responds with a JSON string
+such as &lt;code&gt;[{ title: &#39;Foo&#39;, done: false },{ title: &#39;Bar&#39;, done: true }]&lt;/code&gt;.
+When we post to the server a JSON string such as &lt;code&gt;{ title: &#39;Baz&#39; }&lt;/code&gt;
+using &lt;code&gt;POST /api/items&lt;/code&gt; interface, it stores this new item to the database.
+If we post to the server a JSON string such as &lt;code&gt;{ done: true }&lt;/code&gt;
+using &lt;code&gt;PATCH /api/items/123&lt;/code&gt; interface (&lt;code&gt;123&lt;/code&gt; is the &lt;code&gt;id&lt;/code&gt; value of an item),
+it records this item as &amp;ldquo;done&amp;rdquo; on the database.&lt;/p&gt;
+
+&lt;p&gt;In this settings, we can rewrite the &lt;code&gt;todo_item_store.js&lt;/code&gt; of the previous
+example as follows:&lt;/p&gt;
+
+&lt;h4 id=&#34;todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [];
+    this.refresh();
+  },
+
+  addItem: function(title) {
+    var self = this;
+    $.ajax({
+      type: &#39;POST&#39;,
+      url: &#39;/api/items&#39;,
+      data: { title: title }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
+
+  toggle: function(item) {
+    var self = this;
+    $.ajax({
+      type: &#39;PATCH&#39;,
+      url: &#39;/api/items/&#39; + item.id,
+      data: { done: !item.done }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
+
+  refresh: function() {
+    var self = this;
+    $.ajax({
+      type: &#39;GET&#39;,
+      url: &#39;/api/items.json&#39;
+    }).done(function(data) {
+      self.items.length = 0;
+      data.forEach(function(item) { self.items.push(item) });
+      self.propagate();
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;$.ajax&lt;/code&gt; is a jQuery&amp;rsquo;s method to make an Ajax request.
+See &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;http://api.jquery.com/jquery.ajax/&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;You can find a working demo using Ajax techniques on
+&lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;.
+This demo is built as a Ruby on Rails application.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Index</title>
+      <link>http://oiax.github.io/capejs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/</guid>
+      <description>
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;what-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Cape.JS?&lt;/h2&gt;
+
+&lt;p&gt;Cape.JS is a lightweight JavaScript UI framework with following features:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Full stack:&lt;/strong&gt; You can build &lt;em&gt;single-page applications&lt;/em&gt; (SPAs) with Cape.JS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modular:&lt;/strong&gt; You can place &lt;em&gt;web widgets&lt;/em&gt; built by Cape.JS to your static web sites.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Virtual DOM:&lt;/strong&gt; Cape.JS takes advantage of
+&lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+of Matt-Esch for high performance rendering.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Markup builder:&lt;/strong&gt; The &lt;em&gt;markup builder&lt;/em&gt; helps you to construct HTML DOM trees
+with its simple, easy to learn syntax.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Form manipulation:&lt;/strong&gt; You can get or set the value of form fields
+without &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data stores:&lt;/strong&gt; Using &lt;em&gt;data stores&lt;/em&gt;, you can build web applications
+with &lt;em&gt;unidirectional data flow.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Router:&lt;/strong&gt; You can define &lt;em&gt;routes&lt;/em&gt; with a DSL (domain specific language)
+similar to that of Ruby on Rails.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The architecture and terminology of Cape.JS are strongly influenced by
+&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;,
+&lt;a href=&#34;https://github.com/muut/riotjs&#34;&gt;Riot&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+and &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;installation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;installation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;If you just want to use Cape.JS in your web site, insert the following snippet
+to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.7/dist/cape.min.js&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can get the package for &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm install capejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can get the package for &lt;a href=&#34;http://bower.io/&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bower install capejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;faq&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;faq:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;FAQ&lt;/h2&gt;
+
+&lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
+
+&lt;p&gt;The official name is &lt;strong&gt;Cape.JS.&lt;/strong&gt;
+Its package name for &lt;a href=&#34;https://www.npmjs.com&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+and &lt;a href=&#34;http://bower.io&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; is &lt;strong&gt;capejs&lt;/strong&gt; (without the dot).&lt;/p&gt;
+
+&lt;p&gt;At the very initial phase of development, we called it &amp;ldquo;CapeJS&amp;rdquo;, but
+we don&amp;rsquo;t use it anymore.&lt;/p&gt;
+
+&lt;h3 id=&#34;is-it-production-ready:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it production ready?&lt;/h3&gt;
+
+&lt;p&gt;Not yet. We adopt &lt;a href=&#34;http://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; for Cape.JS.
+According to this system, major version (0.y.z) zero is for initial development.
+We have released the version 1.0.0-beta.x, but the public API of Cape.JS should
+not be considered stable.&lt;/p&gt;
+
+&lt;h3 id=&#34;which-browsers-are-supported:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Which browsers are supported?&lt;/h3&gt;
+
+&lt;p&gt;We test Cape.JS on Internet Explorer 11 and the latest versions of Chrome, Firefox and Safari.&lt;/p&gt;
+
+&lt;p&gt;Note that we have no plan to support the Internet Explorer 8, 9, and 10.&lt;/p&gt;
+
+&lt;h3 id=&#34;how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How can I contribute?&lt;/h3&gt;
+
+&lt;p&gt;The Cape.JS is an open source project. Everyone can help.
+See &lt;a href=&#34;https://github.com/oiax/capejs/CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt;
+&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;for details.&lt;/p&gt;
+
+&lt;h2 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h2&gt;
+
+&lt;p&gt;The logo of Cape.JS is created by
+&lt;a href=&#34;https://github.com/junya-suzuki&#34;&gt;Junya Suzuki&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;trademarks&#34;&gt;Trademarks&lt;/h2&gt;
+
+&lt;p&gt;&amp;ldquo;Cape.JS&amp;rdquo; and its logo are trademarks of Oiax Inc. All rights reserved.&lt;/p&gt;
+
+&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+
+&lt;p&gt;Cape.JS is released under
+&lt;a href=&#34;https://github.com/oiax/capejs/LICENSE&#34;&gt;the MIT License&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2683,109 +2813,6 @@ to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.
 
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;https://cdn.rawgit.com/taylorhakes/promise-polyfill/master/Promise.min.js&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Index</title>
-      <link>http://oiax.github.io/capejs/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/</guid>
-      <description>
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;what-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Cape.JS?&lt;/h2&gt;
-
-&lt;p&gt;Cape.JS is a lightweight JavaScript UI framework with following features:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Full stack:&lt;/strong&gt; You can build &lt;em&gt;single-page applications&lt;/em&gt; (SPAs) with Cape.JS.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Modular:&lt;/strong&gt; You can place &lt;em&gt;web widgets&lt;/em&gt; built by Cape.JS to your static web sites.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Virtual DOM:&lt;/strong&gt; Cape.JS takes advantage of
-&lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-of Matt-Esch for high performance rendering.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Markup builder:&lt;/strong&gt; The &lt;em&gt;markup builder&lt;/em&gt; helps you to construct HTML DOM trees
-with its simple, easy to learn syntax.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Form manipulation:&lt;/strong&gt; You can get or set the value of form fields
-without &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Data stores:&lt;/strong&gt; Using &lt;em&gt;data stores&lt;/em&gt;, you can build web applications
-with &lt;em&gt;unidirectional data flow.&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Router:&lt;/strong&gt; You can define &lt;em&gt;routes&lt;/em&gt; with a DSL (domain specific language)
-similar to that of Ruby on Rails.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The architecture and terminology of Cape.JS are strongly influenced by
-&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;,
-&lt;a href=&#34;https://github.com/muut/riotjs&#34;&gt;Riot&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-and &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;installation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;installation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Installation&lt;/h2&gt;
-
-&lt;p&gt;If you just want to use Cape.JS in your web site, insert the following snippet
-to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.7/dist/cape.min.js&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can get the package for &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ npm install capejs
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can get the package for &lt;a href=&#34;http://bower.io/&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ bower install capejs
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;faq&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;faq:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;FAQ&lt;/h2&gt;
-
-&lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
-
-&lt;p&gt;The official name is &lt;strong&gt;Cape.JS.&lt;/strong&gt;
-Its package name for &lt;a href=&#34;https://www.npmjs.com&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-and &lt;a href=&#34;http://bower.io&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; is &lt;strong&gt;capejs&lt;/strong&gt; (without the dot).&lt;/p&gt;
-
-&lt;p&gt;At the very initial phase of development, we called it &amp;ldquo;CapeJS&amp;rdquo;, but
-we don&amp;rsquo;t use it anymore.&lt;/p&gt;
-
-&lt;h3 id=&#34;is-it-production-ready:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it production ready?&lt;/h3&gt;
-
-&lt;p&gt;Not yet. We adopt &lt;a href=&#34;http://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; for Cape.JS.
-According to this system, major version (0.y.z) zero is for initial development.
-We have released the version 1.0.0-beta.x, but the public API of Cape.JS should
-not be considered stable.&lt;/p&gt;
-
-&lt;h3 id=&#34;which-browsers-are-supported:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Which browsers are supported?&lt;/h3&gt;
-
-&lt;p&gt;We test Cape.JS on Internet Explorer 11 and the latest versions of Chrome, Firefox and Safari.&lt;/p&gt;
-
-&lt;p&gt;Note that we have no plan to support the Internet Explorer 8, 9, and 10.&lt;/p&gt;
-
-&lt;h3 id=&#34;how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How can I contribute?&lt;/h3&gt;
-
-&lt;p&gt;The Cape.JS is an open source project. Everyone can help.
-See &lt;a href=&#34;https://github.com/oiax/capejs/CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt;
-&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;for details.&lt;/p&gt;
-
-&lt;h2 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h2&gt;
-
-&lt;p&gt;The logo of Cape.JS is created by
-&lt;a href=&#34;https://github.com/junya-suzuki&#34;&gt;Junya Suzuki&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;trademarks&#34;&gt;Trademarks&lt;/h2&gt;
-
-&lt;p&gt;&amp;ldquo;Cape.JS&amp;rdquo; and its logo are trademarks of Oiax Inc. All rights reserved.&lt;/p&gt;
-
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
-
-&lt;p&gt;Cape.JS is released under
-&lt;a href=&#34;https://github.com/oiax/capejs/LICENSE&#34;&gt;the MIT License&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
 </description>
     </item>
     

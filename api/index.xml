@@ -419,6 +419,7 @@ this method sets the value of corresponding fields.&lt;/p&gt;
 &lt;a href=&#34;#a-abbr-address-etc&#34;&gt;#a(), #abbr(), #address()&lt;/a&gt; -
 &lt;a href=&#34;#area-base-br-etc&#34;&gt;#area(), #base(), #br()&lt;/a&gt; -
 &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt; -
+&lt;a href=&#34;#btn&#34;&gt;#btn()&lt;/a&gt; -
 &lt;a href=&#34;#check-box&#34;&gt;#checkBox()&lt;/a&gt; -
 &lt;a href=&#34;#class&#34;&gt;#class()&lt;/a&gt; -
 &lt;a href=&#34;#css&#34;&gt;#css()&lt;/a&gt; -
@@ -698,11 +699,37 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;btn&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;btn:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#btn()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;btn(content, options)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;btn(options, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;button&amp;gt;&lt;/code&gt; element whose &lt;code&gt;type&lt;/code&gt; attribute is set to &lt;code&gt;button&lt;/code&gt; by default.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;test&#39;, function(m) {
+    m.btn(&#39;Click&#39;);
+  });
+  // The above code generates the following HTML tags
+  //   &amp;lt;form name=&amp;quot;test&amp;quot;&amp;gt;
+  //     &amp;lt;button type=&amp;quot;button&amp;quot;&amp;gt;Click&amp;lt;/button&amp;gt;
+  //   &amp;lt;/div&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;class:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#class()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;class(name, value)&lt;/strong&gt;&lt;/li&gt;
@@ -710,7 +737,7 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;p&gt;Set the &lt;code&gt;class&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.class(&#39;container&#39;);
@@ -737,7 +764,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;h3 id=&#34;data:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#data()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;data(name, value)&lt;/strong&gt;&lt;/li&gt;
@@ -745,7 +772,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;Set the &lt;code&gt;data-*&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.data(&#39;id&#39;, &#39;7&#39;);
@@ -766,7 +793,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;h3 id=&#34;elem:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#elem()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;elem(content [, options])&lt;/strong&gt;&lt;/li&gt;
@@ -778,7 +805,7 @@ affects only the nextly added element.&lt;/p&gt;
 &lt;p&gt;When the second argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.elem(&#39;div#wrapper&#39;, function(m) {
@@ -805,7 +832,7 @@ When the last argument is a function, it creates a dependent virtual dom tree.&l
 of the element. The position of this argument should be after the string argument
 and before the function argument.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.elem(&#39;div#wrapper&#39;, { style: &#39;margin-top: 10px&#39; },
@@ -835,7 +862,7 @@ and before the function argument.&lt;/p&gt;
 
 &lt;h3 id=&#34;fa:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fa()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;fa(name [, options])&lt;/strong&gt;&lt;/li&gt;
@@ -847,7 +874,7 @@ Its first argument is the icon&amp;rsquo;s name, such as &lt;code&gt;&amp;quot;d
 You can pass a hash object as the optional second argument to set the
 attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.a({ href: &#39;./download.html&#39; }, function(m) {
@@ -863,7 +890,7 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 
 &lt;h3 id=&#34;fieldsfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fieldsFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;fieldsFor(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -872,7 +899,7 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 &lt;p&gt;Create a scope for nested forms. In this scope, a prefix is
 addded to the name of each form control.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -893,7 +920,7 @@ addded to the name of each form control.&lt;/p&gt;
 
 &lt;p&gt;If you pass the &lt;code&gt;index&lt;/code&gt; option to this method, the prefix is numbered:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -922,7 +949,7 @@ addded to the name of each form control.&lt;/p&gt;
 
 &lt;h3 id=&#34;formfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#formFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;formFor(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -936,7 +963,7 @@ added to the &lt;code&gt;name&lt;/code&gt; attribute of subordinate form control
 &lt;p&gt;The &lt;code&gt;id&lt;/code&gt; attribute is set automatically. When the form name is &lt;code&gt;&#39;foo&#39;&lt;/code&gt;,
 the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;code&gt;bar&lt;/code&gt; becomes &lt;code&gt;&#39;foo-field-bar&#39;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -959,7 +986,7 @@ the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;co
 
 &lt;h3 id=&#34;hiddenfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#hiddenField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;hiddenField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -970,7 +997,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -988,7 +1015,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;labelfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#labelFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;labelFor(name, label)&lt;/strong&gt;&lt;/li&gt;
@@ -997,7 +1024,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;Create a &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; tag whose &lt;code&gt;name&lt;/code&gt; attribute is &lt;code&gt;name&lt;/code&gt;.
 Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1047,7 +1074,7 @@ Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
 
 &lt;h3 id=&#34;passwordfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#passwordField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;passwordField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1058,7 +1085,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-21:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1098,7 +1125,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;space:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#space()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;space()&lt;/strong&gt;&lt;/li&gt;
@@ -1106,7 +1133,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;Add a single space character. Same as &lt;code&gt;text(&#39; &#39;)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-21:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-22:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.p(function(m) {
@@ -1122,7 +1149,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;text:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#text()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;text(string)&lt;/strong&gt;&lt;/li&gt;
@@ -1131,7 +1158,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;Add &lt;em&gt;string&lt;/em&gt; as a text node to the virtual dom tree.
 The special characters (&lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;) are escaped automatically.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-22:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-23:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.h1(function(m) {

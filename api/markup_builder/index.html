@@ -278,6 +278,7 @@
 <a href="#a-abbr-address-etc">#a(), #abbr(), #address()</a> -
 <a href="#area-base-br-etc">#area(), #base(), #br()</a> -
 <a href="#attr">#attr()</a> -
+<a href="#btn">#btn()</a> -
 <a href="#check-box">#checkBox()</a> -
 <a href="#class">#class()</a> -
 <a href="#css">#css()</a> -
@@ -557,11 +558,37 @@ See <a href="#formFor">#formFor</a> for details.</p>
 }
 </code></pre>
 
+<p><a class="anchor" id="btn"></a></p>
+
+<h3 id="btn:2f94c9da1a5f7ca2887265bec799d255">#btn()</h3>
+
+<h4 id="usage-4:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>btn(content, options)</strong></li>
+<li><strong>btn(options, callback)</strong></li>
+</ul>
+
+<p>Create a <code>&lt;button&gt;</code> element whose <code>type</code> attribute is set to <code>button</code> by default.</p>
+
+<h4 id="example-10:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.formFor('test', function(m) {
+    m.btn('Click');
+  });
+  // The above code generates the following HTML tags
+  //   &lt;form name=&quot;test&quot;&gt;
+  //     &lt;button type=&quot;button&quot;&gt;Click&lt;/button&gt;
+  //   &lt;/div&gt;
+}
+</code></pre>
+
 <p><a class="anchor" id="class"></a></p>
 
 <h3 id="class:2f94c9da1a5f7ca2887265bec799d255">#class()</h3>
 
-<h4 id="usage-4:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-5:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>class(name, value)</strong></li>
@@ -569,7 +596,7 @@ See <a href="#formFor">#formFor</a> for details.</p>
 
 <p>Set the <code>class</code> attribute value for the element which will be added nextly.</p>
 
-<h4 id="example-10:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-11:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.class('container');
@@ -596,7 +623,7 @@ affects only the nextly added element.</p>
 
 <h3 id="data:2f94c9da1a5f7ca2887265bec799d255">#data()</h3>
 
-<h4 id="usage-5:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-6:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>data(name, value)</strong></li>
@@ -604,7 +631,7 @@ affects only the nextly added element.</p>
 
 <p>Set the <code>data-*</code> attribute value for the element which will be added nextly.</p>
 
-<h4 id="example-11:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-12:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.data('id', '7');
@@ -625,7 +652,7 @@ affects only the nextly added element.</p>
 
 <h3 id="elem:2f94c9da1a5f7ca2887265bec799d255">#elem()</h3>
 
-<h4 id="usage-6:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-7:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>elem(content [, options])</strong></li>
@@ -637,7 +664,7 @@ affects only the nextly added element.</p>
 <p>When the second argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.</p>
 
-<h4 id="example-12:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-13:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.elem('div#wrapper', function(m) {
@@ -664,7 +691,7 @@ When the last argument is a function, it creates a dependent virtual dom tree.</
 of the element. The position of this argument should be after the string argument
 and before the function argument.</p>
 
-<h4 id="example-13:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-14:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.elem('div#wrapper', { style: 'margin-top: 10px' },
@@ -694,7 +721,7 @@ and before the function argument.</p>
 
 <h3 id="fa:2f94c9da1a5f7ca2887265bec799d255">#fa()</h3>
 
-<h4 id="usage-7:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-8:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>fa(name [, options])</strong></li>
@@ -706,7 +733,7 @@ Its first argument is the icon&rsquo;s name, such as <code>&quot;download&quot;<
 You can pass a hash object as the optional second argument to set the
 attribute values of <code>&lt;i&gt;</code> tag.</p>
 
-<h4 id="example-14:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-15:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.a({ href: './download.html' }, function(m) {
@@ -722,7 +749,7 @@ attribute values of <code>&lt;i&gt;</code> tag.</p>
 
 <h3 id="fieldsfor:2f94c9da1a5f7ca2887265bec799d255">#fieldsFor()</h3>
 
-<h4 id="usage-8:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-9:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>fieldsFor(name, [options,] function)</strong></li>
@@ -731,7 +758,7 @@ attribute values of <code>&lt;i&gt;</code> tag.</p>
 <p>Create a scope for nested forms. In this scope, a prefix is
 addded to the name of each form control.</p>
 
-<h4 id="example-15:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-16:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.form(function(m) {
@@ -752,7 +779,7 @@ addded to the name of each form control.</p>
 
 <p>If you pass the <code>index</code> option to this method, the prefix is numbered:</p>
 
-<h4 id="example-16:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-17:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.form(function(m) {
@@ -781,7 +808,7 @@ addded to the name of each form control.</p>
 
 <h3 id="formfor:2f94c9da1a5f7ca2887265bec799d255">#formFor()</h3>
 
-<h4 id="usage-9:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-10:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>formFor(name, [options,] function)</strong></li>
@@ -795,7 +822,7 @@ added to the <code>name</code> attribute of subordinate form controls.</p>
 <p>The <code>id</code> attribute is set automatically. When the form name is <code>'foo'</code>,
 the <code>id</code> attribute of a form control whose name is <code>bar</code> becomes <code>'foo-field-bar'</code>.</p>
 
-<h4 id="example-17:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-18:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -818,7 +845,7 @@ the <code>id</code> attribute of a form control whose name is <code>bar</code> b
 
 <h3 id="hiddenfield:2f94c9da1a5f7ca2887265bec799d255">#hiddenField()</h3>
 
-<h4 id="usage-10:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-11:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>hiddenField(name, [options,] function)</strong></li>
@@ -829,7 +856,7 @@ Its first argument is the base of <code>name</code> attribute value.
 If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
 then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.</p>
 
-<h4 id="example-18:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-19:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -847,7 +874,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <h3 id="labelfor:2f94c9da1a5f7ca2887265bec799d255">#labelFor()</h3>
 
-<h4 id="usage-11:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-12:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>labelFor(name, label)</strong></li>
@@ -856,7 +883,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 <p>Create a <code>&lt;label&gt;</code> tag whose <code>name</code> attribute is <code>name</code>.
 Its <code>for</code> attribute is set appropriately.</p>
 
-<h4 id="example-19:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-20:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -906,7 +933,7 @@ Its <code>for</code> attribute is set appropriately.</p>
 
 <h3 id="passwordfield:2f94c9da1a5f7ca2887265bec799d255">#passwordField()</h3>
 
-<h4 id="usage-12:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-13:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>passwordField(name, [options,] function)</strong></li>
@@ -917,7 +944,7 @@ Its first argument is the base of <code>name</code> attribute value.
 If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
 then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.</p>
 
-<h4 id="example-20:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-21:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -957,7 +984,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <h3 id="space:2f94c9da1a5f7ca2887265bec799d255">#space()</h3>
 
-<h4 id="usage-13:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-14:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>space()</strong></li>
@@ -965,7 +992,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <p>Add a single space character. Same as <code>text(' ')</code>.</p>
 
-<h4 id="example-21:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-22:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.p(function(m) {
@@ -981,7 +1008,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <h3 id="text:2f94c9da1a5f7ca2887265bec799d255">#text()</h3>
 
-<h4 id="usage-14:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-15:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>text(string)</strong></li>
@@ -990,7 +1017,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 <p>Add <em>string</em> as a text node to the virtual dom tree.
 The special characters (<code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>) are escaped automatically.</p>
 
-<h4 id="example-22:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-23:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.h1(function(m) {
