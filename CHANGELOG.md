@@ -1,5 +1,12 @@
 # CHANGELOG - CapeJS
 
+## 1.0.0-beta.9 (May 4, 2015)
+
+### `Cape.Router`
+
+* Add `#redirectTo`. Like `#navigate`, it mounts a component, but skips
+  before-navigation callbacks.
+
 ## 1.0.0-beta.8 (May 4, 2015)
 
 ### `Cape.DataStore`

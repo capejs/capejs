@@ -287,4 +287,27 @@ describe('Router', function() {
       expect(router.params.id).to.equal('123');
     })
   })
+
+  describe('redirectTo', function() {
+    afterEach(function() {
+      window.TestMessage = undefined;
+    })
+
+    it('should mount the matched component', function() {
+      var router, method;
+
+      window.TestMessage = function() {};
+      window.TestMessage.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('hello', 'test_message');
+      })
+      router.mount('main');
+      router.redirectTo('hello');
+
+      expect(method.calledWith('main')).to.equal(true);
+      expect(router.component).to.equal('test_message');
+    })
+  })
 })
