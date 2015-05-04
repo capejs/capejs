@@ -1,6 +1,6 @@
 {
   "name": "capejs",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.8",
   "description": "A lightweight Javascript UI framework based on virtual-dom",
   "main": "lib/cape.js",
   "directories": {
@@ -34,7 +34,6 @@
     "gulp-run": "^1.6.7",
     "gulp-uglify": "^1.2.0",
     "gulp-watch": "^4.2.3",
-    "inflected": "^1.1.6",
     "jsdom": "^4.0.2",
     "karma": "^0.12.31",
     "karma-chrome-launcher": "^0.1.7",
@@ -43,8 +42,7 @@
     "mocha": "^2.2.4",
     "sinon": "^1.14.1",
     "uglify-js": "latest",
-    "vinyl-source-stream": "^1.1.0",
-    "virtual-dom": "2.0.1"
+    "vinyl-source-stream": "^1.1.0"
   },
   "keywords": [
     "virtual dom",

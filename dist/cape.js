@@ -268,8 +268,7 @@ Cape.extend(DataStore.prototype, {
   propagate: function() {
     for (var i = this._.components.length; i--;)
       this._.components[i].refresh();
-  },
-  refresh: function() {}
+  }
 });
 
 // Internal properties of Cape.DataStore
@@ -722,14 +721,14 @@ var Cape = require('./utilities');
 //   routes: array of hashes that contains routing information.
 //   params: the parameters that are extracted from URL hash fragment.
 //   query: the parameters that are extracted from the query part of URL hash fragment.
+//   vars: an object which users can store arbitrary data to.
+//   flash: an object which users can store arbitrary data to, but is erased after each
+//          navigation.
 //   namespace: the namespace part of URL hash fragment.
 //   resource: the resource part of URL hash fragment.
 //   action: the action name of current route.
 //   container: the name of container of component.
 //   component: the name of component.
-//   session: an object which users can store arbitrary data to.
-//   flash: an object which users can store arbitrary data to, but is erased after each
-//          navigation.
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
 var Router = function Router(rootContainer) {
@@ -738,13 +737,13 @@ var Router = function Router(rootContainer) {
   this.routes = [];
   this.params = {};
   this.query = {};
+  this.vars = {};
+  this.flash = {};
   this.namespace = null;
   this.resource = null;
   this.action = null;
   this.container = null;
   this.component = null;
-  this.session = {};
-  this.flash = {};
 };
 
 Cape.extend(Router.prototype, {
