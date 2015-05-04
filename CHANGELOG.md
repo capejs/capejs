@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 1.0.0-beta.11 (Not yet released)
+
+### `Cape.MarkupBuilder`
+
+* Add `#btn` method to create &lt;button type="button"&gt; tag.
+
 ## 1.0.0-beta.10 (May 4, 2015)
 
 ### `Cape.DataStore`

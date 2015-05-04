@@ -350,4 +350,46 @@ describe('MarkupBuilder', function() {
       expect(e.id).to.equal('');
     })
   })
+
+  describe('btn', function() {
+    it('should create a <button type="button"> tag', function() {
+      var target, form, c, e;
+
+      var C = Cape.createComponentClass({
+        render: function(m) {
+          m.formFor('', function(m) {
+            m.btn('Click');
+          })
+        }
+      })
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+
+      form = target.getElementsByTagName('form')[0];
+      e = form.getElementsByTagName('button')[0];
+      expect(e.type).to.equal('button');
+    })
+
+    it('should create a <button type="submit"> tag', function() {
+      var target, form, c, e;
+
+      var C = Cape.createComponentClass({
+        render: function(m) {
+          m.formFor('', function(m) {
+            m.btn('Click', { type: 'submit' });
+          })
+        }
+      })
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+
+      form = target.getElementsByTagName('form')[0];
+      e = form.getElementsByTagName('button')[0];
+      expect(e.type).to.equal('submit');
+    })
+  })
 })
