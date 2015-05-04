@@ -59,32 +59,32 @@ var FormManipulator = Cape.createComponentClass({
   renderButtons: function(m) {
     m.div(function(m) {
       var htmlClass = 'btn btn-default';
-      m.button('A', { class: htmlClass,
+      m.button('A', { class: htmlClass, type: 'button',
         onclick: function(e) { this.chooseGenre('foo', 'a') } }).space()
-      m.button('B', { class: htmlClass,
+      m.button('B', { class: htmlClass, type: 'button',
         onclick: function(e) { this.chooseGenre('foo', 'b') } }).space()
-      m.button('C', { class: htmlClass,
+      m.button('C', { class: htmlClass, type: 'button',
         onclick: function(e) { this.chooseGenre('foo', 'c') } }).space()
-      m.button('1X', { class: htmlClass,
+      m.button('1X', { class: htmlClass, type: 'button',
         onclick: function(e) { this.chooseGenre('bar.items/0', 'x') } }).space()
-      m.button('1Y', { class: htmlClass,
+      m.button('1Y', { class: htmlClass, type: 'button',
         onclick: function(e) { this.chooseGenre('bar.items/0', 'y') } }).space()
-      m.button('1Z', { class: htmlClass,
+      m.button('1Z', { class: htmlClass, type: 'button',
         onclick: function(e) { this.chooseGenre('bar.items/0', 'z') } }).space()
-      m.button('2X', { class: htmlClass,
+      m.button('2X', { class: htmlClass, type: 'button',
         onclick: function(e) { this.chooseGenre('bar.items/1', 'x') } }).space()
-      m.button('2Y', { class: htmlClass,
+      m.button('2Y', { class: htmlClass, type: 'button',
         onclick: function(e) { this.chooseGenre('bar.items/1', 'y') } }).space()
-      m.button('2Z', { class: htmlClass,
+      m.button('2Z', { class: htmlClass, type: 'button',
         onclick: function(e) { this.chooseGenre('bar.items/1', 'z') } }).space()
-      m.button('1R', { class: htmlClass,
+      m.button('1R', { class: htmlClass, type: 'button',
         onclick: function(e) { this.chooseColor('bar.items/0', 'red') } }).space()
-      m.button('1B', { class: htmlClass,
+      m.button('1B', { class: htmlClass, type: 'button',
         onclick: function(e) { this.chooseColor('bar.items/0', 'blue') } }).space()
-      m.button('Reset', { class: htmlClass,
+      m.button('Reset', { class: htmlClass, type: 'button',
         onclick: function(e) { this.init() } }).space()
-      m.button('Submit', { class: htmlClass,
-        onclick: function(e) { this.refresh(); return false } })
+      m.button('Submit', { class: htmlClass, type: 'button',
+        onclick: function(e) { this.refresh() } })
     })
   },
 
