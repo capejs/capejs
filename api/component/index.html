@@ -274,29 +274,117 @@
         <div>
           
 
+<p><a href="#form-data">formData()</a> -
+<a href="#mount">mount()</a> -
+<a href="#refresh">refresh()</a> -
+<a href="#unmount">unmount()</a> -
+<a href="#val">val()</a></p>
+
 <p><a class="anchor" id="form-data"></a></p>
 
-<h3 id="cape-component-formdata:202695ef52bd0f88ec46c8b4eb5ea1d8">Cape.Component#formData()</h3>
+<h3 id="formdata:202695ef52bd0f88ec46c8b4eb5ea1d8">#formData()</h3>
+
+<p>This section is not yet prepared.</p>
 
 <p><a class="anchor" id="mount"></a></p>
 
-<h3 id="cape-component-mount-id:202695ef52bd0f88ec46c8b4eb5ea1d8">Cape.Component#mount(id)</h3>
+<h3 id="mount:202695ef52bd0f88ec46c8b4eb5ea1d8">#mount()</h3>
+
+<p>This section is not yet prepared.</p>
 
 <p><a class="anchor" id="refresh"></a></p>
 
-<h3 id="cape-component-refresh:202695ef52bd0f88ec46c8b4eb5ea1d8">Cape.Component#refresh()</h3>
+<h3 id="refresh:202695ef52bd0f88ec46c8b4eb5ea1d8">#refresh()</h3>
+
+<p>This section is not yet prepared.</p>
 
 <p><a class="anchor" id="unmount"></a></p>
 
-<h3 id="cape-component-unmount:202695ef52bd0f88ec46c8b4eb5ea1d8">Cape.Component#unmount()</h3>
+<h3 id="unmount:202695ef52bd0f88ec46c8b4eb5ea1d8">#unmount()</h3>
+
+<p>This section is not yet prepared.</p>
 
 <p><a class="anchor" id="val"></a></p>
 
-<h3 id="cape-component-val:202695ef52bd0f88ec46c8b4eb5ea1d8">Cape.Component#val()</h3>
+<h3 id="val:202695ef52bd0f88ec46c8b4eb5ea1d8">#val()</h3>
 
-<h4 id="cape-component-val-name:202695ef52bd0f88ec46c8b4eb5ea1d8">Cape.Component#val(name)</h4>
+<h4 id="usage:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
 
-<h4 id="cape-component-val-name-value:202695ef52bd0f88ec46c8b4eb5ea1d8">Cape.Component#val(name, value)</h4>
+<ul>
+<li><strong>val(name)</strong></li>
+<li><strong>val(name, value)</strong></li>
+<li><strong>val({ name1: value1, name2: value2, &hellip; })</strong></li>
+</ul>
+
+<p>Get or set the value of a form field.</p>
+
+<p>When the number of arguments is one and that argument is a string,
+this method returns the value of the corresponding field.</p>
+
+<h4 id="example:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.formFor('user', function(m) {
+    m.textField('family_name').sp()
+      .textField('given_name');
+    m.button('Check', {
+      onclick: function(e) {
+        console.log(val('user.family_name'));
+        console.log(val('user.given_name'));
+        return false;
+      }
+    })
+  });
+}
+</code></pre>
+
+<p>When the number of arguments is two,
+this method sets the value of a field whose name is corresponding
+to the first argument to the second argument and returns
+the original value of the field.</p>
+
+<h4 id="example-1:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.formFor('message', function(m) {
+    m.textField('body');
+    m.button('Send', {
+      onclick: function(e) {
+        var body = val('message.body', ''),
+            self = this;
+        $.post('/api/messages', { body: body }, function() {
+          self.refresh();
+        });
+        return false;
+      }
+    });
+  });
+}
+</code></pre>
+
+<p>When the number of arguments is one and that argument is an object,
+this method sets the value of corresponding fields.</p>
+
+<h4 id="example-2:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.formFor('user', function(m) {
+    m.textField('family_name').sp()
+      .textField('given_name');
+    m.button('Check', {
+      onclick: function(e) {
+        var self = this,
+            data = self.formData();
+        self.val({ user: { family_name: '', given_name: '' } });
+        $.post('/api/users', data, function() {
+          self.refresh();
+        })
+        return false;
+      }
+    })
+  });
+}
+</code></pre>
 
         </div>
       </article>
