@@ -61,6 +61,15 @@ This example is explained in detail
 in the [Hello World](http://oiax.github.io/capejs/components/#hello-world) section
 of *Cape.JS Documentation.*
 
+## Browser Support
+
+* Internet Explorer 11
+* Chrome (Current)
+* Firefox (Current)
+* Safari (6.1+)
+
+Any problem with Cape.JS in the above browsers should be reported as a bug in Cape.JS.
+
 ## Contributing
 
 The Cape.JS is an open source project.
