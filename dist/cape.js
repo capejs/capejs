@@ -815,6 +815,17 @@ Cape.extend(Router.prototype, {
       self._.mountComponent(hash);
     }
   },
+  redirectTo: function(hash, options) {
+    var self = this, promises, promise, i, len;
+
+    this._.currentHash = hash;
+    this._.setHash(hash);
+
+    options = options || {};
+    this.flash.notice = options.notice;
+    this.flash.alert = options.alert;
+    self._.mountComponent(hash);
+  },
   show: function(klass) {
     var component = new klass();
     component.mount(this._.targetElementId);
