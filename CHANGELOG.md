@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 1.0.0-beta.8 (May 4, 2015)
+
+### `Cape.DataStore`
+
+* Remove `#refresh`.
+
 ## 1.0.0-beta.7 (May 3, 2015)
 
 ### `Cape.Component`
