@@ -218,9 +218,6 @@ api_pages:
       -
         id: propagate
         title: "#propagate()"
-      -
-        id: refresh
-        title: "#refresh()"
   -
     name: "api/router"
     title: "Cape.Router"
