@@ -154,6 +154,7 @@ describe('MarkupBuilder', function() {
       })
     }
   })
+
   describe('css', function() {
     it('should set attribute of next element', function() {
       var target, c, p;
@@ -195,6 +196,63 @@ describe('MarkupBuilder', function() {
       p = target.getElementsByTagName('p');
       expect(p[0].style.color).to.equal('red')
       expect(p[1].style.color).to.equal('blue')
+
+      c.unmount();
+    })
+  })
+
+  describe('on', function() {
+    it('should set event handler of next element', function() {
+      var target, c, span;
+
+      var C = Cape.createComponentClass({
+        init: function() {
+          this.counter = 0;
+          this.refresh();
+        },
+        render: function(m) {
+          m.on('click', function(e) { this.counter++ });
+          m.on('dblclick', function(e) { this.counter++ });
+          m.span('Click me');
+        }
+      });
+
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+      span = target.getElementsByTagName('span')[0];
+      expect(typeof span.onclick).to.equal('function');
+      expect(typeof span.ondblclick).to.equal('function');
+
+      span.click();
+      expect(c.counter).to.equal(1);
+
+      c.unmount();
+    })
+
+    it('should allow the event handler to be overriden', function() {
+      var target, c, span;
+
+      var C = Cape.createComponentClass({
+        init: function() {
+          this.counter = 0;
+          this.refresh();
+        },
+        render: function(m) {
+          m.on('click', function(e) { this.counter++ });
+          m.span('Click me', { onclick: function(e) { this.counter = -1 }});
+        }
+      });
+
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+      span = target.getElementsByTagName('span')[0];
+
+      span.click();
+      expect(c.counter).to.equal(-1);
 
       c.unmount();
     })

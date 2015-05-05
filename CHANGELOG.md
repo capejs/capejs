@@ -1,5 +1,12 @@
 # CHANGELOG - CapeJS
 
+## 1.0.0-rc.1 (Not yet released)
+
+### `Cape.MarkupBuilder`
+
+* Add `#on` method to set an event handler for the next element.
+
+
 ## 1.0.0-beta.11 (May 5, 2015)
 
 ### `Cape.Component`
