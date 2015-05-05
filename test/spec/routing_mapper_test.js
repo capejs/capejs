@@ -1,5 +1,5 @@
 describe('RoutingMapper', function() {
-  describe('match', function() {
+  describe('page', function() {
     it('should add a route to specified component', function() {
       var router = { routes: [] },
           mapper = new Cape.RoutingMapper(router),
@@ -46,6 +46,28 @@ describe('RoutingMapper', function() {
       expect('members/new').not.to.match(route.regexp);
       expect(route.keys.length).to.equal(1);
       expect(route.keys[0]).to.equal('id');
+    })
+
+    it('should add a route with constraints that contains non capturing groups', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route,
+          md;
+
+      mapper.page('blog/:year/:month', 'blogs.index',
+        { year: '201\\d', month: '(?:0\\d|1[012])' });
+      expect(router.routes.length).to.equal(1);
+
+      route = router.routes[0];
+      expect('blog/2012/12').to.match(route.regexp);
+      expect('blog/2012/13').not.to.match(route.regexp);
+      expect(route.keys.length).to.equal(2);
+      expect(route.keys[0]).to.equal('year');
+      expect(route.keys[1]).to.equal('month');
+
+      md = 'blog/2012/12'.match(route.regexp);
+      expect(md[1]).to.equal('2012');
+      expect(md[2]).to.equal('12');
     })
 
     it('should add a route to deeply namespaced component', function() {
