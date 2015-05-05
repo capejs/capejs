@@ -195,8 +195,10 @@ it will be set to the anchor part of the browser's current URL.
 After setting the anchor part of URL, this method choose a component
 according to the routing table.
 
-When this component is different from the component mounted currently,
-it unmounts the latter and mount the former.
+When this component is different from the component which is mounted currently,
+it unmounts the latter and mounts the former.
+When this component is same with the component mounted currently
+it calls the `#refresh` method of mounted component.
 
 Lastly, the `#notify()` method is executed.
 
@@ -312,9 +314,11 @@ After setting the anchor part of URL, this method choose a component
 according to the routing table.
 
 When this component is different from the component mounted currently,
-it unmounts the latter and mount the former.
+it unmounts the latter and mounts the former.
+When this component is same with the component which is mounted currently
+it calls the `#refresh` method of the mounted component.
 
-Then, the `#notify()` method is executed.
+Lastly, the `#notify()` method is executed.
 
 
 <a class="anchor" id="resource"></a>
