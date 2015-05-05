@@ -2,6 +2,12 @@
 
 ## 1.0.0-beta.11 (Not yet released)
 
+### `Cape.Component`
+
+* Do not call the `afterMount` callback. Developers should write this logic
+  within the `init()` method.
+* Do not detach itself from `global.Cape.router`. This depends on an old convension.
+
 ### `Cape.MarkupBuilder`
 
 * Add `#btn` method to create &lt;button type="button"&gt; tag.
