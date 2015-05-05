@@ -98,6 +98,8 @@
           
             <li><a href="http://oiax.github.io/capejs/api/component#refresh">#refresh()</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/api/component#root">#root</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/api/component#unmount">#unmount()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/component#val">#val()</a></li>
@@ -277,6 +279,7 @@
 <p><a href="#form-data">formData()</a> -
 <a href="#mount">mount()</a> -
 <a href="#refresh">refresh()</a> -
+<a href="#root">root</a> -
 <a href="#unmount">unmount()</a> -
 <a href="#val">val()</a></p>
 
@@ -417,6 +420,32 @@ to render the component.</p>
 
 <p>This method rerenders the component by calling its <code>render()</code> method.</p>
 
+<p><a class="anchor" id="root"></a></p>
+
+<h3 id="root:202695ef52bd0f88ec46c8b4eb5ea1d8">#root</h3>
+
+<p>This property refers to the HTML element which the component is mounted on.</p>
+
+<p>Its <code>data</code> subproperty holds the values of <code>data-*</code> attributes of the root element.</p>
+
+<h4 id="example-4:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<p>The following example shows &ldquo;Hello, John!&rdquo; on your browser.</p>
+
+<pre><code class="language-html">&lt;body&gt;
+&lt;div id=&quot;main&quot; data-name=&quot;John&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p('Hello, ' + this.root.data.name + '!')
+  }
+});
+var component = new HelloMessage();
+component.mount('main');
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
 <p><a class="anchor" id="unmount"></a></p>
 
 <h3 id="unmount:202695ef52bd0f88ec46c8b4eb5ea1d8">#unmount()</h3>
@@ -449,7 +478,7 @@ If the component has the <code>afterUnmount()</code> method, it is called after 
 <p>When the number of arguments is one and that argument is a string,
 this method returns the value of the corresponding field.</p>
 
-<h4 id="example-4:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-5:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -471,7 +500,7 @@ this method sets the value of a field whose name is corresponding
 to the first argument to the second argument and returns
 the original value of the field.</p>
 
-<h4 id="example-5:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-6:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('message', function(m) {
@@ -493,7 +522,7 @@ the original value of the field.</p>
 <p>When the number of arguments is one and that argument is an object,
 this method sets the value of corresponding fields.</p>
 
-<h4 id="example-6:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-7:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {

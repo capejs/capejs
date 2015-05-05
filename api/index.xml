@@ -287,6 +287,7 @@ Cape.extend(object1, object2);
 &lt;p&gt;&lt;a href=&#34;#form-data&#34;&gt;formData()&lt;/a&gt; -
 &lt;a href=&#34;#mount&#34;&gt;mount()&lt;/a&gt; -
 &lt;a href=&#34;#refresh&#34;&gt;refresh()&lt;/a&gt; -
+&lt;a href=&#34;#root&#34;&gt;root&lt;/a&gt; -
 &lt;a href=&#34;#unmount&#34;&gt;unmount()&lt;/a&gt; -
 &lt;a href=&#34;#val&#34;&gt;val()&lt;/a&gt;&lt;/p&gt;
 
@@ -427,6 +428,32 @@ to render the component.&lt;/p&gt;
 
 &lt;p&gt;This method rerenders the component by calling its &lt;code&gt;render()&lt;/code&gt; method.&lt;/p&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;root&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;root:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#root&lt;/h3&gt;
+
+&lt;p&gt;This property refers to the HTML element which the component is mounted on.&lt;/p&gt;
+
+&lt;p&gt;Its &lt;code&gt;data&lt;/code&gt; subproperty holds the values of &lt;code&gt;data-*&lt;/code&gt; attributes of the root element.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;The following example shows &amp;ldquo;Hello, John!&amp;rdquo; on your browser.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;body&amp;gt;
+&amp;lt;div id=&amp;quot;main&amp;quot; data-name=&amp;quot;John&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;script&amp;gt;
+var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
+  }
+});
+var component = new HelloMessage();
+component.mount(&#39;main&#39;);
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#unmount()&lt;/h3&gt;
@@ -459,7 +486,7 @@ If the component has the &lt;code&gt;afterUnmount()&lt;/code&gt; method, it is c
 &lt;p&gt;When the number of arguments is one and that argument is a string,
 this method returns the value of the corresponding field.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-5:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -481,7 +508,7 @@ this method sets the value of a field whose name is corresponding
 to the first argument to the second argument and returns
 the original value of the field.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-5:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-6:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;message&#39;, function(m) {
@@ -503,7 +530,7 @@ the original value of the field.&lt;/p&gt;
 &lt;p&gt;When the number of arguments is one and that argument is an object,
 this method sets the value of corresponding fields.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-6:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-7:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
