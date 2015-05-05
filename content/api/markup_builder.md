@@ -18,6 +18,7 @@ title: "Cape.MarkupBuilder - API Reference"
 [#hiddenField()](#hidden-field) -
 [#labelFor()](#label-for) -
 [#markup()](#markup) -
+[#on()](#on) -
 [#passwordField()](#password-field) -
 [#radioButton()](#radio-button) -
 [#selectBox()](#select-box) -
@@ -633,6 +634,34 @@ render: function(m) {
 ### #markup()
 
 This method is for internal use. Do not override it.
+
+<a class="anchor" id="on"></a>
+### #on()
+
+
+#### Usage
+
+* **on(eventName, function)**
+
+Set the handler of event *eventName* for the element which will be added nextly
+to *function.*
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.on('click', function(e) { this.counter++ });
+  m.on('dblclick', function(e) { this.counter = 0 });
+  m.span('Click me!');
+  // These two statements are equivalent to the following
+  // single statement:
+  //   m.span('Click me!',
+  //     { onclick: function(e) { this.counter++ },
+  //       ondblclick: function(e) { this.counter = 0 } })
+}
+```
+
+The attribute values are set cumulatively.
 
 <a class="anchor" id="password-field"></a>
 ### #passwordField()

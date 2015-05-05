@@ -184,6 +184,9 @@ api_pages:
         id: markup
         title: "#markup()"
       -
+        id: on
+        title: "#on()"
+      -
         id: password-field
         title: "#passwordField()"
       -
