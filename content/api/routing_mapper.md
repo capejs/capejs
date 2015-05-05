@@ -383,7 +383,7 @@ on the parameters, which are specified by regular expression string.
 var router = new Cape.Router();
 router.draw(function(m) {
   m.page('blog/:year/:month', 'blog.articles',
-    { year: '201\\d', month: '(:?0[1-9]|11|12)' });
+    { year: '201\\d', month: '(:?0[1-9]|1[012])' });
 })
 ```
 
@@ -393,9 +393,44 @@ Note that you should put `:?` to make parentheses
 <a class="anchor" id="root"></a>
 ### #root()
 
-This section is not yet prepared.
+
+#### Usage
+
+* **root(componentClassPath)**
+
+Defines a route from "" to *componentClassPath.*
+
+
+#### Example
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  root('Dashboard')
+})
+```
 
 <a class="anchor" id="view"></a>
 ### #view()
 
-This section is not yet prepared.
+
+#### Usage
+
+* **collection(name)**
+
+Adds a *collection* route (a route which deals with multiple items).
+
+#### Example
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account', function(m) {
+    m.view 'image'
+  });
+})
+```
+
+This defines a route from `account/image` to `Articles.Image`.
+
+The `#view()` method must be called within a block that defines a singular resource.
