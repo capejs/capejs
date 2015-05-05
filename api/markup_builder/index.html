@@ -144,6 +144,8 @@
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#markup">#markup()</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/api/markup_builder#true">#on()</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#password-field">#passwordField()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#radio-button">#radioButton()</a></li>
@@ -296,6 +298,7 @@
 <a href="#hidden-field">#hiddenField()</a> -
 <a href="#label-for">#labelFor()</a> -
 <a href="#markup">#markup()</a> -
+<a href="#on">#on()</a> -
 <a href="#password-field">#passwordField()</a> -
 <a href="#radio-button">#radioButton()</a> -
 <a href="#select-box">#selectBox()</a> -
@@ -935,11 +938,40 @@ Its <code>for</code> attribute is set appropriately.</p>
 
 <p>This method is for internal use. Do not override it.</p>
 
+<p><a class="anchor" id="on"></a></p>
+
+<h3 id="on:2f94c9da1a5f7ca2887265bec799d255">#on()</h3>
+
+<h4 id="usage-13:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+
+<ul>
+<li><strong>on(eventName, function)</strong></li>
+</ul>
+
+<p>Set the handler of event <em>eventName</em> for the element which will be added nextly
+to <em>function.</em></p>
+
+<h4 id="example-21:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+
+<pre><code class="language-javascript">render: function(m) {
+  m.on('click', function(e) { this.counter++ });
+  m.on('dblclick', function(e) { this.counter = 0 });
+  m.span('Click me!');
+  // These two statements are equivalent to the following
+  // single statement:
+  //   m.span('Click me!',
+  //     { onclick: function(e) { this.counter++ },
+  //       ondblclick: function(e) { this.counter = 0 } })
+}
+</code></pre>
+
+<p>The attribute values are set cumulatively.</p>
+
 <p><a class="anchor" id="password-field"></a></p>
 
 <h3 id="passwordfield:2f94c9da1a5f7ca2887265bec799d255">#passwordField()</h3>
 
-<h4 id="usage-13:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-14:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>passwordField(name, [options,] function)</strong></li>
@@ -950,7 +982,7 @@ Its first argument is the base of <code>name</code> attribute value.
 If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
 then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.</p>
 
-<h4 id="example-21:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-22:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -990,7 +1022,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <h3 id="space:2f94c9da1a5f7ca2887265bec799d255">#space()</h3>
 
-<h4 id="usage-14:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-15:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>space()</strong></li>
@@ -998,7 +1030,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <p>Add a single space character. Same as <code>text(' ')</code>.</p>
 
-<h4 id="example-22:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-23:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.p(function(m) {
@@ -1014,7 +1046,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <h3 id="text:2f94c9da1a5f7ca2887265bec799d255">#text()</h3>
 
-<h4 id="usage-15:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-16:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
 
 <ul>
 <li><strong>text(string)</strong></li>
@@ -1023,7 +1055,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 <p>Add <em>string</em> as a text node to the virtual dom tree.
 The special characters (<code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>) are escaped automatically.</p>
 
-<h4 id="example-23:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-24:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.h1(function(m) {
