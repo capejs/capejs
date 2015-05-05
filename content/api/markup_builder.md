@@ -199,6 +199,7 @@ var LogoMark = Cape.createComponentClass({
 #### Usage
 
 * **attr(name, value)**
+* **attr({ name1: value1, name2: value2, ... })**
 
 Set the value of attributes for the element which will be added nextly.
 
@@ -207,6 +208,7 @@ Set the value of attributes for the element which will be added nextly.
 ```javascript
 render: function(m) {
   m.attr('alt', 'Logo Image');
+  // Or, m.attr({ alt: 'Logo Image' });
   m.img({ src: '../images/logo.png' });
   // These two statements are equivalent to the following
   // single statement:
@@ -310,7 +312,9 @@ render: function(m) {
 
 #### Usage
 
-* **class(name, value)**
+* **class(name)**
+* **class(names)**
+* **class({ name1: boolean1, name2: boolean2, ... })**
 
 Set the `class` attribute value for the element which will be added nextly.
 
@@ -329,13 +333,68 @@ render: function(m) {
 }
 ```
 
+#### Example
+
+```javascript
+render: function(m) {
+  m.class('panel panel-standard');
+  m.div('Hello World!');
+  // The above code generates the following HTML tags
+  //   <div class="panel panel-standard">
+  //     Hello, World!
+  //   </div>
+}
+```
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.class({ panel: true, 'panel-standard': true, top: false });
+  m.div('Hello World!');
+  // The above code generates the following HTML tags
+  //   <div class="panel panel-standard">
+  //     Hello, World!
+  //   </div>
+}
+```
+
 As [#attr](#attr), the `#class` method add classes cumulatively and
 affects only the nextly added element.
 
 <a class="anchor" id="css"></a>
 ### #css()
 
-*Not yet written.*
+
+#### Usage
+
+* **css(name, value)**
+* **css({ name1: value1, name2: value2, ... })**
+
+Set the styles for the element which will be added nextly.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.css('color', 'red').span('Danger');
+  // This is equivalent to the following statement:
+  //   m.span('Danger', { style: 'color: red' })
+}
+```
+
+Note that you should write names of style in camel case.
+
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.css({ backgroundColor: 'red' }).p('Danger');
+  // This is equivalent to the following statement:
+  //   m.p('Danger', { style: 'background-color: red' })
+}
+```
 
 <a class="anchor" id="data"></a>
 ### #data()
@@ -343,6 +402,7 @@ affects only the nextly added element.
 #### Usage
 
 * **data(name, value)**
+* **data({ name1: value1, name2: value2, ... })**
 
 Set the `data-*` attribute value for the element which will be added nextly.
 
@@ -363,6 +423,32 @@ render: function(m) {
 
 As [#attr](#attr), the `#data` method sets attribute values cumulatively and
 affects only the nextly added element.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.data({ id: '7' });
+  m.p('Hello, World!');
+  m.p('Hello, World!');
+  // The above code generates the following HTML tags
+  //   <p data-id="7">Hello, World!</p>
+  //   <p>Hello, World!</p>
+}
+```
+
+The names specified in camel case are converted into a string separated by dashes.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.data({ messageId: '7' });
+  m.p('Hello, World!');
+  // The above code generates the following HTML tags
+  //   <p data-message-id="7">Hello, World!</p>
+}
+```
 
 <a class="anchor" id="elem"></a>
 ### #elem()
