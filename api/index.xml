@@ -1817,7 +1817,7 @@ it unmounts the latter and mounts the former.
 When this component is same with the component which is mounted currently
 it calls the &lt;code&gt;#refresh&lt;/code&gt; method of the mounted component.&lt;/p&gt;
 
-&lt;p&gt;Then, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
+&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
