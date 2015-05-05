@@ -132,7 +132,7 @@
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#fa">#fa()</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/api/markup_builder#field-for">#fieldsFor()</a></li>
+            <li><a href="http://oiax.github.io/capejs/api/markup_builder#fields-for">#fieldsFor()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#form-for">#formFor()</a></li>
           
@@ -284,31 +284,159 @@
 
 <h3 id="formdata:202695ef52bd0f88ec46c8b4eb5ea1d8">#formData()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
+
+<ul>
+<li><strong>formData()</strong></li>
+</ul>
+
+<p>Thid method returns a JavaScript object that represents the values of
+all form controls within the component.</p>
+
+<p>The values are organized in hierarchical structure as explained following examples:</p>
+
+<h4 id="example:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<p>If you have a component defined like this,</p>
+
+<pre><code class="language-javascript">var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+    });
+  }
+});
+</code></pre>
+
+<p>the <code>formData()</code> method of its instances returns an object like this:</p>
+
+<pre><code class="language-javascript">{
+  user: {
+    login_name: 'john',
+    password: 'p@ssw0rd'
+  }
+}
+</code></pre>
+
+<h4 id="example-1:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<p>If you have a component defined like this,</p>
+
+<pre><code class="language-javascript">var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+      for (var index = 0; index &lt; 2; i++) {
+        m.fieldsFor('addresses', { index: index }, function(m) {
+          m.textField('country');
+          m.textField('city');
+        })
+      }
+    });
+  }
+});
+</code></pre>
+
+<p>the <code>formData()</code> method of its instances returns an object like this:</p>
+
+<pre><code class="language-javascript">{
+  user: {
+    login_name: 'john',
+    password: 'p@ssw0rd',
+    addresses: {
+      '0': {
+        country: 'Japan',
+        city: 'Tokyo'
+      },
+      '1': {
+        country: 'USA',
+        city: 'New York'
+      }
+    }
+  }
+}
+</code></pre>
 
 <p><a class="anchor" id="mount"></a></p>
 
 <h3 id="mount:202695ef52bd0f88ec46c8b4eb5ea1d8">#mount()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage-1:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
+
+<ul>
+<li><strong>mount(id)</strong></li>
+</ul>
+
+<p>This method renders the component and inserts it within the element specified by <em>id.</em></p>
+
+<h4 id="example-2:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<pre><code class="language-html">&lt;body&gt;
+&lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+var HelloWorld = Cape.createComponentClass({
+  render: function(m) {
+    m.p('Hello, World!')
+  }
+});
+var component = new HelloWorld();
+component.mount('main');
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>If the component has the <code>init()</code> method, the <code>mount()</code> calls it
+instead of rendering the component.</p>
+
+<h4 id="example-3:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<pre><code class="language-javascript">var HelloWorld = Cape.createComponentClass({
+  init: function() {
+    this.name = 'World';
+    this.refresh();
+  },
+
+  render: function(m) {
+    m.p('Hello, ' + this.name + '!')
+  }
+});
+</code></pre>
+
+<p>Note that you should have to call the <code>refresh()</code> method at the end
+to render the component.</p>
 
 <p><a class="anchor" id="refresh"></a></p>
 
 <h3 id="refresh:202695ef52bd0f88ec46c8b4eb5ea1d8">#refresh()</h3>
 
-<p>This section is not yet prepared.</p>
+<ul>
+<li><strong>refresh()</strong></li>
+</ul>
+
+<p>This method rerenders the component by calling its <code>render()</code> method.</p>
 
 <p><a class="anchor" id="unmount"></a></p>
 
 <h3 id="unmount:202695ef52bd0f88ec46c8b4eb5ea1d8">#unmount()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage-2:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
+
+<ul>
+<li><strong>unmount()</strong></li>
+</ul>
+
+<p>This method removes the component from the HTML document.</p>
+
+<p>If the component has the <code>beforeUnmount()</code> method, it is called before the component is unmounted.
+If the component has the <code>afterUnmount()</code> method, it is called after the component has been unmounted.</p>
 
 <p><a class="anchor" id="val"></a></p>
 
 <h3 id="val:202695ef52bd0f88ec46c8b4eb5ea1d8">#val()</h3>
 
-<h4 id="usage:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
+<h4 id="usage-3:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
 
 <ul>
 <li><strong>val(name)</strong></li>
@@ -321,7 +449,7 @@
 <p>When the number of arguments is one and that argument is a string,
 this method returns the value of the corresponding field.</p>
 
-<h4 id="example:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-4:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -343,7 +471,7 @@ this method sets the value of a field whose name is corresponding
 to the first argument to the second argument and returns
 the original value of the field.</p>
 
-<h4 id="example-1:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-5:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('message', function(m) {
@@ -365,7 +493,7 @@ the original value of the field.</p>
 <p>When the number of arguments is one and that argument is an object,
 this method sets the value of corresponding fields.</p>
 
-<h4 id="example-2:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-6:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {

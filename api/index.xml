@@ -294,31 +294,159 @@ Cape.extend(object1, object2);
 
 &lt;h3 id=&#34;formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#formData()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;formData()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Thid method returns a JavaScript object that represents the values of
+all form controls within the component.&lt;/p&gt;
+
+&lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
+
+&lt;h4 id=&#34;example:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.passwordField(&#39;password&#39;);
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the &lt;code&gt;formData()&lt;/code&gt; method of its instances returns an object like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  user: {
+    login_name: &#39;john&#39;,
+    password: &#39;p@ssw0rd&#39;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;example-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.passwordField(&#39;password&#39;);
+      for (var index = 0; index &amp;lt; 2; i++) {
+        m.fieldsFor(&#39;addresses&#39;, { index: index }, function(m) {
+          m.textField(&#39;country&#39;);
+          m.textField(&#39;city&#39;);
+        })
+      }
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the &lt;code&gt;formData()&lt;/code&gt; method of its instances returns an object like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  user: {
+    login_name: &#39;john&#39;,
+    password: &#39;p@ssw0rd&#39;,
+    addresses: {
+      &#39;0&#39;: {
+        country: &#39;Japan&#39;,
+        city: &#39;Tokyo&#39;
+      },
+      &#39;1&#39;: {
+        country: &#39;USA&#39;,
+        city: &#39;New York&#39;
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;mount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#mount()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;mount(id)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method renders the component and inserts it within the element specified by &lt;em&gt;id.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;body&amp;gt;
+&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;script&amp;gt;
+var HelloWorld = Cape.createComponentClass({
+  render: function(m) {
+    m.p(&#39;Hello, World!&#39;)
+  }
+});
+var component = new HelloWorld();
+component.mount(&#39;main&#39;);
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If the component has the &lt;code&gt;init()&lt;/code&gt; method, the &lt;code&gt;mount()&lt;/code&gt; calls it
+instead of rendering the component.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloWorld = Cape.createComponentClass({
+  init: function() {
+    this.name = &#39;World&#39;;
+    this.refresh();
+  },
+
+  render: function(m) {
+    m.p(&#39;Hello, &#39; + this.name + &#39;!&#39;)
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you should have to call the &lt;code&gt;refresh()&lt;/code&gt; method at the end
+to render the component.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#refresh()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;refresh()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method rerenders the component by calling its &lt;code&gt;render()&lt;/code&gt; method.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#unmount()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;unmount()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method removes the component from the HTML document.&lt;/p&gt;
+
+&lt;p&gt;If the component has the &lt;code&gt;beforeUnmount()&lt;/code&gt; method, it is called before the component is unmounted.
+If the component has the &lt;code&gt;afterUnmount()&lt;/code&gt; method, it is called after the component has been unmounted.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#val()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;val(name)&lt;/strong&gt;&lt;/li&gt;
@@ -331,7 +459,7 @@ Cape.extend(object1, object2);
 &lt;p&gt;When the number of arguments is one and that argument is a string,
 this method returns the value of the corresponding field.&lt;/p&gt;
 
-&lt;h4 id=&#34;example:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -353,7 +481,7 @@ this method sets the value of a field whose name is corresponding
 to the first argument to the second argument and returns
 the original value of the field.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-5:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;message&#39;, function(m) {
@@ -375,7 +503,7 @@ the original value of the field.&lt;/p&gt;
 &lt;p&gt;When the number of arguments is one and that argument is an object,
 this method sets the value of corresponding fields.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-6:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
