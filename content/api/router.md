@@ -55,7 +55,7 @@ See [#notify()](#notify) for details.
 <a class="anchor" id="before-navigation"></a>
 ### #beforeNavigation()
 
-This section is not yet prepared.
+See [Before-Navigation Callbacks](../../router/#before-navigation-callbacks).
 
 <a class="anchor" id="component"></a>
 ### #component
@@ -114,12 +114,29 @@ See [#notify()](#notify) for details.
 <a class="anchor" id="draw"></a>
 ### #draw()
 
-This section is not yet prepared.
+#### Usage
+
+* **draw(function)**
+
+This method specify a function that takes a `RoutingMapper` object and defines routes.
+
+#### Example
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.root('dashboard');
+  m.page('about', 'docs.about');
+  m.many('articles');
+})
+```
+
+In the above example, the argument `m` is a `RoutingMapper` object.
 
 <a class="anchor" id="error-handler"></a>
 ### #errorHandler()
 
-This section is not yet prepared.
+See [Before-Navigation Callbacks](../../router/#before-navigation-callbacks).
 
 <a class="anchor" id="flash"></a>
 ### #flash
@@ -161,10 +178,27 @@ router.navigate('admin/articles/123/edit');
 console.log(router.namespace); // => "admin"
 ```
 
-<a class="anchor" id="navigage"></a>
+<a class="anchor" id="navigate"></a>
 ### #navigate()
 
-This section is not yet prepared.
+#### Usage
+
+* **navigate(hash)**
+
+This method sets the anchor part (begins with a `#` symbol) of the browser's current URL to _hash._
+
+When before-navigation callbacks are registered, they are executed
+before changing the anchor part of URL.
+If the before-navigation callbacks select other string for _hash_,
+it will be set to the anchor part of the browser's current URL.
+
+After setting the anchor part of URL, this method choose a component
+according to the routing table.
+
+When this component is different from the component mounted currently,
+it unmounts the latter and mount the former.
+
+Then, the `#notify()` method is executed.
 
 <a class="anchor" id="notify"></a>
 ### #notify()
@@ -185,22 +219,100 @@ This method is executed after each time the [#navigate()](#navigate) method is c
 <a class="anchor" id="mount"></a>
 ### #mount()
 
-This section is not yet prepared.
+#### Usage
+
+* **mount(id)**
+
+This method specifies the `id` of the HTML element which this router
+inserts the components into.
+
+#### Example
+
+```html
+<div>
+  <a href="#">Top</a>
+  <a href="#about">About</a>
+  <a href="#help">Help</a>
+</div>
+
+<div id="main"></div>
+
+<script>
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.root('top_page');
+  m.page('about', 'about_page');
+  m.page('help', 'help_page');
+})
+router.mount('main');
+</script>
+```
+
+In the example above, components are mounted into the `<div>` element whose `id` is `'main'`.
 
 <a class="anchor" id="params"></a>
 ### #params
 
-This section is not yet prepared.
+This property holds a set of key-value pairs, which represents the parameters
+embedded in the main part (before the first '?' symbol) of hash.
+
+#### Example
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.page('help/:name', 'help.item');
+  m.many('articles', function(m) {
+    m.many('comments');
+  });
+})
+router.navigate('help/password');
+// router.params.name === 'password'
+router.navigate('articles/123')
+// router.params.id === '123'
+router.navigate('articles/123/comments/7')
+// router.params.article_id === '123'
+// router.params.id === '7'
+```
 
 <a class="anchor" id="query"></a>
 ### #query
 
-This section is not yet prepared.
+This property holds a set of key-value pairs, which represents the parameters
+embedded in the query part (after the first '?' symbol) of hash .
+
+#### Example
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles')
+})
+router.navigate('articles')
+// router.query === {}
+router.navigate('articles?page=2')
+// router.query.page === '2'
+router.navigate('articles?page=2&deleted')
+// router.query.page === '2'
+// router.query.deleted === ''
+```
+
 
 <a class="anchor" id="redirect-to"></a>
 ### #redirectTo()
 
-This section is not yet prepared.
+This method sets the anchor part (begins with a `#` symbol) of the browser's current URL to _hash._
+
+Unlike [#navigate()](#navigate) method, before-navigationi callbacks are *not* executed
+before changing the anchor part of URL.
+
+After setting the anchor part of URL, this method choose a component
+according to the routing table.
+
+When this component is different from the component mounted currently,
+it unmounts the latter and mount the former.
+
+Then, the `#notify()` method is executed.
 
 
 <a class="anchor" id="resource"></a>
@@ -232,28 +344,50 @@ console.log(router.resource); // => "articles"
 ```
 
 
-<a class="anchor" id="routeFor"></a>
+<a class="anchor" id="route-for"></a>
 ### #routeFor()
 
-This section is not yet prepared.
+#### Usage
 
+* **routeFor(hash)**
+
+This method returns the first route matching to the *hash,* if any.
+
+
+#### Example
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.namespace('admin', function(m) {
+    m.many('articles');
+  });
+});
+var route = router.routeFor('admin/articles/123/edit');
+```
 
 <a class="anchor" id="show"></a>
 ### #show()
 
-This section is not yet prepared.
+#### Usage
+
+* **show(componentClass)**
+
+This method mounts an instance of *componentClass* class.
+
+Unlike [#navigate()](#navigate), it does neither change the anchor part of
+current URL, nor call the [#notify()](#notify) method.
 
 
 <a class="anchor" id="start"></a>
 ### #start()
 
-This section is not yet prepared.
-
+With this method call, routers begin to listen to `hashchange` events.
 
 <a class="anchor" id="stop"></a>
 ### #stop()
 
-This section is not yet prepared.
+With this method call, routers stop to listen to `hashchange` events.
 
 <a class="anchor" id="vars"></a>
 ### #vars
