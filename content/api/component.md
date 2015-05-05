@@ -5,6 +5,7 @@ title: "Cape.Component - API Reference"
 [formData()](#form-data) -
 [mount()](#mount) -
 [refresh()](#refresh) -
+[root](#root) -
 [unmount()](#unmount) -
 [val()](#val)
 
@@ -142,6 +143,32 @@ to render the component.
 * **refresh()**
 
 This method rerenders the component by calling its `render()` method.
+
+<a class="anchor" id="root"></a>
+### #root
+
+This property refers to the HTML element which the component is mounted on.
+
+Its `data` subproperty holds the values of `data-*` attributes of the root element.
+
+#### Example
+
+The following example shows "Hello, John!" on your browser.
+
+```html
+<body>
+<div id="main" data-name="John"></div>
+<script>
+var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p('Hello, ' + this.root.data.name + '!')
+  }
+});
+var component = new HelloMessage();
+component.mount('main');
+</script>
+</body>
+```
 
 <a class="anchor" id="unmount"></a>
 ### #unmount()
