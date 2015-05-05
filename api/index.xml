@@ -1503,13 +1503,84 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;radiobutton:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#radioButton()&lt;/h3&gt;
 
-&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
+&lt;h4 id=&#34;usage-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;radioButton(name, value[, options])&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;input type=&amp;quot;radio&amp;quot;&amp;gt;&lt;/code&gt; tag tailored for form manipulation.
+Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
+If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
+then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The second argument becomes the value of this radio button.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-29:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.label(&#39;A&#39;, function(m) {
+      m.radioButton(&#39;plan&#39;, &#39;a&#39;);
+    })
+    m.label(&#39;B&#39;, function(m) {
+      m.radioButton(&#39;plan&#39;, &#39;b&#39;);
+    })
+    m.label(&#39;C&#39;, function(m) {
+      m.radioButton(&#39;plan&#39;, &#39;c&#39;);
+    })
+  });
+  // The above code generates the following HTML tags:
+  //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
+  //     &amp;lt;label&amp;gt;
+  //       &amp;lt;input type=&amp;quot;radio&amp;quot; name=&amp;quot;user.plan&amp;quot;
+  //         id=&amp;quot;user-field-plan-a&amp;quot; value=&amp;quot;a&amp;quot;&amp;gt;A
+  //     &amp;lt;/label&amp;gt;
+  //     &amp;lt;label&amp;gt;
+  //       &amp;lt;input type=&amp;quot;radio&amp;quot; name=&amp;quot;user.plan&amp;quot;
+  //         id=&amp;quot;user-field-plan-b&amp;quot; value=&amp;quot;b&amp;quot;&amp;gt;B
+  //     &amp;lt;/label&amp;gt;
+  //     &amp;lt;label&amp;gt;
+  //       &amp;lt;input type=&amp;quot;radio&amp;quot; name=&amp;quot;user.plan&amp;quot;
+  //         id=&amp;quot;user-field-plan-c&amp;quot; value=&amp;quot;c&amp;quot;&amp;gt;C
+  //     &amp;lt;/label&amp;gt;
+  //   &amp;lt;/form&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;select-box&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;selectbox:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#selectBox()&lt;/h3&gt;
 
-&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;selectBox(name, [options,] callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;select&amp;gt;&lt;/code&gt; tag tailored for form manipulation.
+Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
+If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
+then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-30:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.selectBox(&#39;plan&#39;, function(m) {
+      m.option(&#39;A&#39;, { value: &#39;a&#39; });
+      m.option(&#39;B&#39;, { value: &#39;b&#39; });
+      m.option(&#39;C&#39;, { value: &#39;c&#39; });
+    })
+  });
+  // The above code generates the following HTML tags:
+  //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
+  //      &amp;lt;select name=&amp;quot;plan&amp;quot; id=&amp;quot;user-field-plan&amp;quot;&amp;gt;
+  //        &amp;lt;option value=&amp;quot;a&amp;quot;&amp;gt;A&amp;lt;/option&amp;gt;
+  //        &amp;lt;option value=&amp;quot;b&amp;quot;&amp;gt;B&amp;lt;/option&amp;gt;
+  //        &amp;lt;option value=&amp;quot;c&amp;quot;&amp;gt;C&amp;lt;/option&amp;gt;
+  //      &amp;lt;/select&amp;gt;
+  //   &amp;lt;/form&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;sp&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1521,7 +1592,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;space:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#space()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;space()&lt;/strong&gt;&lt;/li&gt;
@@ -1529,7 +1600,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;Add a single space character. Same as &lt;code&gt;text(&#39; &#39;)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-29:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-31:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.p(function(m) {
@@ -1545,7 +1616,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;text:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#text()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;text(string)&lt;/strong&gt;&lt;/li&gt;
@@ -1554,7 +1625,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;Add &lt;em&gt;string&lt;/em&gt; as a text node to the virtual dom tree.
 The special characters (&lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;) are escaped automatically.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-30:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-32:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.h1(function(m) {
@@ -1576,13 +1647,65 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
 
 &lt;h3 id=&#34;textareafield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#textareaField()&lt;/h3&gt;
 
-&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
+&lt;h4 id=&#34;usage-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;textField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot;&amp;gt;&lt;/code&gt; tag tailored for form manipulation.
+Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
+If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
+then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-33:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.labelFor(&#39;remarks&#39;, &#39;Remarks&#39;).br();
+    m.textareaField(&#39;remarks&#39;);
+  });
+  // The above code generates the following HTML tags:
+  //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
+  //     &amp;lt;label for=&amp;quot;user-field-remarks&amp;quot;&amp;gt;
+  //       Remarks&amp;lt;/label&amp;gt;&amp;lt;br /&amp;gt;
+  //     &amp;lt;textarea name=&amp;quot;user.remarks&amp;quot;
+  //       id=&amp;quot;user-field-remarks&amp;quot;&amp;gt;&amp;lt;/textarea&amp;gt;
+  //   &amp;lt;/form&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;text-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;textfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#textField()&lt;/h3&gt;
 
-&lt;p&gt;&lt;em&gt;Not yet written.&lt;/em&gt;&lt;/p&gt;
+&lt;h4 id=&#34;usage-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;textField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a &lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot;&amp;gt;&lt;/code&gt; tag tailored for form manipulation.
+Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
+If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
+then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-34:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.labelFor(&#39;login_name&#39;, &#39;Login Name&#39;).sp();
+    m.textField(&#39;login_name&#39;);
+  });
+  // The above code generates the following HTML tags:
+  //   &amp;lt;form name=&amp;quot;user&amp;quot;&amp;gt;
+  //     &amp;lt;label for=&amp;quot;user-field-login-name&amp;quot;&amp;gt;
+  //       Login Name&amp;lt;/label&amp;gt;
+  //     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;user.login_name&amp;quot;
+  //       id=&amp;quot;user-field-login-name&amp;quot;&amp;gt;
+  //   &amp;lt;/form&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
