@@ -166,7 +166,7 @@ api_pages:
         id: fa
         title: "#fa()"
       -
-        id: field-for
+        id: fields-for
         title: "#fieldsFor()"
       -
         id: form-for

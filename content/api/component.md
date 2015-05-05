@@ -11,22 +11,150 @@ title: "Cape.Component - API Reference"
 <a class="anchor" id="form-data"></a>
 ### #formData()
 
-This section is not yet prepared.
+#### Usage
+
+* **formData()**
+
+Thid method returns a JavaScript object that represents the values of
+all form controls within the component.
+
+The values are organized in hierarchical structure as explained following examples:
+
+#### Example
+
+If you have a component defined like this,
+
+```javascript
+var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+    });
+  }
+});
+```
+
+the `formData()` method of its instances returns an object like this:
+
+```javascript
+{
+  user: {
+    login_name: 'john',
+    password: 'p@ssw0rd'
+  }
+}
+```
+
+
+#### Example
+
+If you have a component defined like this,
+
+```javascript
+var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+      for (var index = 0; index < 2; i++) {
+        m.fieldsFor('addresses', { index: index }, function(m) {
+          m.textField('country');
+          m.textField('city');
+        })
+      }
+    });
+  }
+});
+```
+
+the `formData()` method of its instances returns an object like this:
+
+```javascript
+{
+  user: {
+    login_name: 'john',
+    password: 'p@ssw0rd',
+    addresses: {
+      '0': {
+        country: 'Japan',
+        city: 'Tokyo'
+      },
+      '1': {
+        country: 'USA',
+        city: 'New York'
+      }
+    }
+  }
+}
+```
 
 <a class="anchor" id="mount"></a>
 ### #mount()
 
-This section is not yet prepared.
+#### Usage
+
+* **mount(id)**
+
+This method renders the component and inserts it within the element specified by _id._
+
+#### Example
+
+```html
+<body>
+<div id="main"></div>
+<script>
+var HelloWorld = Cape.createComponentClass({
+  render: function(m) {
+    m.p('Hello, World!')
+  }
+});
+var component = new HelloWorld();
+component.mount('main');
+</script>
+</body>
+```
+
+If the component has the `init()` method, the `mount()` calls it
+instead of rendering the component.
+
+#### Example
+
+```javascript
+var HelloWorld = Cape.createComponentClass({
+  init: function() {
+    this.name = 'World';
+    this.refresh();
+  },
+
+  render: function(m) {
+    m.p('Hello, ' + this.name + '!')
+  }
+});
+```
+
+Note that you should have to call the `refresh()` method at the end
+to render the component.
 
 <a class="anchor" id="refresh"></a>
 ### #refresh()
 
-This section is not yet prepared.
+* **refresh()**
+
+This method rerenders the component by calling its `render()` method.
 
 <a class="anchor" id="unmount"></a>
 ### #unmount()
 
-This section is not yet prepared.
+
+#### Usage
+
+* **unmount()**
+
+This method removes the component from the HTML document.
+
+If the component has the `beforeUnmount()` method, it is called before the component is unmounted.
+If the component has the `afterUnmount()` method, it is called after the component has been unmounted.
 
 <a class="anchor" id="val"></a>
 ### #val()
