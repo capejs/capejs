@@ -12,6 +12,10 @@
 
 * Add `#btn` method to create &lt;button type="button"&gt; tag.
 
+### `Cape.DataStore`
+
+* The constructor of `DataStore` should call `init()` if defiend.
+
 ## 1.0.0-beta.10 (May 4, 2015)
 
 ### `Cape.DataStore`
