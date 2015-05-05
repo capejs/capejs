@@ -130,7 +130,6 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
       { title: &#39;Foo&#39;, done: false },
       { title: &#39;Bar&#39;, done: true }
     ];
-    this.propagate();
   },
   addItem: function(title) {
     this.items.push({ title: title, done: false });
@@ -151,7 +150,6 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
       { title: &#39;Foo&#39;, done: false },
       { title: &#39;Bar&#39;, done: true }
     ];
-    this.propagate();
   }
   addItem(title) {
     this.items.push({ title: title, done: false });
@@ -589,6 +587,8 @@ var cs = new CounterStore();
 // cs.counter === 0
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;See also &lt;a href=&#34;../cape/#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt;.&lt;/p&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;attach:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#attach()&lt;/h3&gt;
@@ -602,6 +602,29 @@ var cs = new CounterStore();
 &lt;p&gt;This method registers the &lt;em&gt;component&lt;/em&gt; as a target of &lt;em&gt;propagation&lt;/em&gt; from this data store.&lt;/p&gt;
 
 &lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;create:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;.create()&lt;/h3&gt;
+
+&lt;p&gt;This class method returns a singleton object of this Class.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
+  init: function() {
+    this.counter = 0;
+  },
+  increment: function() {
+    this.counter++;
+    this.propagate();
+  }
+});
+
+var cs1 = CounterStore.create();
+var cs2 = CounterStore.create();
+// cs1 === cs2
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -636,7 +659,7 @@ which has to be defined by developers.&lt;/p&gt;
 &lt;p&gt;Thus, we can assure that each time the data of a data store changes,
 its all dependent components get refreshed.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-2:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
   init: function() {

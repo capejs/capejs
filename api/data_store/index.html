@@ -170,7 +170,11 @@
           
           <ul>
           
+            <li><a href="http://oiax.github.io/capejs/api/data_store#constructor">Constructor</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/api/data_store#attach">#attach()</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/api/data_store#create">.create()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/data_store#detach">#detach()</a></li>
           
@@ -304,6 +308,8 @@ var cs = new CounterStore();
 // cs.counter === 0
 </code></pre>
 
+<p>See also <a href="../cape/#create-data-store-class">Cape.createDataStoreClass</a>.</p>
+
 <p><a class="anchor" id="attach"></a></p>
 
 <h3 id="attach:0e6ae5d019a4f974c32809ae28a8dc8f">#attach()</h3>
@@ -317,6 +323,29 @@ var cs = new CounterStore();
 <p>This method registers the <em>component</em> as a target of <em>propagation</em> from this data store.</p>
 
 <p>See <a href="#propagate">#propagate()</a> for details.</p>
+
+<p><a class="anchor" id="create"></a></p>
+
+<h3 id="create:0e6ae5d019a4f974c32809ae28a8dc8f">.create()</h3>
+
+<p>This class method returns a singleton object of this Class.</p>
+
+<h4 id="example-1:0e6ae5d019a4f974c32809ae28a8dc8f">Example</h4>
+
+<pre><code class="language-javascript">var CounterStore = Cape.createDataStoreClass({
+  init: function() {
+    this.counter = 0;
+  },
+  increment: function() {
+    this.counter++;
+    this.propagate();
+  }
+});
+
+var cs1 = CounterStore.create();
+var cs2 = CounterStore.create();
+// cs1 === cs2
+</code></pre>
 
 <p><a class="anchor" id="detach"></a></p>
 
@@ -351,7 +380,7 @@ which has to be defined by developers.</p>
 <p>Thus, we can assure that each time the data of a data store changes,
 its all dependent components get refreshed.</p>
 
-<h4 id="example-1:0e6ae5d019a4f974c32809ae28a8dc8f">Example</h4>
+<h4 id="example-2:0e6ae5d019a4f974c32809ae28a8dc8f">Example</h4>
 
 <pre><code class="language-javascript">var CounterStore = Cape.createDataStoreClass({
   init: function() {
