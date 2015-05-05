@@ -275,6 +275,114 @@
         </header>
         <div>
           
+
+<p><a href="#constructor">Constructor</a> -
+<a href="#attach">#attach()</a> -
+<a href="#detach">#detach()</a> -
+<a href="#propagate">#propagate()</a></p>
+
+<p><a class="anchor" id="constructor"></a></p>
+
+<h3 id="constructor:0e6ae5d019a4f974c32809ae28a8dc8f">Constructor</h3>
+
+<p>The <code>Cape.DataStore</code> constructor takes no argument and calls its <code>#init</code> method
+if defined.</p>
+
+<h4 id="example:0e6ae5d019a4f974c32809ae28a8dc8f">Example</h4>
+
+<pre><code class="language-javascript">var CounterStore = Cape.createDataStoreClass({
+  init: function() {
+    this.counter = 0;
+  },
+  increment: function() {
+    this.counter++;
+    this.propagate();
+  }
+});
+
+var cs = new CounterStore();
+// cs.counter === 0
+</code></pre>
+
+<p><a class="anchor" id="attach"></a></p>
+
+<h3 id="attach:0e6ae5d019a4f974c32809ae28a8dc8f">#attach()</h3>
+
+<h4 id="usage:0e6ae5d019a4f974c32809ae28a8dc8f">Usage</h4>
+
+<ul>
+<li><strong>attach(component)</strong></li>
+</ul>
+
+<p>This method registers the <em>component</em> as a target of <em>propagation</em> from this data store.</p>
+
+<p>See <a href="#propagate">#propagate()</a> for details.</p>
+
+<p><a class="anchor" id="detach"></a></p>
+
+<h3 id="detach:0e6ae5d019a4f974c32809ae28a8dc8f">#detach()</h3>
+
+<h4 id="usage-1:0e6ae5d019a4f974c32809ae28a8dc8f">Usage</h4>
+
+<ul>
+<li><strong>detach(component)</strong></li>
+</ul>
+
+<p>This method removes the <em>component</em> from the list of targets of <em>propagation</em> from this data store.</p>
+
+<p>See <a href="#propagate">#propagate()</a> for details.</p>
+
+<p><a class="anchor" id="propagate"></a></p>
+
+<h3 id="propagate:0e6ae5d019a4f974c32809ae28a8dc8f">#propagate()</h3>
+
+<h4 id="usage-2:0e6ae5d019a4f974c32809ae28a8dc8f">Usage</h4>
+
+<ul>
+<li><strong>propagate()</strong></li>
+</ul>
+
+<p>This method triggars the <em>propagation</em> process, which calls the <code>#refresh()</code> method
+of all components registerd as targets of <em>propagation</em> of this data store.</p>
+
+<p>Eventually, the <code>#refresh</code> method of each component calls its <code>#render()</code> method,
+which has to be defined by developers.</p>
+
+<p>Thus, we can assure that each time the data of a data store changes,
+its all dependent components get refreshed.</p>
+
+<h4 id="example-1:0e6ae5d019a4f974c32809ae28a8dc8f">Example</h4>
+
+<pre><code class="language-javascript">var CounterStore = Cape.createDataStoreClass({
+  init: function() {
+    this.counter = 0;
+  },
+  increment: function() {
+    this.counter++;
+    this.propagate();
+  }
+});
+
+var ClickCounter = Cape.createComponentClass({
+  render: function(m) {
+    m.div(String(this.ds.counter),
+      { onclick: function(e) { this.ds.increment() } })
+  }
+})
+
+var ds = new CounterStore();
+var comp1 = new ClickCounter();
+var comp2 = new ClickCounter();
+
+comp1.ds = ds;
+comp2.ds = ds;
+ds.attach(comp1);
+ds.attach(comp2);
+
+comp1.mount('counter1');
+comp2.mount('counter2');
+</code></pre>
+
         </div>
       </article>
     </div>
