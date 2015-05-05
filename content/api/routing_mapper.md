@@ -416,9 +416,9 @@ router.draw(function(m) {
 
 #### Usage
 
-* **collection(name)**
+* **view(name)**
 
-Adds a *collection* route (a route which deals with multiple items).
+Adds a custom route to a singular resource.
 
 #### Example
 
@@ -431,6 +431,6 @@ router.draw(function(m) {
 })
 ```
 
-This defines a route from `account/image` to `Articles.Image`.
+This defines a route from `account/image` to `Account.Image`.
 
 The `#view()` method must be called within a block that defines a singular resource.
