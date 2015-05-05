@@ -44,7 +44,13 @@ console.log(router.action); // => "edit"
 <a class="anchor" id="attach"></a>
 ### #attach()
 
-This section is not yet prepared.
+#### Usage
+
+* **attach(component)**
+
+This method register the *component* as the target of *notification* from this router.
+
+See [#notify()](#notify) for details.
 
 <a class="anchor" id="before-navigation"></a>
 ### #beforeNavigation()
@@ -96,7 +102,14 @@ console.log(router.container); // => "admin.articles"
 <a class="anchor" id="detach"></a>
 ### #detach()
 
-This section is not yet prepared.
+#### Usage
+
+* **detach(component)**
+
+This method removes the _component_ from the list of targets of _notification_ from this router.
+
+See [#notify()](#notify) for details.
+
 
 <a class="anchor" id="draw"></a>
 ### #draw()
@@ -156,7 +169,18 @@ This section is not yet prepared.
 <a class="anchor" id="notify"></a>
 ### #notify()
 
-This section is not yet prepared.
+
+#### Usage
+
+* **notify()**
+
+This method triggars the _notification_ process, which calls the `#refresh()` method
+of all components registerd as targets of _notification_ of this data store.
+
+Eventually, the `#refresh` method of each component calls its `#render()` method,
+which has to be defined by developers.
+
+This method is executed after each time the [#navigate()](#navigate) method is called.
 
 <a class="anchor" id="mount"></a>
 ### #mount()
