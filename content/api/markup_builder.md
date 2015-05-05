@@ -783,12 +783,83 @@ render: function(m) {
 <a class="anchor" id="radio-button"></a>
 ### #radioButton()
 
-*Not yet written.*
+
+#### Usage
+
+* **radioButton(name, value[, options])**
+
+Create a `<input type="radio">` tag tailored for form manipulation.
+Its first argument is the base of `name` attribute value.
+If the surrounding `<form>` tag has a name `"user"`,
+then the `name` attribute becomes `"user.name"`.
+
+The second argument becomes the value of this radio button.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('user', function(m) {
+    m.label('A', function(m) {
+      m.radioButton('plan', 'a');
+    })
+    m.label('B', function(m) {
+      m.radioButton('plan', 'b');
+    })
+    m.label('C', function(m) {
+      m.radioButton('plan', 'c');
+    })
+  });
+  // The above code generates the following HTML tags:
+  //   <form name="user">
+  //     <label>
+  //       <input type="radio" name="user.plan"
+  //         id="user-field-plan-a" value="a">A
+  //     </label>
+  //     <label>
+  //       <input type="radio" name="user.plan"
+  //         id="user-field-plan-b" value="b">B
+  //     </label>
+  //     <label>
+  //       <input type="radio" name="user.plan"
+  //         id="user-field-plan-c" value="c">C
+  //     </label>
+  //   </form>
+}
+```
+
 
 <a class="anchor" id="select-box"></a>
 ### #selectBox()
 
-*Not yet written.*
+* **selectBox(name, [options,] callback)**
+
+Create a `<select>` tag tailored for form manipulation.
+Its first argument is the base of `name` attribute value.
+If the surrounding `<form>` tag has a name `"user"`,
+then the `name` attribute becomes `"user.name"`.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('user', function(m) {
+    m.selectBox('plan', function(m) {
+      m.option('A', { value: 'a' });
+      m.option('B', { value: 'b' });
+      m.option('C', { value: 'c' });
+    })
+  });
+  // The above code generates the following HTML tags:
+  //   <form name="user">
+  //      <select name="plan" id="user-field-plan">
+  //        <option value="a">A</option>
+  //        <option value="b">B</option>
+  //        <option value="c">C</option>
+  //      </select>
+  //   </form>
+}
+```
 
 <a class="anchor" id="sp"></a>
 ### #sp()
@@ -850,9 +921,59 @@ render: function(m) {
 <a class="anchor" id="textarea-field"></a>
 ### #textareaField()
 
-*Not yet written.*
+#### Usage
+
+* **textField(name, [options,] function)**
+
+Create a `<input type="text">` tag tailored for form manipulation.
+Its first argument is the base of `name` attribute value.
+If the surrounding `<form>` tag has a name `"user"`,
+then the `name` attribute becomes `"user.name"`.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('user', function(m) {
+    m.labelFor('remarks', 'Remarks').br();
+    m.textareaField('remarks');
+  });
+  // The above code generates the following HTML tags:
+  //   <form name="user">
+  //     <label for="user-field-remarks">
+  //       Remarks</label><br />
+  //     <textarea name="user.remarks"
+  //       id="user-field-remarks"></textarea>
+  //   </form>
+}
+```
 
 <a class="anchor" id="text-field"></a>
 ### #textField()
 
-*Not yet written.*
+#### Usage
+
+* **textField(name, [options,] function)**
+
+Create a `<input type="text">` tag tailored for form manipulation.
+Its first argument is the base of `name` attribute value.
+If the surrounding `<form>` tag has a name `"user"`,
+then the `name` attribute becomes `"user.name"`.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('user', function(m) {
+    m.labelFor('login_name', 'Login Name').sp();
+    m.textField('login_name');
+  });
+  // The above code generates the following HTML tags:
+  //   <form name="user">
+  //     <label for="user-field-login-name">
+  //       Login Name</label>
+  //     <input type="text" name="user.login_name"
+  //       id="user-field-login-name">
+  //   </form>
+}
+```
