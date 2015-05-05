@@ -198,7 +198,9 @@ according to the routing table.
 When this component is different from the component mounted currently,
 it unmounts the latter and mount the former.
 
-Then, the `#notify()` method is executed.
+Lastly, the `#notify()` method is executed.
+
+If you don't want the `#notify()` method to be executed, use [#show()](#show) instead.
 
 <a class="anchor" id="notify"></a>
 ### #notify()
@@ -211,10 +213,10 @@ Then, the `#notify()` method is executed.
 This method triggars the _notification_ process, which calls the `#refresh()` method
 of all components registerd as targets of _notification_ of this data store.
 
-Eventually, the `#refresh` method of each component calls its `#render()` method,
+Eventually, each target component executes its `#render()` method,
 which has to be defined by developers.
 
-This method is executed after each time the [#navigate()](#navigate) method is called.
+The `#notify()` method is executed after each time the [#navigate()](#navigate) method is called.
 
 <a class="anchor" id="mount"></a>
 ### #mount()
