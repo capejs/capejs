@@ -489,7 +489,9 @@ according to the routing table.</p>
 <p>When this component is different from the component mounted currently,
 it unmounts the latter and mount the former.</p>
 
-<p>Then, the <code>#notify()</code> method is executed.</p>
+<p>Lastly, the <code>#notify()</code> method is executed.</p>
+
+<p>If you don&rsquo;t want the <code>#notify()</code> method to be executed, use <a href="#show">#show()</a> instead.</p>
 
 <p><a class="anchor" id="notify"></a></p>
 
@@ -504,10 +506,10 @@ it unmounts the latter and mount the former.</p>
 <p>This method triggars the <em>notification</em> process, which calls the <code>#refresh()</code> method
 of all components registerd as targets of <em>notification</em> of this data store.</p>
 
-<p>Eventually, the <code>#refresh</code> method of each component calls its <code>#render()</code> method,
+<p>Eventually, each target component executes its <code>#render()</code> method,
 which has to be defined by developers.</p>
 
-<p>This method is executed after each time the <a href="#navigate">#navigate()</a> method is called.</p>
+<p>The <code>#notify()</code> method is executed after each time the <a href="#navigate">#navigate()</a> method is called.</p>
 
 <p><a class="anchor" id="mount"></a></p>
 

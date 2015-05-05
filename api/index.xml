@@ -1693,7 +1693,9 @@ according to the routing table.&lt;/p&gt;
 &lt;p&gt;When this component is different from the component mounted currently,
 it unmounts the latter and mount the former.&lt;/p&gt;
 
-&lt;p&gt;Then, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
+&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
+
+&lt;p&gt;If you don&amp;rsquo;t want the &lt;code&gt;#notify()&lt;/code&gt; method to be executed, use &lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; instead.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;notify&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1708,10 +1710,10 @@ it unmounts the latter and mount the former.&lt;/p&gt;
 &lt;p&gt;This method triggars the &lt;em&gt;notification&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
 of all components registerd as targets of &lt;em&gt;notification&lt;/em&gt; of this data store.&lt;/p&gt;
 
-&lt;p&gt;Eventually, the &lt;code&gt;#refresh&lt;/code&gt; method of each component calls its &lt;code&gt;#render()&lt;/code&gt; method,
+&lt;p&gt;Eventually, each target component executes its &lt;code&gt;#render()&lt;/code&gt; method,
 which has to be defined by developers.&lt;/p&gt;
 
-&lt;p&gt;This method is executed after each time the &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method is called.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;#notify()&lt;/code&gt; method is executed after each time the &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method is called.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
