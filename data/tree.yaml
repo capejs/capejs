@@ -213,8 +213,14 @@ api_pages:
     showSections: true
     sections:
       -
+        id: constructor
+        title: "Constructor"
+      -
         id: attach
         title: "#attach()"
+      -
+        id: create
+        title: ".create()"
       -
         id: detach
         title: "#detach()"

@@ -58,7 +58,6 @@ var TodoItemStore = Cape.createDataStoreClass({
       { title: 'Foo', done: false },
       { title: 'Bar', done: true }
     ];
-    this.propagate();
   },
   addItem: function(title) {
     this.items.push({ title: title, done: false });
@@ -80,7 +79,6 @@ class TodoItemStore extends Cape.DataStore {
       { title: 'Foo', done: false },
       { title: 'Bar', done: true }
     ];
-    this.propagate();
   }
   addItem(title) {
     this.items.push({ title: title, done: false });

@@ -12,6 +12,7 @@ title: "Cape.DataStore - API Reference"
 
 The `Cape.DataStore` constructor takes no argument and calls its `#init` method
 if defined.
+
 #### Example
 
 ```javascript
@@ -29,6 +30,8 @@ var cs = new CounterStore();
 // cs.counter === 0
 ```
 
+See also [Cape.createDataStoreClass](../cape/#create-data-store-class).
+
 <a class="anchor" id="attach"></a>
 ### #attach()
 
@@ -40,6 +43,30 @@ This method registers the _component_ as a target of _propagation_ from this dat
 
 See [#propagate()](#propagate) for details.
 
+
+<a class="anchor" id="create"></a>
+### .create()
+
+This class method returns a singleton object of this Class.
+
+
+#### Example
+
+```javascript
+var CounterStore = Cape.createDataStoreClass({
+  init: function() {
+    this.counter = 0;
+  },
+  increment: function() {
+    this.counter++;
+    this.propagate();
+  }
+});
+
+var cs1 = CounterStore.create();
+var cs2 = CounterStore.create();
+// cs1 === cs2
+```
 
 <a class="anchor" id="detach"></a>
 ### #detach()
