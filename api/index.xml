@@ -2154,7 +2154,7 @@ on the parameters, which are specified by regular expression string.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
   m.page(&#39;blog/:year/:month&#39;, &#39;blog.articles&#39;,
-    { year: &#39;201\\d&#39;, month: &#39;(:?0[1-9]|11|12)&#39; });
+    { year: &#39;201\\d&#39;, month: &#39;(:?0[1-9]|1[012])&#39; });
 })
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -2165,13 +2165,47 @@ router.draw(function(m) {
 
 &lt;h3 id=&#34;root:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#root()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-12:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;root(componentClassPath)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines a route from &amp;ldquo;&amp;rdquo; to &lt;em&gt;componentClassPath.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-10:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  root(&#39;Dashboard&#39;)
+})
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;view&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;view:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#view()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-13:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;collection(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds a &lt;em&gt;collection&lt;/em&gt; route (a route which deals with multiple items).&lt;/p&gt;
+
+&lt;h4 id=&#34;example-11:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;, function(m) {
+    m.view &#39;image&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;account/image&lt;/code&gt; to &lt;code&gt;Articles.Image&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;#view()&lt;/code&gt; method must be called within a block that defines a singular resource.&lt;/p&gt;
 </description>
     </item>
     

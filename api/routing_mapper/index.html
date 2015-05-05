@@ -681,7 +681,7 @@ on the parameters, which are specified by regular expression string.</p>
 <pre><code class="language-javascript">var router = new Cape.Router();
 router.draw(function(m) {
   m.page('blog/:year/:month', 'blog.articles',
-    { year: '201\\d', month: '(:?0[1-9]|11|12)' });
+    { year: '201\\d', month: '(:?0[1-9]|1[012])' });
 })
 </code></pre>
 
@@ -692,13 +692,47 @@ router.draw(function(m) {
 
 <h3 id="root:ae7ef07c676989612e8905eb7075ea67">#root()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage-12:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>root(componentClassPath)</strong></li>
+</ul>
+
+<p>Defines a route from &ldquo;&rdquo; to <em>componentClassPath.</em></p>
+
+<h4 id="example-10:ae7ef07c676989612e8905eb7075ea67">Example</h4>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  root('Dashboard')
+})
+</code></pre>
 
 <p><a class="anchor" id="view"></a></p>
 
 <h3 id="view:ae7ef07c676989612e8905eb7075ea67">#view()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage-13:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>collection(name)</strong></li>
+</ul>
+
+<p>Adds a <em>collection</em> route (a route which deals with multiple items).</p>
+
+<h4 id="example-11:ae7ef07c676989612e8905eb7075ea67">Example</h4>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account', function(m) {
+    m.view 'image'
+  });
+})
+</code></pre>
+
+<p>This defines a route from <code>account/image</code> to <code>Articles.Image</code>.</p>
+
+<p>The <code>#view()</code> method must be called within a block that defines a singular resource.</p>
 
         </div>
       </article>

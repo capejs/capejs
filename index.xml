@@ -9,272 +9,6 @@
     <atom:link href="http://oiax.github.io/capejs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Cape - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/cape/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/cape/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#create-component-class&#34;&gt;Cape.createComponentClass&lt;/a&gt; -
-&lt;a href=&#34;#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt; -
-&lt;a href=&#34;#deep-extend&#34;&gt;Cape.deepExtend&lt;/a&gt; -
-&lt;a href=&#34;#extend&#34;&gt;Cape.extend&lt;/a&gt; -
-&lt;a href=&#34;#merge&#34;&gt;Cape.merge&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-createcomponentclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createComponentClass&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cape.createComponentClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Create a class extending &lt;code&gt;Cape.Component&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;example:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var HelloMessage = Cape.createComponentClass({
-  render: function(m) {
-    m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With ECMAScript 6 syntax, you can write the above as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class HelloMessage extends Cape.Component {
-  render(m) {
-    m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-createdatastoreclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createDataStoreClass&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cape.createDataStoreClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Create a class extending &lt;code&gt;Cape.DataStore&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [
-      { title: &#39;Foo&#39;, done: false },
-      { title: &#39;Bar&#39;, done: true }
-    ];
-  },
-  addItem: function(title) {
-    this.items.push({ title: title, done: false });
-    this.propagate();
-  },
-  toggle: function(item) {
-    item.done = !item.done;
-    this.propagate();
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With ECMAScript 6 syntax, you can write the above as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class TodoItemStore extends Cape.DataStore {
-  init() {
-    this.items = [
-      { title: &#39;Foo&#39;, done: false },
-      { title: &#39;Bar&#39;, done: true }
-    ];
-  }
-  addItem(title) {
-    this.items.push({ title: title, done: false });
-    this.propagate();
-  }
-  toggle(item) {
-    item.done = !item.done;
-    this.propagate();
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;deep-extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-deepextend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.deepExtend&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Merge the properties of two or more objects together into the first object recursively.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var object1 = {
-  apple: 0,
-  banana: { weight: 52, price: 100 },
-  cherry: 97
-};
-var object2 = {
-  banana: { price: 200 },
-  durian: 100
-};
-
-Cape.extend(object1, object2);
-
-// [Result]
-//
-// object1 =&amp;gt; {
-//   apple: 0,
-//   banana: { weight: 52, price: 200 },
-//   cherry: 97,
-//   durian: 100
-// }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-extend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.extend&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Merge the properties of two or more objects together into the first object.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var object1 = {
-  apple: 0,
-  banana: { weight: 52, price: 100 },
-  cherry: 97
-};
-var object2 = {
-  banana: { price: 200 },
-  durian: 100
-};
-
-Cape.extend(object1, object2);
-
-// [Result]
-//
-// object1 =&amp;gt; {
-//   apple: 0,
-//   banana: { price: 200 },
-//   cherry: 97,
-//   durian: 100
-// }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;merge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-merge:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.merge&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cape.merge(target&lt;em&gt;[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Merge (but not override) the properties of two or more objects together
-into the first object&lt;/p&gt;
-
-&lt;h4 id=&#34;example-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var object1 = {
-  apple: 0,
-  banana: { weight: 52, price: 100 },
-  cherry: 97
-};
-var object2 = {
-  apple: 2,
-  banana: { price: 200 },
-  durian: 100
-};
-
-Cape.extend(object1, object2);
-
-// [Result]
-//
-// object1 =&amp;gt; {
-//   apple: 0,
-//   banana: { weight: 52, price: 100 },
-//   cherry: 97,
-//   durian: 100
-// }
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>API Reference</title>
-      <link>http://oiax.github.io/capejs/api/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt; -
-&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt; -
-&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt; -
-&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt; -
-&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
-&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;the-cape-object:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;The &lt;code&gt;Cape&lt;/code&gt; object&lt;/h3&gt;
-
-&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; defines a single global variable &lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt;.
-It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, etc.&lt;/p&gt;
-
-&lt;h3 id=&#34;overview-of-classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Overview of classes&lt;/h3&gt;
-
-&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; consists of following five classes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These classes are defined as properties of the &lt;code&gt;Cape&lt;/code&gt; object.&lt;/p&gt;
-
-&lt;p&gt;The most basic class is &lt;code&gt;Cape.Component&lt;/code&gt;.
-You need to define a class extending it in order to create a web widget using Cape.JS.
-At least, instances of this class must have a method called &lt;code&gt;render&lt;/code&gt;, which defines
-how the component should be rendered in HTML.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; is a class whose instances build &lt;em&gt;virtual dom trees.&lt;/em&gt;
-Usually you don&amp;rsquo;t instantiate markup builders by yourself.
-Instances of &lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; are passed to the &lt;code&gt;render&lt;/code&gt; method of
-component classes.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
-components to render themselves.&lt;/p&gt;
-
-&lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
-After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
-and mount components according to the &lt;em&gt;routes&lt;/em&gt;
-(associations between hashes and components) which you defined in advance.&lt;/p&gt;
-
-&lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
-You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
-method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Cape.Component - API Reference</title>
       <link>http://oiax.github.io/capejs/api/component/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -552,6 +286,214 @@ this method sets the value of corresponding fields.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Cape - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/cape/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/cape/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#create-component-class&#34;&gt;Cape.createComponentClass&lt;/a&gt; -
+&lt;a href=&#34;#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt; -
+&lt;a href=&#34;#deep-extend&#34;&gt;Cape.deepExtend&lt;/a&gt; -
+&lt;a href=&#34;#extend&#34;&gt;Cape.extend&lt;/a&gt; -
+&lt;a href=&#34;#merge&#34;&gt;Cape.merge&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-createcomponentclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createComponentClass&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.createComponentClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a class extending &lt;code&gt;Cape.Component&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With ECMAScript 6 syntax, you can write the above as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class HelloMessage extends Cape.Component {
+  render(m) {
+    m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-createdatastoreclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createDataStoreClass&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.createDataStoreClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a class extending &lt;code&gt;Cape.DataStore&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+  },
+  addItem: function(title) {
+    this.items.push({ title: title, done: false });
+    this.propagate();
+  },
+  toggle: function(item) {
+    item.done = !item.done;
+    this.propagate();
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With ECMAScript 6 syntax, you can write the above as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class TodoItemStore extends Cape.DataStore {
+  init() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+  }
+  addItem(title) {
+    this.items.push({ title: title, done: false });
+    this.propagate();
+  }
+  toggle(item) {
+    item.done = !item.done;
+    this.propagate();
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;deep-extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-deepextend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.deepExtend&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Merge the properties of two or more objects together into the first object recursively.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var object1 = {
+  apple: 0,
+  banana: { weight: 52, price: 100 },
+  cherry: 97
+};
+var object2 = {
+  banana: { price: 200 },
+  durian: 100
+};
+
+Cape.extend(object1, object2);
+
+// [Result]
+//
+// object1 =&amp;gt; {
+//   apple: 0,
+//   banana: { weight: 52, price: 200 },
+//   cherry: 97,
+//   durian: 100
+// }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-extend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.extend&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Merge the properties of two or more objects together into the first object.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var object1 = {
+  apple: 0,
+  banana: { weight: 52, price: 100 },
+  cherry: 97
+};
+var object2 = {
+  banana: { price: 200 },
+  durian: 100
+};
+
+Cape.extend(object1, object2);
+
+// [Result]
+//
+// object1 =&amp;gt; {
+//   apple: 0,
+//   banana: { price: 200 },
+//   cherry: 97,
+//   durian: 100
+// }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;merge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-merge:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.merge&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.merge(target&lt;em&gt;[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Merge (but not override) the properties of two or more objects together
+into the first object&lt;/p&gt;
+
+&lt;h4 id=&#34;example-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var object1 = {
+  apple: 0,
+  banana: { weight: 52, price: 100 },
+  cherry: 97
+};
+var object2 = {
+  apple: 2,
+  banana: { price: 200 },
+  durian: 100
+};
+
+Cape.extend(object1, object2);
+
+// [Result]
+//
+// object1 =&amp;gt; {
+//   apple: 0,
+//   banana: { weight: 52, price: 100 },
+//   cherry: 97,
+//   durian: 100
+// }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Cape.DataStore - API Reference</title>
       <link>http://oiax.github.io/capejs/api/data_store/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -690,6 +632,64 @@ ds.attach(comp2);
 comp1.mount(&#39;counter1&#39;);
 comp2.mount(&#39;counter2&#39;);
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>API Reference</title>
+      <link>http://oiax.github.io/capejs/api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt; -
+&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt; -
+&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt; -
+&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt; -
+&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
+&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;the-cape-object:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;The &lt;code&gt;Cape&lt;/code&gt; object&lt;/h3&gt;
+
+&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; defines a single global variable &lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt;.
+It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, etc.&lt;/p&gt;
+
+&lt;h3 id=&#34;overview-of-classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Overview of classes&lt;/h3&gt;
+
+&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; consists of following five classes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These classes are defined as properties of the &lt;code&gt;Cape&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;p&gt;The most basic class is &lt;code&gt;Cape.Component&lt;/code&gt;.
+You need to define a class extending it in order to create a web widget using Cape.JS.
+At least, instances of this class must have a method called &lt;code&gt;render&lt;/code&gt;, which defines
+how the component should be rendered in HTML.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; is a class whose instances build &lt;em&gt;virtual dom trees.&lt;/em&gt;
+Usually you don&amp;rsquo;t instantiate markup builders by yourself.
+Instances of &lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; are passed to the &lt;code&gt;render&lt;/code&gt; method of
+component classes.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
+components to render themselves.&lt;/p&gt;
+
+&lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
+After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
+and mount components according to the &lt;em&gt;routes&lt;/em&gt;
+(associations between hashes and components) which you defined in advance.&lt;/p&gt;
+
+&lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
+You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
+method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2154,7 +2154,7 @@ on the parameters, which are specified by regular expression string.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
   m.page(&#39;blog/:year/:month&#39;, &#39;blog.articles&#39;,
-    { year: &#39;201\\d&#39;, month: &#39;(:?0[1-9]|11|12)&#39; });
+    { year: &#39;201\\d&#39;, month: &#39;(:?0[1-9]|1[012])&#39; });
 })
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -2165,13 +2165,47 @@ router.draw(function(m) {
 
 &lt;h3 id=&#34;root:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#root()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-12:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;root(componentClassPath)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines a route from &amp;ldquo;&amp;rdquo; to &lt;em&gt;componentClassPath.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-10:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  root(&#39;Dashboard&#39;)
+})
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;view&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;view:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#view()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-13:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;collection(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds a &lt;em&gt;collection&lt;/em&gt; route (a route which deals with multiple items).&lt;/p&gt;
+
+&lt;h4 id=&#34;example-11:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;, function(m) {
+    m.view &#39;image&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;account/image&lt;/code&gt; to &lt;code&gt;Articles.Image&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;#view()&lt;/code&gt; method must be called within a block that defines a singular resource.&lt;/p&gt;
 </description>
     </item>
     
@@ -2733,24 +2767,105 @@ within the definition of &lt;code&gt;SimpleForm&lt;/code&gt; class.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Tutorials and Demos</title>
-      <link>http://oiax.github.io/capejs/tutorials/</link>
+      <title>Index</title>
+      <link>http://oiax.github.io/capejs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/tutorials/</guid>
+      <guid>http://oiax.github.io/capejs/</guid>
       <description>
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;setting-up-rails-with-capejs&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;what-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;setting-up-rails-with-cape-js:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Setting up Rails with Cape.JS&lt;/h3&gt;
+&lt;h2 id=&#34;what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Cape.JS?&lt;/h2&gt;
 
-&lt;p&gt;This tutorial has not been written yet.&lt;/p&gt;
+&lt;p&gt;Cape.JS is a lightweight JavaScript UI framework with following features:&lt;/p&gt;
 
-&lt;p&gt;At &lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;,
-you can find a demo Cape.JS application built upon the Ruby on Rails.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Full stack:&lt;/strong&gt; You can build &lt;em&gt;single-page applications&lt;/em&gt; (SPAs) with Cape.JS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modular:&lt;/strong&gt; You can place &lt;em&gt;web widgets&lt;/em&gt; built by Cape.JS to your static web sites.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Virtual DOM:&lt;/strong&gt; Cape.JS takes advantage of
+&lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+of Matt-Esch for high performance rendering.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Markup builder:&lt;/strong&gt; The &lt;em&gt;markup builder&lt;/em&gt; helps you to construct HTML DOM trees
+with its simple, easy to learn syntax.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Form manipulation:&lt;/strong&gt; You can get or set the value of form fields
+without &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data stores:&lt;/strong&gt; Using &lt;em&gt;data stores&lt;/em&gt;, you can build web applications
+with &lt;em&gt;unidirectional data flow.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Router:&lt;/strong&gt; You can define &lt;em&gt;routes&lt;/em&gt; with a DSL (domain specific language)
+similar to that of Ruby on Rails.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Reading through its source code, you will learn how to integrate
-a Rails app with Cape.JS and organize your JavaScript files.&lt;/p&gt;
+&lt;p&gt;The architecture and terminology of Cape.JS are strongly influenced by
+&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;,
+&lt;a href=&#34;https://github.com/muut/riotjs&#34;&gt;Riot&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+and &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;installation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;installation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;If you just want to use Cape.JS in your web site, insert the following snippet
+to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.7/dist/cape.min.js&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can get the package for &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm install capejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can get the package for &lt;a href=&#34;http://bower.io/&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bower install capejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;faq&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;faq:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;FAQ&lt;/h2&gt;
+
+&lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
+
+&lt;p&gt;The official name is &lt;strong&gt;Cape.JS.&lt;/strong&gt;
+Its package name for &lt;a href=&#34;https://www.npmjs.com&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+and &lt;a href=&#34;http://bower.io&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; is &lt;strong&gt;capejs&lt;/strong&gt; (without the dot).&lt;/p&gt;
+
+&lt;p&gt;At the very initial phase of development, we called it &amp;ldquo;CapeJS&amp;rdquo;, but
+we don&amp;rsquo;t use it anymore.&lt;/p&gt;
+
+&lt;h3 id=&#34;is-it-production-ready:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it production ready?&lt;/h3&gt;
+
+&lt;p&gt;Not yet. We adopt &lt;a href=&#34;http://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; for Cape.JS.
+According to this system, major version (0.y.z) zero is for initial development.
+We have released the version 1.0.0-beta.x, but the public API of Cape.JS should
+not be considered stable.&lt;/p&gt;
+
+&lt;h3 id=&#34;which-browsers-are-supported:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Which browsers are supported?&lt;/h3&gt;
+
+&lt;p&gt;We test Cape.JS on Internet Explorer 11 and the latest versions of Chrome, Firefox and Safari.&lt;/p&gt;
+
+&lt;p&gt;Note that we have no plan to support the Internet Explorer 8, 9, and 10.&lt;/p&gt;
+
+&lt;h3 id=&#34;how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How can I contribute?&lt;/h3&gt;
+
+&lt;p&gt;The Cape.JS is an open source project. Everyone can help.
+See &lt;a href=&#34;https://github.com/oiax/capejs/CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt;
+&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;for details.&lt;/p&gt;
+
+&lt;h2 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h2&gt;
+
+&lt;p&gt;The logo of Cape.JS is created by
+&lt;a href=&#34;https://github.com/junya-suzuki&#34;&gt;Junya Suzuki&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;trademarks&#34;&gt;Trademarks&lt;/h2&gt;
+
+&lt;p&gt;&amp;ldquo;Cape.JS&amp;rdquo; and its logo are trademarks of Oiax Inc. All rights reserved.&lt;/p&gt;
+
+&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+
+&lt;p&gt;Cape.JS is released under
+&lt;a href=&#34;https://github.com/oiax/capejs/LICENSE&#34;&gt;the MIT License&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3378,105 +3493,24 @@ to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.
     </item>
     
     <item>
-      <title>Index</title>
-      <link>http://oiax.github.io/capejs/</link>
+      <title>Tutorials and Demos</title>
+      <link>http://oiax.github.io/capejs/tutorials/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/</guid>
+      <guid>http://oiax.github.io/capejs/tutorials/</guid>
       <description>
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;what-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;setting-up-rails-with-capejs&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Cape.JS?&lt;/h2&gt;
+&lt;h3 id=&#34;setting-up-rails-with-cape-js:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Setting up Rails with Cape.JS&lt;/h3&gt;
 
-&lt;p&gt;Cape.JS is a lightweight JavaScript UI framework with following features:&lt;/p&gt;
+&lt;p&gt;This tutorial has not been written yet.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Full stack:&lt;/strong&gt; You can build &lt;em&gt;single-page applications&lt;/em&gt; (SPAs) with Cape.JS.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Modular:&lt;/strong&gt; You can place &lt;em&gt;web widgets&lt;/em&gt; built by Cape.JS to your static web sites.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Virtual DOM:&lt;/strong&gt; Cape.JS takes advantage of
-&lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-of Matt-Esch for high performance rendering.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Markup builder:&lt;/strong&gt; The &lt;em&gt;markup builder&lt;/em&gt; helps you to construct HTML DOM trees
-with its simple, easy to learn syntax.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Form manipulation:&lt;/strong&gt; You can get or set the value of form fields
-without &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Data stores:&lt;/strong&gt; Using &lt;em&gt;data stores&lt;/em&gt;, you can build web applications
-with &lt;em&gt;unidirectional data flow.&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Router:&lt;/strong&gt; You can define &lt;em&gt;routes&lt;/em&gt; with a DSL (domain specific language)
-similar to that of Ruby on Rails.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;At &lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;,
+you can find a demo Cape.JS application built upon the Ruby on Rails.&lt;/p&gt;
 
-&lt;p&gt;The architecture and terminology of Cape.JS are strongly influenced by
-&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;,
-&lt;a href=&#34;https://github.com/muut/riotjs&#34;&gt;Riot&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-and &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;installation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;installation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Installation&lt;/h2&gt;
-
-&lt;p&gt;If you just want to use Cape.JS in your web site, insert the following snippet
-to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.7/dist/cape.min.js&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can get the package for &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ npm install capejs
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can get the package for &lt;a href=&#34;http://bower.io/&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ bower install capejs
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;faq&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;faq:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;FAQ&lt;/h2&gt;
-
-&lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
-
-&lt;p&gt;The official name is &lt;strong&gt;Cape.JS.&lt;/strong&gt;
-Its package name for &lt;a href=&#34;https://www.npmjs.com&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-and &lt;a href=&#34;http://bower.io&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; is &lt;strong&gt;capejs&lt;/strong&gt; (without the dot).&lt;/p&gt;
-
-&lt;p&gt;At the very initial phase of development, we called it &amp;ldquo;CapeJS&amp;rdquo;, but
-we don&amp;rsquo;t use it anymore.&lt;/p&gt;
-
-&lt;h3 id=&#34;is-it-production-ready:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it production ready?&lt;/h3&gt;
-
-&lt;p&gt;Not yet. We adopt &lt;a href=&#34;http://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; for Cape.JS.
-According to this system, major version (0.y.z) zero is for initial development.
-We have released the version 1.0.0-beta.x, but the public API of Cape.JS should
-not be considered stable.&lt;/p&gt;
-
-&lt;h3 id=&#34;which-browsers-are-supported:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Which browsers are supported?&lt;/h3&gt;
-
-&lt;p&gt;We test Cape.JS on Internet Explorer 11 and the latest versions of Chrome, Firefox and Safari.&lt;/p&gt;
-
-&lt;p&gt;Note that we have no plan to support the Internet Explorer 8, 9, and 10.&lt;/p&gt;
-
-&lt;h3 id=&#34;how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How can I contribute?&lt;/h3&gt;
-
-&lt;p&gt;The Cape.JS is an open source project. Everyone can help.
-See &lt;a href=&#34;https://github.com/oiax/capejs/CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt;
-&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;for details.&lt;/p&gt;
-
-&lt;h2 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h2&gt;
-
-&lt;p&gt;The logo of Cape.JS is created by
-&lt;a href=&#34;https://github.com/junya-suzuki&#34;&gt;Junya Suzuki&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;trademarks&#34;&gt;Trademarks&lt;/h2&gt;
-
-&lt;p&gt;&amp;ldquo;Cape.JS&amp;rdquo; and its logo are trademarks of Oiax Inc. All rights reserved.&lt;/p&gt;
-
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
-
-&lt;p&gt;Cape.JS is released under
-&lt;a href=&#34;https://github.com/oiax/capejs/LICENSE&#34;&gt;the MIT License&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+&lt;p&gt;Reading through its source code, you will learn how to integrate
+a Rails app with Cape.JS and organize your JavaScript files.&lt;/p&gt;
 </description>
     </item>
     
