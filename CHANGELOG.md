@@ -1,6 +1,6 @@
 # CHANGELOG - CapeJS
 
-## 1.0.0-beta.11 (Not yet released)
+## 1.0.0-beta.11 (May 5, 2015)
 
 ### `Cape.Component`
 

@@ -36,8 +36,6 @@ Cape.extend(Component.prototype, {
 
     if (this.init) this.init();
     else this.refresh();
-
-    if (this.afterMount) this.afterMount();
   },
   unmount: function() {
     if (!this._.mounted)
@@ -46,7 +44,6 @@ Cape.extend(Component.prototype, {
     this._.mounted = false;
 
     if (this.beforeUnmount) this.beforeUnmount();
-    if (global.Cape.router) global.Cape.router.detach(this);
     while (this.root.firstChild) this.root.removeChild(this.root.firstChild);
     if (this.afterUnmount) this.afterUnmount();
   },
@@ -241,6 +238,7 @@ var Cape = require('./utilities');
 //   _: the object that holds internal methods and properties of this class.
 var DataStore = function DataStore() {
   this._ = new _Internal(this);
+  if (typeof this.init === 'function') this.init();
 };
 
 DataStore.create = function() {
@@ -495,6 +493,18 @@ Cape.extend(MarkupBuilder.prototype, {
     options = options || {};
     attributes = this._.generateAttributes(options);
     this._.elements.push(this._.h('select', attributes, builder._.elements));
+    return this;
+  },
+  btn: function() {
+    var args, options, content, callback;
+
+    args = Array.prototype.slice.call(arguments);
+    content = this._.extractContent(args);
+    options = this._.extractOptions(args) || {};
+    callback = this._.extractCallback(args);
+
+    options.type = options.type || 'button';
+    this.elem('button', content, options, callback);
     return this;
   },
   attr: function(name, value) {
