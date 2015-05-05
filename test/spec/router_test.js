@@ -85,6 +85,28 @@ describe('Router', function() {
     })
   })
 
+  describe('stop', function() {
+    it('should unmount a component', function() {
+      var router, method;
+
+      window.HomePage = {};
+      window.HomePage.Index = function() {};
+      window.HomePage.Index.prototype.mount = function() {};
+      window.removeEventListener = sinon.spy();
+
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('', 'home_page.index');
+      })
+      router.mount('main');
+      router.start();
+      router.stop();
+
+      expect(window.removeEventListener.calledOnce).to.equal(true);
+    })
+  })
+
   describe('constructor', function() {
     it('should specify the root container of components', function() {
       var router, method;
@@ -308,6 +330,28 @@ describe('Router', function() {
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.component).to.equal('test_message');
+    })
+  })
+
+  describe('show', function() {
+    afterEach(function() {
+      window.TestMessage = undefined;
+    })
+
+    it('should mount the specified component', function() {
+      var router, method;
+
+      window.TestMessage = function() {};
+      window.TestMessage.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('hello', 'test_message');
+      })
+      router.mount('main');
+      router.show(window.TestMessage);
+
+      expect(method.calledWith('main')).to.equal(true);
     })
   })
 })
