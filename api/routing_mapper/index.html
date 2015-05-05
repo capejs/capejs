@@ -294,43 +294,399 @@
 
 <h3 id="collection:ae7ef07c676989612e8905eb7075ea67">#collection()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>collection(name)</strong></li>
+</ul>
+
+<p>Adds a <em>collection</em> route (a route which deals with multiple items).</p>
+
+<h4 id="example:ae7ef07c676989612e8905eb7075ea67">Example</h4>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', function(m) {
+    m.collection 'draft'
+  });
+})
+</code></pre>
+
+<p>This defines a route from <code>articles/draft</code> to <code>Articles.Draft</code>.</p>
+
+<p>The <code>#collection()</code> method must be called within a block that defines a plural resource.</p>
 
 <p><a class="anchor" id="namespace"></a></p>
 
 <h3 id="namespace:ae7ef07c676989612e8905eb7075ea67">#namespace()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage-1:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>namespace(name, function)</strong></li>
+</ul>
+
+<p>Introduces a <em>function</em> tha defines resources under the specified <em>namespace</em>.</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.namespace('admin', function(m) {
+    m.many('articles');
+  })
+})
+</code></pre>
+
+<p>The above code defines four routes. See the table below:</p>
+
+<table class="table">
+<tr>
+  <th>Hash pattern</th>
+  <th>Container</th>
+  <th>Component</th>
+  <th>Namespace</th>
+  <th>Resource</th>
+  <th>Action</th>
+</tr>
+<tr>
+  <td>admin/articles</td>
+  <td>Admin.Articles</td>
+  <td>List</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>index</td>
+</tr>
+<tr>
+  <td>admin/articles/:id</td>
+  <td>Admin.Articles</td>
+  <td>Item</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>show</td>
+</tr>
+<tr>
+  <td>admin/articles/new</td>
+  <td>Admin.Articles</td>
+  <td>Form</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>new</td>
+</tr>
+<tr>
+  <td>admin/articles/:id/edit</td>
+  <td>Admin.Articles</td>
+  <td>Form</td>
+  <td>admin</td>
+  <td>articles</td>
+  <td>edit</td>
+</tr>
+</table>
 
 <p><a class="anchor" id="new"></a></p>
 
 <h3 id="new:ae7ef07c676989612e8905eb7075ea67">#new()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage-2:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>new(name)</strong></li>
+</ul>
+
+<p>Adds an alternate <em>new</em> action to a resource, which can be plural or singular.</p>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account', function(m) {
+    m.new 'preview'
+  });
+  m.many('articles', function(m) {
+    m.new 'preview'
+  });
+})
+</code></pre>
+
+<p>This defines two routes:</p>
+
+<ul>
+<li>From <code>account/new/preview</code> to <code>Account.Preview</code>.</li>
+<li>From <code>articles/new/preview</code> to <code>Articles.Preview</code>.</li>
+</ul>
 
 <p><a class="anchor" id="many"></a></p>
 
 <h3 id="many:ae7ef07c676989612e8905eb7075ea67">#many()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage-3:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>many(name)</strong></li>
+</ul>
+
+<p>Defines four routes for a plural resource.</p>
+
+<h4 id="example-1:ae7ef07c676989612e8905eb7075ea67">Example</h4>
+
+<pre><code>var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles');
+})
+</code></pre>
+
+<p>The above code defines four routes. See the table below:</p>
+
+<table class="table">
+<tr>
+  <th>Hash pattern</th>
+  <th>Container</th>
+  <th>Component</th>
+  <th>Resource</th>
+  <th>Action</th>
+</tr>
+<tr>
+  <td>articles</td>
+  <td>Articles</td>
+  <td>List</td>
+  <td>articles</td>
+  <td>index</td>
+</tr>
+<tr>
+  <td>articles/:id</td>
+  <td>Articles</td>
+  <td>Item</td>
+  <td>articles</td>
+  <td>show</td>
+</tr>
+<tr>
+  <td>articles/new</td>
+  <td>Articles</td>
+  <td>Form</td>
+  <td>articles</td>
+  <td>new</td>
+</tr>
+<tr>
+  <td>articles/:id/edit</td>
+  <td>Articles</td>
+  <td>Form</td>
+  <td>articles</td>
+  <td>edit</td>
+</tr>
+</table>
+
+<h4 id="usage-4:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>many(name, { only: [ action1, action2, &hellip; ] })</strong></li>
+</ul>
+
+<p>Adds routes for <em>action1, action2, &hellip;</em> to a plural resource.
+The value of <em>action1, action2, &hellip;</em> must be &ldquo;index&rdquo;, &ldquo;show&rdquo;, &ldquo;new&rdquo; or &ldquo;edit&rdquo;.</p>
+
+<h4 id="example-2:ae7ef07c676989612e8905eb7075ea67">Example</h4>
+
+<pre><code>var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', { only: [ 'index', 'show' ] });
+})
+</code></pre>
+
+<p>This defines two routes:</p>
+
+<ul>
+<li>From <code>articles/</code> to <code>Articles.List</code>.</li>
+<li>From <code>articles/:id</code> to <code>Articles.Item</code>.</li>
+</ul>
+
+<h4 id="usage-5:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>many(name, { except: [ action1, action2, &hellip; ] })</strong></li>
+</ul>
+
+<p>Adds basic routes excepting <em>action1, action2, &hellip;</em> to a plural resource.
+The value of <em>action1, action2, &hellip;</em> must be &ldquo;index&rdquo;, &ldquo;show&rdquo;, &ldquo;new&rdquo; or &ldquo;edit&rdquo;.</p>
+
+<h4 id="example-3:ae7ef07c676989612e8905eb7075ea67">Example</h4>
+
+<pre><code>var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', { except: [ 'new', 'edit' ] });
+})
+</code></pre>
+
+<p>This defines two routes:</p>
+
+<ul>
+<li>From <code>articles/</code> to <code>Articles.List</code>.</li>
+<li>From <code>articles/:id</code> to <code>Articles.Item</code>.</li>
+</ul>
 
 <p><a class="anchor" id="member"></a></p>
 
 <h3 id="member:ae7ef07c676989612e8905eb7075ea67">#member()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage-6:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>member(name)</strong></li>
+</ul>
+
+<p>Adds a <em>member</em> route (a route which deals with a specific item).</p>
+
+<h4 id="example-4:ae7ef07c676989612e8905eb7075ea67">Example.</h4>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.many('articles', function(m) {
+    m.member 'info'
+  });
+})
+</code></pre>
+
+<p>This defines a route from <code>articles/:id/info</code> to <code>Articles.Info</code>.</p>
+
+<p>The <code>#member()</code> method must be called within a block that defines a plural resource.</p>
 
 <p><a class="anchor" id="one"></a></p>
 
 <h3 id="one:ae7ef07c676989612e8905eb7075ea67">#one()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage-7:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>one(name)</strong></li>
+</ul>
+
+<p>Defines four routes for a singular resource.</p>
+
+<h4 id="example-5:ae7ef07c676989612e8905eb7075ea67">Example</h4>
+
+<pre><code>var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account');
+})
+</code></pre>
+
+<p>The above code defines four routes. See the table below:</p>
+
+<table class="table">
+<tr>
+  <th>Hash pattern</th>
+  <th>Container</th>
+  <th>Component</th>
+  <th>Resource</th>
+  <th>Action</th>
+</tr>
+<tr>
+  <td>account</td>
+  <td>Account</td>
+  <td>Content</td>
+  <td>account</td>
+  <td>show</td>
+</tr>
+<tr>
+  <td>account/new</td>
+  <td>Account</td>
+  <td>Form</td>
+  <td>account</td>
+  <td>new</td>
+</tr>
+<tr>
+  <td>account/edit</td>
+  <td>Account</td>
+  <td>Form</td>
+  <td>account</td>
+  <td>edit</td>
+</tr>
+</table>
+
+<h4 id="usage-8:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>one(name, { only: [ action1, action2, &hellip; ] })</strong></li>
+</ul>
+
+<p>Adds routes for <em>action1, action2, &hellip;</em> to a singular resource.
+The value of <em>action1, action2, &hellip;</em> must be &ldquo;show&rdquo;, &ldquo;new&rdquo; or &ldquo;edit&rdquo;.</p>
+
+<h4 id="example-6:ae7ef07c676989612e8905eb7075ea67">Example</h4>
+
+<pre><code>var router = new Cape.Router();
+router.draw(function(m) {
+  m.new('account', { only: [ 'show' ] });
+})
+</code></pre>
+
+<p>This defines a route:</p>
+
+<ul>
+<li>From <code>account/</code> to <code>Account.Content</code>.</li>
+</ul>
+
+<h4 id="usage-9:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>one(name, { except: [ action1, action2, &hellip; ] })</strong></li>
+</ul>
+
+<p>Adds basic routes excepting <em>action1, action2, &hellip;</em> to a singular resource.
+The value of <em>action1, action2, &hellip;</em> must be &ldquo;show&rdquo;, &ldquo;new&rdquo; or &ldquo;edit&rdquo;.</p>
+
+<h4 id="example-7:ae7ef07c676989612e8905eb7075ea67">Example</h4>
+
+<pre><code>var router = new Cape.Router();
+router.draw(function(m) {
+  m.one('account', { except: [ 'new' ] });
+})
+</code></pre>
+
+<p>This defines two routes:</p>
+
+<ul>
+<li>From <code>account</code> to <code>Account.Content</code>.</li>
+<li>From <code>account/edit</code> to <code>Account.Form</code>.</li>
+</ul>
 
 <p><a class="anchor" id="page"></a></p>
 
 <h3 id="page:ae7ef07c676989612e8905eb7075ea67">#page()</h3>
 
-<p>This section is not yet prepared.</p>
+<h4 id="usage-10:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>page(hashPattern, componentClassPath)</strong></li>
+</ul>
+
+<p>Defines a route from <em>hashPattern</em> to <em>componentClassPath.</em></p>
+
+<h4 id="example-8:ae7ef07c676989612e8905eb7075ea67">Example</h4>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.page('dashboard', 'dashboard');
+  m.page('about', 'docs.about');
+  m.page('help/:name', 'docs.help');
+})
+</code></pre>
+
+<h4 id="usage-11:ae7ef07c676989612e8905eb7075ea67">Usage</h4>
+
+<ul>
+<li><strong>page(hashPattern, componentClassPath, constraints)</strong></li>
+</ul>
+
+<p>Defines a route from <em>hashPattern</em> to <em>componentClassPath</em> with constraints
+on the parameters, which are specified by regular expression string.</p>
+
+<h4 id="example-9:ae7ef07c676989612e8905eb7075ea67">Example</h4>
+
+<pre><code class="language-javascript">var router = new Cape.Router();
+router.draw(function(m) {
+  m.page('blog/:year/:month', 'blog.articles',
+    { year: '201\\d', month: '(:?0[1-9]|11|12)' });
+})
+</code></pre>
+
+<p>Note that you should put <code>:?</code> to make parentheses
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-non-capturing-parentheses">non-capturing parentheses</a> <i class="fa fa-external-link"></i>.</p>
 
 <p><a class="anchor" id="root"></a></p>
 

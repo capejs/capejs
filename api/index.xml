@@ -1767,43 +1767,399 @@ router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
 
 &lt;h3 id=&#34;collection:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#collection()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;collection(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds a &lt;em&gt;collection&lt;/em&gt; route (a route which deals with multiple items).&lt;/p&gt;
+
+&lt;h4 id=&#34;example:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;, function(m) {
+    m.collection &#39;draft&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;articles/draft&lt;/code&gt; to &lt;code&gt;Articles.Draft&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;#collection()&lt;/code&gt; method must be called within a block that defines a plural resource.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;namespace:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#namespace()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-1:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;namespace(name, function)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Introduces a &lt;em&gt;function&lt;/em&gt; tha defines resources under the specified &lt;em&gt;namespace&lt;/em&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  })
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above code defines four routes. See the table below:&lt;/p&gt;
+
+&lt;table class=&#34;table&#34;&gt;
+&lt;tr&gt;
+  &lt;th&gt;Hash pattern&lt;/th&gt;
+  &lt;th&gt;Container&lt;/th&gt;
+  &lt;th&gt;Component&lt;/th&gt;
+  &lt;th&gt;Namespace&lt;/th&gt;
+  &lt;th&gt;Resource&lt;/th&gt;
+  &lt;th&gt;Action&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;admin/articles&lt;/td&gt;
+  &lt;td&gt;Admin.Articles&lt;/td&gt;
+  &lt;td&gt;List&lt;/td&gt;
+  &lt;td&gt;admin&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;index&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;admin/articles/:id&lt;/td&gt;
+  &lt;td&gt;Admin.Articles&lt;/td&gt;
+  &lt;td&gt;Item&lt;/td&gt;
+  &lt;td&gt;admin&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;show&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;admin/articles/new&lt;/td&gt;
+  &lt;td&gt;Admin.Articles&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;admin&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;new&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;admin/articles/:id/edit&lt;/td&gt;
+  &lt;td&gt;Admin.Articles&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;admin&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;edit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;new&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;new:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#new()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-2:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;new(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds an alternate &lt;em&gt;new&lt;/em&gt; action to a resource, which can be plural or singular.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;, function(m) {
+    m.new &#39;preview&#39;
+  });
+  m.many(&#39;articles&#39;, function(m) {
+    m.new &#39;preview&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines two routes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From &lt;code&gt;account/new/preview&lt;/code&gt; to &lt;code&gt;Account.Preview&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;From &lt;code&gt;articles/new/preview&lt;/code&gt; to &lt;code&gt;Articles.Preview&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;many&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;many:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#many()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-3:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;many(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines four routes for a plural resource.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above code defines four routes. See the table below:&lt;/p&gt;
+
+&lt;table class=&#34;table&#34;&gt;
+&lt;tr&gt;
+  &lt;th&gt;Hash pattern&lt;/th&gt;
+  &lt;th&gt;Container&lt;/th&gt;
+  &lt;th&gt;Component&lt;/th&gt;
+  &lt;th&gt;Resource&lt;/th&gt;
+  &lt;th&gt;Action&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;Articles&lt;/td&gt;
+  &lt;td&gt;List&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;index&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;articles/:id&lt;/td&gt;
+  &lt;td&gt;Articles&lt;/td&gt;
+  &lt;td&gt;Item&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;show&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;articles/new&lt;/td&gt;
+  &lt;td&gt;Articles&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;new&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;articles/:id/edit&lt;/td&gt;
+  &lt;td&gt;Articles&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;edit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;usage-4:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;many(name, { only: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds routes for &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a plural resource.
+The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;index&amp;rdquo;, &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;, { only: [ &#39;index&#39;, &#39;show&#39; ] });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines two routes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From &lt;code&gt;articles/&lt;/code&gt; to &lt;code&gt;Articles.List&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;From &lt;code&gt;articles/:id&lt;/code&gt; to &lt;code&gt;Articles.Item&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;usage-5:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;many(name, { except: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds basic routes excepting &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a plural resource.
+The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;index&amp;rdquo;, &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-3:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;, { except: [ &#39;new&#39;, &#39;edit&#39; ] });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines two routes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From &lt;code&gt;articles/&lt;/code&gt; to &lt;code&gt;Articles.List&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;From &lt;code&gt;articles/:id&lt;/code&gt; to &lt;code&gt;Articles.Item&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;member:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#member()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-6:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;member(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds a &lt;em&gt;member&lt;/em&gt; route (a route which deals with a specific item).&lt;/p&gt;
+
+&lt;h4 id=&#34;example-4:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example.&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;, function(m) {
+    m.member &#39;info&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;articles/:id/info&lt;/code&gt; to &lt;code&gt;Articles.Info&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;#member()&lt;/code&gt; method must be called within a block that defines a plural resource.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;one&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;one:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#one()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-7:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;one(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines four routes for a singular resource.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-5:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;);
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above code defines four routes. See the table below:&lt;/p&gt;
+
+&lt;table class=&#34;table&#34;&gt;
+&lt;tr&gt;
+  &lt;th&gt;Hash pattern&lt;/th&gt;
+  &lt;th&gt;Container&lt;/th&gt;
+  &lt;th&gt;Component&lt;/th&gt;
+  &lt;th&gt;Resource&lt;/th&gt;
+  &lt;th&gt;Action&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;account&lt;/td&gt;
+  &lt;td&gt;Account&lt;/td&gt;
+  &lt;td&gt;Content&lt;/td&gt;
+  &lt;td&gt;account&lt;/td&gt;
+  &lt;td&gt;show&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;account/new&lt;/td&gt;
+  &lt;td&gt;Account&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;account&lt;/td&gt;
+  &lt;td&gt;new&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;account/edit&lt;/td&gt;
+  &lt;td&gt;Account&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;account&lt;/td&gt;
+  &lt;td&gt;edit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;usage-8:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;one(name, { only: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds routes for &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a singular resource.
+The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-6:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.new(&#39;account&#39;, { only: [ &#39;show&#39; ] });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From &lt;code&gt;account/&lt;/code&gt; to &lt;code&gt;Account.Content&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;usage-9:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;one(name, { except: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds basic routes excepting &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a singular resource.
+The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-7:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;, { except: [ &#39;new&#39; ] });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines two routes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From &lt;code&gt;account&lt;/code&gt; to &lt;code&gt;Account.Content&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;From &lt;code&gt;account/edit&lt;/code&gt; to &lt;code&gt;Account.Form&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;page&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;page:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#page()&lt;/h3&gt;
 
-&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+&lt;h4 id=&#34;usage-10:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;page(hashPattern, componentClassPath)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines a route from &lt;em&gt;hashPattern&lt;/em&gt; to &lt;em&gt;componentClassPath.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-8:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.page(&#39;dashboard&#39;, &#39;dashboard&#39;);
+  m.page(&#39;about&#39;, &#39;docs.about&#39;);
+  m.page(&#39;help/:name&#39;, &#39;docs.help&#39;);
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;usage-11:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;page(hashPattern, componentClassPath, constraints)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines a route from &lt;em&gt;hashPattern&lt;/em&gt; to &lt;em&gt;componentClassPath&lt;/em&gt; with constraints
+on the parameters, which are specified by regular expression string.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-9:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.page(&#39;blog/:year/:month&#39;, &#39;blog.articles&#39;,
+    { year: &#39;201\\d&#39;, month: &#39;(:?0[1-9]|11|12)&#39; });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you should put &lt;code&gt;:?&lt;/code&gt; to make parentheses
+&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-non-capturing-parentheses&#34;&gt;non-capturing parentheses&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;root&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
