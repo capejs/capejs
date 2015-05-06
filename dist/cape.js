@@ -368,7 +368,7 @@ Cape.extend(MarkupBuilder.prototype, {
     callback.call(this.component, builder);
     options = options || {};
     options.name = name;
-    if (options.onsubmit === undefined) {
+    if (options.onsubmit === undefined && this._.eventCallbacks.onsubmit === undefined) {
       options.onsubmit = function(e) { return false };
     }
     attributes = this._.generateAttributes(options);
@@ -537,6 +537,10 @@ Cape.extend(MarkupBuilder.prototype, {
 
     return this;
   },
+  on: function(eventName, callback) {
+    if (typeof eventName === 'string')
+      this._.eventCallbacks['on' + eventName] = callback
+  },
   fa: function(iconName, options) {
     options = options || {};
     var htmlClass = options.class || options.className;
@@ -561,6 +565,7 @@ var _Internal = function _Internal(main) {
   this.attr = {};
   this.data = {};
   this.style = {};
+  this.eventCallbacks = {};
 }
 
 // Internal methods of Cape.MarkupBuilder
@@ -677,6 +682,9 @@ Cape.extend(_Internal.prototype, {
       options.style = this.style
     this.style = {}
 
+    Cape.merge(options, this.eventCallbacks);
+    this.eventCallbacks = {};
+
     for (var key in options) {
       if (typeof options[key] === 'function') {
         options[key] = options[key].bind(this.main.component)
@@ -714,6 +722,26 @@ for (var i = voidElementNames.length; i--;) {
   var tagName = voidElementNames[i];
   MarkupBuilder.prototype[tagName] = new Function("options",
     "this.elem('" + tagName + "', options); return this");
+}
+
+var attrNames = [ 'checked', 'disabled' ];
+
+for (var i = attrNames.length; i--;) {
+  var attrName = attrNames[i];
+  MarkupBuilder.prototype[attrName] = new Function("value",
+    "this.attr('" + attrName + "', value); return this");
+}
+
+var eventNames = [
+  'blur', 'focus', 'change', 'select', 'submit', 'reset', 'abort', 'error',
+  'load', 'unload', 'click', 'dblclick', 'keyup', 'keydown', 'keypress',
+  'mouseout', 'mouseover', 'mouseup', 'mousedown', 'mousemove'
+]
+
+for (var i = eventNames.length; i--;) {
+  var eventName = eventNames[i];
+  MarkupBuilder.prototype['on' + eventName] = new Function("callback",
+    "this.on('" + eventName + "', callback); return this");
 }
 
 module.exports = MarkupBuilder;

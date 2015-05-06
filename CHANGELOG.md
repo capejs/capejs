@@ -1,6 +1,6 @@
 # CHANGELOG - CapeJS
 
-## 1.0.0-rc.1 (Not yet released)
+## 1.0.0-rc.1 (May 6, 2015)
 
 ### `Cape.MarkupBuilder`
 
