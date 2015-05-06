@@ -13,12 +13,9 @@ class ES6TodoList extends Cape.Component {
   renderItem(m, item) {
     m.li(m => {
       m.label({ class: { completed: item.done }}, m => {
-        m.input({
-          type: 'checkbox',
-          checked: item.done,
-          onclick: e => this.toggle(item)
-        });
-        m.sp().text(item.title);
+        m.onclick(e => this.toggle(item))
+          .checked(item.done).input({ type: 'checkbox' })
+        m.text(item.title);
       })
     })
   }
@@ -28,8 +25,7 @@ class ES6TodoList extends Cape.Component {
     m.formFor('item', m => {
       m.onkeyup(e => this.refresh()).textField('title');
       m.onclick(e => this.addItem())
-        .attr({ disabled: this.val('item.title') === '' })
-        .btn("Add");
+        .disabled(this.val('item.title') === '').btn("Add");
     });
   }
 

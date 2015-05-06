@@ -37,14 +37,10 @@ var ES6TodoList = (function (_Cape$Component) {
 
       m.li(function (m) {
         m.label({ 'class': { completed: item.done } }, function (m) {
-          m.input({
-            type: 'checkbox',
-            checked: item.done,
-            onclick: function onclick(e) {
-              return _this2.toggle(item);
-            }
-          });
-          m.sp().text(item.title);
+          m.onclick(function (e) {
+            return _this2.toggle(item);
+          }).checked(item.done).input({ type: 'checkbox' });
+          m.text(item.title);
         });
       });
     }
@@ -62,7 +58,7 @@ var ES6TodoList = (function (_Cape$Component) {
         }).textField('title');
         m.onclick(function (e) {
           return _this3.addItem();
-        }).attr({ disabled: _this3.val('item.title') === '' }).btn('Add');
+        }).disabled(_this3.val('item.title') === '').btn('Add');
       });
     }
   }, {

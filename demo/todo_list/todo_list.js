@@ -13,12 +13,9 @@ var TodoList = Cape.createComponentClass({
   renderItem: function(m, item) {
     m.li(function(m) {
       m.label({ class: { completed: item.done }}, function(m) {
-        m.input({
-          type: 'checkbox',
-          checked: item.done,
-          onclick: function(e) { this.toggle(item) }
-        });
-        m.space().text(item.title);
+        m.onclick(function(e) { this.toggle(item) })
+          .checked(item.done).input({ type: 'checkbox' })
+        m.text(item.title);
       })
     })
   },
@@ -28,8 +25,7 @@ var TodoList = Cape.createComponentClass({
     m.formFor('item', function(m) {
       m.onkeyup(function(e) { this.refresh() }).textField('title');
       m.onclick(function(e) { this.addItem() })
-        .attr({ disabled: this.val('item.title') === '' })
-        .btn("Add");
+        .disabled(this.val('item.title') === '').btn("Add");
     });
   },
 

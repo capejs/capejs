@@ -10,6 +10,8 @@
   'blur', 'focus', 'change', 'select', 'submit', 'reset', 'abort', 'error',
   'load', 'unload', 'click', 'dblclick', 'keyup', 'keydown', 'keypress',
   'mouseout', 'mouseover', 'mouseup', 'mousedown', 'mousemove'
+* Add shortcut methods `#checked` and `#disabled` to set the value of
+  corresponding attribute.
 
 ## 1.0.0-beta.11 (May 5, 2015)
 
