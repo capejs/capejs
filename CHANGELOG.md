@@ -5,7 +5,11 @@
 ### `Cape.MarkupBuilder`
 
 * Add `#on` method to set an event handler for the next element.
-
+* Add shortcut methods `#onblur`, `#onfocus`, etc. to set an event handler
+  for the next element. Supported events are:
+  'blur', 'focus', 'change', 'select', 'submit', 'reset', 'abort', 'error',
+  'load', 'unload', 'click', 'dblclick', 'keyup', 'keydown', 'keypress',
+  'mouseout', 'mouseover', 'mouseup', 'mousedown', 'mousemove'
 
 ## 1.0.0-beta.11 (May 5, 2015)
 

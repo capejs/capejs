@@ -24,14 +24,12 @@ var TodoList = Cape.createComponentClass({
   },
 
   renderForm: function(m) {
-    m.on('submit', function(e) { this.addItem(); return false; });
+    m.onsubmit(function(e) { this.addItem(); return false; });
     m.formFor('item', function(m) {
-      m.textField('title', { onkeyup: function(e) { this.refresh() } });
-      m.button("Add", {
-        type: 'button',
-        disabled: this.val('item.title') === '',
-        onclick: function(e) { this.addItem(); }
-      });
+      m.onkeyup(function(e) { this.refresh() }).textField('title');
+      m.onclick(function(e) { this.addItem() })
+        .attr({ disabled: this.val('item.title') === '' })
+        .btn("Add");
     });
   },
 

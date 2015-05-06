@@ -57,16 +57,12 @@ var ES6TodoList = (function (_Cape$Component) {
         _this3.addItem();return false;
       });
       m.formFor('item', function (m) {
-        m.textField('title', { onkeyup: function onkeyup(e) {
-            return _this3.refresh();
-          } });
-        m.button('Add', {
-          type: 'button',
-          disabled: _this3.val('item.title') === '',
-          onclick: function onclick(e) {
-            return _this3.addItem();
-          }
-        });
+        m.onkeyup(function (e) {
+          return _this3.refresh();
+        }).textField('title');
+        m.onclick(function (e) {
+          return _this3.addItem();
+        }).attr({ disabled: _this3.val('item.title') === '' }).btn('Add');
       });
     }
   }, {

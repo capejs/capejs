@@ -26,12 +26,10 @@ class ES6TodoList extends Cape.Component {
   renderForm(m) {
     m.on('submit', e => { this.addItem(); return false; });
     m.formFor('item', m => {
-      m.textField('title', { onkeyup: e => this.refresh() });
-      m.button("Add", {
-        type: 'button',
-        disabled: this.val('item.title') === '',
-        onclick: e => this.addItem()
-      });
+      m.onkeyup(e => this.refresh()).textField('title');
+      m.onclick(e => this.addItem())
+        .attr({ disabled: this.val('item.title') === '' })
+        .btn("Add");
     });
   }
 
