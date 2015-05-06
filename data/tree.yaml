@@ -27,6 +27,9 @@ pages:
         id: "click-counter"
         title: "Click Counter"
       -
+        id: "shortcut-methods"
+        title: "Shortcut Methods"
+      -
         id: "todo-list"
         title: "Todo List"
       -
@@ -154,6 +157,9 @@ api_pages:
         id: check-box
         title: "#checkBox()"
       -
+        id: checked
+        title: "#checked()"
+      -
         id: class
         title: "#class()"
       -
@@ -162,6 +168,9 @@ api_pages:
       -
         id: data
         title: "#data()"
+      -
+        id: disabled
+        title: "#disabled()"
       -
         id: elem
         title: "#elem()"
@@ -186,6 +195,9 @@ api_pages:
       -
         id: on
         title: "#on()"
+      -
+        id: onblur-onfocus-etc
+        title: "#onblur(), #onfocus(), etc."
       -
         id: password-field
         title: "#passwordField()"

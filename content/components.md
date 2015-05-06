@@ -210,6 +210,54 @@ is called when the component is mounted.
 You can find the source code of working demo on
 https://github.com/oiax/capejs/tree/master/demo/click_counter.
 
+
+<a class="anchor" id="shortcut-methods"></a>
+## Shortcut Methods
+
+Cape.JS provides some shortcut methods for the ease of programming, such as
+`#class`, `#disabled`, `#onclick`, _etc._
+These methods preset the value of attributes for the element which
+will be created nextly.
+
+In the previous example, we wrote like this:
+
+```javascript
+    m.div(String(this.counter), {
+      class: 'counter',
+      onclick: function(e) { this.increment() }
+    })
+```
+
+With shortcut methods, we can write it more concisely:
+
+```javascript
+    m.class('count');
+    m.onclick(function(e) { this.increment() });
+    m.div(String(this.counter);
+```
+
+Because all methods of markup builder are *chainable,*
+you can also write like this:
+
+```javascript
+    m.class('count')
+      .onclick(function(e) { this.increment() })
+      .div(String(this.counter);
+```
+
+The shortcut methods affect only the very element which will be created nextly.
+In the following example, the second `<div>` element will have no `class` attribute:
+
+```javascript
+    m.class('greeting');
+    m.div('Hello, World!');
+    m.div('My name is Cape.JS.');
+```
+
+See [MarkupBuilder#class()](../api/markup_builder/#class) and
+[MarkupBuilder#onclick()](../api/markup_builder/#onblur-onfocus-etc) for details.
+
+
 <a class="anchor" id="todo-list"></a>
 ## Todo List
 
@@ -244,25 +292,19 @@ var TodoList = Cape.createComponentClass({
   renderItem: function(m, item) {
     m.li(function(m) {
       m.label({ class: { completed: item.done }}, function(m) {
-        m.input({
-          type: 'checkbox',
-          checked: item.done,
-          onclick: function(e) { this.toggle(item) }
-        });
-        m.space().text(item.title);
+        m.onclick(function(e) { this.toggle(item) })
+          .checked(item.done).input({ type: 'checkbox' })
+        m.text(item.title);
       })
     })
   },
 
   renderForm: function(m) {
-    m.on('submit', function(e) { this.addItem(); return false; });
+    m.onsubmit(function(e) { this.addItem(); return false; });
     m.formFor('item', function(m) {
-      m.textField('title', { onkeyup: function(e) { this.refresh() } });
-      m.button("Add", {
-        type: 'button',
-        disabled: this.val('item.title') === '',
-        onclick: function(e) { this.addItem(); }
-      });
+      m.onkeyup(function(e) { this.refresh() }).textField('title');
+      m.onclick(function(e) { this.addItem() })
+        .disabled(this.val('item.title') === '').btn("Add");
     });
   },
 
@@ -287,15 +329,21 @@ var TodoList = Cape.createComponentClass({
 });
 ```
 
-Note that we use the `textField` method of markup builder.
-This method creates an `input` element of the type `text`.
+Note that we use the `formFor` method of markup builder to render an HTML form.
+This method takes a string as the first argument, and sets the `name` attribute
+of the form to it.
+
+The `textFiled` method creates an `input` element of the type `text`.
 If we give `'title'` as the first argument of the method,
-it is set to the value of `name` attribute of the `input` element and
-we can get its value by `this.val('title')`.
-You can also set its value with `val` method by giving a new value as second argument.
+the value of `name` attribute of this `input` element is set to `item.title`.
+
+We can get its value by `this.val('item.title')`.
+You can also set its value with `val` method by giving a new value as the second argument.
 
 You can find the source code of working demo on
 https://github.com/oiax/capejs/tree/master/demo/todo_list.
+
+As for the `#btn()` method, see [MarkupBuilder#btn()](../api/markup_builder/#btn).
 
 <a class="anchor" id="mixins"></a>
 ### Mixins
@@ -326,22 +374,22 @@ into component classes.
 var FormControls = {
   renderTextField: function(markup, fieldName, labelText) {
     markup.div({ class: 'form-group' }, function(m) {
-      m.labelFor(fieldName, labelText).sp();
+      m.labelFor(fieldName, labelText);
       m.textField(fieldName, { class: 'form-control' });
     })
   },
 
   renderTextareaField: function(markup, fieldName, labelText) {
     markup.div({ class: 'form-group' }, function(m) {
-      m.labelFor(fieldName, labelText).sp();
+      m.labelFor(fieldName, labelText);
       m.textareaField(fieldName, { class: 'form-control' });
     })
   },
 
   renderButtons: function(markup) {
     markup.div({ class: 'form-group' }, function(m) {
-      m.button('Submit', { class: 'btn btn-primary' }).sp();
-      m.button('Cancel', { class: 'btn btn-default' })
+      m.btn('Submit', { class: 'btn btn-primary' });
+      m.btn('Cancel', { class: 'btn btn-default' });
     })
   }
 }

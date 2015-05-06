@@ -8,9 +8,11 @@ title: "Cape.MarkupBuilder - API Reference"
 [#attr()](#attr) -
 [#btn()](#btn) -
 [#checkBox()](#check-box) -
+[#checked()](#checked) -
 [#class()](#class) -
 [#css()](#css) -
 [#data()](#data) -
+[#disabled()](#disabled) -
 [#elem()](#elem) -
 [#fa()](#fa) -
 [#fieldsFor()](#fields-for) -
@@ -19,6 +21,7 @@ title: "Cape.MarkupBuilder - API Reference"
 [#labelFor()](#label-for) -
 [#markup()](#markup) -
 [#on()](#on) -
+[#onblur(), #onfocus(), etc.](#onblur-onfocus-etc) -
 [#passwordField()](#password-field) -
 [#radioButton()](#radio-button) -
 [#selectBox()](#select-box) -
@@ -307,6 +310,26 @@ render: function(m) {
 }
 ```
 
+<a class="anchor" id="checked"></a>
+### #checked()
+
+#### Usage
+
+* **checked(boolean)**
+
+This is a shortcut method which has the same effect with `#attr('checked', boolean)`.
+See [#attr()](#attr).
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.checked(true).input({ type: 'checkbox' })
+  // The above code generates the following HTML tag
+  //   <input type="checkbox" checked>
+}
+```
+
 <a class="anchor" id="class"></a>
 ### #class()
 
@@ -447,6 +470,26 @@ render: function(m) {
   m.p('Hello, World!');
   // The above code generates the following HTML tags
   //   <p data-message-id="7">Hello, World!</p>
+}
+```
+
+<a class="anchor" id="disabled"></a>
+### #disabled()
+
+#### Usage
+
+* **disabled(boolean)**
+
+This is a shortcut method which has the same effect with `#attr('disabled', boolean)`.
+See [#attr()](#attr).
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.disabled(true).input({ type: 'text' })
+  // The above code generates the following HTML tag
+  //   <input type="text" disabled>
 }
 ```
 
@@ -748,6 +791,39 @@ render: function(m) {
 ```
 
 The attribute values are set cumulatively.
+
+<a class="anchor" id="onblur-onfocus-etc"></a>
+### #onblur(), #onfocus(), etc.
+
+#### Usage
+
+* **onblur(function)**
+* **onfocus(function)**
+* *etc.*
+
+These are shortcut methods which have same effects with `#on('blur', function)`,
+`#on('focus', function)`, etc.
+
+Similar shortcut methods are defined for the following events:
+
+> blur, focus, change, select, submit, reset, abort, error,
+load, unload, click, dblclick, keyup, keydown, keypress,
+mouseout, mouseover, mouseup, mousedown, mousemove
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.onclick(function(e) { this.counter++ });
+  m.ondblclick(function(e) { this.counter = 0 });
+  m.span('Click me!');
+  // These two statements are equivalent to the following
+  // single statement:
+  //   m.span('Click me!',
+  //     { onclick: function(e) { this.counter++ },
+  //       ondblclick: function(e) { this.counter = 0 } })
+}
+```
 
 <a class="anchor" id="password-field"></a>
 ### #passwordField()

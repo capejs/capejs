@@ -55,28 +55,31 @@ The `TodoItemStore` class has three methods and each of them ends with
 
 ```javascript
 var TodoList2 = Cape.createComponentClass({
+  render: function(m) {
+    m.ul(function(m) {
+      this.ds.items.forEach(function(item) {
+        this.renderItem(m, item);
+      }.bind(this))
+    });
+    this.renderForm(m);
+  },
+
   renderItem: function(m, item) {
     m.li(function(m) {
       m.label({ class: { completed: item.done }}, function(m) {
-        m.input({
-          type: 'checkbox',
-          checked: item.done,
-          onclick: function(e) { this.ds.toggle(item) }
-        });
-        m.space().text(item.title);
+        m.onclick(function(e) { this.ds.toggle(item) })
+          .checked(item.done).input({ type: 'checkbox' })
+        m.text(item.title);
       })
     })
   },
 
   renderForm: function(m) {
-    m.on('submit', function(e) { this.addItem(); return false; });
+    m.onsubmit(function(e) { this.addItem(); return false; });
     m.formFor('item', function(m) {
-      m.textField('title', { onkeyup: function(e) { this.refresh() } });
-      m.button("Add", {
-        type: 'button',
-        disabled: this.val('item.title') === '',
-        onclick: function(e) { this.addItem() }
-      });
+      m.onkeyup(function(e) { this.refresh() }).textField('title');
+      m.onclick(function(e) { this.addItem() })
+        .disabled(this.val('item.title') === '').btn("Add");
     });
   },
 
