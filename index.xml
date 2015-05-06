@@ -636,64 +636,6 @@ this method sets the value of corresponding fields.&lt;/p&gt;
     </item>
     
     <item>
-      <title>API Reference</title>
-      <link>http://oiax.github.io/capejs/api/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt; -
-&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt; -
-&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt; -
-&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt; -
-&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
-&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;the-cape-object:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;The &lt;code&gt;Cape&lt;/code&gt; object&lt;/h3&gt;
-
-&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; defines a single global variable &lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt;.
-It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, etc.&lt;/p&gt;
-
-&lt;h3 id=&#34;overview-of-classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Overview of classes&lt;/h3&gt;
-
-&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; consists of following five classes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These classes are defined as properties of the &lt;code&gt;Cape&lt;/code&gt; object.&lt;/p&gt;
-
-&lt;p&gt;The most basic class is &lt;code&gt;Cape.Component&lt;/code&gt;.
-You need to define a class extending it in order to create a web widget using Cape.JS.
-At least, instances of this class must have a method called &lt;code&gt;render&lt;/code&gt;, which defines
-how the component should be rendered in HTML.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; is a class whose instances build &lt;em&gt;virtual dom trees.&lt;/em&gt;
-Usually you don&amp;rsquo;t instantiate markup builders by yourself.
-Instances of &lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; are passed to the &lt;code&gt;render&lt;/code&gt; method of
-component classes.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
-components to render themselves.&lt;/p&gt;
-
-&lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
-After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
-and mount components according to the &lt;em&gt;routes&lt;/em&gt;
-(associations between hashes and components) which you defined in advance.&lt;/p&gt;
-
-&lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
-You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
-method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Cape.MarkupBuilder - API Reference</title>
       <link>http://oiax.github.io/capejs/api/markup_builder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -707,9 +649,11 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt; -
 &lt;a href=&#34;#btn&#34;&gt;#btn()&lt;/a&gt; -
 &lt;a href=&#34;#check-box&#34;&gt;#checkBox()&lt;/a&gt; -
+&lt;a href=&#34;#checked&#34;&gt;#checked()&lt;/a&gt; -
 &lt;a href=&#34;#class&#34;&gt;#class()&lt;/a&gt; -
 &lt;a href=&#34;#css&#34;&gt;#css()&lt;/a&gt; -
 &lt;a href=&#34;#data&#34;&gt;#data()&lt;/a&gt; -
+&lt;a href=&#34;#disabled&#34;&gt;#disabled()&lt;/a&gt; -
 &lt;a href=&#34;#elem&#34;&gt;#elem()&lt;/a&gt; -
 &lt;a href=&#34;#fa&#34;&gt;#fa()&lt;/a&gt; -
 &lt;a href=&#34;#fields-for&#34;&gt;#fieldsFor()&lt;/a&gt; -
@@ -718,6 +662,7 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 &lt;a href=&#34;#label-for&#34;&gt;#labelFor()&lt;/a&gt; -
 &lt;a href=&#34;#markup&#34;&gt;#markup()&lt;/a&gt; -
 &lt;a href=&#34;#on&#34;&gt;#on()&lt;/a&gt; -
+&lt;a href=&#34;#onblur-onfocus-etc&#34;&gt;#onblur(), #onfocus(), etc.&lt;/a&gt; -
 &lt;a href=&#34;#password-field&#34;&gt;#passwordField()&lt;/a&gt; -
 &lt;a href=&#34;#radio-button&#34;&gt;#radioButton()&lt;/a&gt; -
 &lt;a href=&#34;#select-box&#34;&gt;#selectBox()&lt;/a&gt; -
@@ -1014,11 +959,33 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;checked&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;checked:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#checked()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;checked(boolean)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is a shortcut method which has the same effect with &lt;code&gt;#attr(&#39;checked&#39;, boolean)&lt;/code&gt;.
+See &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.checked(true).input({ type: &#39;checkbox&#39; })
+  // The above code generates the following HTML tag
+  //   &amp;lt;input type=&amp;quot;checkbox&amp;quot; checked&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;class:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#class()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;class(name)&lt;/strong&gt;&lt;/li&gt;
@@ -1028,7 +995,7 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;p&gt;Set the &lt;code&gt;class&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.class(&#39;container&#39;);
@@ -1042,7 +1009,7 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.class(&#39;panel panel-standard&#39;);
@@ -1054,7 +1021,7 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.class({ panel: true, &#39;panel-standard&#39;: true, top: false });
@@ -1073,7 +1040,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;h3 id=&#34;css:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#css()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;css(name, value)&lt;/strong&gt;&lt;/li&gt;
@@ -1082,7 +1049,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;Set the styles for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.css(&#39;color&#39;, &#39;red&#39;).span(&#39;Danger&#39;);
@@ -1093,7 +1060,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;Note that you should write names of style in camel case.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.css({ backgroundColor: &#39;red&#39; }).p(&#39;Danger&#39;);
@@ -1106,7 +1073,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;h3 id=&#34;data:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#data()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;data(name, value)&lt;/strong&gt;&lt;/li&gt;
@@ -1115,7 +1082,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;Set the &lt;code&gt;data-*&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.data(&#39;id&#39;, &#39;7&#39;);
@@ -1132,7 +1099,7 @@ affects only the nextly added element.&lt;/p&gt;
 &lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt;, the &lt;code&gt;#data&lt;/code&gt; method sets attribute values cumulatively and
 affects only the nextly added element.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.data({ id: &#39;7&#39; });
@@ -1146,7 +1113,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;The names specified in camel case are converted into a string separated by dashes.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.data({ messageId: &#39;7&#39; });
@@ -1156,11 +1123,33 @@ affects only the nextly added element.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;disabled&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;disabled:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#disabled()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;disabled(boolean)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is a shortcut method which has the same effect with &lt;code&gt;#attr(&#39;disabled&#39;, boolean)&lt;/code&gt;.
+See &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.disabled(true).input({ type: &#39;text&#39; })
+  // The above code generates the following HTML tag
+  //   &amp;lt;input type=&amp;quot;text&amp;quot; disabled&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;elem&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;elem:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#elem()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;elem(content [, options])&lt;/strong&gt;&lt;/li&gt;
@@ -1172,7 +1161,7 @@ affects only the nextly added element.&lt;/p&gt;
 &lt;p&gt;When the second argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-21:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.elem(&#39;div#wrapper&#39;, function(m) {
@@ -1199,7 +1188,7 @@ When the last argument is a function, it creates a dependent virtual dom tree.&l
 of the element. The position of this argument should be after the string argument
 and before the function argument.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-22:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.elem(&#39;div#wrapper&#39;, { style: &#39;margin-top: 10px&#39; },
@@ -1229,7 +1218,7 @@ and before the function argument.&lt;/p&gt;
 
 &lt;h3 id=&#34;fa:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fa()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;fa(name [, options])&lt;/strong&gt;&lt;/li&gt;
@@ -1241,7 +1230,7 @@ Its first argument is the icon&amp;rsquo;s name, such as &lt;code&gt;&amp;quot;d
 You can pass a hash object as the optional second argument to set the
 attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-21:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-23:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.a({ href: &#39;./download.html&#39; }, function(m) {
@@ -1257,7 +1246,7 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 
 &lt;h3 id=&#34;fieldsfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fieldsFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;fieldsFor(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1266,7 +1255,7 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 &lt;p&gt;Create a scope for nested forms. In this scope, a prefix is
 addded to the name of each form control.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-22:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-24:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -1287,7 +1276,7 @@ addded to the name of each form control.&lt;/p&gt;
 
 &lt;p&gt;If you pass the &lt;code&gt;index&lt;/code&gt; option to this method, the prefix is numbered:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-23:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-25:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -1316,7 +1305,7 @@ addded to the name of each form control.&lt;/p&gt;
 
 &lt;h3 id=&#34;formfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#formFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;formFor(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1330,7 +1319,7 @@ added to the &lt;code&gt;name&lt;/code&gt; attribute of subordinate form control
 &lt;p&gt;The &lt;code&gt;id&lt;/code&gt; attribute is set automatically. When the form name is &lt;code&gt;&#39;foo&#39;&lt;/code&gt;,
 the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;code&gt;bar&lt;/code&gt; becomes &lt;code&gt;&#39;foo-field-bar&#39;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-24:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-26:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1353,7 +1342,7 @@ the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;co
 
 &lt;h3 id=&#34;hiddenfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#hiddenField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;hiddenField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1364,7 +1353,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-25:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-27:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1382,7 +1371,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;labelfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#labelFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;labelFor(name, label)&lt;/strong&gt;&lt;/li&gt;
@@ -1391,7 +1380,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;Create a &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; tag whose &lt;code&gt;name&lt;/code&gt; attribute is &lt;code&gt;name&lt;/code&gt;.
 Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-26:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-28:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1441,7 +1430,7 @@ Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
 
 &lt;h3 id=&#34;on:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#on()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;on(eventName, function)&lt;/strong&gt;&lt;/li&gt;
@@ -1450,7 +1439,7 @@ Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
 &lt;p&gt;Set the handler of event &lt;em&gt;eventName&lt;/em&gt; for the element which will be added nextly
 to &lt;em&gt;function.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;example-27:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-29:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.on(&#39;click&#39;, function(e) { this.counter++ });
@@ -1466,11 +1455,48 @@ to &lt;em&gt;function.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;The attribute values are set cumulatively.&lt;/p&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;onblur-onfocus-etc&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;onblur-onfocus-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#onblur(), #onfocus(), etc.&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;onblur(function)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;onfocus(function)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;etc.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are shortcut methods which have same effects with &lt;code&gt;#on(&#39;blur&#39;, function)&lt;/code&gt;,
+&lt;code&gt;#on(&#39;focus&#39;, function)&lt;/code&gt;, etc.&lt;/p&gt;
+
+&lt;p&gt;Similar shortcut methods are defined for the following events:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;blur, focus, change, select, submit, reset, abort, error,
+load, unload, click, dblclick, keyup, keydown, keypress,
+mouseout, mouseover, mouseup, mousedown, mousemove&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;example-30:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.onclick(function(e) { this.counter++ });
+  m.ondblclick(function(e) { this.counter = 0 });
+  m.span(&#39;Click me!&#39;);
+  // These two statements are equivalent to the following
+  // single statement:
+  //   m.span(&#39;Click me!&#39;,
+  //     { onclick: function(e) { this.counter++ },
+  //       ondblclick: function(e) { this.counter = 0 } })
+}
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;password-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;passwordfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#passwordField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;passwordField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1481,7 +1507,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-28:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-31:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1503,7 +1529,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;radiobutton:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#radioButton()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;radioButton(name, value[, options])&lt;/strong&gt;&lt;/li&gt;
@@ -1516,7 +1542,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;The second argument becomes the value of this radio button.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-29:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-32:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1561,7 +1587,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-30:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-33:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1592,7 +1618,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;space:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#space()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;space()&lt;/strong&gt;&lt;/li&gt;
@@ -1600,7 +1626,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;Add a single space character. Same as &lt;code&gt;text(&#39; &#39;)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-31:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-34:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.p(function(m) {
@@ -1616,7 +1642,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;text:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#text()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-21:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;text(string)&lt;/strong&gt;&lt;/li&gt;
@@ -1625,7 +1651,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;Add &lt;em&gt;string&lt;/em&gt; as a text node to the virtual dom tree.
 The special characters (&lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;) are escaped automatically.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-32:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-35:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.h1(function(m) {
@@ -1647,7 +1673,7 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
 
 &lt;h3 id=&#34;textareafield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#textareaField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-22:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;textField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1658,7 +1684,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-33:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-36:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1679,7 +1705,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;h3 id=&#34;textfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#textField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-23:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;textField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1690,7 +1716,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-34:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-37:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1710,819 +1736,60 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
     </item>
     
     <item>
-      <title>Cape.Router - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/router/</link>
+      <title>API Reference</title>
+      <link>http://oiax.github.io/capejs/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/router/</guid>
+      <guid>http://oiax.github.io/capejs/api/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;#action&#34;&gt;#action&lt;/a&gt; -
-&lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
-&lt;a href=&#34;#before-navigation&#34;&gt;#beforeNavigation()&lt;/a&gt; -
-&lt;a href=&#34;#component&#34;&gt;#component&lt;/a&gt; -
-&lt;a href=&#34;#container&#34;&gt;#container&lt;/a&gt; -
-&lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
-&lt;a href=&#34;#draw&#34;&gt;#draw()&lt;/a&gt; -
-&lt;a href=&#34;#error-handler&#34;&gt;#errorHandler()&lt;/a&gt; -
-&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
-&lt;a href=&#34;#namespace&#34;&gt;#namespace&lt;/a&gt; -
-&lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; -
-&lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; -
-&lt;a href=&#34;#mount&#34;&gt;#mount()&lt;/a&gt; -
-&lt;a href=&#34;#params&#34;&gt;#params&lt;/a&gt; -
-&lt;a href=&#34;#query&#34;&gt;#query&lt;/a&gt; -
-&lt;a href=&#34;#redirect-to&#34;&gt;#redirectTo&lt;/a&gt; -
-&lt;a href=&#34;#resource&#34;&gt;#resource&lt;/a&gt; -
-&lt;a href=&#34;#route-for&#34;&gt;#routeFor()&lt;/a&gt; -
-&lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; -
-&lt;a href=&#34;#start&#34;&gt;#start()&lt;/a&gt; -
-&lt;a href=&#34;#stop&#34;&gt;#stop()&lt;/a&gt; -
-&lt;a href=&#34;#vars&#34;&gt;#vars&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt; -
+&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt; -
+&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt; -
+&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt; -
+&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
+&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;action&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;the-cape-object:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;The &lt;code&gt;Cape&lt;/code&gt; object&lt;/h3&gt;
 
-&lt;h3 id=&#34;action:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#action&lt;/h3&gt;
+&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; defines a single global variable &lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt;.
+It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, etc.&lt;/p&gt;
 
-&lt;p&gt;This property holds the &lt;em&gt;action name&lt;/em&gt; of the current route.&lt;/p&gt;
+&lt;h3 id=&#34;overview-of-classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Overview of classes&lt;/h3&gt;
 
-&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;);
-});
-router.navigate(&#39;articles/123/edit&#39;);
-console.log(router.action); // =&amp;gt; &amp;quot;edit&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;attach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#attach()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; consists of following five classes:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;This method register the &lt;em&gt;component&lt;/em&gt; as the target of &lt;em&gt;notification&lt;/em&gt; from this router.&lt;/p&gt;
-
-&lt;p&gt;See &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;before-navigation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;beforenavigation:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#beforeNavigation()&lt;/h3&gt;
-
-&lt;p&gt;See &lt;a href=&#34;../../router/#before-navigation-callbacks&#34;&gt;Before-Navigation Callbacks&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;component&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;component:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#component&lt;/h3&gt;
-
-&lt;p&gt;This property holds the &lt;em&gt;component name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;);
-  m.namespace(&#39;admin&#39;, function(m) {
-    m.many(&#39;articles&#39;);
-  });
-});
-router.navigate(&#39;articles/123/edit&#39;);
-console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
-router.navigate(&#39;admin/articles/123/edit&#39;);
-console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;container&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;container:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
-
-&lt;p&gt;This property holds the &lt;em&gt;container name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-2:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;);
-  m.namespace(&#39;admin&#39;, function(m) {
-    m.many(&#39;articles&#39;);
-  });
-});
-router.navigate(&#39;articles/123/edit&#39;);
-console.log(router.container); // =&amp;gt; &amp;quot;articles&amp;quot;
-router.navigate(&#39;admin/articles/123/edit&#39;);
-console.log(router.container); // =&amp;gt; &amp;quot;admin.articles&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;detach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#detach()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method removes the &lt;em&gt;component&lt;/em&gt; from the list of targets of &lt;em&gt;notification&lt;/em&gt; from this router.&lt;/p&gt;
-
-&lt;p&gt;See &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;draw&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;draw:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#draw()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-2:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;draw(function)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method specify a function that takes a &lt;code&gt;RoutingMapper&lt;/code&gt; object and defines routes.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-3:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.root(&#39;dashboard&#39;);
-  m.page(&#39;about&#39;, &#39;docs.about&#39;);
-  m.many(&#39;articles&#39;);
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In the above example, the argument &lt;code&gt;m&lt;/code&gt; is a &lt;code&gt;RoutingMapper&lt;/code&gt; object.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;error-handler&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;errorhandler:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#errorHandler()&lt;/h3&gt;
-
-&lt;p&gt;See &lt;a href=&#34;../../router/#before-navigation-callbacks&#34;&gt;Before-Navigation Callbacks&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-3:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
-which is emptied after each navigation.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-4:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
-router.navigate(&#39;articles&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;container-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
-
-&lt;p&gt;This property holds the &lt;em&gt;namespace&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-5:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;);
-  m.namespace(&#39;admin&#39;, function(m) {
-    m.many(&#39;articles&#39;);
-  });
-});
-router.navigate(&#39;articles/123/edit&#39;);
-console.log(router.namespace); // =&amp;gt; null
-router.navigate(&#39;admin/articles/123/edit&#39;);
-console.log(router.namespace); // =&amp;gt; &amp;quot;admin&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;navigate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;navigate:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#navigate()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-4:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;navigate(hash)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;When before-navigation callbacks are registered, they are executed
-before changing the anchor part of URL.
-If the before-navigation callbacks select other string for &lt;em&gt;hash&lt;/em&gt;,
-it will be set to the anchor part of the browser&amp;rsquo;s current URL.&lt;/p&gt;
-
-&lt;p&gt;After setting the anchor part of URL, this method choose a component
-according to the routing table.&lt;/p&gt;
-
-&lt;p&gt;When this component is different from the component which is mounted currently,
-it unmounts the latter and mounts the former.
-When this component is same with the component mounted currently
-it calls the &lt;code&gt;#refresh&lt;/code&gt; method of mounted component.&lt;/p&gt;
-
-&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
-
-&lt;p&gt;If you don&amp;rsquo;t want the &lt;code&gt;#notify()&lt;/code&gt; method to be executed, use &lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; instead.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;notify&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;notify:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#notify()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-5:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;notify()&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method triggars the &lt;em&gt;notification&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
-of all components registerd as targets of &lt;em&gt;notification&lt;/em&gt; of this data store.&lt;/p&gt;
-
-&lt;p&gt;Eventually, each target component executes its &lt;code&gt;#render()&lt;/code&gt; method,
-which has to be defined by developers.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;#notify()&lt;/code&gt; method is executed after each time the &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method is called.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;mount:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#mount()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-6:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;mount(id)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method specifies the &lt;code&gt;id&lt;/code&gt; of the HTML element which this router
-inserts the components into.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-6:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div&amp;gt;
-  &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;Top&amp;lt;/a&amp;gt;
-  &amp;lt;a href=&amp;quot;#about&amp;quot;&amp;gt;About&amp;lt;/a&amp;gt;
-  &amp;lt;a href=&amp;quot;#help&amp;quot;&amp;gt;Help&amp;lt;/a&amp;gt;
-&amp;lt;/div&amp;gt;
-
-&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script&amp;gt;
-var router = new Cape.Router();
-router.draw(function(m) {
-  m.root(&#39;top_page&#39;);
-  m.page(&#39;about&#39;, &#39;about_page&#39;);
-  m.page(&#39;help&#39;, &#39;help_page&#39;);
-})
-router.mount(&#39;main&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In the example above, components are mounted into the &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; element whose &lt;code&gt;id&lt;/code&gt; is &lt;code&gt;&#39;main&#39;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;params:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#params&lt;/h3&gt;
-
-&lt;p&gt;This property holds a set of key-value pairs, which represents the parameters
-embedded in the main part (before the first &amp;lsquo;?&amp;rsquo; symbol) of hash.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-7:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.page(&#39;help/:name&#39;, &#39;help.item&#39;);
-  m.many(&#39;articles&#39;, function(m) {
-    m.many(&#39;comments&#39;);
-  });
-})
-router.navigate(&#39;help/password&#39;);
-// router.params.name === &#39;password&#39;
-router.navigate(&#39;articles/123&#39;)
-// router.params.id === &#39;123&#39;
-router.navigate(&#39;articles/123/comments/7&#39;)
-// router.params.article_id === &#39;123&#39;
-// router.params.id === &#39;7&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;query&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;query:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#query&lt;/h3&gt;
-
-&lt;p&gt;This property holds a set of key-value pairs, which represents the parameters
-embedded in the query part (after the first &amp;lsquo;?&amp;rsquo; symbol) of hash .&lt;/p&gt;
-
-&lt;h4 id=&#34;example-8:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;)
-})
-router.navigate(&#39;articles&#39;)
-// router.query === {}
-router.navigate(&#39;articles?page=2&#39;)
-// router.query.page === &#39;2&#39;
-router.navigate(&#39;articles?page=2&amp;amp;deleted&#39;)
-// router.query.page === &#39;2&#39;
-// router.query.deleted === &#39;&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;redirect-to&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;redirectto:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#redirectTo()&lt;/h3&gt;
-
-&lt;p&gt;This method sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Unlike &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method, before-navigationi callbacks are &lt;em&gt;not&lt;/em&gt; executed
-before changing the anchor part of URL.&lt;/p&gt;
-
-&lt;p&gt;After setting the anchor part of URL, this method choose a component
-according to the routing table.&lt;/p&gt;
-
-&lt;p&gt;When this component is different from the component mounted currently,
-it unmounts the latter and mounts the former.
-When this component is same with the component which is mounted currently
-it calls the &lt;code&gt;#refresh&lt;/code&gt; method of the mounted component.&lt;/p&gt;
-
-&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;resource:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#resource&lt;/h3&gt;
-
-&lt;p&gt;This property holds the &lt;em&gt;resource name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-9:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.one(&#39;account&#39;);
-  m.many(&#39;articles&#39;, function(m) {
-    m.many(&#39;comments&#39;);
-  });
-  m.namespace(&#39;admin&#39;, function(m) {
-    m.many(&#39;articles&#39;);
-  });
-});
-router.navigate(&#39;account/edit&#39;);
-console.log(router.resource); // =&amp;gt; &amp;quot;account&amp;quot;
-router.navigate(&#39;articles/123/edit&#39;);
-console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
-router.navigate(&#39;articles/123/comments&#39;);
-console.log(router.resource); // =&amp;gt; &amp;quot;articles/comments&amp;quot;
-router.navigate(&#39;admin/articles/123/edit&#39;);
-console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;route-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;routefor:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#routeFor()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-7:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;routeFor(hash)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method returns the first route matching to the &lt;em&gt;hash,&lt;/em&gt; if any.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-10:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.namespace(&#39;admin&#39;, function(m) {
-    m.many(&#39;articles&#39;);
-  });
-});
-var route = router.routeFor(&#39;admin/articles/123/edit&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;show&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;show:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#show()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-8:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;show(componentClass)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method mounts an instance of &lt;em&gt;componentClass&lt;/em&gt; class.&lt;/p&gt;
-
-&lt;p&gt;Unlike &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt;, it does neither change the anchor part of
-current URL, nor call the &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; method.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;start&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;start:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#start()&lt;/h3&gt;
-
-&lt;p&gt;With this method call, routers begin to listen to &lt;code&gt;hashchange&lt;/code&gt; events.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;stop&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;stop:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#stop()&lt;/h3&gt;
-
-&lt;p&gt;With this method call, routers stop to listen to &lt;code&gt;hashchange&lt;/code&gt; events.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;vars&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;vars:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#vars&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-9:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;vars[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;vars.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;vars&lt;/em&gt; object.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-11:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.vars.signedIn = Date.now();
-router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Components</title>
-      <link>http://oiax.github.io/capejs/components/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/components/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#hello-world&#34;&gt;Hello World&lt;/a&gt; -
-&lt;a href=&#34;#es6&#34;&gt;ECMAScript 6&lt;/a&gt; -
-&lt;a href=&#34;#dom-tree&#34;&gt;Building Virtual DOM Tree&lt;/a&gt; -
-&lt;a href=&#34;#click-counter&#34;&gt;Click Counter&lt;/a&gt; -
-&lt;a href=&#34;#todo-list&#34;&gt;Todo List&lt;/a&gt; -
-&lt;a href=&#34;#mixins&#34;&gt;Mixins&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;hello-world&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;hello-world:d1b8a910971345212cdb562d8742fa2d&#34;&gt;Hello World&lt;/h3&gt;
-
-&lt;p&gt;The following example will insert &lt;code&gt;&amp;lt;div&amp;gt;Hello, World!&amp;lt;/div&amp;gt;&lt;/code&gt; into the &lt;code&gt;div#hello-message&lt;/code&gt; element.&lt;/p&gt;
-
-&lt;h4 id=&#34;index-html:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;h1&amp;gt;Greeting from Cape.JS&amp;lt;/h1&amp;gt;
-&amp;lt;div id=&amp;quot;hello-message&amp;quot; data-name=&amp;quot;World&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script src=&amp;quot;./hello_message.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script&amp;gt;
-  var component = new HelloMesage();
-  component.mount(&#39;hello-message&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;hello-message-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;hello_message.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMesage = Cape.createComponentClass({
-  render: function(m) {
-    m.div(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;First of all, we &lt;em&gt;must&lt;/em&gt; define the &lt;code&gt;render&lt;/code&gt; method for Cape.JS components.
-The role of this method is to create a &lt;em&gt;virtual&lt;/em&gt; DOM tree.
-Cape.JS updates the &lt;em&gt;real&lt;/em&gt; DOM tree of browsers using this virtual tree.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;render&lt;/code&gt; method should take an argument, which is called &lt;em&gt;markup builder&lt;/em&gt;.
-When you call its &lt;code&gt;div&lt;/code&gt; method, a &lt;code&gt;div&lt;/code&gt; node is added to the virtual DOM tree.
-The markup builder has corresponding methods for all valid tag names of HTML5,
-such as &lt;code&gt;p&lt;/code&gt;, &lt;code&gt;span&lt;/code&gt;, &lt;code&gt;br&lt;/code&gt;, &lt;code&gt;section&lt;/code&gt;, &lt;code&gt;video&lt;/code&gt;, etc.&lt;/p&gt;
-
-&lt;p&gt;You can call &lt;code&gt;this.root&lt;/code&gt; to get the node which the component was mounted on.
-And you can access to &lt;code&gt;data-name&lt;/code&gt; attributes of the &lt;code&gt;root&lt;/code&gt; node by
-&lt;code&gt;this.root.data.name&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;You can find the source code of working demo on
-&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/hello_message&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/hello_message&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;es6&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;ecmascript-6:d1b8a910971345212cdb562d8742fa2d&#34;&gt;ECMAScript 6&lt;/h3&gt;
-
-&lt;p&gt;If you want to write more concisely, try to define class using ECMAScript 6 (ES6) syntax.&lt;/p&gt;
-
-&lt;h4 id=&#34;hello-message-es6:d1b8a910971345212cdb562d8742fa2d&#34;&gt;hello_message.es6&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class HelloMessage extends Cape.Component {
-  render(m) {
-    m.div(`Hello ${this.root.data.name}!`)
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can find the source code of working demo on
-&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/es6-demo/hello_message&#34;&gt;https://github.com/oiax/capejs/tree/master/es6-demo/hello_message&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;You must have &lt;code&gt;npm&lt;/code&gt; and &lt;code&gt;babel-core&lt;/code&gt; to see this demo page.
-You must also have &lt;code&gt;browserify&lt;/code&gt; to convert &lt;code&gt;.es6&lt;/code&gt; file to &lt;code&gt;.js&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;p&gt;See &lt;a href=&#34;https://github.com/oiax/capejs/tree/master/es6-demo/README.md&#34;&gt;https://github.com/oiax/capejs/tree/master/es6-demo/README.md&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;dom-tree&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;building-virtual-dom-tree:d1b8a910971345212cdb562d8742fa2d&#34;&gt;Building Virtual DOM Tree&lt;/h3&gt;
-
-&lt;h4 id=&#34;index-html-1:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;h1&amp;gt;Greeting from Cape.JS&amp;lt;/h1&amp;gt;
-&amp;lt;div id=&amp;quot;hello-message&amp;quot; data-name=&amp;quot;World&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script src=&amp;quot;./hello_message2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script&amp;gt;
-  var component = new HelloMesage2();
-  component.mount(&#39;hello-message&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;hello-message2-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;hello_message2.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMesage2 = Cape.createComponentClass({
-  render: function(m) {
-    m.p(function(m) {
-      m.text(&#39;Hello, &#39;);
-      m.strong(function(m) {
-        m.text(this.root.data.name);
-        m.text(&#39;!&#39;);
-      })
-    })
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This example will generate &lt;code&gt;&amp;lt;p&amp;gt;Hello, &amp;lt;strong&amp;gt;World!&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Note that &lt;code&gt;strong&lt;/code&gt; method takes a function, which create the content of &lt;code&gt;strong&lt;/code&gt; element.
-In this way you can create a deeply-nested DOM tree.&lt;/p&gt;
-
-&lt;p&gt;With ES6 syntax, you can write much tersely:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class HelloMesage2 extends Cape.Component {
-  render(m) {
-    m.p(m =&amp;gt; {
-      m.text(&#39;Hello, &#39;);
-      m.strong(m =&amp;gt; {
-        m.text(this.root.data.name);
-        m.text(&#39;!&#39;);
-      })
-    })
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;All methods of markup builder can be chained. So, you can rewrite the above code as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class HelloMesage2 extends Cape.Component {
-  render(m) {
-    m.p(m =&amp;gt;
-      m.text(&#39;Hello, &#39;).strong(m =&amp;gt;
-        m.text(this.root.data.name).text(&#39;!&#39;);
-      )
-    )
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note that you can omit braces when the arrow function has only a single expression.
-See MDN&amp;rsquo;s &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions&#34;&gt;Arrow functions&lt;/a&gt;
-&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;click-counter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;click-counter:d1b8a910971345212cdb562d8742fa2d&#34;&gt;Click Counter&lt;/h3&gt;
-
-&lt;p&gt;On this example, your will see the number which gets incremented each time you click on the surrounding &lt;code&gt;div&lt;/code&gt; box.&lt;/p&gt;
-
-&lt;h4 id=&#34;index-html-2:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;click-counter&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script src=&amp;quot;./click_counter.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script&amp;gt;
-  var counter = new ClickCounter();
-  counter.mount(&#39;click-counter&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;click-counter-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;click_counter.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var ClickCounter = Cape.createComponentClass({
-  render: function(m) {
-    m.div(String(this.counter), {
-      class: &#39;counter&#39;,
-      onclick: function(e) { this.increment() }
-    })
-  },
-
-  init: function() {
-    this.counter = 0;
-    this.refresh();
-  },
-
-  increment: function() {
-    this.counter++;
-    this.refresh();
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note that we give the second argument to the &lt;code&gt;div&lt;/code&gt; method:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
-  class: &#39;counter&#39;,
-  onclick: function(e) { this.increment() }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This &lt;em&gt;associative array&lt;/em&gt; represents the attributes of &lt;code&gt;div&lt;/code&gt; element.
-We can attach a handler (function) to the &lt;code&gt;click&lt;/code&gt; event for this element like this.&lt;/p&gt;
-
-&lt;p&gt;Within event handlers, &lt;code&gt;this&lt;/code&gt; denotes the component itself.
-So you can call its &lt;code&gt;increment&lt;/code&gt; method by &lt;code&gt;this.increment()&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;A method call &lt;code&gt;this.refresh()&lt;/code&gt; redraws the component.
-You should call it at the end of the &lt;code&gt;init&lt;/code&gt; method,
-but if the component lacks the &lt;code&gt;init&lt;/code&gt; method, the &lt;code&gt;refresh&lt;/code&gt; method
-is called when the component is mounted.&lt;/p&gt;
-
-&lt;p&gt;You can find the source code of working demo on
-&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/click_counter&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/click_counter&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;todo-list&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;todo-list:d1b8a910971345212cdb562d8742fa2d&#34;&gt;Todo List&lt;/h2&gt;
-
-&lt;p&gt;On this example, your can add a todo item from a HTML form and toggle the
-&lt;code&gt;completed&lt;/code&gt; property of todo items by clicking check boxes.&lt;/p&gt;
-
-&lt;h4 id=&#34;index-html-3:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script src=&amp;quot;./todo_list.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script&amp;gt;
-  var todoList = new TodoList();
-  todoList.mount(&#39;todo-list&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;todo-list-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;todo_list.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList = Cape.createComponentClass({
-  render: function(m) {
-    m.ul(function(m) {
-      this.items.forEach(function(item) {
-        this.renderItem(m, item);
-      }.bind(this))
-    });
-    this.renderForm(m);
-  },
-
-  renderItem: function(m, item) {
-    m.li(function(m) {
-      m.label({ class: { completed: item.done }}, function(m) {
-        m.input({
-          type: &#39;checkbox&#39;,
-          checked: item.done,
-          onclick: function(e) { this.toggle(item) }
-        });
-        m.space().text(item.title);
-      })
-    })
-  },
-
-  renderForm: function(m) {
-    m.on(&#39;submit&#39;, function(e) { this.addItem(); return false; });
-    m.formFor(&#39;item&#39;, function(m) {
-      m.textField(&#39;title&#39;, { onkeyup: function(e) { this.refresh() } });
-      m.button(&amp;quot;Add&amp;quot;, {
-        type: &#39;button&#39;,
-        disabled: this.val(&#39;item.title&#39;) === &#39;&#39;,
-        onclick: function(e) { this.addItem(); }
-      });
-    });
-  },
-
-  init: function() {
-    this.items = [
-      { title: &#39;Foo&#39;, done: false },
-      { title: &#39;Bar&#39;, done: true }
-    ];
-    this.refresh();
-  },
-
-  toggle: function(item) {
-    item.done = !item.done;
-    this.refresh();
-  },
-
-  addItem: function() {
-    this.items.push({ title: this.val(&#39;item.title&#39;), done: false });
-    this.val(&#39;item.title&#39;, &#39;&#39;);
-    this.refresh();
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note that we use the &lt;code&gt;textField&lt;/code&gt; method of markup builder.
-This method creates an &lt;code&gt;input&lt;/code&gt; element of the type &lt;code&gt;text&lt;/code&gt;.
-If we give &lt;code&gt;&#39;title&#39;&lt;/code&gt; as the first argument of the method,
-it is set to the value of &lt;code&gt;name&lt;/code&gt; attribute of the &lt;code&gt;input&lt;/code&gt; element and
-we can get its value by &lt;code&gt;this.val(&#39;title&#39;)&lt;/code&gt;.
-You can also set its value with &lt;code&gt;val&lt;/code&gt; method by giving a new value as second argument.&lt;/p&gt;
-
-&lt;p&gt;You can find the source code of working demo on
-&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mixins&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;mixins:d1b8a910971345212cdb562d8742fa2d&#34;&gt;Mixins&lt;/h3&gt;
-
-&lt;p&gt;When you build a large application with many similar components,
-you will want to extract common methods to &lt;em&gt;mixins&lt;/em&gt;,
-objects that contain a combination of methods.&lt;/p&gt;
-
-&lt;p&gt;The following example illustrates how to create &lt;em&gt;mixins&lt;/em&gt; and incorporate them
-into component classes.&lt;/p&gt;
-
-&lt;h4 id=&#34;index-html-4:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script src=&amp;quot;./form_controls.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&amp;quot;./simple_form.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script&amp;gt;
-  var simple_form = new SimpleForm();
-  simple_form.mount(&#39;main&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;form-controls-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;form_controls.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var FormControls = {
-  renderTextField: function(markup, fieldName, labelText) {
-    markup.div({ class: &#39;form-group&#39; }, function(m) {
-      m.labelFor(fieldName, labelText).sp();
-      m.textField(fieldName, { class: &#39;form-control&#39; });
-    })
-  },
-
-  renderTextareaField: function(markup, fieldName, labelText) {
-    markup.div({ class: &#39;form-group&#39; }, function(m) {
-      m.labelFor(fieldName, labelText).sp();
-      m.textareaField(fieldName, { class: &#39;form-control&#39; });
-    })
-  },
-
-  renderButtons: function(markup) {
-    markup.div({ class: &#39;form-group&#39; }, function(m) {
-      m.button(&#39;Submit&#39;, { class: &#39;btn btn-primary&#39; }).sp();
-      m.button(&#39;Cancel&#39;, { class: &#39;btn btn-default&#39; })
-    })
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;simple-form-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;simple_form.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var SimpleForm = Cape.createComponentClass({
-  render: function(m) {
-    m.p(function(m) {
-      m.formFor(&#39;user&#39;, function(m) {
-        this.renderTextField(m, &#39;family_name&#39;, &#39;Family Name&#39;);
-        this.renderTextField(m, &#39;given_name&#39;, &#39;Given Name&#39;);
-        this.renderTextareaField(m, &#39;remarks&#39;, &#39;Remarks&#39;);
-        this.renderButtons(m);
-      })
-    })
-  }
-});
-
-Cape.merge(SimpleForm.prototype, FormControls);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;Cape.merge&lt;/code&gt; method imports all properties (methods) of &lt;code&gt;FormControls&lt;/code&gt;
-into &lt;code&gt;SimpleForm.prototype&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Note that &lt;code&gt;Cape.merge&lt;/code&gt; does not rewrite existing properties of &lt;code&gt;SimpleForm.prototype&lt;/code&gt;
-so that you can override one or more methods of &lt;code&gt;FormControls&lt;/code&gt;
-within the definition of &lt;code&gt;SimpleForm&lt;/code&gt; class.&lt;/p&gt;
-
-&lt;p&gt;You can find the source code of working demo on
-&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/mixins&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/mixins&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;These classes are defined as properties of the &lt;code&gt;Cape&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;p&gt;The most basic class is &lt;code&gt;Cape.Component&lt;/code&gt;.
+You need to define a class extending it in order to create a web widget using Cape.JS.
+At least, instances of this class must have a method called &lt;code&gt;render&lt;/code&gt;, which defines
+how the component should be rendered in HTML.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; is a class whose instances build &lt;em&gt;virtual dom trees.&lt;/em&gt;
+Usually you don&amp;rsquo;t instantiate markup builders by yourself.
+Instances of &lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; are passed to the &lt;code&gt;render&lt;/code&gt; method of
+component classes.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
+components to render themselves.&lt;/p&gt;
+
+&lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
+After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
+and mount components according to the &lt;em&gt;routes&lt;/em&gt;
+(associations between hashes and components) which you defined in advance.&lt;/p&gt;
+
+&lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
+You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
+method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2991,127 +2258,444 @@ router.draw(function(m) {
     </item>
     
     <item>
-      <title>Index</title>
-      <link>http://oiax.github.io/capejs/</link>
+      <title>Cape.Router - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/router/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/</guid>
+      <guid>http://oiax.github.io/capejs/api/router/</guid>
       <description>
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;what-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#action&#34;&gt;#action&lt;/a&gt; -
+&lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
+&lt;a href=&#34;#before-navigation&#34;&gt;#beforeNavigation()&lt;/a&gt; -
+&lt;a href=&#34;#component&#34;&gt;#component&lt;/a&gt; -
+&lt;a href=&#34;#container&#34;&gt;#container&lt;/a&gt; -
+&lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
+&lt;a href=&#34;#draw&#34;&gt;#draw()&lt;/a&gt; -
+&lt;a href=&#34;#error-handler&#34;&gt;#errorHandler()&lt;/a&gt; -
+&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
+&lt;a href=&#34;#namespace&#34;&gt;#namespace&lt;/a&gt; -
+&lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; -
+&lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; -
+&lt;a href=&#34;#mount&#34;&gt;#mount()&lt;/a&gt; -
+&lt;a href=&#34;#params&#34;&gt;#params&lt;/a&gt; -
+&lt;a href=&#34;#query&#34;&gt;#query&lt;/a&gt; -
+&lt;a href=&#34;#redirect-to&#34;&gt;#redirectTo&lt;/a&gt; -
+&lt;a href=&#34;#resource&#34;&gt;#resource&lt;/a&gt; -
+&lt;a href=&#34;#route-for&#34;&gt;#routeFor()&lt;/a&gt; -
+&lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; -
+&lt;a href=&#34;#start&#34;&gt;#start()&lt;/a&gt; -
+&lt;a href=&#34;#stop&#34;&gt;#stop()&lt;/a&gt; -
+&lt;a href=&#34;#vars&#34;&gt;#vars&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Cape.JS?&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;action&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Cape.JS is a lightweight JavaScript UI framework with following features:&lt;/p&gt;
+&lt;h3 id=&#34;action:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#action&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;action name&lt;/em&gt; of the current route.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.action); // =&amp;gt; &amp;quot;edit&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;attach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#attach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Full stack:&lt;/strong&gt; You can build &lt;em&gt;single-page applications&lt;/em&gt; (SPAs) with Cape.JS.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Modular:&lt;/strong&gt; You can place &lt;em&gt;web widgets&lt;/em&gt; built by Cape.JS to your static web sites.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Virtual DOM:&lt;/strong&gt; Cape.JS takes advantage of
-&lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-of Matt-Esch for high performance rendering.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Markup builder:&lt;/strong&gt; The &lt;em&gt;markup builder&lt;/em&gt; helps you to construct HTML DOM trees
-with its simple, easy to learn syntax.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Form manipulation:&lt;/strong&gt; You can get or set the value of form fields
-without &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Data stores:&lt;/strong&gt; Using &lt;em&gt;data stores&lt;/em&gt;, you can build web applications
-with &lt;em&gt;unidirectional data flow.&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Router:&lt;/strong&gt; You can define &lt;em&gt;routes&lt;/em&gt; with a DSL (domain specific language)
-similar to that of Ruby on Rails.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;The architecture and terminology of Cape.JS are strongly influenced by
-&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;,
-&lt;a href=&#34;https://github.com/muut/riotjs&#34;&gt;Riot&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-and &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+&lt;p&gt;This method register the &lt;em&gt;component&lt;/em&gt; as the target of &lt;em&gt;notification&lt;/em&gt; from this router.&lt;/p&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;installation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; for details.&lt;/p&gt;
 
-&lt;h2 id=&#34;installation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Installation&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;before-navigation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;If you just want to use Cape.JS in your web site, insert the following snippet
-to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.&lt;/p&gt;
+&lt;h3 id=&#34;beforenavigation:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#beforeNavigation()&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.7/dist/cape.min.js&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&lt;p&gt;See &lt;a href=&#34;../../router/#before-navigation-callbacks&#34;&gt;Before-Navigation Callbacks&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;component&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;component:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#component&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;component name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You can get the package for &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;container&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ npm install capejs
+&lt;h3 id=&#34;container:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;container name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.container); // =&amp;gt; &amp;quot;articles&amp;quot;
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.container); // =&amp;gt; &amp;quot;admin.articles&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You can get the package for &lt;a href=&#34;http://bower.io/&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ bower install capejs
+&lt;h3 id=&#34;detach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#detach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method removes the &lt;em&gt;component&lt;/em&gt; from the list of targets of &lt;em&gt;notification&lt;/em&gt; from this router.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;draw&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;draw:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#draw()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;draw(function)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method specify a function that takes a &lt;code&gt;RoutingMapper&lt;/code&gt; object and defines routes.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-3:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.root(&#39;dashboard&#39;);
+  m.page(&#39;about&#39;, &#39;docs.about&#39;);
+  m.many(&#39;articles&#39;);
+})
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;faq&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In the above example, the argument &lt;code&gt;m&lt;/code&gt; is a &lt;code&gt;RoutingMapper&lt;/code&gt; object.&lt;/p&gt;
 
-&lt;h2 id=&#34;faq:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;FAQ&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;error-handler&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
+&lt;h3 id=&#34;errorhandler:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#errorHandler()&lt;/h3&gt;
 
-&lt;p&gt;The official name is &lt;strong&gt;Cape.JS.&lt;/strong&gt;
-Its package name for &lt;a href=&#34;https://www.npmjs.com&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-and &lt;a href=&#34;http://bower.io&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; is &lt;strong&gt;capejs&lt;/strong&gt; (without the dot).&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;../../router/#before-navigation-callbacks&#34;&gt;Before-Navigation Callbacks&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;At the very initial phase of development, we called it &amp;ldquo;CapeJS&amp;rdquo;, but
-we don&amp;rsquo;t use it anymore.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;is-it-production-ready:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it production ready?&lt;/h3&gt;
+&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
 
-&lt;p&gt;Not yet. We adopt &lt;a href=&#34;http://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; for Cape.JS.
-According to this system, major version (0.y.z) zero is for initial development.
-We have released the version 1.0.0-beta.x, but the public API of Cape.JS should
-not be considered stable.&lt;/p&gt;
+&lt;h4 id=&#34;usage-3:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
 
-&lt;h3 id=&#34;which-browsers-are-supported:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Which browsers are supported?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;We test Cape.JS on Internet Explorer 11 and the latest versions of Chrome, Firefox and Safari.&lt;/p&gt;
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
+which is emptied after each navigation.&lt;/p&gt;
 
-&lt;p&gt;Note that we have no plan to support the Internet Explorer 8, 9, and 10.&lt;/p&gt;
+&lt;h4 id=&#34;example-4:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
 
-&lt;h3 id=&#34;how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How can I contribute?&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
+router.navigate(&#39;articles&#39;);
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The Cape.JS is an open source project. Everyone can help.
-See &lt;a href=&#34;https://github.com/oiax/capejs/CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt;
-&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;for details.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h2&gt;
+&lt;h3 id=&#34;container-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
 
-&lt;p&gt;The logo of Cape.JS is created by
-&lt;a href=&#34;https://github.com/junya-suzuki&#34;&gt;Junya Suzuki&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+&lt;p&gt;This property holds the &lt;em&gt;namespace&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
 
-&lt;h2 id=&#34;trademarks&#34;&gt;Trademarks&lt;/h2&gt;
+&lt;h4 id=&#34;example-5:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
 
-&lt;p&gt;&amp;ldquo;Cape.JS&amp;rdquo; and its logo are trademarks of Oiax Inc. All rights reserved.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.namespace); // =&amp;gt; null
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.namespace); // =&amp;gt; &amp;quot;admin&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;navigate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Cape.JS is released under
-&lt;a href=&#34;https://github.com/oiax/capejs/LICENSE&#34;&gt;the MIT License&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Tutorials and Demos</title>
-      <link>http://oiax.github.io/capejs/tutorials/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/tutorials/</guid>
-      <description>
+&lt;h3 id=&#34;navigate:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#navigate()&lt;/h3&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;setting-up-rails-with-capejs&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;usage-4:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
 
-&lt;h3 id=&#34;setting-up-rails-with-cape-js:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Setting up Rails with Cape.JS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;navigate(hash)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;This tutorial has not been written yet.&lt;/p&gt;
+&lt;p&gt;This method sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;At &lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;,
-you can find a demo Cape.JS application built upon the Ruby on Rails.&lt;/p&gt;
+&lt;p&gt;When before-navigation callbacks are registered, they are executed
+before changing the anchor part of URL.
+If the before-navigation callbacks select other string for &lt;em&gt;hash&lt;/em&gt;,
+it will be set to the anchor part of the browser&amp;rsquo;s current URL.&lt;/p&gt;
 
-&lt;p&gt;Reading through its source code, you will learn how to integrate
-a Rails app with Cape.JS and organize your JavaScript files.&lt;/p&gt;
+&lt;p&gt;After setting the anchor part of URL, this method choose a component
+according to the routing table.&lt;/p&gt;
+
+&lt;p&gt;When this component is different from the component which is mounted currently,
+it unmounts the latter and mounts the former.
+When this component is same with the component mounted currently
+it calls the &lt;code&gt;#refresh&lt;/code&gt; method of mounted component.&lt;/p&gt;
+
+&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
+
+&lt;p&gt;If you don&amp;rsquo;t want the &lt;code&gt;#notify()&lt;/code&gt; method to be executed, use &lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; instead.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;notify&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;notify:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#notify()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-5:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;notify()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method triggars the &lt;em&gt;notification&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
+of all components registerd as targets of &lt;em&gt;notification&lt;/em&gt; of this data store.&lt;/p&gt;
+
+&lt;p&gt;Eventually, each target component executes its &lt;code&gt;#render()&lt;/code&gt; method,
+which has to be defined by developers.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;#notify()&lt;/code&gt; method is executed after each time the &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method is called.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;mount:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#mount()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-6:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;mount(id)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method specifies the &lt;code&gt;id&lt;/code&gt; of the HTML element which this router
+inserts the components into.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-6:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div&amp;gt;
+  &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;Top&amp;lt;/a&amp;gt;
+  &amp;lt;a href=&amp;quot;#about&amp;quot;&amp;gt;About&amp;lt;/a&amp;gt;
+  &amp;lt;a href=&amp;quot;#help&amp;quot;&amp;gt;Help&amp;lt;/a&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script&amp;gt;
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.root(&#39;top_page&#39;);
+  m.page(&#39;about&#39;, &#39;about_page&#39;);
+  m.page(&#39;help&#39;, &#39;help_page&#39;);
+})
+router.mount(&#39;main&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the example above, components are mounted into the &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; element whose &lt;code&gt;id&lt;/code&gt; is &lt;code&gt;&#39;main&#39;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;params:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#params&lt;/h3&gt;
+
+&lt;p&gt;This property holds a set of key-value pairs, which represents the parameters
+embedded in the main part (before the first &amp;lsquo;?&amp;rsquo; symbol) of hash.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-7:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.page(&#39;help/:name&#39;, &#39;help.item&#39;);
+  m.many(&#39;articles&#39;, function(m) {
+    m.many(&#39;comments&#39;);
+  });
+})
+router.navigate(&#39;help/password&#39;);
+// router.params.name === &#39;password&#39;
+router.navigate(&#39;articles/123&#39;)
+// router.params.id === &#39;123&#39;
+router.navigate(&#39;articles/123/comments/7&#39;)
+// router.params.article_id === &#39;123&#39;
+// router.params.id === &#39;7&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;query&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;query:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#query&lt;/h3&gt;
+
+&lt;p&gt;This property holds a set of key-value pairs, which represents the parameters
+embedded in the query part (after the first &amp;lsquo;?&amp;rsquo; symbol) of hash .&lt;/p&gt;
+
+&lt;h4 id=&#34;example-8:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;)
+})
+router.navigate(&#39;articles&#39;)
+// router.query === {}
+router.navigate(&#39;articles?page=2&#39;)
+// router.query.page === &#39;2&#39;
+router.navigate(&#39;articles?page=2&amp;amp;deleted&#39;)
+// router.query.page === &#39;2&#39;
+// router.query.deleted === &#39;&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;redirect-to&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;redirectto:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#redirectTo()&lt;/h3&gt;
+
+&lt;p&gt;This method sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Unlike &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method, before-navigationi callbacks are &lt;em&gt;not&lt;/em&gt; executed
+before changing the anchor part of URL.&lt;/p&gt;
+
+&lt;p&gt;After setting the anchor part of URL, this method choose a component
+according to the routing table.&lt;/p&gt;
+
+&lt;p&gt;When this component is different from the component mounted currently,
+it unmounts the latter and mounts the former.
+When this component is same with the component which is mounted currently
+it calls the &lt;code&gt;#refresh&lt;/code&gt; method of the mounted component.&lt;/p&gt;
+
+&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;resource:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#resource&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;resource name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-9:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;);
+  m.many(&#39;articles&#39;, function(m) {
+    m.many(&#39;comments&#39;);
+  });
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+router.navigate(&#39;account/edit&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;account&amp;quot;
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
+router.navigate(&#39;articles/123/comments&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;articles/comments&amp;quot;
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;route-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;routefor:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#routeFor()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-7:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;routeFor(hash)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method returns the first route matching to the &lt;em&gt;hash,&lt;/em&gt; if any.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-10:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+var route = router.routeFor(&#39;admin/articles/123/edit&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;show&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;show:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#show()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-8:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;show(componentClass)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method mounts an instance of &lt;em&gt;componentClass&lt;/em&gt; class.&lt;/p&gt;
+
+&lt;p&gt;Unlike &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt;, it does neither change the anchor part of
+current URL, nor call the &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; method.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;start&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;start:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#start()&lt;/h3&gt;
+
+&lt;p&gt;With this method call, routers begin to listen to &lt;code&gt;hashchange&lt;/code&gt; events.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;stop&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;stop:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#stop()&lt;/h3&gt;
+
+&lt;p&gt;With this method call, routers stop to listen to &lt;code&gt;hashchange&lt;/code&gt; events.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;vars&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;vars:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#vars&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-9:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;vars[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vars.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;vars&lt;/em&gt; object.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-11:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.vars.signedIn = Date.now();
+router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -3174,28 +2758,31 @@ create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
 &lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
+  render: function(m) {
+    m.ul(function(m) {
+      this.ds.items.forEach(function(item) {
+        this.renderItem(m, item);
+      }.bind(this))
+    });
+    this.renderForm(m);
+  },
+
   renderItem: function(m, item) {
     m.li(function(m) {
       m.label({ class: { completed: item.done }}, function(m) {
-        m.input({
-          type: &#39;checkbox&#39;,
-          checked: item.done,
-          onclick: function(e) { this.ds.toggle(item) }
-        });
-        m.space().text(item.title);
+        m.onclick(function(e) { this.ds.toggle(item) })
+          .checked(item.done).input({ type: &#39;checkbox&#39; })
+        m.text(item.title);
       })
     })
   },
 
   renderForm: function(m) {
-    m.on(&#39;submit&#39;, function(e) { this.addItem(); return false; });
+    m.onsubmit(function(e) { this.addItem(); return false; });
     m.formFor(&#39;item&#39;, function(m) {
-      m.textField(&#39;title&#39;, { onkeyup: function(e) { this.refresh() } });
-      m.button(&amp;quot;Add&amp;quot;, {
-        type: &#39;button&#39;,
-        disabled: this.val(&#39;item.title&#39;) === &#39;&#39;,
-        onclick: function(e) { this.addItem() }
-      });
+      m.onkeyup(function(e) { this.refresh() }).textField(&#39;title&#39;);
+      m.onclick(function(e) { this.addItem() })
+        .disabled(this.val(&#39;item.title&#39;) === &#39;&#39;).btn(&amp;quot;Add&amp;quot;);
     });
   },
 
@@ -3299,6 +2886,527 @@ See &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;http://api.jquery
 &lt;p&gt;You can find a working demo using Ajax techniques on
 &lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;.
 This demo is built as a Ruby on Rails application.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Components</title>
+      <link>http://oiax.github.io/capejs/components/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/components/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#hello-world&#34;&gt;Hello World&lt;/a&gt; -
+&lt;a href=&#34;#es6&#34;&gt;ECMAScript 6&lt;/a&gt; -
+&lt;a href=&#34;#dom-tree&#34;&gt;Building Virtual DOM Tree&lt;/a&gt; -
+&lt;a href=&#34;#click-counter&#34;&gt;Click Counter&lt;/a&gt; -
+&lt;a href=&#34;#todo-list&#34;&gt;Todo List&lt;/a&gt; -
+&lt;a href=&#34;#mixins&#34;&gt;Mixins&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;hello-world&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;hello-world:d1b8a910971345212cdb562d8742fa2d&#34;&gt;Hello World&lt;/h3&gt;
+
+&lt;p&gt;The following example will insert &lt;code&gt;&amp;lt;div&amp;gt;Hello, World!&amp;lt;/div&amp;gt;&lt;/code&gt; into the &lt;code&gt;div#hello-message&lt;/code&gt; element.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;h1&amp;gt;Greeting from Cape.JS&amp;lt;/h1&amp;gt;
+&amp;lt;div id=&amp;quot;hello-message&amp;quot; data-name=&amp;quot;World&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./hello_message.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var component = new HelloMesage();
+  component.mount(&#39;hello-message&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;hello-message-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;hello_message.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMesage = Cape.createComponentClass({
+  render: function(m) {
+    m.div(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First of all, we &lt;em&gt;must&lt;/em&gt; define the &lt;code&gt;render&lt;/code&gt; method for Cape.JS components.
+The role of this method is to create a &lt;em&gt;virtual&lt;/em&gt; DOM tree.
+Cape.JS updates the &lt;em&gt;real&lt;/em&gt; DOM tree of browsers using this virtual tree.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;render&lt;/code&gt; method should take an argument, which is called &lt;em&gt;markup builder&lt;/em&gt;.
+When you call its &lt;code&gt;div&lt;/code&gt; method, a &lt;code&gt;div&lt;/code&gt; node is added to the virtual DOM tree.
+The markup builder has corresponding methods for all valid tag names of HTML5,
+such as &lt;code&gt;p&lt;/code&gt;, &lt;code&gt;span&lt;/code&gt;, &lt;code&gt;br&lt;/code&gt;, &lt;code&gt;section&lt;/code&gt;, &lt;code&gt;video&lt;/code&gt;, etc.&lt;/p&gt;
+
+&lt;p&gt;You can call &lt;code&gt;this.root&lt;/code&gt; to get the node which the component was mounted on.
+And you can access to &lt;code&gt;data-name&lt;/code&gt; attributes of the &lt;code&gt;root&lt;/code&gt; node by
+&lt;code&gt;this.root.data.name&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can find the source code of working demo on
+&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/hello_message&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/hello_message&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;es6&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;ecmascript-6:d1b8a910971345212cdb562d8742fa2d&#34;&gt;ECMAScript 6&lt;/h3&gt;
+
+&lt;p&gt;If you want to write more concisely, try to define class using ECMAScript 6 (ES6) syntax.&lt;/p&gt;
+
+&lt;h4 id=&#34;hello-message-es6:d1b8a910971345212cdb562d8742fa2d&#34;&gt;hello_message.es6&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class HelloMessage extends Cape.Component {
+  render(m) {
+    m.div(`Hello ${this.root.data.name}!`)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can find the source code of working demo on
+&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/es6-demo/hello_message&#34;&gt;https://github.com/oiax/capejs/tree/master/es6-demo/hello_message&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You must have &lt;code&gt;npm&lt;/code&gt; and &lt;code&gt;babel-core&lt;/code&gt; to see this demo page.
+You must also have &lt;code&gt;browserify&lt;/code&gt; to convert &lt;code&gt;.es6&lt;/code&gt; file to &lt;code&gt;.js&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;https://github.com/oiax/capejs/tree/master/es6-demo/README.md&#34;&gt;https://github.com/oiax/capejs/tree/master/es6-demo/README.md&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;dom-tree&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;building-virtual-dom-tree:d1b8a910971345212cdb562d8742fa2d&#34;&gt;Building Virtual DOM Tree&lt;/h3&gt;
+
+&lt;h4 id=&#34;index-html-1:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;h1&amp;gt;Greeting from Cape.JS&amp;lt;/h1&amp;gt;
+&amp;lt;div id=&amp;quot;hello-message&amp;quot; data-name=&amp;quot;World&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./hello_message2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var component = new HelloMesage2();
+  component.mount(&#39;hello-message&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;hello-message2-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;hello_message2.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMesage2 = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.text(&#39;Hello, &#39;);
+      m.strong(function(m) {
+        m.text(this.root.data.name);
+        m.text(&#39;!&#39;);
+      })
+    })
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This example will generate &lt;code&gt;&amp;lt;p&amp;gt;Hello, &amp;lt;strong&amp;gt;World!&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Note that &lt;code&gt;strong&lt;/code&gt; method takes a function, which create the content of &lt;code&gt;strong&lt;/code&gt; element.
+In this way you can create a deeply-nested DOM tree.&lt;/p&gt;
+
+&lt;p&gt;With ES6 syntax, you can write much tersely:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class HelloMesage2 extends Cape.Component {
+  render(m) {
+    m.p(m =&amp;gt; {
+      m.text(&#39;Hello, &#39;);
+      m.strong(m =&amp;gt; {
+        m.text(this.root.data.name);
+        m.text(&#39;!&#39;);
+      })
+    })
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All methods of markup builder can be chained. So, you can rewrite the above code as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class HelloMesage2 extends Cape.Component {
+  render(m) {
+    m.p(m =&amp;gt;
+      m.text(&#39;Hello, &#39;).strong(m =&amp;gt;
+        m.text(this.root.data.name).text(&#39;!&#39;);
+      )
+    )
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you can omit braces when the arrow function has only a single expression.
+See MDN&amp;rsquo;s &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions&#34;&gt;Arrow functions&lt;/a&gt;
+&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;click-counter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;click-counter:d1b8a910971345212cdb562d8742fa2d&#34;&gt;Click Counter&lt;/h3&gt;
+
+&lt;p&gt;On this example, your will see the number which gets incremented each time you click on the surrounding &lt;code&gt;div&lt;/code&gt; box.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html-2:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;click-counter&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./click_counter.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var counter = new ClickCounter();
+  counter.mount(&#39;click-counter&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;click-counter-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;click_counter.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var ClickCounter = Cape.createComponentClass({
+  render: function(m) {
+    m.div(String(this.counter), {
+      class: &#39;counter&#39;,
+      onclick: function(e) { this.increment() }
+    })
+  },
+
+  init: function() {
+    this.counter = 0;
+    this.refresh();
+  },
+
+  increment: function() {
+    this.counter++;
+    this.refresh();
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that we give the second argument to the &lt;code&gt;div&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  class: &#39;counter&#39;,
+  onclick: function(e) { this.increment() }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This &lt;em&gt;associative array&lt;/em&gt; represents the attributes of &lt;code&gt;div&lt;/code&gt; element.
+We can attach a handler (function) to the &lt;code&gt;click&lt;/code&gt; event for this element like this.&lt;/p&gt;
+
+&lt;p&gt;Within event handlers, &lt;code&gt;this&lt;/code&gt; denotes the component itself.
+So you can call its &lt;code&gt;increment&lt;/code&gt; method by &lt;code&gt;this.increment()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A method call &lt;code&gt;this.refresh()&lt;/code&gt; redraws the component.
+You should call it at the end of the &lt;code&gt;init&lt;/code&gt; method,
+but if the component lacks the &lt;code&gt;init&lt;/code&gt; method, the &lt;code&gt;refresh&lt;/code&gt; method
+is called when the component is mounted.&lt;/p&gt;
+
+&lt;p&gt;You can find the source code of working demo on
+&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/click_counter&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/click_counter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;shortcut-methods&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;shortcut-methods:d1b8a910971345212cdb562d8742fa2d&#34;&gt;Shortcut Methods&lt;/h2&gt;
+
+&lt;p&gt;Cape.JS provides some shortcut methods for the ease of programming, such as
+&lt;code&gt;#class&lt;/code&gt;, &lt;code&gt;#disabled&lt;/code&gt;, &lt;code&gt;#onclick&lt;/code&gt;, &lt;em&gt;etc.&lt;/em&gt;
+These methods preset the value of attributes for the element which
+will be created nextly.&lt;/p&gt;
+
+&lt;p&gt;In the previous example, we wrote like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;    m.div(String(this.counter), {
+      class: &#39;counter&#39;,
+      onclick: function(e) { this.increment() }
+    })
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With shortcut methods, we can write it more concisely:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;    m.class(&#39;count&#39;);
+    m.onclick(function(e) { this.increment() });
+    m.div(String(this.counter);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Because all methods of markup builder are &lt;em&gt;chainable,&lt;/em&gt;
+you can also write like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;    m.class(&#39;count&#39;)
+      .onclick(function(e) { this.increment() })
+      .div(String(this.counter);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The shortcut methods affect only the very element which will be created nextly.
+In the following example, the second &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; element will have no &lt;code&gt;class&lt;/code&gt; attribute:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;    m.class(&#39;greeting&#39;);
+    m.div(&#39;Hello, World!&#39;);
+    m.div(&#39;My name is Cape.JS.&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See &lt;a href=&#34;../api/markup_builder/#class&#34;&gt;MarkupBuilder#class()&lt;/a&gt; and
+&lt;a href=&#34;../api/markup_builder/#onblur-onfocus-etc&#34;&gt;MarkupBuilder#onclick()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;todo-list&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;todo-list:d1b8a910971345212cdb562d8742fa2d&#34;&gt;Todo List&lt;/h2&gt;
+
+&lt;p&gt;On this example, your can add a todo item from a HTML form and toggle the
+&lt;code&gt;completed&lt;/code&gt; property of todo items by clicking check boxes.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html-3:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./todo_list.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var todoList = new TodoList();
+  todoList.mount(&#39;todo-list&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;todo-list-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;todo_list.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList = Cape.createComponentClass({
+  render: function(m) {
+    m.ul(function(m) {
+      this.items.forEach(function(item) {
+        this.renderItem(m, item);
+      }.bind(this))
+    });
+    this.renderForm(m);
+  },
+
+  renderItem: function(m, item) {
+    m.li(function(m) {
+      m.label({ class: { completed: item.done }}, function(m) {
+        m.onclick(function(e) { this.toggle(item) })
+          .checked(item.done).input({ type: &#39;checkbox&#39; })
+        m.text(item.title);
+      })
+    })
+  },
+
+  renderForm: function(m) {
+    m.onsubmit(function(e) { this.addItem(); return false; });
+    m.formFor(&#39;item&#39;, function(m) {
+      m.onkeyup(function(e) { this.refresh() }).textField(&#39;title&#39;);
+      m.onclick(function(e) { this.addItem() })
+        .disabled(this.val(&#39;item.title&#39;) === &#39;&#39;).btn(&amp;quot;Add&amp;quot;);
+    });
+  },
+
+  init: function() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+    this.refresh();
+  },
+
+  toggle: function(item) {
+    item.done = !item.done;
+    this.refresh();
+  },
+
+  addItem: function() {
+    this.items.push({ title: this.val(&#39;item.title&#39;), done: false });
+    this.val(&#39;item.title&#39;, &#39;&#39;);
+    this.refresh();
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that we use the &lt;code&gt;formFor&lt;/code&gt; method of markup builder to render an HTML form.
+This method takes a string as the first argument, and sets the &lt;code&gt;name&lt;/code&gt; attribute
+of the form to it.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;textFiled&lt;/code&gt; method creates an &lt;code&gt;input&lt;/code&gt; element of the type &lt;code&gt;text&lt;/code&gt;.
+If we give &lt;code&gt;&#39;title&#39;&lt;/code&gt; as the first argument of the method,
+the value of &lt;code&gt;name&lt;/code&gt; attribute of this &lt;code&gt;input&lt;/code&gt; element is set to &lt;code&gt;item.title&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We can get its value by &lt;code&gt;this.val(&#39;item.title&#39;)&lt;/code&gt;.
+You can also set its value with &lt;code&gt;val&lt;/code&gt; method by giving a new value as the second argument.&lt;/p&gt;
+
+&lt;p&gt;You can find the source code of working demo on
+&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As for the &lt;code&gt;#btn()&lt;/code&gt; method, see &lt;a href=&#34;../api/markup_builder/#btn&#34;&gt;MarkupBuilder#btn()&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mixins&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;mixins:d1b8a910971345212cdb562d8742fa2d&#34;&gt;Mixins&lt;/h3&gt;
+
+&lt;p&gt;When you build a large application with many similar components,
+you will want to extract common methods to &lt;em&gt;mixins&lt;/em&gt;,
+objects that contain a combination of methods.&lt;/p&gt;
+
+&lt;p&gt;The following example illustrates how to create &lt;em&gt;mixins&lt;/em&gt; and incorporate them
+into component classes.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html-4:d1b8a910971345212cdb562d8742fa2d&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./form_controls.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;./simple_form.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var simple_form = new SimpleForm();
+  simple_form.mount(&#39;main&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;form-controls-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;form_controls.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var FormControls = {
+  renderTextField: function(markup, fieldName, labelText) {
+    markup.div({ class: &#39;form-group&#39; }, function(m) {
+      m.labelFor(fieldName, labelText);
+      m.textField(fieldName, { class: &#39;form-control&#39; });
+    })
+  },
+
+  renderTextareaField: function(markup, fieldName, labelText) {
+    markup.div({ class: &#39;form-group&#39; }, function(m) {
+      m.labelFor(fieldName, labelText);
+      m.textareaField(fieldName, { class: &#39;form-control&#39; });
+    })
+  },
+
+  renderButtons: function(markup) {
+    markup.div({ class: &#39;form-group&#39; }, function(m) {
+      m.btn(&#39;Submit&#39;, { class: &#39;btn btn-primary&#39; });
+      m.btn(&#39;Cancel&#39;, { class: &#39;btn btn-default&#39; });
+    })
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;simple-form-js:d1b8a910971345212cdb562d8742fa2d&#34;&gt;simple_form.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var SimpleForm = Cape.createComponentClass({
+  render: function(m) {
+    m.p(function(m) {
+      m.formFor(&#39;user&#39;, function(m) {
+        this.renderTextField(m, &#39;family_name&#39;, &#39;Family Name&#39;);
+        this.renderTextField(m, &#39;given_name&#39;, &#39;Given Name&#39;);
+        this.renderTextareaField(m, &#39;remarks&#39;, &#39;Remarks&#39;);
+        this.renderButtons(m);
+      })
+    })
+  }
+});
+
+Cape.merge(SimpleForm.prototype, FormControls);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;Cape.merge&lt;/code&gt; method imports all properties (methods) of &lt;code&gt;FormControls&lt;/code&gt;
+into &lt;code&gt;SimpleForm.prototype&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Note that &lt;code&gt;Cape.merge&lt;/code&gt; does not rewrite existing properties of &lt;code&gt;SimpleForm.prototype&lt;/code&gt;
+so that you can override one or more methods of &lt;code&gt;FormControls&lt;/code&gt;
+within the definition of &lt;code&gt;SimpleForm&lt;/code&gt; class.&lt;/p&gt;
+
+&lt;p&gt;You can find the source code of working demo on
+&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/mixins&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/mixins&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Index</title>
+      <link>http://oiax.github.io/capejs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/</guid>
+      <description>
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;what-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Cape.JS?&lt;/h2&gt;
+
+&lt;p&gt;Cape.JS is a lightweight JavaScript UI framework with following features:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Full stack:&lt;/strong&gt; You can build &lt;em&gt;single-page applications&lt;/em&gt; (SPAs) with Cape.JS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modular:&lt;/strong&gt; You can place &lt;em&gt;web widgets&lt;/em&gt; built by Cape.JS to your static web sites.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Virtual DOM:&lt;/strong&gt; Cape.JS takes advantage of
+&lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+of Matt-Esch for high performance rendering.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Markup builder:&lt;/strong&gt; The &lt;em&gt;markup builder&lt;/em&gt; helps you to construct HTML DOM trees
+with its simple, easy to learn syntax.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Form manipulation:&lt;/strong&gt; You can get or set the value of form fields
+without &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data stores:&lt;/strong&gt; Using &lt;em&gt;data stores&lt;/em&gt;, you can build web applications
+with &lt;em&gt;unidirectional data flow.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Router:&lt;/strong&gt; You can define &lt;em&gt;routes&lt;/em&gt; with a DSL (domain specific language)
+similar to that of Ruby on Rails.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The architecture and terminology of Cape.JS are strongly influenced by
+&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;,
+&lt;a href=&#34;https://github.com/muut/riotjs&#34;&gt;Riot&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+and &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;installation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;installation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;If you just want to use Cape.JS in your web site, insert the following snippet
+to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;https://cdn.rawgit.com/oiax/capejs/v1.0.0-beta.7/dist/cape.min.js&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can get the package for &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm install capejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can get the package for &lt;a href=&#34;http://bower.io/&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bower install capejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;faq&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;faq:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;FAQ&lt;/h2&gt;
+
+&lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
+
+&lt;p&gt;The official name is &lt;strong&gt;Cape.JS.&lt;/strong&gt;
+Its package name for &lt;a href=&#34;https://www.npmjs.com&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
+and &lt;a href=&#34;http://bower.io&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; is &lt;strong&gt;capejs&lt;/strong&gt; (without the dot).&lt;/p&gt;
+
+&lt;p&gt;At the very initial phase of development, we called it &amp;ldquo;CapeJS&amp;rdquo;, but
+we don&amp;rsquo;t use it anymore.&lt;/p&gt;
+
+&lt;h3 id=&#34;is-it-production-ready:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it production ready?&lt;/h3&gt;
+
+&lt;p&gt;Not yet. We adopt &lt;a href=&#34;http://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; for Cape.JS.
+According to this system, major version (0.y.z) zero is for initial development.
+We have released the version 1.0.0-beta.x, but the public API of Cape.JS should
+not be considered stable.&lt;/p&gt;
+
+&lt;h3 id=&#34;which-browsers-are-supported:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Which browsers are supported?&lt;/h3&gt;
+
+&lt;p&gt;We test Cape.JS on Internet Explorer 11 and the latest versions of Chrome, Firefox and Safari.&lt;/p&gt;
+
+&lt;p&gt;Note that we have no plan to support the Internet Explorer 8, 9, and 10.&lt;/p&gt;
+
+&lt;h3 id=&#34;how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How can I contribute?&lt;/h3&gt;
+
+&lt;p&gt;The Cape.JS is an open source project. Everyone can help.
+See &lt;a href=&#34;https://github.com/oiax/capejs/CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt;
+&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;for details.&lt;/p&gt;
+
+&lt;h2 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h2&gt;
+
+&lt;p&gt;The logo of Cape.JS is created by
+&lt;a href=&#34;https://github.com/junya-suzuki&#34;&gt;Junya Suzuki&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;trademarks&#34;&gt;Trademarks&lt;/h2&gt;
+
+&lt;p&gt;&amp;ldquo;Cape.JS&amp;rdquo; and its logo are trademarks of Oiax Inc. All rights reserved.&lt;/p&gt;
+
+&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+
+&lt;p&gt;Cape.JS is released under
+&lt;a href=&#34;https://github.com/oiax/capejs/LICENSE&#34;&gt;the MIT License&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3922,6 +4030,28 @@ to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.
 
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;https://cdn.rawgit.com/taylorhakes/promise-polyfill/master/Promise.min.js&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tutorials and Demos</title>
+      <link>http://oiax.github.io/capejs/tutorials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/</guid>
+      <description>
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;setting-up-rails-with-capejs&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;setting-up-rails-with-cape-js:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Setting up Rails with Cape.JS&lt;/h3&gt;
+
+&lt;p&gt;This tutorial has not been written yet.&lt;/p&gt;
+
+&lt;p&gt;At &lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;,
+you can find a demo Cape.JS application built upon the Ruby on Rails.&lt;/p&gt;
+
+&lt;p&gt;Reading through its source code, you will learn how to integrate
+a Rails app with Cape.JS and organize your JavaScript files.&lt;/p&gt;
 </description>
     </item>
     

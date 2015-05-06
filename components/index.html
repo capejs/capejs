@@ -80,6 +80,8 @@
           
             <li><a href="http://oiax.github.io/capejs/components/#click-counter">Click Counter</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/components/#shortcut-methods">Shortcut Methods</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/components/#todo-list">Todo List</a></li>
           
             <li><a href="http://oiax.github.io/capejs/components/#mixins">Mixins</a></li>
@@ -352,6 +354,49 @@ is called when the component is mounted.</p>
 <p>You can find the source code of working demo on
 <a href="https://github.com/oiax/capejs/tree/master/demo/click_counter">https://github.com/oiax/capejs/tree/master/demo/click_counter</a>.</p>
 
+<p><a class="anchor" id="shortcut-methods"></a></p>
+
+<h2 id="shortcut-methods:d1b8a910971345212cdb562d8742fa2d">Shortcut Methods</h2>
+
+<p>Cape.JS provides some shortcut methods for the ease of programming, such as
+<code>#class</code>, <code>#disabled</code>, <code>#onclick</code>, <em>etc.</em>
+These methods preset the value of attributes for the element which
+will be created nextly.</p>
+
+<p>In the previous example, we wrote like this:</p>
+
+<pre><code class="language-javascript">    m.div(String(this.counter), {
+      class: 'counter',
+      onclick: function(e) { this.increment() }
+    })
+</code></pre>
+
+<p>With shortcut methods, we can write it more concisely:</p>
+
+<pre><code class="language-javascript">    m.class('count');
+    m.onclick(function(e) { this.increment() });
+    m.div(String(this.counter);
+</code></pre>
+
+<p>Because all methods of markup builder are <em>chainable,</em>
+you can also write like this:</p>
+
+<pre><code class="language-javascript">    m.class('count')
+      .onclick(function(e) { this.increment() })
+      .div(String(this.counter);
+</code></pre>
+
+<p>The shortcut methods affect only the very element which will be created nextly.
+In the following example, the second <code>&lt;div&gt;</code> element will have no <code>class</code> attribute:</p>
+
+<pre><code class="language-javascript">    m.class('greeting');
+    m.div('Hello, World!');
+    m.div('My name is Cape.JS.');
+</code></pre>
+
+<p>See <a href="../api/markup_builder/#class">MarkupBuilder#class()</a> and
+<a href="../api/markup_builder/#onblur-onfocus-etc">MarkupBuilder#onclick()</a> for details.</p>
+
 <p><a class="anchor" id="todo-list"></a></p>
 
 <h2 id="todo-list:d1b8a910971345212cdb562d8742fa2d">Todo List</h2>
@@ -385,25 +430,19 @@ is called when the component is mounted.</p>
   renderItem: function(m, item) {
     m.li(function(m) {
       m.label({ class: { completed: item.done }}, function(m) {
-        m.input({
-          type: 'checkbox',
-          checked: item.done,
-          onclick: function(e) { this.toggle(item) }
-        });
-        m.space().text(item.title);
+        m.onclick(function(e) { this.toggle(item) })
+          .checked(item.done).input({ type: 'checkbox' })
+        m.text(item.title);
       })
     })
   },
 
   renderForm: function(m) {
-    m.on('submit', function(e) { this.addItem(); return false; });
+    m.onsubmit(function(e) { this.addItem(); return false; });
     m.formFor('item', function(m) {
-      m.textField('title', { onkeyup: function(e) { this.refresh() } });
-      m.button(&quot;Add&quot;, {
-        type: 'button',
-        disabled: this.val('item.title') === '',
-        onclick: function(e) { this.addItem(); }
-      });
+      m.onkeyup(function(e) { this.refresh() }).textField('title');
+      m.onclick(function(e) { this.addItem() })
+        .disabled(this.val('item.title') === '').btn(&quot;Add&quot;);
     });
   },
 
@@ -428,15 +467,21 @@ is called when the component is mounted.</p>
 });
 </code></pre>
 
-<p>Note that we use the <code>textField</code> method of markup builder.
-This method creates an <code>input</code> element of the type <code>text</code>.
+<p>Note that we use the <code>formFor</code> method of markup builder to render an HTML form.
+This method takes a string as the first argument, and sets the <code>name</code> attribute
+of the form to it.</p>
+
+<p>The <code>textFiled</code> method creates an <code>input</code> element of the type <code>text</code>.
 If we give <code>'title'</code> as the first argument of the method,
-it is set to the value of <code>name</code> attribute of the <code>input</code> element and
-we can get its value by <code>this.val('title')</code>.
-You can also set its value with <code>val</code> method by giving a new value as second argument.</p>
+the value of <code>name</code> attribute of this <code>input</code> element is set to <code>item.title</code>.</p>
+
+<p>We can get its value by <code>this.val('item.title')</code>.
+You can also set its value with <code>val</code> method by giving a new value as the second argument.</p>
 
 <p>You can find the source code of working demo on
 <a href="https://github.com/oiax/capejs/tree/master/demo/todo_list">https://github.com/oiax/capejs/tree/master/demo/todo_list</a>.</p>
+
+<p>As for the <code>#btn()</code> method, see <a href="../api/markup_builder/#btn">MarkupBuilder#btn()</a>.</p>
 
 <p><a class="anchor" id="mixins"></a></p>
 
@@ -466,22 +511,22 @@ into component classes.</p>
 <pre><code class="language-javascript">var FormControls = {
   renderTextField: function(markup, fieldName, labelText) {
     markup.div({ class: 'form-group' }, function(m) {
-      m.labelFor(fieldName, labelText).sp();
+      m.labelFor(fieldName, labelText);
       m.textField(fieldName, { class: 'form-control' });
     })
   },
 
   renderTextareaField: function(markup, fieldName, labelText) {
     markup.div({ class: 'form-group' }, function(m) {
-      m.labelFor(fieldName, labelText).sp();
+      m.labelFor(fieldName, labelText);
       m.textareaField(fieldName, { class: 'form-control' });
     })
   },
 
   renderButtons: function(markup) {
     markup.div({ class: 'form-group' }, function(m) {
-      m.button('Submit', { class: 'btn btn-primary' }).sp();
-      m.button('Cancel', { class: 'btn btn-default' })
+      m.btn('Submit', { class: 'btn btn-primary' });
+      m.btn('Cancel', { class: 'btn btn-default' });
     })
   }
 }
