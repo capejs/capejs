@@ -385,6 +385,48 @@ describe('MarkupBuilder', function() {
 
       c.unmount();
     })
+
+    it('should set onsubmit callback if not defined', function() {
+      var target, form, c, e;
+
+      var C = Cape.createComponentClass({
+        render: function(m) {
+          m.formFor('', function(m) {
+            m.textField('name')
+          })
+        }
+      })
+
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+
+      form = target.getElementsByTagName('form')[0];
+      expect(typeof form.onsubmit).to.equal('function');
+    })
+
+    it('should not override onsubmit callback if defined', function() {
+      var method, c, form;
+
+      method = sinon.spy();
+      var C = Cape.createComponentClass({
+        render: function(m) {
+          m.on('submit', function(e) { method(); return false });
+          m.formFor('', function(m) {
+            m.textField('name');
+          })
+        }
+      })
+
+      c = new C();
+      c.mount('target');
+
+      var form = document.getElementById('target').getElementsByTagName('form')[0];
+      form.onsubmit();
+
+      expect(method.called).to.equal(true);
+    })
   })
 
   describe('checkBox', function() {
