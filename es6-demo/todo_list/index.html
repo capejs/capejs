@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TODO LIST 2 | Cape.JS Demo</title>
+  <title>TODO LIST | Cape.JS Demo (ES6 version)</title>
   <link rel="stylesheet" type="text/css"
      href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <script src="../../dist/cape.js" charset="UTF-8"></script>
@@ -14,16 +14,15 @@
 <body>
   <div class="container">
     <div class="page-header">
-      <h1>TODO LIST 2 <small>Cape.JS Demo</small></h1>
+      <h1>TODO LIST <small>Cape.JS Demo (ES6 version)</small></h1>
     </div>
 
     <div class="page-body" id="todo-list"></div>
   </div>
 
-  <script src="./todo_list2.js"></script>
-  <script src="./todo_item_store.js"></script>
+  <script src="./todo_list.js"></script>
   <script>
-    var component = new TodoList2();
+    var component = new ES6TodoList();
     component.mount('todo-list');
   </script>
 </body>

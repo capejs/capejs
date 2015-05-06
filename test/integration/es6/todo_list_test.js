@@ -1,5 +1,5 @@
 describe('Demo', function() {
-  describe('ES6TodoList', function() {
+  describe('TodoList', function() {
     before(function() {
       var div = document.createElement('div');
       div.id = "component";
@@ -14,7 +14,7 @@ describe('Demo', function() {
     it('should refresh counter', function() {
       var c, input, button, ul, cb, label;
 
-      c = new ES6TodoList();
+      c = new TodoList();
       c.mount('component');
 
       root = document.getElementById('component');

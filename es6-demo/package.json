@@ -9,6 +9,7 @@
     "babelify": "^6.0.2"
   },
   "scripts": {
-    "build": "cd hello_message; browserify hello_message.es6 -t babelify --standalone ES6HelloMessage --outfile hello_message.js"
+    "build": "cd hello_message; browserify hello_message.es6 -t babelify --standalone ES6HelloMessage --outfile hello_message.js",
+    "todo": "cd todo_list; browserify todo_list.es6 -t babelify --standalone ES6TodoList --outfile todo_list.js"
   }
 }

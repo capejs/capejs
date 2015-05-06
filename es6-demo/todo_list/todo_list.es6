@@ -1,0 +1,58 @@
+"use strict";
+
+class ES6TodoList extends Cape.Component {
+  render(m) {
+    m.ul(m => {
+      this.items.forEach(item =>
+        this.renderItem(m, item)
+      )
+    });
+    this.renderForm(m);
+  }
+
+  renderItem(m, item) {
+    m.li(m => {
+      m.label({ class: { completed: item.done }}, m => {
+        m.input({
+          type: 'checkbox',
+          checked: item.done,
+          onclick: e => this.toggle(item)
+        });
+        m.sp().text(item.title);
+      })
+    })
+  }
+
+  renderForm(m) {
+    m.on('submit', e => { this.addItem(); return false; });
+    m.formFor('item', m => {
+      m.textField('title', { onkeyup: e => this.refresh() });
+      m.button("Add", {
+        type: 'button',
+        disabled: this.val('item.title') === '',
+        onclick: e => this.addItem()
+      });
+    });
+  }
+
+  init() {
+    this.items = [
+      { title: 'Foo', done: false },
+      { title: 'Bar', done: true }
+    ];
+    this.refresh();
+  }
+
+  toggle(item) {
+    item.done = !item.done;
+    this.refresh();
+  }
+
+  addItem() {
+    this.items.push({ title: this.val('item.title'), done: false });
+    this.val('item.title', '');
+    this.refresh();
+  }
+}
+
+module.exports = ES6TodoList;
