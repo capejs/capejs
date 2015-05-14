@@ -449,6 +449,32 @@ describe('MarkupBuilder', function() {
       e = form.getElementsByTagName('input')[0];
       expect(e.id).to.equal('');
     })
+
+    if (!isNode) {
+      it('should adopt the previously set event callbacks', function() {
+        var target, form, c, callback, elem, ev;
+
+        callback = sinon.spy()
+        var C = Cape.createComponentClass({
+          render: function(m) {
+            m.formFor('', function(m) {
+              m.onchange(callback)
+              m.checkBox('name');
+            })
+          }
+        })
+        c = new C();
+        c.mount('target');
+
+        target = document.getElementById('target');
+        target.getElementsByTagName('input')[1].checked = true;
+        elem = target.getElementsByTagName('input')[1];
+        ev = new Event('change');
+        elem.dispatchEvent(ev);
+
+        expect(callback.called).to.be.true
+      })
+    }
   })
 
   describe('btn', function() {

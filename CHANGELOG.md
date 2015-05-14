@@ -1,5 +1,12 @@
 # CHANGELOG - CapeJS
 
+## 1.0.0-rc.2 (May 14, 2015)
+
+### `Cape.MarkupBuilder`
+
+* Fix a bug relating to `#checkBox`. The `#attr`, `#class`,  `on`, etc.
+  should not affect on the hidden field, but on the check box field.
+
 ## 1.0.0-rc.1 (May 6, 2015)
 
 ### `Cape.MarkupBuilder`
