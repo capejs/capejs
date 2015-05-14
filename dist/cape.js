@@ -451,12 +451,21 @@ Cape.extend(MarkupBuilder.prototype, {
     return this;
   },
   checkBox: function(attrName, options) {
+    var fieldName;
+
     options = options || {};
     options.type = 'checkbox';
     if (attrName) options.name = attrName;
     if (!options.value) options.value = '1';
-    this._.inputField(global.Cape.extend({}, options,
-      { id: null, type: 'hidden', value: '0' }));
+
+    if (options.name && this._.fieldNamePrefix)
+      fieldName = this._.fieldNamePrefix + '/' + options.name
+    else
+      fieldName = options.name
+
+    this._.elements.push(
+      this._.h('input', global.Cape.extend({}, options,
+        { name: fieldName, type: 'hidden', value: '0' })));
     this._.inputField(options);
     return this;
   },
