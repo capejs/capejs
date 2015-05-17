@@ -2,6 +2,8 @@
 
 ![Cape.JS logo](https://cdn.rawgit.com/oiax/capejs/logo1/doc/logo/capejs.svg)
 
+[![Circle CI](https://circleci.com/gh/oiax/capejs.png?style=badge)](https://circleci.com/gh/oiax/capejs)
+
 Cape.JS is a lightweight JavaScript UI framework with following features:
 
 * **Full stack:** You can build *single-page applications* (SPAs) with Cape.JS.
