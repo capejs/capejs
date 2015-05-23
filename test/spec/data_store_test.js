@@ -30,12 +30,15 @@ describe('DataStore', function() {
       var Klass, component, ds;
 
       Klass = Cape.createDataStoreClass({});
-      component = { refresh: sinon.spy() }
+      component1 = { refresh: sinon.spy() };
+      component2 = { refresh: sinon.spy() };
 
       ds = new Klass();
-      ds.attach(component);
+      ds.attach(component1);
+      ds.attach(component2);
       ds.propagate();
-      expect(component.refresh.called).to.be.true;
+      expect(component1.refresh.called).to.be.true;
+      expect(component2.refresh.called).to.be.true;
     })
 
     it('should not register the same object twice', function() {
@@ -56,13 +59,19 @@ describe('DataStore', function() {
       var Klass, component, ds;
 
       Klass = Cape.createDataStoreClass({});
-      component = { refresh: sinon.spy() }
+      component1 = { refresh: sinon.spy() }
+      component2 = { refresh: sinon.spy() }
+      component3 = { refresh: sinon.spy() }
 
       ds = new Klass();
-      ds.attach(component);
-      ds.detach(component);
+      ds.attach(component1);
+      ds.attach(component2);
+      ds.attach(component3);
+      ds.detach(component2);
       ds.propagate();
-      expect(component.refresh.called).not.to.be.true;
+      expect(component1.refresh.called).to.be.true;
+      expect(component2.refresh.called).not.to.be.true;
+      expect(component3.refresh.called).to.be.true;
     })
   })
 })

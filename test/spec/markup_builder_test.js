@@ -256,6 +256,24 @@ describe('MarkupBuilder', function() {
 
       c.unmount();
     })
+
+    it('should throw an error when the first argument is not a string', function() {
+      var target, c, span;
+
+      var C = Cape.createComponentClass({
+        init: function() {
+          this.counter = 0;
+          this.refresh();
+        },
+        render: function(m) {
+          m.on(0, function(e) { this.counter++ });
+          m.span('Click me', { onclick: function(e) { this.counter = -1 }});
+        }
+      });
+
+      c = new C();
+      expect(function() { c.mount('target') }).to.throw(/must be a string/);
+    })
   })
 
   describe('fa', function() {
@@ -263,7 +281,10 @@ describe('MarkupBuilder', function() {
       var target, c, i;
 
       var C = Cape.createComponentClass({
-        render: function(m) { m.fa('beer') }
+        render: function(m) {
+          m.fa('beer');
+          m.fa('beer', { class: 'large' })
+        }
       });
 
       c = new C();
@@ -272,6 +293,8 @@ describe('MarkupBuilder', function() {
       target = document.getElementById('target');
       i = target.getElementsByTagName('i')[0];
       expect(i.className).to.equal('fa fa-beer');
+      i = target.getElementsByTagName('i')[1];
+      expect(i.className).to.equal('large fa fa-beer');
 
       c.unmount();
     })
@@ -284,7 +307,9 @@ describe('MarkupBuilder', function() {
       var C = Cape.createComponentClass({
         render: function(m) {
           m.formFor('', function(m) {
+            m.hiddenField('dummy');
             m.labelFor('name', 'Name').sp().textField('name').br();
+            m.labelFor('password', 'Password').sp().passwordField('name').br();
             m.labelFor('remarks', 'Remarks').sp().textareaField('remarks').br();
             m.labelFor('color', 'Color').sp();
             m.selectBox('color', function(m) {
@@ -340,23 +365,23 @@ describe('MarkupBuilder', function() {
       form = target.getElementsByTagName('form')[0];
       e = form.getElementsByTagName('label')[0];
       expect(e.htmlFor).to.equal('field-name');
-      e = form.getElementsByTagName('input')[0];
+      e = form.getElementsByTagName('input')[1];
       expect(e.id).to.equal('field-name');
       e = form.getElementsByTagName('textarea')[0];
       expect(e.id).to.equal('field-remarks');
       e = form.getElementsByTagName('select')[0];
       expect(e.id).to.equal('field-color');
-      e = form.getElementsByTagName('input')[1];
-      expect(e.id).to.equal('field-size-l');
       e = form.getElementsByTagName('input')[3];
+      expect(e.id).to.equal('field-size-l');
+      e = form.getElementsByTagName('input')[5];
       expect(e.type).to.equal('hidden');
       expect(e.id).to.equal('');
-      e = form.getElementsByTagName('input')[4];
+      e = form.getElementsByTagName('input')[6];
       expect(e.type).to.equal('checkbox');
       expect(e.id).to.equal('field-confirm');
-      e = form.getElementsByTagName('label')[6];
+      e = form.getElementsByTagName('label')[7];
       expect(e.htmlFor).to.equal('field-variants-1-variant-name');
-      e = form.getElementsByTagName('input')[5];
+      e = form.getElementsByTagName('input')[7];
       expect(e.id).to.equal('field-variants-1-variant-name');
       e = form.getElementsByTagName('textarea')[1];
       expect(e.id).to.equal('field-variants-1-remarks');
@@ -516,6 +541,24 @@ describe('MarkupBuilder', function() {
       form = target.getElementsByTagName('form')[0];
       e = form.getElementsByTagName('button')[0];
       expect(e.type).to.equal('submit');
+    })
+  })
+
+  describe('text', function() {
+    it('should add a text node', function() {
+      var target, form, c, e;
+
+      var C = Cape.createComponentClass({
+        render: function(m) {
+          m.text('Hello!')
+        }
+      })
+      c = new C();
+      c.mount('target');
+
+      target = document.getElementById('target');
+
+      expect(target.textContent).to.equal('Hello!');
     })
   })
 })

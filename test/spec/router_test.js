@@ -128,6 +128,20 @@ describe('Router', function() {
     })
   })
 
+  describe('draw', function() {
+    it ('should throw when the first argument is not a function', function() {
+      router = new Cape.Router();
+
+      expect(function() { router.draw("") }).to.throw(/must be a function/);
+    })
+
+    it ('should throw when the given function takes no argument', function() {
+      router = new Cape.Router();
+
+      expect(function() { router.draw(function() {}) }).to.throw(/requires an argument/);
+    })
+  })
+
   describe('navigate', function() {
     afterEach(function() {
       window.TestMessage = undefined;
@@ -363,6 +377,39 @@ describe('Router', function() {
 
       router.mount('main');
       router.navigate('members');
+    })
+
+    it ('should call notify()', function() {
+      var router;
+
+      window.Members = {};
+      window.Members.Item = function() {};
+      window.Members.Item.prototype.mount = method3 = sinon.spy();
+
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      sinon.spy(router, 'notify');
+      router.draw(function(m) {
+        m.many('members');
+      })
+      router.mount('main');
+      router.navigate('members/1')
+      router.navigate('members/2')
+
+      expect(router.notify.calledOnce)
+    })
+
+    it ('should throw when the argument is not a string', function() {
+      var router;
+
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.many('members');
+      })
+      router.mount('main');
+
+      expect(function() { router.navigate(0) }).to.throw(/must be a string/);
     })
   })
 
