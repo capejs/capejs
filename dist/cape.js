@@ -27,6 +27,8 @@ Cape.extend(Component.prototype, {
   mount: function(id) {
     if (id === undefined)
       throw new Error("The first argument is missing.");
+    if (typeof id !== 'string')
+      throw new Error("The first argument must be a string.");
     if (this._.mounted)
       throw new Error("This component has been mounted already.");
 
@@ -86,7 +88,7 @@ Cape.extend(Component.prototype, {
           if (elem.type === 'checkbox') {
             elem.checked = vform[k];
           }
-          else if (elem.type === 'checkbox') {
+          else if (elem.type === 'radio') {
             if (elem.value === vform[k]) elem.checked = true;
           }
           else {
@@ -549,6 +551,8 @@ Cape.extend(MarkupBuilder.prototype, {
   on: function(eventName, callback) {
     if (typeof eventName === 'string')
       this._.eventCallbacks['on' + eventName] = callback
+    else
+      throw new Error("The first agument must be a string.");
   },
   fa: function(iconName, options) {
     options = options || {};
