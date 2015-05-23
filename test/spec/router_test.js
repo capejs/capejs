@@ -308,6 +308,62 @@ describe('Router', function() {
       expect(method.calledWith('main')).to.equal(true);
       expect(router.params.id).to.equal('123');
     })
+
+    it('should run beforeNavigation callbacks', function(done) {
+      var router;
+
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router._.mountComponent = function(id) {
+        expect(id).to.equal('login');
+        done();
+      }
+
+      router.draw(function(m) {
+        m.page('login', 'sessions.new');
+        m.many('members');
+      })
+
+      router.beforeNavigation(function(hash) {
+        return new Promise(function(resolve, reject) {
+          resolve(hash);
+        });
+      });
+
+      router.beforeNavigation(function(hash) {
+        return new Promise(function(resolve, reject) {
+          resolve('login');
+        });
+      });
+
+      router.mount('main');
+      router.navigate('members');
+    })
+
+    it('should run errorHandler', function(done) {
+      var router;
+
+      router = new Cape.Router();
+      router._.setHash = function() {};
+
+      router.draw(function(m) {
+        m.many('members');
+      })
+
+      router.beforeNavigation(function(hash) {
+        return new Promise(function(resolve, reject) {
+          reject('ERROR');
+        });
+      });
+
+      router.errorHandler(function(err) {
+        expect(err).to.equal('ERROR');
+        done();
+      });
+
+      router.mount('main');
+      router.navigate('members');
+    })
   })
 
   describe('redirectTo', function() {
