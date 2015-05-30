@@ -266,6 +266,44 @@ describe('Component', function() {
       expect(component.val('foo.title')).to.equal('A');
       expect(component.val('foo.name')).to.equal('B');
     })
+
+    it('should set a field value of a nested form', function() {
+      var Klass, component;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.formFor('book', function(m) {
+            m.textField('title');
+            m.fieldsFor('author', function(m) {
+              m.textField('family_name');
+              m.textField('given_name');
+              m.fieldsFor('tags', { index: 0 }, function(m) {
+                m.textField('value');
+              });
+              m.fieldsFor('tags', { index: 1 }, function(m) {
+                m.textField('value');
+              });
+            });
+            m.fieldsFor('comments', { index: 0 }, function(m) {
+              m.textareaField('body');
+            });
+            m.fieldsFor('comments', { index: 1 }, function(m) {
+              m.textareaField('body');
+            });
+          });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+      component.val('book.author/family_name', 'Doe');
+      component.val('book.author/tags/0/value', 'S');
+      component.val('book.comments/1/body', 'Y');
+      component.refresh();
+      expect(component.val('book.author/family_name')).to.equal('Doe');
+      expect(component.val('book.author/tags/0/value')).to.equal('S');
+      expect(component.val('book.comments/1/body')).to.equal('Y');
+    })
   })
 
   describe('formData', function() {
