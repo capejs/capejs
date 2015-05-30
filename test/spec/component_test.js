@@ -268,6 +268,28 @@ describe('Component', function() {
     })
   })
 
+  describe('setValues', function() {
+    it('should set the values of form fields', function() {
+      var Klass, component;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.formFor('book', function(m) {
+            m.textField('title');
+            m.textField('author');
+          });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+      component.setValues('book', { title: 'A', author: 'B' });
+      component.refresh();
+      expect(component.val('book.title')).to.equal('A');
+      expect(component.val('book.author')).to.equal('B');
+    })
+  })
+
   describe('formData', function() {
     it('should return an object that contains parameters', function() {
       var Klass, component, params;

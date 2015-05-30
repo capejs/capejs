@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 1.1.0 (Not yet released)
+
+### `Cape.Component`
+
+* Add `#setValues` to set values of form fields at one time.
+
 ## 1.0.0 (May 23, 2015)
 
 * Release the first version that is ready for production use.
