@@ -6,6 +6,12 @@
 
 * Add `#setValues` to set values of form fields at one time.
 
+## 1.0.1 (May 30, 2015)
+
+### `Cape.Component`
+
+* Bug fix: Can't set field values of nested forms.
+
 ## 1.0.0 (May 23, 2015)
 
 * Release the first version that is ready for production use.
