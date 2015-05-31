@@ -425,4 +425,46 @@ describe('Component', function() {
       expect(params.name).to.equal('B');
     })
   })
+
+  describe('paramsFor', function() {
+    it('should return an object that is suitable for API requests', function() {
+      var Klass, component, params;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.formFor('article', function(m) {
+            m.textField('title', { value: 'A' });
+            m.textField('name', { value: 'B' });
+          });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+      params = component.paramsFor('article');
+
+      expect(params.article.title).to.equal('A');
+      expect(params.article.name).to.equal('B');
+    })
+
+    it('should take "as" option to change parameter name', function() {
+      var Klass, component, params;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.formFor('blog', function(m) {
+            m.textField('title', { value: 'A' });
+            m.textField('name', { value: 'B' });
+          });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+      params = component.paramsFor('blog', { as: 'article' });
+
+      expect(params.article.title).to.equal('A');
+      expect(params.article.name).to.equal('B');
+    })
+  })
 })

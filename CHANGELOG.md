@@ -5,6 +5,7 @@
 ### `Cape.Component`
 
 * Add `#setValues` to set values of form fields at one time.
+* Add `#paramsFor` that returns an object suitable for API requests.
 
 ## 1.0.1 (May 30, 2015)
 
