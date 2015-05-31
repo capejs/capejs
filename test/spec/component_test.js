@@ -467,4 +467,36 @@ describe('Component', function() {
       expect(params.article.name).to.equal('B');
     })
   })
+
+
+  describe('jsonFor', function() {
+    it('should return a JSON string that contains form data', function() {
+      var Klass, component, json, params;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.formFor('article', function(m) {
+            m.textField('title', { value: 'A' });
+            m.textField('name', { value: 'B' });
+            m.fieldsFor('comments', { index: 0 }, function(m) {
+              m.textareaField('body', { value: 'X' });
+            });
+            m.fieldsFor('comments', { index: 1 }, function(m) {
+              m.textareaField('body', { value: 'Y' });
+            });
+          });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+      json = component.jsonFor('article');
+      params = JSON.parse(json);
+
+      expect(params.article.title).to.equal('A');
+      expect(params.article.name).to.equal('B');
+      expect(Array.isArray(params.article.comments)).to.be.true;
+      expect(params.article.comments[0].body).to.equal('X');
+    })
+  })
 })

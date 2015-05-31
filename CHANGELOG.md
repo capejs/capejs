@@ -6,6 +6,7 @@
 
 * Add `#setValues` to set values of form fields at one time.
 * Add `#paramsFor` that returns an object suitable for API requests.
+* Add `#jsonFor` that returns a JSON string that contains form data.
 
 ## 1.0.1 (May 30, 2015)
 
