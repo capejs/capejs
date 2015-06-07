@@ -9,6 +9,8 @@ module.exports = Cape;
 
 },{"./cape/component.js":2,"./cape/data_store.js":3,"./cape/markup_builder":4,"./cape/router.js":5,"./cape/routing_mapper.js":6,"./cape/utilities":7}],2:[function(require,module,exports){
 (function (global){
+"use strict";
+
 var virtualDom = require('virtual-dom');
 var Inflector = require('inflected');
 var Cape = require('./utilities');
@@ -126,10 +128,61 @@ Cape.extend(Component.prototype, {
       else return this._.setValue(arg1, arg2);
     }
   },
+  setValues: function(formName, obj) {
+    var key;
+
+    if (typeof formName !== 'string')
+      throw new Error("The first argument must be a string.");
+
+    if (typeof obj !== 'object')
+      throw new Error("The second argument must be an object.");
+
+    if (!this._.virtualForms[formName]) this._.virtualForms[formName] = {};
+    this._.setValuesOfNestedFields(formName, null, obj);
+  },
   formData: function(formName) {
+    var form, data, name, segments, lastSegment, obj;
+
     this._.serializeForms();
     if (formName === undefined) formName = '';
-    return this._.forms[formName] || {};
+    form = this._.forms[formName] || {};
+
+    data = {}
+
+    for (name in form) {
+      segments = name.split('/');
+      lastSegment = segments.pop();
+      obj = data;
+      segments.forEach(function(segment) {
+        if (!obj[segment]) obj[segment] = {};
+        obj = obj[segment];
+      })
+      obj[lastSegment] = form[name];
+    }
+
+    return data;
+  },
+  paramsFor: function(formName, options) {
+    var paramName, params;
+
+    options = options || {};
+    paramName = options.as || formName;
+    params = {};
+    params[paramName] = this.formData(formName);
+    return params;
+  },
+  jsonFor: function(formName, options) {
+    var paramName, obj, params;
+
+    options = options || {};
+    paramName = options.as || formName;
+
+    obj = this.formData(formName);
+    obj = this._.object2array(obj);
+
+    params = {};
+    params[paramName] = obj;
+    return JSON.stringify(params);
   }
 });
 
@@ -145,7 +198,7 @@ var _Internal = function _Internal(main) {
 // Internal methods of Cape.Component
 Cape.extend(_Internal.prototype, {
   getValue: function(name) {
-    var names, formName, attrName, form;
+    var names, formName, attrName, form, _form;
 
     names = this.getNames(name);
     formName = names[0];
@@ -173,6 +226,24 @@ Cape.extend(_Internal.prototype, {
 
     return origValue;
   },
+  setValuesOfNestedFields: function(formName, prefix, obj) {
+    var attrName, key;
+
+    for (key in obj) {
+      attrName = prefix ? prefix + '/' + key : key;
+      if (typeof obj[key] === 'object') {
+        this.setValuesOfNestedFields(formName, attrName, obj[key])
+      }
+      else if (typeof obj[key] === 'array') {
+        obj[key].forEach(function(element, index) {
+          this.setValuesOfNestedFields(formName, attrName + '/' + index, element)
+        })
+      }
+      else {
+        this.virtualForms[formName][attrName] = obj[key];
+      }
+    }
+  },
   serializeForms: function() {
     var forms, elements, i, j, elem, segments, lastSegment, obj, o;
 
@@ -184,16 +255,9 @@ Cape.extend(_Internal.prototype, {
       for (j = 0; j < elements.length; j++) {
         elem = elements[j];
         if (elem.name && (elem.value !== undefined)) {
-          if (elem.type === 'checkbox' || elem.type === 'radio')
-            if (!elem.checked) continue;
-          segments = elem.name.split('/');
-          lastSegment = segments.pop();
-          o = obj;
-          segments.forEach(function(segment) {
-            if (!o[segment]) o[segment] = {};
-            o = o[segment];
-          })
-          o[lastSegment] = elem.value;
+          if ((elem.type === 'checkbox' || elem.type === 'radio') && !elem.checked)
+            continue;
+          obj[elem.name] = elem.value;
         }
       }
       if (forms[i].getAttribute('name')) {
@@ -224,6 +288,27 @@ Cape.extend(_Internal.prototype, {
     else {
       return [ '', name ]
     }
+  },
+  object2array: function(obj) {
+    var isArray = true, _obj, key, ary = [];
+
+    _obj = Cape.deepExtend({}, obj);
+    for (key in _obj) {
+      if (key.length === 0 || key.match(/\D/)) {
+        isArray = false;
+        if (typeof obj[key] === 'object')
+          obj[key] = this.object2array(_obj[key]);
+      }
+      else {
+        if (typeof obj[key] === 'object')
+          ary.push(this.object2array(_obj[key]));
+        else
+          ary.push(obj[key]);
+      }
+    }
+
+    if (isArray) return ary;
+    else return obj;
   }
 })
 
@@ -231,6 +316,8 @@ module.exports = Component;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./utilities":7,"inflected":10,"virtual-dom":23}],3:[function(require,module,exports){
+"use strict";
+
 var Cape = require('./utilities');
 
 // Cape.DataStore
@@ -280,6 +367,8 @@ module.exports = DataStore;
 
 },{"./utilities":7}],4:[function(require,module,exports){
 (function (global){
+"use strict";
+
 var virtualDom = require('virtual-dom');
 var Inflector = require('inflected');
 var Cape = require('./utilities');
@@ -762,6 +851,8 @@ module.exports = MarkupBuilder;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./utilities":7,"inflected":10,"virtual-dom":23}],5:[function(require,module,exports){
 (function (global){
+"use strict";
+
 var Inflector = require('inflected');
 var Cape = require('./utilities');
 
@@ -930,7 +1021,7 @@ var _Internal = function _Internal(main) {
 // Internal methods of Cape.Router
 Cape.extend(_Internal.prototype, {
   mountComponent: function(hash) {
-    var route, componentClass;
+    var route, componentClass, component;
 
     if (typeof hash !== 'string')
       throw new Error("The first argument must be a string.");
@@ -1012,6 +1103,8 @@ module.exports = Router;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./utilities":7,"inflected":10}],6:[function(require,module,exports){
+"use strict";
+
 var Inflector = require('inflected');
 var Cape = require('./utilities');
 
@@ -1195,13 +1288,13 @@ Cape.extend(_Internal.prototype, {
     return new RegExp('^' + fragments.join('/') +
       '(?:\\?[\\w-]+(?:=[\\w-]*)?(?:&[\\w-]+(?:=[\\w-]*)?)*)?$')
   },
-  extractOptions: function(arguments) {
-    if (typeof arguments[1] === 'function') return {}
-    else return arguments[1] || {}
+  extractOptions: function(args) {
+    if (typeof args[1] === 'function') return {};
+    else return args[1] || {};
   },
-  extractCallback: function(arguments) {
-    if (typeof arguments[1] === 'function') return arguments[1]
-    else return arguments[2]
+  extractCallback: function(args) {
+    if (typeof args[1] === 'function') return args[1];
+    else return args[2];
   },
   filterActions: function(actions, options) {
     var idx;
@@ -1239,7 +1332,7 @@ Cape.extend(_Internal.prototype, {
     return path
   },
   addPagesForPluralResource: function(resourceName, resourcePath, options) {
-    var actions = [ 'index', 'new', 'show', 'edit' ];
+    var actions = [ 'index', 'new', 'show', 'edit' ], pathName;
     this.filterActions(actions, options);
 
     options.pathNames = options.pathNames || {};
@@ -1262,7 +1355,7 @@ Cape.extend(_Internal.prototype, {
     }
   },
   addPagesForSingularResource: function(resourceName, resourcePath, options) {
-    var actions = [ 'new', 'show', 'edit' ];
+    var actions = [ 'new', 'show', 'edit' ], pathName;
     this.filterActions(actions, options);
 
     options.pathNames = options.pathNames || {};
@@ -1302,14 +1395,16 @@ module.exports = RoutingMapper;
 
 },{"./utilities":7,"inflected":10}],7:[function(require,module,exports){
 (function (global){
+"use strict";
+
 var Cape = {};
 
 // Merge the properties of two or more objects together into the first object.
 Cape.extend = function() {
   var i, key;
 
-  for(i = 1; i < arguments.length; i++)
-    for(key in arguments[i])
+  for (i = 1; i < arguments.length; i++)
+    for (key in arguments[i])
       if(arguments[i].hasOwnProperty(key))
         arguments[0][key] = arguments[i][key];
   return arguments[0];
@@ -1319,8 +1414,8 @@ Cape.extend = function() {
 Cape.deepExtend = function() {
   var i, key;
 
-  for(i = 1; i < arguments.length; i++)
-    for(key in arguments[i])
+  for (i = 1; i < arguments.length; i++)
+    for (key in arguments[i])
       if(arguments[i].hasOwnProperty(key)) {
         if (typeof arguments[0][key] === 'object' && typeof arguments[i][key] === 'object')
           global.Cape.deepExtend(arguments[0][key], arguments[i][key]);
@@ -1335,8 +1430,8 @@ Cape.deepExtend = function() {
 Cape.merge = function() {
   var i, key;
 
-  for(i = 1; i < arguments.length; i++)
-    for(key in arguments[i])
+  for (i = 1; i < arguments.length; i++)
+    for (key in arguments[i])
       if(!arguments[0].hasOwnProperty(key) && arguments[i].hasOwnProperty(key))
         arguments[0][key] = arguments[i][key];
   return arguments[0];
