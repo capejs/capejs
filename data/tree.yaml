@@ -122,8 +122,14 @@ api_pages:
         id: form-data
         title: "#formData()"
       -
+        id: json-for
+        title: "#jsonFor()"
+      -
         id: mount
         title: "#mount()"
+      -
+        id: params-for
+        title: "#paramsFor()"
       -
         id: refresh
         title: "#refresh()"
@@ -136,6 +142,9 @@ api_pages:
       -
         id: val
         title: "#val()"
+      -
+        id: values-for
+        title: "#valuesFor()"
   -
     name: "api/markup_builder"
     title: "Cape.MarkupBuilder"

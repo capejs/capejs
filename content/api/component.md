@@ -3,11 +3,14 @@ title: "Cape.Component - API Reference"
 ---
 
 [formData()](#form-data) -
+[jsonFor()](#json-for) -
 [mount()](#mount) -
+[paramsFor()](#params-for) -
 [refresh()](#refresh) -
 [root](#root) -
 [unmount()](#unmount) -
-[val()](#val)
+[val()](#val) -
+[valuesFor()](#values-for)
 
 <a class="anchor" id="form-data"></a>
 ### #formData()
@@ -90,6 +93,69 @@ the `formData()` method of its instances returns an object like this:
 }
 ```
 
+<a class="anchor" id="json-for"></a>
+### #jsonFor() <span class="badge alert-info">1.1.0</span>
+
+#### Usage
+
+* **jsonFor(formName)**
+
+Thid method returns a JSON string that represents the field values of
+a named form.
+
+The values are organized in hierarchical structure as explained following examples:
+
+#### Example
+
+If you have a component defined like this,
+
+```javascript
+var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+    });
+  }
+});
+```
+
+the `jsonFor()` method of its instances returns a string like this:
+
+```json
+{"user": { "login_name": "john", "password": "p@ssw0rd"}}
+```
+
+
+#### Example
+
+If you have a component defined like this,
+
+```javascript
+var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+      for (var index = 0; index < 2; i++) {
+        m.fieldsFor('addresses', { index: index }, function(m) {
+          m.textField('country');
+          m.textField('city');
+        })
+      }
+    });
+  }
+});
+```
+
+the `jsonFor()` method of its instances returns a string like this:
+
+```json
+{"user": {"login_name": "john", "password": "p@ssw0rd"},
+"addresses": [{"country": "Japan", "city": "Tokyo" },
+{"country": "USA", "city": "New York"}]}
+```
+
 <a class="anchor" id="mount"></a>
 ### #mount()
 
@@ -136,6 +202,83 @@ var HelloWorld = Cape.createComponentClass({
 
 Note that you should have to call the `refresh()` method at the end
 to render the component.
+
+<a class="anchor" id="params-for"></a>
+### #paramsFor() <span class="badge alert-info">1.1.0</span>
+
+Thid method returns an object that represents the field values of
+a named form.
+
+The values are organized in hierarchical structure as explained following examples:
+
+#### Example
+
+If you have a component defined like this,
+
+```javascript
+var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+    });
+  }
+});
+```
+
+the `jsonFor()` method of its instances returns an object like this:
+
+```javascript
+{
+  user: {
+    login_name: "john",
+    password: "p@ssw0rd"
+  }
+}
+```
+
+
+#### Example
+
+If you have a component defined like this,
+
+```javascript
+var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+      for (var index = 0; index < 2; i++) {
+        m.fieldsFor('addresses', { index: index }, function(m) {
+          m.textField('country');
+          m.textField('city');
+        })
+      }
+    });
+  }
+});
+```
+
+the `jsonFor()` method of its instances returns an object like this:
+
+```javascript
+{
+  user: {
+    login_name: "john",
+    password: "p@ssw0rd",
+    addresses: {
+      '0': {
+        country: "Japan",
+        city: "Tokyo"
+      },
+      '1': {
+        country: "USA",
+        city: "New York"
+      }
+    }
+  }
+}
+```
 
 <a class="anchor" id="refresh"></a>
 ### #refresh()
@@ -264,3 +407,73 @@ render: function(m) {
   });
 }
 ```
+
+<a class="anchor" id="values-for"></a>
+### #valuesFor() <span class="badge alert-info">1.1.0</span>
+
+Thid method sets the field values of a named form by passing an object as the first argument.
+
+The values of this object must be organized in hierarchical structure as explained following examples:
+
+#### Example
+
+If you render a component defined like this,
+
+```javascript
+var Form = Cape.createComponentClass({
+  init: function() {
+    this.valuesFor({
+      user: {
+        login_name: 'john',
+        gender: 'm'
+      }
+    });
+    this.refresh();
+  },
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.radioButton('gender', 'm');
+      m.radioButton('gender', 'f');
+    });
+  }
+});
+```
+
+you will see the only text field is filled with a string "john" and the first
+radio button is checked.
+
+
+#### Example
+
+If you render a component defined like this,
+
+```javascript
+var Form = Cape.createComponentClass({
+  init: function() {
+    this.valuesFor({
+      user: {
+        login_name: 'john',
+        addresses: [
+          { country: 'Japan', city: 'Tokyo' },
+          { country: 'USA', city: 'New York' }
+        ]
+      }
+    });
+    this.refresh();
+  },
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      for (var index = 0; index < 2; i++) {
+        m.fieldsFor('addresses', { index: index }, function(m) {
+          m.textField('country');
+          m.textField('city');
+        })
+      }
+    });
+  }
+});
+```
+
+you will see the all text fields are filled in.
