@@ -1,0 +1,16 @@
+general:
+  branches:
+    ignore:
+      - documentation
+      - gh-pages
+machine:
+  node:
+    version: iojs-2.0.2
+  environment:
+    PATH: "~/.node/bin:$PATH"
+dependencies:
+  post:
+    - bash ./bin/install-bower-gulp-etc.sh
+test:
+  override:
+    - gulp test
