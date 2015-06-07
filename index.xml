@@ -67,6 +67,148 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Cape.DataStore - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
+&lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
+&lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
+&lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;constructor:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Constructor&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;Cape.DataStore&lt;/code&gt; constructor takes no argument and calls its &lt;code&gt;#init&lt;/code&gt; method
+if defined.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
+  init: function() {
+    this.counter = 0;
+  },
+  increment: function() {
+    this.counter++;
+    this.propagate();
+  }
+});
+
+var cs = new CounterStore();
+// cs.counter === 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See also &lt;a href=&#34;../cape/#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;attach:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#attach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method registers the &lt;em&gt;component&lt;/em&gt; as a target of &lt;em&gt;propagation&lt;/em&gt; from this data store.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;create:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;.create()&lt;/h3&gt;
+
+&lt;p&gt;This class method returns a singleton object of this Class.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
+  init: function() {
+    this.counter = 0;
+  },
+  increment: function() {
+    this.counter++;
+    this.propagate();
+  }
+});
+
+var cs1 = CounterStore.create();
+var cs2 = CounterStore.create();
+// cs1 === cs2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;detach:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#detach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method removes the &lt;em&gt;component&lt;/em&gt; from the list of targets of &lt;em&gt;propagation&lt;/em&gt; from this data store.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;propagate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;propagate:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#propagate()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;propagate()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method triggars the &lt;em&gt;propagation&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
+of all components registerd as targets of &lt;em&gt;propagation&lt;/em&gt; of this data store.&lt;/p&gt;
+
+&lt;p&gt;Eventually, the &lt;code&gt;#refresh&lt;/code&gt; method of each component calls its &lt;code&gt;#render()&lt;/code&gt; method,
+which has to be defined by developers.&lt;/p&gt;
+
+&lt;p&gt;Thus, we can assure that each time the data of a data store changes,
+its all dependent components get refreshed.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
+  init: function() {
+    this.counter = 0;
+  },
+  increment: function() {
+    this.counter++;
+    this.propagate();
+  }
+});
+
+var ClickCounter = Cape.createComponentClass({
+  render: function(m) {
+    m.div(String(this.ds.counter),
+      { onclick: function(e) { this.ds.increment() } })
+  }
+})
+
+var ds = new CounterStore();
+var comp1 = new ClickCounter();
+var comp2 = new ClickCounter();
+
+comp1.ds = ds;
+comp2.ds = ds;
+ds.attach(comp1);
+ds.attach(comp2);
+
+comp1.mount(&#39;counter1&#39;);
+comp2.mount(&#39;counter2&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Cape - API Reference</title>
       <link>http://oiax.github.io/capejs/api/cape/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -275,144 +417,484 @@ Cape.extend(object1, object2);
     </item>
     
     <item>
-      <title>Cape.DataStore - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <title>Cape.Component - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/component/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <guid>http://oiax.github.io/capejs/api/component/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
-&lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
-&lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
-&lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#form-data&#34;&gt;formData()&lt;/a&gt; -
+&lt;a href=&#34;#json-for&#34;&gt;jsonFor()&lt;/a&gt; -
+&lt;a href=&#34;#mount&#34;&gt;mount()&lt;/a&gt; -
+&lt;a href=&#34;#params-for&#34;&gt;paramsFor()&lt;/a&gt; -
+&lt;a href=&#34;#refresh&#34;&gt;refresh()&lt;/a&gt; -
+&lt;a href=&#34;#root&#34;&gt;root&lt;/a&gt; -
+&lt;a href=&#34;#unmount&#34;&gt;unmount()&lt;/a&gt; -
+&lt;a href=&#34;#val&#34;&gt;val()&lt;/a&gt; -
+&lt;a href=&#34;#values-for&#34;&gt;valuesFor()&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;constructor:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Constructor&lt;/h3&gt;
+&lt;h3 id=&#34;formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#formData()&lt;/h3&gt;
 
-&lt;p&gt;The &lt;code&gt;Cape.DataStore&lt;/code&gt; constructor takes no argument and calls its &lt;code&gt;#init&lt;/code&gt; method
-if defined.&lt;/p&gt;
-
-&lt;h4 id=&#34;example:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
-  init: function() {
-    this.counter = 0;
-  },
-  increment: function() {
-    this.counter++;
-    this.propagate();
-  }
-});
-
-var cs = new CounterStore();
-// cs.counter === 0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;See also &lt;a href=&#34;../cape/#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;attach:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#attach()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;formData()&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;This method registers the &lt;em&gt;component&lt;/em&gt; as a target of &lt;em&gt;propagation&lt;/em&gt; from this data store.&lt;/p&gt;
+&lt;p&gt;Thid method returns a JavaScript object that represents the values of
+all form controls within the component.&lt;/p&gt;
 
-&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
+&lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;example:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
-&lt;h3 id=&#34;create:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;.create()&lt;/h3&gt;
+&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
 
-&lt;p&gt;This class method returns a singleton object of this Class.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
-  init: function() {
-    this.counter = 0;
-  },
-  increment: function() {
-    this.counter++;
-    this.propagate();
-  }
-});
-
-var cs1 = CounterStore.create();
-var cs2 = CounterStore.create();
-// cs1 === cs2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;detach:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#detach()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method removes the &lt;em&gt;component&lt;/em&gt; from the list of targets of &lt;em&gt;propagation&lt;/em&gt; from this data store.&lt;/p&gt;
-
-&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;propagate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;propagate:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#propagate()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-2:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;propagate()&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method triggars the &lt;em&gt;propagation&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
-of all components registerd as targets of &lt;em&gt;propagation&lt;/em&gt; of this data store.&lt;/p&gt;
-
-&lt;p&gt;Eventually, the &lt;code&gt;#refresh&lt;/code&gt; method of each component calls its &lt;code&gt;#render()&lt;/code&gt; method,
-which has to be defined by developers.&lt;/p&gt;
-
-&lt;p&gt;Thus, we can assure that each time the data of a data store changes,
-its all dependent components get refreshed.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-2:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
-  init: function() {
-    this.counter = 0;
-  },
-  increment: function() {
-    this.counter++;
-    this.propagate();
-  }
-});
-
-var ClickCounter = Cape.createComponentClass({
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
   render: function(m) {
-    m.div(String(this.ds.counter),
-      { onclick: function(e) { this.ds.increment() } })
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.passwordField(&#39;password&#39;);
+    });
   }
-})
-
-var ds = new CounterStore();
-var comp1 = new ClickCounter();
-var comp2 = new ClickCounter();
-
-comp1.ds = ds;
-comp2.ds = ds;
-ds.attach(comp1);
-ds.attach(comp2);
-
-comp1.mount(&#39;counter1&#39;);
-comp2.mount(&#39;counter2&#39;);
+});
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the &lt;code&gt;formData()&lt;/code&gt; method of its instances returns an object like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  user: {
+    login_name: &#39;john&#39;,
+    password: &#39;p@ssw0rd&#39;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;example-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.passwordField(&#39;password&#39;);
+      for (var index = 0; index &amp;lt; 2; i++) {
+        m.fieldsFor(&#39;addresses&#39;, { index: index }, function(m) {
+          m.textField(&#39;country&#39;);
+          m.textField(&#39;city&#39;);
+        })
+      }
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the &lt;code&gt;formData()&lt;/code&gt; method of its instances returns an object like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  user: {
+    login_name: &#39;john&#39;,
+    password: &#39;p@ssw0rd&#39;,
+    addresses: {
+      &#39;0&#39;: {
+        country: &#39;Japan&#39;,
+        city: &#39;Tokyo&#39;
+      },
+      &#39;1&#39;: {
+        country: &#39;USA&#39;,
+        city: &#39;New York&#39;
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;json-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;jsonfor-span-class-badge-alert-info-1-1-0-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#jsonFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1.0&lt;/span&gt;&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;jsonFor(formName)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Thid method returns a JSON string that represents the field values of
+a named form.&lt;/p&gt;
+
+&lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.passwordField(&#39;password&#39;);
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the &lt;code&gt;jsonFor()&lt;/code&gt; method of its instances returns a string like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&amp;quot;user&amp;quot;: { &amp;quot;login_name&amp;quot;: &amp;quot;john&amp;quot;, &amp;quot;password&amp;quot;: &amp;quot;p@ssw0rd&amp;quot;}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;example-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.passwordField(&#39;password&#39;);
+      for (var index = 0; index &amp;lt; 2; i++) {
+        m.fieldsFor(&#39;addresses&#39;, { index: index }, function(m) {
+          m.textField(&#39;country&#39;);
+          m.textField(&#39;city&#39;);
+        })
+      }
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the &lt;code&gt;jsonFor()&lt;/code&gt; method of its instances returns a string like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&amp;quot;user&amp;quot;: {&amp;quot;login_name&amp;quot;: &amp;quot;john&amp;quot;, &amp;quot;password&amp;quot;: &amp;quot;p@ssw0rd&amp;quot;},
+&amp;quot;addresses&amp;quot;: [{&amp;quot;country&amp;quot;: &amp;quot;Japan&amp;quot;, &amp;quot;city&amp;quot;: &amp;quot;Tokyo&amp;quot; },
+{&amp;quot;country&amp;quot;: &amp;quot;USA&amp;quot;, &amp;quot;city&amp;quot;: &amp;quot;New York&amp;quot;}]}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;mount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#mount()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;mount(id)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method renders the component and inserts it within the element specified by &lt;em&gt;id.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;body&amp;gt;
+&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;script&amp;gt;
+var HelloWorld = Cape.createComponentClass({
+  render: function(m) {
+    m.p(&#39;Hello, World!&#39;)
+  }
+});
+var component = new HelloWorld();
+component.mount(&#39;main&#39;);
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If the component has the &lt;code&gt;init()&lt;/code&gt; method, the &lt;code&gt;mount()&lt;/code&gt; calls it
+instead of rendering the component.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-5:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloWorld = Cape.createComponentClass({
+  init: function() {
+    this.name = &#39;World&#39;;
+    this.refresh();
+  },
+
+  render: function(m) {
+    m.p(&#39;Hello, &#39; + this.name + &#39;!&#39;)
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you should have to call the &lt;code&gt;refresh()&lt;/code&gt; method at the end
+to render the component.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;paramsfor-span-class-badge-alert-info-1-1-0-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#paramsFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1.0&lt;/span&gt;&lt;/h3&gt;
+
+&lt;p&gt;Thid method returns an object that represents the field values of
+a named form.&lt;/p&gt;
+
+&lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
+
+&lt;h4 id=&#34;example-6:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.passwordField(&#39;password&#39;);
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the &lt;code&gt;jsonFor()&lt;/code&gt; method of its instances returns an object like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  user: {
+    login_name: &amp;quot;john&amp;quot;,
+    password: &amp;quot;p@ssw0rd&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;example-7:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.passwordField(&#39;password&#39;);
+      for (var index = 0; index &amp;lt; 2; i++) {
+        m.fieldsFor(&#39;addresses&#39;, { index: index }, function(m) {
+          m.textField(&#39;country&#39;);
+          m.textField(&#39;city&#39;);
+        })
+      }
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the &lt;code&gt;jsonFor()&lt;/code&gt; method of its instances returns an object like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  user: {
+    login_name: &amp;quot;john&amp;quot;,
+    password: &amp;quot;p@ssw0rd&amp;quot;,
+    addresses: {
+      &#39;0&#39;: {
+        country: &amp;quot;Japan&amp;quot;,
+        city: &amp;quot;Tokyo&amp;quot;
+      },
+      &#39;1&#39;: {
+        country: &amp;quot;USA&amp;quot;,
+        city: &amp;quot;New York&amp;quot;
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#refresh()&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;refresh()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method rerenders the component by calling its &lt;code&gt;render()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;root&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;root:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#root&lt;/h3&gt;
+
+&lt;p&gt;This property refers to the HTML element which the component is mounted on.&lt;/p&gt;
+
+&lt;p&gt;Its &lt;code&gt;data&lt;/code&gt; subproperty holds the values of &lt;code&gt;data-*&lt;/code&gt; attributes of the root element.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-8:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;The following example shows &amp;ldquo;Hello, John!&amp;rdquo; on your browser.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;body&amp;gt;
+&amp;lt;div id=&amp;quot;main&amp;quot; data-name=&amp;quot;John&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;script&amp;gt;
+var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
+  }
+});
+var component = new HelloMessage();
+component.mount(&#39;main&#39;);
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#unmount()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;unmount()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method removes the component from the HTML document.&lt;/p&gt;
+
+&lt;p&gt;If the component has the &lt;code&gt;beforeUnmount()&lt;/code&gt; method, it is called before the component is unmounted.
+If the component has the &lt;code&gt;afterUnmount()&lt;/code&gt; method, it is called after the component has been unmounted.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#val()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;val(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;val(name, value)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;val({ name1: value1, name2: value2, &amp;hellip; })&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Get or set the value of a form field.&lt;/p&gt;
+
+&lt;p&gt;When the number of arguments is one and that argument is a string,
+this method returns the value of the corresponding field.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-9:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.textField(&#39;family_name&#39;).sp()
+      .textField(&#39;given_name&#39;);
+    m.button(&#39;Check&#39;, {
+      onclick: function(e) {
+        console.log(val(&#39;user.family_name&#39;));
+        console.log(val(&#39;user.given_name&#39;));
+        return false;
+      }
+    })
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When the number of arguments is two,
+this method sets the value of a field whose name is corresponding
+to the first argument to the second argument and returns
+the original value of the field.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-10:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;message&#39;, function(m) {
+    m.textField(&#39;body&#39;);
+    m.button(&#39;Send&#39;, {
+      onclick: function(e) {
+        var body = val(&#39;message.body&#39;, &#39;&#39;),
+            self = this;
+        $.post(&#39;/api/messages&#39;, { body: body }, function() {
+          self.refresh();
+        });
+        return false;
+      }
+    });
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When the number of arguments is one and that argument is an object,
+this method sets the value of corresponding fields.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-11:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;user&#39;, function(m) {
+    m.textField(&#39;family_name&#39;).sp()
+      .textField(&#39;given_name&#39;);
+    m.button(&#39;Check&#39;, {
+      onclick: function(e) {
+        var self = this,
+            data = self.formData();
+        self.val({ user: { family_name: &#39;&#39;, given_name: &#39;&#39; } });
+        $.post(&#39;/api/users&#39;, data, function() {
+          self.refresh();
+        })
+        return false;
+      }
+    })
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;values-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;valuesfor-span-class-badge-alert-info-1-1-0-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#valuesFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1.0&lt;/span&gt;&lt;/h3&gt;
+
+&lt;p&gt;Thid method sets the field values of a named form by passing an object as the first argument.&lt;/p&gt;
+
+&lt;p&gt;The values of this object must be organized in hierarchical structure as explained following examples:&lt;/p&gt;
+
+&lt;h4 id=&#34;example-12:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;If you render a component defined like this,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
+  init: function() {
+    this.valuesFor({
+      user: {
+        login_name: &#39;john&#39;,
+        gender: &#39;m&#39;
+      }
+    });
+    this.refresh();
+  },
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.radioButton(&#39;gender&#39;, &#39;m&#39;);
+      m.radioButton(&#39;gender&#39;, &#39;f&#39;);
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;you will see the only text field is filled with a string &amp;ldquo;john&amp;rdquo; and the first
+radio button is checked.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-13:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;p&gt;If you render a component defined like this,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
+  init: function() {
+    this.valuesFor({
+      user: {
+        login_name: &#39;john&#39;,
+        addresses: [
+          { country: &#39;Japan&#39;, city: &#39;Tokyo&#39; },
+          { country: &#39;USA&#39;, city: &#39;New York&#39; }
+        ]
+      }
+    });
+    this.refresh();
+  },
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      for (var index = 0; index &amp;lt; 2; i++) {
+        m.fieldsFor(&#39;addresses&#39;, { index: index }, function(m) {
+          m.textField(&#39;country&#39;);
+          m.textField(&#39;city&#39;);
+        })
+      }
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;you will see the all text fields are filled in.&lt;/p&gt;
 </description>
     </item>
     
@@ -1517,283 +1999,6 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
     </item>
     
     <item>
-      <title>Cape.Component - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/component/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/component/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#form-data&#34;&gt;formData()&lt;/a&gt; -
-&lt;a href=&#34;#mount&#34;&gt;mount()&lt;/a&gt; -
-&lt;a href=&#34;#refresh&#34;&gt;refresh()&lt;/a&gt; -
-&lt;a href=&#34;#root&#34;&gt;root&lt;/a&gt; -
-&lt;a href=&#34;#unmount&#34;&gt;unmount()&lt;/a&gt; -
-&lt;a href=&#34;#val&#34;&gt;val()&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#formData()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;formData()&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Thid method returns a JavaScript object that represents the values of
-all form controls within the component.&lt;/p&gt;
-
-&lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
-
-&lt;h4 id=&#34;example:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
-
-&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
-  render: function(m) {
-    m.formFor(&#39;user&#39;, function(m) {
-      m.textField(&#39;login_name&#39;);
-      m.passwordField(&#39;password&#39;);
-    });
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;the &lt;code&gt;formData()&lt;/code&gt; method of its instances returns an object like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
-  user: {
-    login_name: &#39;john&#39;,
-    password: &#39;p@ssw0rd&#39;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;example-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
-
-&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
-  render: function(m) {
-    m.formFor(&#39;user&#39;, function(m) {
-      m.textField(&#39;login_name&#39;);
-      m.passwordField(&#39;password&#39;);
-      for (var index = 0; index &amp;lt; 2; i++) {
-        m.fieldsFor(&#39;addresses&#39;, { index: index }, function(m) {
-          m.textField(&#39;country&#39;);
-          m.textField(&#39;city&#39;);
-        })
-      }
-    });
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;the &lt;code&gt;formData()&lt;/code&gt; method of its instances returns an object like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
-  user: {
-    login_name: &#39;john&#39;,
-    password: &#39;p@ssw0rd&#39;,
-    addresses: {
-      &#39;0&#39;: {
-        country: &#39;Japan&#39;,
-        city: &#39;Tokyo&#39;
-      },
-      &#39;1&#39;: {
-        country: &#39;USA&#39;,
-        city: &#39;New York&#39;
-      }
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;mount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#mount()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;mount(id)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method renders the component and inserts it within the element specified by &lt;em&gt;id.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;example-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;body&amp;gt;
-&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;script&amp;gt;
-var HelloWorld = Cape.createComponentClass({
-  render: function(m) {
-    m.p(&#39;Hello, World!&#39;)
-  }
-});
-var component = new HelloWorld();
-component.mount(&#39;main&#39;);
-&amp;lt;/script&amp;gt;
-&amp;lt;/body&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If the component has the &lt;code&gt;init()&lt;/code&gt; method, the &lt;code&gt;mount()&lt;/code&gt; calls it
-instead of rendering the component.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloWorld = Cape.createComponentClass({
-  init: function() {
-    this.name = &#39;World&#39;;
-    this.refresh();
-  },
-
-  render: function(m) {
-    m.p(&#39;Hello, &#39; + this.name + &#39;!&#39;)
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note that you should have to call the &lt;code&gt;refresh()&lt;/code&gt; method at the end
-to render the component.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#refresh()&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;refresh()&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method rerenders the component by calling its &lt;code&gt;render()&lt;/code&gt; method.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;root&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;root:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#root&lt;/h3&gt;
-
-&lt;p&gt;This property refers to the HTML element which the component is mounted on.&lt;/p&gt;
-
-&lt;p&gt;Its &lt;code&gt;data&lt;/code&gt; subproperty holds the values of &lt;code&gt;data-*&lt;/code&gt; attributes of the root element.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
-
-&lt;p&gt;The following example shows &amp;ldquo;Hello, John!&amp;rdquo; on your browser.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;body&amp;gt;
-&amp;lt;div id=&amp;quot;main&amp;quot; data-name=&amp;quot;John&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;script&amp;gt;
-var HelloMessage = Cape.createComponentClass({
-  render: function(m) {
-    m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
-  }
-});
-var component = new HelloMessage();
-component.mount(&#39;main&#39;);
-&amp;lt;/script&amp;gt;
-&amp;lt;/body&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#unmount()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;unmount()&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method removes the component from the HTML document.&lt;/p&gt;
-
-&lt;p&gt;If the component has the &lt;code&gt;beforeUnmount()&lt;/code&gt; method, it is called before the component is unmounted.
-If the component has the &lt;code&gt;afterUnmount()&lt;/code&gt; method, it is called after the component has been unmounted.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#val()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;val(name)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;val(name, value)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;val({ name1: value1, name2: value2, &amp;hellip; })&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Get or set the value of a form field.&lt;/p&gt;
-
-&lt;p&gt;When the number of arguments is one and that argument is a string,
-this method returns the value of the corresponding field.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-5:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
-  m.formFor(&#39;user&#39;, function(m) {
-    m.textField(&#39;family_name&#39;).sp()
-      .textField(&#39;given_name&#39;);
-    m.button(&#39;Check&#39;, {
-      onclick: function(e) {
-        console.log(val(&#39;user.family_name&#39;));
-        console.log(val(&#39;user.given_name&#39;));
-        return false;
-      }
-    })
-  });
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When the number of arguments is two,
-this method sets the value of a field whose name is corresponding
-to the first argument to the second argument and returns
-the original value of the field.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-6:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
-  m.formFor(&#39;message&#39;, function(m) {
-    m.textField(&#39;body&#39;);
-    m.button(&#39;Send&#39;, {
-      onclick: function(e) {
-        var body = val(&#39;message.body&#39;, &#39;&#39;),
-            self = this;
-        $.post(&#39;/api/messages&#39;, { body: body }, function() {
-          self.refresh();
-        });
-        return false;
-      }
-    });
-  });
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When the number of arguments is one and that argument is an object,
-this method sets the value of corresponding fields.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-7:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
-  m.formFor(&#39;user&#39;, function(m) {
-    m.textField(&#39;family_name&#39;).sp()
-      .textField(&#39;given_name&#39;);
-    m.button(&#39;Check&#39;, {
-      onclick: function(e) {
-        var self = this,
-            data = self.formData();
-        self.val({ user: { family_name: &#39;&#39;, given_name: &#39;&#39; } });
-        $.post(&#39;/api/users&#39;, data, function() {
-          self.refresh();
-        })
-        return false;
-      }
-    })
-  });
-}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Cape.RoutingMapper - API Reference</title>
       <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -2700,6 +2905,196 @@ router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
     </item>
     
     <item>
+      <title>Data Stores</title>
+      <link>http://oiax.github.io/capejs/data_stores/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/data_stores/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#basics&#34;&gt;Basics&lt;/a&gt; -
+&lt;a href=&#34;#ajax&#34;&gt;Ajax&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;basics:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Basics&lt;/h3&gt;
+
+&lt;p&gt;When you develop something larger than a tiny widget, you are recommended to
+create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
+
+&lt;p&gt;The following example illustrates the basic concept of data stores.&lt;/p&gt;
+
+&lt;h4 id=&#34;index-html:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;script src=&amp;quot;./todo_item_store.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;./todo_list2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var todoList = new TodoList2();
+  todoList.mount(&#39;todo-list&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+    this.propagate();
+  },
+  addItem: function(title) {
+    this.items.push({ title: title, done: false });
+    this.propagate();
+  },
+  toggle: function(item) {
+    item.done = !item.done;
+    this.propagate();
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;TodoItemStore&lt;/code&gt; class has three methods and each of them ends with
+&lt;code&gt;this.propagate()&lt;/code&gt;, which calls the &lt;code&gt;refresh&lt;/code&gt; method of all attached components.&lt;/p&gt;
+
+&lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
+  render: function(m) {
+    m.ul(function(m) {
+      this.ds.items.forEach(function(item) {
+        this.renderItem(m, item);
+      }.bind(this))
+    });
+    this.renderForm(m);
+  },
+
+  renderItem: function(m, item) {
+    m.li(function(m) {
+      m.label({ class: { completed: item.done }}, function(m) {
+        m.onclick(function(e) { this.ds.toggle(item) })
+          .checked(item.done).input({ type: &#39;checkbox&#39; })
+        m.text(item.title);
+      })
+    })
+  },
+
+  renderForm: function(m) {
+    m.onsubmit(function(e) { this.addItem(); return false; });
+    m.formFor(&#39;item&#39;, function(m) {
+      m.onkeyup(function(e) { this.refresh() }).textField(&#39;title&#39;);
+      m.onclick(function(e) { this.addItem() })
+        .disabled(this.val(&#39;item.title&#39;) === &#39;&#39;).btn(&amp;quot;Add&amp;quot;);
+    });
+  },
+
+  init: function() {
+    this.ds = TodoItemStore.create();
+    this.ds.attach(this);
+    this.ds.init();
+  },
+
+  addItem: function() {
+    this.ds.addItem(this.val(&#39;item.title&#39;, &#39;&#39;))
+  },
+
+  beforeUnmount: function() {
+    this.ds.detach(this);
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Within the &lt;code&gt;init&lt;/code&gt; method, we create a singleton instance of &lt;code&gt;TodoItemStore&lt;/code&gt; class &lt;em&gt;(data store)&lt;/em&gt;,
+and set it to the &lt;code&gt;ds&lt;/code&gt; property of this component.&lt;/p&gt;
+
+&lt;p&gt;Then we call the &lt;code&gt;attach&lt;/code&gt; method of the data store to register this component
+as a &lt;em&gt;listener&lt;/em&gt; to the &lt;em&gt;change event&lt;/em&gt;. When the content of data store is changed,
+a &lt;em&gt;change event&lt;/em&gt; is emitted to this component.&lt;/p&gt;
+
+&lt;p&gt;When we click a check box, the following code is executed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggle(item)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This inverts the &lt;code&gt;done&lt;/code&gt; attribute of this item and calls &lt;code&gt;this.propagate()&lt;/code&gt;,
+which will cause the re-rendering of this component.&lt;/p&gt;
+
+&lt;p&gt;A working demo is found at
+&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;ajax:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Ajax&lt;/h3&gt;
+
+&lt;p&gt;In this section, we assume that an API server is running behind.
+When we access it with &lt;code&gt;GET /api/items.json&lt;/code&gt;, it responds with a JSON string
+such as &lt;code&gt;[{ title: &#39;Foo&#39;, done: false },{ title: &#39;Bar&#39;, done: true }]&lt;/code&gt;.
+When we post to the server a JSON string such as &lt;code&gt;{ title: &#39;Baz&#39; }&lt;/code&gt;
+using &lt;code&gt;POST /api/items&lt;/code&gt; interface, it stores this new item to the database.
+If we post to the server a JSON string such as &lt;code&gt;{ done: true }&lt;/code&gt;
+using &lt;code&gt;PATCH /api/items/123&lt;/code&gt; interface (&lt;code&gt;123&lt;/code&gt; is the &lt;code&gt;id&lt;/code&gt; value of an item),
+it records this item as &amp;ldquo;done&amp;rdquo; on the database.&lt;/p&gt;
+
+&lt;p&gt;In this settings, we can rewrite the &lt;code&gt;todo_item_store.js&lt;/code&gt; of the previous
+example as follows:&lt;/p&gt;
+
+&lt;h4 id=&#34;todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [];
+    this.refresh();
+  },
+
+  addItem: function(title) {
+    var self = this;
+    $.ajax({
+      type: &#39;POST&#39;,
+      url: &#39;/api/items&#39;,
+      data: { title: title }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
+
+  toggle: function(item) {
+    var self = this;
+    $.ajax({
+      type: &#39;PATCH&#39;,
+      url: &#39;/api/items/&#39; + item.id,
+      data: { done: !item.done }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
+
+  refresh: function() {
+    var self = this;
+    $.ajax({
+      type: &#39;GET&#39;,
+      url: &#39;/api/items.json&#39;
+    }).done(function(data) {
+      self.items.length = 0;
+      data.forEach(function(item) { self.items.push(item) });
+      self.propagate();
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;$.ajax&lt;/code&gt; is a jQuery&amp;rsquo;s method to make an Ajax request.
+See &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;http://api.jquery.com/jquery.ajax/&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;You can find a working demo using Ajax techniques on
+&lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;.
+This demo is built as a Ruby on Rails application.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Components</title>
       <link>http://oiax.github.io/capejs/components/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -3114,196 +3509,6 @@ within the definition of &lt;code&gt;SimpleForm&lt;/code&gt; class.&lt;/p&gt;
 
 &lt;p&gt;You can find the source code of working demo on
 &lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/mixins&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/mixins&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Data Stores</title>
-      <link>http://oiax.github.io/capejs/data_stores/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/data_stores/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#basics&#34;&gt;Basics&lt;/a&gt; -
-&lt;a href=&#34;#ajax&#34;&gt;Ajax&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;basics:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Basics&lt;/h3&gt;
-
-&lt;p&gt;When you develop something larger than a tiny widget, you are recommended to
-create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
-
-&lt;p&gt;The following example illustrates the basic concept of data stores.&lt;/p&gt;
-
-&lt;h4 id=&#34;index-html:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;index.html&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script src=&amp;quot;./todo_item_store.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&amp;quot;./todo_list2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script&amp;gt;
-  var todoList = new TodoList2();
-  todoList.mount(&#39;todo-list&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [
-      { title: &#39;Foo&#39;, done: false },
-      { title: &#39;Bar&#39;, done: true }
-    ];
-    this.propagate();
-  },
-  addItem: function(title) {
-    this.items.push({ title: title, done: false });
-    this.propagate();
-  },
-  toggle: function(item) {
-    item.done = !item.done;
-    this.propagate();
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;TodoItemStore&lt;/code&gt; class has three methods and each of them ends with
-&lt;code&gt;this.propagate()&lt;/code&gt;, which calls the &lt;code&gt;refresh&lt;/code&gt; method of all attached components.&lt;/p&gt;
-
-&lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
-  render: function(m) {
-    m.ul(function(m) {
-      this.ds.items.forEach(function(item) {
-        this.renderItem(m, item);
-      }.bind(this))
-    });
-    this.renderForm(m);
-  },
-
-  renderItem: function(m, item) {
-    m.li(function(m) {
-      m.label({ class: { completed: item.done }}, function(m) {
-        m.onclick(function(e) { this.ds.toggle(item) })
-          .checked(item.done).input({ type: &#39;checkbox&#39; })
-        m.text(item.title);
-      })
-    })
-  },
-
-  renderForm: function(m) {
-    m.onsubmit(function(e) { this.addItem(); return false; });
-    m.formFor(&#39;item&#39;, function(m) {
-      m.onkeyup(function(e) { this.refresh() }).textField(&#39;title&#39;);
-      m.onclick(function(e) { this.addItem() })
-        .disabled(this.val(&#39;item.title&#39;) === &#39;&#39;).btn(&amp;quot;Add&amp;quot;);
-    });
-  },
-
-  init: function() {
-    this.ds = TodoItemStore.create();
-    this.ds.attach(this);
-    this.ds.init();
-  },
-
-  addItem: function() {
-    this.ds.addItem(this.val(&#39;item.title&#39;, &#39;&#39;))
-  },
-
-  beforeUnmount: function() {
-    this.ds.detach(this);
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Within the &lt;code&gt;init&lt;/code&gt; method, we create a singleton instance of &lt;code&gt;TodoItemStore&lt;/code&gt; class &lt;em&gt;(data store)&lt;/em&gt;,
-and set it to the &lt;code&gt;ds&lt;/code&gt; property of this component.&lt;/p&gt;
-
-&lt;p&gt;Then we call the &lt;code&gt;attach&lt;/code&gt; method of the data store to register this component
-as a &lt;em&gt;listener&lt;/em&gt; to the &lt;em&gt;change event&lt;/em&gt;. When the content of data store is changed,
-a &lt;em&gt;change event&lt;/em&gt; is emitted to this component.&lt;/p&gt;
-
-&lt;p&gt;When we click a check box, the following code is executed:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggle(item)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This inverts the &lt;code&gt;done&lt;/code&gt; attribute of this item and calls &lt;code&gt;this.propagate()&lt;/code&gt;,
-which will cause the re-rendering of this component.&lt;/p&gt;
-
-&lt;p&gt;A working demo is found at
-&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list2&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;ajax:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Ajax&lt;/h3&gt;
-
-&lt;p&gt;In this section, we assume that an API server is running behind.
-When we access it with &lt;code&gt;GET /api/items.json&lt;/code&gt;, it responds with a JSON string
-such as &lt;code&gt;[{ title: &#39;Foo&#39;, done: false },{ title: &#39;Bar&#39;, done: true }]&lt;/code&gt;.
-When we post to the server a JSON string such as &lt;code&gt;{ title: &#39;Baz&#39; }&lt;/code&gt;
-using &lt;code&gt;POST /api/items&lt;/code&gt; interface, it stores this new item to the database.
-If we post to the server a JSON string such as &lt;code&gt;{ done: true }&lt;/code&gt;
-using &lt;code&gt;PATCH /api/items/123&lt;/code&gt; interface (&lt;code&gt;123&lt;/code&gt; is the &lt;code&gt;id&lt;/code&gt; value of an item),
-it records this item as &amp;ldquo;done&amp;rdquo; on the database.&lt;/p&gt;
-
-&lt;p&gt;In this settings, we can rewrite the &lt;code&gt;todo_item_store.js&lt;/code&gt; of the previous
-example as follows:&lt;/p&gt;
-
-&lt;h4 id=&#34;todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [];
-    this.refresh();
-  },
-
-  addItem: function(title) {
-    var self = this;
-    $.ajax({
-      type: &#39;POST&#39;,
-      url: &#39;/api/items&#39;,
-      data: { title: title }
-    }).done(function(data) {
-      self.refresh();
-    });
-  },
-
-  toggle: function(item) {
-    var self = this;
-    $.ajax({
-      type: &#39;PATCH&#39;,
-      url: &#39;/api/items/&#39; + item.id,
-      data: { done: !item.done }
-    }).done(function(data) {
-      self.refresh();
-    });
-  },
-
-  refresh: function() {
-    var self = this;
-    $.ajax({
-      type: &#39;GET&#39;,
-      url: &#39;/api/items.json&#39;
-    }).done(function(data) {
-      self.items.length = 0;
-      data.forEach(function(item) { self.items.push(item) });
-      self.propagate();
-    });
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;$.ajax&lt;/code&gt; is a jQuery&amp;rsquo;s method to make an Ajax request.
-See &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;http://api.jquery.com/jquery.ajax/&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;You can find a working demo using Ajax techniques on
-&lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;.
-This demo is built as a Ruby on Rails application.&lt;/p&gt;
 </description>
     </item>
     

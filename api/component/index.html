@@ -94,7 +94,11 @@
           
             <li><a href="http://oiax.github.io/capejs/api/component#form-data">#formData()</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/api/component#json-for">#jsonFor()</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/api/component#mount">#mount()</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/api/component#params-for">#paramsFor()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/component#refresh">#refresh()</a></li>
           
@@ -103,6 +107,8 @@
             <li><a href="http://oiax.github.io/capejs/api/component#unmount">#unmount()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/component#val">#val()</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/api/component#values-for">#valuesFor()</a></li>
           
           </ul>
           
@@ -289,11 +295,14 @@
           
 
 <p><a href="#form-data">formData()</a> -
+<a href="#json-for">jsonFor()</a> -
 <a href="#mount">mount()</a> -
+<a href="#params-for">paramsFor()</a> -
 <a href="#refresh">refresh()</a> -
 <a href="#root">root</a> -
 <a href="#unmount">unmount()</a> -
-<a href="#val">val()</a></p>
+<a href="#val">val()</a> -
+<a href="#values-for">valuesFor()</a></p>
 
 <p><a class="anchor" id="form-data"></a></p>
 
@@ -374,11 +383,72 @@ all form controls within the component.</p>
 }
 </code></pre>
 
+<p><a class="anchor" id="json-for"></a></p>
+
+<h3 id="jsonfor-span-class-badge-alert-info-1-1-0-span:202695ef52bd0f88ec46c8b4eb5ea1d8">#jsonFor() <span class="badge alert-info">1.1.0</span></h3>
+
+<h4 id="usage-1:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
+
+<ul>
+<li><strong>jsonFor(formName)</strong></li>
+</ul>
+
+<p>Thid method returns a JSON string that represents the field values of
+a named form.</p>
+
+<p>The values are organized in hierarchical structure as explained following examples:</p>
+
+<h4 id="example-2:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<p>If you have a component defined like this,</p>
+
+<pre><code class="language-javascript">var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+    });
+  }
+});
+</code></pre>
+
+<p>the <code>jsonFor()</code> method of its instances returns a string like this:</p>
+
+<pre><code class="language-json">{&quot;user&quot;: { &quot;login_name&quot;: &quot;john&quot;, &quot;password&quot;: &quot;p@ssw0rd&quot;}}
+</code></pre>
+
+<h4 id="example-3:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<p>If you have a component defined like this,</p>
+
+<pre><code class="language-javascript">var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+      for (var index = 0; index &lt; 2; i++) {
+        m.fieldsFor('addresses', { index: index }, function(m) {
+          m.textField('country');
+          m.textField('city');
+        })
+      }
+    });
+  }
+});
+</code></pre>
+
+<p>the <code>jsonFor()</code> method of its instances returns a string like this:</p>
+
+<pre><code class="language-json">{&quot;user&quot;: {&quot;login_name&quot;: &quot;john&quot;, &quot;password&quot;: &quot;p@ssw0rd&quot;},
+&quot;addresses&quot;: [{&quot;country&quot;: &quot;Japan&quot;, &quot;city&quot;: &quot;Tokyo&quot; },
+{&quot;country&quot;: &quot;USA&quot;, &quot;city&quot;: &quot;New York&quot;}]}
+</code></pre>
+
 <p><a class="anchor" id="mount"></a></p>
 
 <h3 id="mount:202695ef52bd0f88ec46c8b4eb5ea1d8">#mount()</h3>
 
-<h4 id="usage-1:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
+<h4 id="usage-2:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
 
 <ul>
 <li><strong>mount(id)</strong></li>
@@ -386,7 +456,7 @@ all form controls within the component.</p>
 
 <p>This method renders the component and inserts it within the element specified by <em>id.</em></p>
 
-<h4 id="example-2:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-4:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <pre><code class="language-html">&lt;body&gt;
 &lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
@@ -405,7 +475,7 @@ component.mount('main');
 <p>If the component has the <code>init()</code> method, the <code>mount()</code> calls it
 instead of rendering the component.</p>
 
-<h4 id="example-3:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-5:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <pre><code class="language-javascript">var HelloWorld = Cape.createComponentClass({
   init: function() {
@@ -421,6 +491,79 @@ instead of rendering the component.</p>
 
 <p>Note that you should have to call the <code>refresh()</code> method at the end
 to render the component.</p>
+
+<p><a class="anchor" id="params-for"></a></p>
+
+<h3 id="paramsfor-span-class-badge-alert-info-1-1-0-span:202695ef52bd0f88ec46c8b4eb5ea1d8">#paramsFor() <span class="badge alert-info">1.1.0</span></h3>
+
+<p>Thid method returns an object that represents the field values of
+a named form.</p>
+
+<p>The values are organized in hierarchical structure as explained following examples:</p>
+
+<h4 id="example-6:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<p>If you have a component defined like this,</p>
+
+<pre><code class="language-javascript">var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+    });
+  }
+});
+</code></pre>
+
+<p>the <code>jsonFor()</code> method of its instances returns an object like this:</p>
+
+<pre><code class="language-javascript">{
+  user: {
+    login_name: &quot;john&quot;,
+    password: &quot;p@ssw0rd&quot;
+  }
+}
+</code></pre>
+
+<h4 id="example-7:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<p>If you have a component defined like this,</p>
+
+<pre><code class="language-javascript">var Form = Cape.createComponentClass({
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.passwordField('password');
+      for (var index = 0; index &lt; 2; i++) {
+        m.fieldsFor('addresses', { index: index }, function(m) {
+          m.textField('country');
+          m.textField('city');
+        })
+      }
+    });
+  }
+});
+</code></pre>
+
+<p>the <code>jsonFor()</code> method of its instances returns an object like this:</p>
+
+<pre><code class="language-javascript">{
+  user: {
+    login_name: &quot;john&quot;,
+    password: &quot;p@ssw0rd&quot;,
+    addresses: {
+      '0': {
+        country: &quot;Japan&quot;,
+        city: &quot;Tokyo&quot;
+      },
+      '1': {
+        country: &quot;USA&quot;,
+        city: &quot;New York&quot;
+      }
+    }
+  }
+}
+</code></pre>
 
 <p><a class="anchor" id="refresh"></a></p>
 
@@ -440,7 +583,7 @@ to render the component.</p>
 
 <p>Its <code>data</code> subproperty holds the values of <code>data-*</code> attributes of the root element.</p>
 
-<h4 id="example-4:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-8:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <p>The following example shows &ldquo;Hello, John!&rdquo; on your browser.</p>
 
@@ -462,7 +605,7 @@ component.mount('main');
 
 <h3 id="unmount:202695ef52bd0f88ec46c8b4eb5ea1d8">#unmount()</h3>
 
-<h4 id="usage-2:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
+<h4 id="usage-3:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
 
 <ul>
 <li><strong>unmount()</strong></li>
@@ -477,7 +620,7 @@ If the component has the <code>afterUnmount()</code> method, it is called after 
 
 <h3 id="val:202695ef52bd0f88ec46c8b4eb5ea1d8">#val()</h3>
 
-<h4 id="usage-3:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
+<h4 id="usage-4:202695ef52bd0f88ec46c8b4eb5ea1d8">Usage</h4>
 
 <ul>
 <li><strong>val(name)</strong></li>
@@ -490,7 +633,7 @@ If the component has the <code>afterUnmount()</code> method, it is called after 
 <p>When the number of arguments is one and that argument is a string,
 this method returns the value of the corresponding field.</p>
 
-<h4 id="example-5:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-9:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -512,7 +655,7 @@ this method sets the value of a field whose name is corresponding
 to the first argument to the second argument and returns
 the original value of the field.</p>
 
-<h4 id="example-6:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-10:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('message', function(m) {
@@ -534,7 +677,7 @@ the original value of the field.</p>
 <p>When the number of arguments is one and that argument is an object,
 this method sets the value of corresponding fields.</p>
 
-<h4 id="example-7:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+<h4 id="example-11:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -554,6 +697,74 @@ this method sets the value of corresponding fields.</p>
   });
 }
 </code></pre>
+
+<p><a class="anchor" id="values-for"></a></p>
+
+<h3 id="valuesfor-span-class-badge-alert-info-1-1-0-span:202695ef52bd0f88ec46c8b4eb5ea1d8">#valuesFor() <span class="badge alert-info">1.1.0</span></h3>
+
+<p>Thid method sets the field values of a named form by passing an object as the first argument.</p>
+
+<p>The values of this object must be organized in hierarchical structure as explained following examples:</p>
+
+<h4 id="example-12:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<p>If you render a component defined like this,</p>
+
+<pre><code class="language-javascript">var Form = Cape.createComponentClass({
+  init: function() {
+    this.valuesFor({
+      user: {
+        login_name: 'john',
+        gender: 'm'
+      }
+    });
+    this.refresh();
+  },
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.radioButton('gender', 'm');
+      m.radioButton('gender', 'f');
+    });
+  }
+});
+</code></pre>
+
+<p>you will see the only text field is filled with a string &ldquo;john&rdquo; and the first
+radio button is checked.</p>
+
+<h4 id="example-13:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
+
+<p>If you render a component defined like this,</p>
+
+<pre><code class="language-javascript">var Form = Cape.createComponentClass({
+  init: function() {
+    this.valuesFor({
+      user: {
+        login_name: 'john',
+        addresses: [
+          { country: 'Japan', city: 'Tokyo' },
+          { country: 'USA', city: 'New York' }
+        ]
+      }
+    });
+    this.refresh();
+  },
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      for (var index = 0; index &lt; 2; i++) {
+        m.fieldsFor('addresses', { index: index }, function(m) {
+          m.textField('country');
+          m.textField('city');
+        })
+      }
+    });
+  }
+});
+</code></pre>
+
+<p>you will see the all text fields are filled in.</p>
 
         </div>
       </article>
