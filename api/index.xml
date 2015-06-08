@@ -497,7 +497,7 @@ so that you can pass it to the &lt;a href=&#34;http://api.jquery.com/jquery.ajax
     m.formFor(&#39;user&#39;, function(m) {
       m.textField(&#39;name&#39;);
       m.passwordField(&#39;password&#39;);
-      m.btn(&#39;Sign in&#39;, { onclick: function(e) { this.save(); } })
+      m.btn(&#39;Sign in&#39;, { onclick: function(e) { this.save(); } });
     });
   },
   save: function() {
@@ -507,7 +507,7 @@ so that you can pass it to the &lt;a href=&#34;http://api.jquery.com/jquery.ajax
       data: this.paramsFor(&#39;user&#39;)
     }).done(function(data) {
       // Do something.
-    })
+    });
   }
 });
 &lt;/code&gt;&lt;/pre&gt;
@@ -544,7 +544,7 @@ to the &lt;code&gt;data&lt;/code&gt; option of the &lt;code&gt;ajax()&lt;/code&g
           { country: &#39;USA&#39;, city: &#39;New York&#39; }
         ]
       }
-    })
+    });
   },
   render: function(m) {
     m.formFor(&#39;user&#39;, function(m) {
@@ -553,9 +553,9 @@ to the &lt;code&gt;data&lt;/code&gt; option of the &lt;code&gt;ajax()&lt;/code&g
         m.fieldsFor(&#39;addresses&#39;, { index: index }, function(m) {
           m.textField(&#39;country&#39;);
           m.textField(&#39;city&#39;);
-        })
+        });
       }
-      m.btn(&#39;Save&#39;, { onclick: function(e) { this.save(); } })
+      m.btn(&#39;Save&#39;, { onclick: function(e) { this.save(); } });
     });
   },
   save: function() {
@@ -565,7 +565,7 @@ to the &lt;code&gt;data&lt;/code&gt; option of the &lt;code&gt;ajax()&lt;/code&g
       data: this.paramsFor(&#39;user&#39;)
     }).done(function(data) {
       // Do something.
-    })
+    });
   }
 });
 &lt;/code&gt;&lt;/pre&gt;
@@ -724,7 +724,7 @@ this method sets the value of corresponding fields.&lt;/p&gt;
         })
         return false;
       }
-    })
+    });
   });
 }
 &lt;/code&gt;&lt;/pre&gt;

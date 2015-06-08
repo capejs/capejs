@@ -511,7 +511,7 @@ so that you can pass it to the <a href="http://api.jquery.com/jquery.ajax/">ajax
     m.formFor('user', function(m) {
       m.textField('name');
       m.passwordField('password');
-      m.btn('Sign in', { onclick: function(e) { this.save(); } })
+      m.btn('Sign in', { onclick: function(e) { this.save(); } });
     });
   },
   save: function() {
@@ -521,7 +521,7 @@ so that you can pass it to the <a href="http://api.jquery.com/jquery.ajax/">ajax
       data: this.paramsFor('user')
     }).done(function(data) {
       // Do something.
-    })
+    });
   }
 });
 </code></pre>
@@ -558,7 +558,7 @@ to the <code>data</code> option of the <code>ajax()</code> the following object:
           { country: 'USA', city: 'New York' }
         ]
       }
-    })
+    });
   },
   render: function(m) {
     m.formFor('user', function(m) {
@@ -567,9 +567,9 @@ to the <code>data</code> option of the <code>ajax()</code> the following object:
         m.fieldsFor('addresses', { index: index }, function(m) {
           m.textField('country');
           m.textField('city');
-        })
+        });
       }
-      m.btn('Save', { onclick: function(e) { this.save(); } })
+      m.btn('Save', { onclick: function(e) { this.save(); } });
     });
   },
   save: function() {
@@ -579,7 +579,7 @@ to the <code>data</code> option of the <code>ajax()</code> the following object:
       data: this.paramsFor('user')
     }).done(function(data) {
       // Do something.
-    })
+    });
   }
 });
 </code></pre>
@@ -738,7 +738,7 @@ this method sets the value of corresponding fields.</p>
         })
         return false;
       }
-    })
+    });
   });
 }
 </code></pre>
