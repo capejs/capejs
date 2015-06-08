@@ -151,9 +151,7 @@ var Form = Cape.createComponentClass({
 the `jsonFor()` method of its instances returns a string like this:
 
 ```json
-{"user": {"login_name": "john", "password": "p@ssw0rd"},
-"addresses": [{"country": "Japan", "city": "Tokyo" },
-{"country": "USA", "city": "New York"}]}
+{"user": {"login_name": "john", "password": "p@ssw0rd"}, "addresses": [{"country": "Japan", "city": "Tokyo" }, {"country": "USA", "city": "New York"}]}
 ```
 
 <a class="anchor" id="mount"></a>
@@ -209,63 +207,105 @@ to render the component.
 Thid method returns an object that represents the field values of
 a named form.
 
-The values are organized in hierarchical structure as explained following examples:
+The returned object is organized in hierarchical structure
+so that you can pass it to the [ajax()](http://api.jquery.com/jquery.ajax/) method of jQuery.
+
 
 #### Example
 
-If you have a component defined like this,
+Suppose that you have a component defined like this:
 
 ```javascript
 var Form = Cape.createComponentClass({
   render: function(m) {
     m.formFor('user', function(m) {
-      m.textField('login_name');
+      m.textField('name');
       m.passwordField('password');
+      m.btn('Sign in', { onclick: function(e) { this.save(); } });
+    });
+  },
+  save: function() {
+    $.ajax({
+      url: '/sessions/',
+      method: 'POST',
+      data: this.paramsFor('user')
+    }).done(function(data) {
+      // Do something.
     });
   }
 });
 ```
 
-the `jsonFor()` method of its instances returns an object like this:
+When you fill in `name` field with 'john' and `password` field with `1234`
+and click the 'Sign in' button, `this.paramsFor('user')` passes
+to the `data` option of the `ajax()` the following object:
 
 ```javascript
 {
   user: {
-    login_name: "john",
-    password: "p@ssw0rd"
+    name: "john",
+    password: "1234"
   }
 }
 ```
 
+Note that jQuery converts this object to a query string like this:
+
+```
+user[name]=john&user[password]=1234
+```
+
 
 #### Example
 
-If you have a component defined like this,
+Suppose that you have a component defined like this:
 
 ```javascript
 var Form = Cape.createComponentClass({
+  init: function() {
+    this.user_id = 123;
+    this.setValues({
+      user: {
+        name: 'john',
+        addresses: [
+          { country: 'Japan', city: 'Tokyo' },
+          { country: 'USA', city: 'New York' }
+        ]
+      }
+    });
+  },
   render: function(m) {
     m.formFor('user', function(m) {
-      m.textField('login_name');
-      m.passwordField('password');
+      m.textField('name');
       for (var index = 0; index < 2; i++) {
         m.fieldsFor('addresses', { index: index }, function(m) {
           m.textField('country');
           m.textField('city');
-        })
+        });
       }
+      m.btn('Save', { onclick: function(e) { this.save(); } });
+    });
+  },
+  save: function() {
+    $.ajax({
+      url: '/sessions/' + this.user_id,
+      method: 'PATH',
+      data: this.paramsFor('user')
+    }).done(function(data) {
+      // Do something.
     });
   }
 });
 ```
 
-the `jsonFor()` method of its instances returns an object like this:
+When you change the value of `name` field from 'john' to 'mike' and click 'Save'
+button, `this.paramsFor('user')` passes to the `data` option of the `ajax()`
+the following object:
 
 ```javascript
 {
   user: {
-    login_name: "john",
-    password: "p@ssw0rd",
+    name: "mike",
     addresses: {
       '0': {
         country: "Japan",
@@ -279,6 +319,13 @@ the `jsonFor()` method of its instances returns an object like this:
   }
 }
 ```
+
+Note that jQuery converts this object to a query string like this:
+
+```
+user[name]=mike&user[addresses][0][country]=Japan&user[addresses][0][city]=Tokyo&user[addresses][1][country]=USA&user[addresses][1][city]=New+York
+```
+
 
 <a class="anchor" id="refresh"></a>
 ### #refresh()
@@ -403,7 +450,7 @@ render: function(m) {
         })
         return false;
       }
-    })
+    });
   });
 }
 ```

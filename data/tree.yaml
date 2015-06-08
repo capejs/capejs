@@ -163,6 +163,9 @@ api_pages:
         id: attr
         title: "#attr()"
       -
+        id: btn
+        title: "#btn()"
+      -
         id: check-box
         title: "#checkBox()"
       -
