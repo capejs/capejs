@@ -593,7 +593,7 @@ the following object:&lt;/p&gt;
 
 &lt;p&gt;Note that jQuery converts this object to a query string like this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;user[name]=mike&amp;amp;user[password]=1234&amp;amp;user[addresses][0][country]=Japan&amp;amp;user[addresses][0][city]=Tokyo&amp;amp;user[addresses][1][country]=USA&amp;amp;user[addresses][1][city]=New+York
+&lt;pre&gt;&lt;code&gt;user[name]=mike&amp;amp;user[addresses][0][country]=Japan&amp;amp;user[addresses][0][city]=Tokyo&amp;amp;user[addresses][1][country]=USA&amp;amp;user[addresses][1][city]=New+York
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
