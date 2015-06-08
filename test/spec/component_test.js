@@ -435,6 +435,12 @@ describe('Component', function() {
           m.formFor('article', function(m) {
             m.textField('title', { value: 'A' });
             m.textField('name', { value: 'B' });
+            m.fieldsFor('comments', { index: 1 }, function(m) {
+              m.textField('body', { value: 'C' })
+            })
+            m.fieldsFor('info', function(m) {
+              m.textField('page_rank', { value: 'D' })
+            })
           });
         }
       })
@@ -445,6 +451,8 @@ describe('Component', function() {
 
       expect(params.article.title).to.equal('A');
       expect(params.article.name).to.equal('B');
+      expect(params.article.comments['1'].body).to.equal('C');
+      expect(params.article.info.page_rank).to.equal('D');
     })
 
     it('should take "as" option to change parameter name', function() {
@@ -467,7 +475,6 @@ describe('Component', function() {
       expect(params.article.name).to.equal('B');
     })
   })
-
 
   describe('jsonFor', function() {
     it('should return a JSON string that contains form data', function() {
