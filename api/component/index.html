@@ -128,6 +128,8 @@
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#attr">#attr()</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/api/markup_builder#btn">#btn()</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#check-box">#checkBox()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/markup_builder#checked">#checked()</a></li>
@@ -439,9 +441,7 @@ a named form.</p>
 
 <p>the <code>jsonFor()</code> method of its instances returns a string like this:</p>
 
-<pre><code class="language-json">{&quot;user&quot;: {&quot;login_name&quot;: &quot;john&quot;, &quot;password&quot;: &quot;p@ssw0rd&quot;},
-&quot;addresses&quot;: [{&quot;country&quot;: &quot;Japan&quot;, &quot;city&quot;: &quot;Tokyo&quot; },
-{&quot;country&quot;: &quot;USA&quot;, &quot;city&quot;: &quot;New York&quot;}]}
+<pre><code class="language-json">{&quot;user&quot;: {&quot;login_name&quot;: &quot;john&quot;, &quot;password&quot;: &quot;p@ssw0rd&quot;}, &quot;addresses&quot;: [{&quot;country&quot;: &quot;Japan&quot;, &quot;city&quot;: &quot;Tokyo&quot; }, {&quot;country&quot;: &quot;USA&quot;, &quot;city&quot;: &quot;New York&quot;}]}
 </code></pre>
 
 <p><a class="anchor" id="mount"></a></p>
@@ -499,58 +499,98 @@ to render the component.</p>
 <p>Thid method returns an object that represents the field values of
 a named form.</p>
 
-<p>The values are organized in hierarchical structure as explained following examples:</p>
+<p>The returned object is organized in hierarchical structure
+so that you can pass it to the <a href="http://api.jquery.com/jquery.ajax/">ajax()</a> method of jQuery.</p>
 
 <h4 id="example-6:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
-<p>If you have a component defined like this,</p>
+<p>Suppose that you have a component defined like this:</p>
 
 <pre><code class="language-javascript">var Form = Cape.createComponentClass({
   render: function(m) {
     m.formFor('user', function(m) {
-      m.textField('login_name');
+      m.textField('name');
       m.passwordField('password');
+      m.btn('Sign in', { onclick: function(e) { this.save(); } })
     });
+  },
+  save: function() {
+    $.ajax({
+      url: '/sessions/',
+      method: 'POST',
+      data: this.paramsFor('user')
+    }).done(function(data) {
+      // Do something.
+    })
   }
 });
 </code></pre>
 
-<p>the <code>jsonFor()</code> method of its instances returns an object like this:</p>
+<p>When you fill in <code>name</code> field with &lsquo;john&rsquo; and <code>password</code> field with <code>1234</code>
+and click the &lsquo;Sign in&rsquo; button, <code>this.paramsFor('user')</code> passes
+to the <code>data</code> option of the <code>ajax()</code> the following object:</p>
 
 <pre><code class="language-javascript">{
   user: {
-    login_name: &quot;john&quot;,
-    password: &quot;p@ssw0rd&quot;
+    name: &quot;john&quot;,
+    password: &quot;1234&quot;
   }
 }
 </code></pre>
 
+<p>Note that jQuery converts this object to a query string like this:</p>
+
+<pre><code>user[name]=john&amp;user[password]=1234
+</code></pre>
+
 <h4 id="example-7:202695ef52bd0f88ec46c8b4eb5ea1d8">Example</h4>
 
-<p>If you have a component defined like this,</p>
+<p>Suppose that you have a component defined like this:</p>
 
 <pre><code class="language-javascript">var Form = Cape.createComponentClass({
+  init: function() {
+    this.user_id = 123;
+    this.setValues({
+      user: {
+        name: 'john',
+        addresses: [
+          { country: 'Japan', city: 'Tokyo' },
+          { country: 'USA', city: 'New York' }
+        ]
+      }
+    })
+  },
   render: function(m) {
     m.formFor('user', function(m) {
-      m.textField('login_name');
-      m.passwordField('password');
+      m.textField('name');
       for (var index = 0; index &lt; 2; i++) {
         m.fieldsFor('addresses', { index: index }, function(m) {
           m.textField('country');
           m.textField('city');
         })
       }
+      m.btn('Save', { onclick: function(e) { this.save(); } })
     });
+  },
+  save: function() {
+    $.ajax({
+      url: '/sessions/' + this.user_id,
+      method: 'PATH',
+      data: this.paramsFor('user')
+    }).done(function(data) {
+      // Do something.
+    })
   }
 });
 </code></pre>
 
-<p>the <code>jsonFor()</code> method of its instances returns an object like this:</p>
+<p>When you change the value of <code>name</code> field from &lsquo;john&rsquo; to &lsquo;mike&rsquo; and click &lsquo;Save&rsquo;
+button, <code>this.paramsFor('user')</code> passes to the <code>data</code> option of the <code>ajax()</code>
+the following object:</p>
 
 <pre><code class="language-javascript">{
   user: {
-    login_name: &quot;john&quot;,
-    password: &quot;p@ssw0rd&quot;,
+    name: &quot;mike&quot;,
     addresses: {
       '0': {
         country: &quot;Japan&quot;,
@@ -563,6 +603,11 @@ a named form.</p>
     }
   }
 }
+</code></pre>
+
+<p>Note that jQuery converts this object to a query string like this:</p>
+
+<pre><code>user[name]=john&amp;user[password]=1234&amp;user[addresses][0][country]=Japan&amp;user[addresses][0][city]=Tokyo&amp;user[addresses][1][country]=USA&amp;user[addresses][1][city]=New+York
 </code></pre>
 
 <p><a class="anchor" id="refresh"></a></p>

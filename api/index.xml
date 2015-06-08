@@ -427,9 +427,7 @@ a named form.&lt;/p&gt;
 
 &lt;p&gt;the &lt;code&gt;jsonFor()&lt;/code&gt; method of its instances returns a string like this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&amp;quot;user&amp;quot;: {&amp;quot;login_name&amp;quot;: &amp;quot;john&amp;quot;, &amp;quot;password&amp;quot;: &amp;quot;p@ssw0rd&amp;quot;},
-&amp;quot;addresses&amp;quot;: [{&amp;quot;country&amp;quot;: &amp;quot;Japan&amp;quot;, &amp;quot;city&amp;quot;: &amp;quot;Tokyo&amp;quot; },
-{&amp;quot;country&amp;quot;: &amp;quot;USA&amp;quot;, &amp;quot;city&amp;quot;: &amp;quot;New York&amp;quot;}]}
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&amp;quot;user&amp;quot;: {&amp;quot;login_name&amp;quot;: &amp;quot;john&amp;quot;, &amp;quot;password&amp;quot;: &amp;quot;p@ssw0rd&amp;quot;}, &amp;quot;addresses&amp;quot;: [{&amp;quot;country&amp;quot;: &amp;quot;Japan&amp;quot;, &amp;quot;city&amp;quot;: &amp;quot;Tokyo&amp;quot; }, {&amp;quot;country&amp;quot;: &amp;quot;USA&amp;quot;, &amp;quot;city&amp;quot;: &amp;quot;New York&amp;quot;}]}
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -487,58 +485,98 @@ to render the component.&lt;/p&gt;
 &lt;p&gt;Thid method returns an object that represents the field values of
 a named form.&lt;/p&gt;
 
-&lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
+&lt;p&gt;The returned object is organized in hierarchical structure
+so that you can pass it to the &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;ajax()&lt;/a&gt; method of jQuery.&lt;/p&gt;
 
 &lt;h4 id=&#34;example-6:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
-&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
+&lt;p&gt;Suppose that you have a component defined like this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
   render: function(m) {
     m.formFor(&#39;user&#39;, function(m) {
-      m.textField(&#39;login_name&#39;);
+      m.textField(&#39;name&#39;);
       m.passwordField(&#39;password&#39;);
+      m.btn(&#39;Sign in&#39;, { onclick: function(e) { this.save(); } })
     });
+  },
+  save: function() {
+    $.ajax({
+      url: &#39;/sessions/&#39;,
+      method: &#39;POST&#39;,
+      data: this.paramsFor(&#39;user&#39;)
+    }).done(function(data) {
+      // Do something.
+    })
   }
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;the &lt;code&gt;jsonFor()&lt;/code&gt; method of its instances returns an object like this:&lt;/p&gt;
+&lt;p&gt;When you fill in &lt;code&gt;name&lt;/code&gt; field with &amp;lsquo;john&amp;rsquo; and &lt;code&gt;password&lt;/code&gt; field with &lt;code&gt;1234&lt;/code&gt;
+and click the &amp;lsquo;Sign in&amp;rsquo; button, &lt;code&gt;this.paramsFor(&#39;user&#39;)&lt;/code&gt; passes
+to the &lt;code&gt;data&lt;/code&gt; option of the &lt;code&gt;ajax()&lt;/code&gt; the following object:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
   user: {
-    login_name: &amp;quot;john&amp;quot;,
-    password: &amp;quot;p@ssw0rd&amp;quot;
+    name: &amp;quot;john&amp;quot;,
+    password: &amp;quot;1234&amp;quot;
   }
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;Note that jQuery converts this object to a query string like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;user[name]=john&amp;amp;user[password]=1234
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h4 id=&#34;example-7:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
-&lt;p&gt;If you have a component defined like this,&lt;/p&gt;
+&lt;p&gt;Suppose that you have a component defined like this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Form = Cape.createComponentClass({
+  init: function() {
+    this.user_id = 123;
+    this.setValues({
+      user: {
+        name: &#39;john&#39;,
+        addresses: [
+          { country: &#39;Japan&#39;, city: &#39;Tokyo&#39; },
+          { country: &#39;USA&#39;, city: &#39;New York&#39; }
+        ]
+      }
+    })
+  },
   render: function(m) {
     m.formFor(&#39;user&#39;, function(m) {
-      m.textField(&#39;login_name&#39;);
-      m.passwordField(&#39;password&#39;);
+      m.textField(&#39;name&#39;);
       for (var index = 0; index &amp;lt; 2; i++) {
         m.fieldsFor(&#39;addresses&#39;, { index: index }, function(m) {
           m.textField(&#39;country&#39;);
           m.textField(&#39;city&#39;);
         })
       }
+      m.btn(&#39;Save&#39;, { onclick: function(e) { this.save(); } })
     });
+  },
+  save: function() {
+    $.ajax({
+      url: &#39;/sessions/&#39; + this.user_id,
+      method: &#39;PATH&#39;,
+      data: this.paramsFor(&#39;user&#39;)
+    }).done(function(data) {
+      // Do something.
+    })
   }
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;the &lt;code&gt;jsonFor()&lt;/code&gt; method of its instances returns an object like this:&lt;/p&gt;
+&lt;p&gt;When you change the value of &lt;code&gt;name&lt;/code&gt; field from &amp;lsquo;john&amp;rsquo; to &amp;lsquo;mike&amp;rsquo; and click &amp;lsquo;Save&amp;rsquo;
+button, &lt;code&gt;this.paramsFor(&#39;user&#39;)&lt;/code&gt; passes to the &lt;code&gt;data&lt;/code&gt; option of the &lt;code&gt;ajax()&lt;/code&gt;
+the following object:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
   user: {
-    login_name: &amp;quot;john&amp;quot;,
-    password: &amp;quot;p@ssw0rd&amp;quot;,
+    name: &amp;quot;mike&amp;quot;,
     addresses: {
       &#39;0&#39;: {
         country: &amp;quot;Japan&amp;quot;,
@@ -551,6 +589,11 @@ a named form.&lt;/p&gt;
     }
   }
 }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that jQuery converts this object to a query string like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;user[name]=john&amp;amp;user[password]=1234&amp;amp;user[addresses][0][country]=Japan&amp;amp;user[addresses][0][city]=Tokyo&amp;amp;user[addresses][1][country]=USA&amp;amp;user[addresses][1][city]=New+York
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
