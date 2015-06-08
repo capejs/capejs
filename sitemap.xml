@@ -15,6 +15,10 @@
   </url>
   
   <url>
+    <loc>http://oiax.github.io/capejs/api/component/</loc>
+  </url>
+  
+  <url>
     <loc>http://oiax.github.io/capejs/api/</loc>
   </url>
   
@@ -23,7 +27,7 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/component/</loc>
+    <loc>http://oiax.github.io/capejs/api/router/</loc>
   </url>
   
   <url>
@@ -31,7 +35,7 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/router/</loc>
+    <loc>http://oiax.github.io/capejs/router/</loc>
   </url>
   
   <url>
@@ -43,15 +47,11 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/router/</loc>
+    <loc>http://oiax.github.io/capejs/tutorials/</loc>
   </url>
   
   <url>
     <loc>http://oiax.github.io/capejs/components/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/tutorials/</loc>
   </url>
   
 </urlset>
