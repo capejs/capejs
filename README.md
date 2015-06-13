@@ -27,6 +27,8 @@ and [Ruby on Rails](https://github.com/rails/rails).
 
 If you want to learn about Cape.JS, check out the [Cape.JS Documentation](http://oiax.github.io/capejs/).
 
+You can download and try a demo app from https://github.com/oiax/capejs-demo-on-rails.
+
 ## A simple example
 
 The following example will insert `<div>Hello, World!</div>` into the `div#hello-message` element.
