@@ -1,6 +1,6 @@
 # Cape.JS
 
-![Cape.JS logo](https://cdn.rawgit.com/oiax/capejs/logo1/doc/logo/capejs.svg)
+![Cape.JS logo](https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg)
 
 [![Circle CI](https://circleci.com/gh/oiax/capejs.png?style=badge)](https://circleci.com/gh/oiax/capejs)
 
@@ -26,8 +26,6 @@ The architecture and terminology of Cape.JS are strongly influenced by
 and [Ruby on Rails](https://github.com/rails/rails).
 
 If you want to learn about Cape.JS, check out the [Cape.JS Documentation](http://oiax.github.io/capejs/).
-
-You can download and try a demo app from https://github.com/oiax/capejs-demo-on-rails.
 
 ## A simple example
 
@@ -64,6 +62,14 @@ such as `blockquote`, `h1`, `strong`, `video`, etc.
 This example is explained in detail
 in the [Hello World](http://oiax.github.io/capejs/components/#hello-world) section
 of *Cape.JS Documentation.*
+
+## A demo application
+
+You can download and try a demo app from https://github.com/oiax/capejs-demo-on-rails.
+
+This is built upon the Ruby on Rails. When you start it and open `http://localhost:3000` with your browser, you will see a page like this:
+
+![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/master/doc/captures/todo_demo.png)
 
 ## Browser Support
 
