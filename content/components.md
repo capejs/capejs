@@ -6,6 +6,8 @@ title: "Components"
 [ECMAScript 6](#es6) -
 [Building Virtual DOM Tree](#dom-tree) -
 [Click Counter](#click-counter) -
+[Shortcut Methods](#shortcut-methods) -
+[HTML Styles](#html-styles) -
 [Todo List](#todo-list) -
 [Mixins](#mixins)
 
@@ -257,6 +259,44 @@ In the following example, the second `<div>` element will have no `class` attrib
 See [MarkupBuilder#class()](../api/markup_builder/#class) and
 [MarkupBuilder#onclick()](../api/markup_builder/#onblur-onfocus-etc) for details.
 
+<a class="anchor" id="html-styles"></a>
+## HTML Styles
+
+When you want to change the style of an element, you have two choices.
+The first one is to give the `style` option to `div` method etc.
+The second one is to use the `#css` method to preset styles for the
+element which will be created nextly.
+
+The following example creates a `<span>` element whose text is rendered with red color:
+
+```javascript
+m.span('Hello, World!', style: { color: 'red' });
+```
+
+Note that you should give an object as the value of `style` option.
+You *can not* write like this:
+
+```javascript
+m.span('Hello, World!', style: 'color: red');
+```
+
+Note also that you should use *camel case* for the style names:
+
+```javascript
+m.span('Hello, World!', style: { fontWeight: 'bold' });
+```
+
+Using the `#css` method, you can rewrite the last example as follows:
+
+```javascript
+m.css({ fontWeight: 'bold' }).span('Hello, World!');
+```
+
+Alternatively, you can pass two strings (style name and its value) to the `#css` method:
+
+```javascript
+m.css('fontWeight', 'bold').span('Hello, World!');
+```
 
 <a class="anchor" id="todo-list"></a>
 ## Todo List

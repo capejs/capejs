@@ -30,6 +30,9 @@ pages:
         id: "shortcut-methods"
         title: "Shortcut Methods"
       -
+        id: "html-styles"
+        title: "HTML Styles"
+      -
         id: "todo-list"
         title: "Todo List"
       -
