@@ -82,6 +82,8 @@
           
             <li><a href="http://oiax.github.io/capejs/components/#shortcut-methods">Shortcut Methods</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/components/#html-styles">HTML Styles</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/components/#todo-list">Todo List</a></li>
           
             <li><a href="http://oiax.github.io/capejs/components/#mixins">Mixins</a></li>
@@ -156,6 +158,8 @@
 <a href="#es6">ECMAScript 6</a> -
 <a href="#dom-tree">Building Virtual DOM Tree</a> -
 <a href="#click-counter">Click Counter</a> -
+<a href="#shortcut-methods">Shortcut Methods</a> -
+<a href="#html-styles">HTML Styles</a> -
 <a href="#todo-list">Todo List</a> -
 <a href="#mixins">Mixins</a></p>
 
@@ -396,6 +400,41 @@ In the following example, the second <code>&lt;div&gt;</code> element will have 
 
 <p>See <a href="../api/markup_builder/#class">MarkupBuilder#class()</a> and
 <a href="../api/markup_builder/#onblur-onfocus-etc">MarkupBuilder#onclick()</a> for details.</p>
+
+<p><a class="anchor" id="html-styles"></a></p>
+
+<h2 id="html-styles:d1b8a910971345212cdb562d8742fa2d">HTML Styles</h2>
+
+<p>When you want to change the style of an element, you have two choices.
+The first one is to give the <code>style</code> option to <code>div</code> method etc.
+The second one is to use the <code>#css</code> method to preset styles for the
+element which will be created nextly.</p>
+
+<p>The following example creates a <code>&lt;span&gt;</code> element whose text is rendered with red color:</p>
+
+<pre><code class="language-javascript">m.span('Hello, World!', style: { color: 'red' });
+</code></pre>
+
+<p>Note that you should give an object as the value of <code>style</code> option.
+You <em>can not</em> write like this:</p>
+
+<pre><code class="language-javascript">m.span('Hello, World!', style: 'color: red');
+</code></pre>
+
+<p>Note also that you should use <em>camel case</em> for the style names:</p>
+
+<pre><code class="language-javascript">m.span('Hello, World!', style: { fontWeight: 'bold' });
+</code></pre>
+
+<p>Using the <code>#css</code> method, you can rewrite the last example as follows:</p>
+
+<pre><code class="language-javascript">m.css({ fontWeight: 'bold' }).span('Hello, World!');
+</code></pre>
+
+<p>Alternatively, you can pass two strings (style name and its value) to the <code>#css</code> method:</p>
+
+<pre><code class="language-javascript">m.css('fontWeight', 'bold').span('Hello, World!');
+</code></pre>
 
 <p><a class="anchor" id="todo-list"></a></p>
 
