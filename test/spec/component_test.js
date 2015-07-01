@@ -424,6 +424,44 @@ describe('Component', function() {
       expect(params.title).to.equal('A');
       expect(params.name).to.equal('B');
     })
+    it('should return array of values when the name of checkbox has "[]" in the end', function() {
+      var Klass, component, params;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.form(function(m) {
+            m.checkBox('types[]', { value: 'a', checked: true });
+            m.checkBox('types[]', { value: 'b', checked: true });
+          });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+      params = component.formData();
+      expect(Array.isArray(params.types)).to.equal(true);
+      expect(params.types.length).to.equal(2);
+      expect(params.types[0]).to.equal('a');
+      expect(params.types[1]).to.equal('b');
+    })
+    it('should return string when the name of checkbox does not have "[]" in the end', function() {
+      var Klass, component, params;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.form(function(m) {
+            m.checkBox('types', { value: 'a', checked: true });
+            m.checkBox('types', { value: 'b', checked: true });
+          });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+      params = component.formData();
+      expect(Array.isArray(params.types)).to.equal(false);
+      expect(params.types).to.equal('b');
+    })
   })
 
   describe('paramsFor', function() {
