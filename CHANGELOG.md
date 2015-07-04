@@ -1,6 +1,12 @@
 # CHANGELOG - CapeJS
 
-## 1.1.0 (Not yet released)
+## 1.2.0 (Not yet released)
+
+### `Cape.Component`
+
+* `#formData` retuns array of values when the name of checkbox field has `[]` in the end.
+
+## 1.1.0 (June, 7, 2015)
 
 ### `Cape.Component`
 
