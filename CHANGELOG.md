@@ -6,6 +6,11 @@
 
 * `#formData` retuns array of values when the name of checkbox field has `[]` in the end.
 
+### `Cape.MarkupBuilder`
+
+* Three inner (private) attributes (`formName`, `selectBoxName`, and `fieldNamePrefix`) have
+been made public.
+
 ## 1.1.0 (June, 7, 2015)
 
 ### `Cape.Component`
