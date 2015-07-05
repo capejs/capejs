@@ -5,6 +5,7 @@
 ### `Cape.Component`
 
 * `#formData` retuns array of values when the name of checkbox field has `[]` in the end.
+* Fix a bug that prevents hidden field rewrite.
 
 ### `Cape.MarkupBuilder`
 

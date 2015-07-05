@@ -146,6 +146,7 @@ describe('Component', function() {
             m.checkBox('published');
             m.radioButton('color', 'red');
             m.radioButton('color', 'blue');
+            m.hiddenField('uid', { value: '' });
           });
         }
       })
@@ -155,12 +156,14 @@ describe('Component', function() {
       component.val('name', 'C');
       component.val('published', true);
       component.val('color', 'blue');
+      component.val('uid', '1000');
       component.refresh();
 
       expect(component.val('title')).to.equal('A');
       expect(component.val('name')).to.equal('C');
       expect(component.val('published')).to.equal('1');
       expect(component.val('color')).to.equal('blue');
+      expect(component.val('uid')).to.equal('1000');
       expect(component.val('xxx')).to.equal('');
     })
 
