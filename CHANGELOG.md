@@ -1,6 +1,12 @@
 # CHANGELOG - CapeJS
 
-## 1.1.0 (Not yet released)
+## 1.1.1 (July, 5, 2015)
+
+### `Cape.Component`
+
+* Fix a bug that prevents hidden field rewrite. (Backporting)
+
+## 1.1.0 (June, 7, 2015)
 
 ### `Cape.Component`
 
