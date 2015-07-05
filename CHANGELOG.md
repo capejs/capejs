@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 1.0.2 (July, 5, 2015)
+
+### `Cape.Component`
+
+* Fix a bug that prevents hidden field rewrite. (Backporting)
+
 ## 1.0.1 (May 30, 2015)
 
 * Bug fix: Can't set field values of nested forms.
