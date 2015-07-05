@@ -1,11 +1,11 @@
-# CHANGELOG - CapeJS
+# CHANGELOG - Cape.JS
 
 ## 1.2.0 (Not yet released)
 
 ### `Cape.Component`
 
 * `#formData` retuns array of values when the name of checkbox field has `[]` in the end.
-* Fix a bug that prevents hidden field rewrite.
+* Fix a bug that prevents hidden field rewrite. Backported as `v1.0.2` and `v1.1.1`.
 
 ### `Cape.MarkupBuilder`
 
