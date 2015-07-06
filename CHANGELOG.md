@@ -14,7 +14,7 @@ been made public.
 
 ### `Cape.ResourceAgent`
 
-* Add a new class called `Cape.Resource`, which performs CRUD operation using `fetch` API.
+* Add a new class called `Cape.ResourceAgent`, which performs CRUD operation using `fetch` API.
 
 ## 1.1.0 (June, 7, 2015)
 
