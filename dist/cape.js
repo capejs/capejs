@@ -3,11 +3,12 @@ var Cape = require('./cape/utilities')
 Cape.MarkupBuilder = require('./cape/markup_builder')
 Cape.Component = require('./cape/component.js')
 Cape.DataStore = require('./cape/data_store.js')
+Cape.ResourceAgent = require('./cape/resource_agent.js')
 Cape.RoutingMapper = require('./cape/routing_mapper.js')
 Cape.Router = require('./cape/router.js')
 module.exports = Cape;
 
-},{"./cape/component.js":2,"./cape/data_store.js":3,"./cape/markup_builder":4,"./cape/router.js":5,"./cape/routing_mapper.js":6,"./cape/utilities":7}],2:[function(require,module,exports){
+},{"./cape/component.js":2,"./cape/data_store.js":3,"./cape/markup_builder":4,"./cape/resource_agent.js":5,"./cape/router.js":6,"./cape/routing_mapper.js":7,"./cape/utilities":8}],2:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -86,7 +87,6 @@ Cape.extend(Component.prototype, {
           elem = elements[j];
           if (elem.getAttribute('name') != k) continue;
           if (elem.value === undefined) continue;
-          if (elem.type === 'hidden') continue;
           if (elem.type === 'checkbox') {
             elem.checked = vform[k];
           }
@@ -245,7 +245,7 @@ Cape.extend(_Internal.prototype, {
     }
   },
   serializeForms: function() {
-    var forms, elements, i, j, elem, segments, lastSegment, obj, o;
+    var forms, elements, i, j, elem, segments, lastSegment, obj, o, name;
 
     this.forms = {};
     forms = this.main.root.getElementsByTagName('form');
@@ -257,7 +257,18 @@ Cape.extend(_Internal.prototype, {
         if (elem.name && (elem.value !== undefined)) {
           if ((elem.type === 'checkbox' || elem.type === 'radio') && !elem.checked)
             continue;
-          obj[elem.name] = elem.value;
+          if (elem.name.slice(-2) === '[]') {
+            name = elem.name.slice(0, -2);
+            if (!Array.isArray(obj[name])) {
+              obj[name] = [];
+            }
+            if (elem.type !== 'hidden') {
+              obj[name].push(elem.value);
+            }
+          }
+          else {
+            obj[elem.name] = elem.value;
+          }
         }
       }
       if (forms[i].getAttribute('name')) {
@@ -315,7 +326,7 @@ Cape.extend(_Internal.prototype, {
 module.exports = Component;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":7,"inflected":10,"virtual-dom":23}],3:[function(require,module,exports){
+},{"./utilities":8,"inflected":11,"virtual-dom":24}],3:[function(require,module,exports){
 "use strict";
 
 var Cape = require('./utilities');
@@ -365,7 +376,7 @@ var _Internal = function _Internal(main) {
 
 module.exports = DataStore;
 
-},{"./utilities":7}],4:[function(require,module,exports){
+},{"./utilities":8}],4:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -377,15 +388,18 @@ var Cape = require('./utilities');
 //
 // public properties:
 //   component: the component that this builder works for.
+//   formName: current form name.
+//   selectBoxName: current select box name.
+//   fieldNamePrefix: current field name prefix.
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
 var MarkupBuilder = function MarkupBuilder(component, options) {
   this._ = new _Internal(this);
   this.component = component;
-  if (options){
-    this._.formName = options.formName;
-    this._.selectBoxName = options.selectBoxName;
-    this._.fieldNamePrefix = options.fieldNamePrefix;
+  if (options) {
+    this.formName = options.formName;
+    this.selectBoxName = options.selectBoxName;
+    this.fieldNamePrefix = options.fieldNamePrefix;
   }
 };
 
@@ -416,9 +430,9 @@ Cape.extend(MarkupBuilder.prototype, {
 
     if (callback) {
       builder = new MarkupBuilder(this.component,
-        { formName: this._.formName,
-          selectBoxName: this._.selectBoxName,
-          fieldNamePrefix: this._.fieldNamePrefix });
+        { formName: this.formName,
+          selectBoxName: this.selectBoxName,
+          fieldNamePrefix: this.fieldNamePrefix });
       if (callback.length === 0) { throw new Error("Callback requires an argument.") }
       callback.call(this.component, builder);
       attributes = this._.generateAttributes(options);
@@ -478,15 +492,15 @@ Cape.extend(MarkupBuilder.prototype, {
     if (callback.length === 0)
       throw new Error("Callback requires an argument.");
 
-    if (this._.fieldNamePrefix !== undefined)
-      prefix = this._.fieldNamePrefix + '/' + name;
+    if (this.fieldNamePrefix !== undefined)
+      prefix = this.fieldNamePrefix + '/' + name;
     else
       prefix = name
     if (options.index !== undefined)
       prefix = prefix + '/' + String(options.index);
 
     builder = new MarkupBuilder(this.component,
-      { formName: this._.formName, fieldNamePrefix: prefix });
+      { formName: this.formName, fieldNamePrefix: prefix });
     callback.call(this.component, builder);
     builder._.elements.forEach(function(elem) {
       this._.elements.push(elem);
@@ -526,15 +540,15 @@ Cape.extend(MarkupBuilder.prototype, {
   textareaField: function(attrName, options) {
     var dasherized;
 
-    if (attrName && this._.fieldNamePrefix)
-      attrName = this._.fieldNamePrefix + '/' + attrName
+    if (attrName && this.fieldNamePrefix)
+      attrName = this.fieldNamePrefix + '/' + attrName
     options = options || {};
     options.name = attrName;
 
     dasherized = Inflector.dasherize(attrName.replace(/\//g, '_'));
     if (!options.id) {
-      if (this._.formName)
-        options.id = this._.formName + '-field-' + dasherized;
+      if (this.formName)
+        options.id = this.formName + '-field-' + dasherized;
       else
         options.id = 'field-' + dasherized;
     }
@@ -549,8 +563,8 @@ Cape.extend(MarkupBuilder.prototype, {
     if (attrName) options.name = attrName;
     if (!options.value) options.value = '1';
 
-    if (options.name && this._.fieldNamePrefix)
-      fieldName = this._.fieldNamePrefix + '/' + options.name
+    if (options.name && this.fieldNamePrefix)
+      fieldName = this.fieldNamePrefix + '/' + options.name
     else
       fieldName = options.name
 
@@ -580,15 +594,15 @@ Cape.extend(MarkupBuilder.prototype, {
     if (callback.length === 0)
       throw new Error("Callback requires an argument.");
 
-    if (name && this._.fieldNamePrefix)
-      options.name = this._.fieldNamePrefix + '/' + name;
+    if (name && this.fieldNamePrefix)
+      options.name = this.fieldNamePrefix + '/' + name;
     else
       options.name = name;
 
     options.id = options.id || this._.elementIdFor(name);
 
     builder = new MarkupBuilder(this.component,
-      { formName: this._.formName, selectBoxName: name });
+      { formName: this.formName, selectBoxName: name });
     callback.call(this.component, builder);
     options = options || {};
     attributes = this._.generateAttributes(options);
@@ -683,8 +697,8 @@ Cape.extend(_Internal.prototype, {
         options.id = options.id + '-' + String(options.value);
     }
     if (options.id === null) delete options.id;
-    if (options.name && this.fieldNamePrefix)
-      options.name = this.fieldNamePrefix + '/' + options.name
+    if (options.name && this.main.fieldNamePrefix)
+      options.name = this.main.fieldNamePrefix + '/' + options.name
 
     attributes = this.generateAttributes(options);
     this.elements.push(this.h('input', attributes));
@@ -694,14 +708,14 @@ Cape.extend(_Internal.prototype, {
   elementIdFor: function(name) {
     var dasherized;
 
-    if (this.fieldNamePrefix)
+    if (this.main.fieldNamePrefix)
       dasherized = Inflector.dasherize(
-        this.fieldNamePrefix.replace(/\//g, '-') + '-' + name);
+        this.main.fieldNamePrefix.replace(/\//g, '-') + '-' + name);
     else
       dasherized = Inflector.dasherize(name);
 
-    if (this.formName)
-      return this.formName + '-field-' + dasherized;
+    if (this.main.formName)
+      return this.main.formName + '-field-' + dasherized;
     else
       return 'field-' + dasherized;
   },
@@ -849,7 +863,138 @@ for (var i = eventNames.length; i--;) {
 module.exports = MarkupBuilder;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":7,"inflected":10,"virtual-dom":23}],5:[function(require,module,exports){
+},{"./utilities":8,"inflected":11,"virtual-dom":24}],5:[function(require,module,exports){
+"use strict";
+
+var Inflector = require('inflected');
+var Cape = require('./utilities');
+
+// Cape.ResourceAgent
+//
+// public properties:
+//   form: the component that utilize this agent
+//   id: the id of the resource
+//   object: the object that represents the resource
+//   errors: the object that holds error messages
+// private properties:
+//   _: the object that holds internal methods and properties of this class.
+var ResourceAgent = function ResourceAgent(form, afterInitialize) {
+  this.form = form;
+  this.id = form.id;
+  this.object = {};
+  this.errors = {};
+  this.headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+
+  // Following codes are specific to Ruby on Rails.
+  var metaElements = document.getElementsByTagName('meta');
+  for (var i = metaElements.length - 1; i >= 0; i--) {
+    if (metaElements[i].getAttribute('name') === 'csrf-token') {
+      this.headers['X-CSRF-Token'] = metaElements[i].getAttribute('content');
+      break;
+    }
+  }
+
+  this._ = new _Internal(this);
+  if (typeof this.init === 'function')
+    this.init(afterInitialize);
+  else if (typeof afterInitialize === 'function')
+    afterInitialize.call(this.form, this);
+};
+
+Cape.extend(ResourceAgent.prototype, {
+  init: function(afterInitialize) {
+    var self = this;
+    if (this.id) {
+      fetch(this.memberPath(), {
+        credentials: 'same-origin'
+      })
+      .then(function(response) {
+        return response.json()
+      })
+      .then(function(json) {
+        self.object = json[self.resourceName()];
+        if (typeof afterInitialize === 'function') {
+          afterInitialize.call(self.form, self);
+        }
+      });
+    }
+  },
+
+  create: function(afterCreate) {
+    if (typeof afterCreate !== 'function') {
+      throw new Error("The first argument must be a function.");
+    }
+
+    var self = this;
+    fetch(this.collectionPath(), {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify(this.form.paramsFor(this.resourceName())),
+      credentials: 'same-origin'
+    })
+    .then(function(response) {
+      return response.json()
+    })
+    .then(function(json) {
+      afterCreate.call(self.form, json);
+    });
+
+    return false;
+  },
+
+  update: function(afterUpdate) {
+    if (typeof afterUpdate !== 'function') {
+      throw new Error("The first argument must be a function.");
+    }
+
+    var self = this;
+    fetch(this.memberPath(), {
+      method: 'PATCH',
+      headers: this.headers,
+      body: JSON.stringify(this.form.paramsFor(this.resourceName())),
+      credentials: 'same-origin'
+    })
+    .then(function(response) {
+      return response.json()
+    })
+    .then(function(json) {
+      afterUpdate.call(self.form, json);
+    });
+
+    return false;
+  },
+
+  collectionPath: function() {
+    var resources = Inflector.pluralize(this.resourceName());
+    return this.pathPrefix() + resources;
+  },
+
+  memberPath: function() {
+    var resources = Inflector.pluralize(this.resourceName());
+    return this.pathPrefix() + resources + '/' + this.id;
+  },
+
+  pathPrefix: function() {
+    return '/';
+  },
+
+  resourceName: function() {
+    return Inflector.underscore(
+      this.constructor.name.replace(/Agent$/, ''));
+  }
+});
+
+// Internal properties of Cape.ResourceAgent
+var _Internal = function _Internal(main) {
+  this.main = main;
+}
+
+module.exports = ResourceAgent;
+
+},{"./utilities":8,"inflected":11}],6:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -1102,7 +1247,7 @@ Cape.extend(_Internal.prototype, {
 module.exports = Router;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":7,"inflected":10}],6:[function(require,module,exports){
+},{"./utilities":8,"inflected":11}],7:[function(require,module,exports){
 "use strict";
 
 var Inflector = require('inflected');
@@ -1393,7 +1538,7 @@ Cape.extend(_Internal.prototype, {
 
 module.exports = RoutingMapper;
 
-},{"./utilities":7,"inflected":10}],7:[function(require,module,exports){
+},{"./utilities":8,"inflected":11}],8:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -1453,9 +1598,9 @@ Cape.createDataStoreClass = function(methods) {
 module.exports = Cape;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],8:[function(require,module,exports){
-
 },{}],9:[function(require,module,exports){
+
+},{}],10:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -1515,10 +1660,10 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = require('./lib/Inflector');
 
-},{"./lib/Inflector":12}],11:[function(require,module,exports){
+},{"./lib/Inflector":13}],12:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1631,7 +1776,7 @@ Inflections.prototype.clear = function(scope) {
 module.exports = Inflections;
 
 }).call(this,require('_process'))
-},{"./hasProp":16,"./icPart":17,"./remove":19,"_process":9}],12:[function(require,module,exports){
+},{"./hasProp":17,"./icPart":18,"./remove":20,"_process":10}],13:[function(require,module,exports){
 'use strict';
 
 var Inflections     = require('./Inflections');
@@ -1678,7 +1823,7 @@ for (var locale in defaults) {
 
 module.exports = Inflector;
 
-},{"./Inflections":11,"./Methods":13,"./Transliterator":14,"./defaults":15,"./isFunc":18}],13:[function(require,module,exports){
+},{"./Inflections":12,"./Methods":14,"./Transliterator":15,"./defaults":16,"./isFunc":19}],14:[function(require,module,exports){
 'use strict';
 
 var Methods = {
@@ -1892,7 +2037,7 @@ var Methods = {
 
 module.exports = Methods;
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1959,7 +2104,7 @@ Transliterator.prototype.transliterate = function(string, replacement) {
 module.exports = Transliterator;
 
 }).call(this,require('_process'))
-},{"_process":9}],15:[function(require,module,exports){
+},{"_process":10}],16:[function(require,module,exports){
 'use strict';
 
 function enDefaults(inflect) {
@@ -2027,7 +2172,7 @@ module.exports = {
   en: enDefaults
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 var hasOwnProp = Object.prototype.hasOwnProperty;
@@ -2038,7 +2183,7 @@ function hasProp(obj, key) {
 
 module.exports = hasProp;
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 function icPart(str) {
@@ -2047,7 +2192,7 @@ function icPart(str) {
 
 module.exports = icPart;
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 var toString = Object.prototype.toString;
@@ -2058,7 +2203,7 @@ function isFunc(obj) {
 
 module.exports = isFunc;
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 var splice = Array.prototype.splice;
@@ -2073,22 +2218,22 @@ function remove(arr, elem) {
 
 module.exports = remove;
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 var createElement = require("./vdom/create-element.js")
 
 module.exports = createElement
 
-},{"./vdom/create-element.js":33}],21:[function(require,module,exports){
+},{"./vdom/create-element.js":34}],22:[function(require,module,exports){
 var diff = require("./vtree/diff.js")
 
 module.exports = diff
 
-},{"./vtree/diff.js":53}],22:[function(require,module,exports){
+},{"./vtree/diff.js":54}],23:[function(require,module,exports){
 var h = require("./virtual-hyperscript/index.js")
 
 module.exports = h
 
-},{"./virtual-hyperscript/index.js":40}],23:[function(require,module,exports){
+},{"./virtual-hyperscript/index.js":41}],24:[function(require,module,exports){
 var diff = require("./diff.js")
 var patch = require("./patch.js")
 var h = require("./h.js")
@@ -2105,7 +2250,7 @@ module.exports = {
     VText: VText
 }
 
-},{"./create-element.js":20,"./diff.js":21,"./h.js":22,"./patch.js":31,"./vnode/vnode.js":49,"./vnode/vtext.js":51}],24:[function(require,module,exports){
+},{"./create-element.js":21,"./diff.js":22,"./h.js":23,"./patch.js":32,"./vnode/vnode.js":50,"./vnode/vtext.js":52}],25:[function(require,module,exports){
 /*!
  * Cross-Browser Split 1.1.1
  * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
@@ -2213,7 +2358,7 @@ module.exports = (function split(undef) {
   return self;
 })();
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 var OneVersionConstraint = require('individual/one-version');
@@ -2235,7 +2380,7 @@ function EvStore(elem) {
     return hash;
 }
 
-},{"individual/one-version":27}],26:[function(require,module,exports){
+},{"individual/one-version":28}],27:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -2258,7 +2403,7 @@ function Individual(key, value) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 var Individual = require('./index.js');
@@ -2282,7 +2427,7 @@ function OneVersion(moduleName, version, defaultValue) {
     return Individual(key, defaultValue);
 }
 
-},{"./index.js":26}],28:[function(require,module,exports){
+},{"./index.js":27}],29:[function(require,module,exports){
 (function (global){
 var topLevel = typeof global !== 'undefined' ? global :
     typeof window !== 'undefined' ? window : {}
@@ -2301,14 +2446,14 @@ if (typeof document !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"min-document":8}],29:[function(require,module,exports){
+},{"min-document":9}],30:[function(require,module,exports){
 "use strict";
 
 module.exports = function isObject(x) {
 	return typeof x === "object" && x !== null;
 };
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 var nativeIsArray = Array.isArray
 var toString = Object.prototype.toString
 
@@ -2318,12 +2463,12 @@ function isArray(obj) {
     return toString.call(obj) === "[object Array]"
 }
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 var patch = require("./vdom/patch.js")
 
 module.exports = patch
 
-},{"./vdom/patch.js":36}],32:[function(require,module,exports){
+},{"./vdom/patch.js":37}],33:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook.js")
 
@@ -2422,7 +2567,7 @@ function getPrototype(value) {
     }
 }
 
-},{"../vnode/is-vhook.js":44,"is-object":29}],33:[function(require,module,exports){
+},{"../vnode/is-vhook.js":45,"is-object":30}],34:[function(require,module,exports){
 var document = require("global/document")
 
 var applyProperties = require("./apply-properties")
@@ -2470,7 +2615,7 @@ function createElement(vnode, opts) {
     return node
 }
 
-},{"../vnode/handle-thunk.js":42,"../vnode/is-vnode.js":45,"../vnode/is-vtext.js":46,"../vnode/is-widget.js":47,"./apply-properties":32,"global/document":28}],34:[function(require,module,exports){
+},{"../vnode/handle-thunk.js":43,"../vnode/is-vnode.js":46,"../vnode/is-vtext.js":47,"../vnode/is-widget.js":48,"./apply-properties":33,"global/document":29}],35:[function(require,module,exports){
 // Maps a virtual DOM tree onto a real DOM tree in an efficient manner.
 // We don't want to read all of the DOM nodes in the tree so we use
 // the in-order tree indexing to eliminate recursion down certain branches.
@@ -2557,7 +2702,7 @@ function ascending(a, b) {
     return a > b ? 1 : -1
 }
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 var applyProperties = require("./apply-properties")
 
 var isWidget = require("../vnode/is-widget.js")
@@ -2711,7 +2856,7 @@ function replaceRoot(oldRoot, newRoot) {
     return newRoot;
 }
 
-},{"../vnode/is-widget.js":47,"../vnode/vpatch.js":50,"./apply-properties":32,"./create-element":33,"./update-widget":37}],36:[function(require,module,exports){
+},{"../vnode/is-widget.js":48,"../vnode/vpatch.js":51,"./apply-properties":33,"./create-element":34,"./update-widget":38}],37:[function(require,module,exports){
 var document = require("global/document")
 var isArray = require("x-is-array")
 
@@ -2789,7 +2934,7 @@ function patchIndices(patches) {
     return indices
 }
 
-},{"./dom-index":34,"./patch-op":35,"global/document":28,"x-is-array":30}],37:[function(require,module,exports){
+},{"./dom-index":35,"./patch-op":36,"global/document":29,"x-is-array":31}],38:[function(require,module,exports){
 var isWidget = require("../vnode/is-widget.js")
 
 module.exports = updateWidget
@@ -2806,7 +2951,7 @@ function updateWidget(a, b) {
     return false
 }
 
-},{"../vnode/is-widget.js":47}],38:[function(require,module,exports){
+},{"../vnode/is-widget.js":48}],39:[function(require,module,exports){
 'use strict';
 
 var EvStore = require('ev-store');
@@ -2835,7 +2980,7 @@ EvHook.prototype.unhook = function(node, propertyName) {
     es[propName] = undefined;
 };
 
-},{"ev-store":25}],39:[function(require,module,exports){
+},{"ev-store":26}],40:[function(require,module,exports){
 'use strict';
 
 module.exports = SoftSetHook;
@@ -2854,7 +2999,7 @@ SoftSetHook.prototype.hook = function (node, propertyName) {
     }
 };
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 'use strict';
 
 var isArray = require('x-is-array');
@@ -2991,7 +3136,7 @@ function errorString(obj) {
     }
 }
 
-},{"../vnode/is-thunk":43,"../vnode/is-vhook":44,"../vnode/is-vnode":45,"../vnode/is-vtext":46,"../vnode/is-widget":47,"../vnode/vnode.js":49,"../vnode/vtext.js":51,"./hooks/ev-hook.js":38,"./hooks/soft-set-hook.js":39,"./parse-tag.js":41,"x-is-array":30}],41:[function(require,module,exports){
+},{"../vnode/is-thunk":44,"../vnode/is-vhook":45,"../vnode/is-vnode":46,"../vnode/is-vtext":47,"../vnode/is-widget":48,"../vnode/vnode.js":50,"../vnode/vtext.js":52,"./hooks/ev-hook.js":39,"./hooks/soft-set-hook.js":40,"./parse-tag.js":42,"x-is-array":31}],42:[function(require,module,exports){
 'use strict';
 
 var split = require('browser-split');
@@ -3047,7 +3192,7 @@ function parseTag(tag, props) {
     return props.namespace ? tagName : tagName.toUpperCase();
 }
 
-},{"browser-split":24}],42:[function(require,module,exports){
+},{"browser-split":25}],43:[function(require,module,exports){
 var isVNode = require("./is-vnode")
 var isVText = require("./is-vtext")
 var isWidget = require("./is-widget")
@@ -3089,14 +3234,14 @@ function renderThunk(thunk, previous) {
     return renderedThunk
 }
 
-},{"./is-thunk":43,"./is-vnode":45,"./is-vtext":46,"./is-widget":47}],43:[function(require,module,exports){
+},{"./is-thunk":44,"./is-vnode":46,"./is-vtext":47,"./is-widget":48}],44:[function(require,module,exports){
 module.exports = isThunk
 
 function isThunk(t) {
     return t && t.type === "Thunk"
 }
 
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 module.exports = isHook
 
 function isHook(hook) {
@@ -3105,7 +3250,7 @@ function isHook(hook) {
        typeof hook.unhook === "function" && !hook.hasOwnProperty("unhook"))
 }
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualNode
@@ -3114,7 +3259,7 @@ function isVirtualNode(x) {
     return x && x.type === "VirtualNode" && x.version === version
 }
 
-},{"./version":48}],46:[function(require,module,exports){
+},{"./version":49}],47:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualText
@@ -3123,17 +3268,17 @@ function isVirtualText(x) {
     return x && x.type === "VirtualText" && x.version === version
 }
 
-},{"./version":48}],47:[function(require,module,exports){
+},{"./version":49}],48:[function(require,module,exports){
 module.exports = isWidget
 
 function isWidget(w) {
     return w && w.type === "Widget"
 }
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 module.exports = "2"
 
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 var version = require("./version")
 var isVNode = require("./is-vnode")
 var isWidget = require("./is-widget")
@@ -3207,7 +3352,7 @@ function VirtualNode(tagName, properties, children, key, namespace) {
 VirtualNode.prototype.version = version
 VirtualNode.prototype.type = "VirtualNode"
 
-},{"./is-thunk":43,"./is-vhook":44,"./is-vnode":45,"./is-widget":47,"./version":48}],50:[function(require,module,exports){
+},{"./is-thunk":44,"./is-vhook":45,"./is-vnode":46,"./is-widget":48,"./version":49}],51:[function(require,module,exports){
 var version = require("./version")
 
 VirtualPatch.NONE = 0
@@ -3231,7 +3376,7 @@ function VirtualPatch(type, vNode, patch) {
 VirtualPatch.prototype.version = version
 VirtualPatch.prototype.type = "VirtualPatch"
 
-},{"./version":48}],51:[function(require,module,exports){
+},{"./version":49}],52:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = VirtualText
@@ -3243,7 +3388,7 @@ function VirtualText(text) {
 VirtualText.prototype.version = version
 VirtualText.prototype.type = "VirtualText"
 
-},{"./version":48}],52:[function(require,module,exports){
+},{"./version":49}],53:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook")
 
@@ -3303,7 +3448,7 @@ function getPrototype(value) {
   }
 }
 
-},{"../vnode/is-vhook":44,"is-object":29}],53:[function(require,module,exports){
+},{"../vnode/is-vhook":45,"is-object":30}],54:[function(require,module,exports){
 var isArray = require("x-is-array")
 
 var VPatch = require("../vnode/vpatch")
@@ -3732,5 +3877,5 @@ function appendPatch(apply, patch) {
     }
 }
 
-},{"../vnode/handle-thunk":42,"../vnode/is-thunk":43,"../vnode/is-vnode":45,"../vnode/is-vtext":46,"../vnode/is-widget":47,"../vnode/vpatch":50,"./diff-props":52,"x-is-array":30}]},{},[1])(1)
+},{"../vnode/handle-thunk":43,"../vnode/is-thunk":44,"../vnode/is-vnode":46,"../vnode/is-vtext":47,"../vnode/is-widget":48,"../vnode/vpatch":51,"./diff-props":53,"x-is-array":31}]},{},[1])(1)
 });
