@@ -23,6 +23,32 @@ describe('DataStore', function() {
       object2 = Klass.create();
       expect(object1).to.equal(object2);
     })
+
+    it('should create an unique object', function() {
+      var Klass1, Klass2, object1, object2;
+
+      Klass1 = Cape.createDataStoreClass({})
+      Klass2 = Cape.createDataStoreClass({})
+
+      object1 = Klass1.create();
+      object2 = Klass2.create();
+      expect(object1).not.to.equal(object2);
+    })
+
+    it('should accept arguments for the constructor', function() {
+      var Klass, object1, object2;
+
+      Klass = Cape.createDataStoreClass({
+        constructor: function(x, y) {
+          this.x = x;
+          this.y = y;
+        }
+      })
+
+      object = Klass.create(1, 2);
+      expect(object.x).to.equal(1);
+      expect(object.y).to.equal(2);
+    })
   })
 
   describe('attach', function() {
