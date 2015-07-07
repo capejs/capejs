@@ -45,4 +45,24 @@ describe('Cape', function() {
       expect(obj1.e).to.equal(7);
     })
   })
+
+  describe('createComponentClass', function() {
+    it('should take constructor method', function() {
+      var Klass, component;
+
+      Klass = Cape.createComponentClass({
+        constructor: function(x, y) {
+          this.x = x;
+          this.y = y;
+        },
+        render: function(m) {
+          m.p('hello!');
+        }
+      })
+
+      component = new Klass(1, 2);
+      expect(component.x).to.equal(1);
+      expect(component.y).to.equal(2);
+    })
+  })
 })
