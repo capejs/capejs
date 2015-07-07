@@ -2,6 +2,11 @@
 
 ## 1.2.0 (Not yet released)
 
+### `Cape`
+
+* `Cape.createComponentClass()` and `Cape.createDataStoreClass()` take an object
+that includes `constructor` key to override the class constructor.
+
 ### `Cape.Component`
 
 * `#formData` retuns array of values when the name of checkbox field has `[]` in the end.
@@ -11,6 +16,10 @@
 
 * Three inner (private) attributes (`formName`, `selectBoxName`, and `fieldNamePrefix`) have
 been made public.
+
+### `Cape.DataStore`
+
+* Allow `Cape.DataStore.create()` to accept one or more arguments for constructor.
 
 ### `Cape.ResourceAgent`
 
