@@ -11,9 +11,11 @@ describe('Cape Tests', function() {
     global.Inflector = require('inflected')
     global.expect = require('chai').expect
     global.sinon = require('sinon')
+    global.fetch = require('node-fetch')
 
     global.Cape = require('../lib/cape.js')
   } else {
+    global = window
     mocha.run()
   }
 })
