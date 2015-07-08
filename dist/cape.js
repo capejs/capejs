@@ -343,10 +343,7 @@ var DataStore = function DataStore() {
 };
 
 DataStore.create = function() {
-  if (!this.instance) {
-    this.instance = Cape.extend({}, this.prototype);
-    this.apply(this.instance, arguments);
-  }
+  if (!this.instance) this.instance = new this();
   return this.instance;
 }
 
@@ -956,6 +953,30 @@ Cape.extend(ResourceAgent.prototype, {
     })
     .then(function(json) {
       afterUpdate.call(self.form, json);
+    })
+    .catch(function(ex) {
+      console.log(ex)
+    });
+
+    return false;
+  },
+
+  destroy: function(afterDestroy) {
+    if (typeof afterDestroy !== 'function') {
+      throw new Error("The first argument must be a function.");
+    }
+
+    var self = this;
+    fetch(this.memberPath(), {
+      method: 'DELETE',
+      headers: this.headers,
+      credentials: 'same-origin'
+    })
+    .then(function(response) {
+      return response.json()
+    })
+    .then(function(json) {
+      afterDestroy.call(self.form, json);
     })
     .catch(function(ex) {
       console.log(ex)
