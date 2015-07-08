@@ -40,7 +40,7 @@ describe('ResourceAgent', function() {
 
   describe('#init', function() {
     it('should go through a fetch api chain', function() {
-      var UserAgent, form, agent, spy;
+      var UserAgent, form, agent, spy1, spy2, spy3;
 
       UserAgent = function UserAgent(form) {
         Cape.ResourceAgent.apply(this, arguments);
@@ -50,14 +50,18 @@ describe('ResourceAgent', function() {
       form = { id: 123 };
       agent = new UserAgent(form);
 
-      spy = sinon.spy()
+      spy1 = sinon.spy()
+      spy2 = sinon.spy()
+      spy3 = sinon.spy()
       sinon.stub(global, 'fetch', function(path, options) {
         return {
           then: function(callback1) {
+            callback1.call(this, { json: spy1 })
             return {
               then: function(callback2) {
+                callback2.call(this, { user: {} })
                 return {
-                  catch: spy
+                  catch: spy2
                 }
               }
             }
@@ -65,8 +69,10 @@ describe('ResourceAgent', function() {
         }
       });
 
-      agent.init(function() {});
-      expect(spy.called).to.be.true;
+      agent.init(spy3);
+      expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
+      expect(spy3.called).to.be.true;
 
       global.fetch.restore();
     })
@@ -93,7 +99,7 @@ describe('ResourceAgent', function() {
 
   describe('#create', function() {
     it('should go through a fetch api chain', function() {
-      var UserAgent, form, agent, spy;
+      var UserAgent, form, agent, spy1, spy2, spy3;
 
       UserAgent = function UserAgent(form) {
         Cape.ResourceAgent.apply(this, arguments);
@@ -103,14 +109,18 @@ describe('ResourceAgent', function() {
       form = { id: 123, paramsFor: function() { return {} } };
       agent = new UserAgent(form);
 
-      spy = sinon.spy()
+      spy1 = sinon.spy()
+      spy2 = sinon.spy()
+      spy3 = sinon.spy()
       sinon.stub(global, 'fetch', function(path, options) {
         return {
           then: function(callback1) {
+            callback1.call(this, { json: spy1 })
             return {
               then: function(callback2) {
+                callback2.call(this, {})
                 return {
-                  catch: spy
+                  catch: spy2
                 }
               }
             }
@@ -118,8 +128,10 @@ describe('ResourceAgent', function() {
         }
       });
 
-      agent.create(function() {});
-      expect(spy.called).to.be.true;
+      agent.create(spy3);
+      expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
+      expect(spy3.called).to.be.true;
 
       global.fetch.restore();
     })
@@ -127,7 +139,7 @@ describe('ResourceAgent', function() {
 
   describe('#update', function() {
     it('should go through a fetch api chain', function() {
-      var UserAgent, form, agent, spy;
+      var UserAgent, form, agent, spy1, spy2, spy3;
 
       UserAgent = function UserAgent(form) {
         Cape.ResourceAgent.apply(this, arguments);
@@ -137,14 +149,18 @@ describe('ResourceAgent', function() {
       form = { id: 123, paramsFor: function() { return {} } };
       agent = new UserAgent(form);
 
-      spy = sinon.spy()
+      spy1 = sinon.spy()
+      spy2 = sinon.spy()
+      spy3 = sinon.spy()
       sinon.stub(global, 'fetch', function(path, options) {
         return {
           then: function(callback1) {
+            callback1.call(this, { json: spy1 })
             return {
               then: function(callback2) {
+                callback2.call(this, {})
                 return {
-                  catch: spy
+                  catch: spy2
                 }
               }
             }
@@ -152,8 +168,10 @@ describe('ResourceAgent', function() {
         }
       });
 
-      agent.update(function() {});
-      expect(spy.called).to.be.true;
+      agent.update(spy3);
+      expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
+      expect(spy3.called).to.be.true;
 
       global.fetch.restore();
     })
