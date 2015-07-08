@@ -17,10 +17,6 @@ that includes `constructor` key to override the class constructor.
 * Three inner (private) attributes (`formName`, `selectBoxName`, and `fieldNamePrefix`) have
 been made public.
 
-### `Cape.DataStore`
-
-* Allow `Cape.DataStore.create()` to accept one or more arguments for constructor.
-
 ### `Cape.ResourceAgent`
 
 * Add a new class called `Cape.ResourceAgent`, which performs CRUD operations
