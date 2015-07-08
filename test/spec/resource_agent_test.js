@@ -1,4 +1,35 @@
 describe('ResourceAgent', function() {
+  describe('constructor', function() {
+    it('should take its user as the first argument', function() {
+      var UserAgent, form;
+
+      UserAgent = function UserAgent(form) {
+        Cape.ResourceAgent.apply(this, arguments);
+      }
+      Cape.extend(UserAgent.prototype, Cape.ResourceAgent.prototype);
+
+      form = { id: 123 };
+      agent = new UserAgent(form);
+
+      expect(agent.user).to.equal(form);
+    })
+
+    it('should take an object (options) as the second argument', function() {
+      var UserAgent, form, options;
+
+      UserAgent = function UserAgent(form) {
+        Cape.ResourceAgent.apply(this, arguments);
+      }
+      Cape.extend(UserAgent.prototype, Cape.ResourceAgent.prototype);
+
+      form = { id: 123 };
+      options = { admin: true }
+      agent = new UserAgent(form, options);
+
+      expect(agent.options).to.equal(options);
+    })
+  })
+
   describe('#resourceName, #collectionPath, #memberPath', function() {
     it('should return standard values', function() {
       var UserAgent, form, agent;
