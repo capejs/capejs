@@ -25,7 +25,7 @@ gulp.task('watch', function() {
 var testFiles = [
   'node_modules/chai/chai.js',
   'node_modules/sinon/pkg/sinon.js',
-  'node_modules/expect.js/index.js',
+  'node_modules/whatwg/fetch.js',
   'dist/cape.js',
   'test/chai.js',
   'demo/**/*.js',
