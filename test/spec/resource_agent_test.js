@@ -92,7 +92,9 @@ describe('ResourceAgent', function() {
               then: function(callback2) {
                 callback2.call(this, { user: {} })
                 return {
-                  catch: spy2
+                  catch: function(callback3) {
+                    callback3.call(this, new Error(''))
+                  }
                 }
               }
             }
@@ -100,7 +102,7 @@ describe('ResourceAgent', function() {
         }
       });
 
-      agent.init(spy3);
+      agent.init(spy2, spy3);
       expect(spy1.called).to.be.true;
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
@@ -151,7 +153,9 @@ describe('ResourceAgent', function() {
               then: function(callback2) {
                 callback2.call(this, {})
                 return {
-                  catch: spy2
+                  catch: function(callback3) {
+                    callback3.call(this, new Error(''))
+                  }
                 }
               }
             }
@@ -159,7 +163,7 @@ describe('ResourceAgent', function() {
         }
       });
 
-      agent.create(spy3);
+      agent.create(spy2, spy3);
       expect(spy1.called).to.be.true;
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
@@ -191,7 +195,9 @@ describe('ResourceAgent', function() {
               then: function(callback2) {
                 callback2.call(this, {})
                 return {
-                  catch: spy2
+                  catch: function(callback3) {
+                    callback3.call(this, new Error(''))
+                  }
                 }
               }
             }
@@ -199,7 +205,7 @@ describe('ResourceAgent', function() {
         }
       });
 
-      agent.update(spy3);
+      agent.update(spy2, spy3);
       expect(spy1.called).to.be.true;
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
@@ -231,7 +237,9 @@ describe('ResourceAgent', function() {
               then: function(callback2) {
                 callback2.call(this, {})
                 return {
-                  catch: spy2
+                  catch: function(callback3) {
+                    callback3.call(this, new Error(''))
+                  }
                 }
               }
             }
@@ -239,7 +247,7 @@ describe('ResourceAgent', function() {
         }
       });
 
-      agent.destroy(spy3);
+      agent.destroy(spy2, spy3);
       expect(spy1.called).to.be.true;
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
