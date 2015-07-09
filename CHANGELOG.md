@@ -20,7 +20,7 @@ been made public.
 ### `Cape.DataStore`
 
 * Allow the constructor of `Cape.DataStore` to take option values.
-* Allow `Cape.DataStore.create()` to accept options values for constructor.
+* Allow `Cape.DataStore.create()` to accept option values for constructor.
 
 ### `Cape.ResourceAgent`
 

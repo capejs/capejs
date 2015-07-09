@@ -335,15 +335,17 @@ var Cape = require('./utilities');
 // Cape.DataStore
 //
 // public properties:
+//   options: the object that holds option values given to the constructor
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
-var DataStore = function DataStore() {
+var DataStore = function DataStore(options) {
+  this.options = options || {};
   this._ = new _Internal(this);
   if (typeof this.init === 'function') this.init();
 };
 
-DataStore.create = function() {
-  if (!this.instance) this.instance = new this();
+DataStore.create = function(options) {
+  if (!this.instance) this.instance = new this(options);
   return this.instance;
 }
 
@@ -873,14 +875,16 @@ var Cape = require('./utilities');
 // Cape.ResourceAgent
 //
 // public properties:
-//   form: the component that utilize this agent
+//   client: the object that utilizes this agent
+//   options: the object that holds option values given to the constructor
 //   object: the object that represents the resource
 //   errors: the object that holds error messages
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
-var ResourceAgent = function ResourceAgent(form) {
-  this.form = form;
-  this.object = {};
+var ResourceAgent = function ResourceAgent(client, options) {
+  this.client = client;
+  this.options = options || {};
+  this.object = undefined;
   this.errors = {};
   this.headers = {
     'Accept': 'application/json',
@@ -890,9 +894,12 @@ var ResourceAgent = function ResourceAgent(form) {
 };
 
 Cape.extend(ResourceAgent.prototype, {
-  init: function(afterInitialize) {
+  init: function(afterInitialize, errorHandler) {
     var self = this;
-    if (this.form.id) {
+
+    errorHandler = errorHandler || this.defaultErrorHandler;
+
+    if (this.client.id) {
       fetch(this.memberPath(), {
         credentials: 'same-origin'
       })
@@ -902,69 +909,69 @@ Cape.extend(ResourceAgent.prototype, {
       .then(function(json) {
         self.object = json[self.resourceName()];
         if (typeof afterInitialize === 'function') {
-          afterInitialize.call(self.form, self);
+          afterInitialize.call(self.client, self);
         }
       })
-      .catch(function(ex) {
-        console.log(ex);
-      });
+      .catch(errorHandler);
     }
   },
 
-  create: function(afterCreate) {
+  create: function(afterCreate, errorHandler) {
     if (typeof afterCreate !== 'function') {
       throw new Error("The first argument must be a function.");
     }
+
+    errorHandler = errorHandler || this.defaultErrorHandler;
 
     var self = this;
     fetch(this.collectionPath(), {
       method: 'POST',
       headers: this.headers,
-      body: JSON.stringify(this.form.paramsFor(this.resourceName())),
+      body: JSON.stringify(this.client.paramsFor(this.resourceName())),
       credentials: 'same-origin'
     })
     .then(function(response) {
       return response.json()
     })
     .then(function(json) {
-      afterCreate.call(self.form, json)
+      afterCreate.call(self.client, json)
     })
-    .catch(function(ex) {
-      console.log(ex)
-    });
+    .catch(errorHandler);
 
     return false;
   },
 
-  update: function(afterUpdate) {
+  update: function(afterUpdate, errorHandler) {
     if (typeof afterUpdate !== 'function') {
       throw new Error("The first argument must be a function.");
     }
+
+    errorHandler = errorHandler || this.defaultErrorHandler;
 
     var self = this;
     fetch(this.memberPath(), {
       method: 'PATCH',
       headers: this.headers,
-      body: JSON.stringify(this.form.paramsFor(this.resourceName())),
+      body: JSON.stringify(this.client.paramsFor(this.resourceName())),
       credentials: 'same-origin'
     })
     .then(function(response) {
       return response.json()
     })
     .then(function(json) {
-      afterUpdate.call(self.form, json);
+      afterUpdate.call(self.client, json);
     })
-    .catch(function(ex) {
-      console.log(ex)
-    });
+    .catch(errorHandler);
 
     return false;
   },
 
-  destroy: function(afterDestroy) {
+  destroy: function(afterDestroy, errorHandler) {
     if (typeof afterDestroy !== 'function') {
       throw new Error("The first argument must be a function.");
     }
+
+    errorHandler = errorHandler || this.defaultErrorHandler;
 
     var self = this;
     fetch(this.memberPath(), {
@@ -976,11 +983,9 @@ Cape.extend(ResourceAgent.prototype, {
       return response.json()
     })
     .then(function(json) {
-      afterDestroy.call(self.form, json);
+      afterDestroy.call(self.client, json);
     })
-    .catch(function(ex) {
-      console.log(ex)
-    });
+    .catch(errorHandler);
 
     return false;
   },
@@ -992,7 +997,7 @@ Cape.extend(ResourceAgent.prototype, {
 
   memberPath: function() {
     var resources = Inflector.pluralize(this.resourceName());
-    return this.pathPrefix() + resources + '/' + this.form.id;
+    return this.pathPrefix() + resources + '/' + this.client.id;
   },
 
   pathPrefix: function() {
@@ -1006,6 +1011,10 @@ Cape.extend(ResourceAgent.prototype, {
     else {
       throw new Error('The class name must end with "Agent".')
     }
+  },
+
+  defaultErrorHandler: function(ex) {
+    console.log(ex)
   }
 });
 
