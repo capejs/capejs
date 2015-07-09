@@ -1,6 +1,6 @@
 describe('ResourceAgent', function() {
   describe('constructor', function() {
-    it('should take its user as the first argument', function() {
+    it('should take its client as the first argument', function() {
       var UserAgent, form;
 
       UserAgent = function UserAgent(form) {
@@ -11,7 +11,7 @@ describe('ResourceAgent', function() {
       form = { id: 123 };
       agent = new UserAgent(form);
 
-      expect(agent.user).to.equal(form);
+      expect(agent.client).to.equal(form);
     })
 
     it('should take an object (options) as the second argument', function() {
