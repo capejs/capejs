@@ -34,6 +34,16 @@ describe('DataStore', function() {
       object2 = Klass2.create();
       expect(object1).not.to.equal(object2);
     })
+
+    it('should accept options for the constructor', function() {
+      var Klass, object1, object2;
+
+      Klass = Cape.createDataStoreClass({})
+
+      object = Klass.create({ x: 1, y: 2 });
+      expect(object.options.x).to.equal(1);
+      expect(object.options.y).to.equal(2);
+    })
   })
 
   describe('attach', function() {
