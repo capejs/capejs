@@ -3,13 +3,36 @@ var Cape = require('./cape/utilities')
 Cape.MarkupBuilder = require('./cape/markup_builder')
 Cape.Component = require('./cape/component.js')
 Cape.DataStore = require('./cape/data_store.js')
+Cape.AgentAdapters = {};
+Cape.AgentAdapters.RailsAdapter =
+  require('./cape/agent_adapters/rails_adapter.js')
 Cape.ResourceAgent = require('./cape/resource_agent.js')
-Cape.RailsResourceAgent = require('./cape/resource_agents/rails_resource_agent.js')
 Cape.RoutingMapper = require('./cape/routing_mapper.js')
 Cape.Router = require('./cape/router.js')
 module.exports = Cape;
 
-},{"./cape/component.js":2,"./cape/data_store.js":3,"./cape/markup_builder":4,"./cape/resource_agent.js":5,"./cape/resource_agents/rails_resource_agent.js":6,"./cape/router.js":7,"./cape/routing_mapper.js":8,"./cape/utilities":9}],2:[function(require,module,exports){
+},{"./cape/agent_adapters/rails_adapter.js":2,"./cape/component.js":3,"./cape/data_store.js":4,"./cape/markup_builder":5,"./cape/resource_agent.js":6,"./cape/router.js":7,"./cape/routing_mapper.js":8,"./cape/utilities":9}],2:[function(require,module,exports){
+"use strict";
+
+// Cape.AgentAdapters.RailsAdapter
+//
+// This function is called within the constructor of Cape.ResourceAgent and
+// Cape.ResourceCollectionAgent.
+//
+// The purpose of this adapter is to set the X-CSRF-Token header of Ajax requests.
+function RailsAdapter(resourceName, client, options) {
+  var metaElements = document.getElementsByTagName('meta');
+  for (var i = metaElements.length - 1; i >= 0; i--) {
+    if (metaElements[i].getAttribute('name') === 'csrf-token') {
+      this.headers['X-CSRF-Token'] = metaElements[i].getAttribute('content');
+      break;
+    }
+  }
+}
+
+module.exports = RailsAdapter;
+
+},{}],3:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -327,7 +350,7 @@ Cape.extend(_Internal.prototype, {
 module.exports = Component;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":9,"inflected":12,"virtual-dom":25}],3:[function(require,module,exports){
+},{"./utilities":9,"inflected":12,"virtual-dom":25}],4:[function(require,module,exports){
 "use strict";
 
 var Cape = require('./utilities');
@@ -379,7 +402,7 @@ var _Internal = function _Internal(main) {
 
 module.exports = DataStore;
 
-},{"./utilities":9}],4:[function(require,module,exports){
+},{"./utilities":9}],5:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -866,7 +889,7 @@ for (var i = eventNames.length; i--;) {
 module.exports = MarkupBuilder;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":9,"inflected":12,"virtual-dom":25}],5:[function(require,module,exports){
+},{"./utilities":9,"inflected":12,"virtual-dom":25}],6:[function(require,module,exports){
 "use strict";
 
 var Inflector = require('inflected');
@@ -875,13 +898,17 @@ var Cape = require('./utilities');
 // Cape.ResourceAgent
 //
 // public properties:
+//   resourceName: the name of resource
 //   client: the object that utilizes this agent
 //   options: the object that holds option values given to the constructor
 //   object: the object that represents the resource
 //   errors: the object that holds error messages
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
-var ResourceAgent = function ResourceAgent(client, options) {
+function ResourceAgent(resourceName, client, options) {
+  var adapterName, adapter;
+
+  this.resourceName = resourceName;
   this.client = client;
   this.options = options || {};
   this.object = undefined;
@@ -889,31 +916,38 @@ var ResourceAgent = function ResourceAgent(client, options) {
   this.headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
-  }
+  };
   this._ = new _Internal(this);
+
+  adapterName = this.options.adapter || Cape.defaultAgentAdapter;
+  if (typeof adapterName === 'string') {
+    adapter = Cape.AgentAdapters[Inflector.camelize(adapterName) + 'Adapter'];
+    if (typeof adapter === 'function') adapter.apply(this, arguments);
+  }
 };
 
 Cape.extend(ResourceAgent.prototype, {
   init: function(afterInitialize, errorHandler) {
     var self = this;
 
+    if (this.client.id === undefined)
+      throw new Error("this.client.id is not defined.");
+
     errorHandler = errorHandler || this.defaultErrorHandler;
 
-    if (this.client.id) {
-      fetch(this.memberPath(), {
-        credentials: 'same-origin'
-      })
-      .then(function(response) {
-        return response.json()
-      })
-      .then(function(json) {
-        self.object = json[self.resourceName()];
-        if (typeof afterInitialize === 'function') {
-          afterInitialize.call(self.client, self);
-        }
-      })
-      .catch(errorHandler);
-    }
+    fetch(this.memberPath(), {
+      credentials: 'same-origin'
+    })
+    .then(function(response) {
+      return response.json()
+    })
+    .then(function(json) {
+      self.object = json[self.resourceName];
+      if (typeof afterInitialize === 'function') {
+        afterInitialize.call(self.client, self);
+      }
+    })
+    .catch(errorHandler);
   },
 
   create: function(afterCreate, errorHandler) {
@@ -927,7 +961,8 @@ Cape.extend(ResourceAgent.prototype, {
     fetch(this.collectionPath(), {
       method: 'POST',
       headers: this.headers,
-      body: JSON.stringify(this.client.paramsFor(this.resourceName())),
+      body: JSON.stringify(this.client.paramsFor(
+        Inflector.singularize(this.resourceName))),
       credentials: 'same-origin'
     })
     .then(function(response) {
@@ -952,7 +987,7 @@ Cape.extend(ResourceAgent.prototype, {
     fetch(this.memberPath(), {
       method: 'PATCH',
       headers: this.headers,
-      body: JSON.stringify(this.client.paramsFor(this.resourceName())),
+      body: JSON.stringify(this.client.paramsFor(this.resourceName)),
       credentials: 'same-origin'
     })
     .then(function(response) {
@@ -991,26 +1026,17 @@ Cape.extend(ResourceAgent.prototype, {
   },
 
   collectionPath: function() {
-    var resources = Inflector.pluralize(this.resourceName());
+    var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
     return this.pathPrefix() + resources;
   },
 
   memberPath: function() {
-    var resources = Inflector.pluralize(this.resourceName());
+    var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
     return this.pathPrefix() + resources + '/' + this.client.id;
   },
 
   pathPrefix: function() {
-    return '/';
-  },
-
-  resourceName: function() {
-    if (this.constructor.toString().match(/^function (\w+)Agent\(/)) {
-      return Inflector.underscore(RegExp.$1)
-    }
-    else {
-      throw new Error('The class name must end with "Agent".')
-    }
+    return this.options.pathPrefix || '/';
   },
 
   defaultErrorHandler: function(ex) {
@@ -1025,31 +1051,7 @@ var _Internal = function _Internal(main) {
 
 module.exports = ResourceAgent;
 
-},{"./utilities":9,"inflected":12}],6:[function(require,module,exports){
-"use strict";
-
-var ResourceAgent = require('../resource_agent');
-
-// Cape.RailsResourceAgent
-//
-// See Cape.ResourceAgent for details
-var RailsResourceAgent = function RailsResourceAgent(form) {
-  ResourceAgent.call(this, form);
-
-  var metaElements = document.getElementsByTagName('meta');
-  for (var i = metaElements.length - 1; i >= 0; i--) {
-    if (metaElements[i].getAttribute('name') === 'csrf-token') {
-      this.headers['X-CSRF-Token'] = metaElements[i].getAttribute('content');
-      break;
-    }
-  }
-}
-RailsResourceAgent.prototype = Object.create(ResourceAgent.prototype);
-RailsResourceAgent.prototype.constructor = RailsResourceAgent;
-
-module.exports = RailsResourceAgent;
-
-},{"../resource_agent":5}],7:[function(require,module,exports){
+},{"./utilities":9,"inflected":12}],7:[function(require,module,exports){
 (function (global){
 "use strict";
 
