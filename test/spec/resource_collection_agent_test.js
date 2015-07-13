@@ -72,11 +72,13 @@ describe('ResourceCollectionAgent', function() {
         }
       });
 
+      agent.options.params = { page: 1, per_page: 10 }
       agent.init(spy2, spy3);
+      expect(global.fetch.calledWith('/users?page=1&per_page=10')).to.be.true;
       expect(spy1.called).to.be.true;
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
-      expect(agent.objects).to.equal(users);
+      expect(agent.objects[0]).to.equal(users[0]);
 
       global.fetch.restore();
     })
