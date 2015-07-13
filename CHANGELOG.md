@@ -24,8 +24,14 @@ been made public.
 
 ### `Cape.ResourceAgent`
 
-* Add new classes called `Cape.ResourceAgent`, which performs Ajax requests
-using `fetch` API.
+* Add new classes called `Cape.ResourceAgent`, which holds a single object and
+performs Ajax requests using `fetch` API.
+
+### `Cape.CollectionAgent`
+
+* Add new classes called `Cape.CollectionAgent`, which holds a collection of
+objects and performs Ajax requests using `fetch` API.
+
 
 ## 1.1.0 (June, 7, 2015)
 
