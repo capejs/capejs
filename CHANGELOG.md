@@ -22,10 +22,11 @@ been made public.
 * Allow the constructor of `Cape.DataStore` to take option values.
 * Allow `Cape.DataStore.create()` to accept option values for constructor.
 
-### `Cape.ResourceAgent`
+### `Cape.ResourceAgent`, `Cape.ResourceCollectionAgent`
 
-* Add a new class called `Cape.ResourceAgent`, which performs Ajax requests
-using `fetch` API.
+* Add new classes called `Cape.ResourceAgent` and `Cape.ResourceCollectionAgent`,
+which perform Ajax requests using `fetch` API. The former is for particular
+resources and the latter is for a collection of resources.
 
 ## 1.1.0 (June, 7, 2015)
 

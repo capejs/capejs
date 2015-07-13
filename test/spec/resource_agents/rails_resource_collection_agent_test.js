@@ -1,7 +1,7 @@
 "use strict";
 
 // This test script should NOT be included into test/runner.html.
-describe('RailsResourceAgent', function() {
+describe('RailsResourceCollectionAgent', function() {
   describe('constructor', function() {
     it('should set X-CSRF-Token header', function() {
       var form, agent;
@@ -13,7 +13,7 @@ describe('RailsResourceAgent', function() {
       )
 
       form = { id: 123 };
-      agent = new Cape.RailsResourceAgent('user', form);
+      agent = new Cape.RailsResourceCollectionAgent('user', form);
 
       expect(agent.headers['X-CSRF-Token']).to.equal('token');
     })
@@ -26,7 +26,7 @@ describe('RailsResourceAgent', function() {
       )
 
       form = { id: 123 };
-      agent = new Cape.RailsResourceAgent('user', form);
+      agent = new Cape.RailsResourceCollectionAgent('user', form);
 
       expect(agent.headers['X-CSRF-Token']).to.be.undefined;
     })
