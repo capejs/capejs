@@ -37,6 +37,26 @@ describe('ResourceAgent', function() {
     })
   })
 
+  describe('#collectionPath', function() {
+    it('should return standard values', function() {
+      var form, agent;
+
+      form = {};
+      agent = new Cape.ResourceAgent('user', form);
+
+      expect(agent.collectionPath()).to.equal('/users');
+    })
+
+    it('should add prefix to the paths', function() {
+      var form, agent;
+
+      form = {};
+      agent = new Cape.ResourceAgent('user', form, { pathPrefix: '/api/' });
+
+      expect(agent.collectionPath()).to.equal('/api/users');
+    })
+  })
+
   describe('#memberPath', function() {
     it('should return standard values', function() {
       var form, agent;
@@ -86,6 +106,43 @@ describe('ResourceAgent', function() {
       });
 
       agent.init(spy2, spy3);
+      expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
+      expect(spy3.called).to.be.true;
+
+      global.fetch.restore();
+    })
+  })
+
+  describe('#create', function() {
+    it('should go through a fetch api chain', function() {
+      var form, agent, spy1, spy2, spy3;
+
+      form = { paramsFor: function() { return {} } };
+      agent = new Cape.ResourceAgent('user', form);
+
+      spy1 = sinon.spy();
+      spy2 = sinon.spy();
+      spy3 = sinon.spy();
+      sinon.stub(global, 'fetch', function(path, options) {
+        return {
+          then: function(callback1) {
+            callback1.call(this, { json: spy1 })
+            return {
+              then: function(callback2) {
+                callback2.call(this, {})
+                return {
+                  catch: function(callback3) {
+                    callback3.call(this, new Error(''))
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
+
+      agent.create(spy2, spy3);
       expect(spy1.called).to.be.true;
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;

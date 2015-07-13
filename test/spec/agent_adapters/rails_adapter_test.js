@@ -16,10 +16,6 @@ describe('AgentAdapters.RailsAdapter', function() {
       agent = new Cape.ResourceAgent('user', form, { adapter: 'rails' });
 
       expect(agent.headers['X-CSRF-Token']).to.equal('token');
-
-      agent = new Cape.ResourceCollectionAgent('users', {}, { adapter: 'rails' });
-
-      expect(agent.headers['X-CSRF-Token']).to.equal('token');
     })
 
     it('should not set X-CSRF-Token header', function() {
@@ -31,10 +27,6 @@ describe('AgentAdapters.RailsAdapter', function() {
 
       form = { id: 123 };
       agent = new Cape.ResourceAgent('user', form);
-
-      expect(agent.headers['X-CSRF-Token']).to.be.undefined;
-
-      agent = new Cape.ResourceCollectionAgent('users', {});
 
       expect(agent.headers['X-CSRF-Token']).to.be.undefined;
     })
