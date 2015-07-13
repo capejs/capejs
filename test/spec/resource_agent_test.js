@@ -21,6 +21,20 @@ describe('ResourceAgent', function() {
 
       expect(agent.options).to.equal(options);
     })
+
+    it('should call agent adapter', function() {
+      var form, options, agent;
+
+      Cape.AgentAdapters.FooBarAdapter = sinon.spy();
+
+      form = { id: 123 };
+      options = { adapter: 'foo_bar' }
+      new Cape.ResourceAgent('user', form, options);
+
+      expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
+
+      Cape.AgentAdapters.FooBarAdapter = undefined;
+    })
   })
 
   describe('#memberPath', function() {
