@@ -101,6 +101,27 @@ describe('ResourceAgent', function() {
     })
   })
 
+  describe('#singularPath', function() {
+    it('should return standard values', function() {
+      var form, agent;
+
+      form = {};
+      agent = new Cape.ResourceAgent('profile', form, { singular: true });
+
+      expect(agent.singularPath()).to.equal('/profile');
+    })
+
+    it('should add prefix to the paths', function() {
+      var form, agent;
+
+      form = {};
+      agent = new Cape.ResourceAgent('profile', form,
+        { pathPrefix: '/api/', singular: true });
+
+      expect(agent.singularPath()).to.equal('/api/profile');
+    })
+  })
+
   describe('#init', function() {
     it('should go through a fetch api chain', function() {
       var form, agent, spy1, spy2, spy3;
@@ -117,6 +138,27 @@ describe('ResourceAgent', function() {
       expect(spy1.called).to.be.true;
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
+      expect(global.fetch.calledWith('/users/123')).to.be.true;
+
+      global.fetch.restore();
+    })
+
+    it('should fetch a singular resource', function() {
+      var form, agent, spy1, spy2, spy3;
+
+      form = {};
+      agent = new Cape.ResourceAgent('profile', form, { singular: true });
+
+      spy1 = sinon.spy();
+      spy2 = sinon.spy();
+      spy3 = sinon.spy();
+      stubFetchAPI(spy1);
+
+      agent.init(spy2, spy3);
+      expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
+      expect(spy3.called).to.be.true;
+      expect(global.fetch.calledWith('/profile')).to.be.true;
 
       global.fetch.restore();
     })
@@ -138,6 +180,27 @@ describe('ResourceAgent', function() {
       expect(spy1.called).to.be.true;
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
+      expect(global.fetch.calledWith('/users')).to.be.true;
+
+      global.fetch.restore();
+    })
+
+    it('should create a singular resource', function() {
+      var form, agent, spy1, spy2, spy3;
+
+      form = { paramsFor: function() { return {} } };
+      agent = new Cape.ResourceAgent('profile', form, { singular: true });
+
+      spy1 = sinon.spy();
+      spy2 = sinon.spy();
+      spy3 = sinon.spy();
+      stubFetchAPI(spy1);
+
+      agent.create(spy2, spy3);
+      expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
+      expect(spy3.called).to.be.true;
+      expect(global.fetch.calledWith('/profile')).to.be.true;
 
       global.fetch.restore();
     })
@@ -159,6 +222,27 @@ describe('ResourceAgent', function() {
       expect(spy1.called).to.be.true;
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
+      expect(global.fetch.calledWith('/users/123')).to.be.true;
+
+      global.fetch.restore();
+    })
+
+    it('should update a singular resource', function() {
+      var form, agent, spy1, spy2, spy3;
+
+      form = { paramsFor: function() { return {} } };
+      agent = new Cape.ResourceAgent('profile', form, { singular: true });
+
+      spy1 = sinon.spy();
+      spy2 = sinon.spy();
+      spy3 = sinon.spy();
+      stubFetchAPI(spy1);
+
+      agent.update(spy2, spy3);
+      expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
+      expect(spy3.called).to.be.true;
+      expect(global.fetch.calledWith('/profile')).to.be.true;
 
       global.fetch.restore();
     })
@@ -180,6 +264,27 @@ describe('ResourceAgent', function() {
       expect(spy1.called).to.be.true;
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
+      expect(global.fetch.calledWith('/users/123')).to.be.true;
+
+      global.fetch.restore();
+    })
+
+    it('should destroy a singular resource', function() {
+      var form, agent, spy1, spy2, spy3;
+
+      form = { paramsFor: function() { return {} } };
+      agent = new Cape.ResourceAgent('profile', form, { singular: true });
+
+      spy1 = sinon.spy();
+      spy2 = sinon.spy();
+      spy3 = sinon.spy();
+      stubFetchAPI(spy1);
+
+      agent.destroy(spy2, spy3);
+      expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
+      expect(spy3.called).to.be.true;
+      expect(global.fetch.calledWith('/profile')).to.be.true;
 
       global.fetch.restore();
     })
