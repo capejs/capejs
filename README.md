@@ -17,9 +17,10 @@ with its simple, easy to learn syntax.
 without [jQuery](https://jquery.com/).
 * **Data stores:** Using *data stores*, you can build web applications
 with *unidirectional data flow.*
-* **ResourceAgent:** Defining *resource agents*, you can perform REST requests
+* **Resource agents and collection agents:** Defining *resource agents* and/or
+*collection agents*, you can perform REST requests
 to the web resources using [Fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API).
-Note that this is a *new* feature of the version 1.2.
+This is a *new* feature of the version 1.2.
 * **Router:** You can define *routes* with a DSL (domain specific language)
 similar to that of Ruby on Rails.
 
