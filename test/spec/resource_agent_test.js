@@ -1,5 +1,29 @@
 "use strict";
 
+function stubFetchAPI(spy, data, dataType) {
+  data = data || {};
+  dataType = dataType || 'json';
+  sinon.stub(global, 'fetch', function(path, options) {
+    return {
+      then: function(callback1) {
+        var response = {};
+        response[dataType] = spy;
+        callback1.call(this, response);
+        return {
+          then: function(callback2) {
+            callback2.call(this, data);
+            return {
+              catch: function(callback3) {
+                callback3.call(this, new Error(''));
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
 describe('ResourceAgent', function() {
   describe('constructor', function() {
     it('should take resource name and its client as arguments', function() {
@@ -87,23 +111,7 @@ describe('ResourceAgent', function() {
       spy1 = sinon.spy();
       spy2 = sinon.spy();
       spy3 = sinon.spy();
-      sinon.stub(global, 'fetch', function(path, options) {
-        return {
-          then: function(callback1) {
-            callback1.call(this, { json: spy1 })
-            return {
-              then: function(callback2) {
-                callback2.call(this, { user: {} })
-                return {
-                  catch: function(callback3) {
-                    callback3.call(this, new Error(''))
-                  }
-                }
-              }
-            }
-          }
-        }
-      });
+      stubFetchAPI(spy1);
 
       agent.init(spy2, spy3);
       expect(spy1.called).to.be.true;
@@ -124,23 +132,7 @@ describe('ResourceAgent', function() {
       spy1 = sinon.spy();
       spy2 = sinon.spy();
       spy3 = sinon.spy();
-      sinon.stub(global, 'fetch', function(path, options) {
-        return {
-          then: function(callback1) {
-            callback1.call(this, { json: spy1 })
-            return {
-              then: function(callback2) {
-                callback2.call(this, {})
-                return {
-                  catch: function(callback3) {
-                    callback3.call(this, new Error(''))
-                  }
-                }
-              }
-            }
-          }
-        }
-      });
+      stubFetchAPI(spy1);
 
       agent.create(spy2, spy3);
       expect(spy1.called).to.be.true;
@@ -161,23 +153,7 @@ describe('ResourceAgent', function() {
       spy1 = sinon.spy();
       spy2 = sinon.spy();
       spy3 = sinon.spy();
-      sinon.stub(global, 'fetch', function(path, options) {
-        return {
-          then: function(callback1) {
-            callback1.call(this, { json: spy1 })
-            return {
-              then: function(callback2) {
-                callback2.call(this, {})
-                return {
-                  catch: function(callback3) {
-                    callback3.call(this, new Error(''))
-                  }
-                }
-              }
-            }
-          }
-        }
-      });
+      stubFetchAPI(spy1);
 
       agent.update(spy2, spy3);
       expect(spy1.called).to.be.true;
@@ -198,23 +174,7 @@ describe('ResourceAgent', function() {
       spy1 = sinon.spy();
       spy2 = sinon.spy();
       spy3 = sinon.spy();
-      sinon.stub(global, 'fetch', function(path, options) {
-        return {
-          then: function(callback1) {
-            callback1.call(this, { json: spy1 })
-            return {
-              then: function(callback2) {
-                callback2.call(this, {})
-                return {
-                  catch: function(callback3) {
-                    callback3.call(this, new Error(''))
-                  }
-                }
-              }
-            }
-          }
-        }
-      });
+      stubFetchAPI(spy1);
 
       agent.destroy(spy2, spy3);
       expect(spy1.called).to.be.true;
