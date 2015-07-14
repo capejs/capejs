@@ -1,11 +1,14 @@
 "use strict";
 
-function stubFetchAPI(spy, data) {
+function stubFetchAPI(spy, data, dataType) {
   data = data || {};
+  dataType = dataType || 'json';
   sinon.stub(global, 'fetch', function(path, options) {
     return {
       then: function(callback1) {
-        callback1.call(this, { json: spy });
+        var response = {};
+        response[dataType] = spy;
+        callback1.call(this, response);
         return {
           then: function(callback2) {
             callback2.call(this, data);
@@ -177,6 +180,26 @@ describe('CollectionAgent', function() {
       spy2 = sinon.spy();
       spy3 = sinon.spy();
       stubFetchAPI(spy1);
+
+      agent.ajax('GET', '/users', { page: 1, per_page: 20 }, spy2, spy3);
+      expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
+      expect(spy3.called).to.be.true;
+      expect(agent.refresh.called).to.be.false;
+
+      global.fetch.restore();
+    })
+
+    it('should accept text/plain data', function() {
+      var agent, spy1, spy2, spy3;
+
+      agent = new Cape.CollectionAgent('users', { dataType: 'text' });
+      sinon.stub(agent, 'refresh');
+
+      spy1 = sinon.spy();
+      spy2 = sinon.spy();
+      spy3 = sinon.spy();
+      stubFetchAPI(spy1, {}, 'text');
 
       agent.ajax('GET', '/users', { page: 1, per_page: 20 }, spy2, spy3);
       expect(spy1.called).to.be.true;
