@@ -9,351 +9,64 @@
     <atom:link href="http://oiax.github.io/capejs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Cape - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/cape/</link>
+      <title>Cape.CollectionAgent - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/collection_agent/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/cape/</guid>
+      <guid>http://oiax.github.io/capejs/api/collection_agent/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;#create-component-class&#34;&gt;Cape.createComponentClass&lt;/a&gt; -
-&lt;a href=&#34;#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt; -
-&lt;a href=&#34;#deep-extend&#34;&gt;Cape.deepExtend&lt;/a&gt; -
-&lt;a href=&#34;#extend&#34;&gt;Cape.extend&lt;/a&gt; -
-&lt;a href=&#34;#merge&#34;&gt;Cape.merge&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-createcomponentclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createComponentClass&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cape.createComponentClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Create a class extending &lt;code&gt;Cape.Component&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;example:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var HelloMessage = Cape.createComponentClass({
-  render: function(m) {
-    m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With ECMAScript 6 syntax, you can write the above as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class HelloMessage extends Cape.Component {
-  render(m) {
-    m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-createdatastoreclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createDataStoreClass&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cape.createDataStoreClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Create a class extending &lt;code&gt;Cape.DataStore&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [
-      { title: &#39;Foo&#39;, done: false },
-      { title: &#39;Bar&#39;, done: true }
-    ];
-  },
-  addItem: function(title) {
-    this.items.push({ title: title, done: false });
-    this.propagate();
-  },
-  toggle: function(item) {
-    item.done = !item.done;
-    this.propagate();
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With ECMAScript 6 syntax, you can write the above as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class TodoItemStore extends Cape.DataStore {
-  init() {
-    this.items = [
-      { title: &#39;Foo&#39;, done: false },
-      { title: &#39;Bar&#39;, done: true }
-    ];
-  }
-  addItem(title) {
-    this.items.push({ title: title, done: false });
-    this.propagate();
-  }
-  toggle(item) {
-    item.done = !item.done;
-    this.propagate();
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;deep-extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-deepextend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.deepExtend&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Merge the properties of two or more objects together into the first object recursively.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var object1 = {
-  apple: 0,
-  banana: { weight: 52, price: 100 },
-  cherry: 97
-};
-var object2 = {
-  banana: { price: 200 },
-  durian: 100
-};
-
-Cape.extend(object1, object2);
-
-// [Result]
-//
-// object1 =&amp;gt; {
-//   apple: 0,
-//   banana: { weight: 52, price: 200 },
-//   cherry: 97,
-//   durian: 100
-// }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-extend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.extend&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Merge the properties of two or more objects together into the first object.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var object1 = {
-  apple: 0,
-  banana: { weight: 52, price: 100 },
-  cherry: 97
-};
-var object2 = {
-  banana: { price: 200 },
-  durian: 100
-};
-
-Cape.extend(object1, object2);
-
-// [Result]
-//
-// object1 =&amp;gt; {
-//   apple: 0,
-//   banana: { price: 200 },
-//   cherry: 97,
-//   durian: 100
-// }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;merge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;cape-merge:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.merge&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cape.merge(target&lt;em&gt;[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Merge (but not override) the properties of two or more objects together
-into the first object&lt;/p&gt;
-
-&lt;h4 id=&#34;example-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var object1 = {
-  apple: 0,
-  banana: { weight: 52, price: 100 },
-  cherry: 97
-};
-var object2 = {
-  apple: 2,
-  banana: { price: 200 },
-  durian: 100
-};
-
-Cape.extend(object1, object2);
-
-// [Result]
-//
-// object1 =&amp;gt; {
-//   apple: 0,
-//   banana: { weight: 52, price: 100 },
-//   cherry: 97,
-//   durian: 100
-// }
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Cape.DataStore - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/data_store/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
-      <description>
+&lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
+&lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
 &lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
+&lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
+&lt;a href=&#34;#dot-create&#34;&gt;.create()&lt;/a&gt; -
+&lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
+&lt;a href=&#34;#default-error-handler&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
+&lt;a href=&#34;#delete&#34;&gt;#delete()&lt;/a&gt; -
+&lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
 &lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
-&lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;#get&#34;&gt;#get()&lt;/a&gt; -
+&lt;a href=&#34;#index&#34;&gt;#index()&lt;/a&gt; -
+&lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
+&lt;a href=&#34;#patch&#34;&gt;#patch()&lt;/a&gt; -
+&lt;a href=&#34;#path-prefix&#34;&gt;#pathPref()&lt;/a&gt; -
+&lt;a href=&#34;#post&#34;&gt;#post()&lt;/a&gt; -
+&lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; -
+&lt;a href=&#34;#put&#34;&gt;#put()&lt;/a&gt; -
+&lt;a href=&#34;#refresh&#34;&gt;#refresh()&lt;/a&gt; -
+&lt;a href=&#34;#refresh-objects&#34;&gt;#refreshObjects()&lt;/a&gt; -
+&lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; -
+&lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;constructor:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Constructor&lt;/h3&gt;
+&lt;h3 id=&#34;constructor:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Constructor&lt;/h3&gt;
 
-&lt;p&gt;The &lt;code&gt;Cape.DataStore&lt;/code&gt; constructor takes no argument and calls its &lt;code&gt;#init&lt;/code&gt; method
-if defined.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Cape.CollectionAgent&lt;/code&gt; constructor takes a string (resource name) and an
+optional object (options).&lt;/p&gt;
 
-&lt;h4 id=&#34;example:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
-  init: function() {
-    this.counter = 0;
-  },
-  increment: function() {
-    this.counter++;
-    this.propagate();
-  }
-});
-
-var cs = new CounterStore();
-// cs.counter === 0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;See also &lt;a href=&#34;../cape/#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;attach:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#attach()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;options:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Options&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;adapter:&lt;/strong&gt; the name of adapter (e.g., &lt;code&gt;&#39;rails&#39;&lt;/code&gt;). Default is &lt;code&gt;undefined&lt;/code&gt;.
+Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;autoRefresh:&lt;/strong&gt; a boolean value that controls POST/PATCH/PUT/DELETE requests
+trigger &lt;code&gt;this.refresh()&lt;/code&gt;. Default is &lt;code&gt;true&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dataType:&lt;/strong&gt; the type of data that you&amp;rsquo;re expecting from the server.
+The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt; (default) or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pathPrefix:&lt;/strong&gt; the string that is added to the request path.
+Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;This method registers the &lt;em&gt;component&lt;/em&gt; as a target of &lt;em&gt;propagation&lt;/em&gt; from this data store.&lt;/p&gt;
+&lt;h4 id=&#34;example:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
 
-&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;create:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;.create()&lt;/h3&gt;
-
-&lt;p&gt;This class method returns a singleton object of this Class.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
-  init: function() {
-    this.counter = 0;
-  },
-  increment: function() {
-    this.counter++;
-    this.propagate();
-  }
-});
-
-var cs1 = CounterStore.create();
-var cs2 = CounterStore.create();
-// cs1 === cs2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;detach:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#detach()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method removes the &lt;em&gt;component&lt;/em&gt; from the list of targets of &lt;em&gt;propagation&lt;/em&gt; from this data store.&lt;/p&gt;
-
-&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;propagate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;propagate:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#propagate()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-2:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;propagate()&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method triggars the &lt;em&gt;propagation&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
-of all components registerd as targets of &lt;em&gt;propagation&lt;/em&gt; of this data store.&lt;/p&gt;
-
-&lt;p&gt;Eventually, the &lt;code&gt;#refresh&lt;/code&gt; method of each component calls its &lt;code&gt;#render()&lt;/code&gt; method,
-which has to be defined by developers.&lt;/p&gt;
-
-&lt;p&gt;Thus, we can assure that each time the data of a data store changes,
-its all dependent components get refreshed.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-2:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
-  init: function() {
-    this.counter = 0;
-  },
-  increment: function() {
-    this.counter++;
-    this.propagate();
-  }
-});
-
-var ClickCounter = Cape.createComponentClass({
-  render: function(m) {
-    m.div(String(this.ds.counter),
-      { onclick: function(e) { this.ds.increment() } })
-  }
-})
-
-var ds = new CounterStore();
-var comp1 = new ClickCounter();
-var comp2 = new ClickCounter();
-
-comp1.ds = ds;
-comp2.ds = ds;
-ds.attach(comp1);
-ds.attach(comp2);
-
-comp1.mount(&#39;counter1&#39;);
-comp2.mount(&#39;counter2&#39;);
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
+var agent1 = new Cape.CollectionAgent(&#39;users&#39;);
+var agent2 = new Cape.CollectionAgent(&#39;tags&#39;, { pathPrefix: &#39;/api/&#39; });
+var agent3 = new Cape.CollectionAgent(&#39;pages&#39;, { dataType: &#39;text&#39; });
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
@@ -884,6 +597,214 @@ radio button is checked.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Cape - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/cape/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/cape/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#create-component-class&#34;&gt;Cape.createComponentClass&lt;/a&gt; -
+&lt;a href=&#34;#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt; -
+&lt;a href=&#34;#deep-extend&#34;&gt;Cape.deepExtend&lt;/a&gt; -
+&lt;a href=&#34;#extend&#34;&gt;Cape.extend&lt;/a&gt; -
+&lt;a href=&#34;#merge&#34;&gt;Cape.merge&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-createcomponentclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createComponentClass&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.createComponentClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a class extending &lt;code&gt;Cape.Component&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With ECMAScript 6 syntax, you can write the above as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class HelloMessage extends Cape.Component {
+  render(m) {
+    m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-createdatastoreclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createDataStoreClass&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.createDataStoreClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a class extending &lt;code&gt;Cape.DataStore&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+  },
+  addItem: function(title) {
+    this.items.push({ title: title, done: false });
+    this.propagate();
+  },
+  toggle: function(item) {
+    item.done = !item.done;
+    this.propagate();
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With ECMAScript 6 syntax, you can write the above as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class TodoItemStore extends Cape.DataStore {
+  init() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+  }
+  addItem(title) {
+    this.items.push({ title: title, done: false });
+    this.propagate();
+  }
+  toggle(item) {
+    item.done = !item.done;
+    this.propagate();
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;deep-extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-deepextend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.deepExtend&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Merge the properties of two or more objects together into the first object recursively.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var object1 = {
+  apple: 0,
+  banana: { weight: 52, price: 100 },
+  cherry: 97
+};
+var object2 = {
+  banana: { price: 200 },
+  durian: 100
+};
+
+Cape.extend(object1, object2);
+
+// [Result]
+//
+// object1 =&amp;gt; {
+//   apple: 0,
+//   banana: { weight: 52, price: 200 },
+//   cherry: 97,
+//   durian: 100
+// }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-extend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.extend&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Merge the properties of two or more objects together into the first object.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var object1 = {
+  apple: 0,
+  banana: { weight: 52, price: 100 },
+  cherry: 97
+};
+var object2 = {
+  banana: { price: 200 },
+  durian: 100
+};
+
+Cape.extend(object1, object2);
+
+// [Result]
+//
+// object1 =&amp;gt; {
+//   apple: 0,
+//   banana: { price: 200 },
+//   cherry: 97,
+//   durian: 100
+// }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;merge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-merge:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.merge&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.merge(target&lt;em&gt;[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Merge (but not override) the properties of two or more objects together
+into the first object&lt;/p&gt;
+
+&lt;h4 id=&#34;example-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var object1 = {
+  apple: 0,
+  banana: { weight: 52, price: 100 },
+  cherry: 97
+};
+var object2 = {
+  apple: 2,
+  banana: { price: 200 },
+  durian: 100
+};
+
+Cape.extend(object1, object2);
+
+// [Result]
+//
+// object1 =&amp;gt; {
+//   apple: 0,
+//   banana: { weight: 52, price: 100 },
+//   cherry: 97,
+//   durian: 100
+// }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>API Reference</title>
       <link>http://oiax.github.io/capejs/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -895,6 +816,8 @@ radio button is checked.&lt;/p&gt;
 &lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt; -
 &lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt; -
 &lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt; -
+&lt;a href=&#34;./collection_agent&#34;&gt;Cape.CollectionAgent&lt;/a&gt; -
+&lt;a href=&#34;./resource_agent&#34;&gt;Cape.ResourceAgent&lt;/a&gt; -
 &lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
 &lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
 
@@ -911,6 +834,8 @@ It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&g
 &lt;li&gt;&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./collection_agent&#34;&gt;Cape.CollectionAgent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./resource_agent&#34;&gt;Cape.ResourceAgent&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -930,6 +855,13 @@ component classes.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
 components to render themselves.&lt;/p&gt;
 
+&lt;p&gt;&lt;code&gt;Cape.CollectionAgent&lt;/code&gt; has a role similar to the &lt;code&gt;Cape.DataStore&lt;/code&gt;.
+Using it you can perform REST requests to the web resources using
+&lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/API/Fetch_API&#34;&gt;Fetch API&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.ResourceAgent&lt;/code&gt; is a class to represent a particular resource on the web
+and performs REST manipulations on it using Fetch API.&lt;/p&gt;
+
 &lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
 After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
 and mount components according to the &lt;em&gt;routes&lt;/em&gt;
@@ -938,6 +870,220 @@ and mount components according to the &lt;em&gt;routes&lt;/em&gt;
 &lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
 You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
 method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.DataStore - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
+&lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
+&lt;a href=&#34;#create&#34;&gt;.create()&lt;/a&gt; -
+&lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
+&lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;constructor:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Constructor&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;Cape.DataStore&lt;/code&gt; constructor takes no argument and calls its &lt;code&gt;#init&lt;/code&gt; method
+if defined.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
+  init: function() {
+    this.counter = 0;
+  },
+  increment: function() {
+    this.counter++;
+    this.propagate();
+  }
+});
+
+var cs = new CounterStore();
+// cs.counter === 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See also &lt;a href=&#34;../cape/#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;attach:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#attach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method registers the &lt;em&gt;component&lt;/em&gt; as a target of &lt;em&gt;propagation&lt;/em&gt; from this data store.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;create:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;.create()&lt;/h3&gt;
+
+&lt;p&gt;This class method returns a singleton object of this Class.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
+  init: function() {
+    this.counter = 0;
+  },
+  increment: function() {
+    this.counter++;
+    this.propagate();
+  }
+});
+
+var cs1 = CounterStore.create();
+var cs2 = CounterStore.create();
+// cs1 === cs2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;detach:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#detach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method removes the &lt;em&gt;component&lt;/em&gt; from the list of targets of &lt;em&gt;propagation&lt;/em&gt; from this data store.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;propagate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;propagate:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#propagate()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;propagate()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method triggars the &lt;em&gt;propagation&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
+of all components registerd as targets of &lt;em&gt;propagation&lt;/em&gt; of this data store.&lt;/p&gt;
+
+&lt;p&gt;Eventually, the &lt;code&gt;#refresh&lt;/code&gt; method of each component calls its &lt;code&gt;#render()&lt;/code&gt; method,
+which has to be defined by developers.&lt;/p&gt;
+
+&lt;p&gt;Thus, we can assure that each time the data of a data store changes,
+its all dependent components get refreshed.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
+  init: function() {
+    this.counter = 0;
+  },
+  increment: function() {
+    this.counter++;
+    this.propagate();
+  }
+});
+
+var ClickCounter = Cape.createComponentClass({
+  render: function(m) {
+    m.div(String(this.ds.counter),
+      { onclick: function(e) { this.ds.increment() } })
+  }
+})
+
+var ds = new CounterStore();
+var comp1 = new ClickCounter();
+var comp2 = new ClickCounter();
+
+comp1.ds = ds;
+comp2.ds = ds;
+ds.attach(comp1);
+ds.attach(comp2);
+
+comp1.mount(&#39;counter1&#39;);
+comp2.mount(&#39;counter2&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.ResourceAgent - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/resource_agent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/resource_agent/</guid>
+      <description>
+
+&lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
+&lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
+&lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
+&lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
+&lt;a href=&#34;#default-error-hander&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
+&lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
+&lt;a href=&#34;#init&#34;&gt;#init()&lt;/a&gt; -
+&lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
+&lt;a href=&#34;#path-prefix&#34;&gt;#pathPrefix()&lt;/a&gt; -
+&lt;a href=&#34;#singular-path&#34;&gt;#singularPath()&lt;/a&gt; -
+&lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;constructor:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Constructor&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;Cape.ResourceAgent&lt;/code&gt; constructor takes a string (resource name),
+a &lt;code&gt;Cape.Component&lt;/code&gt; object and an optional object (options).&lt;/p&gt;
+
+&lt;h4 id=&#34;options:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Options&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;adapter:&lt;/strong&gt; the name of adapter (e.g., &lt;code&gt;&#39;rails&#39;&lt;/code&gt;). Default is &lt;code&gt;undefined&lt;/code&gt;.
+Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dataType:&lt;/strong&gt; the type of data that you&amp;rsquo;re expecting from the server.
+The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt; (default) or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pathPrefix:&lt;/strong&gt; the string that is added to the request path.
+Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;singular:&lt;/strong&gt; a boolean value that specifies if the resource is singular or not.
+Resources are called &lt;em&gt;singular&lt;/em&gt; when they have a URL without ID. Default is &lt;code&gt;false&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;adapters:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Adapters&lt;/h4&gt;
+
+&lt;p&gt;Currently, Cape.JS provides only &lt;code&gt;RailsAdapter&lt;/code&gt;, which sets the &lt;code&gt;X-CSRF-Token&lt;/code&gt; header
+for Ajax requests.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
+
+var Form = Cape.createComponentClass({
+  init: function() {
+    this.agent = new Cape.ResourceAgent(&#39;user&#39;, this);
+    this.agent.init(function(agent) {
+      this.setValues(&#39;user&#39;, agent.object);
+      this.refresh();
+    })
+  },
+
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.passwordField(&#39;password&#39;);
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -2042,448 +2188,6 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
     </item>
     
     <item>
-      <title>Cape.Router - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/router/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/router/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#action&#34;&gt;#action&lt;/a&gt; -
-&lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
-&lt;a href=&#34;#before-navigation&#34;&gt;#beforeNavigation()&lt;/a&gt; -
-&lt;a href=&#34;#component&#34;&gt;#component&lt;/a&gt; -
-&lt;a href=&#34;#container&#34;&gt;#container&lt;/a&gt; -
-&lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
-&lt;a href=&#34;#draw&#34;&gt;#draw()&lt;/a&gt; -
-&lt;a href=&#34;#error-handler&#34;&gt;#errorHandler()&lt;/a&gt; -
-&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
-&lt;a href=&#34;#namespace&#34;&gt;#namespace&lt;/a&gt; -
-&lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; -
-&lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; -
-&lt;a href=&#34;#mount&#34;&gt;#mount()&lt;/a&gt; -
-&lt;a href=&#34;#params&#34;&gt;#params&lt;/a&gt; -
-&lt;a href=&#34;#query&#34;&gt;#query&lt;/a&gt; -
-&lt;a href=&#34;#redirect-to&#34;&gt;#redirectTo&lt;/a&gt; -
-&lt;a href=&#34;#resource&#34;&gt;#resource&lt;/a&gt; -
-&lt;a href=&#34;#route-for&#34;&gt;#routeFor()&lt;/a&gt; -
-&lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; -
-&lt;a href=&#34;#start&#34;&gt;#start()&lt;/a&gt; -
-&lt;a href=&#34;#stop&#34;&gt;#stop()&lt;/a&gt; -
-&lt;a href=&#34;#vars&#34;&gt;#vars&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;action&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;action:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#action&lt;/h3&gt;
-
-&lt;p&gt;This property holds the &lt;em&gt;action name&lt;/em&gt; of the current route.&lt;/p&gt;
-
-&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;);
-});
-router.navigate(&#39;articles/123/edit&#39;);
-console.log(router.action); // =&amp;gt; &amp;quot;edit&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;attach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#attach()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method register the &lt;em&gt;component&lt;/em&gt; as the target of &lt;em&gt;notification&lt;/em&gt; from this router.&lt;/p&gt;
-
-&lt;p&gt;See &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;before-navigation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;beforenavigation:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#beforeNavigation()&lt;/h3&gt;
-
-&lt;p&gt;See &lt;a href=&#34;../../router/#before-navigation-callbacks&#34;&gt;Before-Navigation Callbacks&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;component&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;component:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#component&lt;/h3&gt;
-
-&lt;p&gt;This property holds the &lt;em&gt;component name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;);
-  m.namespace(&#39;admin&#39;, function(m) {
-    m.many(&#39;articles&#39;);
-  });
-});
-router.navigate(&#39;articles/123/edit&#39;);
-console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
-router.navigate(&#39;admin/articles/123/edit&#39;);
-console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;container&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;container:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
-
-&lt;p&gt;This property holds the &lt;em&gt;container name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-2:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;);
-  m.namespace(&#39;admin&#39;, function(m) {
-    m.many(&#39;articles&#39;);
-  });
-});
-router.navigate(&#39;articles/123/edit&#39;);
-console.log(router.container); // =&amp;gt; &amp;quot;articles&amp;quot;
-router.navigate(&#39;admin/articles/123/edit&#39;);
-console.log(router.container); // =&amp;gt; &amp;quot;admin.articles&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;detach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#detach()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method removes the &lt;em&gt;component&lt;/em&gt; from the list of targets of &lt;em&gt;notification&lt;/em&gt; from this router.&lt;/p&gt;
-
-&lt;p&gt;See &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;draw&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;draw:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#draw()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-2:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;draw(function)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method specify a function that takes a &lt;code&gt;RoutingMapper&lt;/code&gt; object and defines routes.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-3:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.root(&#39;dashboard&#39;);
-  m.page(&#39;about&#39;, &#39;docs.about&#39;);
-  m.many(&#39;articles&#39;);
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In the above example, the argument &lt;code&gt;m&lt;/code&gt; is a &lt;code&gt;RoutingMapper&lt;/code&gt; object.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;error-handler&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;errorhandler:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#errorHandler()&lt;/h3&gt;
-
-&lt;p&gt;See &lt;a href=&#34;../../router/#before-navigation-callbacks&#34;&gt;Before-Navigation Callbacks&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-3:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
-which is emptied after each navigation.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-4:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
-router.navigate(&#39;articles&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;container-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
-
-&lt;p&gt;This property holds the &lt;em&gt;namespace&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-5:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;);
-  m.namespace(&#39;admin&#39;, function(m) {
-    m.many(&#39;articles&#39;);
-  });
-});
-router.navigate(&#39;articles/123/edit&#39;);
-console.log(router.namespace); // =&amp;gt; null
-router.navigate(&#39;admin/articles/123/edit&#39;);
-console.log(router.namespace); // =&amp;gt; &amp;quot;admin&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;navigate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;navigate:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#navigate()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-4:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;navigate(hash)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;When before-navigation callbacks are registered, they are executed
-before changing the anchor part of URL.
-If the before-navigation callbacks select other string for &lt;em&gt;hash&lt;/em&gt;,
-it will be set to the anchor part of the browser&amp;rsquo;s current URL.&lt;/p&gt;
-
-&lt;p&gt;After setting the anchor part of URL, this method choose a component
-according to the routing table.&lt;/p&gt;
-
-&lt;p&gt;When this component is different from the component which is mounted currently,
-it unmounts the latter and mounts the former.
-When this component is same with the component mounted currently
-it calls the &lt;code&gt;#refresh&lt;/code&gt; method of mounted component.&lt;/p&gt;
-
-&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
-
-&lt;p&gt;If you don&amp;rsquo;t want the &lt;code&gt;#notify()&lt;/code&gt; method to be executed, use &lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; instead.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;notify&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;notify:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#notify()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-5:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;notify()&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method triggars the &lt;em&gt;notification&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
-of all components registerd as targets of &lt;em&gt;notification&lt;/em&gt; of this data store.&lt;/p&gt;
-
-&lt;p&gt;Eventually, each target component executes its &lt;code&gt;#render()&lt;/code&gt; method,
-which has to be defined by developers.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;#notify()&lt;/code&gt; method is executed after each time the &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method is called.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;mount:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#mount()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-6:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;mount(id)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method specifies the &lt;code&gt;id&lt;/code&gt; of the HTML element which this router
-inserts the components into.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-6:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div&amp;gt;
-  &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;Top&amp;lt;/a&amp;gt;
-  &amp;lt;a href=&amp;quot;#about&amp;quot;&amp;gt;About&amp;lt;/a&amp;gt;
-  &amp;lt;a href=&amp;quot;#help&amp;quot;&amp;gt;Help&amp;lt;/a&amp;gt;
-&amp;lt;/div&amp;gt;
-
-&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;script&amp;gt;
-var router = new Cape.Router();
-router.draw(function(m) {
-  m.root(&#39;top_page&#39;);
-  m.page(&#39;about&#39;, &#39;about_page&#39;);
-  m.page(&#39;help&#39;, &#39;help_page&#39;);
-})
-router.mount(&#39;main&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In the example above, components are mounted into the &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; element whose &lt;code&gt;id&lt;/code&gt; is &lt;code&gt;&#39;main&#39;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;params:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#params&lt;/h3&gt;
-
-&lt;p&gt;This property holds a set of key-value pairs, which represents the parameters
-embedded in the main part (before the first &amp;lsquo;?&amp;rsquo; symbol) of hash.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-7:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.page(&#39;help/:name&#39;, &#39;help.item&#39;);
-  m.many(&#39;articles&#39;, function(m) {
-    m.many(&#39;comments&#39;);
-  });
-})
-router.navigate(&#39;help/password&#39;);
-// router.params.name === &#39;password&#39;
-router.navigate(&#39;articles/123&#39;)
-// router.params.id === &#39;123&#39;
-router.navigate(&#39;articles/123/comments/7&#39;)
-// router.params.article_id === &#39;123&#39;
-// router.params.id === &#39;7&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;query&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;query:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#query&lt;/h3&gt;
-
-&lt;p&gt;This property holds a set of key-value pairs, which represents the parameters
-embedded in the query part (after the first &amp;lsquo;?&amp;rsquo; symbol) of hash .&lt;/p&gt;
-
-&lt;h4 id=&#34;example-8:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;)
-})
-router.navigate(&#39;articles&#39;)
-// router.query === {}
-router.navigate(&#39;articles?page=2&#39;)
-// router.query.page === &#39;2&#39;
-router.navigate(&#39;articles?page=2&amp;amp;deleted&#39;)
-// router.query.page === &#39;2&#39;
-// router.query.deleted === &#39;&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;redirect-to&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;redirectto:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#redirectTo()&lt;/h3&gt;
-
-&lt;p&gt;This method sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Unlike &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method, before-navigationi callbacks are &lt;em&gt;not&lt;/em&gt; executed
-before changing the anchor part of URL.&lt;/p&gt;
-
-&lt;p&gt;After setting the anchor part of URL, this method choose a component
-according to the routing table.&lt;/p&gt;
-
-&lt;p&gt;When this component is different from the component mounted currently,
-it unmounts the latter and mounts the former.
-When this component is same with the component which is mounted currently
-it calls the &lt;code&gt;#refresh&lt;/code&gt; method of the mounted component.&lt;/p&gt;
-
-&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;resource:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#resource&lt;/h3&gt;
-
-&lt;p&gt;This property holds the &lt;em&gt;resource name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-9:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.one(&#39;account&#39;);
-  m.many(&#39;articles&#39;, function(m) {
-    m.many(&#39;comments&#39;);
-  });
-  m.namespace(&#39;admin&#39;, function(m) {
-    m.many(&#39;articles&#39;);
-  });
-});
-router.navigate(&#39;account/edit&#39;);
-console.log(router.resource); // =&amp;gt; &amp;quot;account&amp;quot;
-router.navigate(&#39;articles/123/edit&#39;);
-console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
-router.navigate(&#39;articles/123/comments&#39;);
-console.log(router.resource); // =&amp;gt; &amp;quot;articles/comments&amp;quot;
-router.navigate(&#39;admin/articles/123/edit&#39;);
-console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;route-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;routefor:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#routeFor()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-7:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;routeFor(hash)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method returns the first route matching to the &lt;em&gt;hash,&lt;/em&gt; if any.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-10:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.namespace(&#39;admin&#39;, function(m) {
-    m.many(&#39;articles&#39;);
-  });
-});
-var route = router.routeFor(&#39;admin/articles/123/edit&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;show&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;show:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#show()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-8:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;show(componentClass)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This method mounts an instance of &lt;em&gt;componentClass&lt;/em&gt; class.&lt;/p&gt;
-
-&lt;p&gt;Unlike &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt;, it does neither change the anchor part of
-current URL, nor call the &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; method.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;start&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;start:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#start()&lt;/h3&gt;
-
-&lt;p&gt;With this method call, routers begin to listen to &lt;code&gt;hashchange&lt;/code&gt; events.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;stop&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;stop:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#stop()&lt;/h3&gt;
-
-&lt;p&gt;With this method call, routers stop to listen to &lt;code&gt;hashchange&lt;/code&gt; events.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;vars&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;vars:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#vars&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-9:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;vars[key] = value&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;vars.key = value&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;vars&lt;/em&gt; object.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-11:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.vars.signedIn = Date.now();
-router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Cape.RoutingMapper - API Reference</title>
       <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -2948,192 +2652,469 @@ router.draw(function(m) {
     </item>
     
     <item>
-      <title>Data Stores</title>
-      <link>http://oiax.github.io/capejs/data_stores/</link>
+      <title>Collection Agents</title>
+      <link>http://oiax.github.io/capejs/collection_agents/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/data_stores/</guid>
+      <guid>http://oiax.github.io/capejs/collection_agents/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#basics&#34;&gt;Basics&lt;/a&gt; -
-&lt;a href=&#34;#ajax&#34;&gt;Ajax&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;#options&#34;&gt;Options&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;basics:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Basics&lt;/h3&gt;
+&lt;h3 id=&#34;basics:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Basics&lt;/h3&gt;
 
-&lt;p&gt;When you develop something larger than a tiny widget, you are recommended to
-create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
 
-&lt;p&gt;The following example illustrates the basic concept of data stores.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;options&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;index-html:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;index.html&lt;/h4&gt;
+&lt;h3 id=&#34;options:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Options&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.Router - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/router/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/router/</guid>
+      <description>
 
-&amp;lt;script src=&amp;quot;./todo_item_store.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&amp;quot;./todo_list2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;p&gt;&lt;a href=&#34;#action&#34;&gt;#action&lt;/a&gt; -
+&lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
+&lt;a href=&#34;#before-navigation&#34;&gt;#beforeNavigation()&lt;/a&gt; -
+&lt;a href=&#34;#component&#34;&gt;#component&lt;/a&gt; -
+&lt;a href=&#34;#container&#34;&gt;#container&lt;/a&gt; -
+&lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
+&lt;a href=&#34;#draw&#34;&gt;#draw()&lt;/a&gt; -
+&lt;a href=&#34;#error-handler&#34;&gt;#errorHandler()&lt;/a&gt; -
+&lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
+&lt;a href=&#34;#namespace&#34;&gt;#namespace&lt;/a&gt; -
+&lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; -
+&lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; -
+&lt;a href=&#34;#mount&#34;&gt;#mount()&lt;/a&gt; -
+&lt;a href=&#34;#params&#34;&gt;#params&lt;/a&gt; -
+&lt;a href=&#34;#query&#34;&gt;#query&lt;/a&gt; -
+&lt;a href=&#34;#redirect-to&#34;&gt;#redirectTo&lt;/a&gt; -
+&lt;a href=&#34;#resource&#34;&gt;#resource&lt;/a&gt; -
+&lt;a href=&#34;#route-for&#34;&gt;#routeFor()&lt;/a&gt; -
+&lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; -
+&lt;a href=&#34;#start&#34;&gt;#start()&lt;/a&gt; -
+&lt;a href=&#34;#stop&#34;&gt;#stop()&lt;/a&gt; -
+&lt;a href=&#34;#vars&#34;&gt;#vars&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;action&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;action:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#action&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;action name&lt;/em&gt; of the current route.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.action); // =&amp;gt; &amp;quot;edit&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;attach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#attach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method register the &lt;em&gt;component&lt;/em&gt; as the target of &lt;em&gt;notification&lt;/em&gt; from this router.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;before-navigation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;beforenavigation:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#beforeNavigation()&lt;/h3&gt;
+
+&lt;p&gt;See &lt;a href=&#34;../../router/#before-navigation-callbacks&#34;&gt;Before-Navigation Callbacks&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;component&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;component:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#component&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;component name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;container&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;container:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;container name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.container); // =&amp;gt; &amp;quot;articles&amp;quot;
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.container); // =&amp;gt; &amp;quot;admin.articles&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;detach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#detach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method removes the &lt;em&gt;component&lt;/em&gt; from the list of targets of &lt;em&gt;notification&lt;/em&gt; from this router.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;draw&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;draw:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#draw()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;draw(function)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method specify a function that takes a &lt;code&gt;RoutingMapper&lt;/code&gt; object and defines routes.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-3:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.root(&#39;dashboard&#39;);
+  m.page(&#39;about&#39;, &#39;docs.about&#39;);
+  m.many(&#39;articles&#39;);
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the above example, the argument &lt;code&gt;m&lt;/code&gt; is a &lt;code&gt;RoutingMapper&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;error-handler&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;errorhandler:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#errorHandler()&lt;/h3&gt;
+
+&lt;p&gt;See &lt;a href=&#34;../../router/#before-navigation-callbacks&#34;&gt;Before-Navigation Callbacks&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-3:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;flash.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
+which is emptied after each navigation.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-4:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
+router.navigate(&#39;articles&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;container-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;namespace&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-5:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
+});
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.namespace); // =&amp;gt; null
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.namespace); // =&amp;gt; &amp;quot;admin&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;navigate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;navigate:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#navigate()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-4:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;navigate(hash)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;When before-navigation callbacks are registered, they are executed
+before changing the anchor part of URL.
+If the before-navigation callbacks select other string for &lt;em&gt;hash&lt;/em&gt;,
+it will be set to the anchor part of the browser&amp;rsquo;s current URL.&lt;/p&gt;
+
+&lt;p&gt;After setting the anchor part of URL, this method choose a component
+according to the routing table.&lt;/p&gt;
+
+&lt;p&gt;When this component is different from the component which is mounted currently,
+it unmounts the latter and mounts the former.
+When this component is same with the component mounted currently
+it calls the &lt;code&gt;#refresh&lt;/code&gt; method of mounted component.&lt;/p&gt;
+
+&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
+
+&lt;p&gt;If you don&amp;rsquo;t want the &lt;code&gt;#notify()&lt;/code&gt; method to be executed, use &lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; instead.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;notify&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;notify:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#notify()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-5:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;notify()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method triggars the &lt;em&gt;notification&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
+of all components registerd as targets of &lt;em&gt;notification&lt;/em&gt; of this data store.&lt;/p&gt;
+
+&lt;p&gt;Eventually, each target component executes its &lt;code&gt;#render()&lt;/code&gt; method,
+which has to be defined by developers.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;#notify()&lt;/code&gt; method is executed after each time the &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method is called.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;mount:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#mount()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-6:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;mount(id)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method specifies the &lt;code&gt;id&lt;/code&gt; of the HTML element which this router
+inserts the components into.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-6:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div&amp;gt;
+  &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;Top&amp;lt;/a&amp;gt;
+  &amp;lt;a href=&amp;quot;#about&amp;quot;&amp;gt;About&amp;lt;/a&amp;gt;
+  &amp;lt;a href=&amp;quot;#help&amp;quot;&amp;gt;Help&amp;lt;/a&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
 &amp;lt;script&amp;gt;
-  var todoList = new TodoList2();
-  todoList.mount(&#39;todo-list&#39;);
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.root(&#39;top_page&#39;);
+  m.page(&#39;about&#39;, &#39;about_page&#39;);
+  m.page(&#39;help&#39;, &#39;help_page&#39;);
+})
+router.mount(&#39;main&#39;);
 &amp;lt;/script&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
+&lt;p&gt;In the example above, components are mounted into the &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; element whose &lt;code&gt;id&lt;/code&gt; is &lt;code&gt;&#39;main&#39;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [
-      { title: &#39;Foo&#39;, done: false },
-      { title: &#39;Bar&#39;, done: true }
-    ];
-    this.propagate();
-  },
-  addItem: function(title) {
-    this.items.push({ title: title, done: false });
-    this.propagate();
-  },
-  toggle: function(item) {
-    item.done = !item.done;
-    this.propagate();
-  }
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;params:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#params&lt;/h3&gt;
+
+&lt;p&gt;This property holds a set of key-value pairs, which represents the parameters
+embedded in the main part (before the first &amp;lsquo;?&amp;rsquo; symbol) of hash.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-7:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.page(&#39;help/:name&#39;, &#39;help.item&#39;);
+  m.many(&#39;articles&#39;, function(m) {
+    m.many(&#39;comments&#39;);
+  });
+})
+router.navigate(&#39;help/password&#39;);
+// router.params.name === &#39;password&#39;
+router.navigate(&#39;articles/123&#39;)
+// router.params.id === &#39;123&#39;
+router.navigate(&#39;articles/123/comments/7&#39;)
+// router.params.article_id === &#39;123&#39;
+// router.params.id === &#39;7&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;query&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;query:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#query&lt;/h3&gt;
+
+&lt;p&gt;This property holds a set of key-value pairs, which represents the parameters
+embedded in the query part (after the first &amp;lsquo;?&amp;rsquo; symbol) of hash .&lt;/p&gt;
+
+&lt;h4 id=&#34;example-8:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;)
+})
+router.navigate(&#39;articles&#39;)
+// router.query === {}
+router.navigate(&#39;articles?page=2&#39;)
+// router.query.page === &#39;2&#39;
+router.navigate(&#39;articles?page=2&amp;amp;deleted&#39;)
+// router.query.page === &#39;2&#39;
+// router.query.deleted === &#39;&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;redirect-to&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;redirectto:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#redirectTo()&lt;/h3&gt;
+
+&lt;p&gt;This method sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Unlike &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method, before-navigationi callbacks are &lt;em&gt;not&lt;/em&gt; executed
+before changing the anchor part of URL.&lt;/p&gt;
+
+&lt;p&gt;After setting the anchor part of URL, this method choose a component
+according to the routing table.&lt;/p&gt;
+
+&lt;p&gt;When this component is different from the component mounted currently,
+it unmounts the latter and mounts the former.
+When this component is same with the component which is mounted currently
+it calls the &lt;code&gt;#refresh&lt;/code&gt; method of the mounted component.&lt;/p&gt;
+
+&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;resource:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#resource&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;resource name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-9:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;);
+  m.many(&#39;articles&#39;, function(m) {
+    m.many(&#39;comments&#39;);
+  });
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
 });
+router.navigate(&#39;account/edit&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;account&amp;quot;
+router.navigate(&#39;articles/123/edit&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
+router.navigate(&#39;articles/123/comments&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;articles/comments&amp;quot;
+router.navigate(&#39;admin/articles/123/edit&#39;);
+console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The &lt;code&gt;TodoItemStore&lt;/code&gt; class has three methods and each of them ends with
-&lt;code&gt;this.propagate()&lt;/code&gt;, which calls the &lt;code&gt;refresh&lt;/code&gt; method of all attached components.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;route-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
+&lt;h3 id=&#34;routefor:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#routeFor()&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
-  render: function(m) {
-    m.ul(function(m) {
-      this.ds.items.forEach(function(item) {
-        this.renderItem(m, item);
-      }.bind(this))
-    });
-    this.renderForm(m);
-  },
+&lt;h4 id=&#34;usage-7:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
 
-  renderItem: function(m, item) {
-    m.li(function(m) {
-      m.label({ class: { completed: item.done }}, function(m) {
-        m.onclick(function(e) { this.ds.toggle(item) })
-          .checked(item.done).input({ type: &#39;checkbox&#39; })
-        m.text(item.title);
-      })
-    })
-  },
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;routeFor(hash)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-  renderForm: function(m) {
-    m.onsubmit(function(e) { this.addItem(); return false; });
-    m.formFor(&#39;item&#39;, function(m) {
-      m.onkeyup(function(e) { this.refresh() }).textField(&#39;title&#39;);
-      m.onclick(function(e) { this.addItem() })
-        .disabled(this.val(&#39;item.title&#39;) === &#39;&#39;).btn(&amp;quot;Add&amp;quot;);
-    });
-  },
+&lt;p&gt;This method returns the first route matching to the &lt;em&gt;hash,&lt;/em&gt; if any.&lt;/p&gt;
 
-  init: function() {
-    this.ds = TodoItemStore.create();
-    this.ds.attach(this);
-    this.ds.init();
-  },
+&lt;h4 id=&#34;example-10:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
 
-  addItem: function() {
-    this.ds.addItem(this.val(&#39;item.title&#39;, &#39;&#39;))
-  },
-
-  beforeUnmount: function() {
-    this.ds.detach(this);
-  }
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  });
 });
+var route = router.routeFor(&#39;admin/articles/123/edit&#39;);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Within the &lt;code&gt;init&lt;/code&gt; method, we create a singleton instance of &lt;code&gt;TodoItemStore&lt;/code&gt; class &lt;em&gt;(data store)&lt;/em&gt;,
-and set it to the &lt;code&gt;ds&lt;/code&gt; property of this component.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;show&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Then we call the &lt;code&gt;attach&lt;/code&gt; method of the data store to register this component
-as a &lt;em&gt;listener&lt;/em&gt; to the &lt;em&gt;change event&lt;/em&gt;. When the content of data store is changed,
-a &lt;em&gt;change event&lt;/em&gt; is emitted to this component.&lt;/p&gt;
+&lt;h3 id=&#34;show:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#show()&lt;/h3&gt;
 
-&lt;p&gt;When we click a check box, the following code is executed:&lt;/p&gt;
+&lt;h4 id=&#34;usage-8:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggle(item)
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;show(componentClass)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method mounts an instance of &lt;em&gt;componentClass&lt;/em&gt; class.&lt;/p&gt;
+
+&lt;p&gt;Unlike &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt;, it does neither change the anchor part of
+current URL, nor call the &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; method.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;start&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;start:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#start()&lt;/h3&gt;
+
+&lt;p&gt;With this method call, routers begin to listen to &lt;code&gt;hashchange&lt;/code&gt; events.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;stop&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;stop:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#stop()&lt;/h3&gt;
+
+&lt;p&gt;With this method call, routers stop to listen to &lt;code&gt;hashchange&lt;/code&gt; events.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;vars&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;vars:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#vars&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-9:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;vars[key] = value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vars.key = value&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;vars&lt;/em&gt; object.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-11:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.vars.signedIn = Date.now();
+router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This inverts the &lt;code&gt;done&lt;/code&gt; attribute of this item and calls &lt;code&gt;this.propagate()&lt;/code&gt;,
-which will cause the re-rendering of this component.&lt;/p&gt;
-
-&lt;p&gt;A working demo is found at
-&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list2&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;ajax:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Ajax&lt;/h3&gt;
-
-&lt;p&gt;In this section, we assume that an API server is running behind.
-When we access it with &lt;code&gt;GET /api/items.json&lt;/code&gt;, it responds with a JSON string
-such as &lt;code&gt;[{ title: &#39;Foo&#39;, done: false },{ title: &#39;Bar&#39;, done: true }]&lt;/code&gt;.
-When we post to the server a JSON string such as &lt;code&gt;{ title: &#39;Baz&#39; }&lt;/code&gt;
-using &lt;code&gt;POST /api/items&lt;/code&gt; interface, it stores this new item to the database.
-If we post to the server a JSON string such as &lt;code&gt;{ done: true }&lt;/code&gt;
-using &lt;code&gt;PATCH /api/items/123&lt;/code&gt; interface (&lt;code&gt;123&lt;/code&gt; is the &lt;code&gt;id&lt;/code&gt; value of an item),
-it records this item as &amp;ldquo;done&amp;rdquo; on the database.&lt;/p&gt;
-
-&lt;p&gt;In this settings, we can rewrite the &lt;code&gt;todo_item_store.js&lt;/code&gt; of the previous
-example as follows:&lt;/p&gt;
-
-&lt;h4 id=&#34;todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
-  init: function() {
-    this.items = [];
-    this.refresh();
-  },
-
-  addItem: function(title) {
-    var self = this;
-    $.ajax({
-      type: &#39;POST&#39;,
-      url: &#39;/api/items&#39;,
-      data: { title: title }
-    }).done(function(data) {
-      self.refresh();
-    });
-  },
-
-  toggle: function(item) {
-    var self = this;
-    $.ajax({
-      type: &#39;PATCH&#39;,
-      url: &#39;/api/items/&#39; + item.id,
-      data: { done: !item.done }
-    }).done(function(data) {
-      self.refresh();
-    });
-  },
-
-  refresh: function() {
-    var self = this;
-    $.ajax({
-      type: &#39;GET&#39;,
-      url: &#39;/api/items.json&#39;
-    }).done(function(data) {
-      self.items.length = 0;
-      data.forEach(function(item) { self.items.push(item) });
-      self.propagate();
-    });
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;$.ajax&lt;/code&gt; is a jQuery&amp;rsquo;s method to make an Ajax request.
-See &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;http://api.jquery.com/jquery.ajax/&lt;/a&gt; for details.&lt;/p&gt;
-
-&lt;p&gt;You can find a working demo using Ajax techniques on
-&lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;.
-This demo is built as a Ruby on Rails application.&lt;/p&gt;
 </description>
     </item>
     
@@ -3593,104 +3574,217 @@ within the definition of &lt;code&gt;SimpleForm&lt;/code&gt; class.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Index</title>
-      <link>http://oiax.github.io/capejs/</link>
+      <title>Data Stores</title>
+      <link>http://oiax.github.io/capejs/data_stores/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/</guid>
+      <guid>http://oiax.github.io/capejs/data_stores/</guid>
       <description>
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;what-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#basics&#34;&gt;Basics&lt;/a&gt; -
+&lt;a href=&#34;#ajax&#34;&gt;Ajax&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;what-is-cape-js:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;What is Cape.JS?&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Cape.JS is a lightweight JavaScript UI framework with following features:&lt;/p&gt;
+&lt;h3 id=&#34;basics:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Basics&lt;/h3&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Full stack:&lt;/strong&gt; You can build &lt;em&gt;single-page applications&lt;/em&gt; (SPAs) with Cape.JS.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Modular:&lt;/strong&gt; You can place &lt;em&gt;web widgets&lt;/em&gt; built by Cape.JS to your static web sites.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Virtual DOM:&lt;/strong&gt; Cape.JS takes advantage of
-&lt;a href=&#34;https://github.com/Matt-Esch/virtual-dom&#34;&gt;virtual-dom&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-of Matt-Esch for high performance rendering.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Markup builder:&lt;/strong&gt; The &lt;em&gt;markup builder&lt;/em&gt; helps you to construct HTML DOM trees
-with its simple, easy to learn syntax.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Form manipulation:&lt;/strong&gt; You can get or set the value of form fields
-without &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Data stores:&lt;/strong&gt; Using &lt;em&gt;data stores&lt;/em&gt;, you can build web applications
-with &lt;em&gt;unidirectional data flow.&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Router:&lt;/strong&gt; You can define &lt;em&gt;routes&lt;/em&gt; with a DSL (domain specific language)
-similar to that of Ruby on Rails.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;When you develop something larger than a tiny widget, you are recommended to
+create a &lt;em&gt;data store&lt;/em&gt; for your Cape.JS component.&lt;/p&gt;
 
-&lt;p&gt;The architecture and terminology of Cape.JS are strongly influenced by
-&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;React&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;,
-&lt;a href=&#34;https://github.com/muut/riotjs&#34;&gt;Riot&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-and &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+&lt;p&gt;The following example illustrates the basic concept of data stores.&lt;/p&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;installation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;index-html:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;index.html&lt;/h4&gt;
 
-&lt;h2 id=&#34;installation:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Installation&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 
-&lt;p&gt;If you just want to use Cape.JS in your web site, insert the following snippet
-to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script src=&amp;quot;https://cdn.rawgit.com/oiax/capejs/v1.1.0/dist/cape.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;./todo_item_store.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;./todo_list2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  var todoList = new TodoList2();
+  todoList.mount(&#39;todo-list&#39;);
+&amp;lt;/script&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You can get the package for &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+&lt;h4 id=&#34;todo-item-store-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt;$ npm install capejs
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [
+      { title: &#39;Foo&#39;, done: false },
+      { title: &#39;Bar&#39;, done: true }
+    ];
+    this.propagate();
+  },
+  addItem: function(title) {
+    this.items.push({ title: title, done: false });
+    this.propagate();
+  },
+  toggle: function(item) {
+    item.done = !item.done;
+    this.propagate();
+  }
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You can get the package for &lt;a href=&#34;http://bower.io/&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; with following command:&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;TodoItemStore&lt;/code&gt; class has three methods and each of them ends with
+&lt;code&gt;this.propagate()&lt;/code&gt;, which calls the &lt;code&gt;refresh&lt;/code&gt; method of all attached components.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ bower install capejs
+&lt;h4 id=&#34;todo-list2-js:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_list2.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoList2 = Cape.createComponentClass({
+  render: function(m) {
+    m.ul(function(m) {
+      this.ds.items.forEach(function(item) {
+        this.renderItem(m, item);
+      }.bind(this))
+    });
+    this.renderForm(m);
+  },
+
+  renderItem: function(m, item) {
+    m.li(function(m) {
+      m.label({ class: { completed: item.done }}, function(m) {
+        m.onclick(function(e) { this.ds.toggle(item) })
+          .checked(item.done).input({ type: &#39;checkbox&#39; })
+        m.text(item.title);
+      })
+    })
+  },
+
+  renderForm: function(m) {
+    m.onsubmit(function(e) { this.addItem(); return false; });
+    m.formFor(&#39;item&#39;, function(m) {
+      m.onkeyup(function(e) { this.refresh() }).textField(&#39;title&#39;);
+      m.onclick(function(e) { this.addItem() })
+        .disabled(this.val(&#39;item.title&#39;) === &#39;&#39;).btn(&amp;quot;Add&amp;quot;);
+    });
+  },
+
+  init: function() {
+    this.ds = TodoItemStore.create();
+    this.ds.attach(this);
+    this.ds.init();
+  },
+
+  addItem: function() {
+    this.ds.addItem(this.val(&#39;item.title&#39;, &#39;&#39;))
+  },
+
+  beforeUnmount: function() {
+    this.ds.detach(this);
+  }
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;faq&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Within the &lt;code&gt;init&lt;/code&gt; method, we create a singleton instance of &lt;code&gt;TodoItemStore&lt;/code&gt; class &lt;em&gt;(data store)&lt;/em&gt;,
+and set it to the &lt;code&gt;ds&lt;/code&gt; property of this component.&lt;/p&gt;
 
-&lt;h2 id=&#34;faq:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;FAQ&lt;/h2&gt;
+&lt;p&gt;Then we call the &lt;code&gt;attach&lt;/code&gt; method of the data store to register this component
+as a &lt;em&gt;listener&lt;/em&gt; to the &lt;em&gt;change event&lt;/em&gt;. When the content of data store is changed,
+a &lt;em&gt;change event&lt;/em&gt; is emitted to this component.&lt;/p&gt;
 
-&lt;h3 id=&#34;is-it-cape-js-capejs-or-capejs:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it &amp;ldquo;Cape.JS&amp;rdquo;, &amp;ldquo;CapeJS&amp;rdquo;, or &amp;ldquo;capejs&amp;rdquo;?&lt;/h3&gt;
+&lt;p&gt;When we click a check box, the following code is executed:&lt;/p&gt;
 
-&lt;p&gt;The official name is &lt;strong&gt;Cape.JS.&lt;/strong&gt;
-Its package name for &lt;a href=&#34;https://www.npmjs.com&#34;&gt;npm&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;
-and &lt;a href=&#34;http://bower.io&#34;&gt;bower&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; is &lt;strong&gt;capejs&lt;/strong&gt; (without the dot).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggle(item)
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;At the very initial phase of development, we called it &amp;ldquo;CapeJS&amp;rdquo;, but
-we don&amp;rsquo;t use it anymore.&lt;/p&gt;
+&lt;p&gt;This inverts the &lt;code&gt;done&lt;/code&gt; attribute of this item and calls &lt;code&gt;this.propagate()&lt;/code&gt;,
+which will cause the re-rendering of this component.&lt;/p&gt;
 
-&lt;h3 id=&#34;is-it-production-ready:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Is it production ready?&lt;/h3&gt;
+&lt;p&gt;A working demo is found at
+&lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/todo_list2&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/todo_list2&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Yes, it is.
-We adopt &lt;a href=&#34;http://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; for Cape.JS,
-and we have released the version 1.0.0.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;which-browsers-are-supported:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Which browsers are supported?&lt;/h3&gt;
+&lt;h3 id=&#34;ajax:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;Ajax&lt;/h3&gt;
 
-&lt;p&gt;We test Cape.JS on Internet Explorer 11 and the latest versions of Chrome, Firefox and Safari.&lt;/p&gt;
+&lt;p&gt;In this section, we assume that an API server is running behind.
+When we access it with &lt;code&gt;GET /api/items.json&lt;/code&gt;, it responds with a JSON string
+such as &lt;code&gt;[{ title: &#39;Foo&#39;, done: false },{ title: &#39;Bar&#39;, done: true }]&lt;/code&gt;.
+When we post to the server a JSON string such as &lt;code&gt;{ title: &#39;Baz&#39; }&lt;/code&gt;
+using &lt;code&gt;POST /api/items&lt;/code&gt; interface, it stores this new item to the database.
+If we post to the server a JSON string such as &lt;code&gt;{ done: true }&lt;/code&gt;
+using &lt;code&gt;PATCH /api/items/123&lt;/code&gt; interface (&lt;code&gt;123&lt;/code&gt; is the &lt;code&gt;id&lt;/code&gt; value of an item),
+it records this item as &amp;ldquo;done&amp;rdquo; on the database.&lt;/p&gt;
 
-&lt;p&gt;Note that we have no plan to support the Internet Explorer 8, 9, and 10.&lt;/p&gt;
+&lt;p&gt;In this settings, we can rewrite the &lt;code&gt;todo_item_store.js&lt;/code&gt; of the previous
+example as follows:&lt;/p&gt;
 
-&lt;h3 id=&#34;how-can-i-contribute:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;How can I contribute?&lt;/h3&gt;
+&lt;h4 id=&#34;todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f&#34;&gt;todo_item_store.js&lt;/h4&gt;
 
-&lt;p&gt;The Cape.JS is an open source project. Everyone can help.
-See &lt;a href=&#34;https://github.com/oiax/capejs/CONTRIBUTING.md&#34;&gt;CONTRIBUTING.md&lt;/a&gt;
-&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;for details.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var TodoItemStore = Cape.createDataStoreClass({
+  init: function() {
+    this.items = [];
+    this.refresh();
+  },
 
-&lt;h2 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h2&gt;
+  addItem: function(title) {
+    var self = this;
+    $.ajax({
+      type: &#39;POST&#39;,
+      url: &#39;/api/items&#39;,
+      data: { title: title }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
 
-&lt;p&gt;The logo of Cape.JS is created by
-&lt;a href=&#34;https://github.com/junya-suzuki&#34;&gt;Junya Suzuki&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+  toggle: function(item) {
+    var self = this;
+    $.ajax({
+      type: &#39;PATCH&#39;,
+      url: &#39;/api/items/&#39; + item.id,
+      data: { done: !item.done }
+    }).done(function(data) {
+      self.refresh();
+    });
+  },
 
-&lt;h2 id=&#34;trademarks&#34;&gt;Trademarks&lt;/h2&gt;
+  refresh: function() {
+    var self = this;
+    $.ajax({
+      type: &#39;GET&#39;,
+      url: &#39;/api/items.json&#39;
+    }).done(function(data) {
+      self.items.length = 0;
+      data.forEach(function(item) { self.items.push(item) });
+      self.propagate();
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&amp;ldquo;Cape.JS&amp;rdquo; and its logo are trademarks of Oiax Inc. All rights reserved.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$.ajax&lt;/code&gt; is a jQuery&amp;rsquo;s method to make an Ajax request.
+See &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;http://api.jquery.com/jquery.ajax/&lt;/a&gt; for details.&lt;/p&gt;
 
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+&lt;p&gt;You can find a working demo using Ajax techniques on
+&lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;.
+This demo is built as a Ruby on Rails application.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Resource Agents</title>
+      <link>http://oiax.github.io/capejs/resource_agents/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/resource_agents/</guid>
+      <description>
 
-&lt;p&gt;Cape.JS is released under
-&lt;a href=&#34;https://github.com/oiax/capejs/LICENSE&#34;&gt;the MIT License&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#basics&#34;&gt;Basics&lt;/a&gt; -
+&lt;a href=&#34;#options&#34;&gt;Options&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;basics:01090db2bd186f3f2b107103ab7e9173&#34;&gt;Basics&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;options&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;options:01090db2bd186f3f2b107103ab7e9173&#34;&gt;Options&lt;/h3&gt;
+
+&lt;p&gt;This section is not yet prepared.&lt;/p&gt;
 </description>
     </item>
     

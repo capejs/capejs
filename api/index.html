@@ -201,6 +201,30 @@
         </li>
       
         <li>
+          <a href="http://oiax.github.io/capejs/api/collection_agent">Cape.CollectionAgent</a>
+          
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs/api/collection_agent#constructor">Constructor</a></li>
+          
+          </ul>
+          
+        </li>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs/api/resource_agent">Cape.ResourceAgent</a>
+          
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs/api/resource_agent#constructor">Constructor</a></li>
+          
+          </ul>
+          
+        </li>
+      
+        <li>
           <a href="http://oiax.github.io/capejs/api/router">Cape.Router</a>
           
           
@@ -300,6 +324,8 @@
 <a href="./component">Cape.Component</a> -
 <a href="./markup_builder">Cape.MarkupBuilder</a> -
 <a href="./data_store">Cape.DataStore</a> -
+<a href="./collection_agent">Cape.CollectionAgent</a> -
+<a href="./resource_agent">Cape.ResourceAgent</a> -
 <a href="./router">Cape.Router</a> -
 <a href="./routing_mapper">Cape.RoutingMapper</a></p>
 
@@ -316,6 +342,8 @@ It has some utility methods, such as <code>extend</code>, <code>merge</code>, et
 <li><a href="./component">Cape.Component</a></li>
 <li><a href="./markup_builder">Cape.MarkupBuilder</a></li>
 <li><a href="./data_store">Cape.DataStore</a></li>
+<li><a href="./collection_agent">Cape.CollectionAgent</a></li>
+<li><a href="./resource_agent">Cape.ResourceAgent</a></li>
 <li><a href="./router">Cape.Router</a></li>
 <li><a href="./routing_mapper">Cape.RoutingMapper</a></li>
 </ul>
@@ -334,6 +362,13 @@ component classes.</p>
 
 <p><code>Cape.DataStore</code> is a class to store and manipulate data, which is used by
 components to render themselves.</p>
+
+<p><code>Cape.CollectionAgent</code> has a role similar to the <code>Cape.DataStore</code>.
+Using it you can perform REST requests to the web resources using
+<a href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API">Fetch API</a>.</p>
+
+<p><code>Cape.ResourceAgent</code> is a class to represent a particular resource on the web
+and performs REST manipulations on it using Fetch API.</p>
 
 <p>If you want to create a single page application (SPA), you may need an instance of <code>Cape.Router</code>.
 After you start it, it continues to watch the changes of <em>hash fragment</em> of URL

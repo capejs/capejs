@@ -20,6 +20,8 @@
 &lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt; -
 &lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt; -
 &lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt; -
+&lt;a href=&#34;./collection_agent&#34;&gt;Cape.CollectionAgent&lt;/a&gt; -
+&lt;a href=&#34;./resource_agent&#34;&gt;Cape.ResourceAgent&lt;/a&gt; -
 &lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
 &lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
 
@@ -36,6 +38,8 @@ It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&g
 &lt;li&gt;&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./collection_agent&#34;&gt;Cape.CollectionAgent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./resource_agent&#34;&gt;Cape.ResourceAgent&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -54,6 +58,13 @@ component classes.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
 components to render themselves.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.CollectionAgent&lt;/code&gt; has a role similar to the &lt;code&gt;Cape.DataStore&lt;/code&gt;.
+Using it you can perform REST requests to the web resources using
+&lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/API/Fetch_API&#34;&gt;Fetch API&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.ResourceAgent&lt;/code&gt; is a class to represent a particular resource on the web
+and performs REST manipulations on it using Fetch API.&lt;/p&gt;
 
 &lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
 After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
@@ -270,6 +281,69 @@ Cape.extend(object1, object2);
 //   cherry: 97,
 //   durian: 100
 // }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.CollectionAgent - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/collection_agent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/collection_agent/</guid>
+      <description>
+
+&lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
+&lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
+&lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
+&lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
+&lt;a href=&#34;#dot-create&#34;&gt;.create()&lt;/a&gt; -
+&lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
+&lt;a href=&#34;#default-error-handler&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
+&lt;a href=&#34;#delete&#34;&gt;#delete()&lt;/a&gt; -
+&lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
+&lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
+&lt;a href=&#34;#get&#34;&gt;#get()&lt;/a&gt; -
+&lt;a href=&#34;#index&#34;&gt;#index()&lt;/a&gt; -
+&lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
+&lt;a href=&#34;#patch&#34;&gt;#patch()&lt;/a&gt; -
+&lt;a href=&#34;#path-prefix&#34;&gt;#pathPref()&lt;/a&gt; -
+&lt;a href=&#34;#post&#34;&gt;#post()&lt;/a&gt; -
+&lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; -
+&lt;a href=&#34;#put&#34;&gt;#put()&lt;/a&gt; -
+&lt;a href=&#34;#refresh&#34;&gt;#refresh()&lt;/a&gt; -
+&lt;a href=&#34;#refresh-objects&#34;&gt;#refreshObjects()&lt;/a&gt; -
+&lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; -
+&lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;constructor:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Constructor&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;Cape.CollectionAgent&lt;/code&gt; constructor takes a string (resource name) and an
+optional object (options).&lt;/p&gt;
+
+&lt;h4 id=&#34;options:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Options&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;adapter:&lt;/strong&gt; the name of adapter (e.g., &lt;code&gt;&#39;rails&#39;&lt;/code&gt;). Default is &lt;code&gt;undefined&lt;/code&gt;.
+Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;autoRefresh:&lt;/strong&gt; a boolean value that controls POST/PATCH/PUT/DELETE requests
+trigger &lt;code&gt;this.refresh()&lt;/code&gt;. Default is &lt;code&gt;true&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dataType:&lt;/strong&gt; the type of data that you&amp;rsquo;re expecting from the server.
+The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt; (default) or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pathPrefix:&lt;/strong&gt; the string that is added to the request path.
+Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;example:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
+var agent1 = new Cape.CollectionAgent(&#39;users&#39;);
+var agent2 = new Cape.CollectionAgent(&#39;tags&#39;, { pathPrefix: &#39;/api/&#39; });
+var agent3 = new Cape.CollectionAgent(&#39;pages&#39;, { dataType: &#39;text&#39; });
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
@@ -809,6 +883,7 @@ radio button is checked.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
 &lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
+&lt;a href=&#34;#create&#34;&gt;.create()&lt;/a&gt; -
 &lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
 &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt;&lt;/p&gt;
 
@@ -2037,6 +2112,77 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
   //       id=&amp;quot;user-field-login-name&amp;quot;&amp;gt;
   //   &amp;lt;/form&amp;gt;
 }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.ResourceAgent - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/resource_agent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/resource_agent/</guid>
+      <description>
+
+&lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
+&lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
+&lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
+&lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
+&lt;a href=&#34;#default-error-hander&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
+&lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
+&lt;a href=&#34;#init&#34;&gt;#init()&lt;/a&gt; -
+&lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
+&lt;a href=&#34;#path-prefix&#34;&gt;#pathPrefix()&lt;/a&gt; -
+&lt;a href=&#34;#singular-path&#34;&gt;#singularPath()&lt;/a&gt; -
+&lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;constructor:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Constructor&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;Cape.ResourceAgent&lt;/code&gt; constructor takes a string (resource name),
+a &lt;code&gt;Cape.Component&lt;/code&gt; object and an optional object (options).&lt;/p&gt;
+
+&lt;h4 id=&#34;options:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Options&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;adapter:&lt;/strong&gt; the name of adapter (e.g., &lt;code&gt;&#39;rails&#39;&lt;/code&gt;). Default is &lt;code&gt;undefined&lt;/code&gt;.
+Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dataType:&lt;/strong&gt; the type of data that you&amp;rsquo;re expecting from the server.
+The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt; (default) or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pathPrefix:&lt;/strong&gt; the string that is added to the request path.
+Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;singular:&lt;/strong&gt; a boolean value that specifies if the resource is singular or not.
+Resources are called &lt;em&gt;singular&lt;/em&gt; when they have a URL without ID. Default is &lt;code&gt;false&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;adapters:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Adapters&lt;/h4&gt;
+
+&lt;p&gt;Currently, Cape.JS provides only &lt;code&gt;RailsAdapter&lt;/code&gt;, which sets the &lt;code&gt;X-CSRF-Token&lt;/code&gt; header
+for Ajax requests.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
+
+var Form = Cape.createComponentClass({
+  init: function() {
+    this.agent = new Cape.ResourceAgent(&#39;user&#39;, this);
+    this.agent.init(function(agent) {
+      this.setValues(&#39;user&#39;, agent.object);
+      this.refresh();
+    })
+  },
+
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.passwordField(&#39;password&#39;);
+    });
+  }
+});
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
