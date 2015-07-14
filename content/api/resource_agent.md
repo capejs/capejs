@@ -45,6 +45,7 @@ Cape.defaultAgentAdapter = 'rails';
 
 var Form = Cape.createComponentClass({
   init: function() {
+    this.id = 123;
     this.agent = new Cape.ResourceAgent('user', this);
     this.agent.init(function(agent) {
       this.setValues('user', agent.object);
@@ -55,7 +56,7 @@ var Form = Cape.createComponentClass({
   render: function(m) {
     m.formFor('user', function(m) {
       m.textField('login_name');
-      m.passwordField('password');
+      ...
     });
   }
 });
