@@ -7,11 +7,16 @@ Cape.AgentAdapters = {};
 Cape.AgentAdapters.RailsAdapter =
   require('./cape/agent_adapters/rails_adapter.js')
 Cape.ResourceAgent = require('./cape/resource_agent.js')
+Cape.CollectionAgent = require('./cape/collection_agent.js')
 Cape.RoutingMapper = require('./cape/routing_mapper.js')
 Cape.Router = require('./cape/router.js')
+
+// Default name of adapter fo CollectionAgent and ResourceAgent (e.g. 'rails')
+Cape.defaultAgentAdapter = undefined;
+
 module.exports = Cape;
 
-},{"./cape/agent_adapters/rails_adapter.js":2,"./cape/component.js":3,"./cape/data_store.js":4,"./cape/markup_builder":5,"./cape/resource_agent.js":6,"./cape/router.js":7,"./cape/routing_mapper.js":8,"./cape/utilities":9}],2:[function(require,module,exports){
+},{"./cape/agent_adapters/rails_adapter.js":2,"./cape/collection_agent.js":3,"./cape/component.js":4,"./cape/data_store.js":5,"./cape/markup_builder":6,"./cape/resource_agent.js":7,"./cape/router.js":8,"./cape/routing_mapper.js":9,"./cape/utilities":10}],2:[function(require,module,exports){
 "use strict";
 
 // Cape.AgentAdapters.RailsAdapter
@@ -33,6 +38,225 @@ function RailsAdapter(resourceName, client, options) {
 module.exports = RailsAdapter;
 
 },{}],3:[function(require,module,exports){
+"use strict";
+
+var Inflector = require('inflected');
+var Cape = require('./utilities');
+
+// Cape.CollectionAgent
+//
+// public properties:
+//   resourceName: the name of resource
+//   options: the object that holds option values given to the constructor
+//   objects: the array of objects that represent the collection of resources
+//   headers: the HTTP headers for Ajax requests
+// options:
+//   adapter: the name of adapter (e.g., 'rails'). Default is undefined.
+//     Default value can be changed by setting Cape.defaultAgentAdapter property.
+//   autoRefresh: a boolean value that controls unsafe Ajax requests trigger
+//     this.refresh(). Default is true.
+// private properties:
+//   _: the object that holds internal methods and properties of this class.
+var CollectionAgent = function CollectionAgent(resourceName, options) {
+  var adapterName, adapter;
+
+  this.resourceName = resourceName;
+  this.options = options || {};
+  if (this.options.autoRefresh === undefined) this.options.autoRefresh = true;
+  this.objects = [];
+  this.headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  };
+  this._ = new _Internal(this);
+
+  adapterName = this.options.adapter || Cape.defaultAgentAdapter;
+  if (typeof adapterName === 'string') {
+    adapter = Cape.AgentAdapters[Inflector.camelize(adapterName) + 'Adapter'];
+    if (typeof adapter === 'function') adapter.apply(this, arguments);
+  }
+};
+
+CollectionAgent.create = function(resourceName, options) {
+  this.instances = this.instances || {};
+  var x = new this(resourceName, options)
+  if (!this.instances[resourceName])
+    this.instances[resourceName] = new this(resourceName, options);
+  return this.instances[resourceName];
+}
+
+Cape.extend(CollectionAgent.prototype, {
+  attach: function(component) {
+    var target = component;
+    for (var i = 0, len = this._.components.length; i < len; i++) {
+      if (this._.components[i] === component) return;
+    }
+    this._.components.push(component);
+  },
+
+  detach: function(component) {
+    for (var i = 0, len = this._.components.length; i < len; i++) {
+      if (this._.components[i] === component) {
+        this._.components.splice(i, 1);
+        break;
+      }
+    }
+  },
+
+  propagate: function() {
+    for (var i = this._.components.length; i--;)
+      this._.components[i].refresh();
+  },
+
+  // Fetch current data through the API and refresh this.objects.
+  //
+  // The default implementation assumes that the request URI has no parameters and
+  // the API returns a hash like this:
+  //   { users: [ { id: 1, name: 'John' }, { id: 2, name: 'Kate' } ]}
+  //
+  // Otherwise, this method should be overridden in child classes. For example,
+  //   refresh: function() {
+  //     var self = this;
+  //     var params = { page: this.currentPage, per_page: this.perPage };
+  //     this.index(params, function(data) {
+  //       self.refreshObjects(data, 'user_list');
+  //       self.totalPage = data.total_page;
+  //       self.propagate();
+  //     })
+  //   }
+  refresh: function() {
+    var self = this;
+    this.index({}, function(data) {
+      self.refreshObjects(data);
+      self.propagate();
+    })
+  },
+
+  refreshObjects: function(data, paramName) {
+    paramName = paramName || Inflector.tableize(this.resourceName);
+
+    this.objects.length = 0;
+    if (Array.isArray(data[paramName])) {
+      for (var i = 0; i < data[paramName].length; i++) {
+       this.objects.push(data[paramName][i]);
+      }
+    }
+  },
+
+  index: function(params, callback, errorHandler) {
+    this.get('', null, params, callback, errorHandler);
+  },
+
+  show: function(id, callback, errorHandler) {
+    this.get('', id, {}, callback, errorHandler);
+  },
+
+  create: function(params, callback, errorHandler) {
+    this.post('', null, params, callback, errorHandler);
+  },
+
+  update: function(id, params, callback, errorHandler) {
+    this.patch('', id, params, callback, errorHandler);
+  },
+
+  destroy: function(id, callback, errorHandler) {
+    this.delete('', id, {}, callback, errorHandler);
+  },
+
+  get: function(actionName, id, params, callback, errorHandler) {
+    var path = id ? this.memberPath(id) : this.collectionPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('GET', path, params, callback, errorHandler);
+  },
+
+  post: function(actionName, id, params, callback, errorHandler) {
+    var path = id ? this.memberPath(id) : this.collectionPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('POST', path, params, callback, errorHandler);
+  },
+
+  patch: function(actionName, id, params, callback, errorHandler) {
+    var path = id ? this.memberPath(id) : this.collectionPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('PATCH', path, params, callback, errorHandler);
+  },
+
+  put: function(actionName, id, params, callback, errorHandler) {
+    var path = id ? this.memberPath(id) : this.collectionPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('PUT', path, params, callback, errorHandler);
+  },
+
+  delete: function(actionName, id, params, callback, errorHandler) {
+    var path = id ? this.memberPath(id) : this.collectionPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('DELETE', path, params, callback, errorHandler);
+  },
+
+  ajax: function(httpMethod, path, params, callback, errorHandler) {
+    params = params || {};
+    errorHandler = errorHandler || this.defaultErrorHandler;
+
+    var self = this;
+    var isSafeMethod = (httpMethod === 'GET' || httpMethod === 'HEAD');
+    var fetchOptions = {
+      method: httpMethod,
+      headers: this.headers,
+      credentials: 'same-origin'
+    }
+
+    if (isSafeMethod) {
+      var pairs = [];
+      for (var key in params) {
+        pairs.push(encodeURIComponent(key) + "=" +
+          encodeURIComponent(params[key]));
+      }
+      if (pairs.length) path = path + '?' + pairs.join('&');
+    }
+    else {
+      fetchOptions.body = JSON.stringify(params)
+    }
+    fetch(path, fetchOptions)
+      .then(function(response) {
+        return response.json()
+      })
+      .then(function(data) {
+        if (typeof callback === 'function') callback.call(self.client, data);
+        if (self.options.autoRefresh && !isSafeMethod) self.refresh();
+      })
+      .catch(errorHandler);
+
+    return false;
+  },
+
+  collectionPath: function() {
+    var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
+    return this.pathPrefix() + resources;
+  },
+
+  memberPath: function(id) {
+    var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
+    return this.pathPrefix() + resources + '/' + id;
+  },
+
+  pathPrefix: function() {
+    return this.options.pathPrefix || '/';
+  },
+
+  defaultErrorHandler: function(ex) {
+    console.log(ex)
+  }
+});
+
+// Internal properties of Cape.CollectionAgent
+var _Internal = function _Internal(main) {
+  this.main = main;
+  this.components = [];
+}
+
+module.exports = CollectionAgent;
+
+},{"./utilities":10,"inflected":13}],4:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -350,7 +574,7 @@ Cape.extend(_Internal.prototype, {
 module.exports = Component;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":9,"inflected":12,"virtual-dom":25}],4:[function(require,module,exports){
+},{"./utilities":10,"inflected":13,"virtual-dom":26}],5:[function(require,module,exports){
 "use strict";
 
 var Cape = require('./utilities');
@@ -402,7 +626,7 @@ var _Internal = function _Internal(main) {
 
 module.exports = DataStore;
 
-},{"./utilities":9}],5:[function(require,module,exports){
+},{"./utilities":10}],6:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -889,7 +1113,7 @@ for (var i = eventNames.length; i--;) {
 module.exports = MarkupBuilder;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":9,"inflected":12,"virtual-dom":25}],6:[function(require,module,exports){
+},{"./utilities":10,"inflected":13,"virtual-dom":26}],7:[function(require,module,exports){
 "use strict";
 
 var Inflector = require('inflected');
@@ -903,6 +1127,10 @@ var Cape = require('./utilities');
 //   options: the object that holds option values given to the constructor
 //   object: the object that represents the resource
 //   errors: the object that holds error messages
+//   headers: the HTTP headers for Ajax requests
+// options:
+//   adapter: the name of adapter (e.g., 'rails'). Default is undefined.
+//     Default value can be changed by setting Cape.defaultAgentAdapter property.
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
 function ResourceAgent(resourceName, client, options) {
@@ -1051,7 +1279,7 @@ var _Internal = function _Internal(main) {
 
 module.exports = ResourceAgent;
 
-},{"./utilities":9,"inflected":12}],7:[function(require,module,exports){
+},{"./utilities":10,"inflected":13}],8:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -1304,7 +1532,7 @@ Cape.extend(_Internal.prototype, {
 module.exports = Router;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":9,"inflected":12}],8:[function(require,module,exports){
+},{"./utilities":10,"inflected":13}],9:[function(require,module,exports){
 "use strict";
 
 var Inflector = require('inflected');
@@ -1595,7 +1823,7 @@ Cape.extend(_Internal.prototype, {
 
 module.exports = RoutingMapper;
 
-},{"./utilities":9,"inflected":12}],9:[function(require,module,exports){
+},{"./utilities":10,"inflected":13}],10:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -1663,9 +1891,9 @@ Cape.createDataStoreClass = function(methods) {
 module.exports = Cape;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],10:[function(require,module,exports){
-
 },{}],11:[function(require,module,exports){
+
+},{}],12:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -1725,10 +1953,10 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = require('./lib/Inflector');
 
-},{"./lib/Inflector":14}],13:[function(require,module,exports){
+},{"./lib/Inflector":15}],14:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1841,7 +2069,7 @@ Inflections.prototype.clear = function(scope) {
 module.exports = Inflections;
 
 }).call(this,require('_process'))
-},{"./hasProp":18,"./icPart":19,"./remove":21,"_process":11}],14:[function(require,module,exports){
+},{"./hasProp":19,"./icPart":20,"./remove":22,"_process":12}],15:[function(require,module,exports){
 'use strict';
 
 var Inflections     = require('./Inflections');
@@ -1888,7 +2116,7 @@ for (var locale in defaults) {
 
 module.exports = Inflector;
 
-},{"./Inflections":13,"./Methods":15,"./Transliterator":16,"./defaults":17,"./isFunc":20}],15:[function(require,module,exports){
+},{"./Inflections":14,"./Methods":16,"./Transliterator":17,"./defaults":18,"./isFunc":21}],16:[function(require,module,exports){
 'use strict';
 
 var Methods = {
@@ -2102,7 +2330,7 @@ var Methods = {
 
 module.exports = Methods;
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -2169,7 +2397,7 @@ Transliterator.prototype.transliterate = function(string, replacement) {
 module.exports = Transliterator;
 
 }).call(this,require('_process'))
-},{"_process":11}],17:[function(require,module,exports){
+},{"_process":12}],18:[function(require,module,exports){
 'use strict';
 
 function enDefaults(inflect) {
@@ -2237,7 +2465,7 @@ module.exports = {
   en: enDefaults
 };
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 var hasOwnProp = Object.prototype.hasOwnProperty;
@@ -2248,7 +2476,7 @@ function hasProp(obj, key) {
 
 module.exports = hasProp;
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 function icPart(str) {
@@ -2257,7 +2485,7 @@ function icPart(str) {
 
 module.exports = icPart;
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 var toString = Object.prototype.toString;
@@ -2268,7 +2496,7 @@ function isFunc(obj) {
 
 module.exports = isFunc;
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 var splice = Array.prototype.splice;
@@ -2283,22 +2511,22 @@ function remove(arr, elem) {
 
 module.exports = remove;
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 var createElement = require("./vdom/create-element.js")
 
 module.exports = createElement
 
-},{"./vdom/create-element.js":35}],23:[function(require,module,exports){
+},{"./vdom/create-element.js":36}],24:[function(require,module,exports){
 var diff = require("./vtree/diff.js")
 
 module.exports = diff
 
-},{"./vtree/diff.js":55}],24:[function(require,module,exports){
+},{"./vtree/diff.js":56}],25:[function(require,module,exports){
 var h = require("./virtual-hyperscript/index.js")
 
 module.exports = h
 
-},{"./virtual-hyperscript/index.js":42}],25:[function(require,module,exports){
+},{"./virtual-hyperscript/index.js":43}],26:[function(require,module,exports){
 var diff = require("./diff.js")
 var patch = require("./patch.js")
 var h = require("./h.js")
@@ -2315,7 +2543,7 @@ module.exports = {
     VText: VText
 }
 
-},{"./create-element.js":22,"./diff.js":23,"./h.js":24,"./patch.js":33,"./vnode/vnode.js":51,"./vnode/vtext.js":53}],26:[function(require,module,exports){
+},{"./create-element.js":23,"./diff.js":24,"./h.js":25,"./patch.js":34,"./vnode/vnode.js":52,"./vnode/vtext.js":54}],27:[function(require,module,exports){
 /*!
  * Cross-Browser Split 1.1.1
  * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
@@ -2423,7 +2651,7 @@ module.exports = (function split(undef) {
   return self;
 })();
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 var OneVersionConstraint = require('individual/one-version');
@@ -2445,7 +2673,7 @@ function EvStore(elem) {
     return hash;
 }
 
-},{"individual/one-version":29}],28:[function(require,module,exports){
+},{"individual/one-version":30}],29:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -2468,7 +2696,7 @@ function Individual(key, value) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 var Individual = require('./index.js');
@@ -2492,7 +2720,7 @@ function OneVersion(moduleName, version, defaultValue) {
     return Individual(key, defaultValue);
 }
 
-},{"./index.js":28}],30:[function(require,module,exports){
+},{"./index.js":29}],31:[function(require,module,exports){
 (function (global){
 var topLevel = typeof global !== 'undefined' ? global :
     typeof window !== 'undefined' ? window : {}
@@ -2511,14 +2739,14 @@ if (typeof document !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"min-document":10}],31:[function(require,module,exports){
+},{"min-document":11}],32:[function(require,module,exports){
 "use strict";
 
 module.exports = function isObject(x) {
 	return typeof x === "object" && x !== null;
 };
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 var nativeIsArray = Array.isArray
 var toString = Object.prototype.toString
 
@@ -2528,12 +2756,12 @@ function isArray(obj) {
     return toString.call(obj) === "[object Array]"
 }
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 var patch = require("./vdom/patch.js")
 
 module.exports = patch
 
-},{"./vdom/patch.js":38}],34:[function(require,module,exports){
+},{"./vdom/patch.js":39}],35:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook.js")
 
@@ -2632,7 +2860,7 @@ function getPrototype(value) {
     }
 }
 
-},{"../vnode/is-vhook.js":46,"is-object":31}],35:[function(require,module,exports){
+},{"../vnode/is-vhook.js":47,"is-object":32}],36:[function(require,module,exports){
 var document = require("global/document")
 
 var applyProperties = require("./apply-properties")
@@ -2680,7 +2908,7 @@ function createElement(vnode, opts) {
     return node
 }
 
-},{"../vnode/handle-thunk.js":44,"../vnode/is-vnode.js":47,"../vnode/is-vtext.js":48,"../vnode/is-widget.js":49,"./apply-properties":34,"global/document":30}],36:[function(require,module,exports){
+},{"../vnode/handle-thunk.js":45,"../vnode/is-vnode.js":48,"../vnode/is-vtext.js":49,"../vnode/is-widget.js":50,"./apply-properties":35,"global/document":31}],37:[function(require,module,exports){
 // Maps a virtual DOM tree onto a real DOM tree in an efficient manner.
 // We don't want to read all of the DOM nodes in the tree so we use
 // the in-order tree indexing to eliminate recursion down certain branches.
@@ -2767,7 +2995,7 @@ function ascending(a, b) {
     return a > b ? 1 : -1
 }
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 var applyProperties = require("./apply-properties")
 
 var isWidget = require("../vnode/is-widget.js")
@@ -2921,7 +3149,7 @@ function replaceRoot(oldRoot, newRoot) {
     return newRoot;
 }
 
-},{"../vnode/is-widget.js":49,"../vnode/vpatch.js":52,"./apply-properties":34,"./create-element":35,"./update-widget":39}],38:[function(require,module,exports){
+},{"../vnode/is-widget.js":50,"../vnode/vpatch.js":53,"./apply-properties":35,"./create-element":36,"./update-widget":40}],39:[function(require,module,exports){
 var document = require("global/document")
 var isArray = require("x-is-array")
 
@@ -2999,7 +3227,7 @@ function patchIndices(patches) {
     return indices
 }
 
-},{"./dom-index":36,"./patch-op":37,"global/document":30,"x-is-array":32}],39:[function(require,module,exports){
+},{"./dom-index":37,"./patch-op":38,"global/document":31,"x-is-array":33}],40:[function(require,module,exports){
 var isWidget = require("../vnode/is-widget.js")
 
 module.exports = updateWidget
@@ -3016,7 +3244,7 @@ function updateWidget(a, b) {
     return false
 }
 
-},{"../vnode/is-widget.js":49}],40:[function(require,module,exports){
+},{"../vnode/is-widget.js":50}],41:[function(require,module,exports){
 'use strict';
 
 var EvStore = require('ev-store');
@@ -3045,7 +3273,7 @@ EvHook.prototype.unhook = function(node, propertyName) {
     es[propName] = undefined;
 };
 
-},{"ev-store":27}],41:[function(require,module,exports){
+},{"ev-store":28}],42:[function(require,module,exports){
 'use strict';
 
 module.exports = SoftSetHook;
@@ -3064,7 +3292,7 @@ SoftSetHook.prototype.hook = function (node, propertyName) {
     }
 };
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 var isArray = require('x-is-array');
@@ -3201,7 +3429,7 @@ function errorString(obj) {
     }
 }
 
-},{"../vnode/is-thunk":45,"../vnode/is-vhook":46,"../vnode/is-vnode":47,"../vnode/is-vtext":48,"../vnode/is-widget":49,"../vnode/vnode.js":51,"../vnode/vtext.js":53,"./hooks/ev-hook.js":40,"./hooks/soft-set-hook.js":41,"./parse-tag.js":43,"x-is-array":32}],43:[function(require,module,exports){
+},{"../vnode/is-thunk":46,"../vnode/is-vhook":47,"../vnode/is-vnode":48,"../vnode/is-vtext":49,"../vnode/is-widget":50,"../vnode/vnode.js":52,"../vnode/vtext.js":54,"./hooks/ev-hook.js":41,"./hooks/soft-set-hook.js":42,"./parse-tag.js":44,"x-is-array":33}],44:[function(require,module,exports){
 'use strict';
 
 var split = require('browser-split');
@@ -3257,7 +3485,7 @@ function parseTag(tag, props) {
     return props.namespace ? tagName : tagName.toUpperCase();
 }
 
-},{"browser-split":26}],44:[function(require,module,exports){
+},{"browser-split":27}],45:[function(require,module,exports){
 var isVNode = require("./is-vnode")
 var isVText = require("./is-vtext")
 var isWidget = require("./is-widget")
@@ -3299,14 +3527,14 @@ function renderThunk(thunk, previous) {
     return renderedThunk
 }
 
-},{"./is-thunk":45,"./is-vnode":47,"./is-vtext":48,"./is-widget":49}],45:[function(require,module,exports){
+},{"./is-thunk":46,"./is-vnode":48,"./is-vtext":49,"./is-widget":50}],46:[function(require,module,exports){
 module.exports = isThunk
 
 function isThunk(t) {
     return t && t.type === "Thunk"
 }
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 module.exports = isHook
 
 function isHook(hook) {
@@ -3315,7 +3543,7 @@ function isHook(hook) {
        typeof hook.unhook === "function" && !hook.hasOwnProperty("unhook"))
 }
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualNode
@@ -3324,7 +3552,7 @@ function isVirtualNode(x) {
     return x && x.type === "VirtualNode" && x.version === version
 }
 
-},{"./version":50}],48:[function(require,module,exports){
+},{"./version":51}],49:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualText
@@ -3333,17 +3561,17 @@ function isVirtualText(x) {
     return x && x.type === "VirtualText" && x.version === version
 }
 
-},{"./version":50}],49:[function(require,module,exports){
+},{"./version":51}],50:[function(require,module,exports){
 module.exports = isWidget
 
 function isWidget(w) {
     return w && w.type === "Widget"
 }
 
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 module.exports = "2"
 
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 var version = require("./version")
 var isVNode = require("./is-vnode")
 var isWidget = require("./is-widget")
@@ -3417,7 +3645,7 @@ function VirtualNode(tagName, properties, children, key, namespace) {
 VirtualNode.prototype.version = version
 VirtualNode.prototype.type = "VirtualNode"
 
-},{"./is-thunk":45,"./is-vhook":46,"./is-vnode":47,"./is-widget":49,"./version":50}],52:[function(require,module,exports){
+},{"./is-thunk":46,"./is-vhook":47,"./is-vnode":48,"./is-widget":50,"./version":51}],53:[function(require,module,exports){
 var version = require("./version")
 
 VirtualPatch.NONE = 0
@@ -3441,7 +3669,7 @@ function VirtualPatch(type, vNode, patch) {
 VirtualPatch.prototype.version = version
 VirtualPatch.prototype.type = "VirtualPatch"
 
-},{"./version":50}],53:[function(require,module,exports){
+},{"./version":51}],54:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = VirtualText
@@ -3453,7 +3681,7 @@ function VirtualText(text) {
 VirtualText.prototype.version = version
 VirtualText.prototype.type = "VirtualText"
 
-},{"./version":50}],54:[function(require,module,exports){
+},{"./version":51}],55:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook")
 
@@ -3513,7 +3741,7 @@ function getPrototype(value) {
   }
 }
 
-},{"../vnode/is-vhook":46,"is-object":31}],55:[function(require,module,exports){
+},{"../vnode/is-vhook":47,"is-object":32}],56:[function(require,module,exports){
 var isArray = require("x-is-array")
 
 var VPatch = require("../vnode/vpatch")
@@ -3942,5 +4170,5 @@ function appendPatch(apply, patch) {
     }
 }
 
-},{"../vnode/handle-thunk":44,"../vnode/is-thunk":45,"../vnode/is-vnode":47,"../vnode/is-vtext":48,"../vnode/is-widget":49,"../vnode/vpatch":52,"./diff-props":54,"x-is-array":32}]},{},[1])(1)
+},{"../vnode/handle-thunk":45,"../vnode/is-thunk":46,"../vnode/is-vnode":48,"../vnode/is-vtext":49,"../vnode/is-widget":50,"../vnode/vpatch":53,"./diff-props":55,"x-is-array":33}]},{},[1])(1)
 });
