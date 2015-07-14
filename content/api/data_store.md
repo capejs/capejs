@@ -4,6 +4,7 @@ title: "Cape.DataStore - API Reference"
 
 [Constructor](#constructor) -
 [#attach()](#attach) -
+[.create()](#create) -
 [#detach()](#detach) -
 [#propagate()](#propagate)
 

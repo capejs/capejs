@@ -49,6 +49,26 @@ pages:
         id: "ajax"
         title: "Ajax"
   -
+    name: "collection_agents"
+    title: "Collection Agents"
+    sections:
+      -
+        id: "basics"
+        title: "Basics"
+      -
+        id: "options"
+        title: "Options"
+  -
+    name: "resource_agents"
+    title: "Resource Agents"
+    sections:
+      -
+        id: "basics"
+        title: "Basics"
+      -
+        id: "options"
+        title: "Options"
+  -
     name: "router"
     title: "Router"
     sections:
@@ -257,6 +277,22 @@ api_pages:
       -
         id: propagate
         title: "#propagate()"
+  -
+    name: "api/collection_agent"
+    title: "Cape.CollectionAgent"
+    showSections: true
+    sections:
+      -
+        id: constructor
+        title: "Constructor"
+  -
+    name: "api/resource_agent"
+    title: "Cape.ResourceAgent"
+    showSections: true
+    sections:
+      -
+        id: constructor
+        title: "Constructor"
   -
     name: "api/router"
     title: "Cape.Router"

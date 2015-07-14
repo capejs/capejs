@@ -7,6 +7,8 @@ type: "api"
 [Cape.Component](./component) -
 [Cape.MarkupBuilder](./markup_builder) -
 [Cape.DataStore](./data_store) -
+[Cape.CollectionAgent](./collection_agent) -
+[Cape.ResourceAgent](./resource_agent) -
 [Cape.Router](./router) -
 [Cape.RoutingMapper](./routing_mapper)
 
@@ -22,6 +24,8 @@ The **Cape.JS** consists of following five classes:
 * [Cape.Component](./component)
 * [Cape.MarkupBuilder](./markup_builder)
 * [Cape.DataStore](./data_store)
+* [Cape.CollectionAgent](./collection_agent)
+* [Cape.ResourceAgent](./resource_agent)
 * [Cape.Router](./router)
 * [Cape.RoutingMapper](./routing_mapper)
 
@@ -39,6 +43,13 @@ component classes.
 
 `Cape.DataStore` is a class to store and manipulate data, which is used by
 components to render themselves.
+
+`Cape.CollectionAgent` has a role similar to the `Cape.DataStore`.
+Using it you can perform REST requests to the web resources using
+[Fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API).
+
+`Cape.ResourceAgent` is a class to represent a particular resource on the web
+and performs REST manipulations on it using Fetch API.
 
 If you want to create a single page application (SPA), you may need an instance of `Cape.Router`.
 After you start it, it continues to watch the changes of *hash fragment* of URL
