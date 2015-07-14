@@ -54,6 +54,33 @@ describe('CollectionAgent', function() {
     })
   })
 
+  describe('.create', function() {
+    it('should create an instance of CollectionAgent', function() {
+      var agent;
+
+      agent = Cape.CollectionAgent.create('users');
+
+      expect(agent.resourceName).to.equal('users');
+    })
+
+    it('should return an existing instance of CollectionAgent', function() {
+      var agent1, agent2;
+
+      agent1 = Cape.CollectionAgent.create('users');
+      agent2 = Cape.CollectionAgent.create('users');
+
+      expect(agent1).to.equal(agent2);
+    })
+
+    it('should hold different instances by resource name', function() {
+      var agent1, agent2;
+
+      agent1 = Cape.CollectionAgent.create('users');
+      agent2 = Cape.CollectionAgent.create('groups');
+
+      expect(agent1).not.to.equal(agent2);
+    })
+  })
 
   describe('attach', function() {
     it('should register the given object as a target of propagation', function() {
