@@ -59,12 +59,17 @@ component classes.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
 components to render themselves.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;Cape.CollectionAgent&lt;/code&gt; has a role similar to the &lt;code&gt;Cape.DataStore&lt;/code&gt;.
-Using it you can perform REST requests to the web resources using
-&lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/API/Fetch_API&#34;&gt;Fetch API&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Cape.CollectionAgent&lt;/code&gt; has a role similar to the &lt;code&gt;Cape.DataStore&lt;/code&gt;,
+but is much more powerful.
+Using it you can perform REST requests to the web resources through simple API.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Cape.ResourceAgent&lt;/code&gt; is a class to represent a particular resource on the web
-and performs REST manipulations on it using Fetch API.&lt;/p&gt;
+and performs REST manipulations on it.&lt;/p&gt;
+
+&lt;p&gt;Note that these two classes make use of the built-in
+&lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/API/Fetch_API&#34;&gt;Fetch API&lt;/a&gt;
+in order to send Ajax requests to the servers.
+They will help you to remove dependencies on jQuery from your applications.&lt;/p&gt;
 
 &lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
 After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL

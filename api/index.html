@@ -363,12 +363,17 @@ component classes.</p>
 <p><code>Cape.DataStore</code> is a class to store and manipulate data, which is used by
 components to render themselves.</p>
 
-<p><code>Cape.CollectionAgent</code> has a role similar to the <code>Cape.DataStore</code>.
-Using it you can perform REST requests to the web resources using
-<a href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API">Fetch API</a>.</p>
+<p><code>Cape.CollectionAgent</code> has a role similar to the <code>Cape.DataStore</code>,
+but is much more powerful.
+Using it you can perform REST requests to the web resources through simple API.</p>
 
 <p><code>Cape.ResourceAgent</code> is a class to represent a particular resource on the web
-and performs REST manipulations on it using Fetch API.</p>
+and performs REST manipulations on it.</p>
+
+<p>Note that these two classes make use of the built-in
+<a href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API">Fetch API</a>
+in order to send Ajax requests to the servers.
+They will help you to remove dependencies on jQuery from your applications.</p>
 
 <p>If you want to create a single page application (SPA), you may need an instance of <code>Cape.Router</code>.
 After you start it, it continues to watch the changes of <em>hash fragment</em> of URL
