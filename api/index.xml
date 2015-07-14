@@ -2174,6 +2174,7 @@ for Ajax requests.&lt;/p&gt;
 
 var Form = Cape.createComponentClass({
   init: function() {
+    this.id = 123;
     this.agent = new Cape.ResourceAgent(&#39;user&#39;, this);
     this.agent.init(function(agent) {
       this.setValues(&#39;user&#39;, agent.object);
@@ -2184,7 +2185,7 @@ var Form = Cape.createComponentClass({
   render: function(m) {
     m.formFor(&#39;user&#39;, function(m) {
       m.textField(&#39;login_name&#39;);
-      m.passwordField(&#39;password&#39;);
+      ...
     });
   }
 });
