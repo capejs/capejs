@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 1.0.3 (July, 17, 2015)
+
+### `Cape.Component`
+
+* Fix a bug that tampers other forms. (Backporting)
+
 ## 1.0.2 (July, 5, 2015)
 
 ### `Cape.Component`
