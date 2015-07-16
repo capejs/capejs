@@ -138,14 +138,23 @@ describe('Component', function() {
       var Klass, component;
 
       Klass = Cape.createComponentClass({
+        init: function() {
+          this.setValues('', { title: 'A', confirmed: true, genre: 'H' });
+          this.refresh();
+        },
+
         render: function(m) {
           m.form(function(m) {
             m.a({ name: 'name' })
-            m.textField('title', { value: 'A' });
+            m.textField('title');
             m.textField('name', { value: 'B' });
+            m.textareaField('comment', { value: 'X' });
+            m.checkBox('confirmed');
             m.checkBox('published');
             m.radioButton('color', 'red');
             m.radioButton('color', 'blue');
+            m.radioButton('genre', 'G');
+            m.radioButton('genre', 'H');
             m.hiddenField('uid', { value: '' });
           });
         }
@@ -161,10 +170,47 @@ describe('Component', function() {
 
       expect(component.val('title')).to.equal('A');
       expect(component.val('name')).to.equal('C');
+      expect(component.val('comment')).to.equal('X');
+      expect(component.val('confirmed')).to.equal('1');
       expect(component.val('published')).to.equal('1');
       expect(component.val('color')).to.equal('blue');
+      expect(component.val('genre')).to.equal('H');
       expect(component.val('uid')).to.equal('1000');
       expect(component.val('xxx')).to.equal('');
+    })
+
+    it('should get the value of a select field', function() {
+      var Klass, component;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.form(function(m) {
+            m.selectBox('genre', function(m) {
+              m.option('X', { value: 'x' });
+              m.option('Y', { value: 'y' });
+            })
+            m.selectBox('type', { value: 'b' }, function(m) {
+              m.option('A', { value: 'a' });
+              m.option('B', { value: 'b' });
+              m.option('C', { value: 'c' });
+            })
+          });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+
+      // The next assertion fails on jsdom, which returns the value of first option
+      // when a select element has no selected option.
+      if (!isNode) expect(component.val('genre')).to.equal('');
+      expect(component.val('type')).to.equal('b');
+
+      component.val('genre', 'y');
+      component.val('type', 'c');
+      component.refresh();
+      expect(component.val('genre')).to.equal('y');
+      expect(component.val('type')).to.equal('c');
     })
 
     it('should get the value of a field of named form', function() {
@@ -306,6 +352,45 @@ describe('Component', function() {
       expect(component.val('book.author/family_name')).to.equal('Doe');
       expect(component.val('book.author/tags/0/value')).to.equal('S');
       expect(component.val('book.comments/1/body')).to.equal('Y');
+    })
+
+    it('should not change other forms', function() {
+      var Klass, component, div, form;
+
+      Klass = Cape.createComponentClass({
+        init: function() { this.mode = 'foo'; },
+        render: function(m) {
+          if (this.mode === 'foo')
+            m.formFor('foo', function(m) {
+              m.textField('title');
+              m.checkBox('published');
+            });
+          else
+            m.formFor('bar', function(m) {
+              m.textField('title');
+              m.checkBox('published');
+            });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+      component.val('foo.title', 'X');
+      component.val('foo.published', true);
+      component.refresh();
+
+      div = document.getElementById('target');
+      form = div.getElementsByTagName('form')[0];
+      expect(form.name).to.equal('foo');
+      expect(form.getElementsByTagName('input')[0].value).to.equal('X');
+      expect(form.getElementsByTagName('input')[2].checked).to.be.true;
+
+      component.mode = 'bar';
+      component.refresh();
+      form = div.getElementsByTagName('form')[0];
+      expect(form.name).to.equal('bar');
+      expect(div.getElementsByTagName('input')[0].value).to.equal('');
+      expect(form.getElementsByTagName('input')[2].checked).to.be.false;
     })
   })
 

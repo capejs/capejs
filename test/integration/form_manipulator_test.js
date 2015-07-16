@@ -1,3 +1,5 @@
+"use strict";
+
 describe('Demo', function() {
   describe('FormManipulator', function() {
     before(function() {
@@ -12,13 +14,15 @@ describe('Demo', function() {
     })
 
     it('should refresh counter', function() {
-      var c, root, cb, button, textarea, formData;
+      var c, root, selectBox, option, cb, button, textarea, formData;
 
       c = new FormManipulator();
       c.mount('form-manipulator');
 
       root = document.getElementById('form-manipulator');
 
+      selectBox = root.getElementsByTagName('select')[0];
+      expect(selectBox.value).to.equal('a');
       option = root.getElementsByTagName('option')[0]; // [A]
       expect(option.selected).to.equal(true);
 

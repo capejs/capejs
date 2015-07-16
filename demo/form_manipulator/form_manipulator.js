@@ -14,7 +14,7 @@ var FormManipulator = Cape.createComponentClass({
     m.formFor('foo', function(m) {
       m.labelFor('title', 'Title').sp().textField('title');
       m.labelFor('genre', 'Genre').sp();
-      m.selectBox('genre', function(m) {
+      m.selectBox('genre', { value: 'a' }, function(m) {
         m.option('A', { value: 'a' });
         m.option('B', { value: 'b' });
         m.option('C', { value: 'c' });
