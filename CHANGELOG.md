@@ -11,6 +11,7 @@ that includes `constructor` key to override the class constructor.
 
 * `#formData` retuns array of values when the name of checkbox field has `[]` in the end.
 * Fix a bug that prevents hidden field rewrite. Backported as `v1.0.2` and `v1.1.1`.
+* Fix a bug that tampers other forms. Backported as `v1.0.3` and `v1.1.2`.
 
 ### `Cape.MarkupBuilder`
 
