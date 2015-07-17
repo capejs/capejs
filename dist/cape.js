@@ -50,13 +50,15 @@ Cape.extend(Component.prototype, {
     if (this.afterUnmount) this.afterUnmount();
   },
   refresh: function() {
-    var builder, newTree, patches, tempNode, textareaNodes, i, len, form;
+    var builder, newTree, patches, tempNode, textareaNodes, i, j, len, form,
+        elements, elem, formName, vform, elemName;
 
     builder = new global.Cape.MarkupBuilder(this);
 
     if (this._.tree) {
       this._.serializeForms();
       global.Cape.deepExtend(this._.forms, this._.virtualForms);
+      this._.tempForms = global.Cape.deepExtend({}, this._.forms);
 
       newTree = builder.markup(this.render);
       patches = virtualDom.diff(this._.tree, newTree);
@@ -64,6 +66,8 @@ Cape.extend(Component.prototype, {
       this._.tree = newTree;
     }
     else {
+      this._.tempForms = global.Cape.deepExtend({}, this._.virtualForms);
+
       this._.tree = builder.markup(this.render);
       tempNode = virtualDom.create(this._.tree);
       this.root.parentNode.replaceChild(tempNode, this.root);
@@ -73,28 +77,40 @@ Cape.extend(Component.prototype, {
     var forms = this.root.getElementsByTagName('form');
     for (i = 0, len = forms.length; i < len; i++) {
       form = forms[i];
-      var key = form.getAttribute('name') || '';
-      var vform = this._.virtualForms[key];
-      if (!vform) continue;
-      Object.keys(vform).forEach(function(k) {
-        var elements, j, elem;
+      formName = form.getAttribute('name') || '';
+      vform = this._.tempForms[formName] || {};
 
-        elements = form.getElementsByTagName('*');
-        for (j = 0; j < elements.length; j++) {
-          elem = elements[j];
-          if (elem.getAttribute('name') != k) continue;
-          if (elem.value === undefined) continue;
+      elements = form.getElementsByTagName('*');
+      for (j = 0; j < elements.length; j++) {
+        elem = elements[j];
+        if (elem.value === undefined || elem.name === undefined) continue;
+        if (elem.type === 'hidden') {
+          if (elements[j + 1] && elements[j + 1].type === 'checkbox') continue;
+        }
+        elemName = elem.getAttribute('name');
+        if (vform[elemName]) {
           if (elem.type === 'checkbox') {
-            elem.checked = vform[k];
+            elem.checked = true;
           }
           else if (elem.type === 'radio') {
-            if (elem.value === vform[k]) elem.checked = true;
+            if (elem.value === vform[elemName]) elem.checked = true;
           }
           else {
-            elem.value = vform[k];
+            elem.value = vform[elemName];
           }
         }
-      })
+        else {
+          if (elem.type === 'checkbox') {
+            elem.checked = false;
+          }
+          else if (elem.type === 'radio') {
+            if (elem.value === vform[elemName]) elem.checked = false;
+          }
+          else {
+            elem.value = '';
+          }
+        }
+      }
     }
 
     this._.virtualForms = {};
@@ -444,12 +460,14 @@ Cape.extend(MarkupBuilder.prototype, {
     return this;
   },
   textareaField: function(attrName, options) {
-    var dasherized;
+    var formName, vform, dasherized;
 
     if (attrName && this._.fieldNamePrefix)
       attrName = this._.fieldNamePrefix + '/' + attrName
     options = options || {};
     options.name = attrName;
+
+    this._.updateVirtualForms(options);
 
     dasherized = Inflector.dasherize(attrName.replace(/\//g, '_'));
     if (!options.id) {
@@ -512,6 +530,9 @@ Cape.extend(MarkupBuilder.prototype, {
     callback.call(this.component, builder);
     options = options || {};
     attributes = this._.generateAttributes(options);
+
+    this._.updateVirtualForms({ name: name, value: options.value });
+
     this._.elements.push(this._.h('select', attributes, builder._.elements));
     return this;
   },
@@ -593,7 +614,7 @@ var _Internal = function _Internal(main) {
 // Internal methods of Cape.MarkupBuilder
 Cape.extend(_Internal.prototype, {
   inputField: function(options) {
-    var attributes, dasherized;
+    var attributes, dasherized, formName, vform;
 
     options = options || {};
 
@@ -604,11 +625,37 @@ Cape.extend(_Internal.prototype, {
     }
     if (options.id === null) delete options.id;
     if (options.name && this.fieldNamePrefix)
-      options.name = this.fieldNamePrefix + '/' + options.name
+      options.name = this.fieldNamePrefix + '/' + options.name;
+
+    this.updateVirtualForms(options);
 
     attributes = this.generateAttributes(options);
     this.elements.push(this.h('input', attributes));
     return this;
+  },
+
+  updateVirtualForms: function(options) {
+    var formName, vform;
+
+    formName = this.formName || '';
+    vform = this.main.component._.tempForms[formName];
+    if (vform === undefined) {
+      vform = this.main.component._.tempForms[formName] = {};
+    }
+    if (options.type === 'checkbox') {
+      if (vform[options.name] === undefined)
+        vform[options.name] = !!options.checked;
+    }
+    else if (options.type === 'radio' && options.checked) {
+      if (vform[options.name] === undefined)
+        vform[options.name] = options.value;
+    }
+    else {
+      if (options.value) {
+        if (vform[options.name] === undefined)
+          vform[options.name] = options.value;
+      }
+    }
   },
 
   elementIdFor: function(name) {
