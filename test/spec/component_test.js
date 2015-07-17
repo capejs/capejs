@@ -139,7 +139,7 @@ describe('Component', function() {
 
       Klass = Cape.createComponentClass({
         init: function() {
-          this.setValues('', { title: 'A' });
+          this.setValues('', { title: 'A', confirmed: true, genre: 'H' });
           this.refresh();
         },
 
@@ -149,9 +149,12 @@ describe('Component', function() {
             m.textField('title');
             m.textField('name', { value: 'B' });
             m.textareaField('comment', { value: 'X' });
+            m.checkBox('confirmed');
             m.checkBox('published');
             m.radioButton('color', 'red');
             m.radioButton('color', 'blue');
+            m.radioButton('genre', 'G');
+            m.radioButton('genre', 'H');
             m.hiddenField('uid', { value: '' });
           });
         }
@@ -168,13 +171,15 @@ describe('Component', function() {
       expect(component.val('title')).to.equal('A');
       expect(component.val('name')).to.equal('C');
       expect(component.val('comment')).to.equal('X');
+      expect(component.val('confirmed')).to.equal('1');
       expect(component.val('published')).to.equal('1');
       expect(component.val('color')).to.equal('blue');
+      expect(component.val('genre')).to.equal('H');
       expect(component.val('uid')).to.equal('1000');
       expect(component.val('xxx')).to.equal('');
     })
 
-    it('should get the value of a select field xxx', function() {
+    it('should get the value of a select field', function() {
       var Klass, component;
 
       Klass = Cape.createComponentClass({
