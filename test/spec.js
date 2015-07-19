@@ -1,5 +1,6 @@
 require('./spec/utilities_test.js')
 require('./spec/component_test.js')
+require('./spec/virtual_forms_test.js')
 require('./spec/markup_builder_test.js')
 require('./spec/data_store_test.js')
 require('./spec/resource_agent_test.js')
