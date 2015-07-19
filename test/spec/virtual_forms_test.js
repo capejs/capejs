@@ -43,6 +43,7 @@ describe('VirtualForms', function() {
 
       component = new Klass();
       component.mount('target');
+      expect(component.val('confirmed')).to.equal('1');
       component.val('name', 'C');
       component.val('published', true);
       component.val('color', 'blue');
@@ -58,6 +59,49 @@ describe('VirtualForms', function() {
       expect(component.val('genre')).to.equal('H');
       expect(component.val('uid')).to.equal('1000');
       expect(component.val('xxx')).to.equal('');
+    })
+
+    it('should toggle check boxes whose name end with []', function() {
+      var Klass, component, elem;
+
+      Klass = Cape.createComponentClass({
+        init: function() {
+          this.setValues('', { 'types[]': [ 'a', 'b' ] });
+          this.refresh();
+        },
+
+        render: function(m) {
+          m.form(function(m) {
+            m.checkBox('types[]', { value: 'a', id: 'type_a' } );
+            m.checkBox('types[]', { value: 'b' } );
+            m.checkBox('types[]', { value: 'c' } );
+            m.checkBox('tags[]', { value: 'x', id: 'tag_x' } );
+            m.checkBox('tags[]', { value: 'y' } );
+            m.checkBox('tags[]', { value: 'z' } );
+          });
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+
+      elem = document.getElementById('type_a');
+      expect(elem.checked).to.be.true;
+
+      expect(component.val('types[]').length).to.equal(2);
+      expect(component.val('tags[]').length).to.equal(0);
+
+      component.val('types[]', [ 'a', 'c' ]);
+      elem = document.getElementById('tag_x');
+      elem.checked = true;
+
+      component.refresh();
+      elem = document.getElementById('tag_x');
+      expect(elem.checked).to.be.true;
+      expect(component.val('types[]').length).to.equal(2);
+      expect(component.val('types[]')[1]).to.equal('c');
+      expect(component.val('tags[]').length).to.equal(1);
+      expect(component.val('tags[]')[0]).to.equal('x');
     })
 
     it('should get the value of a select field', function() {
