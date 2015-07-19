@@ -1,3 +1,5 @@
+'use strict';
+
 var isNode = typeof module !== 'undefined' && module.exports !== undefined;
 
 describe('MarkupBuilder', function() {

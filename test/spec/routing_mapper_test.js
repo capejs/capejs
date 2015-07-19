@@ -1,3 +1,5 @@
+'use strict';
+
 describe('RoutingMapper', function() {
   describe('page', function() {
     it('should add a route to specified component', function() {

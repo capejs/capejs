@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Demo', function() {
   describe('ES6HelloMessage', function() {
     before(function() {

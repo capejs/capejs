@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Demo', function() {
   describe('SimpleRoutes', function() {
     before(function() {

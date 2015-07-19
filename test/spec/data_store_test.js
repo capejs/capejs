@@ -1,3 +1,5 @@
+'use strict';
+
 describe('DataStore', function() {
   describe('constructor', function() {
     it('should call "this.init()" if defined', function() {
@@ -36,7 +38,7 @@ describe('DataStore', function() {
     })
 
     it('should accept options for the constructor', function() {
-      var Klass, object1, object2;
+      var Klass, object;
 
       Klass = Cape.createDataStoreClass({})
 
@@ -48,7 +50,7 @@ describe('DataStore', function() {
 
   describe('attach', function() {
     it('should register the given object as a target of propagation', function() {
-      var Klass, component, ds;
+      var Klass, component1, component2, ds;
 
       Klass = Cape.createDataStoreClass({});
       component1 = { refresh: sinon.spy() };
@@ -77,7 +79,7 @@ describe('DataStore', function() {
 
   describe('detach', function() {
     it('should unregister the given object as a target of propagation', function() {
-      var Klass, component, ds;
+      var Klass, component1, component2, component3, ds;
 
       Klass = Cape.createDataStoreClass({});
       component1 = { refresh: sinon.spy() }

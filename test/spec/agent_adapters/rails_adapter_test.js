@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // This test script should NOT be included into test/runner.html.
 describe('AgentAdapters.RailsAdapter', function() {

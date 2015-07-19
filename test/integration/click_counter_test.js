@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Demo', function() {
   describe('ClickCounter', function() {
     before(function() {

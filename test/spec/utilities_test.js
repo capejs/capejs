@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Cape', function() {
   describe('extend', function() {
     it('should merge the properties of objects into the first.', function() {

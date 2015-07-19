@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Router', function() {
   describe('constructor', function() {
     it('should have complete set of properties', function() {
@@ -130,13 +132,13 @@ describe('Router', function() {
 
   describe('draw', function() {
     it ('should throw when the first argument is not a function', function() {
-      router = new Cape.Router();
+      var router = new Cape.Router();
 
       expect(function() { router.draw("") }).to.throw(/must be a function/);
     })
 
     it ('should throw when the given function takes no argument', function() {
-      router = new Cape.Router();
+      var router = new Cape.Router();
 
       expect(function() { router.draw(function() {}) }).to.throw(/requires an argument/);
     })
@@ -380,7 +382,7 @@ describe('Router', function() {
     })
 
     it ('should call notify()', function() {
-      var router;
+      var router, method3;
 
       window.Members = {};
       window.Members.Item = function() {};

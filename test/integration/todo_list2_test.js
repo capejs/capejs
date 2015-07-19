@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Demo', function() {
   describe('TodoList2', function() {
     before(function() {
@@ -12,7 +14,7 @@ describe('Demo', function() {
     })
 
     it('should refresh counter', function() {
-      var c, input, button, ul, cb, label;
+      var c, root, input, button, ul, cb, label;
 
       c = new TodoList2();
       c.mount('component');

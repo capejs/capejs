@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Demo', function() {
   describe('HelloMessage', function() {
     before(function() {

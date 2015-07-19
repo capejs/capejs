@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function stubFetchAPI(spy, data, dataType) {
   data = data || {};

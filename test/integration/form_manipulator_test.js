@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 describe('Demo', function() {
   describe('FormManipulator', function() {
