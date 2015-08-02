@@ -14,7 +14,7 @@ describe('Cape Tests', function() {
     global.fetch = require('node-fetch')
 
     global.Cape = require('../lib/cape.js')
-    global.stubFetchAPI = require('./helpers.js')['stubFetchAPI']
+    global.stubFetchAPI = require('./helpers.js').stubFetchAPI
   } else {
     global = window
     mocha.run()

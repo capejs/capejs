@@ -1,5 +1,7 @@
 'use strict';
 
+var isNode = typeof window === 'undefined'
+
 function stubFetchAPI(spy, data, dataType) {
   data = data || {};
   sinon.stub(global, 'fetch', function(path, options) {
@@ -29,4 +31,4 @@ function stubFetchAPI(spy, data, dataType) {
   });
 }
 
-module.exports = { stubFetchAPI: stubFetchAPI };
+if (typeof module !== 'undefined') module.exports = { stubFetchAPI: stubFetchAPI };
