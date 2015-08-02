@@ -41,7 +41,7 @@ performs Ajax requests using `fetch` API.
 objects and performs Ajax requests using `fetch` API.
 
 
-## 1.1.0 (June, 7, 2015)
+## 1.1.0 (June 7, 2015)
 
 ### `Cape.Component`
 
