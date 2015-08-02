@@ -56,6 +56,24 @@ pages:
         id: "basics"
         title: "Basics"
       -
+        id: "setting-up"
+        title: "Setting up"
+      -
+        id: "agent-adapters"
+        title: "Agent Adapters"
+      -
+        id: "initialization"
+        title: "Initialization"
+      -
+        id: "creating-resources"
+        title: "Creating Resources"
+      -
+        id: "rest-operations"
+        title: "REST Operations"
+      -
+        id: "callbacks-and-error-handlers"
+        title: "Callbacks and Error Handlers"
+      -
         id: "options"
         title: "Options"
   -

@@ -2,6 +2,8 @@
 title: "Resource Agents"
 ---
 
+<span class="badge alert-info">1.2</span>
+
 [Basics](#basics) -
 [Options](#options)
 

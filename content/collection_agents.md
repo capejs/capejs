@@ -2,11 +2,15 @@
 title: "Collection Agents"
 ---
 
+<span class="badge alert-info">1.2</span>
+
 [Basics](#basics) -
 [Setting up](#setting-up) -
 [Agent Adapters](#agent-adapters) -
 [Initialization](#initialization) -
 [Creating Resources](#creating-resources) -
+[REST Operations](#rest-operations) -
+[Callbacks and Error Handlers](#callbacks-and-error-handlers) -
 [Options](#options)
 
 <a class="anchor" id="basics"></a>
@@ -21,8 +25,10 @@ Cape.JS provides similar objects called _data stores_.
 But, they lack Ajax functionalities so that
 you have to implement them on your own.
 
-Generally speaking, it is preferable that you adopt collection agents
+Generally speaking, you will prefer collection agents to data stores,
 if the server provides a set of RESTful APIs.
+
+Note that the collection agents are introduced with the Cape.JS version 1.2.
 
 <a class="anchor" id="setting-up"></a>
 ### Setting up
@@ -112,7 +118,7 @@ the component will render the following HTML fragment:
 </ul>
 ```
 
-<a class="anchor" id="creating-a-resource"></a>
+<a class="anchor" id="creating-resources"></a>
 ### Creating Resources
 
 Suppose that you can create a _user_ by sending a `POST` request to the `/users`
@@ -147,11 +153,57 @@ class UserList extends Cape.Component {
 }
 ```
 
-<a class="anchor" id="callbacks"></a>
-### Callbacks
+<a class="anchor" id="rest-operations"></a>
+### REST operations
+
+Cape.JS provides five basic methods for REST operations:
+
+* [#index()](./api/collection_agent#index) to get a collection of resources
+* [#show()](./api/collection_agent#show) to get a resource
+* [#create()](./api/collection_agent#create) to create a resource
+* [#update()](./api/collection_agent#update) to update (modify) a resource
+* [#destroy()](./api/collection_agent#destroy) to delete a resource
+
+These methods send an Ajax call using Rails like HTTP verbs and paths.
+If the resource name is `'users'`, the HTTP verbs and paths will be as shown in the
+following table, where `:id` is an integer denoting the value of object's `id`.
+
+|Method|HTTP Verb|Path|
+|------|---------|----|
+|#index()|GET|/users|
+|#show()|GET|/users/:id|
+|#create()|POST|/users|
+|#update()|PATCH|/users/:id|
+|#destroy()|DELETE|/users/:id|
+
+The following is an example of code which modify the name of a user:
+
+```javascript
+this.agent.update(1, { name: 'johnny' });
+```
+
+When you specify other combinations of HTTP verb and path, you should use
+one of following five methods:
+
+* [#get()](./api/collection_agent#get) to send a `GET` request
+* [#head()](./api/collection_agent#head) to send a `HEAD` request
+* [#post()](./api/collection_agent#post) to send a `POST` request
+* [#patch()](./api/collection_agent#patch) to send a `PATCH` request
+* [#put()](./api/collection_agent#put) to send a `PUT` request
+* [#delete()](./api/collection_agent#delete) to send a `DELETE` request
+
+For example, if you want to make a `PATCH` request to the path `/users/123/move_up`,
+write a code like this:
+
+```javascript
+this.agent.patch('move_up', 123, {});
+```
+
+<a class="anchor" id="callbacks-and-error-handlers"></a>
+### Callbacks and Error Handlers
 
 If you want the collection agent to perform any jobs after the Ajax request,
-you can pass a _callback_ as the second argument of `#create()` method as follows:
+you can pass a _callback_ as the last argument to the methods:
 
 ```javascript
 m.onclick(e => this.agent.create(this.paramsFor('user'), data => {
@@ -159,12 +211,45 @@ m.onclick(e => this.agent.create(this.paramsFor('user'), data => {
     this.val('user.name', '');
   }
   else {
-    // Do some error handling.
+    // Do something to handle validation errors, for example.
   }
 }));
 ```
 
+Furthermore, you can specify an _error handler_ after the callback:
+
+```javascript
+m.onclick(e => this.agent.create(this.paramsFor('user'), data => {
+  if (data.result === 'OK') {
+    this.val('user.name', '');
+  }
+  else {
+    // Do something to handle validation errors, for example.
+  }
+}, ex => {
+  // Do some error handling.
+}));
+```
+
+This error hander is called when an exception is raised due to some reasons
+(network errors, syntax errors, etc.).
+
 <a class="anchor" id="options"></a>
 ### Options
 
-This section is not yet prepared.
+The class method `.create()` takes following options:
+
+* `adapter`: the name of adapter (e.g., 'rails'). Default is undefined.
+  Default value can be changed by setting Cape.defaultAgentAdapter property.
+* `autoRefresh`: a boolean value that controls unsafe Ajax requests trigger
+  this.refresh(). Default is true.
+* `dataType`: the type of data that you're expecting from the server.
+  The value must be 'json', 'text' or undefined. Default is undefiend.
+  When the dataType option is not defined, the type is detected automatically.
+* `pathPrefix`: the string that is added to the request path. Default value is '/'.
+* `paramName`: the name of parameter to be used when the `objects`
+  property is initialized and refreshed. Default is undefiend.
+  When the `pathName` option is not defined, the name is derived from the
+  `resourceName` property, e.g. `user` if the resource name is `users`.
+
+See [.create()](./api/collection_agent#_create) for details.
