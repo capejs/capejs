@@ -35,7 +35,7 @@ If you just want to use Cape.JS in your web site, insert the following snippet
 to the `<head>` section of your HTML files.
 
 ```html
-<script src="https://cdn.rawgit.com/oiax/capejs/v1.1.1/dist/cape.min.js"></script>
+<script src="//cdn.rawgit.com/oiax/capejs/v1.1.1/dist/cape.min.js"></script>
 ```
 
 You can get the package for [npm](https://www.npmjs.com/) <i class="fa fa-external-link"></i> with following command:
