@@ -147,6 +147,23 @@ class UserList extends Cape.Component {
 }
 ```
 
+<a class="anchor" id="callbacks"></a>
+### Callbacks
+
+If you want the collection agent to perform any jobs after the Ajax request,
+you can pass a _callback_ as the second argument of `#create()` method as follows:
+
+```javascript
+m.onclick(e => this.agent.create(this.paramsFor('user'), data => {
+  if (data.result === 'OK') {
+    this.val('user.name', '');
+  }
+  else {
+    // Do some error handling.
+  }
+}));
+```
+
 <a class="anchor" id="options"></a>
 ### Options
 
