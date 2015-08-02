@@ -55,6 +55,17 @@ a.anchor {
   visibility: hidden;
 }
 
+table {
+  margin: 10px auto;
+}
+th, td {
+  border: 1px solid black;
+  padding: 10px;
+}
+th {
+  background-color: #eee;
+}
+
 div.footer {
   background-color: #f8f8f8;
   border-top: #e7e7e7 1px solid;

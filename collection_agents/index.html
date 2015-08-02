@@ -108,6 +108,18 @@
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#basics">Basics</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/collection_agents/#setting-up">Setting up</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/collection_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/collection_agents/#initialization">Initialization</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/collection_agents/#creating-resources">Creating Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/collection_agents/#rest-operations">REST Operations</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/collection_agents/#callbacks-and-error-handlers">Callbacks and Error Handlers</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/collection_agents/#options">Options</a></li>
           
           </ul>
@@ -176,20 +188,296 @@
         <div>
           
 
+<p><span class="badge alert-info">1.2</span></p>
+
 <p><a href="#basics">Basics</a> -
+<a href="#setting-up">Setting up</a> -
+<a href="#agent-adapters">Agent Adapters</a> -
+<a href="#initialization">Initialization</a> -
+<a href="#creating-resources">Creating Resources</a> -
+<a href="#rest-operations">REST Operations</a> -
+<a href="#callbacks-and-error-handlers">Callbacks and Error Handlers</a> -
 <a href="#options">Options</a></p>
 
 <p><a class="anchor" id="basics"></a></p>
 
 <h3 id="basics:0b3dd9ce14f479a81f8252af01a87547">Basics</h3>
 
-<p>This section is not yet prepared.</p>
+<p>The <em>collection agents</em> are JavaScript objects that have following capabilities:</p>
+
+<ul>
+<li>Keeping an array of objects that represent resources of the server.</li>
+<li>Creating, updating and deleting these resources by sending Ajax requests to the server.</li>
+</ul>
+
+<p>Cape.JS provides similar objects called <em>data stores</em>.
+But, they lack Ajax functionalities so that
+you have to implement them on your own.</p>
+
+<p>Generally speaking, you will prefer collection agents to data stores,
+if the server provides a set of RESTful APIs.</p>
+
+<p>Note that the collection agents are introduced with the Cape.JS version 1.2.</p>
+
+<p><a class="anchor" id="setting-up"></a></p>
+
+<h3 id="setting-up:0b3dd9ce14f479a81f8252af01a87547">Setting up</h3>
+
+<p>For doing Ajax operations, the collection agents utilize
+<a href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API">Fetch API</a>,
+which is supported only by some modern browsers.
+If you want to support Internet Explorer and Safari,
+you need to include a <em>pollyfill</em> for the Fetch API into your application
+by adding the following lines to the <code>&lt;head&gt;</code> section of your HTML files.</p>
+
+<pre><code class="language-html">&lt;script src=&quot;//cdn.rawgit.com/jakearchibald/es6-promise/2.3.0/dist/es6-promise.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/fetch/0.9.0/fetch.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p><a class="anchor" id="agent-adapters"></a></p>
+
+<h3 id="agent-adapters:0b3dd9ce14f479a81f8252af01a87547">Agent Adapters</h3>
+
+<p>Sometimes, the Ajax clients need to send a set of specific HTTP headers to the server.
+A Rails application requires a correct <code>X-CSRF-Token</code> header, for example.</p>
+
+<p>In order to cope with the peculiarities of the server, you can use a <em>agent adapter</em>.
+As of <code>v1.2.0</code>, the only built-in adapter is <code>Cape.AgentAdapters.RailsAdapter</code>.</p>
+
+<p>If your server is built on the Ruby on Rails, put the following line at the very
+beginning of your JavaScript code:</p>
+
+<pre><code class="language-javascript">Cape.defaultAgentAdapter = 'rails'
+</code></pre>
+
+<p><a class="anchor" id="initialization"></a></p>
+
+<h3 id="initialization:0b3dd9ce14f479a81f8252af01a87547">Initialization</h3>
+
+<p>Suppose that when you send an HTTP request <code>GET /users</code> to the server,
+it returns the following JSON string:</p>
+
+<pre><code class="language-json">&quot;users&quot; : [
+  { &quot;id&quot;: 1, &quot;name&quot;: &quot;John&quot; },
+  { &quot;id&quot;: 2, &quot;name&quot;: &quot;Anna&quot; },
+  { &quot;id&quot;: 3, &quot;name&quot;: &quot;Tommy&quot; }
+]
+</code></pre>
+
+<p>Then, you can build a Cape.JS component like this:</p>
+
+<pre><code class="language-javascript">class UserList extends Cape.Component {
+  init() {
+    this.agent = Cape.CollectionAgent.create('users');
+    this.agent.attach(this);
+    this.agent.refresh();
+  }
+
+  render(m) {
+    m.ul(m =&gt; {
+      this.agent.objects.forEach(user =&gt; {
+        m.li(user.name);
+      });
+    });
+  }
+}
+</code></pre>
+
+<p>Note that the <code>Cape.CollectionAgent.create</code> method is a singleton factory method,
+which returns the same object always. The string argument <code>'users'</code> is the name
+of resource collection. The collection agent uses it to construct the URL paths
+and analyze the JSON string returned from the server.</p>
+
+<p>The <code>attach</code> method register the argument as an <em>event listener</em> of the agent.
+With this the component will get notified
+when the <em>objects</em> managed by the agent are changed.</p>
+
+<p>The <code>refresh</code> method will trigger an Ajax request to the server and
+initialize the <code>objects</code> property of the component.</p>
+
+<p>In response to the notification from the agent,
+the component will render the following HTML fragment:</p>
+
+<pre><code class="language-html">&lt;ul&gt;
+  &lt;li&gt;John&lt;/li&gt;
+  &lt;li&gt;Anna&lt;/li&gt;
+  &lt;li&gt;Tommy&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p><a class="anchor" id="creating-resources"></a></p>
+
+<h3 id="creating-resources:0b3dd9ce14f479a81f8252af01a87547">Creating Resources</h3>
+
+<p>Suppose that you can create a <em>user</em> by sending a <code>POST</code> request to the <code>/users</code>
+with the following body:</p>
+
+<pre><code class="language-json">&quot;user&quot;: { &quot;name&quot;: &quot;Nancy&quot; }
+</code></pre>
+
+<p>Then, you can create a form for adding users like this:</p>
+
+<pre><code class="language-javascript">class UserList extends Cape.Component {
+  init() {
+    this.agent = Cape.CollectionAgent.create('users');
+    this.agent.attach(this);
+    this.agent.refresh();
+  }
+
+  render(m) {
+    m.ul(m =&gt; {
+      this.agent.objects.forEach(user =&gt; {
+        m.li(user.name);
+      });
+    });
+    m.formFor('user', m =&gt; {
+      m.textField('name');
+      m.onclick(e =&gt; this.agent.create(this.paramsFor('user')));
+      m.btn('Create');
+    })
+  }
+}
+</code></pre>
+
+<p><a class="anchor" id="rest-operations"></a></p>
+
+<h3 id="rest-operations:0b3dd9ce14f479a81f8252af01a87547">REST operations</h3>
+
+<p>Cape.JS provides five basic methods for REST operations:</p>
+
+<ul>
+<li><a href="./api/collection_agent#index">#index()</a> to get a collection of resources</li>
+<li><a href="./api/collection_agent#show">#show()</a> to get a resource</li>
+<li><a href="./api/collection_agent#create">#create()</a> to create a resource</li>
+<li><a href="./api/collection_agent#update">#update()</a> to update (modify) a resource</li>
+<li><a href="./api/collection_agent#destroy">#destroy()</a> to delete a resource</li>
+</ul>
+
+<p>These methods send an Ajax call using Rails like HTTP verbs and paths.
+If the resource name is <code>'users'</code>, the HTTP verbs and paths will be as shown in the
+following table, where <code>:id</code> is an integer denoting the value of object&rsquo;s <code>id</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>HTTP Verb</th>
+<th>Path</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>#index()</td>
+<td>GET</td>
+<td>/users</td>
+</tr>
+
+<tr>
+<td>#show()</td>
+<td>GET</td>
+<td>/users/:id</td>
+</tr>
+
+<tr>
+<td>#create()</td>
+<td>POST</td>
+<td>/users</td>
+</tr>
+
+<tr>
+<td>#update()</td>
+<td>PATCH</td>
+<td>/users/:id</td>
+</tr>
+
+<tr>
+<td>#destroy()</td>
+<td>DELETE</td>
+<td>/users/:id</td>
+</tr>
+</tbody>
+</table>
+
+<p>The following is an example of code which modify the name of a user:</p>
+
+<pre><code class="language-javascript">this.agent.update(1, { name: 'johnny' });
+</code></pre>
+
+<p>When you specify other combinations of HTTP verb and path, you should use
+one of following five methods:</p>
+
+<ul>
+<li><a href="./api/collection_agent#get">#get()</a> to send a <code>GET</code> request</li>
+<li><a href="./api/collection_agent#head">#head()</a> to send a <code>HEAD</code> request</li>
+<li><a href="./api/collection_agent#post">#post()</a> to send a <code>POST</code> request</li>
+<li><a href="./api/collection_agent#patch">#patch()</a> to send a <code>PATCH</code> request</li>
+<li><a href="./api/collection_agent#put">#put()</a> to send a <code>PUT</code> request</li>
+<li><a href="./api/collection_agent#delete">#delete()</a> to send a <code>DELETE</code> request</li>
+</ul>
+
+<p>For example, if you want to make a <code>PATCH</code> request to the path <code>/users/123/move_up</code>,
+write a code like this:</p>
+
+<pre><code class="language-javascript">this.agent.patch('move_up', 123, {});
+</code></pre>
+
+<p><a class="anchor" id="callbacks-and-error-handlers"></a></p>
+
+<h3 id="callbacks-and-error-handlers:0b3dd9ce14f479a81f8252af01a87547">Callbacks and Error Handlers</h3>
+
+<p>If you want the collection agent to perform any jobs after the Ajax request,
+you can pass a <em>callback</em> as the last argument to the methods:</p>
+
+<pre><code class="language-javascript">m.onclick(e =&gt; this.agent.create(this.paramsFor('user'), data =&gt; {
+  if (data.result === 'OK') {
+    this.val('user.name', '');
+  }
+  else {
+    // Do something to handle validation errors, for example.
+  }
+}));
+</code></pre>
+
+<p>Furthermore, you can specify an <em>error handler</em> after the callback:</p>
+
+<pre><code class="language-javascript">m.onclick(e =&gt; this.agent.create(this.paramsFor('user'), data =&gt; {
+  if (data.result === 'OK') {
+    this.val('user.name', '');
+  }
+  else {
+    // Do something to handle validation errors, for example.
+  }
+}, ex =&gt; {
+  // Do some error handling.
+}));
+</code></pre>
+
+<p>This error hander is called when an exception is raised due to some reasons
+(network errors, syntax errors, etc.).</p>
 
 <p><a class="anchor" id="options"></a></p>
 
 <h3 id="options:0b3dd9ce14f479a81f8252af01a87547">Options</h3>
 
-<p>This section is not yet prepared.</p>
+<p>The class method <code>.create()</code> takes following options:</p>
+
+<ul>
+<li><code>adapter</code>: the name of adapter (e.g., &lsquo;rails&rsquo;). Default is undefined.
+Default value can be changed by setting Cape.defaultAgentAdapter property.</li>
+<li><code>autoRefresh</code>: a boolean value that controls unsafe Ajax requests trigger
+this.refresh(). Default is true.</li>
+<li><code>dataType</code>: the type of data that you&rsquo;re expecting from the server.
+The value must be &lsquo;json&rsquo;, &lsquo;text&rsquo; or undefined. Default is undefiend.
+When the dataType option is not defined, the type is detected automatically.</li>
+<li><code>pathPrefix</code>: the string that is added to the request path. Default value is &lsquo;/&rsquo;.</li>
+<li><code>paramName</code>: the name of parameter to be used when the <code>objects</code>
+property is initialized and refreshed. Default is undefiend.
+When the <code>pathName</code> option is not defined, the name is derived from the
+<code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>users</code>.</li>
+</ul>
+
+<p>See <a href="./api/collection_agent#_create">.create()</a> for details.</p>
 
         </div>
       </article>
