@@ -32,6 +32,7 @@ var testFiles = [
   'es6-demo/hello_message/*.js',
   'es6-demo/todo_list/*.js',
   'test/integration/*.js',
+  'test/helpers.js',
   'test/spec/*.js'
 ];
 

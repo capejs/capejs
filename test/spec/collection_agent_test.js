@@ -1,29 +1,5 @@
 'use strict';
 
-function stubFetchAPI(spy, data, dataType) {
-  data = data || {};
-  dataType = dataType || 'json';
-  sinon.stub(global, 'fetch', function(path, options) {
-    return {
-      then: function(callback1) {
-        var response = {};
-        response[dataType] = spy;
-        callback1.call(this, response);
-        return {
-          then: function(callback2) {
-            callback2.call(this, data);
-            return {
-              catch: function(callback3) {
-                callback3.call(this, new Error(''));
-              }
-            }
-          }
-        }
-      }
-    }
-  });
-}
-
 describe('CollectionAgent', function() {
   describe('constructor', function() {
     it('should take resource name as the first argument', function() {
