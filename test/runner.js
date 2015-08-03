@@ -3,8 +3,8 @@ var isNode = typeof window === 'undefined'
 describe('Cape Tests', function() {
   if (isNode) {
     global.jsdom = require('jsdom').jsdom
-    global.document  = jsdom('<html><body></body></html>')
-    global.window    = document.defaultView
+    global.document = jsdom()
+    global.window = document.defaultView
     global.navigator = window.navigator
 
     global.virtualDom = require('virtual-dom')

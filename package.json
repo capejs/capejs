@@ -23,7 +23,7 @@
   "homepage": "https://github.com/oiax/capejs",
   "dependencies": {
     "inflected": "^1.1.6",
-    "virtual-dom": "2.0.1"
+    "virtual-dom": "2.1.0"
   },
   "devDependencies": {
     "browserify": "^9.0.8",
@@ -35,7 +35,7 @@
     "gulp-uglify": "^1.2.0",
     "gulp-watch": "^4.2.3",
     "istanbul": "^0.3.13",
-    "jsdom": "^4.0.2",
+    "jsdom": "~5.6.1",
     "karma": "^0.12.31",
     "karma-chrome-launcher": "^0.1.7",
     "karma-mocha": "^0.1.10",
