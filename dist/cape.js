@@ -60,8 +60,13 @@ var Cape = require('./utilities');
 //   autoRefresh: a boolean value that controls unsafe Ajax requests trigger
 //     this.refresh(). Default is true.
 //   dataType: the type of data that you're expecting from the server.
-//     The value must be 'json' (default) or 'text'.
+//     The value must be 'json', 'text' or undefined. Default is undefiend.
+//     When the `dataType` option is not defined, the type is detected automatically.
 //   pathPrefix: the string that is added to the request path. Default value is '/'.
+//   paramName: the name of parameter to be used when the `objects`
+//     property is initialized and refreshed. Default is undefiend.
+//     When the `pathName` option is not defined, the name is derived from the
+//     `resourceName` property, e.g. `user` if the resource name is `users`.
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
 var CollectionAgent = function CollectionAgent(resourceName, options) {
@@ -70,12 +75,15 @@ var CollectionAgent = function CollectionAgent(resourceName, options) {
   this.resourceName = resourceName;
   this.options = options || {};
   if (this.options.autoRefresh === undefined) this.options.autoRefresh = true;
-  if (this.options.dataType === undefined) this.options.dataType = 'json';
   this.objects = [];
   this.headers = {
     'Content-Type': 'application/json'
   };
-  if (this.options.dataType === 'json') {
+  if (this.options.dataType === undefined) {
+    this.headers['Accept'] = 'application/json, text/plain';
+    this.responseHandler = function(response) { return response.text() };
+  }
+  else if (this.options.dataType === 'json') {
     this.headers['Accept'] = 'application/json';
     this.responseHandler = function(response) { return response.json() };
   }
@@ -151,8 +159,9 @@ Cape.extend(CollectionAgent.prototype, {
     })
   },
 
-  refreshObjects: function(data, paramName) {
-    paramName = paramName || Inflector.tableize(this.resourceName);
+  refreshObjects: function(data) {
+    var paramName = this.options.paramName ||
+      Inflector.tableize(this.resourceName);
 
     this.objects.length = 0;
     if (typeof data === 'object' && Array.isArray(data[paramName])) {
@@ -213,7 +222,7 @@ Cape.extend(CollectionAgent.prototype, {
   },
 
   ajax: function(httpMethod, path, params, callback, errorHandler) {
-    var self = this, headers = {}, isSafeMethod, fetchOptions, responseHandler;
+    var self = this, isSafeMethod, fetchOptions;
 
     params = params || {};
     errorHandler = errorHandler || this.defaultErrorHandler;
@@ -240,7 +249,19 @@ Cape.extend(CollectionAgent.prototype, {
     fetch(path, fetchOptions)
       .then(this.responseHandler)
       .then(function(data) {
-        if (typeof callback === 'function') callback.call(self.client, data);
+        if (typeof callback === 'function') {
+          if (self.options.dataType === undefined) {
+            try {
+              callback.call(self.client, JSON.parse(data));
+            }
+            catch (e) {
+              callback.call(self.client, data);
+            }
+          }
+          else {
+            callback.call(self.client, data);
+          }
+        }
         if (self.options.autoRefresh && !isSafeMethod) self.refresh();
       })
       .catch(errorHandler);
@@ -960,7 +981,8 @@ var Cape = require('./utilities');
 //   adapter: the name of adapter (e.g., 'rails'). Default is undefined.
 //     Default value can be changed by setting Cape.defaultAgentAdapter property.
 //   dataType: the type of data that you're expecting from the server.
-//     The value must be 'json' (default) or 'text'.
+//     The value must be 'json', text' or undefined.
+//     When the `dataType` option is not defined, the type is detected automatically.
 //   pathPrefix: the string that is added to the request path. Default value is '/'.
 //   singular: a boolean value that specifies if the resource is singular or not.
 //     Resources are called 'singular' when they have a URL without ID. Default is false.
@@ -972,13 +994,16 @@ function ResourceAgent(resourceName, client, options) {
   this.resourceName = resourceName;
   this.client = client;
   this.options = options || {};
-  if (this.options.dataType === undefined) this.options.dataType = 'json';
   this.object = undefined;
   this.errors = {};
   this.headers = {
     'Content-Type': 'application/json'
   };
-  if (this.options.dataType === 'json') {
+  if (this.options.dataType === undefined) {
+    this.headers['Accept'] = 'application/json, text/plain';
+    this.responseHandler = function(response) { return response.text() };
+  }
+  else if (this.options.dataType === 'json') {
     this.headers['Accept'] = 'application/json';
     this.responseHandler = function(response) { return response.json() };
   }
@@ -1042,7 +1067,7 @@ Cape.extend(ResourceAgent.prototype, {
   },
 
   ajax: function(httpMethod, path, callback, errorHandler) {
-    var self = this, headers = {}, fetchOptions, params;
+    var self = this, fetchOptions, params;
 
     errorHandler = errorHandler || this.defaultErrorHandler;
 
@@ -1060,7 +1085,19 @@ Cape.extend(ResourceAgent.prototype, {
     fetch(path, fetchOptions)
       .then(this.responseHandler)
       .then(function(data) {
-        if (typeof callback === 'function') callback.call(self.client, data);
+        if (typeof callback === 'function') {
+          if (self.options.dataType === undefined) {
+            try {
+              callback.call(self.client, JSON.parse(data));
+            }
+            catch (e) {
+              callback.call(self.client, data);
+            }
+          }
+          else {
+            callback.call(self.client, data);
+          }
+        }
       })
       .catch(errorHandler);
   },
