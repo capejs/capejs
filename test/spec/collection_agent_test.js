@@ -59,6 +59,15 @@ describe('CollectionAgent', function() {
 
       expect(agent1).not.to.equal(agent2);
     })
+
+    it('should hold different instances by pathPrefix option', function() {
+      var agent1, agent2;
+
+      agent1 = Cape.CollectionAgent.create('users', { pathPrefix: '/foo/' });
+      agent2 = Cape.CollectionAgent.create('users', { pathPrefix: '/bar/' });
+
+      expect(agent1).not.to.equal(agent2);
+    })
   })
 
   describe('attach', function() {
