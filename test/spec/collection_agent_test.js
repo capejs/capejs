@@ -13,7 +13,7 @@ describe('CollectionAgent', function() {
     it('should take an object (options) as the second argument', function() {
       var options, agent;
 
-      options = { resourceName: 'users', pathPrefix: '/api/' };
+      options = { resourceName: 'users', basePath: '/api/' };
       agent = new Cape.CollectionAgent(options);
 
       expect(agent.options).to.equal(options);
@@ -73,13 +73,13 @@ describe('CollectionAgent', function() {
       expect(agent1).not.to.equal(agent2);
     })
 
-    it('should hold different instances by pathPrefix option', function() {
+    it('should hold different instances by basePath option', function() {
       var agent1, agent2;
 
       agent1 = Cape.CollectionAgent.create(
-        { resourceName: 'users', pathPrefix: '/foo/' });
+        { resourceName: 'users', basePath: '/foo/' });
       agent2 = Cape.CollectionAgent.create(
-        { resourceName: 'users', pathPrefix: '/bar/' });
+        { resourceName: 'users', basePath: '/bar/' });
 
       expect(agent1).not.to.equal(agent2);
     })
@@ -97,9 +97,9 @@ describe('CollectionAgent', function() {
       var agent1, agent2;
 
       agent1 = UserCollectionAgent.create(
-        { pathPrefix: '/foo/', nestedIn: 'groups/123' });
+        { basePath: '/foo/', nestedIn: 'groups/123' });
       agent2 = UserCollectionAgent.create(
-        { pathPrefix: '/foo/', nestedIn: 'groups/456' });
+        { basePath: '/foo/', nestedIn: 'groups/456' });
 
       expect(agent1).not.to.equal(agent2);
     })
@@ -166,7 +166,7 @@ describe('CollectionAgent', function() {
       var agent;
 
       agent = new Cape.CollectionAgent(
-        { resourceName: 'users', pathPrefix: '/api/' });
+        { resourceName: 'users', basePath: '/api/' });
 
       expect(agent.collectionPath()).to.equal('/api/users');
     })
@@ -175,7 +175,7 @@ describe('CollectionAgent', function() {
       var agent;
 
       agent = new UserCollectionAgent(
-        { pathPrefix: '/api/', nestedIn: 'groups/123/' });
+        { basePath: '/api/', nestedIn: 'groups/123/' });
 
       expect(agent.collectionPath()).to.equal('/api/groups/123/users');
     })
@@ -193,7 +193,7 @@ describe('CollectionAgent', function() {
     it('should add prefix to the paths', function() {
       var agent;
 
-      agent = new Cape.CollectionAgent({ resourceName: 'users', pathPrefix: '/api/' });
+      agent = new Cape.CollectionAgent({ resourceName: 'users', basePath: '/api/' });
 
       expect(agent.memberPath(123)).to.equal('/api/users/123');
     })
