@@ -92,6 +92,17 @@ describe('CollectionAgent', function() {
 
       expect(agent1).to.equal(agent2);
     })
+
+    it('should return difference instances of UserCollectionAgent', function() {
+      var agent1, agent2;
+
+      agent1 = UserCollectionAgent.create(
+        { pathPrefix: '/foo/', nestedIn: 'groups/123' });
+      agent2 = UserCollectionAgent.create(
+        { pathPrefix: '/foo/', nestedIn: 'groups/456' });
+
+      expect(agent1).not.to.equal(agent2);
+    })
   })
 
   describe('attach', function() {
@@ -158,6 +169,15 @@ describe('CollectionAgent', function() {
         { resourceName: 'users', pathPrefix: '/api/' });
 
       expect(agent.collectionPath()).to.equal('/api/users');
+    })
+
+    it('should insert the "nestedIn" string to the paths', function() {
+      var agent;
+
+      agent = new UserCollectionAgent(
+        { pathPrefix: '/api/', nestedIn: 'groups/123/' });
+
+      expect(agent.collectionPath()).to.equal('/api/groups/123/users');
     })
   })
 
