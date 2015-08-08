@@ -19,31 +19,6 @@ describe('CollectionAgent', function() {
       expect(agent.resourceName).to.equal('users');
       expect(agent.basePath).to.equal('/api/');
     })
-
-    it('should call agent adapter', function() {
-      var options, agent;
-
-      Cape.AgentAdapters.FooBarAdapter = sinon.spy();
-
-      options = { resourceName: 'users', adapter: 'foo_bar' }
-      new Cape.CollectionAgent(options);
-
-      expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
-
-      Cape.AgentAdapters.FooBarAdapter = undefined;
-    })
-
-    it('should call agent adapter (UserCollectionAgent)', function() {
-      var options, agent;
-
-      Cape.AgentAdapters.FooBarAdapter = sinon.spy();
-
-      new UserCollectionAgent();
-
-      expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
-
-      Cape.AgentAdapters.FooBarAdapter = undefined;
-    })
   })
 
   describe('.create', function() {
@@ -203,7 +178,9 @@ describe('CollectionAgent', function() {
     it('should go through a fetch api chain', function() {
       var agent, spy1, spy2, spy3;
 
+      Cape.AgentAdapters.FooBarAdapter = sinon.spy();
       agent = new Cape.CollectionAgent({ resourceName: 'users' });
+      agent.adapter = 'foo_bar';
       sinon.stub(agent, 'refresh');
 
       spy1 = sinon.spy();
@@ -216,6 +193,9 @@ describe('CollectionAgent', function() {
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(agent.refresh.called).to.be.false;
+      expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
+
+      Cape.AgentAdapters.FooBarAdapter = undefined;
 
       global.fetch.restore();
     })

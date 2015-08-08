@@ -16,24 +16,10 @@ describe('ResourceAgent', function() {
       var form, options, agent;
 
       form = { id: 123 };
-      options = { pathPrefix: '/api/' }
+      options = { basePath: '/api/' }
       agent = new Cape.ResourceAgent('user', form, options);
 
-      expect(agent.options).to.equal(options);
-    })
-
-    it('should call agent adapter', function() {
-      var form, options, agent;
-
-      Cape.AgentAdapters.FooBarAdapter = sinon.spy();
-
-      form = { id: 123 };
-      options = { adapter: 'foo_bar' }
-      new Cape.ResourceAgent('user', form, options);
-
-      expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
-
-      Cape.AgentAdapters.FooBarAdapter = undefined;
+      expect(agent.basePath).to.equal('/api/');
     })
   })
 
@@ -51,7 +37,7 @@ describe('ResourceAgent', function() {
       var form, agent;
 
       form = {};
-      agent = new Cape.ResourceAgent('user', form, { pathPrefix: '/api/' });
+      agent = new Cape.ResourceAgent('user', form, { basePath: '/api/' });
 
       expect(agent.collectionPath()).to.equal('/api/users');
     })
@@ -71,7 +57,7 @@ describe('ResourceAgent', function() {
       var form, agent;
 
       form = { id: 123 };
-      agent = new Cape.ResourceAgent('user', form, { pathPrefix: '/api/' });
+      agent = new Cape.ResourceAgent('user', form, { basePath: '/api/' });
 
       expect(agent.memberPath()).to.equal('/api/users/123');
     })
@@ -92,7 +78,7 @@ describe('ResourceAgent', function() {
 
       form = {};
       agent = new Cape.ResourceAgent('profile', form,
-        { pathPrefix: '/api/', singular: true });
+        { basePath: '/api/', singular: true });
 
       expect(agent.singularPath()).to.equal('/api/profile');
     })

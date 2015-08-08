@@ -14,6 +14,7 @@ describe('AgentAdapters.RailsAdapter', function() {
 
       form = { id: 123 };
       agent = new Cape.ResourceAgent('user', form, { adapter: 'rails' });
+      agent._.applyAdapter();
 
       expect(agent.headers['X-CSRF-Token']).to.equal('token');
     })
@@ -27,6 +28,7 @@ describe('AgentAdapters.RailsAdapter', function() {
 
       form = { id: 123 };
       agent = new Cape.ResourceAgent('user', form);
+      agent._.applyAdapter();
 
       expect(agent.headers['X-CSRF-Token']).to.be.undefined;
     })
