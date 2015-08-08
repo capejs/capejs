@@ -9,10 +9,11 @@ that includes `constructor` key to override the class constructor.
 
 ### `Cape.Component`
 
-* `#formData` retuns array of values when the name of checkbox field has `[]` in the end.
+* `#formData` returns array of values when the name of checkbox field has `[]` in the end.
 * Fix a bug that prevents hidden field rewrite. Backported as `v1.0.2` and `v1.1.1`.
 * Fix a bug that tampers other forms. Backported as `v1.0.3` and `v1.1.2`.
 * The inner (private) attribute `virtualForms` has been made public.
+* Add `#checkedOn` which returns a boolean value that shows if a check box is checked or not.
 
 ### `Cape.VirtualForms`
 

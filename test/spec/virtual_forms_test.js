@@ -559,4 +559,43 @@ describe('VirtualForms', function() {
       expect(params.article.comments[0].body).to.equal('X');
     })
   })
+
+  describe('checkedOn', function() {
+    it('should get the value of a check field', function() {
+      var Klass, component;
+
+      Klass = Cape.createComponentClass({
+        render: function(m) {
+          m.form(function(m) {
+            m.textField('name');
+            m.textareaField('comment', { value: 'X' });
+            m.checkBox('confirmed');
+            m.checkBox('published');
+            m.radioButton('color', 'red');
+            m.radioButton('color', 'blue');
+          });
+          m.formFor('f2', function(m) {
+            m.checkBox('confirmed');
+          })
+        }
+      })
+
+      component = new Klass();
+      component.mount('target');
+      expect(component.checkedOn('confirmed')).to.be.false;
+
+      component.val('published', true);
+      component.val('color', 'blue');
+      component.val('f2.confirmed', true);
+      component.refresh();
+
+      expect(component.checkedOn('name')).to.be.undefined;
+      expect(component.checkedOn('comment')).to.be.undefined;
+      expect(component.checkedOn('confirmed')).to.be.false;
+      expect(component.checkedOn('f2.confirmed')).to.be.true;
+      expect(component.checkedOn('published')).to.be.true;
+      expect(component.checkedOn('color')).to.be.undefined;
+      expect(component.checkedOn('xxx')).to.be.undefined;
+    })
+  })
 })
