@@ -2,9 +2,9 @@
 
 var UserCollectionAgent = Cape.createCollectionAgentClass({
   constructor: function(options) {
+    this.init(options);
     this.resourceName = 'users';
-    this.options.adapter = 'foo_bar';
-    if (options) Cape.extend(this.options, options);
+    this.adapter = 'foo_bar';
   }
 });
 
@@ -16,8 +16,8 @@ describe('CollectionAgent', function() {
       options = { resourceName: 'users', basePath: '/api/' };
       agent = new Cape.CollectionAgent(options);
 
-      expect(agent.options).to.equal(options);
       expect(agent.resourceName).to.equal('users');
+      expect(agent.basePath).to.equal('/api/');
     })
 
     it('should call agent adapter', function() {
