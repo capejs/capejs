@@ -193,10 +193,12 @@
 <p><a href="#basics">Basics</a> -
 <a href="#setting-up">Setting up</a> -
 <a href="#agent-adapters">Agent Adapters</a> -
+<a href="#defining-class">Defining Class</a> -
 <a href="#initialization">Initialization</a> -
 <a href="#creating-resources">Creating Resources</a> -
 <a href="#rest-operations">REST Operations</a> -
 <a href="#callbacks-and-error-handlers">Callbacks and Error Handlers</a> -
+<a href="#changing-path-prefix">Changing Path Prefix</a> -
 <a href="#options">Options</a></p>
 
 <p><a class="anchor" id="basics"></a></p>
@@ -250,6 +252,36 @@ beginning of your JavaScript code:</p>
 <pre><code class="language-javascript">Cape.defaultAgentAdapter = 'rails'
 </code></pre>
 
+<p><a class="anchor" id="defining-class"></a></p>
+
+<h3 id="defining-class:0b3dd9ce14f479a81f8252af01a87547">Defining Class</h3>
+
+<p>In order to use collection agents, you should define a class inheriting the
+<code>Cape.CollectionAgent</code> class.</p>
+
+<p>You can define such a class calling <code>Cape.createCollectionAgentClass()</code> method:</p>
+
+<pre><code class="language-javascript">var UserCollectionAgent = Cape.createCollectionAgentClass({
+  resourceName: 'users'
+})
+</code></pre>
+
+<p>You can also define it using the ES6 syntax:</p>
+
+<pre><code class="language-javascript">class UserCollectionAgent extends Cape.CollectionAgent {
+  constructor(options) {
+    super(options);
+    this.resourceName = 'users';
+  }
+}
+</code></pre>
+
+<p>Here, the <code>resourceName</code> property represents the standard path of the server-side API.
+The collection agent uses it to construct the URL paths
+and analyze the JSON string returned from the server.
+In the above examples, the agents will send a <code>GET</code> request to the <code>/users</code>
+in order to get a list of users.</p>
+
 <p><a class="anchor" id="initialization"></a></p>
 
 <h3 id="initialization:0b3dd9ce14f479a81f8252af01a87547">Initialization</h3>
@@ -268,7 +300,7 @@ it returns the following JSON string:</p>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {
-    this.agent = Cape.CollectionAgent.create('users');
+    this.agent = UserCollectionAgent.create();
     this.agent.attach(this);
     this.agent.refresh();
   }
@@ -283,10 +315,8 @@ it returns the following JSON string:</p>
 }
 </code></pre>
 
-<p>Note that the <code>Cape.CollectionAgent.create</code> method is a singleton factory method,
-which returns the same object always. The string argument <code>'users'</code> is the name
-of resource collection. The collection agent uses it to construct the URL paths
-and analyze the JSON string returned from the server.</p>
+<p>Note that the <code>UserCollectionAgent.create()</code> method is a singleton factory method,
+which returns the same object always.</p>
 
 <p>The <code>attach</code> method register the argument as an <em>event listener</em> of the agent.
 With this the component will get notified
@@ -319,7 +349,7 @@ with the following body:</p>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {
-    this.agent = Cape.CollectionAgent.create('users');
+    this.agent = UserCollectionAgent.create();
     this.agent.attach(this);
     this.agent.refresh();
   }
@@ -456,6 +486,22 @@ you can pass a <em>callback</em> as the last argument to the methods:</p>
 <p>This error hander is called when an exception is raised due to some reasons
 (network errors, syntax errors, etc.).</p>
 
+<p><a class="anchor" id="changing-path-prefix"></a></p>
+
+<h3 id="changing-path-prefix:0b3dd9ce14f479a81f8252af01a87547">Changing Path Prefix</h3>
+
+<p>If the paths of the server-side API has a prefix, you should set the <code>basePath</code>
+and <code>nestdIn</code> properties.</p>
+
+<p>The value of <code>basePath</code> property is prepended to the resource name
+when the collection agent constructs the API paths. Its default value is <code>/</code>.
+The values of <code>nestedIn</code> property is inserted between the base path and
+the resource name. Its default value is &ldquo;.</p>
+
+<p>For example, if the <code>basePath</code> is <code>'/api/v2/'</code> and the <code>nestedIn</code> is <code>'groups/7'</code>,
+an instance of <code>UserCollectionAgent</code> class will construct paths like
+<code>/api/v2/groups/7/users</code>, <code>/api/v2/groups/7/users/99</code>, etc.</p>
+
 <p><a class="anchor" id="options"></a></p>
 
 <h3 id="options:0b3dd9ce14f479a81f8252af01a87547">Options</h3>
@@ -463,6 +509,10 @@ you can pass a <em>callback</em> as the last argument to the methods:</p>
 <p>The class method <code>.create()</code> takes following options:</p>
 
 <ul>
+<li><code>resourceName</code>: the name of resource.</li>
+<li><code>basePath</code>: the string that is added to the request path. Default value is &lsquo;/&rsquo;.</li>
+<li><code>nestedIn</code>: the string that is inserted between path prefix and the resource
+name. Default value is &ldquo;.</li>
 <li><code>adapter</code>: the name of adapter (e.g., &lsquo;rails&rsquo;). Default is undefined.
 Default value can be changed by setting Cape.defaultAgentAdapter property.</li>
 <li><code>autoRefresh</code>: a boolean value that controls unsafe Ajax requests trigger
@@ -470,14 +520,13 @@ this.refresh(). Default is true.</li>
 <li><code>dataType</code>: the type of data that you&rsquo;re expecting from the server.
 The value must be &lsquo;json&rsquo;, &lsquo;text&rsquo; or undefined. Default is undefiend.
 When the dataType option is not defined, the type is detected automatically.</li>
-<li><code>pathPrefix</code>: the string that is added to the request path. Default value is &lsquo;/&rsquo;.</li>
 <li><code>paramName</code>: the name of parameter to be used when the <code>objects</code>
 property is initialized and refreshed. Default is undefiend.
 When the <code>pathName</code> option is not defined, the name is derived from the
 <code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>users</code>.</li>
 </ul>
 
-<p>See <a href="./api/collection_agent#_create">.create()</a> for details.</p>
+<p>See <a href="../api/collection_agent#_create">.create()</a> for details.</p>
 
         </div>
       </article>

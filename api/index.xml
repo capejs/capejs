@@ -327,28 +327,34 @@ Cape.extend(object1, object2);
 
 &lt;h3 id=&#34;constructor:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Constructor&lt;/h3&gt;
 
-&lt;p&gt;The &lt;code&gt;Cape.CollectionAgent&lt;/code&gt; constructor takes a string (resource name) and an
-optional object (options).&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Cape.CollectionAgent&lt;/code&gt; constructor takes an object &lt;em&gt;(options)&lt;/em&gt; as the first argument.&lt;/p&gt;
 
 &lt;h4 id=&#34;options:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Options&lt;/h4&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;resourceName:&lt;/strong&gt; the name of resource which is located on the web.
+The collection agents use it in order to construct the paths of server-side API.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;basePath:&lt;/strong&gt; the string that is added to the request path.
+Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;nestedIn:&lt;/strong&gt; the string that is inserted between path prefix and the resource
+name. Default value is &lt;code&gt;&#39;&#39;&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;adapter:&lt;/strong&gt; the name of adapter (e.g., &lt;code&gt;&#39;rails&#39;&lt;/code&gt;). Default is &lt;code&gt;undefined&lt;/code&gt;.
 Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;autoRefresh:&lt;/strong&gt; a boolean value that controls POST/PATCH/PUT/DELETE requests
-trigger &lt;code&gt;this.refresh()&lt;/code&gt;. Default is &lt;code&gt;true&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;autoRefresh:&lt;/strong&gt; a boolean value that controls if a &lt;code&gt;POST/PATCH/PUT/DELETE&lt;/code&gt; request
+triggers &lt;code&gt;this.refresh()&lt;/code&gt; after its completion. Default is &lt;code&gt;true&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;dataType:&lt;/strong&gt; the type of data that you&amp;rsquo;re expecting from the server.
-The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt; (default) or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;pathPrefix:&lt;/strong&gt; the string that is added to the request path.
-Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
+The value must be &lt;code&gt;undefined&lt;/code&gt; (default), &lt;code&gt;&#39;json&#39;&lt;/code&gt; or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.
+If this property is not set, the collection agents detect the data type
+automatically.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;example:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
-var agent1 = new Cape.CollectionAgent(&#39;users&#39;);
-var agent2 = new Cape.CollectionAgent(&#39;tags&#39;, { pathPrefix: &#39;/api/&#39; });
-var agent3 = new Cape.CollectionAgent(&#39;pages&#39;, { dataType: &#39;text&#39; });
+var agent1 = new Cape.CollectionAgent({ resourceName: &#39;users&#39; });
+var agent2 = new Cape.CollectionAgent({ resourceName: &#39;tags&#39;, basePath: &#39;/api/&#39; });
+var agent3 = new Cape.CollectionAgent({ resourceName: &#39;members&#39;, nestedIn: &#39;teams/123/&#39; });
+var agent4 = new Cape.CollectionAgent({ resourceName: &#39;articles&#39;, dataType: &#39;text&#39; });
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
@@ -2148,7 +2154,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;h3 id=&#34;constructor:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Constructor&lt;/h3&gt;
 
 &lt;p&gt;The &lt;code&gt;Cape.ResourceAgent&lt;/code&gt; constructor takes a string (resource name),
-a &lt;code&gt;Cape.Component&lt;/code&gt; object and an optional object (options).&lt;/p&gt;
+a &lt;code&gt;Cape.Component&lt;/code&gt; object and an optional object (options) as arguments.&lt;/p&gt;
 
 &lt;h4 id=&#34;options:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Options&lt;/h4&gt;
 
