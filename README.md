@@ -77,9 +77,10 @@ This is built upon the Ruby on Rails. When you start it and open `http://localho
 
 ## Browser Support
 
+* Microsoft Edge
 * Internet Explorer 11
-* Chrome (Current)
-* Firefox (Current)
+* Google Chrome (Current)
+* Mozilla Firefox (Current)
 * Safari (6.1+)
 
 Any problem with Cape.JS in the above browsers should be reported as a bug in Cape.JS.
