@@ -72,7 +72,7 @@ var Cape = require('./utilities');
 var CollectionAgent = function CollectionAgent(options) {
   this._ = new _Internal(this);
   this.options = options || {};
-  this.resourceName = options.resourceName;
+  this.resourceName = this.options.resourceName;
   this.objects = [];
   this.headers = { 'Content-Type': 'application/json' };
   if (this.options.autoRefresh === undefined) this.options.autoRefresh = true;
