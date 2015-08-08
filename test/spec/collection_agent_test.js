@@ -1,22 +1,23 @@
 'use strict';
 
+var UserCollectionAgent = Cape.createCollectionAgentClass({
+  constructor: function(options) {
+    this.resourceName = 'users';
+    this.options.adapter = 'foo_bar';
+    if (options) Cape.extend(this.options, options);
+  }
+});
+
 describe('CollectionAgent', function() {
   describe('constructor', function() {
-    it('should take resource name as the first argument', function() {
-      var agent;
-
-      agent = new Cape.CollectionAgent('users');
-
-      expect(agent.resourceName).to.equal('users');
-    })
-
     it('should take an object (options) as the second argument', function() {
       var options, agent;
 
-      options = { pathPrefix: '/api/' }
-      agent = new Cape.CollectionAgent('users', options);
+      options = { resourceName: 'users', pathPrefix: '/api/' };
+      agent = new Cape.CollectionAgent(options);
 
       expect(agent.options).to.equal(options);
+      expect(agent.resourceName).to.equal('users');
     })
 
     it('should call agent adapter', function() {
@@ -24,8 +25,20 @@ describe('CollectionAgent', function() {
 
       Cape.AgentAdapters.FooBarAdapter = sinon.spy();
 
-      options = { adapter: 'foo_bar' }
-      new Cape.CollectionAgent('user', options);
+      options = { resourceName: 'users', adapter: 'foo_bar' }
+      new Cape.CollectionAgent(options);
+
+      expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
+
+      Cape.AgentAdapters.FooBarAdapter = undefined;
+    })
+
+    it('should call agent adapter (UserCollectionAgent)', function() {
+      var options, agent;
+
+      Cape.AgentAdapters.FooBarAdapter = sinon.spy();
+
+      new UserCollectionAgent();
 
       expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
 
@@ -37,7 +50,7 @@ describe('CollectionAgent', function() {
     it('should create an instance of CollectionAgent', function() {
       var agent;
 
-      agent = Cape.CollectionAgent.create('users');
+      agent = Cape.CollectionAgent.create({ resourceName: 'users' });
 
       expect(agent.resourceName).to.equal('users');
     })
@@ -45,8 +58,8 @@ describe('CollectionAgent', function() {
     it('should return an existing instance of CollectionAgent', function() {
       var agent1, agent2;
 
-      agent1 = Cape.CollectionAgent.create('users');
-      agent2 = Cape.CollectionAgent.create('users');
+      agent1 = Cape.CollectionAgent.create({ resourceName: 'users' });
+      agent2 = Cape.CollectionAgent.create({ resourceName: 'users' });
 
       expect(agent1).to.equal(agent2);
     })
@@ -54,8 +67,8 @@ describe('CollectionAgent', function() {
     it('should hold different instances by resource name', function() {
       var agent1, agent2;
 
-      agent1 = Cape.CollectionAgent.create('users');
-      agent2 = Cape.CollectionAgent.create('groups');
+      agent1 = Cape.CollectionAgent.create({ resourceName: 'users' });
+      agent2 = Cape.CollectionAgent.create({ resourceName: 'groups' });
 
       expect(agent1).not.to.equal(agent2);
     })
@@ -63,10 +76,21 @@ describe('CollectionAgent', function() {
     it('should hold different instances by pathPrefix option', function() {
       var agent1, agent2;
 
-      agent1 = Cape.CollectionAgent.create('users', { pathPrefix: '/foo/' });
-      agent2 = Cape.CollectionAgent.create('users', { pathPrefix: '/bar/' });
+      agent1 = Cape.CollectionAgent.create(
+        { resourceName: 'users', pathPrefix: '/foo/' });
+      agent2 = Cape.CollectionAgent.create(
+        { resourceName: 'users', pathPrefix: '/bar/' });
 
       expect(agent1).not.to.equal(agent2);
+    })
+
+    it('should return an existing instance of UserCollectionAgent', function() {
+      var agent1, agent2;
+
+      agent1 = UserCollectionAgent.create();
+      agent2 = UserCollectionAgent.create();
+
+      expect(agent1).to.equal(agent2);
     })
   })
 
@@ -74,7 +98,7 @@ describe('CollectionAgent', function() {
     it('should register the given object as a target of propagation', function() {
       var agent, component1, component2;
 
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
 
       component1 = { refresh: sinon.spy() };
       component2 = { refresh: sinon.spy() };
@@ -89,7 +113,7 @@ describe('CollectionAgent', function() {
     it('should not register the same object twice', function() {
       var Klass, agent, component;
 
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
 
       component = { refresh: sinon.spy() }
 
@@ -106,7 +130,7 @@ describe('CollectionAgent', function() {
       component2 = { refresh: sinon.spy() }
       component3 = { refresh: sinon.spy() }
 
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
       agent.attach(component1);
       agent.attach(component2);
       agent.attach(component3);
@@ -122,7 +146,7 @@ describe('CollectionAgent', function() {
     it('should return standard values', function() {
       var agent;
 
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
 
       expect(agent.collectionPath()).to.equal('/users');
     })
@@ -130,7 +154,8 @@ describe('CollectionAgent', function() {
     it('should add prefix to the paths', function() {
       var agent;
 
-      agent = new Cape.CollectionAgent('users', { pathPrefix: '/api/' });
+      agent = new Cape.CollectionAgent(
+        { resourceName: 'users', pathPrefix: '/api/' });
 
       expect(agent.collectionPath()).to.equal('/api/users');
     })
@@ -140,7 +165,7 @@ describe('CollectionAgent', function() {
     it('should return standard values', function() {
       var agent;
 
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
 
       expect(agent.memberPath(123)).to.equal('/users/123');
     })
@@ -148,7 +173,7 @@ describe('CollectionAgent', function() {
     it('should add prefix to the paths', function() {
       var agent;
 
-      agent = new Cape.CollectionAgent('users', { pathPrefix: '/api/' });
+      agent = new Cape.CollectionAgent({ resourceName: 'users', pathPrefix: '/api/' });
 
       expect(agent.memberPath(123)).to.equal('/api/users/123');
     })
@@ -158,7 +183,7 @@ describe('CollectionAgent', function() {
     it('should go through a fetch api chain', function() {
       var agent, spy1, spy2, spy3;
 
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'refresh');
 
       spy1 = sinon.spy();
@@ -178,7 +203,7 @@ describe('CollectionAgent', function() {
     it('should accept text/plain data', function() {
       var agent, spy1, spy2, spy3;
 
-      agent = new Cape.CollectionAgent('users', { dataType: 'text' });
+      agent = new Cape.CollectionAgent({ resourceName: 'users', dataType: 'text' });
       sinon.stub(agent, 'refresh');
 
       spy1 = sinon.spy();
@@ -200,7 +225,7 @@ describe('CollectionAgent', function() {
     it('should go through a fetch api chain', function() {
       var agent, spy1, spy2, spy3;
 
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'refresh');
 
       spy1 = sinon.spy();
@@ -220,7 +245,7 @@ describe('CollectionAgent', function() {
     it('should not call agent.refresh()', function() {
       var agent, spy1, spy2, spy3;
 
-      agent = new Cape.CollectionAgent('users', { autoRefresh: false });
+      agent = new Cape.CollectionAgent({ resourceName: 'users', autoRefresh: false });
       sinon.stub(agent, 'refresh');
 
       spy1 = sinon.spy();
@@ -244,7 +269,7 @@ describe('CollectionAgent', function() {
 
       spy1 = sinon.spy();
       stubFetchAPI(spy1, { users: [ {}, {} ] });
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'defaultErrorHandler');
       agent.refresh();
       expect(spy1.called).to.be.true;
@@ -259,7 +284,7 @@ describe('CollectionAgent', function() {
 
       spy = sinon.spy();
       stubFetchAPI(spy);
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'defaultErrorHandler');
       agent.index({ page: 1, per_page: 20 });
       expect(spy.called).to.be.true;
@@ -273,7 +298,7 @@ describe('CollectionAgent', function() {
 
       spy = sinon.spy();
       stubFetchAPI(spy);
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'defaultErrorHandler');
       agent.show(1);
       expect(spy.called).to.be.true;
@@ -287,7 +312,7 @@ describe('CollectionAgent', function() {
 
       spy = sinon.spy();
       stubFetchAPI(spy);
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'defaultErrorHandler');
       agent.create({ name: 'X', password: 'Y' });
       expect(spy.called).to.be.true;
@@ -301,7 +326,7 @@ describe('CollectionAgent', function() {
 
       spy = sinon.spy();
       stubFetchAPI(spy);
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'defaultErrorHandler');
       agent.update(1, { name: 'X', password: 'Y' });
       expect(spy.called).to.be.true;
@@ -315,7 +340,7 @@ describe('CollectionAgent', function() {
 
       spy = sinon.spy();
       stubFetchAPI(spy);
-      agent = new Cape.CollectionAgent('users');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'defaultErrorHandler');
       agent.destroy(1);
       expect(spy.called).to.be.true;
@@ -325,7 +350,7 @@ describe('CollectionAgent', function() {
 
   describe('#get', function() {
     it('should call this.ajax() with "GET"', function() {
-      var agent = new Cape.CollectionAgent('users');
+      var agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'ajax');
       agent.get('suspended', null);
       expect(agent.ajax.calledWith('GET', '/users/suspended')).to.be.true;
@@ -334,7 +359,7 @@ describe('CollectionAgent', function() {
 
   describe('#post', function() {
     it('should call this.ajax() with "POST"', function() {
-      var agent = new Cape.CollectionAgent('users');
+      var agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'ajax');
       agent.post('tags', 1, { tags: [ 'A', 'B' ] });
       expect(agent.ajax.calledWith('POST', '/users/1/tags')).to.be.true;
@@ -343,7 +368,7 @@ describe('CollectionAgent', function() {
 
   describe('#patch', function() {
     it('should call this.ajax() with "PATCH"', function() {
-      var agent = new Cape.CollectionAgent('users');
+      var agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'ajax');
       agent.patch('suspend', 1, { name: 'X', password: 'Y' });
       expect(agent.ajax.calledWith('PATCH', '/users/1/suspend')).to.be.true;
@@ -352,7 +377,7 @@ describe('CollectionAgent', function() {
 
   describe('#put', function() {
     it('should call this.ajax() with "PUT"', function() {
-      var agent = new Cape.CollectionAgent('users');
+      var agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'ajax');
       agent.put('suspend', 1, { name: 'X', password: 'Y' });
       expect(agent.ajax.calledWith('PUT', '/users/1/suspend')).to.be.true;
@@ -361,7 +386,7 @@ describe('CollectionAgent', function() {
 
   describe('#delete', function() {
     it('should call this.ajax() with "DELETE"', function() {
-      var agent = new Cape.CollectionAgent('users');
+      var agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'ajax');
       agent.delete('tags', 1);
       expect(agent.ajax.calledWith('DELETE', '/users/1/tags')).to.be.true;
