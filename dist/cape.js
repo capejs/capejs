@@ -19,13 +19,13 @@ Cape.defaultAgentAdapter = undefined;
 
 module.exports = Cape;
 
-},{"./cape/agent_adapters/rails_adapter.js":2,"./cape/collection_agent.js":3,"./cape/component.js":4,"./cape/data_store.js":5,"./cape/markup_builder":6,"./cape/resource_agent.js":7,"./cape/router.js":8,"./cape/routing_mapper.js":9,"./cape/utilities":10,"./cape/virtual_forms":11}],2:[function(require,module,exports){
+},{"./cape/agent_adapters/rails_adapter.js":2,"./cape/collection_agent.js":3,"./cape/component.js":4,"./cape/data_store.js":5,"./cape/markup_builder":6,"./cape/resource_agent.js":9,"./cape/router.js":10,"./cape/routing_mapper.js":11,"./cape/utilities":12,"./cape/virtual_forms":13}],2:[function(require,module,exports){
 'use strict';
 
 // Cape.AgentAdapters.RailsAdapter
 //
-// This function is called within the constructor of Cape.ResourceAgent and
-// Cape.ResourceCollectionAgent.
+// This function is called just before an instance of Cape.ResourceAgent or
+// Cape.ResourceCollectionAgent makes an Ajax request.
 //
 // The purpose of this adapter is to set the X-CSRF-Token header of Ajax requests.
 function RailsAdapter(resourceName, client, options) {
@@ -50,11 +50,9 @@ var Cape = require('./utilities');
 //
 // public properties:
 //   resourceName: the name of resource
-//   options: the object that holds option values given to the constructor
-//   objects: the array of objects that represent the collection of resources
-//   headers: the HTTP headers for Ajax requests
-// options:
-//   resourceName: the name of resource
+//   basePath: the string that is added to the request path. Default value is '/'.
+//   nestedIn: the string that is inserted between path prefix and the resource
+//     name. Default value is ''.
 //   adapter: the name of adapter (e.g., 'rails'). Default is undefined.
 //     Default value can be changed by setting Cape.defaultAgentAdapter property.
 //   autoRefresh: a boolean value that controls unsafe Ajax requests trigger
@@ -62,52 +60,52 @@ var Cape = require('./utilities');
 //   dataType: the type of data that you're expecting from the server.
 //     The value must be 'json', 'text' or undefined. Default is undefiend.
 //     When the `dataType` option is not defined, the type is detected automatically.
-//   pathPrefix: the string that is added to the request path. Default value is '/'.
 //   paramName: the name of parameter to be used when the `objects`
 //     property is initialized and refreshed. Default is undefiend.
 //     When the `pathName` option is not defined, the name is derived from the
 //     `resourceName` property, e.g. `user` if the resource name is `users`.
+//   objects: the array of objects that represent the collection of resources
+//   headers: the HTTP headers for Ajax requests
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
+//
+// parameters for the constructor
+//   options: an object that is used to initialize properties. The properties
+//     which can be initialized by it are `resourceName`, `basePath`,
+//     `nestedIn`, `adapter`, `autoRefresh`, `dataType`, and `paramName`.
+//
 var CollectionAgent = function CollectionAgent(options) {
   this._ = new _Internal(this);
-  this.options = options || {};
-  this.resourceName = this.options.resourceName;
+  this.init(options);
+
   this.objects = [];
   this.headers = { 'Content-Type': 'application/json' };
-  if (this.options.autoRefresh === undefined) this.options.autoRefresh = true;
-  this._.applyAdapter();
 };
 
 CollectionAgent.create = function(options) {
   options = options || {};
-  var key = (options.pathPrefix || '/') + (options.resourceName || '');
+  var key = options.basePath || '/';
+  if (options.nestedIn) key = key + options.nestedIn;
+  if (options.resourceName) key = key + options.resourceName;
   this.instances = this.instances || {};
   if (!this.instances[key]) this.instances[key] = new this(options);
   return this.instances[key];
 }
 
+var PropagatorMethods = require('./mixins/propagator_methods');
+Cape.extend(CollectionAgent.prototype, PropagatorMethods);
+
 Cape.extend(CollectionAgent.prototype, {
-  attach: function(component) {
-    var target = component;
-    for (var i = 0, len = this._.components.length; i < len; i++) {
-      if (this._.components[i] === component) return;
-    }
-    this._.components.push(component);
-  },
-
-  detach: function(component) {
-    for (var i = 0, len = this._.components.length; i < len; i++) {
-      if (this._.components[i] === component) {
-        this._.components.splice(i, 1);
-        break;
-      }
-    }
-  },
-
-  propagate: function() {
-    for (var i = this._.components.length; i--;)
-      this._.components[i].refresh();
+  init: function(options) {
+    options = options || {};
+    this.resourceName = options.resourceName;
+    this.basePath = options.basePath;
+    this.nestedIn = options.nestedIn;
+    this.adapter = options.adapter;
+    this.autoRefresh = options.autoRefresh;
+    if (this.autoRefresh === undefined) this.autoRefresh = true;
+    this.dataType = options.dataType;
+    this.paramName = options.paramName;
   },
 
   // Fetch current data through the API and refresh this.objects.
@@ -121,7 +119,7 @@ Cape.extend(CollectionAgent.prototype, {
   //     var self = this;
   //     var params = { page: this.currentPage, per_page: this.perPage };
   //     this.index(params, function(data) {
-  //       self.refreshObjects(data, 'user_list');
+  //       self.refreshObjects(data);
   //       self.totalPage = data.total_page;
   //       self.propagate();
   //     })
@@ -135,8 +133,7 @@ Cape.extend(CollectionAgent.prototype, {
   },
 
   refreshObjects: function(data) {
-    var paramName = this.options.paramName ||
-      Inflector.tableize(this.resourceName);
+    var paramName = this.paramName || Inflector.tableize(this.resourceName);
 
     this.objects.length = 0;
     if (typeof data === 'object' && Array.isArray(data[paramName])) {
@@ -202,6 +199,8 @@ Cape.extend(CollectionAgent.prototype, {
     params = params || {};
     errorHandler = errorHandler || this.defaultErrorHandler;
 
+    this._.applyAdapter();
+
     isSafeMethod = (httpMethod === 'GET' || httpMethod === 'HEAD');
     fetchOptions = {
       method: httpMethod,
@@ -224,20 +223,8 @@ Cape.extend(CollectionAgent.prototype, {
     fetch(path, fetchOptions)
       .then(this._.responseHandler())
       .then(function(data) {
-        if (typeof callback === 'function') {
-          if (self.options.dataType === undefined) {
-            try {
-              callback.call(self.client, JSON.parse(data));
-            }
-            catch (e) {
-              callback.call(self.client, data);
-            }
-          }
-          else {
-            callback.call(self.client, data);
-          }
-        }
-        if (self.options.autoRefresh && !isSafeMethod) self.refresh();
+        self._.dataHandler(data, callback);
+        if (self.autoRefresh && !isSafeMethod) self.refresh();
       })
       .catch(errorHandler);
 
@@ -246,16 +233,12 @@ Cape.extend(CollectionAgent.prototype, {
 
   collectionPath: function() {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
-    return this.pathPrefix() + resources;
+    return this._.pathPrefix() + resources;
   },
 
   memberPath: function(id) {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
-    return this.pathPrefix() + resources + '/' + id;
-  },
-
-  pathPrefix: function() {
-    return this.options.pathPrefix || '/';
+    return this._.pathPrefix() + resources + '/' + id;
   },
 
   defaultErrorHandler: function(ex) {
@@ -268,53 +251,15 @@ var _Internal = function _Internal(main) {
   this.main = main;
   this.components = [];
 }
-// Internal methods of Cape.Router
-Cape.extend(_Internal.prototype, {
-  applyAdapter: function() {
-    var adapterName, adapter;
 
-    adapterName = this.main.options.adapter || Cape.defaultAgentAdapter;
-    if (typeof adapterName === 'string') {
-      adapter = Cape.AgentAdapters[Inflector.camelize(adapterName) + 'Adapter'];
-      if (typeof adapter === 'function') adapter.apply(this.main, arguments);
-    }
-  },
+var AgentCommonInnerMethods = require('./mixins/agent_common_inner_methods');
 
-  headers: function() {
-    var headers = this.main.headers;
-    if (this.main.options.dataType === undefined) {
-      headers['Accept'] = 'application/json, text/plain';
-    }
-    else if (this.main.options.dataType === 'json') {
-      headers['Accept'] = 'application/json';
-    }
-    else if (this.main.options.dataType === 'text') {
-      headers['Accept'] = 'text/plain';
-    }
-    else {
-      throw new Error('Unsupported data type: ' + this.main.options.dataType);
-    }
-    return headers;
-  },
+// Internal methods of Cape.CollectionAgent
+Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
 
-  responseHandler: function() {
-    if (this.main.options.dataType === undefined) {
-      return function(response) { return response.text() };
-    }
-    else if (this.main.options.dataType === 'json') {
-      return function(response) { return response.json() };
-    }
-    else if (this.main.options.dataType === 'text') {
-      return function(response) { return response.text() };
-    }
-    else {
-      throw new Error('Unsupported data type: ' + this.main.options.dataType);
-    }
-  }
-})
 module.exports = CollectionAgent;
 
-},{"./utilities":10,"inflected":14}],4:[function(require,module,exports){
+},{"./mixins/agent_common_inner_methods":7,"./mixins/propagator_methods":8,"./utilities":12,"inflected":16}],4:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -399,6 +344,9 @@ Cape.extend(Component.prototype, {
   },
   jsonFor: function(formName, options) {
     return this.virtualForms.jsonFor(formName, options);
+  },
+  checkedOn: function(name) {
+    return this.virtualForms.checkedOn(name);
   }
 });
 
@@ -427,7 +375,7 @@ Cape.extend(_Internal.prototype, {
 module.exports = Component;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":10,"inflected":14,"virtual-dom":27}],5:[function(require,module,exports){
+},{"./utilities":12,"inflected":16,"virtual-dom":29}],5:[function(require,module,exports){
 'use strict';
 
 var Cape = require('./utilities');
@@ -449,27 +397,8 @@ DataStore.create = function(options) {
   return this.instance;
 }
 
-Cape.extend(DataStore.prototype, {
-  attach: function(component) {
-    var target = component;
-    for (var i = 0, len = this._.components.length; i < len; i++) {
-      if (this._.components[i] === component) return;
-    }
-    this._.components.push(component);
-  },
-  detach: function(component) {
-    for (var i = 0, len = this._.components.length; i < len; i++) {
-      if (this._.components[i] === component) {
-        this._.components.splice(i, 1);
-        break;
-      }
-    }
-  },
-  propagate: function() {
-    for (var i = this._.components.length; i--;)
-      this._.components[i].refresh();
-  }
-});
+var PropagatorMethods = require('./mixins/propagator_methods');
+Cape.extend(DataStore.prototype, PropagatorMethods);
 
 // Internal properties of Cape.DataStore
 var _Internal = function _Internal(main) {
@@ -479,7 +408,7 @@ var _Internal = function _Internal(main) {
 
 module.exports = DataStore;
 
-},{"./utilities":10}],6:[function(require,module,exports){
+},{"./mixins/propagator_methods":8,"./utilities":12}],6:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -979,7 +908,109 @@ for (var i = eventNames.length; i--;) {
 module.exports = MarkupBuilder;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":10,"inflected":14,"virtual-dom":27}],7:[function(require,module,exports){
+},{"./utilities":12,"inflected":16,"virtual-dom":29}],7:[function(require,module,exports){
+'use strict';
+
+var Inflector = require('inflected');
+
+var AgentCommonInnerMethods = {
+  applyAdapter: function() {
+    var adapterName, adapter;
+
+    adapterName = this.main.adapter || Cape.defaultAgentAdapter;
+    if (typeof adapterName === 'string') {
+      adapter = Cape.AgentAdapters[Inflector.camelize(adapterName) + 'Adapter'];
+      if (typeof adapter === 'function') adapter.apply(this.main, arguments);
+    }
+  },
+
+  headers: function() {
+    var headers = this.main.headers;
+    if (this.main.dataType === undefined) {
+      headers['Accept'] = 'application/json, text/plain';
+    }
+    else if (this.main.dataType === 'json') {
+      headers['Accept'] = 'application/json';
+    }
+    else if (this.main.dataType === 'text') {
+      headers['Accept'] = 'text/plain';
+    }
+    else {
+      throw new Error('Unsupported data type: ' + this.main.dataType);
+    }
+    return headers;
+  },
+
+  pathPrefix: function() {
+    var prefix = this.main.basePath || '/';
+    if (this.main.nestedIn) prefix = prefix + this.main.nestedIn;
+    return prefix;
+  },
+
+  responseHandler: function() {
+    if (this.main.dataType === undefined) {
+      return function(response) { return response.text() };
+    }
+    else if (this.main.dataType === 'json') {
+      return function(response) { return response.json() };
+    }
+    else if (this.main.dataType === 'text') {
+      return function(response) { return response.text() };
+    }
+    else {
+      throw new Error('Unsupported data type: ' + this.main.dataType);
+    }
+  },
+
+  dataHandler: function(data, callback) {
+    if (typeof callback === 'function') {
+      if (this.main.dataType === undefined) {
+        try {
+          callback.call(this.main.client, JSON.parse(data));
+        }
+        catch (e) {
+          callback.call(this.main.client, data);
+        }
+      }
+      else {
+        callback.call(this.main.client, data);
+      }
+    }
+  }
+}
+
+module.exports = AgentCommonInnerMethods;
+
+},{"inflected":16}],8:[function(require,module,exports){
+'use strict';
+
+var PropagatorMethods = {
+  attach: function(component) {
+    var target = component;
+    for (var i = 0, len = this._.components.length; i < len; i++) {
+      if (this._.components[i] === component) return;
+    }
+    this._.components.push(component);
+  },
+
+  detach: function(component) {
+    for (var i = 0, len = this._.components.length; i < len; i++) {
+      if (this._.components[i] === component) {
+        this._.components.splice(i, 1);
+        break;
+      }
+    }
+  },
+
+  propagate: function() {
+    for (var i = this._.components.length; i--;)
+      this._.components[i].refresh();
+  }
+}
+
+module.exports = PropagatorMethods;
+
+},{}],9:[function(require,module,exports){
 'use strict';
 
 var Inflector = require('inflected');
@@ -990,75 +1021,72 @@ var Cape = require('./utilities');
 // public properties:
 //   resourceName: the name of resource
 //   client: the object that utilizes this agent
-//   options: the object that holds option values given to the constructor
-//   object: the object that represents the resource
-//   errors: the object that holds error messages
-//   headers: the HTTP headers for Ajax requests
-//   responseHandler: the function that processes the response object
-// options:
+//   basePath: the string that is added to the request path. Default value is '/'.
+//   nestedIn: the string that is inserted between path prefix and the resource
+//     name. Default value is ''.
 //   adapter: the name of adapter (e.g., 'rails'). Default is undefined.
 //     Default value can be changed by setting Cape.defaultAgentAdapter property.
 //   dataType: the type of data that you're expecting from the server.
 //     The value must be 'json', text' or undefined.
 //     When the `dataType` option is not defined, the type is detected automatically.
-//   pathPrefix: the string that is added to the request path. Default value is '/'.
 //   singular: a boolean value that specifies if the resource is singular or not.
-//     Resources are called 'singular' when they have a URL without ID. Default is false.
+//     Resources are called 'singular' when they have a URL without ID.
+//     Default is `false`.
+//   paramName: the name of parameter to be used when the `object`
+//     property is initialized and the request parameter is constructed.
+//     Default is `undefiend`.
+//     When the `pathName` option is not defined, the name is derived from the
+//     `resourceName` property, e.g. `user` if the resource name is `user`.
+//   object: the object that represents the resource
+//   errors: the object that holds error messages
+//   headers: the HTTP headers for Ajax requests
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
-function ResourceAgent(resourceName, client, options) {
+//
+// parameters for the constructor
+//   client: the component object that use this agent.
+//   options: an object that is used to initialize properties. The properties
+//     which can be initialized by it are `resourceName`, `basePath`,
+//     `nestedIn`, `adapter`, `dataType`, and `singular`.
+function ResourceAgent(client, options) {
   var adapterName, adapter;
 
-  this.resourceName = resourceName;
-  this.client = client;
-  this.options = options || {};
-  this.object = undefined;
-  this.errors = {};
-  this.headers = {
-    'Content-Type': 'application/json'
-  };
-  if (this.options.dataType === undefined) {
-    this.headers['Accept'] = 'application/json, text/plain';
-    this.responseHandler = function(response) { return response.text() };
-  }
-  else if (this.options.dataType === 'json') {
-    this.headers['Accept'] = 'application/json';
-    this.responseHandler = function(response) { return response.json() };
-  }
-  else if (this.options.dataType === 'text') {
-    this.headers['Accept'] = 'text/plain';
-    this.responseHandler = function(response) { return response.text() };
-  }
-  else {
-    throw new Error('Unsupported data type: ' + this.options.dataType);
-  }
+  options = options || {};
 
   this._ = new _Internal(this);
+  this.resourceName = options.resourceName;
+  this.client = client;
+  this.basePath = options.basePath;
+  this.nestedIn = options.nestedIn;
+  this.adapter = options.adapter;
+  this.dataType = options.dataType;
+  this.singular = options.singular || false;
 
-  adapterName = this.options.adapter || Cape.defaultAgentAdapter;
-  if (typeof adapterName === 'string') {
-    adapter = Cape.AgentAdapters[Inflector.camelize(adapterName) + 'Adapter'];
-    if (typeof adapter === 'function') adapter.apply(this, arguments);
-  }
+  this.object = undefined;
+  this.errors = {};
+  this.headers = { 'Content-Type': 'application/json' };
 };
 
 Cape.extend(ResourceAgent.prototype, {
   init: function(afterInitialize, errorHandler) {
     var self = this, path;
+    var paramName = this.paramName || this.resourceName;
 
-    if (this.client.id === undefined && !this.options.singular)
+    if (this.client.id === undefined && !this.singular)
       throw new Error("this.client.id is not defined.");
 
-    path = this.options.singular ? this.singularPath() : this.memberPath();
+    path = this.singular ? this.singularPath() : this.memberPath();
     errorHandler = errorHandler || this.defaultErrorHandler;
 
+    this._.applyAdapter();
+
     fetch(path, {
-      headers: this.headers,
+      headers: this._.headers(),
       credentials: 'same-origin'
     })
-    .then(this.responseHandler)
+    .then(this._.responseHandler())
     .then(function(data) {
-      if (typeof data === 'object') self.object = data[self.resourceName];
+      if (typeof data === 'object') self.object = data[paramName];
       if (typeof afterInitialize === 'function') {
         afterInitialize.call(self.client, self, data);
       }
@@ -1067,76 +1095,61 @@ Cape.extend(ResourceAgent.prototype, {
   },
 
   create: function(afterCreate, errorHandler) {
-    var path = this.options.singular ? this.singularPath() : this.collectionPath();
+    var path = this.singular ? this.singularPath() : this.collectionPath();
     this.ajax('POST', path, afterCreate, errorHandler);
     return false;
   },
 
   update: function(afterUpdate, errorHandler) {
-    var path = this.options.singular ? this.singularPath() : this.memberPath();
+    var path = this.singular ? this.singularPath() : this.memberPath();
     this.ajax('PATCH', path, afterUpdate, errorHandler);
     return false;
   },
 
   destroy: function(afterDestroy, errorHandler) {
-    var path = this.options.singular ? this.singularPath() : this.memberPath();
+    var path = this.singular ? this.singularPath() : this.memberPath();
     this.ajax('DELETE', path, afterDestroy, errorHandler);
     return false;
   },
 
   ajax: function(httpMethod, path, callback, errorHandler) {
     var self = this, fetchOptions, params;
+    var paramName = this.paramName || this.resourceName;
 
     errorHandler = errorHandler || this.defaultErrorHandler;
 
+    this._.applyAdapter();
+
     fetchOptions = {
       method: httpMethod,
-      headers: this.headers,
+      headers: this._.headers(),
       credentials: 'same-origin'
     }
 
     if (httpMethod === 'POST' || httpMethod === 'PATCH') {
-      params = this.client.paramsFor(this.resourceName);
+      params = this.client.paramsFor(paramName);
       fetchOptions.body = JSON.stringify(params);
     }
 
     fetch(path, fetchOptions)
-      .then(this.responseHandler)
-      .then(function(data) {
-        if (typeof callback === 'function') {
-          if (self.options.dataType === undefined) {
-            try {
-              callback.call(self.client, JSON.parse(data));
-            }
-            catch (e) {
-              callback.call(self.client, data);
-            }
-          }
-          else {
-            callback.call(self.client, data);
-          }
-        }
-      })
+      .then(this._.responseHandler())
+      .then(function(data) { self._.dataHandler(data, callback); })
       .catch(errorHandler);
   },
 
   collectionPath: function() {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
-    return this.pathPrefix() + resources;
+    return this._.pathPrefix() + resources;
   },
 
   memberPath: function() {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
-    return this.pathPrefix() + resources + '/' + this.client.id;
+    return this._.pathPrefix() + resources + '/' + this.client.id;
   },
 
   singularPath: function() {
     var resource = Inflector.singularize(Inflector.underscore(this.resourceName));
-    return this.pathPrefix() + resource;
-  },
-
-  pathPrefix: function() {
-    return this.options.pathPrefix || '/';
+    return this._.pathPrefix() + resource;
   },
 
   defaultErrorHandler: function(ex) {
@@ -1149,9 +1162,14 @@ var _Internal = function _Internal(main) {
   this.main = main;
 }
 
+var AgentCommonInnerMethods = require('./mixins/agent_common_inner_methods');
+
+// Internal methods of Cape.ResourceAgent
+Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
+
 module.exports = ResourceAgent;
 
-},{"./utilities":10,"inflected":14}],8:[function(require,module,exports){
+},{"./mixins/agent_common_inner_methods":7,"./utilities":12,"inflected":16}],10:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -1404,7 +1422,7 @@ Cape.extend(_Internal.prototype, {
 module.exports = Router;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":10,"inflected":14}],9:[function(require,module,exports){
+},{"./utilities":12,"inflected":16}],11:[function(require,module,exports){
 'use strict';
 
 var Inflector = require('inflected');
@@ -1695,7 +1713,7 @@ Cape.extend(_Internal.prototype, {
 
 module.exports = RoutingMapper;
 
-},{"./utilities":10,"inflected":14}],10:[function(require,module,exports){
+},{"./utilities":12,"inflected":16}],12:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -1772,10 +1790,20 @@ Cape.createCollectionAgentClass = function(methods) {
   return klass;
 }
 
+Cape.createResourceAgentClass = function(methods) {
+  var klass = function() {
+    Cape.ResourceAgent.apply(this, arguments);
+    if (typeof methods.constructor === 'function')
+      methods.constructor.apply(this, arguments);
+    this._.applyAdapter();
+  };
+  return klass;
+}
+
 module.exports = Cape;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -1834,7 +1862,7 @@ Cape.extend(VirtualForms.prototype, {
             }
           }
           else {
-            elem.checked = !!tForm[elemName];
+            elem.checked = tForm[elemName] === true || tForm[elemName] === '1';
           }
         }
         else if (elem.type === 'radio') {
@@ -1960,6 +1988,31 @@ Cape.extend(VirtualForms.prototype, {
     params = {};
     params[paramName] = obj;
     return JSON.stringify(params);
+  },
+
+  checkedOn: function(name) {
+    var names, formName, attrName, forms, elements, cb, value;
+
+    names = this._.getNames(name);
+    formName = names[0];
+    attrName = names[1];
+
+    forms = this.component.root.getElementsByTagName('form');
+
+    for (var i = 0; i < forms.length; i++) {
+      elements = forms[i].getElementsByTagName('input');
+      for (var j = 0; j < elements.length; j++) {
+        if (elements[j].name === attrName && elements[j].type === 'checkbox') {
+          cb = elements[j];
+        }
+      }
+    }
+
+    if (cb === undefined) return undefined;
+
+    value = this._.getValue(name);
+
+    return (value === '1' || value === true);
   }
 })
 
@@ -2110,9 +2163,9 @@ Cape.extend(_Internal.prototype, {
 module.exports = VirtualForms;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":10}],12:[function(require,module,exports){
+},{"./utilities":12}],14:[function(require,module,exports){
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -2172,10 +2225,10 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = require('./lib/Inflector');
 
-},{"./lib/Inflector":16}],15:[function(require,module,exports){
+},{"./lib/Inflector":18}],17:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -2288,7 +2341,7 @@ Inflections.prototype.clear = function(scope) {
 module.exports = Inflections;
 
 }).call(this,require('_process'))
-},{"./hasProp":20,"./icPart":21,"./remove":23,"_process":13}],16:[function(require,module,exports){
+},{"./hasProp":22,"./icPart":23,"./remove":25,"_process":15}],18:[function(require,module,exports){
 'use strict';
 
 var Inflections     = require('./Inflections');
@@ -2335,7 +2388,7 @@ for (var locale in defaults) {
 
 module.exports = Inflector;
 
-},{"./Inflections":15,"./Methods":17,"./Transliterator":18,"./defaults":19,"./isFunc":22}],17:[function(require,module,exports){
+},{"./Inflections":17,"./Methods":19,"./Transliterator":20,"./defaults":21,"./isFunc":24}],19:[function(require,module,exports){
 'use strict';
 
 var Methods = {
@@ -2549,7 +2602,7 @@ var Methods = {
 
 module.exports = Methods;
 
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -2616,7 +2669,7 @@ Transliterator.prototype.transliterate = function(string, replacement) {
 module.exports = Transliterator;
 
 }).call(this,require('_process'))
-},{"_process":13}],19:[function(require,module,exports){
+},{"_process":15}],21:[function(require,module,exports){
 'use strict';
 
 function enDefaults(inflect) {
@@ -2684,7 +2737,7 @@ module.exports = {
   en: enDefaults
 };
 
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 var hasOwnProp = Object.prototype.hasOwnProperty;
@@ -2695,7 +2748,7 @@ function hasProp(obj, key) {
 
 module.exports = hasProp;
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 function icPart(str) {
@@ -2704,7 +2757,7 @@ function icPart(str) {
 
 module.exports = icPart;
 
-},{}],22:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 var toString = Object.prototype.toString;
@@ -2715,7 +2768,7 @@ function isFunc(obj) {
 
 module.exports = isFunc;
 
-},{}],23:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 var splice = Array.prototype.splice;
@@ -2730,22 +2783,22 @@ function remove(arr, elem) {
 
 module.exports = remove;
 
-},{}],24:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 var createElement = require("./vdom/create-element.js")
 
 module.exports = createElement
 
-},{"./vdom/create-element.js":37}],25:[function(require,module,exports){
+},{"./vdom/create-element.js":39}],27:[function(require,module,exports){
 var diff = require("./vtree/diff.js")
 
 module.exports = diff
 
-},{"./vtree/diff.js":57}],26:[function(require,module,exports){
+},{"./vtree/diff.js":59}],28:[function(require,module,exports){
 var h = require("./virtual-hyperscript/index.js")
 
 module.exports = h
 
-},{"./virtual-hyperscript/index.js":44}],27:[function(require,module,exports){
+},{"./virtual-hyperscript/index.js":46}],29:[function(require,module,exports){
 var diff = require("./diff.js")
 var patch = require("./patch.js")
 var h = require("./h.js")
@@ -2762,7 +2815,7 @@ module.exports = {
     VText: VText
 }
 
-},{"./create-element.js":24,"./diff.js":25,"./h.js":26,"./patch.js":35,"./vnode/vnode.js":53,"./vnode/vtext.js":55}],28:[function(require,module,exports){
+},{"./create-element.js":26,"./diff.js":27,"./h.js":28,"./patch.js":37,"./vnode/vnode.js":55,"./vnode/vtext.js":57}],30:[function(require,module,exports){
 /*!
  * Cross-Browser Split 1.1.1
  * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
@@ -2870,7 +2923,7 @@ module.exports = (function split(undef) {
   return self;
 })();
 
-},{}],29:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 
 var OneVersionConstraint = require('individual/one-version');
@@ -2892,7 +2945,7 @@ function EvStore(elem) {
     return hash;
 }
 
-},{"individual/one-version":31}],30:[function(require,module,exports){
+},{"individual/one-version":33}],32:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -2915,7 +2968,7 @@ function Individual(key, value) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],31:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 'use strict';
 
 var Individual = require('./index.js');
@@ -2939,7 +2992,7 @@ function OneVersion(moduleName, version, defaultValue) {
     return Individual(key, defaultValue);
 }
 
-},{"./index.js":30}],32:[function(require,module,exports){
+},{"./index.js":32}],34:[function(require,module,exports){
 (function (global){
 var topLevel = typeof global !== 'undefined' ? global :
     typeof window !== 'undefined' ? window : {}
@@ -2958,14 +3011,14 @@ if (typeof document !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"min-document":12}],33:[function(require,module,exports){
+},{"min-document":14}],35:[function(require,module,exports){
 "use strict";
 
 module.exports = function isObject(x) {
 	return typeof x === "object" && x !== null;
 };
 
-},{}],34:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 var nativeIsArray = Array.isArray
 var toString = Object.prototype.toString
 
@@ -2975,12 +3028,12 @@ function isArray(obj) {
     return toString.call(obj) === "[object Array]"
 }
 
-},{}],35:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 var patch = require("./vdom/patch.js")
 
 module.exports = patch
 
-},{"./vdom/patch.js":40}],36:[function(require,module,exports){
+},{"./vdom/patch.js":42}],38:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook.js")
 
@@ -3079,7 +3132,7 @@ function getPrototype(value) {
     }
 }
 
-},{"../vnode/is-vhook.js":48,"is-object":33}],37:[function(require,module,exports){
+},{"../vnode/is-vhook.js":50,"is-object":35}],39:[function(require,module,exports){
 var document = require("global/document")
 
 var applyProperties = require("./apply-properties")
@@ -3127,7 +3180,7 @@ function createElement(vnode, opts) {
     return node
 }
 
-},{"../vnode/handle-thunk.js":46,"../vnode/is-vnode.js":49,"../vnode/is-vtext.js":50,"../vnode/is-widget.js":51,"./apply-properties":36,"global/document":32}],38:[function(require,module,exports){
+},{"../vnode/handle-thunk.js":48,"../vnode/is-vnode.js":51,"../vnode/is-vtext.js":52,"../vnode/is-widget.js":53,"./apply-properties":38,"global/document":34}],40:[function(require,module,exports){
 // Maps a virtual DOM tree onto a real DOM tree in an efficient manner.
 // We don't want to read all of the DOM nodes in the tree so we use
 // the in-order tree indexing to eliminate recursion down certain branches.
@@ -3214,7 +3267,7 @@ function ascending(a, b) {
     return a > b ? 1 : -1
 }
 
-},{}],39:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 var applyProperties = require("./apply-properties")
 
 var isWidget = require("../vnode/is-widget.js")
@@ -3367,7 +3420,7 @@ function replaceRoot(oldRoot, newRoot) {
     return newRoot;
 }
 
-},{"../vnode/is-widget.js":51,"../vnode/vpatch.js":54,"./apply-properties":36,"./update-widget":41}],40:[function(require,module,exports){
+},{"../vnode/is-widget.js":53,"../vnode/vpatch.js":56,"./apply-properties":38,"./update-widget":43}],42:[function(require,module,exports){
 var document = require("global/document")
 var isArray = require("x-is-array")
 
@@ -3447,7 +3500,7 @@ function patchIndices(patches) {
     return indices
 }
 
-},{"./create-element":37,"./dom-index":38,"./patch-op":39,"global/document":32,"x-is-array":34}],41:[function(require,module,exports){
+},{"./create-element":39,"./dom-index":40,"./patch-op":41,"global/document":34,"x-is-array":36}],43:[function(require,module,exports){
 var isWidget = require("../vnode/is-widget.js")
 
 module.exports = updateWidget
@@ -3464,7 +3517,7 @@ function updateWidget(a, b) {
     return false
 }
 
-},{"../vnode/is-widget.js":51}],42:[function(require,module,exports){
+},{"../vnode/is-widget.js":53}],44:[function(require,module,exports){
 'use strict';
 
 var EvStore = require('ev-store');
@@ -3493,7 +3546,7 @@ EvHook.prototype.unhook = function(node, propertyName) {
     es[propName] = undefined;
 };
 
-},{"ev-store":29}],43:[function(require,module,exports){
+},{"ev-store":31}],45:[function(require,module,exports){
 'use strict';
 
 module.exports = SoftSetHook;
@@ -3512,7 +3565,7 @@ SoftSetHook.prototype.hook = function (node, propertyName) {
     }
 };
 
-},{}],44:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 'use strict';
 
 var isArray = require('x-is-array');
@@ -3651,7 +3704,7 @@ function errorString(obj) {
     }
 }
 
-},{"../vnode/is-thunk":47,"../vnode/is-vhook":48,"../vnode/is-vnode":49,"../vnode/is-vtext":50,"../vnode/is-widget":51,"../vnode/vnode.js":53,"../vnode/vtext.js":55,"./hooks/ev-hook.js":42,"./hooks/soft-set-hook.js":43,"./parse-tag.js":45,"x-is-array":34}],45:[function(require,module,exports){
+},{"../vnode/is-thunk":49,"../vnode/is-vhook":50,"../vnode/is-vnode":51,"../vnode/is-vtext":52,"../vnode/is-widget":53,"../vnode/vnode.js":55,"../vnode/vtext.js":57,"./hooks/ev-hook.js":44,"./hooks/soft-set-hook.js":45,"./parse-tag.js":47,"x-is-array":36}],47:[function(require,module,exports){
 'use strict';
 
 var split = require('browser-split');
@@ -3707,7 +3760,7 @@ function parseTag(tag, props) {
     return props.namespace ? tagName : tagName.toUpperCase();
 }
 
-},{"browser-split":28}],46:[function(require,module,exports){
+},{"browser-split":30}],48:[function(require,module,exports){
 var isVNode = require("./is-vnode")
 var isVText = require("./is-vtext")
 var isWidget = require("./is-widget")
@@ -3749,14 +3802,14 @@ function renderThunk(thunk, previous) {
     return renderedThunk
 }
 
-},{"./is-thunk":47,"./is-vnode":49,"./is-vtext":50,"./is-widget":51}],47:[function(require,module,exports){
+},{"./is-thunk":49,"./is-vnode":51,"./is-vtext":52,"./is-widget":53}],49:[function(require,module,exports){
 module.exports = isThunk
 
 function isThunk(t) {
     return t && t.type === "Thunk"
 }
 
-},{}],48:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 module.exports = isHook
 
 function isHook(hook) {
@@ -3765,7 +3818,7 @@ function isHook(hook) {
        typeof hook.unhook === "function" && !hook.hasOwnProperty("unhook"))
 }
 
-},{}],49:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualNode
@@ -3774,7 +3827,7 @@ function isVirtualNode(x) {
     return x && x.type === "VirtualNode" && x.version === version
 }
 
-},{"./version":52}],50:[function(require,module,exports){
+},{"./version":54}],52:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualText
@@ -3783,17 +3836,17 @@ function isVirtualText(x) {
     return x && x.type === "VirtualText" && x.version === version
 }
 
-},{"./version":52}],51:[function(require,module,exports){
+},{"./version":54}],53:[function(require,module,exports){
 module.exports = isWidget
 
 function isWidget(w) {
     return w && w.type === "Widget"
 }
 
-},{}],52:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 module.exports = "2"
 
-},{}],53:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 var version = require("./version")
 var isVNode = require("./is-vnode")
 var isWidget = require("./is-widget")
@@ -3867,7 +3920,7 @@ function VirtualNode(tagName, properties, children, key, namespace) {
 VirtualNode.prototype.version = version
 VirtualNode.prototype.type = "VirtualNode"
 
-},{"./is-thunk":47,"./is-vhook":48,"./is-vnode":49,"./is-widget":51,"./version":52}],54:[function(require,module,exports){
+},{"./is-thunk":49,"./is-vhook":50,"./is-vnode":51,"./is-widget":53,"./version":54}],56:[function(require,module,exports){
 var version = require("./version")
 
 VirtualPatch.NONE = 0
@@ -3891,7 +3944,7 @@ function VirtualPatch(type, vNode, patch) {
 VirtualPatch.prototype.version = version
 VirtualPatch.prototype.type = "VirtualPatch"
 
-},{"./version":52}],55:[function(require,module,exports){
+},{"./version":54}],57:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = VirtualText
@@ -3903,7 +3956,7 @@ function VirtualText(text) {
 VirtualText.prototype.version = version
 VirtualText.prototype.type = "VirtualText"
 
-},{"./version":52}],56:[function(require,module,exports){
+},{"./version":54}],58:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook")
 
@@ -3963,7 +4016,7 @@ function getPrototype(value) {
   }
 }
 
-},{"../vnode/is-vhook":48,"is-object":33}],57:[function(require,module,exports){
+},{"../vnode/is-vhook":50,"is-object":35}],59:[function(require,module,exports){
 var isArray = require("x-is-array")
 
 var VPatch = require("../vnode/vpatch")
@@ -4392,5 +4445,5 @@ function appendPatch(apply, patch) {
     }
 }
 
-},{"../vnode/handle-thunk":46,"../vnode/is-thunk":47,"../vnode/is-vnode":49,"../vnode/is-vtext":50,"../vnode/is-widget":51,"../vnode/vpatch":54,"./diff-props":56,"x-is-array":34}]},{},[1])(1)
+},{"../vnode/handle-thunk":48,"../vnode/is-thunk":49,"../vnode/is-vnode":51,"../vnode/is-vtext":52,"../vnode/is-widget":53,"../vnode/vpatch":56,"./diff-props":58,"x-is-array":36}]},{},[1])(1)
 });
