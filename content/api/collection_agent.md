@@ -30,25 +30,31 @@ title: "Cape.CollectionAgent - API Reference"
 <a class="anchor" id="constructor"></a>
 ### Constructor
 
-The `Cape.CollectionAgent` constructor takes a string (resource name) and an
-optional object (options).
+The `Cape.CollectionAgent` constructor takes an object _(options)_ as the first argument.
 
 #### Options
 
+* **resourceName:** the name of resource which is located on the web.
+  The collection agents use it in order to construct the paths of server-side API.
+* **basePath:** the string that is added to the request path.
+  Default value is `'/'`.
+* **nestedIn:** the string that is inserted between path prefix and the resource
+  name. Default value is `''`.
 * **adapter:** the name of adapter (e.g., `'rails'`). Default is `undefined`.
   Default value can be changed by setting `Cape.defaultAgentAdapter` property.
-* **autoRefresh:** a boolean value that controls POST/PATCH/PUT/DELETE requests
-  trigger `this.refresh()`. Default is `true`.
+* **autoRefresh:** a boolean value that controls if a `POST/PATCH/PUT/DELETE` request
+  triggers `this.refresh()` after its completion. Default is `true`.
 * **dataType:** the type of data that you're expecting from the server.
-  The value must be `'json'` (default) or `'text'`.
-* **pathPrefix:** the string that is added to the request path.
-  Default value is `'/'`.
+  The value must be `undefined` (default), `'json'` or `'text'`.
+  If this property is not set, the collection agents detect the data type
+  automatically.
 
 #### Example
 
 ```javascript
 Cape.defaultAgentAdapter = 'rails';
-var agent1 = new Cape.CollectionAgent('users');
-var agent2 = new Cape.CollectionAgent('tags', { pathPrefix: '/api/' });
-var agent3 = new Cape.CollectionAgent('pages', { dataType: 'text' });
+var agent1 = new Cape.CollectionAgent({ resourceName: 'users' });
+var agent2 = new Cape.CollectionAgent({ resourceName: 'tags', basePath: '/api/' });
+var agent3 = new Cape.CollectionAgent({ resourceName: 'members', nestedIn: 'teams/123/' });
+var agent4 = new Cape.CollectionAgent({ resourceName: 'articles', dataType: 'text' });
 ```

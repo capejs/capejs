@@ -20,7 +20,7 @@ title: "Cape.ResourceAgent - API Reference"
 ### Constructor
 
 The `Cape.ResourceAgent` constructor takes a string (resource name),
-a `Cape.Component` object and an optional object (options).
+a `Cape.Component` object and an optional object (options) as arguments.
 
 #### Options
 

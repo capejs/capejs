@@ -62,6 +62,9 @@ pages:
         id: "agent-adapters"
         title: "Agent Adapters"
       -
+        id: "defining-class"
+        title: "Defining Class"
+      -
         id: "initialization"
         title: "Initialization"
       -
@@ -73,6 +76,9 @@ pages:
       -
         id: "callbacks-and-error-handlers"
         title: "Callbacks and Error Handlers"
+      -
+        id: "changing-path-prefix"
+        title: "Changing the Path Prefix"
       -
         id: "options"
         title: "Options"

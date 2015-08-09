@@ -7,10 +7,12 @@ title: "Collection Agents"
 [Basics](#basics) -
 [Setting up](#setting-up) -
 [Agent Adapters](#agent-adapters) -
+[Defining Class](#defining-class) -
 [Initialization](#initialization) -
 [Creating Resources](#creating-resources) -
 [REST Operations](#rest-operations) -
 [Callbacks and Error Handlers](#callbacks-and-error-handlers) -
+[Changing the Path Prefix](#changing-path-prefix) -
 [Options](#options)
 
 <a class="anchor" id="basics"></a>
@@ -61,6 +63,37 @@ beginning of your JavaScript code:
 Cape.defaultAgentAdapter = 'rails'
 ```
 
+<a class="anchor" id="defining-class"></a>
+### Defining Class
+
+In order to use collection agents, you should define a class inheriting the
+`Cape.CollectionAgent` class.
+
+You can define such a class calling `Cape.createCollectionAgentClass()` method:
+
+```javascript
+var UserCollectionAgent = Cape.createCollectionAgentClass({
+  resourceName: 'users'
+})
+```
+
+You can also define it using the ES6 syntax:
+
+```javascript
+class UserCollectionAgent extends Cape.CollectionAgent {
+  constructor(options) {
+    super(options);
+    this.resourceName = 'users';
+  }
+}
+```
+
+Here, the `resourceName` property represents the standard path of the server-side API.
+The collection agent uses it to construct the URL paths
+and analyze the JSON string returned from the server.
+In the above examples, the agents will send a `GET` request to the `/users`
+in order to get a list of users.
+
 <a class="anchor" id="initialization"></a>
 ### Initialization
 
@@ -80,7 +113,7 @@ Then, you can build a Cape.JS component like this:
 ```javascript
 class UserList extends Cape.Component {
   init() {
-    this.agent = Cape.CollectionAgent.create('users');
+    this.agent = UserCollectionAgent.create();
     this.agent.attach(this);
     this.agent.refresh();
   }
@@ -95,10 +128,8 @@ class UserList extends Cape.Component {
 }
 ```
 
-Note that the `Cape.CollectionAgent.create` method is a singleton factory method,
-which returns the same object always. The string argument `'users'` is the name
-of resource collection. The collection agent uses it to construct the URL paths
-and analyze the JSON string returned from the server.
+Note that the `UserCollectionAgent.create()` method is a singleton factory method,
+which returns the same object always.
 
 The `attach` method register the argument as an _event listener_ of the agent.
 With this the component will get notified
@@ -133,7 +164,7 @@ Then, you can create a form for adding users like this:
 ```javascript
 class UserList extends Cape.Component {
   init() {
-    this.agent = Cape.CollectionAgent.create('users');
+    this.agent = UserCollectionAgent.create();
     this.agent.attach(this);
     this.agent.refresh();
   }
@@ -234,11 +265,59 @@ m.onclick(e => this.agent.create(this.paramsFor('user'), data => {
 This error hander is called when an exception is raised due to some reasons
 (network errors, syntax errors, etc.).
 
+<a class="anchor" id="changing-path-prefix"></a>
+### Changing the Path Prefix
+
+If the paths of the server-side API has a prefix, you should set the `basePath`
+and `nestdIn` properties.
+
+The value of `basePath` property is prepended to the resource name
+when the collection agent constructs the API paths. Its default value is `/`.
+The values of `nestedIn` property is inserted between the base path and
+the resource name. Its default value is ''.
+
+Suppose that you defined the `ArticleCollectionAgent` class like this:
+
+```javascript
+class ArticleCollectionAgent extends Cape.CollectionAgent {
+  constructor(options) {
+    super(options);
+    this.resourceName = 'articles';
+    this.basePath = '/api/v2/';
+  }
+}
+```
+
+And, you instantiated it as follows:
+
+```javascript
+class ArticleList extends Cape.Component {
+  init() {
+    this.agent = ArticleCollectionAgent.create({ nestedIn: 'members/123/' });
+    this.agent.attach(this);
+    this.agent.refresh();
+  }
+
+  render(m) {
+    // ...
+  }
+}
+```
+
+Then, `this.agent` will construct paths like these:
+
+* `/api/v2/members/123/articles`
+* `/api/v2/members/123/articles/99`
+
 <a class="anchor" id="options"></a>
 ### Options
 
 The class method `.create()` takes following options:
 
+* `resourceName`: the name of resource.
+* `basePath`: the string that is added to the request path. Default value is '/'.
+* `nestedIn`: the string that is inserted between path prefix and the resource
+  name. Default value is ''.
 * `adapter`: the name of adapter (e.g., 'rails'). Default is undefined.
   Default value can be changed by setting Cape.defaultAgentAdapter property.
 * `autoRefresh`: a boolean value that controls unsafe Ajax requests trigger
@@ -246,10 +325,9 @@ The class method `.create()` takes following options:
 * `dataType`: the type of data that you're expecting from the server.
   The value must be 'json', 'text' or undefined. Default is undefiend.
   When the dataType option is not defined, the type is detected automatically.
-* `pathPrefix`: the string that is added to the request path. Default value is '/'.
 * `paramName`: the name of parameter to be used when the `objects`
   property is initialized and refreshed. Default is undefiend.
   When the `pathName` option is not defined, the name is derived from the
   `resourceName` property, e.g. `user` if the resource name is `users`.
 
-See [.create()](./api/collection_agent#_create) for details.
+See [.create()](../api/collection_agent#_create) for details.
