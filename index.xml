@@ -9,75 +9,6 @@
     <atom:link href="http://oiax.github.io/capejs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Cape.CollectionAgent - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/collection_agent/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/collection_agent/</guid>
-      <description>
-
-&lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
-&lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
-&lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
-&lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
-&lt;a href=&#34;#dot-create&#34;&gt;.create()&lt;/a&gt; -
-&lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
-&lt;a href=&#34;#default-error-handler&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
-&lt;a href=&#34;#delete&#34;&gt;#delete()&lt;/a&gt; -
-&lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
-&lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
-&lt;a href=&#34;#get&#34;&gt;#get()&lt;/a&gt; -
-&lt;a href=&#34;#index&#34;&gt;#index()&lt;/a&gt; -
-&lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
-&lt;a href=&#34;#patch&#34;&gt;#patch()&lt;/a&gt; -
-&lt;a href=&#34;#path-prefix&#34;&gt;#pathPref()&lt;/a&gt; -
-&lt;a href=&#34;#post&#34;&gt;#post()&lt;/a&gt; -
-&lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; -
-&lt;a href=&#34;#put&#34;&gt;#put()&lt;/a&gt; -
-&lt;a href=&#34;#refresh&#34;&gt;#refresh()&lt;/a&gt; -
-&lt;a href=&#34;#refresh-objects&#34;&gt;#refreshObjects()&lt;/a&gt; -
-&lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; -
-&lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;constructor:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Constructor&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code&gt;Cape.CollectionAgent&lt;/code&gt; constructor takes an object &lt;em&gt;(options)&lt;/em&gt; as the first argument.&lt;/p&gt;
-
-&lt;h4 id=&#34;options:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Options&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;resourceName:&lt;/strong&gt; the name of resource which is located on the web.
-The collection agents use it in order to construct the paths of server-side API.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;basePath:&lt;/strong&gt; the string that is added to the request path.
-Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;nestedIn:&lt;/strong&gt; the string that is inserted between path prefix and the resource
-name. Default value is &lt;code&gt;&#39;&#39;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;adapter:&lt;/strong&gt; the name of adapter (e.g., &lt;code&gt;&#39;rails&#39;&lt;/code&gt;). Default is &lt;code&gt;undefined&lt;/code&gt;.
-Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;autoRefresh:&lt;/strong&gt; a boolean value that controls if a &lt;code&gt;POST/PATCH/PUT/DELETE&lt;/code&gt; request
-triggers &lt;code&gt;this.refresh()&lt;/code&gt; after its completion. Default is &lt;code&gt;true&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;dataType:&lt;/strong&gt; the type of data that you&amp;rsquo;re expecting from the server.
-The value must be &lt;code&gt;undefined&lt;/code&gt; (default), &lt;code&gt;&#39;json&#39;&lt;/code&gt; or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.
-If this property is not set, the collection agents detect the data type
-automatically.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;example:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
-var agent1 = new Cape.CollectionAgent({ resourceName: &#39;users&#39; });
-var agent2 = new Cape.CollectionAgent({ resourceName: &#39;tags&#39;, basePath: &#39;/api/&#39; });
-var agent3 = new Cape.CollectionAgent({ resourceName: &#39;members&#39;, nestedIn: &#39;teams/123/&#39; });
-var agent4 = new Cape.CollectionAgent({ resourceName: &#39;articles&#39;, dataType: &#39;text&#39; });
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Cape - API Reference</title>
       <link>http://oiax.github.io/capejs/api/cape/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -281,6 +212,74 @@ Cape.extend(object1, object2);
 //   cherry: 97,
 //   durian: 100
 // }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.CollectionAgent - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/collection_agent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/collection_agent/</guid>
+      <description>
+
+&lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
+&lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
+&lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
+&lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
+&lt;a href=&#34;#dot-create&#34;&gt;.create()&lt;/a&gt; -
+&lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
+&lt;a href=&#34;#default-error-handler&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
+&lt;a href=&#34;#delete&#34;&gt;#delete()&lt;/a&gt; -
+&lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
+&lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
+&lt;a href=&#34;#get&#34;&gt;#get()&lt;/a&gt; -
+&lt;a href=&#34;#index&#34;&gt;#index()&lt;/a&gt; -
+&lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
+&lt;a href=&#34;#patch&#34;&gt;#patch()&lt;/a&gt; -
+&lt;a href=&#34;#post&#34;&gt;#post()&lt;/a&gt; -
+&lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; -
+&lt;a href=&#34;#put&#34;&gt;#put()&lt;/a&gt; -
+&lt;a href=&#34;#refresh&#34;&gt;#refresh()&lt;/a&gt; -
+&lt;a href=&#34;#refresh-objects&#34;&gt;#refreshObjects()&lt;/a&gt; -
+&lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; -
+&lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;constructor:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Constructor&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;Cape.CollectionAgent&lt;/code&gt; constructor takes an object &lt;em&gt;(options)&lt;/em&gt; as the first argument.&lt;/p&gt;
+
+&lt;h4 id=&#34;options:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Options&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;resourceName:&lt;/strong&gt; the name of resource which is located on the web.
+The collection agents use it in order to construct the paths of server-side API.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;basePath:&lt;/strong&gt; the string that is added to the request path.
+Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;nestedIn:&lt;/strong&gt; the string that is inserted between path prefix and the resource
+name. Default value is &lt;code&gt;&#39;&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;adapter:&lt;/strong&gt; the name of adapter (e.g., &lt;code&gt;&#39;rails&#39;&lt;/code&gt;). Default is &lt;code&gt;undefined&lt;/code&gt;.
+Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;autoRefresh:&lt;/strong&gt; a boolean value that controls if a &lt;code&gt;POST/PATCH/PUT/DELETE&lt;/code&gt; request
+triggers &lt;code&gt;this.refresh()&lt;/code&gt; after its completion. Default is &lt;code&gt;true&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dataType:&lt;/strong&gt; the type of data that you&amp;rsquo;re expecting from the server.
+The value must be &lt;code&gt;undefined&lt;/code&gt; (default), &lt;code&gt;&#39;json&#39;&lt;/code&gt; or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.
+If this property is not set, the collection agents detect the data type
+automatically.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;example:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
+var agent1 = new Cape.CollectionAgent({ resourceName: &#39;users&#39; });
+var agent2 = new Cape.CollectionAgent({ resourceName: &#39;tags&#39;, basePath: &#39;/api/&#39; });
+var agent3 = new Cape.CollectionAgent({ resourceName: &#39;members&#39;, nestedIn: &#39;teams/123/&#39; });
+var agent4 = new Cape.CollectionAgent({ resourceName: &#39;articles&#39;, dataType: &#39;text&#39; });
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
@@ -1076,78 +1075,6 @@ and mount components according to the &lt;em&gt;routes&lt;/em&gt;
 &lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
 You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
 method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Cape.ResourceAgent - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/resource_agent/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/resource_agent/</guid>
-      <description>
-
-&lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
-&lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
-&lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
-&lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
-&lt;a href=&#34;#default-error-hander&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
-&lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
-&lt;a href=&#34;#init&#34;&gt;#init()&lt;/a&gt; -
-&lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
-&lt;a href=&#34;#path-prefix&#34;&gt;#pathPrefix()&lt;/a&gt; -
-&lt;a href=&#34;#singular-path&#34;&gt;#singularPath()&lt;/a&gt; -
-&lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;constructor:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Constructor&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code&gt;Cape.ResourceAgent&lt;/code&gt; constructor takes a string (resource name),
-a &lt;code&gt;Cape.Component&lt;/code&gt; object and an optional object (options) as arguments.&lt;/p&gt;
-
-&lt;h4 id=&#34;options:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Options&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;adapter:&lt;/strong&gt; the name of adapter (e.g., &lt;code&gt;&#39;rails&#39;&lt;/code&gt;). Default is &lt;code&gt;undefined&lt;/code&gt;.
-Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;dataType:&lt;/strong&gt; the type of data that you&amp;rsquo;re expecting from the server.
-The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt; (default) or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;pathPrefix:&lt;/strong&gt; the string that is added to the request path.
-Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;singular:&lt;/strong&gt; a boolean value that specifies if the resource is singular or not.
-Resources are called &lt;em&gt;singular&lt;/em&gt; when they have a URL without ID. Default is &lt;code&gt;false&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;adapters:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Adapters&lt;/h4&gt;
-
-&lt;p&gt;Currently, Cape.JS provides only &lt;code&gt;RailsAdapter&lt;/code&gt;, which sets the &lt;code&gt;X-CSRF-Token&lt;/code&gt; header
-for Ajax requests.&lt;/p&gt;
-
-&lt;h4 id=&#34;example:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
-
-var Form = Cape.createComponentClass({
-  init: function() {
-    this.id = 123;
-    this.agent = new Cape.ResourceAgent(&#39;user&#39;, this);
-    this.agent.init(function(agent) {
-      this.setValues(&#39;user&#39;, agent.object);
-      this.refresh();
-    })
-  },
-
-  render: function(m) {
-    m.formFor(&#39;user&#39;, function(m) {
-      m.textField(&#39;login_name&#39;);
-      ...
-    });
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -2689,6 +2616,115 @@ current URL, nor call the &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; me
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.vars.signedIn = Date.now();
 router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.ResourceAgent - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/resource_agent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/resource_agent/</guid>
+      <description>
+
+&lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
+&lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
+&lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
+&lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
+&lt;a href=&#34;#default-error-hander&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
+&lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
+&lt;a href=&#34;#init&#34;&gt;#init()&lt;/a&gt; -
+&lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
+&lt;a href=&#34;#singular-path&#34;&gt;#singularPath()&lt;/a&gt; -
+&lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;constructor:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Constructor&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;Cape.ResourceAgent&lt;/code&gt; constructor takes
+a &lt;code&gt;Cape.Component&lt;/code&gt; object and an optional object (options) as arguments.&lt;/p&gt;
+
+&lt;h4 id=&#34;options:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Options&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;resourceName:&lt;/strong&gt; the name of resource.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;basePath:&lt;/strong&gt; the string that is added to the request path. Default value is &amp;lsquo;/&amp;rsquo;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;nestedIn:&lt;/strong&gt; the string that is inserted between path prefix and the resource
+name. Default value is &amp;ldquo;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;adapter:&lt;/strong&gt; the name of adapter (e.g., &lt;code&gt;&#39;rails&#39;&lt;/code&gt;). Default is &lt;code&gt;undefined&lt;/code&gt;.
+Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dataType:&lt;/strong&gt; the type of data that you&amp;rsquo;re expecting from the server.
+The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt; (default) or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pathPrefix:&lt;/strong&gt; the string that is added to the request path.
+Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;singular:&lt;/strong&gt; a boolean value that specifies if the resource is singular or not.
+Resources are called &lt;em&gt;singular&lt;/em&gt; when they have a URL without ID. Default is &lt;code&gt;false&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;paramName:&lt;/strong&gt; the name of parameter to be used when the &lt;code&gt;object&lt;/code&gt;
+property is initialized and the request parameter is constructed.
+Default is undefiend.
+When the &lt;code&gt;pathName&lt;/code&gt; option is not defined, the name is derived from the
+&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;adapters:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Adapters&lt;/h4&gt;
+
+&lt;p&gt;Currently, Cape.JS provides only &lt;code&gt;RailsAdapter&lt;/code&gt;, which sets the &lt;code&gt;X-CSRF-Token&lt;/code&gt; header
+for Ajax requests.&lt;/p&gt;
+
+&lt;h4 id=&#34;example:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
+
+var Form = Cape.createComponentClass({
+  init: function() {
+    this.id = 123;
+    this.agent = new Cape.ResourceAgent(this, { resourceName: &#39;user&#39; });
+    this.agent.init(function(agent) {
+      this.setValues(&#39;user&#39;, agent.object);
+      this.refresh();
+    })
+  },
+
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.onclick(e =&amp;gt; this.agent.update()).btn(&#39;Update&#39;);
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Usually, You will want to define a class inheriting &lt;code&gt;Cape.ResourceAgent&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
+
+var UserAgent = Cape.createResourceAgentClass({
+  constructor: function(client, options) {
+    this.resourceName = &#39;user&#39;;
+  }
+})
+
+var Form = Cape.createComponentClass({
+  init: function() {
+    this.id = 123;
+    this.agent = new UserAgent(this);
+    this.agent.init(function(agent) {
+      this.setValues(&#39;user&#39;, agent.object);
+      this.refresh();
+    })
+  },
+
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.onclick(e =&amp;gt; this.agent.update()).btn(&#39;Update&#39;);
+    });
+  }
+});
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
@@ -4281,6 +4317,28 @@ within the definition of &lt;code&gt;SimpleForm&lt;/code&gt; class.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Tutorials and Demos</title>
+      <link>http://oiax.github.io/capejs/tutorials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/</guid>
+      <description>
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;setting-up-rails-with-capejs&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;setting-up-rails-with-cape-js:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Setting up Rails with Cape.JS&lt;/h3&gt;
+
+&lt;p&gt;This tutorial has not been written yet.&lt;/p&gt;
+
+&lt;p&gt;At &lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;,
+you can find a demo Cape.JS application built upon the Ruby on Rails.&lt;/p&gt;
+
+&lt;p&gt;Reading through its source code, you will learn how to integrate
+a Rails app with Cape.JS and organize your JavaScript files.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Router</title>
       <link>http://oiax.github.io/capejs/router/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -4900,28 +4958,6 @@ to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.
 
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link href=&amp;quot;https://cdn.rawgit.com/taylorhakes/promise-polyfill/master/Promise.min.js&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Tutorials and Demos</title>
-      <link>http://oiax.github.io/capejs/tutorials/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/tutorials/</guid>
-      <description>
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;setting-up-rails-with-capejs&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;setting-up-rails-with-cape-js:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Setting up Rails with Cape.JS&lt;/h3&gt;
-
-&lt;p&gt;This tutorial has not been written yet.&lt;/p&gt;
-
-&lt;p&gt;At &lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt;,
-you can find a demo Cape.JS application built upon the Ruby on Rails.&lt;/p&gt;
-
-&lt;p&gt;Reading through its source code, you will learn how to integrate
-a Rails app with Cape.JS and organize your JavaScript files.&lt;/p&gt;
 </description>
     </item>
     
