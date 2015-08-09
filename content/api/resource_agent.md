@@ -12,18 +12,21 @@ title: "Cape.ResourceAgent - API Reference"
 [#destroy()](#destroy) -
 [#init()](#init) -
 [#memberPath()](#member-path) -
-[#pathPrefix()](#path-prefix) -
 [#singularPath()](#singular-path) -
 [#update()](#update)
 
 <a class="anchor" id="constructor"></a>
 ### Constructor
 
-The `Cape.ResourceAgent` constructor takes a string (resource name),
+The `Cape.ResourceAgent` constructor takes
 a `Cape.Component` object and an optional object (options) as arguments.
 
 #### Options
 
+* **resourceName:** the name of resource.
+* **basePath:** the string that is added to the request path. Default value is '/'.
+* **nestedIn:** the string that is inserted between path prefix and the resource
+  name. Default value is ''.
 * **adapter:** the name of adapter (e.g., `'rails'`). Default is `undefined`.
   Default value can be changed by setting `Cape.defaultAgentAdapter` property.
 * **dataType:** the type of data that you're expecting from the server.
@@ -32,6 +35,11 @@ a `Cape.Component` object and an optional object (options) as arguments.
   Default value is `'/'`.
 * **singular:** a boolean value that specifies if the resource is singular or not.
   Resources are called _singular_ when they have a URL without ID. Default is `false`.
+* **paramName:** the name of parameter to be used when the `object`
+  property is initialized and the request parameter is constructed.
+  Default is undefiend.
+  When the `pathName` option is not defined, the name is derived from the
+  `resourceName` property, e.g. `user` if the resource name is `user`.
 
 #### Adapters
 
@@ -46,7 +54,7 @@ Cape.defaultAgentAdapter = 'rails';
 var Form = Cape.createComponentClass({
   init: function() {
     this.id = 123;
-    this.agent = new Cape.ResourceAgent('user', this);
+    this.agent = new Cape.ResourceAgent(this, { resourceName: 'user' });
     this.agent.init(function(agent) {
       this.setValues('user', agent.object);
       this.refresh();
@@ -56,7 +64,37 @@ var Form = Cape.createComponentClass({
   render: function(m) {
     m.formFor('user', function(m) {
       m.textField('login_name');
-      ...
+      m.onclick(e => this.agent.update()).btn('Update');
+    });
+  }
+});
+```
+
+Usually, You will want to define a class inheriting `Cape.ResourceAgent`:
+
+```javascript
+Cape.defaultAgentAdapter = 'rails';
+
+var UserAgent = Cape.createResourceAgentClass({
+  constructor: function(client, options) {
+    this.resourceName = 'user';
+  }
+})
+
+var Form = Cape.createComponentClass({
+  init: function() {
+    this.id = 123;
+    this.agent = new UserAgent(this);
+    this.agent.init(function(agent) {
+      this.setValues('user', agent.object);
+      this.refresh();
+    })
+  },
+
+  render: function(m) {
+    m.formFor('user', function(m) {
+      m.textField('login_name');
+      m.onclick(e => this.agent.update()).btn('Update');
     });
   }
 });

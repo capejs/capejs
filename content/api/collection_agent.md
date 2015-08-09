@@ -18,7 +18,6 @@ title: "Cape.CollectionAgent - API Reference"
 [#index()](#index) -
 [#memberPath()](#member-path) -
 [#patch()](#patch) -
-[#pathPref()](#path-prefix) -
 [#post()](#post) -
 [#propagate()](#propagate) -
 [#put()](#put) -
