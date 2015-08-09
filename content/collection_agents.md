@@ -7,7 +7,7 @@ title: "Collection Agents"
 [Basics](#basics) -
 [Setting up](#setting-up) -
 [Agent Adapters](#agent-adapters) -
-[Defining Class](#defining-class) -
+[Defining Classes](#defining-classes) -
 [Initialization](#initialization) -
 [Creating Resources](#creating-resources) -
 [REST Operations](#rest-operations) -
@@ -20,8 +20,8 @@ title: "Collection Agents"
 
 The _collection agents_ are JavaScript objects that have following capabilities:
 
-* Keeping an array of objects that represent resources of the server.
-* Creating, updating and deleting these resources by sending Ajax requests to the server.
+* Keeping an array of objects that represent a _resource collection_ of the server.
+* Creating, updating and deleting the members of this collection by sending Ajax requests to the server.
 
 Cape.JS provides similar objects called _data stores_.
 But, they lack Ajax functionalities so that
@@ -63,8 +63,8 @@ beginning of your JavaScript code:
 Cape.defaultAgentAdapter = 'rails'
 ```
 
-<a class="anchor" id="defining-class"></a>
-### Defining Class
+<a class="anchor" id="defining-classes"></a>
+### Defining Classes
 
 In order to use collection agents, you should define a class inheriting the
 `Cape.CollectionAgent` class.
@@ -88,11 +88,8 @@ class UserCollectionAgent extends Cape.CollectionAgent {
 }
 ```
 
-Here, the `resourceName` property represents the standard path of the server-side API.
-The collection agent uses it to construct the URL paths
-and analyze the JSON string returned from the server.
-In the above examples, the agents will send a `GET` request to the `/users`
-in order to get a list of users.
+The collection agent uses the `resourceName` property to construct the URL paths
+as explained below.
 
 <a class="anchor" id="initialization"></a>
 ### Initialization
