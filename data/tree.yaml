@@ -62,8 +62,8 @@ pages:
         id: "agent-adapters"
         title: "Agent Adapters"
       -
-        id: "defining-class"
-        title: "Defining Class"
+        id: "defining-classes"
+        title: "Defining Classes"
       -
         id: "initialization"
         title: "Initialization"
@@ -89,6 +89,27 @@ pages:
       -
         id: "basics"
         title: "Basics"
+      -
+        id: "agent-adapters"
+        title: "Agent Adapters"
+      -
+        id: "defining-classes"
+        title: "Defining Classes"
+      -
+        id: "creating-a-new-resource"
+        title: "Creating a New Resource"
+      -
+        id: "editing-a-resource"
+        title: "Editing a Resource"
+      -
+        id: "building-a-dual-use-form"
+        title: "Building a Dual-Use Form"
+      -
+        id: "deleting-a-resource"
+        title: "Deleting a Resource"
+      -
+        id: "specifying-a-callback"
+        title: "Specifying-a-callback"
       -
         id: "options"
         title: "Options"
