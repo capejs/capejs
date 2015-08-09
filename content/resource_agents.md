@@ -176,10 +176,13 @@ to `/users/123` with the following JSON body:
 <a class="anchor" id="building-a-dual-use-form"></a>
 ### Building a Dual-Use Form
 
+By synthesizing the two `Component` classes defined above,
+we will get the following class:
+
 ```javascript
 class UserForm extends Cape.Component {
   init() {
-    this.id = this.data.id;
+    this.id = this.root.data.id;
     this.agent = new UserAgent(this);
     if (this.id) {
       this.agent.init(agent => {
@@ -217,6 +220,8 @@ class UserForm extends Cape.Component {
 }
 ```
 
+This `UserForm` class can be used both for a _new user_ form:
+
 ```html
 <h1>New User</h1>
 <div id="user-form"></div>
@@ -228,6 +233,8 @@ class UserForm extends Cape.Component {
 </script>
 ```
 
+and for a _edit user_ form:
+
 ```html
 <h1>Edit User</h1>
 <div id="user-form" data-id="123"></div>
@@ -238,6 +245,8 @@ class UserForm extends Cape.Component {
   component.mount('user-form');
 </script>
 ```
+
+Note that the component gets the string `'123'` through `this.root.data.id`.
 
 <a class="anchor" id="deleting-a-resource"></a>
 ### Deleting a Resource

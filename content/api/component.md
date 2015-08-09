@@ -2,6 +2,7 @@
 title: "Cape.Component - API Reference"
 ---
 
+[checkedOn()](#checked-on) -
 [formData()](#form-data) -
 [jsonFor()](#json-for) -
 [mount()](#mount) -
@@ -12,6 +13,55 @@ title: "Cape.Component - API Reference"
 [val()](#val) -
 [valuesFor()](#values-for)
 
+<a class="anchor" id="checked-on"></a>
+### #checkedOn() <span class="badge alert-info">1.2</span>
+
+#### Usage
+
+* **checkedOn(name)**
+
+This method returns:
+
+* `true` if the check box whose name is `name` is checked.
+* `false` if the check box whose name is `name` exists but is not checked.
+* `undefined` if the check box whose name is `name` does not exist.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.form(function(m) {
+    m.checkBox('done');
+    m.button('Check', {
+      onclick: function(e) {
+        console.log(this.checkedOn('done'));
+        return false;
+      }
+    })
+  });
+}
+```
+
+When the form has a `name` attribute, you should prepend its value and a dot
+to the name of check box.
+
+#### Example
+
+```javascript
+render: function(m) {
+  m.formFor('task', function(m) {
+    m.checkBox('done');
+    m.button('Check', {
+      onclick: function(e) {
+        console.log(this.checkedOn('task.done'));
+        return false;
+      }
+    })
+  });
+}
+```
+
+
 <a class="anchor" id="form-data"></a>
 ### #formData()
 
@@ -19,7 +69,7 @@ title: "Cape.Component - API Reference"
 
 * **formData()**
 
-Thid method returns a JavaScript object that represents the values of
+This method returns a JavaScript object that represents the values of
 all form controls within the component.
 
 The values are organized in hierarchical structure as explained following examples:
@@ -94,7 +144,7 @@ the `formData()` method of its instances returns an object like this:
 ```
 
 <a class="anchor" id="json-for"></a>
-### #jsonFor() <span class="badge alert-info">1.1.0</span>
+### #jsonFor() <span class="badge alert-info">1.1</span>
 
 #### Usage
 
@@ -202,7 +252,7 @@ Note that you should have to call the `refresh()` method at the end
 to render the component.
 
 <a class="anchor" id="params-for"></a>
-### #paramsFor() <span class="badge alert-info">1.1.0</span>
+### #paramsFor() <span class="badge alert-info">1.1</span>
 
 Thid method returns an object that represents the field values of
 a named form.
@@ -396,8 +446,8 @@ render: function(m) {
       .textField('given_name');
     m.button('Check', {
       onclick: function(e) {
-        console.log(val('user.family_name'));
-        console.log(val('user.given_name'));
+        console.log(this.val('user.family_name'));
+        console.log(this.val('user.given_name'));
         return false;
       }
     })
@@ -418,7 +468,7 @@ render: function(m) {
     m.textField('body');
     m.button('Send', {
       onclick: function(e) {
-        var body = val('message.body', ''),
+        var body = this.val('message.body', ''),
             self = this;
         $.post('/api/messages', { body: body }, function() {
           self.refresh();
@@ -456,7 +506,7 @@ render: function(m) {
 ```
 
 <a class="anchor" id="values-for"></a>
-### #valuesFor() <span class="badge alert-info">1.1.0</span>
+### #valuesFor() <span class="badge alert-info">1.1</span>
 
 Thid method sets the field values of a named form by passing an object as the first argument.
 

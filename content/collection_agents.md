@@ -24,7 +24,7 @@ The _collection agents_ are JavaScript objects that have following capabilities:
 * Creating, updating and deleting the members of this collection by sending Ajax requests to the server.
 
 Cape.JS provides similar objects called _data stores_.
-But, they lack Ajax functionalities so that
+But, they lack _built-in_ Ajax functionalities so that
 you have to implement them on your own.
 
 Generally speaking, you will prefer collection agents to data stores,
