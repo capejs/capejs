@@ -11,7 +11,8 @@ title: "Resource Agents"
 [Editing a Resource](#deleting-a-resource) -
 [Building a Dual-Use Form](#building-a-dual-use-form) -
 [Deleting a Resource](#deleting-a-resource) -
-[Specifying a Callback](#specifying-a-callback)
+[Specifying a Callback](#specifying-a-callback) -
+[Changing the Path Prefix](#changing-path-prefix) -
 [Options](#options)
 
 <a class="anchor" id="basics"></a>
@@ -251,9 +252,50 @@ You can delete an existing resource by calling `#destroy` method of the resource
 <a class="anchor" id="specifying-a-callback"></a>
 ### Specifying a Callback
 
-This section is not yet prepared.
+If you want to perform some tasks after the Ajax request is done, you should
+specify a callback function as the first argument of `#create()`, `#update()`
+or `#destroy()` like this:
+
+```javascript
+m.onclick(e => this.agent.create(function(data) {
+  if (data.result === 'OK') {
+    window.location = '/users';
+  }
+  else {
+    this.agent.errors = data.error_messages;
+    this.refresh();
+  }
+}));
+```
+
+The specified callback should take an argument, which can be an object or a string
+according to the content type of response.
+
+
+<a class="anchor" id="changing-path-prefix"></a>
+### Changing the Path Prefix
+
+See [Changing the Path Prefix](../collection_agents#changing-path-prefix) of Collection Agents.
 
 <a class="anchor" id="options"></a>
 ### Options
 
-This section is not yet prepared.
+The constructor of `ResourceMapper` takes following options:
+
+* `resourceName`: the name of resource.
+* `basePath`: the string that is added to the request path. Default value is '/'.
+* `nestedIn`: the string that is inserted between path prefix and the resource
+  name. Default value is ''.
+* `adapter`: the name of adapter (e.g., 'rails'). Default is undefined.
+  Default value can be changed by setting Cape.defaultAgentAdapter property.
+* `dataType`: the type of data that you're expecting from the server.
+  The value must be 'json', 'text' or undefined. Default is undefiend.
+  When the dataType option is not defined, the type is detected automatically.
+* `singular`: a boolean value that specifies if the resource is singular or not.
+   Resources are called 'singular' when they have a URL without ID.
+   Default is `false`.
+* `paramName`: the name of parameter to be used when the `object`
+  property is initialized and the request parameter is constructed.
+  Default is undefiend.
+  When the `pathName` option is not defined, the name is derived from the
+  `resourceName` property, e.g. `user` if the resource name is `user`.
