@@ -2,62 +2,67 @@
 
 describe('ResourceAgent', function() {
   describe('constructor', function() {
-    it('should take resource name and its client as arguments', function() {
+    it('should take its client as the first argument', function() {
       var form, agent;
 
       form = { id: 123 };
-      agent = new Cape.ResourceAgent('user', form);
+      agent = new Cape.ResourceAgent(form);
 
-      expect(agent.resourceName).to.equal('user');
       expect(agent.client).to.equal(form);
     })
 
-    it('should take an object (options) as the third argument', function() {
+    it('should take an object (options) as the second argument', function() {
       var form, options, agent;
 
       form = { id: 123 };
-      options = { basePath: '/api/' }
-      agent = new Cape.ResourceAgent('user', form, options);
+      options = { resourceName: 'user', basePath: '/api/' };
+      agent = new Cape.ResourceAgent(form, options);
 
+      expect(agent.resourceName).to.equal('user');
       expect(agent.basePath).to.equal('/api/');
     })
   })
 
   describe('#collectionPath', function() {
     it('should return standard values', function() {
-      var form, agent;
+      var form, options, agent;
 
       form = {};
-      agent = new Cape.ResourceAgent('user', form);
+      options = { resourceName: 'user' };
+      agent = new Cape.ResourceAgent(form, options);
 
       expect(agent.collectionPath()).to.equal('/users');
     })
 
     it('should add prefix to the paths', function() {
-      var form, agent;
+      var form, options, agent;
 
       form = {};
-      agent = new Cape.ResourceAgent('user', form, { basePath: '/api/' });
+      options = {
+        resourceName: 'user', basePath: '/api/', nestedIn: 'companies/123/' };
+      agent = new Cape.ResourceAgent(form, options);
 
-      expect(agent.collectionPath()).to.equal('/api/users');
+      expect(agent.collectionPath()).to.equal('/api/companies/123/users');
     })
   })
 
   describe('#memberPath', function() {
     it('should return standard values', function() {
-      var form, agent;
+      var form, options, agent;
 
       form = { id: 123 };
-      agent = new Cape.ResourceAgent('user', form);
+      options = { resourceName: 'user' };
+      agent = new Cape.ResourceAgent(form, options);
 
       expect(agent.memberPath()).to.equal('/users/123');
     })
 
     it('should add prefix to the paths', function() {
-      var form, agent;
+      var form, options, agent;
 
       form = { id: 123 };
-      agent = new Cape.ResourceAgent('user', form, { basePath: '/api/' });
+      options = { resourceName: 'user', basePath: '/api/' };
+      agent = new Cape.ResourceAgent(form, options);
 
       expect(agent.memberPath()).to.equal('/api/users/123');
     })
@@ -65,20 +70,21 @@ describe('ResourceAgent', function() {
 
   describe('#singularPath', function() {
     it('should return standard values', function() {
-      var form, agent;
+      var form, options, agent;
 
       form = {};
-      agent = new Cape.ResourceAgent('profile', form, { singular: true });
+      options = { resourceName: 'profile', singular: true };
+      agent = new Cape.ResourceAgent(form, options);
 
       expect(agent.singularPath()).to.equal('/profile');
     })
 
     it('should add prefix to the paths', function() {
-      var form, agent;
+      var form, options, agent;
 
       form = {};
-      agent = new Cape.ResourceAgent('profile', form,
-        { basePath: '/api/', singular: true });
+      options = { resourceName: 'profile', basePath: '/api/', singular: true };
+      agent = new Cape.ResourceAgent(form, options);
 
       expect(agent.singularPath()).to.equal('/api/profile');
     })
@@ -86,11 +92,12 @@ describe('ResourceAgent', function() {
 
   describe('#init', function() {
     it('should go through a fetch api chain', function() {
-      var form, agent, spy1, spy2, spy3;
+      var form, options, agent, spy1, spy2, spy3;
 
       Cape.AgentAdapters.FooBarAdapter = sinon.spy();
       form = { id: 123 };
-      agent = new Cape.ResourceAgent('user', form);
+      options = { resourceName: 'user' };
+      agent = new Cape.ResourceAgent(form, options);
       agent.adapter = 'foo_bar';
 
       spy1 = sinon.spy();
@@ -111,10 +118,11 @@ describe('ResourceAgent', function() {
     })
 
     it('should fetch a singular resource', function() {
-      var form, agent, spy1, spy2, spy3;
+      var form, options, agent, spy1, spy2, spy3;
 
       form = {};
-      agent = new Cape.ResourceAgent('profile', form, { singular: true });
+      options = { resourceName: 'profile', singular: true };
+      agent = new Cape.ResourceAgent(form, options);
 
       spy1 = sinon.spy();
       spy2 = sinon.spy();
@@ -133,10 +141,11 @@ describe('ResourceAgent', function() {
 
   describe('#create', function() {
     it('should go through a fetch api chain', function() {
-      var form, agent, spy1, spy2, spy3;
+      var form, options, agent, spy1, spy2, spy3;
 
       form = { paramsFor: function() { return {} } };
-      agent = new Cape.ResourceAgent('user', form);
+      options = { resourceName: 'user' };
+      agent = new Cape.ResourceAgent(form, options);
 
       spy1 = sinon.spy();
       spy2 = sinon.spy();
@@ -153,10 +162,11 @@ describe('ResourceAgent', function() {
     })
 
     it('should create a singular resource', function() {
-      var form, agent, spy1, spy2, spy3;
+      var form, options, agent, spy1, spy2, spy3;
 
       form = { paramsFor: function() { return {} } };
-      agent = new Cape.ResourceAgent('profile', form, { singular: true });
+      options = { resourceName: 'profile', singular: true };
+      agent = new Cape.ResourceAgent(form, options);
 
       spy1 = sinon.spy();
       spy2 = sinon.spy();
@@ -175,10 +185,11 @@ describe('ResourceAgent', function() {
 
   describe('#update', function() {
     it('should go through a fetch api chain', function() {
-      var form, agent, spy1, spy2, spy3;
+      var form, options, agent, spy1, spy2, spy3;
 
       form = { id: 123, paramsFor: function() { return {} } };
-      agent = new Cape.ResourceAgent('user', form);
+      options = { resourceName: 'user' };
+      agent = new Cape.ResourceAgent(form, options);
 
       spy1 = sinon.spy();
       spy2 = sinon.spy();
@@ -195,10 +206,11 @@ describe('ResourceAgent', function() {
     })
 
     it('should update a singular resource', function() {
-      var form, agent, spy1, spy2, spy3;
+      var form, options, agent, spy1, spy2, spy3;
 
       form = { paramsFor: function() { return {} } };
-      agent = new Cape.ResourceAgent('profile', form, { singular: true });
+      options = { resourceName: 'profile', singular: true };
+      agent = new Cape.ResourceAgent(form, options);
 
       spy1 = sinon.spy();
       spy2 = sinon.spy();
@@ -217,10 +229,11 @@ describe('ResourceAgent', function() {
 
   describe('#destroy', function() {
     it('should go through a fetch api chain', function() {
-      var form, agent, spy1, spy2, spy3;
+      var form, options, agent, spy1, spy2, spy3;
 
       form = { id: 123 };
-      agent = new Cape.ResourceAgent('user', form);
+      options = { resourceName: 'user' };
+      agent = new Cape.ResourceAgent(form, options);
 
       spy1 = sinon.spy();
       spy2 = sinon.spy();
@@ -237,10 +250,11 @@ describe('ResourceAgent', function() {
     })
 
     it('should destroy a singular resource', function() {
-      var form, agent, spy1, spy2, spy3;
+      var form, options, agent, spy1, spy2, spy3;
 
       form = { paramsFor: function() { return {} } };
-      agent = new Cape.ResourceAgent('profile', form, { singular: true });
+      options = { resourceName: 'profile', singular: true };
+      agent = new Cape.ResourceAgent(form, options);
 
       spy1 = sinon.spy();
       spy2 = sinon.spy();

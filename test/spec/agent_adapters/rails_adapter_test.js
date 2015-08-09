@@ -4,7 +4,7 @@
 describe('AgentAdapters.RailsAdapter', function() {
   describe('constructor', function() {
     it('should set X-CSRF-Token header', function() {
-      var form, agent;
+      var form, options, agent;
 
       global.document  = jsdom(
         '<html>' +
@@ -13,21 +13,23 @@ describe('AgentAdapters.RailsAdapter', function() {
       )
 
       form = { id: 123 };
-      agent = new Cape.ResourceAgent('user', form, { adapter: 'rails' });
+      options = { resourceName: 'user', adapter: 'rails' };
+      agent = new Cape.ResourceAgent(form, options);
       agent._.applyAdapter();
 
       expect(agent.headers['X-CSRF-Token']).to.equal('token');
     })
 
     it('should not set X-CSRF-Token header', function() {
-      var form, agent;
+      var form, options, agent;
 
       global.document  = jsdom(
         '<html><head></head><body></body></html>'
       )
 
       form = { id: 123 };
-      agent = new Cape.ResourceAgent('user', form);
+      options = { resourceName: 'user', adapter: 'rails' };
+      agent = new Cape.ResourceAgent(form, options);
       agent._.applyAdapter();
 
       expect(agent.headers['X-CSRF-Token']).to.be.undefined;
