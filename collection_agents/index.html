@@ -112,6 +112,8 @@
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#agent-adapters">Agent Adapters</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/collection_agents/#defining-classes">Defining Classes</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/collection_agents/#initialization">Initialization</a></li>
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#creating-resources">Creating Resources</a></li>
@@ -119,6 +121,8 @@
             <li><a href="http://oiax.github.io/capejs/collection_agents/#rest-operations">REST Operations</a></li>
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#callbacks-and-error-handlers">Callbacks and Error Handlers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/collection_agents/#changing-path-prefix">Changing the Path Prefix</a></li>
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#options">Options</a></li>
           
@@ -130,6 +134,20 @@
           <ul>
           
             <li><a href="http://oiax.github.io/capejs/resource_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/resource_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/resource_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/resource_agents/#creating-a-new-resource">Creating a New Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/resource_agents/#editing-a-resource">Editing a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/resource_agents/#building-a-dual-use-form">Building a Dual-Use Form</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/resource_agents/#deleting-a-resource">Deleting a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/resource_agents/#specifying-a-callback">Specifying-a-callback</a></li>
           
             <li><a href="http://oiax.github.io/capejs/resource_agents/#options">Options</a></li>
           
@@ -193,12 +211,12 @@
 <p><a href="#basics">Basics</a> -
 <a href="#setting-up">Setting up</a> -
 <a href="#agent-adapters">Agent Adapters</a> -
-<a href="#defining-class">Defining Class</a> -
+<a href="#defining-classes">Defining Classes</a> -
 <a href="#initialization">Initialization</a> -
 <a href="#creating-resources">Creating Resources</a> -
 <a href="#rest-operations">REST Operations</a> -
 <a href="#callbacks-and-error-handlers">Callbacks and Error Handlers</a> -
-<a href="#changing-path-prefix">Changing Path Prefix</a> -
+<a href="#changing-path-prefix">Changing the Path Prefix</a> -
 <a href="#options">Options</a></p>
 
 <p><a class="anchor" id="basics"></a></p>
@@ -208,8 +226,8 @@
 <p>The <em>collection agents</em> are JavaScript objects that have following capabilities:</p>
 
 <ul>
-<li>Keeping an array of objects that represent resources of the server.</li>
-<li>Creating, updating and deleting these resources by sending Ajax requests to the server.</li>
+<li>Keeping an array of objects that represent a <em>resource collection</em> of the server.</li>
+<li>Creating, updating and deleting the members of this collection by sending Ajax requests to the server.</li>
 </ul>
 
 <p>Cape.JS provides similar objects called <em>data stores</em>.
@@ -252,9 +270,9 @@ beginning of your JavaScript code:</p>
 <pre><code class="language-javascript">Cape.defaultAgentAdapter = 'rails'
 </code></pre>
 
-<p><a class="anchor" id="defining-class"></a></p>
+<p><a class="anchor" id="defining-classes"></a></p>
 
-<h3 id="defining-class:0b3dd9ce14f479a81f8252af01a87547">Defining Class</h3>
+<h3 id="defining-classes:0b3dd9ce14f479a81f8252af01a87547">Defining Classes</h3>
 
 <p>In order to use collection agents, you should define a class inheriting the
 <code>Cape.CollectionAgent</code> class.</p>
@@ -276,11 +294,8 @@ beginning of your JavaScript code:</p>
 }
 </code></pre>
 
-<p>Here, the <code>resourceName</code> property represents the standard path of the server-side API.
-The collection agent uses it to construct the URL paths
-and analyze the JSON string returned from the server.
-In the above examples, the agents will send a <code>GET</code> request to the <code>/users</code>
-in order to get a list of users.</p>
+<p>The collection agent uses the <code>resourceName</code> property to construct the URL paths
+as explained below.</p>
 
 <p><a class="anchor" id="initialization"></a></p>
 
@@ -488,7 +503,7 @@ you can pass a <em>callback</em> as the last argument to the methods:</p>
 
 <p><a class="anchor" id="changing-path-prefix"></a></p>
 
-<h3 id="changing-path-prefix:0b3dd9ce14f479a81f8252af01a87547">Changing Path Prefix</h3>
+<h3 id="changing-the-path-prefix:0b3dd9ce14f479a81f8252af01a87547">Changing the Path Prefix</h3>
 
 <p>If the paths of the server-side API has a prefix, you should set the <code>basePath</code>
 and <code>nestdIn</code> properties.</p>
@@ -498,9 +513,38 @@ when the collection agent constructs the API paths. Its default value is <code>/
 The values of <code>nestedIn</code> property is inserted between the base path and
 the resource name. Its default value is &ldquo;.</p>
 
-<p>For example, if the <code>basePath</code> is <code>'/api/v2/'</code> and the <code>nestedIn</code> is <code>'groups/7'</code>,
-an instance of <code>UserCollectionAgent</code> class will construct paths like
-<code>/api/v2/groups/7/users</code>, <code>/api/v2/groups/7/users/99</code>, etc.</p>
+<p>Suppose that you defined the <code>ArticleCollectionAgent</code> class like this:</p>
+
+<pre><code class="language-javascript">class ArticleCollectionAgent extends Cape.CollectionAgent {
+  constructor(options) {
+    super(options);
+    this.resourceName = 'articles';
+    this.basePath = '/api/v2/';
+  }
+}
+</code></pre>
+
+<p>And, you instantiated it as follows:</p>
+
+<pre><code class="language-javascript">class ArticleList extends Cape.Component {
+  init() {
+    this.agent = ArticleCollectionAgent.create({ nestedIn: 'members/123/' });
+    this.agent.attach(this);
+    this.agent.refresh();
+  }
+
+  render(m) {
+    // ...
+  }
+}
+</code></pre>
+
+<p>Then, <code>this.agent</code> will construct paths like these:</p>
+
+<ul>
+<li><code>/api/v2/members/123/articles</code></li>
+<li><code>/api/v2/members/123/articles/99</code></li>
+</ul>
 
 <p><a class="anchor" id="options"></a></p>
 
