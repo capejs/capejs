@@ -367,7 +367,8 @@ var agent4 = new Cape.CollectionAgent({ resourceName: &#39;articles&#39;, dataTy
       <guid>http://oiax.github.io/capejs/api/component/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;#form-data&#34;&gt;formData()&lt;/a&gt; -
+&lt;p&gt;&lt;a href=&#34;#checked-on&#34;&gt;checkedOn()&lt;/a&gt; -
+&lt;a href=&#34;#form-data&#34;&gt;formData()&lt;/a&gt; -
 &lt;a href=&#34;#json-for&#34;&gt;jsonFor()&lt;/a&gt; -
 &lt;a href=&#34;#mount&#34;&gt;mount()&lt;/a&gt; -
 &lt;a href=&#34;#params-for&#34;&gt;paramsFor()&lt;/a&gt; -
@@ -377,22 +378,73 @@ var agent4 = new Cape.CollectionAgent({ resourceName: &#39;articles&#39;, dataTy
 &lt;a href=&#34;#val&#34;&gt;val()&lt;/a&gt; -
 &lt;a href=&#34;#values-for&#34;&gt;valuesFor()&lt;/a&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;checked-on&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;checkedon-span-class-badge-alert-info-1-2-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#checkedOn() &lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;checkedOn(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method returns:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;true&lt;/code&gt; if the check box whose name is &lt;code&gt;name&lt;/code&gt; is checked.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;false&lt;/code&gt; if the check box whose name is &lt;code&gt;name&lt;/code&gt; exists but is not checked.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;undefined&lt;/code&gt; if the check box whose name is &lt;code&gt;name&lt;/code&gt; does not exist.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;example:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.form(function(m) {
+    m.checkBox(&#39;done&#39;);
+    m.button(&#39;Check&#39;, {
+      onclick: function(e) {
+        console.log(this.checkedOn(&#39;done&#39;));
+        return false;
+      }
+    })
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When the form has a &lt;code&gt;name&lt;/code&gt; attribute, you should prepend its value and a dot
+to the name of check box.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
+  m.formFor(&#39;task&#39;, function(m) {
+    m.checkBox(&#39;done&#39;);
+    m.button(&#39;Check&#39;, {
+      onclick: function(e) {
+        console.log(this.checkedOn(&#39;task.done&#39;));
+        return false;
+      }
+    })
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#formData()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;formData()&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Thid method returns a JavaScript object that represents the values of
+&lt;p&gt;This method returns a JavaScript object that represents the values of
 all form controls within the component.&lt;/p&gt;
 
 &lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
 
-&lt;h4 id=&#34;example:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a component defined like this,&lt;/p&gt;
 
@@ -416,7 +468,7 @@ all form controls within the component.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a component defined like this,&lt;/p&gt;
 
@@ -458,9 +510,9 @@ all form controls within the component.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;json-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;jsonfor-span-class-badge-alert-info-1-1-0-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#jsonFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1.0&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;jsonfor-span-class-badge-alert-info-1-1-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#jsonFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1&lt;/span&gt;&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;jsonFor(formName)&lt;/strong&gt;&lt;/li&gt;
@@ -471,7 +523,7 @@ a named form.&lt;/p&gt;
 
 &lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a component defined like this,&lt;/p&gt;
 
@@ -490,7 +542,7 @@ a named form.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&amp;quot;user&amp;quot;: { &amp;quot;login_name&amp;quot;: &amp;quot;john&amp;quot;, &amp;quot;password&amp;quot;: &amp;quot;p@ssw0rd&amp;quot;}}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-5:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a component defined like this,&lt;/p&gt;
 
@@ -519,7 +571,7 @@ a named form.&lt;/p&gt;
 
 &lt;h3 id=&#34;mount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#mount()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;mount(id)&lt;/strong&gt;&lt;/li&gt;
@@ -527,7 +579,7 @@ a named form.&lt;/p&gt;
 
 &lt;p&gt;This method renders the component and inserts it within the element specified by &lt;em&gt;id.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;example-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-6:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;body&amp;gt;
 &amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
@@ -546,7 +598,7 @@ component.mount(&#39;main&#39;);
 &lt;p&gt;If the component has the &lt;code&gt;init()&lt;/code&gt; method, the &lt;code&gt;mount()&lt;/code&gt; calls it
 instead of rendering the component.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-5:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-7:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloWorld = Cape.createComponentClass({
   init: function() {
@@ -565,7 +617,7 @@ to render the component.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;paramsfor-span-class-badge-alert-info-1-1-0-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#paramsFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1.0&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;paramsfor-span-class-badge-alert-info-1-1-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#paramsFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1&lt;/span&gt;&lt;/h3&gt;
 
 &lt;p&gt;Thid method returns an object that represents the field values of
 a named form.&lt;/p&gt;
@@ -573,7 +625,7 @@ a named form.&lt;/p&gt;
 &lt;p&gt;The returned object is organized in hierarchical structure
 so that you can pass it to the &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;ajax()&lt;/a&gt; method of jQuery.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-6:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-8:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;Suppose that you have a component defined like this:&lt;/p&gt;
 
@@ -614,7 +666,7 @@ to the &lt;code&gt;data&lt;/code&gt; option of the &lt;code&gt;ajax()&lt;/code&g
 &lt;pre&gt;&lt;code&gt;user[name]=john&amp;amp;user[password]=1234
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-7:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-9:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;Suppose that you have a component defined like this:&lt;/p&gt;
 
@@ -699,7 +751,7 @@ the following object:&lt;/p&gt;
 
 &lt;p&gt;Its &lt;code&gt;data&lt;/code&gt; subproperty holds the values of &lt;code&gt;data-*&lt;/code&gt; attributes of the root element.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-8:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-10:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;The following example shows &amp;ldquo;Hello, John!&amp;rdquo; on your browser.&lt;/p&gt;
 
@@ -721,7 +773,7 @@ component.mount(&#39;main&#39;);
 
 &lt;h3 id=&#34;unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#unmount()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;unmount()&lt;/strong&gt;&lt;/li&gt;
@@ -736,7 +788,7 @@ If the component has the &lt;code&gt;afterUnmount()&lt;/code&gt; method, it is c
 
 &lt;h3 id=&#34;val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#val()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-5:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;val(name)&lt;/strong&gt;&lt;/li&gt;
@@ -749,7 +801,7 @@ If the component has the &lt;code&gt;afterUnmount()&lt;/code&gt; method, it is c
 &lt;p&gt;When the number of arguments is one and that argument is a string,
 this method returns the value of the corresponding field.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-9:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-11:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -757,8 +809,8 @@ this method returns the value of the corresponding field.&lt;/p&gt;
       .textField(&#39;given_name&#39;);
     m.button(&#39;Check&#39;, {
       onclick: function(e) {
-        console.log(val(&#39;user.family_name&#39;));
-        console.log(val(&#39;user.given_name&#39;));
+        console.log(this.val(&#39;user.family_name&#39;));
+        console.log(this.val(&#39;user.given_name&#39;));
         return false;
       }
     })
@@ -771,14 +823,14 @@ this method sets the value of a field whose name is corresponding
 to the first argument to the second argument and returns
 the original value of the field.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-10:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-12:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;message&#39;, function(m) {
     m.textField(&#39;body&#39;);
     m.button(&#39;Send&#39;, {
       onclick: function(e) {
-        var body = val(&#39;message.body&#39;, &#39;&#39;),
+        var body = this.val(&#39;message.body&#39;, &#39;&#39;),
             self = this;
         $.post(&#39;/api/messages&#39;, { body: body }, function() {
           self.refresh();
@@ -793,7 +845,7 @@ the original value of the field.&lt;/p&gt;
 &lt;p&gt;When the number of arguments is one and that argument is an object,
 this method sets the value of corresponding fields.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-11:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-13:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -816,13 +868,13 @@ this method sets the value of corresponding fields.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;values-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;valuesfor-span-class-badge-alert-info-1-1-0-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#valuesFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1.0&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;valuesfor-span-class-badge-alert-info-1-1-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#valuesFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1&lt;/span&gt;&lt;/h3&gt;
 
 &lt;p&gt;Thid method sets the field values of a named form by passing an object as the first argument.&lt;/p&gt;
 
 &lt;p&gt;The values of this object must be organized in hierarchical structure as explained following examples:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-12:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-14:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you render a component defined like this,&lt;/p&gt;
 
@@ -849,7 +901,7 @@ this method sets the value of corresponding fields.&lt;/p&gt;
 &lt;p&gt;you will see the only text field is filled with a string &amp;ldquo;john&amp;rdquo; and the first
 radio button is checked.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-13:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-15:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you render a component defined like this,&lt;/p&gt;
 

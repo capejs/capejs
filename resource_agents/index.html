@@ -215,7 +215,8 @@
 <a href="#deleting-a-resource">Editing a Resource</a> -
 <a href="#building-a-dual-use-form">Building a Dual-Use Form</a> -
 <a href="#deleting-a-resource">Deleting a Resource</a> -
-<a href="#specifying-a-callback">Specifying a Callback</a>
+<a href="#specifying-a-callback">Specifying a Callback</a> -
+<a href="#changing-path-prefix">Changing the Path Prefix</a> -
 <a href="#options">Options</a></p>
 
 <p><a class="anchor" id="basics"></a></p>
@@ -375,9 +376,12 @@ to <code>/users/123</code> with the following JSON body:</p>
 
 <h3 id="building-a-dual-use-form:01090db2bd186f3f2b107103ab7e9173">Building a Dual-Use Form</h3>
 
+<p>By synthesizing the two <code>Component</code> classes defined above,
+we will get the following class:</p>
+
 <pre><code class="language-javascript">class UserForm extends Cape.Component {
   init() {
-    this.id = this.data.id;
+    this.id = this.root.data.id;
     this.agent = new UserAgent(this);
     if (this.id) {
       this.agent.init(agent =&gt; {
@@ -415,6 +419,8 @@ to <code>/users/123</code> with the following JSON body:</p>
 }
 </code></pre>
 
+<p>This <code>UserForm</code> class can be used both for a <em>new user</em> form:</p>
+
 <pre><code class="language-html">&lt;h1&gt;New User&lt;/h1&gt;
 &lt;div id=&quot;user-form&quot;&gt;&lt;/div&gt;
 
@@ -425,6 +431,8 @@ to <code>/users/123</code> with the following JSON body:</p>
 &lt;/script&gt;
 </code></pre>
 
+<p>and for a <em>edit user</em> form:</p>
+
 <pre><code class="language-html">&lt;h1&gt;Edit User&lt;/h1&gt;
 &lt;div id=&quot;user-form&quot; data-id=&quot;123&quot;&gt;&lt;/div&gt;
 
@@ -434,6 +442,8 @@ to <code>/users/123</code> with the following JSON body:</p>
   component.mount('user-form');
 &lt;/script&gt;
 </code></pre>
+
+<p>Note that the component gets the string <code>'123'</code> through <code>this.root.data.id</code>.</p>
 
 <p><a class="anchor" id="deleting-a-resource"></a></p>
 
@@ -449,13 +459,55 @@ to <code>/users/123</code> with the following JSON body:</p>
 
 <h3 id="specifying-a-callback:01090db2bd186f3f2b107103ab7e9173">Specifying a Callback</h3>
 
-<p>This section is not yet prepared.</p>
+<p>If you want to perform some tasks after the Ajax request is done, you should
+specify a callback function as the first argument of <code>#create()</code>, <code>#update()</code>
+or <code>#destroy()</code> like this:</p>
+
+<pre><code class="language-javascript">m.onclick(e =&gt; this.agent.create(function(data) {
+  if (data.result === 'OK') {
+    window.location = '/users';
+  }
+  else {
+    this.agent.errors = data.error_messages;
+    this.refresh();
+  }
+}));
+</code></pre>
+
+<p>The specified callback should take an argument, which can be an object or a string
+according to the content type of response.</p>
+
+<p><a class="anchor" id="changing-path-prefix"></a></p>
+
+<h3 id="changing-the-path-prefix:01090db2bd186f3f2b107103ab7e9173">Changing the Path Prefix</h3>
+
+<p>See <a href="../collection_agents#changing-path-prefix">Changing the Path Prefix</a> of Collection Agents.</p>
 
 <p><a class="anchor" id="options"></a></p>
 
 <h3 id="options:01090db2bd186f3f2b107103ab7e9173">Options</h3>
 
-<p>This section is not yet prepared.</p>
+<p>The constructor of <code>ResourceMapper</code> takes following options:</p>
+
+<ul>
+<li><code>resourceName</code>: the name of resource.</li>
+<li><code>basePath</code>: the string that is added to the request path. Default value is &lsquo;/&rsquo;.</li>
+<li><code>nestedIn</code>: the string that is inserted between path prefix and the resource
+name. Default value is &ldquo;.</li>
+<li><code>adapter</code>: the name of adapter (e.g., &lsquo;rails&rsquo;). Default is undefined.
+Default value can be changed by setting Cape.defaultAgentAdapter property.</li>
+<li><code>dataType</code>: the type of data that you&rsquo;re expecting from the server.
+The value must be &lsquo;json&rsquo;, &lsquo;text&rsquo; or undefined. Default is undefiend.
+When the dataType option is not defined, the type is detected automatically.</li>
+<li><code>singular</code>: a boolean value that specifies if the resource is singular or not.
+Resources are called &lsquo;singular&rsquo; when they have a URL without ID.
+Default is <code>false</code>.</li>
+<li><code>paramName</code>: the name of parameter to be used when the <code>object</code>
+property is initialized and the request parameter is constructed.
+Default is undefiend.
+When the <code>pathName</code> option is not defined, the name is derived from the
+<code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>user</code>.</li>
+</ul>
 
         </div>
       </article>
