@@ -62,7 +62,7 @@ var Cape = require('./utilities');
 //     When the `dataType` option is not defined, the type is detected automatically.
 //   paramName: the name of parameter to be used when the `objects`
 //     property is initialized and refreshed. Default is undefiend.
-//     When the `pathName` option is not defined, the name is derived from the
+//     When the `paramName` option is not defined, the name is derived from the
 //     `resourceName` property, e.g. `user` if the resource name is `users`.
 //   objects: the array of objects that represent the collection of resources
 //   headers: the HTTP headers for Ajax requests
@@ -963,14 +963,17 @@ var AgentCommonInnerMethods = {
   },
 
   dataHandler: function(data, callback) {
+    var objectOrString;
+
     if (typeof callback === 'function') {
       if (this.main.dataType === undefined) {
         try {
-          callback.call(this.main.client, JSON.parse(data));
+          objectOrString = JSON.parse(data);
         }
         catch (e) {
-          callback.call(this.main.client, data);
+          objectOrString = data;
         }
+        callback.call(this.main.client, objectOrString);
       }
       else {
         callback.call(this.main.client, data);
@@ -1032,10 +1035,13 @@ var Cape = require('./utilities');
 //   singular: a boolean value that specifies if the resource is singular or not.
 //     Resources are called 'singular' when they have a URL without ID.
 //     Default is `false`.
-//   paramName: the name of parameter to be used when the `object`
-//     property is initialized and the request parameter is constructed.
-//     Default is `undefiend`.
-//     When the `pathName` option is not defined, the name is derived from the
+//   formName: the name of form with which the users edit the properties
+//     of the resource. Default is `undefiend`.
+//     When the `formName` option is not defined, the name is derived from the
+//     `resourceName` property, e.g. `user` if the resource name is `user`.
+//   paramName: the name of parameter to be used when request parameter is
+//     constructed. Default is `undefiend`.
+//     When the `paramName` option is not defined, the name is derived from the
 //     `resourceName` property, e.g. `user` if the resource name is `user`.
 //   object: the object that represents the resource
 //   errors: the object that holds error messages
@@ -1061,6 +1067,7 @@ function ResourceAgent(client, options) {
   this.adapter = options.adapter;
   this.dataType = options.dataType;
   this.singular = options.singular || false;
+  this.formName = options.formName;
   this.paramName = options.paramName;
 
   this.object = undefined;
@@ -1109,6 +1116,7 @@ Cape.extend(ResourceAgent.prototype, {
 
   ajax: function(httpMethod, path, callback, errorHandler) {
     var self = this, fetchOptions, params;
+    var formName = this.formName || this.resourceName;
     var paramName = this.paramName || this.resourceName;
 
     errorHandler = errorHandler || this.defaultErrorHandler;
@@ -1122,7 +1130,7 @@ Cape.extend(ResourceAgent.prototype, {
     }
 
     if (httpMethod === 'POST' || httpMethod === 'PATCH') {
-      params = this.client.paramsFor(paramName);
+      params = this.client.paramsFor(formName, { as: paramName });
       fetchOptions.body = JSON.stringify(params);
     }
 
@@ -1164,12 +1172,12 @@ Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
 
 Cape.extend(_Internal.prototype, {
   initialDataHandler: function(data, afterInitialize) {
-    var parsed,
+    var jsonObject,
         paramName = this.main.paramName || this.main.resourceName;
 
     try {
-      parsed = JSON.parse(data);
-      this.main.object = parsed[paramName];
+      jsonObject = JSON.parse(data);
+      this.main.object = jsonObject[paramName];
     }
     catch (e) {
       console.log("Could not parse the response data as JSON.");
