@@ -1061,6 +1061,7 @@ function ResourceAgent(client, options) {
   this.adapter = options.adapter;
   this.dataType = options.dataType;
   this.singular = options.singular || false;
+  this.paramName = options.paramName;
 
   this.object = undefined;
   this.errors = {};
@@ -1070,7 +1071,6 @@ function ResourceAgent(client, options) {
 Cape.extend(ResourceAgent.prototype, {
   init: function(afterInitialize, errorHandler) {
     var self = this, path;
-    var paramName = this.paramName || this.resourceName;
 
     if (this.client.id === undefined && !this.singular)
       throw new Error("this.client.id is not defined.");
@@ -1085,12 +1085,7 @@ Cape.extend(ResourceAgent.prototype, {
       credentials: 'same-origin'
     })
     .then(this._.responseHandler())
-    .then(function(data) {
-      if (typeof data === 'object') self.object = data[paramName];
-      if (typeof afterInitialize === 'function') {
-        afterInitialize.call(self.client, self, data);
-      }
-    })
+    .then(function(data) { self._.initialDataHandler(data, afterInitialize); })
     .catch(errorHandler);
   },
 
@@ -1166,6 +1161,24 @@ var AgentCommonInnerMethods = require('./mixins/agent_common_inner_methods');
 
 // Internal methods of Cape.ResourceAgent
 Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
+
+Cape.extend(_Internal.prototype, {
+  initialDataHandler: function(data, afterInitialize) {
+    var parsed,
+        paramName = this.main.paramName || this.main.resourceName;
+
+    try {
+      parsed = JSON.parse(data);
+      this.main.object = parsed[paramName];
+    }
+    catch (e) {
+      console.log("Could not parse the response data as JSON.");
+    }
+    if (typeof afterInitialize === 'function') {
+      afterInitialize.call(this.main.client, this.main, data);
+    }
+  }
+});
 
 module.exports = ResourceAgent;
 
