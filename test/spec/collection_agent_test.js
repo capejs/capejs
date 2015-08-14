@@ -77,6 +77,10 @@ describe('CollectionAgent', function() {
         { basePath: '/foo/', nestedIn: 'groups/456' });
 
       expect(agent1).not.to.equal(agent2);
+      expect(agent1.basePath).to.equal('/foo/');
+      expect(agent2.basePath).to.equal('/foo/');
+      expect(agent1.nestedIn).to.equal('groups/123');
+      expect(agent2.nestedIn).to.equal('groups/456');
     })
   })
 
