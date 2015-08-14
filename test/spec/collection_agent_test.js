@@ -59,6 +59,15 @@ describe('CollectionAgent', function() {
       expect(agent1).not.to.equal(agent2);
     })
 
+    it('should hold different instances by class', function() {
+      var agent1, agent2;
+
+      agent1 = Cape.CollectionAgent.getInstance({ resourceName: 'users' });
+      agent2 = UserCollectionAgent.getInstance({ resourceName: 'users' });
+
+      expect(agent1).not.to.equal(agent2);
+    })
+
     it('should return an existing instance of UserCollectionAgent', function() {
       var agent1, agent2;
 
