@@ -90,17 +90,31 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
       <guid>http://oiax.github.io/capejs/api/cape/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;#create-component-class&#34;&gt;Cape.createComponentClass&lt;/a&gt; -
-&lt;a href=&#34;#create-data-store-class&#34;&gt;Cape.createDataStoreClass&lt;/a&gt; -
-&lt;a href=&#34;#deep-extend&#34;&gt;Cape.deepExtend&lt;/a&gt; -
-&lt;a href=&#34;#extend&#34;&gt;Cape.extend&lt;/a&gt; -
-&lt;a href=&#34;#merge&#34;&gt;Cape.merge&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#create-collection-agent-class&#34;&gt;Cape.createCollectionAgentClass()&lt;/a&gt; -
+&lt;a href=&#34;#create-component-class&#34;&gt;Cape.createComponentClass()&lt;/a&gt; -
+&lt;a href=&#34;#create-data-store-class&#34;&gt;Cape.createDataStoreClass()&lt;/a&gt; -
+&lt;a href=&#34;#create-resource-agent-class&#34;&gt;Cape.createResourceAgentClass()&lt;/a&gt; -
+&lt;a href=&#34;#deep-extend&#34;&gt;Cape.deepExtend()&lt;/a&gt; -
+&lt;a href=&#34;#extend&#34;&gt;Cape.extend()&lt;/a&gt; -
+&lt;a href=&#34;#merge&#34;&gt;Cape.merge()&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-collection-agent-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-createcollectionagentclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createCollectionAgentClass&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.createCollectionAgentClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a class extending &lt;code&gt;Cape.CollectionAgentClass&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;cape-createcomponentclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createComponentClass&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.createComponentClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -130,7 +144,7 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;cape-createdatastoreclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createDataStoreClass&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.createDataStoreClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -178,11 +192,23 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-resource-agent-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-createresourceagentclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createResourceAgentClass&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cape.createResourceAgentClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create a class extending &lt;code&gt;Cape.ResourceAgentClass&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;deep-extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;cape-deepextend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.deepExtend&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -218,7 +244,7 @@ Cape.extend(object1, object2);
 
 &lt;h3 id=&#34;cape-extend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.extend&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-5:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -254,7 +280,7 @@ Cape.extend(object1, object2);
 
 &lt;h3 id=&#34;cape-merge:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.merge&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-6:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.merge(target&lt;em&gt;[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -304,13 +330,13 @@ Cape.extend(object1, object2);
 &lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
 &lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
 &lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
-&lt;a href=&#34;#dot-create&#34;&gt;.create()&lt;/a&gt; -
 &lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
 &lt;a href=&#34;#default-error-handler&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
 &lt;a href=&#34;#delete&#34;&gt;#delete()&lt;/a&gt; -
 &lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
 &lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
 &lt;a href=&#34;#get&#34;&gt;#get()&lt;/a&gt; -
+&lt;a href=&#34;#get-instance&#34;&gt;.getInstance()&lt;/a&gt; -
 &lt;a href=&#34;#index&#34;&gt;#index()&lt;/a&gt; -
 &lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
 &lt;a href=&#34;#patch&#34;&gt;#patch()&lt;/a&gt; -

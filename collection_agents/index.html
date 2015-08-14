@@ -315,7 +315,7 @@ it returns the following JSON string:</p>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {
-    this.agent = UserCollectionAgent.create();
+    this.agent = UserCollectionAgent.getInstance();
     this.agent.attach(this);
     this.agent.refresh();
   }
@@ -364,7 +364,7 @@ with the following body:</p>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {
-    this.agent = UserCollectionAgent.create();
+    this.agent = UserCollectionAgent.getInstance();
     this.agent.attach(this);
     this.agent.refresh();
   }
@@ -528,7 +528,7 @@ the resource name. Its default value is &ldquo;.</p>
 
 <pre><code class="language-javascript">class ArticleList extends Cape.Component {
   init() {
-    this.agent = ArticleCollectionAgent.create({ nestedIn: 'members/123/' });
+    this.agent = ArticleCollectionAgent.getInstance({ nestedIn: 'members/123/' });
     this.agent.attach(this);
     this.agent.refresh();
   }
@@ -546,11 +546,34 @@ the resource name. Its default value is &ldquo;.</p>
 <li><code>/api/v2/members/123/articles/99</code></li>
 </ul>
 
+<p>Note that you should <em>not</em> define the <code>init()</code> method like this:</p>
+
+<pre><code class="language-javascript">  init() {
+    this.agent = ArticleCollectionAgent.getInstance();
+    this.agent.nestedIn = 'members/123/';
+    this.agent.attach(this);
+    this.agent.refresh();
+  }
+}
+</code></pre>
+
+<p>Superficially it may work well, but problems will occur when multiple components
+attach themselves to this agent.</p>
+
+<p>The <code>CollectionAgent</code> class keeps a map of named instances of
+<code>CollectionAgent</code> as key-value pairs in order to ensure a single instance
+per key, which is constructed using the <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</code>
+options.</p>
+
+<p>See <a href="https://en.wikipedia.org/wiki/Multiton_pattern">Multiton pattern</a>
+<i class="fa fa-external-link"></i> on <em>Wikipedia</em>
+for the technical background.</p>
+
 <p><a class="anchor" id="options"></a></p>
 
 <h3 id="options:0b3dd9ce14f479a81f8252af01a87547">Options</h3>
 
-<p>The class method <code>.create()</code> takes following options:</p>
+<p>The class method <code>.getInstance()</code> takes following options:</p>
 
 <ul>
 <li><code>resourceName</code>: the name of resource.</li>
@@ -570,7 +593,7 @@ When the <code>pathName</code> option is not defined, the name is derived from t
 <code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>users</code>.</li>
 </ul>
 
-<p>See <a href="../api/collection_agent#_create">.create()</a> for details.</p>
+<p>See <a href="../api/collection_agent#get-instance">.getInstance()</a> for details.</p>
 
         </div>
       </article>
