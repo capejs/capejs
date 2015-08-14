@@ -21,11 +21,11 @@ describe('CollectionAgent', function() {
     })
   })
 
-  describe('.create', function() {
+  describe('.getInstance', function() {
     it('should create an instance of CollectionAgent', function() {
       var agent;
 
-      agent = Cape.CollectionAgent.create({ resourceName: 'users' });
+      agent = Cape.CollectionAgent.getInstance({ resourceName: 'users' });
 
       expect(agent.resourceName).to.equal('users');
     })
@@ -33,8 +33,8 @@ describe('CollectionAgent', function() {
     it('should return an existing instance of CollectionAgent', function() {
       var agent1, agent2;
 
-      agent1 = Cape.CollectionAgent.create({ resourceName: 'users' });
-      agent2 = Cape.CollectionAgent.create({ resourceName: 'users' });
+      agent1 = Cape.CollectionAgent.getInstance({ resourceName: 'users' });
+      agent2 = Cape.CollectionAgent.getInstance({ resourceName: 'users' });
 
       expect(agent1).to.equal(agent2);
     })
@@ -42,8 +42,8 @@ describe('CollectionAgent', function() {
     it('should hold different instances by resource name', function() {
       var agent1, agent2;
 
-      agent1 = Cape.CollectionAgent.create({ resourceName: 'users' });
-      agent2 = Cape.CollectionAgent.create({ resourceName: 'groups' });
+      agent1 = Cape.CollectionAgent.getInstance({ resourceName: 'users' });
+      agent2 = Cape.CollectionAgent.getInstance({ resourceName: 'groups' });
 
       expect(agent1).not.to.equal(agent2);
     })
@@ -51,9 +51,9 @@ describe('CollectionAgent', function() {
     it('should hold different instances by basePath option', function() {
       var agent1, agent2;
 
-      agent1 = Cape.CollectionAgent.create(
+      agent1 = Cape.CollectionAgent.getInstance(
         { resourceName: 'users', basePath: '/foo/' });
-      agent2 = Cape.CollectionAgent.create(
+      agent2 = Cape.CollectionAgent.getInstance(
         { resourceName: 'users', basePath: '/bar/' });
 
       expect(agent1).not.to.equal(agent2);
@@ -62,8 +62,8 @@ describe('CollectionAgent', function() {
     it('should return an existing instance of UserCollectionAgent', function() {
       var agent1, agent2;
 
-      agent1 = UserCollectionAgent.create();
-      agent2 = UserCollectionAgent.create();
+      agent1 = UserCollectionAgent.getInstance();
+      agent2 = UserCollectionAgent.getInstance();
 
       expect(agent1).to.equal(agent2);
     })
@@ -71,9 +71,9 @@ describe('CollectionAgent', function() {
     it('should return difference instances of UserCollectionAgent', function() {
       var agent1, agent2;
 
-      agent1 = UserCollectionAgent.create(
+      agent1 = UserCollectionAgent.getInstance(
         { basePath: '/foo/', nestedIn: 'groups/123' });
-      agent2 = UserCollectionAgent.create(
+      agent2 = UserCollectionAgent.getInstance(
         { basePath: '/foo/', nestedIn: 'groups/456' });
 
       expect(agent1).not.to.equal(agent2);
