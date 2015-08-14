@@ -82,7 +82,11 @@ var CollectionAgent = function CollectionAgent(options) {
   this.headers = { 'Content-Type': 'application/json' };
 };
 
-CollectionAgent.create = function(options) {
+// Here, we adopt the multiton design pattern (a kind of singleton patter).
+// The `CollectionAgent` class keeps a map of named instances of
+// `CollectionAgent` as key-value pairs in order to ensure a single instance
+// per key.
+CollectionAgent.getInstance = function(options) {
   options = options || {};
   var key = options.basePath || '/';
   if (options.nestedIn) key = key + options.nestedIn;
@@ -1807,7 +1811,7 @@ Cape.createCollectionAgentClass = function(methods) {
     this._.applyAdapter();
   };
   Cape.extend(klass.prototype, Cape.CollectionAgent.prototype, methods);
-  klass.create = Cape.CollectionAgent.create;
+  klass.getInstance = Cape.CollectionAgent.getInstance;
   return klass;
 }
 
