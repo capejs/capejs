@@ -3,11 +3,22 @@ title: "Cape - API Reference"
 type: "api"
 ---
 
-[Cape.createComponentClass](#create-component-class) -
-[Cape.createDataStoreClass](#create-data-store-class) -
-[Cape.deepExtend](#deep-extend) -
-[Cape.extend](#extend) -
-[Cape.merge](#merge)
+[Cape.createCollectionAgentClass()](#create-collection-agent-class) -
+[Cape.createComponentClass()](#create-component-class) -
+[Cape.createDataStoreClass()](#create-data-store-class) -
+[Cape.createResourceAgentClass()](#create-resource-agent-class) -
+[Cape.deepExtend()](#deep-extend) -
+[Cape.extend()](#extend) -
+[Cape.merge()](#merge)
+
+<a class="anchor" id="create-collection-agent-class"></a>
+### Cape.createCollectionAgentClass
+
+#### Usage
+
+* **Cape.createCollectionAgentClass(*methods*)**
+
+Create a class extending `Cape.CollectionAgentClass` with `methods`.
 
 <a class="anchor" id="create-component-class"></a>
 ### Cape.createComponentClass
@@ -90,6 +101,15 @@ class TodoItemStore extends Cape.DataStore {
   }
 }
 ```
+
+<a class="anchor" id="create-resource-agent-class"></a>
+### Cape.createResourceAgentClass
+
+#### Usage
+
+* **Cape.createResourceAgentClass(*methods*)**
+
+Create a class extending `Cape.ResourceAgentClass` with `methods`.
 
 <a class="anchor" id="deep-extend"></a>
 ### Cape.deepExtend

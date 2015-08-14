@@ -110,7 +110,7 @@ Then, you can build a Cape.JS component like this:
 ```javascript
 class UserList extends Cape.Component {
   init() {
-    this.agent = UserCollectionAgent.create();
+    this.agent = UserCollectionAgent.getInstance();
     this.agent.attach(this);
     this.agent.refresh();
   }
@@ -161,7 +161,7 @@ Then, you can create a form for adding users like this:
 ```javascript
 class UserList extends Cape.Component {
   init() {
-    this.agent = UserCollectionAgent.create();
+    this.agent = UserCollectionAgent.getInstance();
     this.agent.attach(this);
     this.agent.refresh();
   }
@@ -290,7 +290,7 @@ And, you instantiated it as follows:
 ```javascript
 class ArticleList extends Cape.Component {
   init() {
-    this.agent = ArticleCollectionAgent.create({ nestedIn: 'members/123/' });
+    this.agent = ArticleCollectionAgent.getInstance({ nestedIn: 'members/123/' });
     this.agent.attach(this);
     this.agent.refresh();
   }
@@ -306,10 +306,34 @@ Then, `this.agent` will construct paths like these:
 * `/api/v2/members/123/articles`
 * `/api/v2/members/123/articles/99`
 
+Note that you should _not_ define the `init()` method like this:
+
+```javascript
+  init() {
+    this.agent = ArticleCollectionAgent.getInstance();
+    this.agent.nestedIn = 'members/123/';
+    this.agent.attach(this);
+    this.agent.refresh();
+  }
+}
+```
+
+Superficially it may work well, but problems will occur when multiple components
+attach themselves to this agent.
+
+The `CollectionAgent` class keeps a map of named instances of
+`CollectionAgent` as key-value pairs in order to ensure a single instance
+per key, which is constructed using the `resourceName`, `basePath` and `nestedIn`
+options.
+
+See [Multiton pattern](https://en.wikipedia.org/wiki/Multiton_pattern)
+<i class="fa fa-external-link"></i> on _Wikipedia_
+for the technical background.
+
 <a class="anchor" id="options"></a>
 ### Options
 
-The class method `.create()` takes following options:
+The class method `.getInstance()` takes following options:
 
 * `resourceName`: the name of resource.
 * `basePath`: the string that is added to the request path. Default value is '/'.
@@ -327,4 +351,4 @@ The class method `.create()` takes following options:
   When the `pathName` option is not defined, the name is derived from the
   `resourceName` property, e.g. `user` if the resource name is `users`.
 
-See [.create()](../api/collection_agent#_create) for details.
+See [.getInstance()](../api/collection_agent#get-instance) for details.

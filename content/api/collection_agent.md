@@ -8,13 +8,13 @@ title: "Cape.CollectionAgent - API Reference"
 [#ajax()](#ajax) -
 [#attach()](#attach) -
 [#collectionPath()](#collection-path) -
-[.create()](#dot-create) -
 [#create()](#create) -
 [#defaultErrorHandler()](#default-error-handler) -
 [#delete()](#delete) -
 [#destroy()](#destroy) -
 [#detach()](#detach) -
 [#get()](#get) -
+[.getInstance()](#get-instance) -
 [#index()](#index) -
 [#memberPath()](#member-path) -
 [#patch()](#patch) -

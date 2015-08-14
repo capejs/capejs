@@ -167,11 +167,17 @@ api_pages:
     showSections: true
     sections:
       -
+        id: create-collection-agent-class
+        title: ".createCollectionAgentClass()"
+      -
         id: create-component-class
         title: ".createComponentClass()"
       -
         id: create-data-store-class
         title: ".createDataStoreClass()"
+      -
+        id: create-resource-agent-class
+        title: ".createResourceAgentClass()"
       -
         id: deep-extend
         title: ".deepExtend()"
