@@ -79,6 +79,16 @@ describe('ResourceAgent', function() {
       expect(agent.singularPath()).to.equal('/profile');
     })
 
+    it('should keep resourceName as is', function() {
+      var form, options, agent;
+
+      form = {};
+      options = { resourceName: 'my_settings', singular: true };
+      agent = new Cape.ResourceAgent(form, options);
+
+      expect(agent.singularPath()).to.equal('/my_settings');
+    })
+
     it('should add prefix to the paths', function() {
       var form, options, agent;
 
