@@ -1155,7 +1155,7 @@ Cape.extend(ResourceAgent.prototype, {
   },
 
   singularPath: function() {
-    var resource = Inflector.singularize(Inflector.underscore(this.resourceName));
+    var resource = Inflector.underscore(this.resourceName);
     return this._.pathPrefix() + resource;
   },
 
@@ -1177,6 +1177,7 @@ Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
 Cape.extend(_Internal.prototype, {
   initialDataHandler: function(data, afterInitialize) {
     var jsonObject,
+        formName = this.main.formName || this.main.resourceName,
         paramName = this.main.paramName || this.main.resourceName;
 
     try {
@@ -1188,6 +1189,10 @@ Cape.extend(_Internal.prototype, {
     }
     if (typeof afterInitialize === 'function') {
       afterInitialize.call(this.main.client, this.main, data);
+    }
+    else if (this.main.object) {
+      this.main.client.setValues(formName, this.main.object);
+      this.main.client.refresh();
     }
   }
 });
