@@ -101,6 +101,34 @@ describe('ResourceAgent', function() {
   })
 
   describe('#init', function() {
+    it('should call the setValues method of component', function() {
+      var form, options, agent, spy1, spy2, spy3;
+
+      spy1 = sinon.spy();
+      spy2 = sinon.spy();
+      spy3 = sinon.spy();
+
+      Cape.AgentAdapters.FooBarAdapter = sinon.spy();
+      form = { id: 123, setValues: spy2, refresh: spy3 };
+      options = { resourceName: 'user' };
+      agent = new Cape.ResourceAgent(form, options);
+      agent.adapter = 'foo_bar';
+      agent.defaultErrorHandler = function(ex) {};
+
+      stubFetchAPI(spy1, '{ "user": { "id": 123, "name": "John" } }');
+
+      agent.init();
+      expect(spy1.called).to.be.true;
+      expect(spy2.calledWith('user', { id: 123, name: 'John' })).to.be.ok;
+      expect(spy3.called).to.be.true;
+      expect(global.fetch.calledWith('/users/123')).to.be.true;
+      expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
+
+      Cape.AgentAdapters.FooBarAdapter = undefined;
+
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var form, options, agent, spy1, spy2, spy3;
 
