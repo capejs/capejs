@@ -1086,10 +1086,15 @@ Cape.extend(ResourceAgent.prototype, {
   init: function(afterInitialize, errorHandler) {
     var self = this, path;
 
-    if (this.client.id === undefined && !this.singular)
-      throw new Error("this.client.id is not defined.");
-
-    path = this.singular ? this.singularPath() : this.memberPath();
+    if (this.singular) {
+      path = this.singularPath();
+    }
+    else if (this.client.id) {
+      path = this.memberPath();
+    }
+    else {
+      path = this.newPath();
+    }
     errorHandler = errorHandler || this.defaultErrorHandler;
 
     this._.applyAdapter();
@@ -1152,6 +1157,11 @@ Cape.extend(ResourceAgent.prototype, {
     return this._.pathPrefix() + resources;
   },
 
+  newPath: function() {
+    var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
+    return this._.pathPrefix() + resources + '/new';
+  },
+
   memberPath: function() {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
     return this._.pathPrefix() + resources + '/' + this.client.id;
@@ -1184,7 +1194,7 @@ Cape.extend(_Internal.prototype, {
 
     try {
       this.main.data = JSON.parse(data);
-      this.main.object = this.main.data[paramName];
+      this.main.object = this.main.data[paramName] || {};
     }
     catch (e) {
       console.log("Could not parse the response data as JSON.");
