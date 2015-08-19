@@ -355,6 +355,15 @@ describe('CollectionAgent', function() {
     })
   })
 
+  describe('#head', function() {
+    it('should call this.ajax() with "HEAD"', function() {
+      var agent = new Cape.CollectionAgent({ resourceName: 'users' });
+      sinon.stub(agent, 'ajax');
+      agent.head('suspended', null);
+      expect(agent.ajax.calledWith('HEAD', '/users/suspended')).to.be.true;
+    })
+  })
+
   describe('#post', function() {
     it('should call this.ajax() with "POST"', function() {
       var agent = new Cape.CollectionAgent({ resourceName: 'users' });
