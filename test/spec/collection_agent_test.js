@@ -291,6 +291,7 @@ describe('CollectionAgent', function() {
       agent.refresh();
       expect(spy1.called).to.be.true;
       expect(agent.objects.length).to.equal(2);
+      expect(agent.data.users.length).to.equal(2);
     })
   })
 
