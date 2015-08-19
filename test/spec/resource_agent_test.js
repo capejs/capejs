@@ -122,6 +122,7 @@ describe('ResourceAgent', function() {
       stubFetchAPI(spy1, '{ "user": { "id": 123, "name": "John" } }');
 
       agent.init();
+      expect(agent.data.user.name).to.eq('John')
       expect(spy1.called).to.be.true;
       expect(spy2.calledWith('user', { id: 123, name: 'John' })).to.be.ok;
       expect(spy3.called).to.be.true;
@@ -147,7 +148,7 @@ describe('ResourceAgent', function() {
 
       agent.init(spy2, spy3);
       expect(spy1.called).to.be.true;
-      expect(spy2.calledWith(agent, { user: { id: 123, name: 'John' } })).to.be.true;
+      expect(spy2.calledWith(agent)).to.be.true;
       expect(spy3.called).to.be.true;
       expect(global.fetch.calledWith('/users/123')).to.be.true;
       expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
