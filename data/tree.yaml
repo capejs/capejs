@@ -339,6 +339,84 @@ api_pages:
       -
         id: constructor
         title: "Constructor"
+      -
+        id: adapter
+        title: "#adapter"
+      -
+        id: ajax
+        title: "#ajax()"
+      -
+        id: attach
+        title: "#attach()"
+      -
+        id: auto-refresh
+        title: "#autoRefresh"
+      -
+        id: base-path
+        title: "#basePath"
+      -
+        id: collection-path
+        title: "#collectionPath()"
+      -
+        id: create
+        title: "#create()"
+      -
+        id: data-type
+        title: "#dataType()"
+      -
+        id: default-error-handler
+        title: "#defaultErrorHandler()"
+      -
+        id: delete
+        title: "#delete()"
+      -
+        id: destroy
+        title: "#destory()"
+      -
+        id: detach
+        title: "#detach()"
+      -
+        id: get
+        title: "#get"
+      -
+        id: get-instance
+        title: ".getInstance()"
+      -
+        id: headers
+        title: "#headers"
+      -
+        id: index
+        title: "#index()"
+      -
+        id: member-path
+        title: "#memberPath()"
+      -
+        id: objects
+        title: "#objects"
+      -
+        id: param-name
+        title: "#paramName"
+      -
+        id: patch
+        title: "#patch()"
+      -
+        id: post
+        title: "#post()"
+      -
+        id: propagate
+        title: "#propagate()"
+      -
+        id: put
+        title: "#put()"
+      -
+        id: refresh
+        title: "#refresh()"
+      -
+        id: show
+        title: "#show()"
+      -
+        id: update
+        title: "#update()"
   -
     name: "api/resource_agent"
     title: "Cape.ResourceAgent"
@@ -347,6 +425,75 @@ api_pages:
       -
         id: constructor
         title: "Constructor"
+      -
+        id: adapter
+        title: "#adapter"
+      -
+        id: ajax
+        title: "#ajax()"
+      -
+        id: base-path
+        title: "#basePath"
+      -
+        id: client
+        title: "#client"
+      -
+        id: collection-path
+        title: "#collectionPath()"
+      -
+        id: create
+        title: "#create()"
+      -
+        id: data
+        title: "#data"
+      -
+        id: data-type
+        title: "#dataType"
+      -
+        id: default-error-handler
+        title: "#defaultErrorHandler()"
+      -
+        id: destroy
+        title: "#destroy()"
+      -
+        id: errors
+        title: "#errors"
+      -
+        id: form-name
+        title: "#formName"
+      -
+        id: headers
+        title: "#headers"
+      -
+        id: init
+        title: "#init()"
+      -
+        id: member-path
+        title: "#memberPath()"
+      -
+        id: object
+        title: "#object"
+      -
+        id: new-path
+        title: "#newPath()"
+      -
+        id: nested-in
+        title: "#nestedIn"
+      -
+        id: param-name
+        title: "#paramName"
+      -
+        id: resource-name
+        title: "#resourceName"
+      -
+        id: singular
+        title: "#singular"
+      -
+        id: singular-path
+        title: "#singularPath()"
+      -
+        id: update
+        title: "#update()"
   -
     name: "api/router"
     title: "Cape.Router"

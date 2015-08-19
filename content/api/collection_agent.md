@@ -5,25 +5,32 @@ title: "Cape.CollectionAgent - API Reference"
 <span class="badge alert-info">1.2</span>
 
 [Constructor](#constructor) -
+[#_](#_) -
+[#adapter](#adapter) -
 [#ajax()](#ajax) -
 [#attach()](#attach) -
+[#autoRefresh](#auto-refresh) -
+[#basePath](#base-path) -
 [#collectionPath()](#collection-path) -
 [#create()](#create) -
+[#data](#data) -
+[#dataType](#data-type) -
 [#defaultErrorHandler()](#default-error-handler) -
 [#delete()](#delete) -
 [#destroy()](#destroy) -
 [#detach()](#detach) -
 [#get()](#get) -
 [.getInstance()](#get-instance) -
-[#index()](#index) -
+[#head()](#head) -
+[#headers](#headers) -
 [#memberPath()](#member-path) -
+[#objects](#object) -
+[#paramName](#param-name) -
 [#patch()](#patch) -
 [#post()](#post) -
 [#propagate()](#propagate) -
 [#put()](#put) -
 [#refresh()](#refresh) -
-[#refreshObjects()](#refresh-objects) -
-[#show()](#show) -
 [#update()](#update)
 
 <a class="anchor" id="constructor"></a>
