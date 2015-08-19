@@ -1047,9 +1047,12 @@ var Cape = require('./utilities');
 //     constructed. Default is `undefiend`.
 //     When the `paramName` option is not defined, the name is derived from the
 //     `resourceName` property, e.g. `user` if the resource name is `user`.
-//   object: the object that represents the resource
-//   errors: the object that holds error messages
-//   headers: the HTTP headers for Ajax requests
+//   object: the object that represents the resource.
+//   data: the response data from the server. This property holds an object
+//     if the response data is a valid JSON string. Otherwise, it holds the
+//     original string value.
+//   errors: the object that holds error messages.
+//   headers: the HTTP headers for Ajax requests.
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
 //
@@ -1176,19 +1179,19 @@ Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
 
 Cape.extend(_Internal.prototype, {
   initialDataHandler: function(data, afterInitialize) {
-    var jsonObject,
-        formName = this.main.formName || this.main.resourceName,
+    var formName = this.main.formName || this.main.resourceName,
         paramName = this.main.paramName || this.main.resourceName;
 
     try {
-      jsonObject = JSON.parse(data);
-      this.main.object = jsonObject[paramName];
+      this.main.data = JSON.parse(data);
+      this.main.object = this.main.data[paramName];
     }
     catch (e) {
       console.log("Could not parse the response data as JSON.");
+      this.main.data = data;
     }
     if (typeof afterInitialize === 'function') {
-      afterInitialize.call(this.main.client, this.main, jsonObject || data);
+      afterInitialize.call(this.main.client, this.main);
     }
     else if (this.main.object) {
       this.main.client.setValues(formName, this.main.object);
