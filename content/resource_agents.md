@@ -136,10 +136,7 @@ class UserForm extends Cape.Component {
   init() {
     this.id = 123;
     this.agent = new UserAgent(this);
-    this.agent.init(agent => {
-      this.setValues('user', agent.object);
-      this.refresh();
-    });
+    this.agent.init();
   }
 
   render(m) {
@@ -164,7 +161,15 @@ class UserForm extends Cape.Component {
 If you mount this component into your web page, you will see an HTML form
 whose two text input fields are filled with current values.
 
-When you modify the value of `email` field to `'dummy@example.io'` and
+Note that we use `this.agent.init()` instead of `this.refresh()` here
+(at the line 5).
+The `init()` method of resource agents does following three things:
+
+1. Make an Ajax call to the server.
+1. Initialize the `object` property using the response data from the server.
+1. Call the `refresh()` method of the associated component.
+
+When you modify the value of `email` field of form to `'dummy@example.io'` and
 click the 'Update' button,
 the resource agent sends a `PATCH` request
 to `/users/123` with the following JSON body:
@@ -184,15 +189,8 @@ class UserForm extends Cape.Component {
   init() {
     this.id = this.root.data.id;
     this.agent = new UserAgent(this);
-    if (this.id) {
-      this.agent.init(agent => {
-        this.setValues('user', agent.object);
-        this.refresh();
-      });
-    }
-    else {
-      this.refresh();
-    }
+    if (this.id) this.agent.init();
+    else this.refresh();
   }
 
   render(m) {
@@ -303,6 +301,10 @@ The constructor of `ResourceMapper` takes following options:
 * `singular`: a boolean value that specifies if the resource is singular or not.
    Resources are called 'singular' when they have a URL without ID.
    Default is `false`.
+* `formName`: the name of form with which the users edit the properties
+  of the resource. Default is `undefiend`.
+  When the `formName` option is not defined, the name is derived from the
+  `resourceName` property, e.g. `user` if the resource name is `user`.
 * `paramName`: the name of parameter to be used when the `object`
   property is initialized and the request parameter is constructed.
   Default is undefiend.
