@@ -336,10 +336,7 @@ it returns the following JSON string:</p>
   init() {
     this.id = 123;
     this.agent = new UserAgent(this);
-    this.agent.init(agent =&gt; {
-      this.setValues('user', agent.object);
-      this.refresh();
-    });
+    this.agent.init();
   }
 
   render(m) {
@@ -364,7 +361,17 @@ it returns the following JSON string:</p>
 <p>If you mount this component into your web page, you will see an HTML form
 whose two text input fields are filled with current values.</p>
 
-<p>When you modify the value of <code>email</code> field to <code>'dummy@example.io'</code> and
+<p>Note that we use <code>this.agent.init()</code> instead of <code>this.refresh()</code> here
+(at the line 5).
+The <code>init()</code> method of resource agents does following three things:</p>
+
+<ol>
+<li>Make an Ajax call to the server.</li>
+<li>Initialize the <code>object</code> property using the response data from the server.</li>
+<li>Call the <code>refresh()</code> method of the associated component.</li>
+</ol>
+
+<p>When you modify the value of <code>email</code> field of form to <code>'dummy@example.io'</code> and
 click the &lsquo;Update&rsquo; button,
 the resource agent sends a <code>PATCH</code> request
 to <code>/users/123</code> with the following JSON body:</p>
@@ -383,15 +390,8 @@ we will get the following class:</p>
   init() {
     this.id = this.root.data.id;
     this.agent = new UserAgent(this);
-    if (this.id) {
-      this.agent.init(agent =&gt; {
-        this.setValues('user', agent.object);
-        this.refresh();
-      });
-    }
-    else {
-      this.refresh();
-    }
+    if (this.id) this.agent.init();
+    else this.refresh();
   }
 
   render(m) {
@@ -502,6 +502,10 @@ When the dataType option is not defined, the type is detected automatically.</li
 <li><code>singular</code>: a boolean value that specifies if the resource is singular or not.
 Resources are called &lsquo;singular&rsquo; when they have a URL without ID.
 Default is <code>false</code>.</li>
+<li><code>formName</code>: the name of form with which the users edit the properties
+of the resource. Default is <code>undefiend</code>.
+When the <code>formName</code> option is not defined, the name is derived from the
+<code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>user</code>.</li>
 <li><code>paramName</code>: the name of parameter to be used when the <code>object</code>
 property is initialized and the request parameter is constructed.
 Default is undefiend.

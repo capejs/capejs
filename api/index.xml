@@ -327,25 +327,32 @@ Cape.extend(object1, object2);
 &lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
+&lt;a href=&#34;#_&#34;&gt;#_&lt;/a&gt; -
+&lt;a href=&#34;#adapter&#34;&gt;#adapter&lt;/a&gt; -
 &lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
 &lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
+&lt;a href=&#34;#auto-refresh&#34;&gt;#autoRefresh&lt;/a&gt; -
+&lt;a href=&#34;#base-path&#34;&gt;#basePath&lt;/a&gt; -
 &lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
 &lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
+&lt;a href=&#34;#data&#34;&gt;#data&lt;/a&gt; -
+&lt;a href=&#34;#data-type&#34;&gt;#dataType&lt;/a&gt; -
 &lt;a href=&#34;#default-error-handler&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
 &lt;a href=&#34;#delete&#34;&gt;#delete()&lt;/a&gt; -
 &lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
 &lt;a href=&#34;#detach&#34;&gt;#detach()&lt;/a&gt; -
 &lt;a href=&#34;#get&#34;&gt;#get()&lt;/a&gt; -
 &lt;a href=&#34;#get-instance&#34;&gt;.getInstance()&lt;/a&gt; -
-&lt;a href=&#34;#index&#34;&gt;#index()&lt;/a&gt; -
+&lt;a href=&#34;#head&#34;&gt;#head()&lt;/a&gt; -
+&lt;a href=&#34;#headers&#34;&gt;#headers&lt;/a&gt; -
 &lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
+&lt;a href=&#34;#object&#34;&gt;#objects&lt;/a&gt; -
+&lt;a href=&#34;#param-name&#34;&gt;#paramName&lt;/a&gt; -
 &lt;a href=&#34;#patch&#34;&gt;#patch()&lt;/a&gt; -
 &lt;a href=&#34;#post&#34;&gt;#post()&lt;/a&gt; -
 &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; -
 &lt;a href=&#34;#put&#34;&gt;#put()&lt;/a&gt; -
 &lt;a href=&#34;#refresh&#34;&gt;#refresh()&lt;/a&gt; -
-&lt;a href=&#34;#refresh-objects&#34;&gt;#refreshObjects()&lt;/a&gt; -
-&lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; -
 &lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -2215,13 +2222,28 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
+&lt;a href=&#34;#_&#34;&gt;#_&lt;/a&gt; -
+&lt;a href=&#34;#adapter&#34;&gt;#adapter&lt;/a&gt; -
 &lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
+&lt;a href=&#34;#base-path&#34;&gt;#basePath&lt;/a&gt; -
+&lt;a href=&#34;#client&#34;&gt;#client&lt;/a&gt; -
 &lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
 &lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
+&lt;a href=&#34;#data&#34;&gt;#data&lt;/a&gt; -
+&lt;a href=&#34;#data-type&#34;&gt;#dataType&lt;/a&gt; -
 &lt;a href=&#34;#default-error-hander&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
 &lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
+&lt;a href=&#34;#errors&#34;&gt;#errors&lt;/a&gt; -
+&lt;a href=&#34;#formName&#34;&gt;#formName&lt;/a&gt; -
+&lt;a href=&#34;#headers&#34;&gt;#headers&lt;/a&gt; -
 &lt;a href=&#34;#init&#34;&gt;#init()&lt;/a&gt; -
 &lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
+&lt;a href=&#34;#object&#34;&gt;#object&lt;/a&gt; -
+&lt;a href=&#34;#new-path&#34;&gt;#newPath()&lt;/a&gt; -
+&lt;a href=&#34;#nested-in&#34;&gt;#nestedIn&lt;/a&gt; -
+&lt;a href=&#34;#param-name&#34;&gt;#paramName&lt;/a&gt; -
+&lt;a href=&#34;#resource-name&#34;&gt;#resourceName&lt;/a&gt; -
+&lt;a href=&#34;#singular&#34;&gt;#singular&lt;/a&gt; -
 &lt;a href=&#34;#singular-path&#34;&gt;#singularPath()&lt;/a&gt; -
 &lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
 
@@ -2247,6 +2269,10 @@ The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt; (default) or &lt;code&
 Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;singular:&lt;/strong&gt; a boolean value that specifies if the resource is singular or not.
 Resources are called &lt;em&gt;singular&lt;/em&gt; when they have a URL without ID. Default is &lt;code&gt;false&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;formName:&lt;/strong&gt; the name of form with which the users edit the properties
+of the resource. Default is &lt;code&gt;undefiend&lt;/code&gt;.
+When the &lt;code&gt;formName&lt;/code&gt; option is not defined, the name is derived from the
+&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;paramName:&lt;/strong&gt; the name of parameter to be used when the &lt;code&gt;object&lt;/code&gt;
 property is initialized and the request parameter is constructed.
 Default is undefiend.
@@ -2267,10 +2293,7 @@ var Form = Cape.createComponentClass({
   init: function() {
     this.id = 123;
     this.agent = new Cape.ResourceAgent(this, { resourceName: &#39;user&#39; });
-    this.agent.init(function(agent) {
-      this.setValues(&#39;user&#39;, agent.object);
-      this.refresh();
-    })
+    this.agent.init();
   },
 
   render: function(m) {
@@ -2288,6 +2311,7 @@ var Form = Cape.createComponentClass({
 
 var UserAgent = Cape.createResourceAgentClass({
   constructor: function(client, options) {
+    super(client, options);
     this.resourceName = &#39;user&#39;;
   }
 })
@@ -2296,10 +2320,7 @@ var Form = Cape.createComponentClass({
   init: function() {
     this.id = 123;
     this.agent = new UserAgent(this);
-    this.agent.init(function(agent) {
-      this.setValues(&#39;user&#39;, agent.object);
-      this.refresh();
-    })
+    this.agent.init();
   },
 
   render: function(m) {
