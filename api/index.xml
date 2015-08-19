@@ -95,6 +95,7 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 &lt;a href=&#34;#create-data-store-class&#34;&gt;Cape.createDataStoreClass()&lt;/a&gt; -
 &lt;a href=&#34;#create-resource-agent-class&#34;&gt;Cape.createResourceAgentClass()&lt;/a&gt; -
 &lt;a href=&#34;#deep-extend&#34;&gt;Cape.deepExtend()&lt;/a&gt; -
+&lt;a href=&#34;#default-agent-adapter&#34;&gt;Cape.defaultAgentAdapter&lt;/a&gt; -
 &lt;a href=&#34;#extend&#34;&gt;Cape.extend()&lt;/a&gt; -
 &lt;a href=&#34;#merge&#34;&gt;Cape.merge()&lt;/a&gt;&lt;/p&gt;
 
@@ -203,6 +204,16 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Create a class extending &lt;code&gt;Cape.ResourceAgentClass&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;default-agent-adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cape-defaultagentadapter:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.defaultAgentAdapter&lt;/h3&gt;
+
+&lt;p&gt;This property is used as the default value of &lt;code&gt;adapter&lt;/code&gt; property of
+collection agents and resource agents.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;../collection_agent#adapter&#34;&gt;CollectionAgent#adapter&lt;/a&gt; and
+&lt;a href=&#34;../resource_agent#adapter&#34;&gt;ResourceAgent#adapter&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;deep-extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2231,6 +2242,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
 &lt;a href=&#34;#data&#34;&gt;#data&lt;/a&gt; -
 &lt;a href=&#34;#data-type&#34;&gt;#dataType&lt;/a&gt; -
+&lt;a href=&#34;#default-agent-adapter&#34;&gt;.defaultAgentAdapter&lt;/a&gt; -
 &lt;a href=&#34;#default-error-hander&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
 &lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
 &lt;a href=&#34;#errors&#34;&gt;#errors&lt;/a&gt; -
@@ -2331,6 +2343,69 @@ var Form = Cape.createComponentClass({
   }
 });
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;_&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_4:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#_&lt;/h3&gt;
+
+&lt;p&gt;This property holds the agent&amp;rsquo;s &lt;em&gt;inner object,&lt;/em&gt; which keeps &lt;em&gt;private&lt;/em&gt; properties
+and methods. Developers should not tamper with it.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;adapter:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#adapter&lt;/h3&gt;
+
+&lt;p&gt;This property holds the name of adapter (e.g., &amp;lsquo;rails&amp;rsquo;). Default is undefined.
+Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;ajax:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#ajax()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;attr(httpMethod, path)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;attr(httpMethod, path, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;attr(httpMethod, path, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Send an Ajax request to the server.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
+
+var Page = Cape.createComponentClass({
+  init: function() {
+    this.agent = new Cape.ResourceAgent(this);
+    this.refresh();
+  },
+
+  render: function(m) {
+    m.onclick(e =&amp;gt; {
+      this.agent.ajax(&#39;POST&#39;, &#39;/counter&#39;, function(data) {
+        alert(data);
+      })
+    });
+    m.btn(&#39;Click&#39;);
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;base-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;basepath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#basePath&lt;/h3&gt;
+
+&lt;p&gt;This property holds the string that is added to the request path.
+Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;client&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;client:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#client&lt;/h3&gt;
+
+&lt;p&gt;This property holds an instance of &lt;code&gt;Cape.Component&lt;/code&gt; class, which has been
+passed as the first argument of constructor.&lt;/p&gt;
 </description>
     </item>
     

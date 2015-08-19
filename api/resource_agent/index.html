@@ -80,6 +80,8 @@
           
             <li><a href="http://oiax.github.io/capejs/api/cape#create-resource-agent-class">.createResourceAgentClass()</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/api/cape#default-agent-adapter">.defaultAgentAdapter</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/api/cape#deep-extend">.deepExtend()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/cape#extend">.extend()</a></li>
@@ -436,6 +438,7 @@
 <a href="#create">#create()</a> -
 <a href="#data">#data</a> -
 <a href="#data-type">#dataType</a> -
+<a href="#default-agent-adapter">.defaultAgentAdapter</a> -
 <a href="#default-error-hander">#defaultErrorHandler()</a> -
 <a href="#destroy">#destroy()</a> -
 <a href="#errors">#errors</a> -
@@ -536,6 +539,69 @@ var Form = Cape.createComponentClass({
   }
 });
 </code></pre>
+
+<p><a class="anchor" id="_"></a></p>
+
+<h3 id="toc_4:04a8a0920f0d1f82717b9a315e5e6489">#_</h3>
+
+<p>This property holds the agent&rsquo;s <em>inner object,</em> which keeps <em>private</em> properties
+and methods. Developers should not tamper with it.</p>
+
+<p><a class="anchor" id="adapter"></a></p>
+
+<h3 id="adapter:04a8a0920f0d1f82717b9a315e5e6489">#adapter</h3>
+
+<p>This property holds the name of adapter (e.g., &lsquo;rails&rsquo;). Default is undefined.
+Default value can be changed by setting <code>Cape.defaultAgentAdapter</code> property.</p>
+
+<p><a class="anchor" id="ajax"></a></p>
+
+<h3 id="ajax:04a8a0920f0d1f82717b9a315e5e6489">#ajax()</h3>
+
+<h4 id="usage:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
+
+<ul>
+<li><strong>attr(httpMethod, path)</strong></li>
+<li><strong>attr(httpMethod, path, callback)</strong></li>
+<li><strong>attr(httpMethod, path, callback, errorHandler)</strong></li>
+</ul>
+
+<p>Send an Ajax request to the server.</p>
+
+<h4 id="example-1:04a8a0920f0d1f82717b9a315e5e6489">Example</h4>
+
+<pre><code class="language-javascript">Cape.defaultAgentAdapter = 'rails';
+
+var Page = Cape.createComponentClass({
+  init: function() {
+    this.agent = new Cape.ResourceAgent(this);
+    this.refresh();
+  },
+
+  render: function(m) {
+    m.onclick(e =&gt; {
+      this.agent.ajax('POST', '/counter', function(data) {
+        alert(data);
+      })
+    });
+    m.btn('Click');
+  }
+});
+</code></pre>
+
+<p><a class="anchor" id="base-path"></a></p>
+
+<h3 id="basepath:04a8a0920f0d1f82717b9a315e5e6489">#basePath</h3>
+
+<p>This property holds the string that is added to the request path.
+Default value is <code>'/'</code>.</p>
+
+<p><a class="anchor" id="client"></a></p>
+
+<h3 id="client:04a8a0920f0d1f82717b9a315e5e6489">#client</h3>
+
+<p>This property holds an instance of <code>Cape.Component</code> class, which has been
+passed as the first argument of constructor.</p>
 
         </div>
       </article>
