@@ -65,6 +65,9 @@ var Cape = require('./utilities');
 //     When the `paramName` option is not defined, the name is derived from the
 //     `resourceName` property, e.g. `user` if the resource name is `users`.
 //   objects: the array of objects that represent the collection of resources
+//   data: the response data from the server. This property holds an object
+//     if the response data is a valid JSON string. Otherwise, it holds the
+//     original string value.
 //   headers: the HTTP headers for Ajax requests
 // private properties:
 //   _: the object that holds internal methods and properties of this class.
@@ -79,6 +82,7 @@ var CollectionAgent = function CollectionAgent(options) {
   this.init(options);
 
   this.objects = [];
+  this.data = undefined;
   this.headers = { 'Content-Type': 'application/json' };
 };
 
@@ -122,7 +126,7 @@ Cape.extend(CollectionAgent.prototype, {
   //   refresh: function() {
   //     var self = this;
   //     var params = { page: this.currentPage, per_page: this.perPage };
-  //     this.index(params, function(data) {
+  //     this.get('', undefined, params, function(data) {
   //       self.refreshObjects(data);
   //       self.totalPage = data.total_page;
   //       self.propagate();
@@ -130,29 +134,11 @@ Cape.extend(CollectionAgent.prototype, {
   //   }
   refresh: function() {
     var self = this;
-    this.index({}, function(data) {
-      self.refreshObjects(data);
+    this.get('', undefined, {}, function(data) {
+      self.data = data;
+      self._.refreshObjects(data);
       self.propagate();
     })
-  },
-
-  refreshObjects: function(data) {
-    var paramName = this.paramName || Inflector.tableize(this.resourceName);
-
-    this.objects.length = 0;
-    if (typeof data === 'object' && Array.isArray(data[paramName])) {
-      for (var i = 0; i < data[paramName].length; i++) {
-       this.objects.push(data[paramName][i]);
-      }
-    }
-  },
-
-  index: function(params, callback, errorHandler) {
-    this.get('', null, params, callback, errorHandler);
-  },
-
-  show: function(id, callback, errorHandler) {
-    this.get('', id, {}, callback, errorHandler);
   },
 
   create: function(params, callback, errorHandler) {
@@ -171,6 +157,12 @@ Cape.extend(CollectionAgent.prototype, {
     var path = id ? this.memberPath(id) : this.collectionPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('GET', path, params, callback, errorHandler);
+  },
+
+  head: function(actionName, id, params, callback, errorHandler) {
+    var path = id ? this.memberPath(id) : this.collectionPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('HEAD', path, params, callback, errorHandler);
   },
 
   post: function(actionName, id, params, callback, errorHandler) {
@@ -260,6 +252,20 @@ var AgentCommonInnerMethods = require('./mixins/agent_common_inner_methods');
 
 // Internal methods of Cape.CollectionAgent
 Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
+
+Cape.extend(_Internal.prototype, {
+  refreshObjects: function(data) {
+    var paramName = this.main.paramName ||
+      Inflector.tableize(this.main.resourceName);
+
+    this.main.objects.length = 0;
+    if (typeof data === 'object' && Array.isArray(data[paramName])) {
+      for (var i = 0; i < data[paramName].length; i++) {
+       this.main.objects.push(data[paramName][i]);
+      }
+    }
+  }
+});
 
 module.exports = CollectionAgent;
 
@@ -1078,6 +1084,7 @@ function ResourceAgent(client, options) {
   this.paramName = options.paramName;
 
   this.object = undefined;
+  this.data = undefined;
   this.errors = {};
   this.headers = { 'Content-Type': 'application/json' };
 };
