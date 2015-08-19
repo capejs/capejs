@@ -188,6 +188,10 @@ describe('CollectionAgent', function() {
   })
 
   describe('#ajax GET', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var agent, spy1, spy2, spy3;
 
@@ -209,8 +213,6 @@ describe('CollectionAgent', function() {
       expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
 
       Cape.AgentAdapters.FooBarAdapter = undefined;
-
-      global.fetch.restore();
     })
 
     it('should accept text/plain data', function() {
@@ -229,12 +231,14 @@ describe('CollectionAgent', function() {
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(agent.refresh.called).to.be.false;
-
-      global.fetch.restore();
     })
   })
 
   describe('#ajax POST', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var agent, spy1, spy2, spy3;
 
@@ -251,8 +255,6 @@ describe('CollectionAgent', function() {
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(agent.refresh.called).to.be.true;
-
-      global.fetch.restore();
     })
 
     it('should not call agent.refresh()', function() {
@@ -271,12 +273,14 @@ describe('CollectionAgent', function() {
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(agent.refresh.called).to.be.false;
-
-      global.fetch.restore();
     })
   })
 
   describe('#refresh', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var agent, spy1;
 
@@ -287,11 +291,14 @@ describe('CollectionAgent', function() {
       agent.refresh();
       expect(spy1.called).to.be.true;
       expect(agent.objects.length).to.equal(2);
-      global.fetch.restore();
     })
   })
 
   describe('#index', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var agent, spy;
 
@@ -301,11 +308,14 @@ describe('CollectionAgent', function() {
       sinon.stub(agent, 'defaultErrorHandler');
       agent.index({ page: 1, per_page: 20 });
       expect(spy.called).to.be.true;
-      global.fetch.restore();
     })
   })
 
   describe('#show', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var agent, spy;
 
@@ -315,11 +325,14 @@ describe('CollectionAgent', function() {
       sinon.stub(agent, 'defaultErrorHandler');
       agent.show(1);
       expect(spy.called).to.be.true;
-      global.fetch.restore();
     })
   })
 
   describe('#create', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var agent, spy;
 
@@ -329,11 +342,14 @@ describe('CollectionAgent', function() {
       sinon.stub(agent, 'defaultErrorHandler');
       agent.create({ name: 'X', password: 'Y' });
       expect(spy.called).to.be.true;
-      global.fetch.restore();
     })
   })
 
   describe('#update', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var agent, spy;
 
@@ -343,11 +359,14 @@ describe('CollectionAgent', function() {
       sinon.stub(agent, 'defaultErrorHandler');
       agent.update(1, { name: 'X', password: 'Y' });
       expect(spy.called).to.be.true;
-      global.fetch.restore();
     })
   })
 
   describe('#destroy', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var agent, spy;
 
@@ -357,7 +376,6 @@ describe('CollectionAgent', function() {
       sinon.stub(agent, 'defaultErrorHandler');
       agent.destroy(1);
       expect(spy.called).to.be.true;
-      global.fetch.restore();
     })
   })
 

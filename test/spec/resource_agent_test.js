@@ -101,6 +101,10 @@ describe('ResourceAgent', function() {
   })
 
   describe('#init', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should call the setValues method of component', function() {
       var form, options, agent, spy1, spy2, spy3;
 
@@ -125,8 +129,6 @@ describe('ResourceAgent', function() {
       expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
 
       Cape.AgentAdapters.FooBarAdapter = undefined;
-
-      global.fetch.restore();
     })
 
     it('should go through a fetch api chain', function() {
@@ -151,8 +153,6 @@ describe('ResourceAgent', function() {
       expect(Cape.AgentAdapters.FooBarAdapter.called).to.be.true;
 
       Cape.AgentAdapters.FooBarAdapter = undefined;
-
-      global.fetch.restore();
     })
 
     it('should fetch a singular resource', function() {
@@ -172,12 +172,14 @@ describe('ResourceAgent', function() {
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(global.fetch.calledWith('/profile')).to.be.true;
-
-      global.fetch.restore();
     })
   })
 
   describe('#create', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var form, options, agent, spy1, spy2, spy3;
 
@@ -195,8 +197,6 @@ describe('ResourceAgent', function() {
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(global.fetch.calledWith('/users')).to.be.true;
-
-      global.fetch.restore();
     })
 
     it('should create a singular resource', function() {
@@ -216,12 +216,14 @@ describe('ResourceAgent', function() {
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(global.fetch.calledWith('/profile')).to.be.true;
-
-      global.fetch.restore();
     })
   })
 
   describe('#update', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var form, options, agent, spy1, spy2, spy3;
 
@@ -239,8 +241,6 @@ describe('ResourceAgent', function() {
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(global.fetch.calledWith('/users/123')).to.be.true;
-
-      global.fetch.restore();
     })
 
     it('should update a singular resource', function() {
@@ -260,12 +260,14 @@ describe('ResourceAgent', function() {
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(global.fetch.calledWith('/profile')).to.be.true;
-
-      global.fetch.restore();
     })
   })
 
   describe('#destroy', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
     it('should go through a fetch api chain', function() {
       var form, options, agent, spy1, spy2, spy3;
 
@@ -283,8 +285,6 @@ describe('ResourceAgent', function() {
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(global.fetch.calledWith('/users/123')).to.be.true;
-
-      global.fetch.restore();
     })
 
     it('should destroy a singular resource', function() {
@@ -304,8 +304,6 @@ describe('ResourceAgent', function() {
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(global.fetch.calledWith('/profile')).to.be.true;
-
-      global.fetch.restore();
     })
   })
 })
