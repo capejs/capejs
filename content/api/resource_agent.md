@@ -14,6 +14,7 @@ title: "Cape.ResourceAgent - API Reference"
 [#create()](#create) -
 [#data](#data) -
 [#dataType](#data-type) -
+[.defaultAgentAdapter](#default-agent-adapter) -
 [#defaultErrorHandler()](#default-error-hander) -
 [#destroy()](#destroy) -
 [#errors](#errors) -
@@ -113,3 +114,63 @@ var Form = Cape.createComponentClass({
   }
 });
 ```
+
+<a class="anchor" id="_"></a>
+### #_
+
+This property holds the agent's _inner object,_ which keeps _private_ properties
+and methods. Developers should not tamper with it.
+
+
+<a class="anchor" id="adapter"></a>
+### #adapter
+
+This property holds the name of adapter (e.g., 'rails'). Default is undefined.
+Default value can be changed by setting `Cape.defaultAgentAdapter` property.
+
+
+<a class="anchor" id="ajax"></a>
+### #ajax()
+
+#### Usage
+
+* **attr(httpMethod, path)**
+* **attr(httpMethod, path, callback)**
+* **attr(httpMethod, path, callback, errorHandler)**
+
+Send an Ajax request to the server.
+
+
+#### Example
+
+```javascript
+Cape.defaultAgentAdapter = 'rails';
+
+var Page = Cape.createComponentClass({
+  init: function() {
+    this.agent = new Cape.ResourceAgent(this);
+    this.refresh();
+  },
+
+  render: function(m) {
+    m.onclick(e => {
+      this.agent.ajax('POST', '/counter', function(data) {
+        alert(data);
+      })
+    });
+    m.btn('Click');
+  }
+});
+```
+
+<a class="anchor" id="base-path"></a>
+### #basePath
+
+This property holds the string that is added to the request path.
+Default value is `'/'`.
+
+<a class="anchor" id="client"></a>
+### #client
+
+This property holds an instance of `Cape.Component` class, which has been
+passed as the first argument of constructor.

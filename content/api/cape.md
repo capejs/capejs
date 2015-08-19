@@ -8,6 +8,7 @@ type: "api"
 [Cape.createDataStoreClass()](#create-data-store-class) -
 [Cape.createResourceAgentClass()](#create-resource-agent-class) -
 [Cape.deepExtend()](#deep-extend) -
+[Cape.defaultAgentAdapter](#default-agent-adapter) -
 [Cape.extend()](#extend) -
 [Cape.merge()](#merge)
 
@@ -110,6 +111,15 @@ class TodoItemStore extends Cape.DataStore {
 * **Cape.createResourceAgentClass(*methods*)**
 
 Create a class extending `Cape.ResourceAgentClass` with `methods`.
+
+<a class="anchor" id="default-agent-adapter"></a>
+### Cape.defaultAgentAdapter
+
+This property is used as the default value of `adapter` property of
+collection agents and resource agents.
+
+See [CollectionAgent#adapter](../collection_agent#adapter) and
+[ResourceAgent#adapter](../resource_agent#adapter).
 
 <a class="anchor" id="deep-extend"></a>
 ### Cape.deepExtend

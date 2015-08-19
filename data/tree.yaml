@@ -179,6 +179,9 @@ api_pages:
         id: create-resource-agent-class
         title: ".createResourceAgentClass()"
       -
+        id: default-agent-adapter
+        title: ".defaultAgentAdapter"
+      -
         id: deep-extend
         title: ".deepExtend()"
       -
