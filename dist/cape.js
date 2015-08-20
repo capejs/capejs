@@ -134,11 +134,30 @@ Cape.extend(CollectionAgent.prototype, {
   //   }
   refresh: function() {
     var self = this;
-    this.get('', undefined, {}, function(data) {
+    this.index({}, function(data) {
       self.data = data;
-      self._.refreshObjects(data);
+      self.refreshObjects(data);
       self.propagate();
     })
+  },
+
+  // Refresh the `objects` property using the response data from the server.
+  //
+  // Developers cant override this method if you want to change its default
+  // behavior.
+  refreshObjects: function(data) {
+    var paramName = this.paramName || Inflector.tableize(this.resourceName);
+
+    this.objects.length = 0;
+    if (typeof data === 'object' && Array.isArray(data[paramName])) {
+      for (var i = 0; i < data[paramName].length; i++) {
+       this.objects.push(data[paramName][i]);
+      }
+    }
+  },
+
+  index: function(params, callback, errorHandler) {
+    this.get('', null, params, callback, errorHandler);
   },
 
   create: function(params, callback, errorHandler) {
@@ -252,20 +271,6 @@ var AgentCommonInnerMethods = require('./mixins/agent_common_inner_methods');
 
 // Internal methods of Cape.CollectionAgent
 Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
-
-Cape.extend(_Internal.prototype, {
-  refreshObjects: function(data) {
-    var paramName = this.main.paramName ||
-      Inflector.tableize(this.main.resourceName);
-
-    this.main.objects.length = 0;
-    if (typeof data === 'object' && Array.isArray(data[paramName])) {
-      for (var i = 0; i < data[paramName].length; i++) {
-       this.main.objects.push(data[paramName][i]);
-      }
-    }
-  }
-});
 
 module.exports = CollectionAgent;
 
@@ -3481,7 +3486,9 @@ module.exports = patch
 
 function patch(rootNode, patches, renderOptions) {
     renderOptions = renderOptions || {}
-    renderOptions.patch = renderOptions.patch || patchRecursive
+    renderOptions.patch = renderOptions.patch && renderOptions.patch !== patch
+        ? renderOptions.patch
+        : patchRecursive
     renderOptions.render = renderOptions.render || render
 
     return renderOptions.patch(rootNode, patches, renderOptions)
