@@ -356,6 +356,7 @@ Cape.extend(object1, object2);
 &lt;a href=&#34;#get-instance&#34;&gt;.getInstance()&lt;/a&gt; -
 &lt;a href=&#34;#head&#34;&gt;#head()&lt;/a&gt; -
 &lt;a href=&#34;#headers&#34;&gt;#headers&lt;/a&gt; -
+&lt;a href=&#34;#index&#34;&gt;#index()&lt;/a&gt; -
 &lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
 &lt;a href=&#34;#object&#34;&gt;#objects&lt;/a&gt; -
 &lt;a href=&#34;#param-name&#34;&gt;#paramName&lt;/a&gt; -
@@ -2406,6 +2407,161 @@ Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;This property holds an instance of &lt;code&gt;Cape.Component&lt;/code&gt; class, which has been
 passed as the first argument of constructor.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;collectionpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#collectionPath()&lt;/h3&gt;
+
+&lt;p&gt;Returns the URL path to a collection of resources in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#collectionPath()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/users&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/users&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/users&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/users&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;memberpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#memberPath()&lt;/h3&gt;
+
+&lt;p&gt;Returns the URL path to a resource in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#memberPath()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/users/9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The &lt;code&gt;id&lt;/code&gt; part of the URL path (&lt;code&gt;9&lt;/code&gt;) derives from the &lt;code&gt;client.id&lt;/code&gt; property.&lt;/p&gt;
+
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;singularpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#singularPath()&lt;/h3&gt;
+
+&lt;p&gt;Returns the URL path to a &lt;em&gt;singular&lt;/em&gt; resource in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#singularPath()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/account&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/account&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/account&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/account&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A singular resource is a resource that clients always look up without
+referencing an ID.&lt;/p&gt;
+
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     

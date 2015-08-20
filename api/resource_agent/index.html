@@ -244,6 +244,8 @@
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#get-instance">.getInstance()</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/api/collection_agent#head">#head()</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#headers">#headers</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#index">#index()</a></li>
@@ -263,8 +265,6 @@
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#put">#put()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#refresh">#refresh()</a></li>
-          
-            <li><a href="http://oiax.github.io/capejs/api/collection_agent#show">#show()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#update">#update()</a></li>
           
@@ -602,6 +602,161 @@ Default value is <code>'/'</code>.</p>
 
 <p>This property holds an instance of <code>Cape.Component</code> class, which has been
 passed as the first argument of constructor.</p>
+
+<p><a class="anchor" id="collection-path"></a></p>
+
+<h3 id="collectionpath:04a8a0920f0d1f82717b9a315e5e6489">#collectionPath()</h3>
+
+<p>Returns the URL path to a collection of resources in accordance with the
+values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</code> properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>#resourceName</th>
+<th>#basePath</th>
+<th>#nestedIn</th>
+<th>#collectionPath()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>users</td>
+<td></td>
+<td></td>
+<td>/users</td>
+</tr>
+
+<tr>
+<td>users</td>
+<td>/api/</td>
+<td></td>
+<td>/api/users</td>
+</tr>
+
+<tr>
+<td>users</td>
+<td></td>
+<td>teams/123/</td>
+<td>/teams/123/users</td>
+</tr>
+
+<tr>
+<td>users</td>
+<td>/api/</td>
+<td>teams/123/</td>
+<td>/api/teams/123/users</td>
+</tr>
+</tbody>
+</table>
+
+<p>Note that the default value of <code>basePath</code> property is <code>/</code>.</p>
+
+<p><a class="anchor" id="member-path"></a></p>
+
+<h3 id="memberpath:04a8a0920f0d1f82717b9a315e5e6489">#memberPath()</h3>
+
+<p>Returns the URL path to a resource in accordance with the
+values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</code> properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>#resourceName</th>
+<th>#basePath</th>
+<th>#nestedIn</th>
+<th>#memberPath()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>users</td>
+<td></td>
+<td></td>
+<td>/users/9</td>
+</tr>
+
+<tr>
+<td>users</td>
+<td>/api/</td>
+<td></td>
+<td>/api/users/9</td>
+</tr>
+
+<tr>
+<td>users</td>
+<td></td>
+<td>teams/123/</td>
+<td>/teams/123/users/9</td>
+</tr>
+
+<tr>
+<td>users</td>
+<td>/api/</td>
+<td>teams/123/</td>
+<td>/api/teams/123/users/9</td>
+</tr>
+</tbody>
+</table>
+
+<p>The <code>id</code> part of the URL path (<code>9</code>) derives from the <code>client.id</code> property.</p>
+
+<p>Note that the default value of <code>basePath</code> property is <code>/</code>.</p>
+
+<p><a class="anchor" id="singular-path"></a></p>
+
+<h3 id="singularpath:04a8a0920f0d1f82717b9a315e5e6489">#singularPath()</h3>
+
+<p>Returns the URL path to a <em>singular</em> resource in accordance with the
+values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</code> properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>#resourceName</th>
+<th>#basePath</th>
+<th>#nestedIn</th>
+<th>#singularPath()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>account</td>
+<td></td>
+<td></td>
+<td>/account</td>
+</tr>
+
+<tr>
+<td>account</td>
+<td>/api/</td>
+<td></td>
+<td>/api/account</td>
+</tr>
+
+<tr>
+<td>account</td>
+<td></td>
+<td>teams/123/</td>
+<td>/teams/123/account</td>
+</tr>
+
+<tr>
+<td>account</td>
+<td>/api/</td>
+<td>teams/123/</td>
+<td>/api/teams/123/account</td>
+</tr>
+</tbody>
+</table>
+
+<p>A singular resource is a resource that clients always look up without
+referencing an ID.</p>
+
+<p>Note that the default value of <code>basePath</code> property is <code>/</code>.</p>
 
         </div>
       </article>
