@@ -438,7 +438,6 @@
 <a href="#create">#create()</a> -
 <a href="#data">#data</a> -
 <a href="#data-type">#dataType</a> -
-<a href="#default-agent-adapter">.defaultAgentAdapter</a> -
 <a href="#default-error-hander">#defaultErrorHandler()</a> -
 <a href="#destroy">#destroy()</a> -
 <a href="#errors">#errors</a> -
@@ -653,6 +652,94 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <p>Note that the default value of <code>basePath</code> property is <code>/</code>.</p>
 
+<p><a class="anchor" id="create"></a></p>
+
+<h3 id="create:04a8a0920f0d1f82717b9a315e5e6489">#create()</h3>
+
+<h4 id="usage-1:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
+
+<ul>
+<li><strong>create()</strong></li>
+<li><strong>create(callback)</strong></li>
+<li><strong>create(callback, errorHandler)</strong></li>
+</ul>
+
+<p>Send an Ajax request with POST method to the URL that is constructed
+by the <code>collectionPath()</code> method.</p>
+
+<p><a class="anchor" id="data"></a></p>
+
+<h3 id="data:04a8a0920f0d1f82717b9a315e5e6489">#data</h3>
+
+<p>This property holds the object that is build from the JSON string returned
+from the server during <code>refresh()</code> process if the response data from the server
+is a valid JSON string.</p>
+
+<p>Otherwise, it holds the response data from the server as is.</p>
+
+<p><a class="anchor" id="data-type"></a></p>
+
+<h3 id="datatype:04a8a0920f0d1f82717b9a315e5e6489">#dataType</h3>
+
+<p>This property holds the type of data that you&rsquo;re expecting from the server.
+The value must be <code>'json'</code>, <code>'text'</code> or <code>undefined</code>.
+When the <code>dataType</code> option is not defined, the type is detected automatically.</p>
+
+<p><a class="anchor" id="default-error-hander"></a></p>
+
+<h3 id="defaulterrorhandler:04a8a0920f0d1f82717b9a315e5e6489">#defaultErrorHandler()</h3>
+
+<p>This method handles the exception thrown during the Fetch API.</p>
+
+<p>The default implementation is just <code>console.log(ex)</code>.
+Developers should override this for a better exception handling.</p>
+
+<p><a class="anchor" id="destroy"></a></p>
+
+<h3 id="destroy:04a8a0920f0d1f82717b9a315e5e6489">#destroy()</h3>
+
+<h4 id="usage-2:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
+
+<ul>
+<li><strong>destroy()</strong></li>
+<li><strong>destroy(callback)</strong></li>
+<li><strong>destroy(callback, errorHandler)</strong></li>
+</ul>
+
+<p>Send an Ajax request with DELETE method to the URL that is constructed
+by the <code>memberPath()</code> method.</p>
+
+<p><a class="anchor" id="errors"></a></p>
+
+<h3 id="errors:04a8a0920f0d1f82717b9a315e5e6489">#errors</h3>
+
+<p>This property holds an object (key-value pairs) whose keys are the
+attribute names of the resource and whose values are the validation
+error messages.</p>
+
+<p><a class="anchor" id="form-name"></a></p>
+
+<h3 id="formname:04a8a0920f0d1f82717b9a315e5e6489">#formName</h3>
+
+<p>This property holds the name of form with which the users edit the properties
+of the resource. Default is <code>undefiend</code>.</p>
+
+<p>When the <code>formName</code> option is not defined, the name is derived from the
+<code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>user</code>.</p>
+
+<p><a class="anchor" id="headers"></a></p>
+
+<h3 id="headers:04a8a0920f0d1f82717b9a315e5e6489">#headers</h3>
+
+<p>This property holds the HTTP headers for Ajax requests.
+The default valued is <code>{ 'Content-Type': 'application/json' }</code>.</p>
+
+<p><a class="anchor" id="init"></a></p>
+
+<h3 id="init:04a8a0920f0d1f82717b9a315e5e6489">#init()</h3>
+
+<p>This property holds the object that represents the resource.</p>
+
 <p><a class="anchor" id="member-path"></a></p>
 
 <h3 id="memberpath:04a8a0920f0d1f82717b9a315e5e6489">#memberPath()</h3>
@@ -704,6 +791,78 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 <p>The <code>id</code> part of the URL path (<code>9</code>) derives from the <code>client.id</code> property.</p>
 
 <p>Note that the default value of <code>basePath</code> property is <code>/</code>.</p>
+
+<p><a class="anchor" id="object"></a></p>
+
+<h3 id="object:04a8a0920f0d1f82717b9a315e5e6489">#object</h3>
+
+<p><a class="anchor" id="new-path"></a></p>
+
+<h3 id="newpath:04a8a0920f0d1f82717b9a315e5e6489">#newPath()</h3>
+
+<p>Returns the URL path to a <em>new</em> resource in accordance with the
+values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</code> properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>#resourceName</th>
+<th>#basePath</th>
+<th>#nestedIn</th>
+<th>#newPath()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>account</td>
+<td></td>
+<td></td>
+<td>/users/new</td>
+</tr>
+
+<tr>
+<td>account</td>
+<td>/api/</td>
+<td></td>
+<td>/api/users/new</td>
+</tr>
+
+<tr>
+<td>account</td>
+<td></td>
+<td>teams/123/</td>
+<td>/teams/123/users/new</td>
+</tr>
+
+<tr>
+<td>account</td>
+<td>/api/</td>
+<td>teams/123/</td>
+<td>/api/teams/123/users/new</td>
+</tr>
+</tbody>
+</table>
+
+<p>A <em>new</em> resource is a resource for a form for creating an resource.</p>
+
+<p>Note that the default value of <code>basePath</code> property is <code>/</code>.</p>
+
+<p><a class="anchor" id="nested-in"></a></p>
+
+<h3 id="nestedin:04a8a0920f0d1f82717b9a315e5e6489">#nestedIn</h3>
+
+<p><a class="anchor" id="param-name"></a></p>
+
+<h3 id="paramname:04a8a0920f0d1f82717b9a315e5e6489">#paramName</h3>
+
+<p><a class="anchor" id="resource-name"></a></p>
+
+<h3 id="resourcename:04a8a0920f0d1f82717b9a315e5e6489">#resourceName</h3>
+
+<p><a class="anchor" id="singular"></a></p>
+
+<h3 id="singular:04a8a0920f0d1f82717b9a315e5e6489">#singular</h3>
 
 <p><a class="anchor" id="singular-path"></a></p>
 
@@ -757,6 +916,21 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 referencing an ID.</p>
 
 <p>Note that the default value of <code>basePath</code> property is <code>/</code>.</p>
+
+<p><a class="anchor" id="update"></a></p>
+
+<h3 id="update:04a8a0920f0d1f82717b9a315e5e6489">#update()</h3>
+
+<h4 id="usage-3:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
+
+<ul>
+<li><strong>update()</strong></li>
+<li><strong>update(callback)</strong></li>
+<li><strong>update(callback, errorHandler)</strong></li>
+</ul>
+
+<p>Send an Ajax request with PATCH method to the URL that is constructed
+by the <code>memberPath()</code> method.</p>
 
         </div>
       </article>

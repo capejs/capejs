@@ -2243,7 +2243,6 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
 &lt;a href=&#34;#data&#34;&gt;#data&lt;/a&gt; -
 &lt;a href=&#34;#data-type&#34;&gt;#dataType&lt;/a&gt; -
-&lt;a href=&#34;#default-agent-adapter&#34;&gt;.defaultAgentAdapter&lt;/a&gt; -
 &lt;a href=&#34;#default-error-hander&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
 &lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
 &lt;a href=&#34;#errors&#34;&gt;#errors&lt;/a&gt; -
@@ -2458,6 +2457,94 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;create:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#create()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;create()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;create(callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;create(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Send an Ajax request with POST method to the URL that is constructed
+by the &lt;code&gt;collectionPath()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;data:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#data&lt;/h3&gt;
+
+&lt;p&gt;This property holds the object that is build from the JSON string returned
+from the server during &lt;code&gt;refresh()&lt;/code&gt; process if the response data from the server
+is a valid JSON string.&lt;/p&gt;
+
+&lt;p&gt;Otherwise, it holds the response data from the server as is.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;datatype:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#dataType&lt;/h3&gt;
+
+&lt;p&gt;This property holds the type of data that you&amp;rsquo;re expecting from the server.
+The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt;, &lt;code&gt;&#39;text&#39;&lt;/code&gt; or &lt;code&gt;undefined&lt;/code&gt;.
+When the &lt;code&gt;dataType&lt;/code&gt; option is not defined, the type is detected automatically.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;default-error-hander&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;defaulterrorhandler:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#defaultErrorHandler()&lt;/h3&gt;
+
+&lt;p&gt;This method handles the exception thrown during the Fetch API.&lt;/p&gt;
+
+&lt;p&gt;The default implementation is just &lt;code&gt;console.log(ex)&lt;/code&gt;.
+Developers should override this for a better exception handling.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;destroy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;destroy:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#destroy()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;destroy()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;destroy(callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;destroy(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Send an Ajax request with DELETE method to the URL that is constructed
+by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;errors&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;errors:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#errors&lt;/h3&gt;
+
+&lt;p&gt;This property holds an object (key-value pairs) whose keys are the
+attribute names of the resource and whose values are the validation
+error messages.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;formname:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#formName&lt;/h3&gt;
+
+&lt;p&gt;This property holds the name of form with which the users edit the properties
+of the resource. Default is &lt;code&gt;undefiend&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;When the &lt;code&gt;formName&lt;/code&gt; option is not defined, the name is derived from the
+&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;headers&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;headers:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#headers&lt;/h3&gt;
+
+&lt;p&gt;This property holds the HTTP headers for Ajax requests.
+The default valued is &lt;code&gt;{ &#39;Content-Type&#39;: &#39;application/json&#39; }&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;init&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;init:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#init()&lt;/h3&gt;
+
+&lt;p&gt;This property holds the object that represents the resource.&lt;/p&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;memberpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#memberPath()&lt;/h3&gt;
@@ -2509,6 +2596,78 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 &lt;p&gt;The &lt;code&gt;id&lt;/code&gt; part of the URL path (&lt;code&gt;9&lt;/code&gt;) derives from the &lt;code&gt;client.id&lt;/code&gt; property.&lt;/p&gt;
 
 &lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;object&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;object:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#object&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;new-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;newpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#newPath()&lt;/h3&gt;
+
+&lt;p&gt;Returns the URL path to a &lt;em&gt;new&lt;/em&gt; resource in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#newPath()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/users/new&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/users/new&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/users/new&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/users/new&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A &lt;em&gt;new&lt;/em&gt; resource is a resource for a form for creating an resource.&lt;/p&gt;
+
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;nested-in&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;nestedin:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#nestedIn&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;param-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;paramname:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#paramName&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;resourcename:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#resourceName&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;singular:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#singular&lt;/h3&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2562,6 +2721,21 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 referencing an ID.&lt;/p&gt;
 
 &lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;update&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;update:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#update()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-3:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;update()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;update(callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;update(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Send an Ajax request with PATCH method to the URL that is constructed
+by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
 </description>
     </item>
     
