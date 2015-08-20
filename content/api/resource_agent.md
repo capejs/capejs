@@ -174,3 +174,56 @@ Default value is `'/'`.
 
 This property holds an instance of `Cape.Component` class, which has been
 passed as the first argument of constructor.
+
+
+<a class="anchor" id="collection-path"></a>
+### #collectionPath()
+
+Returns the URL path to a collection of resources in accordance with the
+values of `resourceName`, `basePath` and `nestedIn` properties:
+
+|#resourceName|#basePath|#nestedIn|#collectionPath()|
+|------------|--------|--------|----|
+|users|||/users|
+|users|/api/||/api/users|
+|users||teams/123/|/teams/123/users|
+|users|/api/|teams/123/|/api/teams/123/users|
+
+Note that the default value of `basePath` property is `/`.
+
+
+<a class="anchor" id="member-path"></a>
+### #memberPath()
+
+Returns the URL path to a resource in accordance with the
+values of `resourceName`, `basePath` and `nestedIn` properties:
+
+|#resourceName|#basePath|#nestedIn|#memberPath()|
+|------------|--------|--------|----|
+|users|||/users/9|
+|users|/api/||/api/users/9|
+|users||teams/123/|/teams/123/users/9|
+|users|/api/|teams/123/|/api/teams/123/users/9|
+
+The `id` part of the URL path (`9`) derives from the `client.id` property.
+
+Note that the default value of `basePath` property is `/`.
+
+
+<a class="anchor" id="singular-path"></a>
+### #singularPath()
+
+Returns the URL path to a _singular_ resource in accordance with the
+values of `resourceName`, `basePath` and `nestedIn` properties:
+
+|#resourceName|#basePath|#nestedIn|#singularPath()|
+|------------|--------|--------|----|
+|account|||/account|
+|account|/api/||/api/account|
+|account||teams/123/|/teams/123/account|
+|account|/api/|teams/123/|/api/teams/123/account|
+
+A singular resource is a resource that clients always look up without
+referencing an ID.
+
+Note that the default value of `basePath` property is `/`.
