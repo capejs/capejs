@@ -184,8 +184,9 @@ class UserList extends Cape.Component {
 <a class="anchor" id="rest-operations"></a>
 ### REST operations
 
-Cape.JS provides three basic methods for REST operations:
+Cape.JS provides four basic methods for REST operations:
 
+* [#index()](./api/collection_agent#index) to get a collection of resources
 * [#create()](./api/collection_agent#create) to create a resource
 * [#update()](./api/collection_agent#update) to update (modify) a resource
 * [#destroy()](./api/collection_agent#destroy) to delete a resource
@@ -196,6 +197,7 @@ following table, where `:id` is an integer denoting the value of object's `id`.
 
 |Method|HTTP Verb|Path|
 |------|---------|----|
+|#index()|GET|/users|
 |#create()|POST|/users|
 |#update()|PATCH|/users/:id|
 |#destroy()|DELETE|/users/:id|

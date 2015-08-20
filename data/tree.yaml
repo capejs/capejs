@@ -385,6 +385,9 @@ api_pages:
         id: get-instance
         title: ".getInstance()"
       -
+        id: head
+        title: "#head()"
+      -
         id: headers
         title: "#headers"
       -
@@ -414,9 +417,6 @@ api_pages:
       -
         id: refresh
         title: "#refresh()"
-      -
-        id: show
-        title: "#show()"
       -
         id: update
         title: "#update()"

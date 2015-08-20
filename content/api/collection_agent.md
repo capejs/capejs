@@ -23,6 +23,7 @@ title: "Cape.CollectionAgent - API Reference"
 [.getInstance()](#get-instance) -
 [#head()](#head) -
 [#headers](#headers) -
+[#index()](#index) -
 [#memberPath()](#member-path) -
 [#objects](#object) -
 [#paramName](#param-name) -
