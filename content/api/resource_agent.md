@@ -14,7 +14,6 @@ title: "Cape.ResourceAgent - API Reference"
 [#create()](#create) -
 [#data](#data) -
 [#dataType](#data-type) -
-[.defaultAgentAdapter](#default-agent-adapter) -
 [#defaultErrorHandler()](#default-error-hander) -
 [#destroy()](#destroy) -
 [#errors](#errors) -
@@ -191,6 +190,83 @@ values of `resourceName`, `basePath` and `nestedIn` properties:
 
 Note that the default value of `basePath` property is `/`.
 
+<a class="anchor" id="create"></a>
+### #create()
+#### Usage
+
+* **create()**
+* **create(callback)**
+* **create(callback, errorHandler)**
+
+Send an Ajax request with POST method to the URL that is constructed
+by the `collectionPath()` method.
+
+
+<a class="anchor" id="data"></a>
+### #data
+
+This property holds the object that is build from the JSON string returned
+from the server during `refresh()` process if the response data from the server
+is a valid JSON string.
+
+Otherwise, it holds the response data from the server as is.
+
+
+<a class="anchor" id="data-type"></a>
+### #dataType
+
+This property holds the type of data that you're expecting from the server.
+The value must be `'json'`, `'text'` or `undefined`.
+When the `dataType` option is not defined, the type is detected automatically.
+
+<a class="anchor" id="default-error-hander"></a>
+### #defaultErrorHandler()
+
+This method handles the exception thrown during the Fetch API.
+
+The default implementation is just `console.log(ex)`.
+Developers should override this for a better exception handling.
+
+
+<a class="anchor" id="destroy"></a>
+### #destroy()
+#### Usage
+
+* **destroy()**
+* **destroy(callback)**
+* **destroy(callback, errorHandler)**
+
+Send an Ajax request with DELETE method to the URL that is constructed
+by the `memberPath()` method.
+
+
+<a class="anchor" id="errors"></a>
+### #errors
+
+This property holds an object (key-value pairs) whose keys are the
+attribute names of the resource and whose values are the validation
+error messages.
+
+<a class="anchor" id="form-name"></a>
+### #formName
+
+This property holds the name of form with which the users edit the properties
+of the resource. Default is `undefiend`.
+
+When the `formName` option is not defined, the name is derived from the
+`resourceName` property, e.g. `user` if the resource name is `user`.
+
+
+<a class="anchor" id="headers"></a>
+### #headers
+
+This property holds the HTTP headers for Ajax requests.
+The default valued is `{ 'Content-Type': 'application/json' }`.
+
+<a class="anchor" id="init"></a>
+### #init()
+
+This property holds the object that represents the resource.
 
 <a class="anchor" id="member-path"></a>
 ### #memberPath()
@@ -209,6 +285,37 @@ The `id` part of the URL path (`9`) derives from the `client.id` property.
 
 Note that the default value of `basePath` property is `/`.
 
+<a class="anchor" id="object"></a>
+### #object
+
+<a class="anchor" id="new-path"></a>
+### #newPath()
+
+Returns the URL path to a _new_ resource in accordance with the
+values of `resourceName`, `basePath` and `nestedIn` properties:
+
+|#resourceName|#basePath|#nestedIn|#newPath()|
+|------------|--------|--------|----|
+|account|||/users/new|
+|account|/api/||/api/users/new|
+|account||teams/123/|/teams/123/users/new|
+|account|/api/|teams/123/|/api/teams/123/users/new|
+
+A _new_ resource is a resource for a form for creating an resource.
+
+Note that the default value of `basePath` property is `/`.
+
+<a class="anchor" id="nested-in"></a>
+### #nestedIn
+
+<a class="anchor" id="param-name"></a>
+### #paramName
+
+<a class="anchor" id="resource-name"></a>
+### #resourceName
+
+<a class="anchor" id="singular"></a>
+### #singular
 
 <a class="anchor" id="singular-path"></a>
 ### #singularPath()
@@ -227,3 +334,15 @@ A singular resource is a resource that clients always look up without
 referencing an ID.
 
 Note that the default value of `basePath` property is `/`.
+
+
+<a class="anchor" id="update"></a>
+### #update()
+#### Usage
+
+* **update()**
+* **update(callback)**
+* **update(callback, errorHandler)**
+
+Send an Ajax request with PATCH method to the URL that is constructed
+by the `memberPath()` method.
