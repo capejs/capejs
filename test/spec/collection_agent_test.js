@@ -295,6 +295,23 @@ describe('CollectionAgent', function() {
     })
   })
 
+  describe('#index', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
+    it('should go through a fetch api chain', function() {
+      var agent, spy;
+
+      spy = sinon.spy();
+      stubFetchAPI(spy);
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
+      sinon.stub(agent, 'defaultErrorHandler');
+      agent.index({ page: 1, per_page: 20 });
+      expect(spy.called).to.be.true;
+    })
+  })
+
   describe('#create', function() {
     afterEach(function() {
       global.fetch.restore();
