@@ -118,33 +118,33 @@ Cape.extend(CollectionAgent.prototype, {
 
   // Fetch current data through the API and refresh this.objects.
   //
-  // The default implementation assumes that the request URI has no parameters and
+  // The default implementation assumes that the request URI has no query string and
   // the API returns a hash like this:
   //   { users: [ { id: 1, name: 'John' }, { id: 2, name: 'Kate' } ]}
   //
-  // Otherwise, this method should be overridden in child classes. For example,
-  //   refresh: function() {
-  //     var self = this;
-  //     var params = { page: this.currentPage, per_page: this.perPage };
-  //     this.get('', undefined, params, function(data) {
-  //       self.refreshObjects(data);
-  //       self.totalPage = data.total_page;
-  //       self.propagate();
-  //     })
-  //   }
+  // Developers may change this assumption by overriding the `paramsForRefresh()`
+  // method or setting the `paramName` property.
   refresh: function() {
     var self = this;
-    this.index({}, function(data) {
+    this.index(this.paramsForRefresh(), function(data) {
       self.data = data;
       self.refreshObjects(data);
+      self.afterRefresh();
       self.propagate();
     })
   },
 
+  // Returns an empty object always. This object is used to construct
+  // the query string of the request URL during the `refresh()` process.
+  //
+  // Developers may override this method to change this behavior.
+  paramsForRefresh: function() {
+    return {};
+  },
+
   // Refresh the `objects` property using the response data from the server.
   //
-  // Developers cant override this method if you want to change its default
-  // behavior.
+  // Developers may override this method to change its default behavior.
   refreshObjects: function(data) {
     var paramName = this.paramName || Inflector.tableize(this.resourceName);
 
@@ -154,6 +154,14 @@ Cape.extend(CollectionAgent.prototype, {
        this.objects.push(data[paramName][i]);
       }
     }
+  },
+
+  // Called by the `refresh()` method after it updates the `data` and
+  // `objects` properties.
+  //
+  // Developers may override this method to let the agent do some
+  // post-processing jobs.
+  afterRefresh: function() {
   },
 
   index: function(params, callback, errorHandler) {
