@@ -284,13 +284,14 @@ describe('ResourceAgent', function() {
       spy1 = sinon.spy();
       spy2 = sinon.spy();
       spy3 = sinon.spy();
-      stubFetchAPI(spy1);
+      stubFetchAPI(spy1, '{ "result": "OK" }');
 
       agent.update(spy2, spy3);
       expect(spy1.called).to.be.true;
       expect(spy2.called).to.be.true;
       expect(spy3.called).to.be.true;
       expect(global.fetch.calledWith('/users/123')).to.be.true;
+      expect(agent.data.result).to.equal('OK');
     })
 
     it('should update a singular resource', function() {
