@@ -306,6 +306,25 @@ describe('CollectionAgent', function() {
 
       expect(spy1.calledWith('/users?page=1')).to.be.true;
     })
+
+    it('should call the afterRefresh()', function() {
+      var agent, spy1;
+
+      spy1 = sinon.spy();
+      stubFetchAPI(spy1, { users: [ {}, {} ], user_count: 2 });
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
+      sinon.stub(agent, 'afterRefresh', function() {
+        this.userCount = this.data.user_count;
+      })
+      sinon.stub(agent, 'defaultErrorHandler');
+
+      agent.refresh();
+
+      expect(spy1.called).to.be.true;
+      expect(agent.objects.length).to.equal(2);
+      expect(agent.data.users.length).to.equal(2);
+      expect(agent.userCount).to.equal(2);
+    })
   })
 
   describe('#index', function() {
