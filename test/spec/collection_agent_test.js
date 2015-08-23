@@ -293,6 +293,19 @@ describe('CollectionAgent', function() {
       expect(agent.objects.length).to.equal(2);
       expect(agent.data.users.length).to.equal(2);
     })
+
+    it('should call paramsForRefresh() to construct the request path', function() {
+      var agent, spy1;
+
+      spy1 = sinon.spy(global, 'fetch');
+      agent = new Cape.CollectionAgent({ resourceName: 'users' });
+      sinon.stub(agent, 'paramsForRefresh', function() { return { page: 1 } });
+      sinon.stub(agent, 'defaultErrorHandler');
+
+      agent.refresh();
+
+      expect(spy1.calledWith('/users?page=1')).to.be.true;
+    })
   })
 
   describe('#index', function() {
