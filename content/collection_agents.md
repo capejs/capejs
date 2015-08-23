@@ -125,7 +125,7 @@ class UserList extends Cape.Component {
 }
 ```
 
-Note that the `UserCollectionAgent.create()` method is a singleton factory method,
+Note that the `UserCollectionAgent.getInstance()` method is a singleton factory method,
 which returns the same object always.
 
 The `attach` method register the argument as an _event listener_ of the agent.

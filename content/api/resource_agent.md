@@ -56,8 +56,8 @@ a `Cape.Component` object and an optional object (options) as arguments.
   `resourceName` property, e.g. `user` if the resource name is `user`.
 * **paramName:** the name of parameter to be used when the `object`
   property is initialized and the request parameter is constructed.
-  Default is undefiend.
-  When the `pathName` option is not defined, the name is derived from the
+  Default is `undefiend`.
+  When the `paramName` option is not defined, the name is derived from the
   `resourceName` property, e.g. `user` if the resource name is `user`.
 
 #### Adapters
@@ -124,8 +124,7 @@ and methods. Developers should not tamper with it.
 <a class="anchor" id="adapter"></a>
 ### #adapter
 
-This property holds the name of adapter (e.g., 'rails'). Default is undefined.
-Default value can be changed by setting `Cape.defaultAgentAdapter` property.
+See "Options" section of the [Constructor](#constructor).
 
 
 <a class="anchor" id="ajax"></a>
@@ -133,11 +132,11 @@ Default value can be changed by setting `Cape.defaultAgentAdapter` property.
 
 #### Usage
 
-* **attr(httpMethod, path)**
-* **attr(httpMethod, path, callback)**
-* **attr(httpMethod, path, callback, errorHandler)**
+* **ajax(httpMethod, path)**
+* **ajax(httpMethod, path, callback)**
+* **ajax(httpMethod, path, callback, errorHandler)**
 
-Send an Ajax request to the server.
+Sends an Ajax request to the server.
 
 
 #### Example
@@ -165,8 +164,7 @@ var Page = Cape.createComponentClass({
 <a class="anchor" id="base-path"></a>
 ### #basePath
 
-This property holds the string that is added to the request path.
-Default value is `'/'`.
+See "Options" section of the [Constructor](#constructor).
 
 <a class="anchor" id="client"></a>
 ### #client
@@ -183,10 +181,10 @@ values of `resourceName`, `basePath` and `nestedIn` properties:
 
 |#resourceName|#basePath|#nestedIn|#collectionPath()|
 |------------|--------|--------|----|
-|users|||/users|
-|users|/api/||/api/users|
-|users||teams/123/|/teams/123/users|
-|users|/api/|teams/123/|/api/teams/123/users|
+|user|||/users|
+|user|/api/||/api/users|
+|user||teams/123/|/teams/123/users|
+|user|/api/|teams/123/|/api/teams/123/users|
 
 Note that the default value of `basePath` property is `/`.
 
@@ -225,7 +223,7 @@ When the `dataType` option is not defined, the type is detected automatically.
 This method handles the exception thrown during the Fetch API.
 
 The default implementation is just `console.log(ex)`.
-Developers should override this for a better exception handling.
+Developers may override this for a better exception handling.
 
 
 <a class="anchor" id="destroy"></a>
@@ -250,12 +248,7 @@ error messages.
 <a class="anchor" id="form-name"></a>
 ### #formName
 
-This property holds the name of form with which the users edit the properties
-of the resource. Default is `undefiend`.
-
-When the `formName` option is not defined, the name is derived from the
-`resourceName` property, e.g. `user` if the resource name is `user`.
-
+See "Options" section of the [Constructor](#constructor).
 
 <a class="anchor" id="headers"></a>
 ### #headers
@@ -266,7 +259,14 @@ The default valued is `{ 'Content-Type': 'application/json' }`.
 <a class="anchor" id="init"></a>
 ### #init()
 
-This property holds the object that represents the resource.
+#### Usage
+
+* **init()**
+* **init(callback)**
+* **init(callback, errorHandler)**
+
+This method initializes the [object](#object) property by sending an Ajax
+request to the server.
 
 <a class="anchor" id="member-path"></a>
 ### #memberPath()
@@ -276,10 +276,10 @@ values of `resourceName`, `basePath` and `nestedIn` properties:
 
 |#resourceName|#basePath|#nestedIn|#memberPath()|
 |------------|--------|--------|----|
-|users|||/users/9|
-|users|/api/||/api/users/9|
-|users||teams/123/|/teams/123/users/9|
-|users|/api/|teams/123/|/api/teams/123/users/9|
+|user|||/users/9|
+|user|/api/||/api/users/9|
+|user||teams/123/|/teams/123/users/9|
+|user|/api/|teams/123/|/api/teams/123/users/9|
 
 The `id` part of the URL path (`9`) derives from the `client.id` property.
 
@@ -287,6 +287,9 @@ Note that the default value of `basePath` property is `/`.
 
 <a class="anchor" id="object"></a>
 ### #object
+
+This property holds an object (hash) that represents the resource which
+the agent is associated to.
 
 <a class="anchor" id="new-path"></a>
 ### #newPath()
@@ -296,10 +299,10 @@ values of `resourceName`, `basePath` and `nestedIn` properties:
 
 |#resourceName|#basePath|#nestedIn|#newPath()|
 |------------|--------|--------|----|
-|account|||/users/new|
-|account|/api/||/api/users/new|
-|account||teams/123/|/teams/123/users/new|
-|account|/api/|teams/123/|/api/teams/123/users/new|
+|user|||/users/new|
+|user|/api/||/api/users/new|
+|user||teams/123/|/teams/123/users/new|
+|user|/api/|teams/123/|/api/teams/123/users/new|
 
 A _new_ resource is a resource for a form for creating an resource.
 
@@ -308,14 +311,22 @@ Note that the default value of `basePath` property is `/`.
 <a class="anchor" id="nested-in"></a>
 ### #nestedIn
 
+See "Options" section of the [Constructor](#constructor).
+
 <a class="anchor" id="param-name"></a>
 ### #paramName
+
+See "Options" section of the [Constructor](#constructor).
 
 <a class="anchor" id="resource-name"></a>
 ### #resourceName
 
+See "Options" section of the [Constructor](#constructor).
+
 <a class="anchor" id="singular"></a>
 ### #singular
+
+See "Options" section of the [Constructor](#constructor).
 
 <a class="anchor" id="singular-path"></a>
 ### #singularPath()
@@ -344,5 +355,5 @@ Note that the default value of `basePath` property is `/`.
 * **update(callback)**
 * **update(callback, errorHandler)**
 
-Send an Ajax request with PATCH method to the URL that is constructed
+Sends an Ajax request with PATCH method to the URL that is constructed
 by the `memberPath()` method.

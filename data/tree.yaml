@@ -346,6 +346,9 @@ api_pages:
         id: adapter
         title: "#adapter"
       -
+        id: after-refresh
+        title: "#afterRefresh()"
+      -
         id: ajax
         title: "#ajax()"
       -
@@ -399,6 +402,9 @@ api_pages:
       -
         id: objects
         title: "#objects"
+      -
+        id: params-for-refresh
+        title: "#paramsForRefresh()"
       -
         id: param-name
         title: "#paramName"
