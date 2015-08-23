@@ -19,7 +19,7 @@ Cape.defaultAgentAdapter = undefined;
 
 module.exports = Cape;
 
-},{"./cape/agent_adapters/rails_adapter.js":2,"./cape/collection_agent.js":3,"./cape/component.js":4,"./cape/data_store.js":5,"./cape/markup_builder":6,"./cape/resource_agent.js":9,"./cape/router.js":10,"./cape/routing_mapper.js":11,"./cape/utilities":12,"./cape/virtual_forms":13}],2:[function(require,module,exports){
+},{"./cape/agent_adapters/rails_adapter.js":2,"./cape/collection_agent.js":3,"./cape/component.js":4,"./cape/data_store.js":5,"./cape/markup_builder":6,"./cape/resource_agent.js":10,"./cape/router.js":11,"./cape/routing_mapper.js":12,"./cape/utilities":13,"./cape/virtual_forms":14}],2:[function(require,module,exports){
 'use strict';
 
 // Cape.AgentAdapters.RailsAdapter
@@ -56,7 +56,7 @@ var Cape = require('./utilities');
 //   adapter: the name of adapter (e.g., 'rails'). Default is undefined.
 //     Default value can be changed by setting Cape.defaultAgentAdapter property.
 //   autoRefresh: a boolean value that controls unsafe Ajax requests trigger
-//     this.refresh(). Default is true.
+//     this.refresh(). Default is `true`.
 //   dataType: the type of data that you're expecting from the server.
 //     The value must be 'json', 'text' or undefined. Default is undefiend.
 //     When the `dataType` option is not defined, the type is detected automatically.
@@ -86,7 +86,7 @@ var CollectionAgent = function CollectionAgent(options) {
   this.headers = { 'Content-Type': 'application/json' };
 };
 
-// Here, we adopt the multiton design pattern (a kind of singleton patter).
+// Here, we adopt the multiton design pattern (a kind of singleton pattern).
 // The `CollectionAgent` class keeps a map of named instances of
 // `CollectionAgent` as key-value pairs in order to ensure a single instance
 // per key.
@@ -216,44 +216,6 @@ Cape.extend(CollectionAgent.prototype, {
     this.ajax('DELETE', path, params, callback, errorHandler);
   },
 
-  ajax: function(httpMethod, path, params, callback, errorHandler) {
-    var self = this, isSafeMethod, fetchOptions;
-
-    params = params || {};
-    errorHandler = errorHandler || this.defaultErrorHandler;
-
-    this._.applyAdapter();
-
-    isSafeMethod = (httpMethod === 'GET' || httpMethod === 'HEAD');
-    fetchOptions = {
-      method: httpMethod,
-      headers: this._.headers(),
-      credentials: 'same-origin'
-    }
-
-    if (isSafeMethod) {
-      var pairs = [];
-      for (var key in params) {
-        pairs.push(encodeURIComponent(key) + "=" +
-          encodeURIComponent(params[key]));
-      }
-      if (pairs.length) path = path + '?' + pairs.join('&');
-    }
-    else {
-      fetchOptions.body = JSON.stringify(params)
-    }
-
-    fetch(path, fetchOptions)
-      .then(this._.responseHandler())
-      .then(function(data) {
-        self._.dataHandler(data, callback);
-        if (self.autoRefresh && !isSafeMethod) self.refresh();
-      })
-      .catch(errorHandler);
-
-    return false;
-  },
-
   collectionPath: function() {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
     return this._.pathPrefix() + resources;
@@ -269,6 +231,9 @@ Cape.extend(CollectionAgent.prototype, {
   }
 });
 
+var AgentCommonMethods = require('./mixins/agent_common_methods');
+Cape.extend(CollectionAgent.prototype, AgentCommonMethods);
+
 // Internal properties of Cape.CollectionAgent
 var _Internal = function _Internal(main) {
   this.main = main;
@@ -280,9 +245,29 @@ var AgentCommonInnerMethods = require('./mixins/agent_common_inner_methods');
 // Internal methods of Cape.CollectionAgent
 Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
 
+Cape.extend(_Internal.prototype, {
+  dataHandler: function(data, callback) {
+    if (this.main.dataType === undefined) {
+      try {
+        this.main.data = JSON.parse(data);
+      }
+      catch (e) {
+        this.main.data = data;
+      }
+    }
+    else {
+      this.main.data = data;
+    }
+
+    if (typeof callback === 'function') {
+      callback.call(this.main, this.main.data);
+    }
+  }
+});
+
 module.exports = CollectionAgent;
 
-},{"./mixins/agent_common_inner_methods":7,"./mixins/propagator_methods":8,"./utilities":12,"inflected":16}],4:[function(require,module,exports){
+},{"./mixins/agent_common_inner_methods":7,"./mixins/agent_common_methods":8,"./mixins/propagator_methods":9,"./utilities":13,"inflected":17}],4:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -398,7 +383,7 @@ Cape.extend(_Internal.prototype, {
 module.exports = Component;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":12,"inflected":16,"virtual-dom":29}],5:[function(require,module,exports){
+},{"./utilities":13,"inflected":17,"virtual-dom":30}],5:[function(require,module,exports){
 'use strict';
 
 var Cape = require('./utilities');
@@ -431,7 +416,7 @@ var _Internal = function _Internal(main) {
 
 module.exports = DataStore;
 
-},{"./mixins/propagator_methods":8,"./utilities":12}],6:[function(require,module,exports){
+},{"./mixins/propagator_methods":9,"./utilities":13}],6:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -931,7 +916,7 @@ for (var i = eventNames.length; i--;) {
 module.exports = MarkupBuilder;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":12,"inflected":16,"virtual-dom":29}],7:[function(require,module,exports){
+},{"./utilities":13,"inflected":17,"virtual-dom":30}],7:[function(require,module,exports){
 'use strict';
 
 var Inflector = require('inflected');
@@ -983,31 +968,59 @@ var AgentCommonInnerMethods = {
     else {
       throw new Error('Unsupported data type: ' + this.main.dataType);
     }
-  },
-
-  dataHandler: function(data, callback) {
-    var objectOrString;
-
-    if (typeof callback === 'function') {
-      if (this.main.dataType === undefined) {
-        try {
-          objectOrString = JSON.parse(data);
-        }
-        catch (e) {
-          objectOrString = data;
-        }
-        callback.call(this.main.client, objectOrString);
-      }
-      else {
-        callback.call(this.main.client, data);
-      }
-    }
   }
 }
 
 module.exports = AgentCommonInnerMethods;
 
-},{"inflected":16}],8:[function(require,module,exports){
+},{"inflected":17}],8:[function(require,module,exports){
+'use strict';
+
+var Inflector = require('inflected');
+
+var AgentCommonMethods = {
+  ajax: function(httpMethod, path, params, callback, errorHandler) {
+    var self = this, isSafeMethod, fetchOptions;
+
+    params = params || {};
+    errorHandler = errorHandler || this.defaultErrorHandler;
+
+    this._.applyAdapter();
+
+    isSafeMethod = (httpMethod === 'GET' || httpMethod === 'HEAD');
+    fetchOptions = {
+      method: httpMethod,
+      headers: this._.headers(),
+      credentials: 'same-origin'
+    }
+
+    if (isSafeMethod) {
+      var pairs = [];
+      for (var key in params) {
+        pairs.push(encodeURIComponent(key) + "=" +
+          encodeURIComponent(params[key]));
+      }
+      if (pairs.length) path = path + '?' + pairs.join('&');
+    }
+    else {
+      fetchOptions.body = JSON.stringify(params)
+    }
+
+    fetch(path, fetchOptions)
+      .then(this._.responseHandler())
+      .then(function(data) {
+        self._.dataHandler(data, callback);
+        if (self.autoRefresh && !isSafeMethod) self.refresh();
+      })
+      .catch(errorHandler);
+
+    return false;
+  }
+};
+
+module.exports = AgentCommonMethods;
+
+},{"inflected":17}],9:[function(require,module,exports){
 'use strict';
 
 var PropagatorMethods = {
@@ -1036,7 +1049,7 @@ var PropagatorMethods = {
 
 module.exports = PropagatorMethods;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 var Inflector = require('inflected');
@@ -1052,6 +1065,8 @@ var Cape = require('./utilities');
 //     name. Default value is ''.
 //   adapter: the name of adapter (e.g., 'rails'). Default is undefined.
 //     Default value can be changed by setting Cape.defaultAgentAdapter property.
+//   autoRefresh: a boolean value that controls unsafe Ajax requests trigger
+//     this.refresh(). Default is `false`.
 //   dataType: the type of data that you're expecting from the server.
 //     The value must be 'json', text' or undefined.
 //     When the `dataType` option is not defined, the type is detected automatically.
@@ -1091,6 +1106,7 @@ function ResourceAgent(client, options) {
   this.basePath = options.basePath;
   this.nestedIn = options.nestedIn;
   this.adapter = options.adapter;
+  this.autoRefresh = options.autoRefresh || false;
   this.dataType = options.dataType;
   this.singular = options.singular || false;
   this.formName = options.formName;
@@ -1130,46 +1146,76 @@ Cape.extend(ResourceAgent.prototype, {
 
   create: function(afterCreate, errorHandler) {
     var path = this.singular ? this.singularPath() : this.collectionPath();
-    this.ajax('POST', path, afterCreate, errorHandler);
+    var params = this.client.paramsFor(
+      this.formName || this.resourceName,
+      { as: this.paramName || this.resourceName }
+    );
+    this.ajax('POST', path, params, afterCreate, errorHandler);
     return false;
   },
 
   update: function(afterUpdate, errorHandler) {
     var path = this.singular ? this.singularPath() : this.memberPath();
-    this.ajax('PATCH', path, afterUpdate, errorHandler);
+    var params = this.client.paramsFor(
+      this.formName || this.resourceName,
+      { as: this.paramName || this.resourceName }
+    );
+    this.ajax('PATCH', path, params, afterUpdate, errorHandler);
     return false;
   },
 
   destroy: function(afterDestroy, errorHandler) {
     var path = this.singular ? this.singularPath() : this.memberPath();
-    this.ajax('DELETE', path, afterDestroy, errorHandler);
+    this.ajax('DELETE', path, {}, afterDestroy, errorHandler);
     return false;
   },
 
-  ajax: function(httpMethod, path, callback, errorHandler) {
-    var self = this, fetchOptions, params;
-    var formName = this.formName || this.resourceName;
-    var paramName = this.paramName || this.resourceName;
+  get: function(actionName, params, callback, errorHandler) {
+    var path = this.requestPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('GET', path, params, callback, errorHandler);
+  },
 
-    errorHandler = errorHandler || this.defaultErrorHandler;
+  head: function(actionName, params, callback, errorHandler) {
+    var path = this.requestPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('HEAD', path, params, callback, errorHandler);
+  },
 
-    this._.applyAdapter();
+  post: function(actionName, params, callback, errorHandler) {
+    var path = this.requestPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('POST', path, params, callback, errorHandler);
+  },
 
-    fetchOptions = {
-      method: httpMethod,
-      headers: this._.headers(),
-      credentials: 'same-origin'
+  patch: function(actionName, params, callback, errorHandler) {
+    var path = this.requestPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('PATCH', path, params, callback, errorHandler);
+  },
+
+  put: function(actionName, params, callback, errorHandler) {
+    var path = this.requestPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('PUT', path, params, callback, errorHandler);
+  },
+
+  delete: function(actionName, params, callback, errorHandler) {
+    var path = this.requestPath();
+    if (actionName !== '') path = path + '/' + actionName;
+    this.ajax('DELETE', path, params, callback, errorHandler);
+  },
+
+  requestPath: function() {
+    if (this.singluar) {
+      return this.singularPath();
     }
-
-    if (httpMethod === 'POST' || httpMethod === 'PATCH') {
-      params = this.client.paramsFor(formName, { as: paramName });
-      fetchOptions.body = JSON.stringify(params);
+    else if (this.client.id === undefined) {
+      return this.collectionPath();
     }
-
-    fetch(path, fetchOptions)
-      .then(this._.responseHandler())
-      .then(function(data) { self._.dataHandler(data, callback); })
-      .catch(errorHandler);
+    else {
+      return this.memberPath();
+    }
   },
 
   collectionPath: function() {
@@ -1196,6 +1242,9 @@ Cape.extend(ResourceAgent.prototype, {
     console.log(ex)
   }
 });
+
+var AgentCommonMethods = require('./mixins/agent_common_methods');
+Cape.extend(ResourceAgent.prototype, AgentCommonMethods);
 
 // Internal properties of Cape.ResourceAgent
 var _Internal = function _Internal(main) {
@@ -1227,12 +1276,30 @@ Cape.extend(_Internal.prototype, {
       this.main.client.setValues(formName, this.main.object);
       this.main.client.refresh();
     }
+  },
+
+  dataHandler: function(data, callback) {
+    if (this.main.dataType === undefined) {
+      try {
+        this.main.data = JSON.parse(data);
+      }
+      catch (e) {
+        this.main.data = data;
+      }
+    }
+    else {
+      this.main.data = data;
+    }
+
+    if (typeof callback === 'function') {
+      callback.call(this.main.client, this.main.data);
+    }
   }
 });
 
 module.exports = ResourceAgent;
 
-},{"./mixins/agent_common_inner_methods":7,"./utilities":12,"inflected":16}],10:[function(require,module,exports){
+},{"./mixins/agent_common_inner_methods":7,"./mixins/agent_common_methods":8,"./utilities":13,"inflected":17}],11:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -1485,7 +1552,7 @@ Cape.extend(_Internal.prototype, {
 module.exports = Router;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":12,"inflected":16}],11:[function(require,module,exports){
+},{"./utilities":13,"inflected":17}],12:[function(require,module,exports){
 'use strict';
 
 var Inflector = require('inflected');
@@ -1776,7 +1843,7 @@ Cape.extend(_Internal.prototype, {
 
 module.exports = RoutingMapper;
 
-},{"./utilities":12,"inflected":16}],12:[function(require,module,exports){
+},{"./utilities":13,"inflected":17}],13:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -1866,7 +1933,7 @@ Cape.createResourceAgentClass = function(methods) {
 module.exports = Cape;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -2226,9 +2293,9 @@ Cape.extend(_Internal.prototype, {
 module.exports = VirtualForms;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":12}],14:[function(require,module,exports){
+},{"./utilities":13}],15:[function(require,module,exports){
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -2288,10 +2355,10 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = require('./lib/Inflector');
 
-},{"./lib/Inflector":18}],17:[function(require,module,exports){
+},{"./lib/Inflector":19}],18:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -2404,7 +2471,7 @@ Inflections.prototype.clear = function(scope) {
 module.exports = Inflections;
 
 }).call(this,require('_process'))
-},{"./hasProp":22,"./icPart":23,"./remove":25,"_process":15}],18:[function(require,module,exports){
+},{"./hasProp":23,"./icPart":24,"./remove":26,"_process":16}],19:[function(require,module,exports){
 'use strict';
 
 var Inflections     = require('./Inflections');
@@ -2451,7 +2518,7 @@ for (var locale in defaults) {
 
 module.exports = Inflector;
 
-},{"./Inflections":17,"./Methods":19,"./Transliterator":20,"./defaults":21,"./isFunc":24}],19:[function(require,module,exports){
+},{"./Inflections":18,"./Methods":20,"./Transliterator":21,"./defaults":22,"./isFunc":25}],20:[function(require,module,exports){
 'use strict';
 
 var Methods = {
@@ -2665,7 +2732,7 @@ var Methods = {
 
 module.exports = Methods;
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -2732,7 +2799,7 @@ Transliterator.prototype.transliterate = function(string, replacement) {
 module.exports = Transliterator;
 
 }).call(this,require('_process'))
-},{"_process":15}],21:[function(require,module,exports){
+},{"_process":16}],22:[function(require,module,exports){
 'use strict';
 
 function enDefaults(inflect) {
@@ -2800,7 +2867,7 @@ module.exports = {
   en: enDefaults
 };
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 var hasOwnProp = Object.prototype.hasOwnProperty;
@@ -2811,7 +2878,7 @@ function hasProp(obj, key) {
 
 module.exports = hasProp;
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 function icPart(str) {
@@ -2820,7 +2887,7 @@ function icPart(str) {
 
 module.exports = icPart;
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 var toString = Object.prototype.toString;
@@ -2831,7 +2898,7 @@ function isFunc(obj) {
 
 module.exports = isFunc;
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 var splice = Array.prototype.splice;
@@ -2846,22 +2913,22 @@ function remove(arr, elem) {
 
 module.exports = remove;
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 var createElement = require("./vdom/create-element.js")
 
 module.exports = createElement
 
-},{"./vdom/create-element.js":39}],27:[function(require,module,exports){
+},{"./vdom/create-element.js":40}],28:[function(require,module,exports){
 var diff = require("./vtree/diff.js")
 
 module.exports = diff
 
-},{"./vtree/diff.js":59}],28:[function(require,module,exports){
+},{"./vtree/diff.js":60}],29:[function(require,module,exports){
 var h = require("./virtual-hyperscript/index.js")
 
 module.exports = h
 
-},{"./virtual-hyperscript/index.js":46}],29:[function(require,module,exports){
+},{"./virtual-hyperscript/index.js":47}],30:[function(require,module,exports){
 var diff = require("./diff.js")
 var patch = require("./patch.js")
 var h = require("./h.js")
@@ -2878,7 +2945,7 @@ module.exports = {
     VText: VText
 }
 
-},{"./create-element.js":26,"./diff.js":27,"./h.js":28,"./patch.js":37,"./vnode/vnode.js":55,"./vnode/vtext.js":57}],30:[function(require,module,exports){
+},{"./create-element.js":27,"./diff.js":28,"./h.js":29,"./patch.js":38,"./vnode/vnode.js":56,"./vnode/vtext.js":58}],31:[function(require,module,exports){
 /*!
  * Cross-Browser Split 1.1.1
  * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
@@ -2986,7 +3053,7 @@ module.exports = (function split(undef) {
   return self;
 })();
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 var OneVersionConstraint = require('individual/one-version');
@@ -3008,7 +3075,7 @@ function EvStore(elem) {
     return hash;
 }
 
-},{"individual/one-version":33}],32:[function(require,module,exports){
+},{"individual/one-version":34}],33:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -3031,7 +3098,7 @@ function Individual(key, value) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 var Individual = require('./index.js');
@@ -3055,7 +3122,7 @@ function OneVersion(moduleName, version, defaultValue) {
     return Individual(key, defaultValue);
 }
 
-},{"./index.js":32}],34:[function(require,module,exports){
+},{"./index.js":33}],35:[function(require,module,exports){
 (function (global){
 var topLevel = typeof global !== 'undefined' ? global :
     typeof window !== 'undefined' ? window : {}
@@ -3074,14 +3141,14 @@ if (typeof document !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"min-document":14}],35:[function(require,module,exports){
+},{"min-document":15}],36:[function(require,module,exports){
 "use strict";
 
 module.exports = function isObject(x) {
 	return typeof x === "object" && x !== null;
 };
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 var nativeIsArray = Array.isArray
 var toString = Object.prototype.toString
 
@@ -3091,12 +3158,12 @@ function isArray(obj) {
     return toString.call(obj) === "[object Array]"
 }
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 var patch = require("./vdom/patch.js")
 
 module.exports = patch
 
-},{"./vdom/patch.js":42}],38:[function(require,module,exports){
+},{"./vdom/patch.js":43}],39:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook.js")
 
@@ -3195,7 +3262,7 @@ function getPrototype(value) {
     }
 }
 
-},{"../vnode/is-vhook.js":50,"is-object":35}],39:[function(require,module,exports){
+},{"../vnode/is-vhook.js":51,"is-object":36}],40:[function(require,module,exports){
 var document = require("global/document")
 
 var applyProperties = require("./apply-properties")
@@ -3243,7 +3310,7 @@ function createElement(vnode, opts) {
     return node
 }
 
-},{"../vnode/handle-thunk.js":48,"../vnode/is-vnode.js":51,"../vnode/is-vtext.js":52,"../vnode/is-widget.js":53,"./apply-properties":38,"global/document":34}],40:[function(require,module,exports){
+},{"../vnode/handle-thunk.js":49,"../vnode/is-vnode.js":52,"../vnode/is-vtext.js":53,"../vnode/is-widget.js":54,"./apply-properties":39,"global/document":35}],41:[function(require,module,exports){
 // Maps a virtual DOM tree onto a real DOM tree in an efficient manner.
 // We don't want to read all of the DOM nodes in the tree so we use
 // the in-order tree indexing to eliminate recursion down certain branches.
@@ -3330,7 +3397,7 @@ function ascending(a, b) {
     return a > b ? 1 : -1
 }
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 var applyProperties = require("./apply-properties")
 
 var isWidget = require("../vnode/is-widget.js")
@@ -3483,7 +3550,7 @@ function replaceRoot(oldRoot, newRoot) {
     return newRoot;
 }
 
-},{"../vnode/is-widget.js":53,"../vnode/vpatch.js":56,"./apply-properties":38,"./update-widget":43}],42:[function(require,module,exports){
+},{"../vnode/is-widget.js":54,"../vnode/vpatch.js":57,"./apply-properties":39,"./update-widget":44}],43:[function(require,module,exports){
 var document = require("global/document")
 var isArray = require("x-is-array")
 
@@ -3565,7 +3632,7 @@ function patchIndices(patches) {
     return indices
 }
 
-},{"./create-element":39,"./dom-index":40,"./patch-op":41,"global/document":34,"x-is-array":36}],43:[function(require,module,exports){
+},{"./create-element":40,"./dom-index":41,"./patch-op":42,"global/document":35,"x-is-array":37}],44:[function(require,module,exports){
 var isWidget = require("../vnode/is-widget.js")
 
 module.exports = updateWidget
@@ -3582,7 +3649,7 @@ function updateWidget(a, b) {
     return false
 }
 
-},{"../vnode/is-widget.js":53}],44:[function(require,module,exports){
+},{"../vnode/is-widget.js":54}],45:[function(require,module,exports){
 'use strict';
 
 var EvStore = require('ev-store');
@@ -3611,7 +3678,7 @@ EvHook.prototype.unhook = function(node, propertyName) {
     es[propName] = undefined;
 };
 
-},{"ev-store":31}],45:[function(require,module,exports){
+},{"ev-store":32}],46:[function(require,module,exports){
 'use strict';
 
 module.exports = SoftSetHook;
@@ -3630,7 +3697,7 @@ SoftSetHook.prototype.hook = function (node, propertyName) {
     }
 };
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 'use strict';
 
 var isArray = require('x-is-array');
@@ -3769,7 +3836,7 @@ function errorString(obj) {
     }
 }
 
-},{"../vnode/is-thunk":49,"../vnode/is-vhook":50,"../vnode/is-vnode":51,"../vnode/is-vtext":52,"../vnode/is-widget":53,"../vnode/vnode.js":55,"../vnode/vtext.js":57,"./hooks/ev-hook.js":44,"./hooks/soft-set-hook.js":45,"./parse-tag.js":47,"x-is-array":36}],47:[function(require,module,exports){
+},{"../vnode/is-thunk":50,"../vnode/is-vhook":51,"../vnode/is-vnode":52,"../vnode/is-vtext":53,"../vnode/is-widget":54,"../vnode/vnode.js":56,"../vnode/vtext.js":58,"./hooks/ev-hook.js":45,"./hooks/soft-set-hook.js":46,"./parse-tag.js":48,"x-is-array":37}],48:[function(require,module,exports){
 'use strict';
 
 var split = require('browser-split');
@@ -3825,7 +3892,7 @@ function parseTag(tag, props) {
     return props.namespace ? tagName : tagName.toUpperCase();
 }
 
-},{"browser-split":30}],48:[function(require,module,exports){
+},{"browser-split":31}],49:[function(require,module,exports){
 var isVNode = require("./is-vnode")
 var isVText = require("./is-vtext")
 var isWidget = require("./is-widget")
@@ -3867,14 +3934,14 @@ function renderThunk(thunk, previous) {
     return renderedThunk
 }
 
-},{"./is-thunk":49,"./is-vnode":51,"./is-vtext":52,"./is-widget":53}],49:[function(require,module,exports){
+},{"./is-thunk":50,"./is-vnode":52,"./is-vtext":53,"./is-widget":54}],50:[function(require,module,exports){
 module.exports = isThunk
 
 function isThunk(t) {
     return t && t.type === "Thunk"
 }
 
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 module.exports = isHook
 
 function isHook(hook) {
@@ -3883,7 +3950,7 @@ function isHook(hook) {
        typeof hook.unhook === "function" && !hook.hasOwnProperty("unhook"))
 }
 
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualNode
@@ -3892,7 +3959,7 @@ function isVirtualNode(x) {
     return x && x.type === "VirtualNode" && x.version === version
 }
 
-},{"./version":54}],52:[function(require,module,exports){
+},{"./version":55}],53:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualText
@@ -3901,17 +3968,17 @@ function isVirtualText(x) {
     return x && x.type === "VirtualText" && x.version === version
 }
 
-},{"./version":54}],53:[function(require,module,exports){
+},{"./version":55}],54:[function(require,module,exports){
 module.exports = isWidget
 
 function isWidget(w) {
     return w && w.type === "Widget"
 }
 
-},{}],54:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 module.exports = "2"
 
-},{}],55:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 var version = require("./version")
 var isVNode = require("./is-vnode")
 var isWidget = require("./is-widget")
@@ -3985,7 +4052,7 @@ function VirtualNode(tagName, properties, children, key, namespace) {
 VirtualNode.prototype.version = version
 VirtualNode.prototype.type = "VirtualNode"
 
-},{"./is-thunk":49,"./is-vhook":50,"./is-vnode":51,"./is-widget":53,"./version":54}],56:[function(require,module,exports){
+},{"./is-thunk":50,"./is-vhook":51,"./is-vnode":52,"./is-widget":54,"./version":55}],57:[function(require,module,exports){
 var version = require("./version")
 
 VirtualPatch.NONE = 0
@@ -4009,7 +4076,7 @@ function VirtualPatch(type, vNode, patch) {
 VirtualPatch.prototype.version = version
 VirtualPatch.prototype.type = "VirtualPatch"
 
-},{"./version":54}],57:[function(require,module,exports){
+},{"./version":55}],58:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = VirtualText
@@ -4021,7 +4088,7 @@ function VirtualText(text) {
 VirtualText.prototype.version = version
 VirtualText.prototype.type = "VirtualText"
 
-},{"./version":54}],58:[function(require,module,exports){
+},{"./version":55}],59:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook")
 
@@ -4081,7 +4148,7 @@ function getPrototype(value) {
   }
 }
 
-},{"../vnode/is-vhook":50,"is-object":35}],59:[function(require,module,exports){
+},{"../vnode/is-vhook":51,"is-object":36}],60:[function(require,module,exports){
 var isArray = require("x-is-array")
 
 var VPatch = require("../vnode/vpatch")
@@ -4510,5 +4577,5 @@ function appendPatch(apply, patch) {
     }
 }
 
-},{"../vnode/handle-thunk":48,"../vnode/is-thunk":49,"../vnode/is-vnode":51,"../vnode/is-vtext":52,"../vnode/is-widget":53,"../vnode/vpatch":56,"./diff-props":58,"x-is-array":36}]},{},[1])(1)
+},{"../vnode/handle-thunk":49,"../vnode/is-thunk":50,"../vnode/is-vnode":52,"../vnode/is-vtext":53,"../vnode/is-widget":54,"../vnode/vpatch":57,"./diff-props":59,"x-is-array":37}]},{},[1])(1)
 });
