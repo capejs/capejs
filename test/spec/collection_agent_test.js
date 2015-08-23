@@ -297,7 +297,7 @@ describe('CollectionAgent', function() {
     it('should call paramsForRefresh() to construct the request path', function() {
       var agent, spy1;
 
-      spy1 = sinon.spy(global, 'fetch');
+      spy1 = stubFetchAPI(sinon.spy(), { users: [ {}, {} ], user_count: 2 });
       agent = new Cape.CollectionAgent({ resourceName: 'users' });
       sinon.stub(agent, 'paramsForRefresh', function() { return { page: 1 } });
       sinon.stub(agent, 'defaultErrorHandler');

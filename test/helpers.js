@@ -4,7 +4,7 @@ var isNode = typeof window === 'undefined'
 
 function stubFetchAPI(spy, data, dataType) {
   data = data || '{}';
-  sinon.stub(global, 'fetch', function(path, options) {
+  return sinon.stub(global, 'fetch', function(path, options) {
     return {
       then: function(callback1) {
         var response = {};
