@@ -340,6 +340,7 @@ Cape.extend(object1, object2);
 &lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
 &lt;a href=&#34;#_&#34;&gt;#_&lt;/a&gt; -
 &lt;a href=&#34;#adapter&#34;&gt;#adapter&lt;/a&gt; -
+&lt;a href=&#34;#after-refresh&#34;&gt;#afterRefresh()&lt;/a&gt; -
 &lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
 &lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
 &lt;a href=&#34;#auto-refresh&#34;&gt;#autoRefresh&lt;/a&gt; -
@@ -358,13 +359,16 @@ Cape.extend(object1, object2);
 &lt;a href=&#34;#headers&#34;&gt;#headers&lt;/a&gt; -
 &lt;a href=&#34;#index&#34;&gt;#index()&lt;/a&gt; -
 &lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
+&lt;a href=&#34;#nested-in&#34;&gt;#nestedIn&lt;/a&gt; -
 &lt;a href=&#34;#object&#34;&gt;#objects&lt;/a&gt; -
 &lt;a href=&#34;#param-name&#34;&gt;#paramName&lt;/a&gt; -
+&lt;a href=&#34;#params-for-refresh&#34;&gt;#paramsForRefresh()&lt;/a&gt; -
 &lt;a href=&#34;#patch&#34;&gt;#patch()&lt;/a&gt; -
 &lt;a href=&#34;#post&#34;&gt;#post()&lt;/a&gt; -
 &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; -
 &lt;a href=&#34;#put&#34;&gt;#put()&lt;/a&gt; -
 &lt;a href=&#34;#refresh&#34;&gt;#refresh()&lt;/a&gt; -
+&lt;a href=&#34;#resource-name&#34;&gt;#resourceName&lt;/a&gt; -
 &lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -390,6 +394,10 @@ triggers &lt;code&gt;this.refresh()&lt;/code&gt; after its completion. Default i
 The value must be &lt;code&gt;undefined&lt;/code&gt; (default), &lt;code&gt;&#39;json&#39;&lt;/code&gt; or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.
 If this property is not set, the collection agents detect the data type
 automatically.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;paramName:&lt;/strong&gt; the name of parameter to be used when the &lt;code&gt;objects&lt;/code&gt;
+property is refreshed. Default is &lt;code&gt;undefiend&lt;/code&gt;.
+When the &lt;code&gt;paramName&lt;/code&gt; option is not defined, the name is derived from the
+&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;users&lt;/code&gt; if the resource name is &lt;code&gt;users&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;example:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
@@ -399,6 +407,597 @@ var agent1 = new Cape.CollectionAgent({ resourceName: &#39;users&#39; });
 var agent2 = new Cape.CollectionAgent({ resourceName: &#39;tags&#39;, basePath: &#39;/api/&#39; });
 var agent3 = new Cape.CollectionAgent({ resourceName: &#39;members&#39;, nestedIn: &#39;teams/123/&#39; });
 var agent4 = new Cape.CollectionAgent({ resourceName: &#39;articles&#39;, dataType: &#39;text&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;_&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_3:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#_&lt;/h3&gt;
+
+&lt;p&gt;This property holds the agent&amp;rsquo;s &lt;em&gt;inner object,&lt;/em&gt; which keeps &lt;em&gt;private&lt;/em&gt; properties
+and methods. Developers should not tamper with it.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;adapter:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#adapter&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;after-refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;afterrefresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#afterRefresh&lt;/h3&gt;
+
+&lt;p&gt;This method gets called by the &lt;code&gt;refresh()&lt;/code&gt; method after it updates the &lt;code&gt;data&lt;/code&gt;
+and &lt;code&gt;objects&lt;/code&gt; properties.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;afterRefresh()&lt;/code&gt; does nothing by default.
+Developers may override this method to let the agent do some
+post-processing jobs.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;adapter-1:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#adapter&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;ajax:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#ajax()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request to the server.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;attach:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#attach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method registers the &lt;em&gt;component&lt;/em&gt; as a target of &lt;em&gt;propagation&lt;/em&gt; from this data store.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;auto-refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;autorefresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#autoRefresh&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;base-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;basepath:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#basePath&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;collectionpath:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#collectionPath()&lt;/h3&gt;
+
+&lt;p&gt;Returns the URL path to a collection of resources in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#collectionPath()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/users&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/users&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/users&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/users&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;create:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#create()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;create(params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;create(params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;create(params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with POST method to the URL that is constructed
+by the &lt;a href=&#34;#collection-path&#34;&gt;collectionPath()&lt;/a&gt; method.&lt;/p&gt;
+
+&lt;p&gt;The first argument (&lt;code&gt;params&lt;/code&gt;) must be an object (hash).&lt;/p&gt;
+
+&lt;p&gt;The optional second argument (&lt;code&gt;callback&lt;/code&gt;) must be a function, which takes the
+agent itself as the single argument and does some post-processing jobs.&lt;/p&gt;
+
+&lt;p&gt;Ths optional third argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
+which takes an exception and does some error-handling jobs.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
+  init() {
+    this.agent = Cape.CollectionAgent.getInstance({ resourceName: &#39;users&#39; })
+    this.agent.attach(this)
+    this.agent.refresh()
+  }
+
+  beforeUnmount() {
+    this.agent.detach(this)
+  }
+
+  render(m) {
+    m.ol(m =&amp;gt; {
+      this.agent.objects.forEach(user =&amp;gt; {
+        m.li(m =&amp;gt; {
+          m.text(user.name);
+        });
+      });
+    });
+    m.formFor(&#39;user&#39;, m =&amp;gt; {
+      m.labelFor(&#39;name&#39;, &#39;Name&#39;);
+      m.textField(&#39;name&#39;);
+      m.onclick(e =&amp;gt; {
+        this.agent.create(this.paramsFor(&#39;user&#39;))
+      });
+      m.btn(&#39;Add User&#39;);
+    })
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;data:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#data&lt;/h3&gt;
+
+&lt;p&gt;This property holds an object (hash)
+if the response data is a valid JSON string.
+Otherwise, it holds the original string value.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;datatype:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#dataType&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;default-error-hander&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;defaulterrorhandler:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#defaultErrorHandler()&lt;/h3&gt;
+
+&lt;p&gt;This method handles the exception thrown during the Fetch API.&lt;/p&gt;
+
+&lt;p&gt;The default implementation is just &lt;code&gt;console.log(ex)&lt;/code&gt;.
+Developers may override this for a better exception handling.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;delete&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;delete:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#delete()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-3:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;delete(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;delete(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;delete(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with DELETE method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;destroy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;destroy:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#destroy()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-4:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;destroy(id)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;destroy(id, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;destroy(id, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with DELETE method to the URL that is constructed
+by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;The first argument (&lt;code&gt;id&lt;/code&gt;) specifies the &lt;em&gt;id&lt;/em&gt; of the resource to be updated.
+This is usually the value of primary key of a database record, but is not
+always the case.&lt;/p&gt;
+
+&lt;p&gt;The optional second argument (&lt;code&gt;callback&lt;/code&gt;) must be a function, which takes the
+agent itself as the single argument and does some post-processing jobs.&lt;/p&gt;
+
+&lt;p&gt;Ths optional third argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
+which takes an exception and does some error-handling jobs.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
+  init() {
+    this.agent = Cape.CollectionAgent.getInstance({ resourceName: &#39;users&#39; })
+    this.agent.attach(this)
+    this.agent.refresh()
+  }
+
+  beforeUnmount() {
+    this.agent.detach(this)
+  }
+
+  render(m) {
+    m.ol(m =&amp;gt; {
+      this.agent.objects.forEach(user =&amp;gt; {
+        m.li(m =&amp;gt; {
+          m.text(user.name);
+          m.onclick(e =&amp;gt; {
+            this.agent.destroy(user.id);
+          });
+          m.btn(&#39;Delete&#39;);
+        });
+      });
+    });
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;detach:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#detach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-5:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method removes the &lt;em&gt;component&lt;/em&gt; from the list of targets of &lt;em&gt;propagation&lt;/em&gt; from this agent.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;get&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;get:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#get()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-6:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;get(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;get(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;get(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with GET method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;get-instance&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;getinstance:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;.getInstance()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-7:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;p&gt;Returns an instance of collection agent.&lt;/p&gt;
+
+&lt;p&gt;This class method is implemented as a &lt;em&gt;multiton&lt;/em&gt; method,
+which keeps a map of named instances
+of the class as key-value pairs in order to ensure a single instance per key.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; options are used to construct
+the key.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;head&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;head:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#head()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-8:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;head(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;head(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;head(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with HEAD method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;headers&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;headers:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#headers&lt;/h3&gt;
+
+&lt;p&gt;This property holds the HTTP headers for Ajax requests.&lt;/p&gt;
+
+&lt;p&gt;The default value is &lt;code&gt;{ &#39;Content-Type&#39;: &#39;application/json&#39; }&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;index&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;index:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#index()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-9:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;index(params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;index(params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;index(params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with GET method to the URL that is constructed
+by the &lt;code&gt;collectionPath()&lt;/code&gt; method and the &lt;code&gt;params&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;memberpath:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#memberPath()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-10:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;memberPath(id)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Returns the URL path to a resource in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#memberPath()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/users/9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The &lt;code&gt;id&lt;/code&gt; part of the URL path (&lt;code&gt;9&lt;/code&gt;) derives from the &lt;code&gt;id&lt;/code&gt; argument.&lt;/p&gt;
+
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;nested-in&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;nestedin:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#nestedIn&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;objects&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;objects:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#objects&lt;/h3&gt;
+
+&lt;p&gt;This property holds an array of objects (hashes) that represents the
+collection of resources which the agent is associated to.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;param-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;paramname:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#paramName&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params-for-refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;paramsforrefresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#paramsForRefresh()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-11:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;paramsForRefresh()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Returns an empty object (&lt;code&gt;{}&lt;/code&gt;) always. This object is used to construct
+the query string of the request URL during the &lt;code&gt;refresh()&lt;/code&gt; process.&lt;/p&gt;
+
+&lt;p&gt;Developers may override this method to change this behavior.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-3:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserAgent extends Cape.CollectionAgent {
+  constructor(options) {
+    super(options);
+    this.page = 1;
+    this.perPage = 20;
+  }
+
+  paramsForRefresh() {
+    return { page: this.page, per_page: this.perPage };
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;patch&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;patch:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#patch()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-12:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;patch(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;patch(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;patch(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with PATCH method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;post&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;post:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#post()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-13:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;post(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;post(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;post(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with POST method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;propagate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;propagate:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#propagate()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-14:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;propagate()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method triggars the &lt;em&gt;propagation&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
+of all components registerd as targets of &lt;em&gt;propagation&lt;/em&gt; of this agent.&lt;/p&gt;
+
+&lt;p&gt;Eventually, the &lt;code&gt;#refresh&lt;/code&gt; method of each component calls its &lt;code&gt;#render()&lt;/code&gt; method,
+which has to be defined by developers.&lt;/p&gt;
+
+&lt;p&gt;Thus, we can assure that each time the data of an agent changes,
+its all dependent components get refreshed.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;put&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;put:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#put()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-15:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;put(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;put(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;put(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with PUT method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;refresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#refresh()&lt;/h3&gt;
+
+&lt;p&gt;This method sends an Ajax request with GET method to the URL that is constructed
+by the &lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; and
+&lt;a href=&#34;#params-for-refresh&#34;&gt;#paramsForRefresh()&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;resourcename:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#resourceName&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;update&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;update:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#update()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-16:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;update(id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;update(id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;update(id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with PATCH method to the URL that is constructed
+by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;The first argument (&lt;code&gt;id&lt;/code&gt;) specifies the &lt;em&gt;id&lt;/em&gt; of the resource to be updated.
+This is usually the value of primary key of a database record, but is not
+always the case.&lt;/p&gt;
+
+&lt;p&gt;The second argument (&lt;code&gt;params&lt;/code&gt;) must be an object (hash).&lt;/p&gt;
+
+&lt;p&gt;The optional third argument (&lt;code&gt;callback&lt;/code&gt;) must be a function, which takes the
+agent itself as the single argument and does some post-processing jobs.&lt;/p&gt;
+
+&lt;p&gt;Ths optional fourth argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
+which takes an exception and does some error-handling jobs.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-4:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
+  init() {
+    this.agent = Cape.CollectionAgent.getInstance({ resourceName: &#39;users&#39; })
+    this.agent.attach(this)
+    this.agent.refresh()
+  }
+
+  beforeUnmount() {
+    this.agent.detach(this)
+  }
+
+  render(m) {
+    m.ol(m =&amp;gt; {
+      this.agent.objects.forEach(user =&amp;gt; {
+        m.li(m =&amp;gt; {
+          m.text(user.name);
+          m.onclick(e =&amp;gt; {
+            this.agent.update(user.id, { user: { deleted: 1 } });
+          });
+          m.btn(&#39;Delete&#39;);
+        });
+      });
+    });
+  }
+}
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
@@ -2287,8 +2886,8 @@ When the &lt;code&gt;formName&lt;/code&gt; option is not defined, the name is de
 &lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;paramName:&lt;/strong&gt; the name of parameter to be used when the &lt;code&gt;object&lt;/code&gt;
 property is initialized and the request parameter is constructed.
-Default is undefiend.
-When the &lt;code&gt;pathName&lt;/code&gt; option is not defined, the name is derived from the
+Default is &lt;code&gt;undefiend&lt;/code&gt;.
+When the &lt;code&gt;paramName&lt;/code&gt; option is not defined, the name is derived from the
 &lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -2355,8 +2954,7 @@ and methods. Developers should not tamper with it.&lt;/p&gt;
 
 &lt;h3 id=&#34;adapter:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#adapter&lt;/h3&gt;
 
-&lt;p&gt;This property holds the name of adapter (e.g., &amp;lsquo;rails&amp;rsquo;). Default is undefined.
-Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/p&gt;
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2365,12 +2963,12 @@ Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;
 &lt;h4 id=&#34;usage:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;attr(httpMethod, path)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;attr(httpMethod, path, callback)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;attr(httpMethod, path, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Send an Ajax request to the server.&lt;/p&gt;
+&lt;p&gt;Sends an Ajax request to the server.&lt;/p&gt;
 
 &lt;h4 id=&#34;example-1:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
 
@@ -2397,8 +2995,7 @@ var Page = Cape.createComponentClass({
 
 &lt;h3 id=&#34;basepath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#basePath&lt;/h3&gt;
 
-&lt;p&gt;This property holds the string that is added to the request path.
-Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;client&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2426,28 +3023,28 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;/users&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;/api/&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;/api/users&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;teams/123/&lt;/td&gt;
 &lt;td&gt;/teams/123/users&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;/api/&lt;/td&gt;
 &lt;td&gt;teams/123/&lt;/td&gt;
 &lt;td&gt;/api/teams/123/users&lt;/td&gt;
@@ -2497,7 +3094,7 @@ When the &lt;code&gt;dataType&lt;/code&gt; option is not defined, the type is de
 &lt;p&gt;This method handles the exception thrown during the Fetch API.&lt;/p&gt;
 
 &lt;p&gt;The default implementation is just &lt;code&gt;console.log(ex)&lt;/code&gt;.
-Developers should override this for a better exception handling.&lt;/p&gt;
+Developers may override this for a better exception handling.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;destroy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2526,11 +3123,7 @@ error messages.&lt;/p&gt;
 
 &lt;h3 id=&#34;formname:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#formName&lt;/h3&gt;
 
-&lt;p&gt;This property holds the name of form with which the users edit the properties
-of the resource. Default is &lt;code&gt;undefiend&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;When the &lt;code&gt;formName&lt;/code&gt; option is not defined, the name is derived from the
-&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;headers&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2543,7 +3136,16 @@ The default valued is &lt;code&gt;{ &#39;Content-Type&#39;: &#39;application/jso
 
 &lt;h3 id=&#34;init:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#init()&lt;/h3&gt;
 
-&lt;p&gt;This property holds the object that represents the resource.&lt;/p&gt;
+&lt;h4 id=&#34;usage-3:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;init()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;init(callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;init(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method initializes the &lt;a href=&#34;#object&#34;&gt;object&lt;/a&gt; property by sending an Ajax
+request to the server.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2564,28 +3166,28 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;/users/9&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;/api/&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;/api/users/9&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;teams/123/&lt;/td&gt;
 &lt;td&gt;/teams/123/users/9&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;/api/&lt;/td&gt;
 &lt;td&gt;teams/123/&lt;/td&gt;
 &lt;td&gt;/api/teams/123/users/9&lt;/td&gt;
@@ -2600,6 +3202,9 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;object&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;object:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#object&lt;/h3&gt;
+
+&lt;p&gt;This property holds an object (hash) that represents the resource which
+the agent is associated to.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;new-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2620,28 +3225,28 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;/users/new&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;/api/&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;/api/users/new&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;teams/123/&lt;/td&gt;
 &lt;td&gt;/teams/123/users/new&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;/api/&lt;/td&gt;
 &lt;td&gt;teams/123/&lt;/td&gt;
 &lt;td&gt;/api/teams/123/users/new&lt;/td&gt;
@@ -2657,17 +3262,25 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;h3 id=&#34;nestedin:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#nestedIn&lt;/h3&gt;
 
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;param-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;paramname:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#paramName&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;resourcename:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#resourceName&lt;/h3&gt;
 
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;singular:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#singular&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2726,7 +3339,7 @@ referencing an ID.&lt;/p&gt;
 
 &lt;h3 id=&#34;update:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#update()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-3:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-4:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;update()&lt;/strong&gt;&lt;/li&gt;
@@ -2734,7 +3347,7 @@ referencing an ID.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;update(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Send an Ajax request with PATCH method to the URL that is constructed
+&lt;p&gt;Sends an Ajax request with PATCH method to the URL that is constructed
 by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
 </description>
     </item>

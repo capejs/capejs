@@ -19,19 +19,11 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/component/</loc>
-  </url>
-  
-  <url>
     <loc>http://oiax.github.io/capejs/api/</loc>
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/resource_agent/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/api/routing_mapper/</loc>
+    <loc>http://oiax.github.io/capejs/api/component/</loc>
   </url>
   
   <url>
@@ -43,7 +35,11 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/collection_agents/</loc>
+    <loc>http://oiax.github.io/capejs/api/resource_agent/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/api/routing_mapper/</loc>
   </url>
   
   <url>
@@ -52,6 +48,10 @@
   
   <url>
     <loc>http://oiax.github.io/capejs/components/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/collection_agents/</loc>
   </url>
   
   <url>

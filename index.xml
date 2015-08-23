@@ -21,6 +21,7 @@
 &lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
 &lt;a href=&#34;#_&#34;&gt;#_&lt;/a&gt; -
 &lt;a href=&#34;#adapter&#34;&gt;#adapter&lt;/a&gt; -
+&lt;a href=&#34;#after-refresh&#34;&gt;#afterRefresh()&lt;/a&gt; -
 &lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
 &lt;a href=&#34;#attach&#34;&gt;#attach()&lt;/a&gt; -
 &lt;a href=&#34;#auto-refresh&#34;&gt;#autoRefresh&lt;/a&gt; -
@@ -39,13 +40,16 @@
 &lt;a href=&#34;#headers&#34;&gt;#headers&lt;/a&gt; -
 &lt;a href=&#34;#index&#34;&gt;#index()&lt;/a&gt; -
 &lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
+&lt;a href=&#34;#nested-in&#34;&gt;#nestedIn&lt;/a&gt; -
 &lt;a href=&#34;#object&#34;&gt;#objects&lt;/a&gt; -
 &lt;a href=&#34;#param-name&#34;&gt;#paramName&lt;/a&gt; -
+&lt;a href=&#34;#params-for-refresh&#34;&gt;#paramsForRefresh()&lt;/a&gt; -
 &lt;a href=&#34;#patch&#34;&gt;#patch()&lt;/a&gt; -
 &lt;a href=&#34;#post&#34;&gt;#post()&lt;/a&gt; -
 &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; -
 &lt;a href=&#34;#put&#34;&gt;#put()&lt;/a&gt; -
 &lt;a href=&#34;#refresh&#34;&gt;#refresh()&lt;/a&gt; -
+&lt;a href=&#34;#resource-name&#34;&gt;#resourceName&lt;/a&gt; -
 &lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -71,6 +75,10 @@ triggers &lt;code&gt;this.refresh()&lt;/code&gt; after its completion. Default i
 The value must be &lt;code&gt;undefined&lt;/code&gt; (default), &lt;code&gt;&#39;json&#39;&lt;/code&gt; or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.
 If this property is not set, the collection agents detect the data type
 automatically.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;paramName:&lt;/strong&gt; the name of parameter to be used when the &lt;code&gt;objects&lt;/code&gt;
+property is refreshed. Default is &lt;code&gt;undefiend&lt;/code&gt;.
+When the &lt;code&gt;paramName&lt;/code&gt; option is not defined, the name is derived from the
+&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;users&lt;/code&gt; if the resource name is &lt;code&gt;users&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;example:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
@@ -80,6 +88,597 @@ var agent1 = new Cape.CollectionAgent({ resourceName: &#39;users&#39; });
 var agent2 = new Cape.CollectionAgent({ resourceName: &#39;tags&#39;, basePath: &#39;/api/&#39; });
 var agent3 = new Cape.CollectionAgent({ resourceName: &#39;members&#39;, nestedIn: &#39;teams/123/&#39; });
 var agent4 = new Cape.CollectionAgent({ resourceName: &#39;articles&#39;, dataType: &#39;text&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;_&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_3:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#_&lt;/h3&gt;
+
+&lt;p&gt;This property holds the agent&amp;rsquo;s &lt;em&gt;inner object,&lt;/em&gt; which keeps &lt;em&gt;private&lt;/em&gt; properties
+and methods. Developers should not tamper with it.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;adapter:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#adapter&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;after-refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;afterrefresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#afterRefresh&lt;/h3&gt;
+
+&lt;p&gt;This method gets called by the &lt;code&gt;refresh()&lt;/code&gt; method after it updates the &lt;code&gt;data&lt;/code&gt;
+and &lt;code&gt;objects&lt;/code&gt; properties.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;afterRefresh()&lt;/code&gt; does nothing by default.
+Developers may override this method to let the agent do some
+post-processing jobs.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;adapter-1:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#adapter&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;ajax:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#ajax()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request to the server.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;attach:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#attach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method registers the &lt;em&gt;component&lt;/em&gt; as a target of &lt;em&gt;propagation&lt;/em&gt; from this data store.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;auto-refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;autorefresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#autoRefresh&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;base-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;basepath:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#basePath&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;collectionpath:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#collectionPath()&lt;/h3&gt;
+
+&lt;p&gt;Returns the URL path to a collection of resources in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#collectionPath()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/users&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/users&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/users&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/users&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;create:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#create()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;create(params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;create(params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;create(params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with POST method to the URL that is constructed
+by the &lt;a href=&#34;#collection-path&#34;&gt;collectionPath()&lt;/a&gt; method.&lt;/p&gt;
+
+&lt;p&gt;The first argument (&lt;code&gt;params&lt;/code&gt;) must be an object (hash).&lt;/p&gt;
+
+&lt;p&gt;The optional second argument (&lt;code&gt;callback&lt;/code&gt;) must be a function, which takes the
+agent itself as the single argument and does some post-processing jobs.&lt;/p&gt;
+
+&lt;p&gt;Ths optional third argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
+which takes an exception and does some error-handling jobs.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
+  init() {
+    this.agent = Cape.CollectionAgent.getInstance({ resourceName: &#39;users&#39; })
+    this.agent.attach(this)
+    this.agent.refresh()
+  }
+
+  beforeUnmount() {
+    this.agent.detach(this)
+  }
+
+  render(m) {
+    m.ol(m =&amp;gt; {
+      this.agent.objects.forEach(user =&amp;gt; {
+        m.li(m =&amp;gt; {
+          m.text(user.name);
+        });
+      });
+    });
+    m.formFor(&#39;user&#39;, m =&amp;gt; {
+      m.labelFor(&#39;name&#39;, &#39;Name&#39;);
+      m.textField(&#39;name&#39;);
+      m.onclick(e =&amp;gt; {
+        this.agent.create(this.paramsFor(&#39;user&#39;))
+      });
+      m.btn(&#39;Add User&#39;);
+    })
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;data:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#data&lt;/h3&gt;
+
+&lt;p&gt;This property holds an object (hash)
+if the response data is a valid JSON string.
+Otherwise, it holds the original string value.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;datatype:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#dataType&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;default-error-hander&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;defaulterrorhandler:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#defaultErrorHandler()&lt;/h3&gt;
+
+&lt;p&gt;This method handles the exception thrown during the Fetch API.&lt;/p&gt;
+
+&lt;p&gt;The default implementation is just &lt;code&gt;console.log(ex)&lt;/code&gt;.
+Developers may override this for a better exception handling.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;delete&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;delete:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#delete()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-3:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;delete(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;delete(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;delete(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with DELETE method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;destroy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;destroy:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#destroy()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-4:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;destroy(id)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;destroy(id, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;destroy(id, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with DELETE method to the URL that is constructed
+by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;The first argument (&lt;code&gt;id&lt;/code&gt;) specifies the &lt;em&gt;id&lt;/em&gt; of the resource to be updated.
+This is usually the value of primary key of a database record, but is not
+always the case.&lt;/p&gt;
+
+&lt;p&gt;The optional second argument (&lt;code&gt;callback&lt;/code&gt;) must be a function, which takes the
+agent itself as the single argument and does some post-processing jobs.&lt;/p&gt;
+
+&lt;p&gt;Ths optional third argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
+which takes an exception and does some error-handling jobs.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
+  init() {
+    this.agent = Cape.CollectionAgent.getInstance({ resourceName: &#39;users&#39; })
+    this.agent.attach(this)
+    this.agent.refresh()
+  }
+
+  beforeUnmount() {
+    this.agent.detach(this)
+  }
+
+  render(m) {
+    m.ol(m =&amp;gt; {
+      this.agent.objects.forEach(user =&amp;gt; {
+        m.li(m =&amp;gt; {
+          m.text(user.name);
+          m.onclick(e =&amp;gt; {
+            this.agent.destroy(user.id);
+          });
+          m.btn(&#39;Delete&#39;);
+        });
+      });
+    });
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;detach:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#detach()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-5:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method removes the &lt;em&gt;component&lt;/em&gt; from the list of targets of &lt;em&gt;propagation&lt;/em&gt; from this agent.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;#propagate&#34;&gt;#propagate()&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;get&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;get:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#get()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-6:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;get(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;get(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;get(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with GET method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;get-instance&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;getinstance:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;.getInstance()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-7:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;p&gt;Returns an instance of collection agent.&lt;/p&gt;
+
+&lt;p&gt;This class method is implemented as a &lt;em&gt;multiton&lt;/em&gt; method,
+which keeps a map of named instances
+of the class as key-value pairs in order to ensure a single instance per key.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; options are used to construct
+the key.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;head&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;head:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#head()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-8:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;head(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;head(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;head(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with HEAD method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;headers&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;headers:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#headers&lt;/h3&gt;
+
+&lt;p&gt;This property holds the HTTP headers for Ajax requests.&lt;/p&gt;
+
+&lt;p&gt;The default value is &lt;code&gt;{ &#39;Content-Type&#39;: &#39;application/json&#39; }&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;index&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;index:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#index()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-9:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;index(params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;index(params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;index(params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with GET method to the URL that is constructed
+by the &lt;code&gt;collectionPath()&lt;/code&gt; method and the &lt;code&gt;params&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;memberpath:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#memberPath()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-10:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;memberPath(id)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Returns the URL path to a resource in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#memberPath()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;users&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/users/9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The &lt;code&gt;id&lt;/code&gt; part of the URL path (&lt;code&gt;9&lt;/code&gt;) derives from the &lt;code&gt;id&lt;/code&gt; argument.&lt;/p&gt;
+
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;nested-in&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;nestedin:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#nestedIn&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;objects&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;objects:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#objects&lt;/h3&gt;
+
+&lt;p&gt;This property holds an array of objects (hashes) that represents the
+collection of resources which the agent is associated to.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;param-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;paramname:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#paramName&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params-for-refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;paramsforrefresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#paramsForRefresh()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-11:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;paramsForRefresh()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Returns an empty object (&lt;code&gt;{}&lt;/code&gt;) always. This object is used to construct
+the query string of the request URL during the &lt;code&gt;refresh()&lt;/code&gt; process.&lt;/p&gt;
+
+&lt;p&gt;Developers may override this method to change this behavior.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-3:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserAgent extends Cape.CollectionAgent {
+  constructor(options) {
+    super(options);
+    this.page = 1;
+    this.perPage = 20;
+  }
+
+  paramsForRefresh() {
+    return { page: this.page, per_page: this.perPage };
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;patch&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;patch:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#patch()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-12:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;patch(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;patch(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;patch(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with PATCH method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;post&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;post:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#post()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-13:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;post(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;post(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;post(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with POST method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;propagate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;propagate:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#propagate()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-14:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;propagate()&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method triggars the &lt;em&gt;propagation&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
+of all components registerd as targets of &lt;em&gt;propagation&lt;/em&gt; of this agent.&lt;/p&gt;
+
+&lt;p&gt;Eventually, the &lt;code&gt;#refresh&lt;/code&gt; method of each component calls its &lt;code&gt;#render()&lt;/code&gt; method,
+which has to be defined by developers.&lt;/p&gt;
+
+&lt;p&gt;Thus, we can assure that each time the data of an agent changes,
+its all dependent components get refreshed.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;put&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;put:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#put()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-15:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;put(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;put(actionName, id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;put(actionName, id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with PUT method to the URL that is constructed
+by given arguments.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;refresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#refresh()&lt;/h3&gt;
+
+&lt;p&gt;This method sends an Ajax request with GET method to the URL that is constructed
+by the &lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; and
+&lt;a href=&#34;#params-for-refresh&#34;&gt;#paramsForRefresh()&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;resourcename:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#resourceName&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;update&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;update:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#update()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-16:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;update(id, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;update(id, params, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;update(id, params, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with PATCH method to the URL that is constructed
+by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;The first argument (&lt;code&gt;id&lt;/code&gt;) specifies the &lt;em&gt;id&lt;/em&gt; of the resource to be updated.
+This is usually the value of primary key of a database record, but is not
+always the case.&lt;/p&gt;
+
+&lt;p&gt;The second argument (&lt;code&gt;params&lt;/code&gt;) must be an object (hash).&lt;/p&gt;
+
+&lt;p&gt;The optional third argument (&lt;code&gt;callback&lt;/code&gt;) must be a function, which takes the
+agent itself as the single argument and does some post-processing jobs.&lt;/p&gt;
+
+&lt;p&gt;Ths optional fourth argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
+which takes an exception and does some error-handling jobs.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-4:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
+  init() {
+    this.agent = Cape.CollectionAgent.getInstance({ resourceName: &#39;users&#39; })
+    this.agent.attach(this)
+    this.agent.refresh()
+  }
+
+  beforeUnmount() {
+    this.agent.detach(this)
+  }
+
+  render(m) {
+    m.ol(m =&amp;gt; {
+      this.agent.objects.forEach(user =&amp;gt; {
+        m.li(m =&amp;gt; {
+          m.text(user.name);
+          m.onclick(e =&amp;gt; {
+            this.agent.update(user.id, { user: { deleted: 1 } });
+          });
+          m.btn(&#39;Delete&#39;);
+        });
+      });
+    });
+  }
+}
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
@@ -469,6 +1068,80 @@ ds.attach(comp2);
 comp1.mount(&#39;counter1&#39;);
 comp2.mount(&#39;counter2&#39;);
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>API Reference</title>
+      <link>http://oiax.github.io/capejs/api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt; -
+&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt; -
+&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt; -
+&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt; -
+&lt;a href=&#34;./collection_agent&#34;&gt;Cape.CollectionAgent&lt;/a&gt; -
+&lt;a href=&#34;./resource_agent&#34;&gt;Cape.ResourceAgent&lt;/a&gt; -
+&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
+&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;the-cape-object:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;The &lt;code&gt;Cape&lt;/code&gt; object&lt;/h3&gt;
+
+&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; defines a single global variable &lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt;.
+It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, etc.&lt;/p&gt;
+
+&lt;h3 id=&#34;overview-of-classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Overview of classes&lt;/h3&gt;
+
+&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; consists of following five classes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./collection_agent&#34;&gt;Cape.CollectionAgent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./resource_agent&#34;&gt;Cape.ResourceAgent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These classes are defined as properties of the &lt;code&gt;Cape&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;p&gt;The most basic class is &lt;code&gt;Cape.Component&lt;/code&gt;.
+You need to define a class extending it in order to create a web widget using Cape.JS.
+At least, instances of this class must have a method called &lt;code&gt;render&lt;/code&gt;, which defines
+how the component should be rendered in HTML.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; is a class whose instances build &lt;em&gt;virtual dom trees.&lt;/em&gt;
+Usually you don&amp;rsquo;t instantiate markup builders by yourself.
+Instances of &lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; are passed to the &lt;code&gt;render&lt;/code&gt; method of
+component classes.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
+components to render themselves.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.CollectionAgent&lt;/code&gt; has a role similar to the &lt;code&gt;Cape.DataStore&lt;/code&gt;,
+but is much more powerful.
+Using it you can perform REST requests to the web resources through simple API.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cape.ResourceAgent&lt;/code&gt; is a class to represent a particular resource on the web
+and performs REST manipulations on it.&lt;/p&gt;
+
+&lt;p&gt;Note that these two classes make use of the built-in
+&lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/API/Fetch_API&#34;&gt;Fetch API&lt;/a&gt;
+in order to send Ajax requests to the servers.
+They will help you to remove dependencies on jQuery from your applications.&lt;/p&gt;
+
+&lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
+After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
+and mount components according to the &lt;em&gt;routes&lt;/em&gt;
+(associations between hashes and components) which you defined in advance.&lt;/p&gt;
+
+&lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
+You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
+method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1046,1060 +1719,6 @@ radio button is checked.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;you will see the all text fields are filled in.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>API Reference</title>
-      <link>http://oiax.github.io/capejs/api/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt; -
-&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt; -
-&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt; -
-&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt; -
-&lt;a href=&#34;./collection_agent&#34;&gt;Cape.CollectionAgent&lt;/a&gt; -
-&lt;a href=&#34;./resource_agent&#34;&gt;Cape.ResourceAgent&lt;/a&gt; -
-&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
-&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;the-cape-object:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;The &lt;code&gt;Cape&lt;/code&gt; object&lt;/h3&gt;
-
-&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; defines a single global variable &lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt;.
-It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, etc.&lt;/p&gt;
-
-&lt;h3 id=&#34;overview-of-classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Overview of classes&lt;/h3&gt;
-
-&lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; consists of following five classes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;./component&#34;&gt;Cape.Component&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./markup_builder&#34;&gt;Cape.MarkupBuilder&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./data_store&#34;&gt;Cape.DataStore&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./collection_agent&#34;&gt;Cape.CollectionAgent&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./resource_agent&#34;&gt;Cape.ResourceAgent&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These classes are defined as properties of the &lt;code&gt;Cape&lt;/code&gt; object.&lt;/p&gt;
-
-&lt;p&gt;The most basic class is &lt;code&gt;Cape.Component&lt;/code&gt;.
-You need to define a class extending it in order to create a web widget using Cape.JS.
-At least, instances of this class must have a method called &lt;code&gt;render&lt;/code&gt;, which defines
-how the component should be rendered in HTML.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; is a class whose instances build &lt;em&gt;virtual dom trees.&lt;/em&gt;
-Usually you don&amp;rsquo;t instantiate markup builders by yourself.
-Instances of &lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; are passed to the &lt;code&gt;render&lt;/code&gt; method of
-component classes.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Cape.DataStore&lt;/code&gt; is a class to store and manipulate data, which is used by
-components to render themselves.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Cape.CollectionAgent&lt;/code&gt; has a role similar to the &lt;code&gt;Cape.DataStore&lt;/code&gt;,
-but is much more powerful.
-Using it you can perform REST requests to the web resources through simple API.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Cape.ResourceAgent&lt;/code&gt; is a class to represent a particular resource on the web
-and performs REST manipulations on it.&lt;/p&gt;
-
-&lt;p&gt;Note that these two classes make use of the built-in
-&lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/API/Fetch_API&#34;&gt;Fetch API&lt;/a&gt;
-in order to send Ajax requests to the servers.
-They will help you to remove dependencies on jQuery from your applications.&lt;/p&gt;
-
-&lt;p&gt;If you want to create a single page application (SPA), you may need an instance of &lt;code&gt;Cape.Router&lt;/code&gt;.
-After you start it, it continues to watch the changes of &lt;em&gt;hash fragment&lt;/em&gt; of URL
-and mount components according to the &lt;em&gt;routes&lt;/em&gt;
-(associations between hashes and components) which you defined in advance.&lt;/p&gt;
-
-&lt;p&gt;You have to call methods of &lt;code&gt;Cape.RoutingMapper&lt;/code&gt; in order to define the routes.
-You will never instantiate it by youself, but will get its instance through the &lt;code&gt;draw&lt;/code&gt;
-method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Cape.ResourceAgent - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/resource_agent/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/resource_agent/</guid>
-      <description>
-
-&lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
-&lt;a href=&#34;#_&#34;&gt;#_&lt;/a&gt; -
-&lt;a href=&#34;#adapter&#34;&gt;#adapter&lt;/a&gt; -
-&lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
-&lt;a href=&#34;#base-path&#34;&gt;#basePath&lt;/a&gt; -
-&lt;a href=&#34;#client&#34;&gt;#client&lt;/a&gt; -
-&lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
-&lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
-&lt;a href=&#34;#data&#34;&gt;#data&lt;/a&gt; -
-&lt;a href=&#34;#data-type&#34;&gt;#dataType&lt;/a&gt; -
-&lt;a href=&#34;#default-error-hander&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
-&lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
-&lt;a href=&#34;#errors&#34;&gt;#errors&lt;/a&gt; -
-&lt;a href=&#34;#formName&#34;&gt;#formName&lt;/a&gt; -
-&lt;a href=&#34;#headers&#34;&gt;#headers&lt;/a&gt; -
-&lt;a href=&#34;#init&#34;&gt;#init()&lt;/a&gt; -
-&lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
-&lt;a href=&#34;#object&#34;&gt;#object&lt;/a&gt; -
-&lt;a href=&#34;#new-path&#34;&gt;#newPath()&lt;/a&gt; -
-&lt;a href=&#34;#nested-in&#34;&gt;#nestedIn&lt;/a&gt; -
-&lt;a href=&#34;#param-name&#34;&gt;#paramName&lt;/a&gt; -
-&lt;a href=&#34;#resource-name&#34;&gt;#resourceName&lt;/a&gt; -
-&lt;a href=&#34;#singular&#34;&gt;#singular&lt;/a&gt; -
-&lt;a href=&#34;#singular-path&#34;&gt;#singularPath()&lt;/a&gt; -
-&lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;constructor:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Constructor&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code&gt;Cape.ResourceAgent&lt;/code&gt; constructor takes
-a &lt;code&gt;Cape.Component&lt;/code&gt; object and an optional object (options) as arguments.&lt;/p&gt;
-
-&lt;h4 id=&#34;options:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Options&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;resourceName:&lt;/strong&gt; the name of resource.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;basePath:&lt;/strong&gt; the string that is added to the request path. Default value is &amp;lsquo;/&amp;rsquo;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;nestedIn:&lt;/strong&gt; the string that is inserted between path prefix and the resource
-name. Default value is &amp;ldquo;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;adapter:&lt;/strong&gt; the name of adapter (e.g., &lt;code&gt;&#39;rails&#39;&lt;/code&gt;). Default is &lt;code&gt;undefined&lt;/code&gt;.
-Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;dataType:&lt;/strong&gt; the type of data that you&amp;rsquo;re expecting from the server.
-The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt; (default) or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;pathPrefix:&lt;/strong&gt; the string that is added to the request path.
-Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;singular:&lt;/strong&gt; a boolean value that specifies if the resource is singular or not.
-Resources are called &lt;em&gt;singular&lt;/em&gt; when they have a URL without ID. Default is &lt;code&gt;false&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;formName:&lt;/strong&gt; the name of form with which the users edit the properties
-of the resource. Default is &lt;code&gt;undefiend&lt;/code&gt;.
-When the &lt;code&gt;formName&lt;/code&gt; option is not defined, the name is derived from the
-&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;paramName:&lt;/strong&gt; the name of parameter to be used when the &lt;code&gt;object&lt;/code&gt;
-property is initialized and the request parameter is constructed.
-Default is undefiend.
-When the &lt;code&gt;pathName&lt;/code&gt; option is not defined, the name is derived from the
-&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;adapters:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Adapters&lt;/h4&gt;
-
-&lt;p&gt;Currently, Cape.JS provides only &lt;code&gt;RailsAdapter&lt;/code&gt;, which sets the &lt;code&gt;X-CSRF-Token&lt;/code&gt; header
-for Ajax requests.&lt;/p&gt;
-
-&lt;h4 id=&#34;example:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
-
-var Form = Cape.createComponentClass({
-  init: function() {
-    this.id = 123;
-    this.agent = new Cape.ResourceAgent(this, { resourceName: &#39;user&#39; });
-    this.agent.init();
-  },
-
-  render: function(m) {
-    m.formFor(&#39;user&#39;, function(m) {
-      m.textField(&#39;login_name&#39;);
-      m.onclick(e =&amp;gt; this.agent.update()).btn(&#39;Update&#39;);
-    });
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Usually, You will want to define a class inheriting &lt;code&gt;Cape.ResourceAgent&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
-
-var UserAgent = Cape.createResourceAgentClass({
-  constructor: function(client, options) {
-    super(client, options);
-    this.resourceName = &#39;user&#39;;
-  }
-})
-
-var Form = Cape.createComponentClass({
-  init: function() {
-    this.id = 123;
-    this.agent = new UserAgent(this);
-    this.agent.init();
-  },
-
-  render: function(m) {
-    m.formFor(&#39;user&#39;, function(m) {
-      m.textField(&#39;login_name&#39;);
-      m.onclick(e =&amp;gt; this.agent.update()).btn(&#39;Update&#39;);
-    });
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;_&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;toc_4:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#_&lt;/h3&gt;
-
-&lt;p&gt;This property holds the agent&amp;rsquo;s &lt;em&gt;inner object,&lt;/em&gt; which keeps &lt;em&gt;private&lt;/em&gt; properties
-and methods. Developers should not tamper with it.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;adapter:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#adapter&lt;/h3&gt;
-
-&lt;p&gt;This property holds the name of adapter (e.g., &amp;lsquo;rails&amp;rsquo;). Default is undefined.
-Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;ajax:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#ajax()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;attr(httpMethod, path)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;attr(httpMethod, path, callback)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;attr(httpMethod, path, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Send an Ajax request to the server.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
-
-var Page = Cape.createComponentClass({
-  init: function() {
-    this.agent = new Cape.ResourceAgent(this);
-    this.refresh();
-  },
-
-  render: function(m) {
-    m.onclick(e =&amp;gt; {
-      this.agent.ajax(&#39;POST&#39;, &#39;/counter&#39;, function(data) {
-        alert(data);
-      })
-    });
-    m.btn(&#39;Click&#39;);
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;base-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;basepath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#basePath&lt;/h3&gt;
-
-&lt;p&gt;This property holds the string that is added to the request path.
-Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;client&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;client:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#client&lt;/h3&gt;
-
-&lt;p&gt;This property holds an instance of &lt;code&gt;Cape.Component&lt;/code&gt; class, which has been
-passed as the first argument of constructor.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;collectionpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#collectionPath()&lt;/h3&gt;
-
-&lt;p&gt;Returns the URL path to a collection of resources in accordance with the
-values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;#resourceName&lt;/th&gt;
-&lt;th&gt;#basePath&lt;/th&gt;
-&lt;th&gt;#nestedIn&lt;/th&gt;
-&lt;th&gt;#collectionPath()&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;/users&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
-&lt;td&gt;/api/&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;/api/users&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;teams/123/&lt;/td&gt;
-&lt;td&gt;/teams/123/users&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
-&lt;td&gt;/api/&lt;/td&gt;
-&lt;td&gt;teams/123/&lt;/td&gt;
-&lt;td&gt;/api/teams/123/users&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;create:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#create()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;create()&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;create(callback)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;create(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Send an Ajax request with POST method to the URL that is constructed
-by the &lt;code&gt;collectionPath()&lt;/code&gt; method.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;data:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#data&lt;/h3&gt;
-
-&lt;p&gt;This property holds the object that is build from the JSON string returned
-from the server during &lt;code&gt;refresh()&lt;/code&gt; process if the response data from the server
-is a valid JSON string.&lt;/p&gt;
-
-&lt;p&gt;Otherwise, it holds the response data from the server as is.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;datatype:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#dataType&lt;/h3&gt;
-
-&lt;p&gt;This property holds the type of data that you&amp;rsquo;re expecting from the server.
-The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt;, &lt;code&gt;&#39;text&#39;&lt;/code&gt; or &lt;code&gt;undefined&lt;/code&gt;.
-When the &lt;code&gt;dataType&lt;/code&gt; option is not defined, the type is detected automatically.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;default-error-hander&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;defaulterrorhandler:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#defaultErrorHandler()&lt;/h3&gt;
-
-&lt;p&gt;This method handles the exception thrown during the Fetch API.&lt;/p&gt;
-
-&lt;p&gt;The default implementation is just &lt;code&gt;console.log(ex)&lt;/code&gt;.
-Developers should override this for a better exception handling.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;destroy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;destroy:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#destroy()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-2:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;destroy()&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;destroy(callback)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;destroy(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Send an Ajax request with DELETE method to the URL that is constructed
-by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;errors&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;errors:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#errors&lt;/h3&gt;
-
-&lt;p&gt;This property holds an object (key-value pairs) whose keys are the
-attribute names of the resource and whose values are the validation
-error messages.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;formname:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#formName&lt;/h3&gt;
-
-&lt;p&gt;This property holds the name of form with which the users edit the properties
-of the resource. Default is &lt;code&gt;undefiend&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;When the &lt;code&gt;formName&lt;/code&gt; option is not defined, the name is derived from the
-&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;headers&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;headers:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#headers&lt;/h3&gt;
-
-&lt;p&gt;This property holds the HTTP headers for Ajax requests.
-The default valued is &lt;code&gt;{ &#39;Content-Type&#39;: &#39;application/json&#39; }&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;init&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;init:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#init()&lt;/h3&gt;
-
-&lt;p&gt;This property holds the object that represents the resource.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;memberpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#memberPath()&lt;/h3&gt;
-
-&lt;p&gt;Returns the URL path to a resource in accordance with the
-values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;#resourceName&lt;/th&gt;
-&lt;th&gt;#basePath&lt;/th&gt;
-&lt;th&gt;#nestedIn&lt;/th&gt;
-&lt;th&gt;#memberPath()&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;/users/9&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
-&lt;td&gt;/api/&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;/api/users/9&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;teams/123/&lt;/td&gt;
-&lt;td&gt;/teams/123/users/9&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;users&lt;/td&gt;
-&lt;td&gt;/api/&lt;/td&gt;
-&lt;td&gt;teams/123/&lt;/td&gt;
-&lt;td&gt;/api/teams/123/users/9&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;The &lt;code&gt;id&lt;/code&gt; part of the URL path (&lt;code&gt;9&lt;/code&gt;) derives from the &lt;code&gt;client.id&lt;/code&gt; property.&lt;/p&gt;
-
-&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;object&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;object:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#object&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;new-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;newpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#newPath()&lt;/h3&gt;
-
-&lt;p&gt;Returns the URL path to a &lt;em&gt;new&lt;/em&gt; resource in accordance with the
-values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;#resourceName&lt;/th&gt;
-&lt;th&gt;#basePath&lt;/th&gt;
-&lt;th&gt;#nestedIn&lt;/th&gt;
-&lt;th&gt;#newPath()&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;/users/new&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
-&lt;td&gt;/api/&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;/api/users/new&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;teams/123/&lt;/td&gt;
-&lt;td&gt;/teams/123/users/new&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
-&lt;td&gt;/api/&lt;/td&gt;
-&lt;td&gt;teams/123/&lt;/td&gt;
-&lt;td&gt;/api/teams/123/users/new&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;A &lt;em&gt;new&lt;/em&gt; resource is a resource for a form for creating an resource.&lt;/p&gt;
-
-&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;nested-in&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;nestedin:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#nestedIn&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;param-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;paramname:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#paramName&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;resourcename:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#resourceName&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;singular:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#singular&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;singularpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#singularPath()&lt;/h3&gt;
-
-&lt;p&gt;Returns the URL path to a &lt;em&gt;singular&lt;/em&gt; resource in accordance with the
-values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;#resourceName&lt;/th&gt;
-&lt;th&gt;#basePath&lt;/th&gt;
-&lt;th&gt;#nestedIn&lt;/th&gt;
-&lt;th&gt;#singularPath()&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;/account&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
-&lt;td&gt;/api/&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;/api/account&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;teams/123/&lt;/td&gt;
-&lt;td&gt;/teams/123/account&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;account&lt;/td&gt;
-&lt;td&gt;/api/&lt;/td&gt;
-&lt;td&gt;teams/123/&lt;/td&gt;
-&lt;td&gt;/api/teams/123/account&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;A singular resource is a resource that clients always look up without
-referencing an ID.&lt;/p&gt;
-
-&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;update&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;update:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#update()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-3:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;update()&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;update(callback)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;update(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Send an Ajax request with PATCH method to the URL that is constructed
-by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Cape.RoutingMapper - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;#collection&#34;&gt;collection()&lt;/a&gt; -
-&lt;a href=&#34;#namespace&#34;&gt;namespace()&lt;/a&gt; -
-&lt;a href=&#34;#new&#34;&gt;new()&lt;/a&gt; -
-&lt;a href=&#34;#many&#34;&gt;many()&lt;/a&gt; -
-&lt;a href=&#34;#member&#34;&gt;member()&lt;/a&gt; -
-&lt;a href=&#34;#one&#34;&gt;one()&lt;/a&gt; -
-&lt;a href=&#34;#page&#34;&gt;page()&lt;/a&gt; -
-&lt;a href=&#34;#root&#34;&gt;root()&lt;/a&gt; -
-&lt;a href=&#34;#view&#34;&gt;view()&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;collection:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#collection()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;collection(name)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Adds a &lt;em&gt;collection&lt;/em&gt; route (a route which deals with multiple items).&lt;/p&gt;
-
-&lt;h4 id=&#34;example:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;, function(m) {
-    m.collection &#39;draft&#39;
-  });
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This defines a route from &lt;code&gt;articles/draft&lt;/code&gt; to &lt;code&gt;Articles.Draft&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;#collection()&lt;/code&gt; method must be called within a block that defines a plural resource.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;namespace:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#namespace()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-1:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;namespace(name, function)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Introduces a &lt;em&gt;function&lt;/em&gt; tha defines resources under the specified &lt;em&gt;namespace&lt;/em&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.namespace(&#39;admin&#39;, function(m) {
-    m.many(&#39;articles&#39;);
-  })
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The above code defines four routes. See the table below:&lt;/p&gt;
-
-&lt;table class=&#34;table&#34;&gt;
-&lt;tr&gt;
-  &lt;th&gt;Hash pattern&lt;/th&gt;
-  &lt;th&gt;Container&lt;/th&gt;
-  &lt;th&gt;Component&lt;/th&gt;
-  &lt;th&gt;Namespace&lt;/th&gt;
-  &lt;th&gt;Resource&lt;/th&gt;
-  &lt;th&gt;Action&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;admin/articles&lt;/td&gt;
-  &lt;td&gt;Admin.Articles&lt;/td&gt;
-  &lt;td&gt;List&lt;/td&gt;
-  &lt;td&gt;admin&lt;/td&gt;
-  &lt;td&gt;articles&lt;/td&gt;
-  &lt;td&gt;index&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;admin/articles/:id&lt;/td&gt;
-  &lt;td&gt;Admin.Articles&lt;/td&gt;
-  &lt;td&gt;Item&lt;/td&gt;
-  &lt;td&gt;admin&lt;/td&gt;
-  &lt;td&gt;articles&lt;/td&gt;
-  &lt;td&gt;show&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;admin/articles/new&lt;/td&gt;
-  &lt;td&gt;Admin.Articles&lt;/td&gt;
-  &lt;td&gt;Form&lt;/td&gt;
-  &lt;td&gt;admin&lt;/td&gt;
-  &lt;td&gt;articles&lt;/td&gt;
-  &lt;td&gt;new&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;admin/articles/:id/edit&lt;/td&gt;
-  &lt;td&gt;Admin.Articles&lt;/td&gt;
-  &lt;td&gt;Form&lt;/td&gt;
-  &lt;td&gt;admin&lt;/td&gt;
-  &lt;td&gt;articles&lt;/td&gt;
-  &lt;td&gt;edit&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;new&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;new:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#new()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-2:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;new(name)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Adds an alternate &lt;em&gt;new&lt;/em&gt; action to a resource, which can be plural or singular.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.one(&#39;account&#39;, function(m) {
-    m.new &#39;preview&#39;
-  });
-  m.many(&#39;articles&#39;, function(m) {
-    m.new &#39;preview&#39;
-  });
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This defines two routes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;From &lt;code&gt;account/new/preview&lt;/code&gt; to &lt;code&gt;Account.Preview&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;From &lt;code&gt;articles/new/preview&lt;/code&gt; to &lt;code&gt;Articles.Preview&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;many&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;many:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#many()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-3:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;many(name)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Defines four routes for a plural resource.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-1:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;);
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The above code defines four routes. See the table below:&lt;/p&gt;
-
-&lt;table class=&#34;table&#34;&gt;
-&lt;tr&gt;
-  &lt;th&gt;Hash pattern&lt;/th&gt;
-  &lt;th&gt;Container&lt;/th&gt;
-  &lt;th&gt;Component&lt;/th&gt;
-  &lt;th&gt;Resource&lt;/th&gt;
-  &lt;th&gt;Action&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;articles&lt;/td&gt;
-  &lt;td&gt;Articles&lt;/td&gt;
-  &lt;td&gt;List&lt;/td&gt;
-  &lt;td&gt;articles&lt;/td&gt;
-  &lt;td&gt;index&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;articles/:id&lt;/td&gt;
-  &lt;td&gt;Articles&lt;/td&gt;
-  &lt;td&gt;Item&lt;/td&gt;
-  &lt;td&gt;articles&lt;/td&gt;
-  &lt;td&gt;show&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;articles/new&lt;/td&gt;
-  &lt;td&gt;Articles&lt;/td&gt;
-  &lt;td&gt;Form&lt;/td&gt;
-  &lt;td&gt;articles&lt;/td&gt;
-  &lt;td&gt;new&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;articles/:id/edit&lt;/td&gt;
-  &lt;td&gt;Articles&lt;/td&gt;
-  &lt;td&gt;Form&lt;/td&gt;
-  &lt;td&gt;articles&lt;/td&gt;
-  &lt;td&gt;edit&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;h4 id=&#34;usage-4:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;many(name, { only: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Adds routes for &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a plural resource.
-The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;index&amp;rdquo;, &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-2:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;, { only: [ &#39;index&#39;, &#39;show&#39; ] });
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This defines two routes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;From &lt;code&gt;articles/&lt;/code&gt; to &lt;code&gt;Articles.List&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;From &lt;code&gt;articles/:id&lt;/code&gt; to &lt;code&gt;Articles.Item&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;usage-5:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;many(name, { except: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Adds basic routes excepting &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a plural resource.
-The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;index&amp;rdquo;, &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-3:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;, { except: [ &#39;new&#39;, &#39;edit&#39; ] });
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This defines two routes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;From &lt;code&gt;articles/&lt;/code&gt; to &lt;code&gt;Articles.List&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;From &lt;code&gt;articles/:id&lt;/code&gt; to &lt;code&gt;Articles.Item&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;member:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#member()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-6:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;member(name)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Adds a &lt;em&gt;member&lt;/em&gt; route (a route which deals with a specific item).&lt;/p&gt;
-
-&lt;h4 id=&#34;example-4:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example.&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.many(&#39;articles&#39;, function(m) {
-    m.member &#39;info&#39;
-  });
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This defines a route from &lt;code&gt;articles/:id/info&lt;/code&gt; to &lt;code&gt;Articles.Info&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;#member()&lt;/code&gt; method must be called within a block that defines a plural resource.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;one&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;one:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#one()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-7:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;one(name)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Defines four routes for a singular resource.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-5:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.one(&#39;account&#39;);
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The above code defines four routes. See the table below:&lt;/p&gt;
-
-&lt;table class=&#34;table&#34;&gt;
-&lt;tr&gt;
-  &lt;th&gt;Hash pattern&lt;/th&gt;
-  &lt;th&gt;Container&lt;/th&gt;
-  &lt;th&gt;Component&lt;/th&gt;
-  &lt;th&gt;Resource&lt;/th&gt;
-  &lt;th&gt;Action&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;account&lt;/td&gt;
-  &lt;td&gt;Account&lt;/td&gt;
-  &lt;td&gt;Content&lt;/td&gt;
-  &lt;td&gt;account&lt;/td&gt;
-  &lt;td&gt;show&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;account/new&lt;/td&gt;
-  &lt;td&gt;Account&lt;/td&gt;
-  &lt;td&gt;Form&lt;/td&gt;
-  &lt;td&gt;account&lt;/td&gt;
-  &lt;td&gt;new&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;account/edit&lt;/td&gt;
-  &lt;td&gt;Account&lt;/td&gt;
-  &lt;td&gt;Form&lt;/td&gt;
-  &lt;td&gt;account&lt;/td&gt;
-  &lt;td&gt;edit&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;h4 id=&#34;usage-8:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;one(name, { only: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Adds routes for &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a singular resource.
-The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-6:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.new(&#39;account&#39;, { only: [ &#39;show&#39; ] });
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This defines a route:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;From &lt;code&gt;account/&lt;/code&gt; to &lt;code&gt;Account.Content&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;usage-9:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;one(name, { except: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Adds basic routes excepting &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a singular resource.
-The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-7:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.one(&#39;account&#39;, { except: [ &#39;new&#39; ] });
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This defines two routes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;From &lt;code&gt;account&lt;/code&gt; to &lt;code&gt;Account.Content&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;From &lt;code&gt;account/edit&lt;/code&gt; to &lt;code&gt;Account.Form&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;page&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;page:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#page()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-10:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;page(hashPattern, componentClassPath)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Defines a route from &lt;em&gt;hashPattern&lt;/em&gt; to &lt;em&gt;componentClassPath.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;example-8:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.page(&#39;dashboard&#39;, &#39;dashboard&#39;);
-  m.page(&#39;about&#39;, &#39;docs.about&#39;);
-  m.page(&#39;help/:name&#39;, &#39;docs.help&#39;);
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;usage-11:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;page(hashPattern, componentClassPath, constraints)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Defines a route from &lt;em&gt;hashPattern&lt;/em&gt; to &lt;em&gt;componentClassPath&lt;/em&gt; with constraints
-on the parameters, which are specified by regular expression string.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-9:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.page(&#39;blog/:year/:month&#39;, &#39;blog.articles&#39;,
-    { year: &#39;201\\d&#39;, month: &#39;(:?0[1-9]|1[012])&#39; });
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note that you should put &lt;code&gt;:?&lt;/code&gt; to make parentheses
-&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-non-capturing-parentheses&#34;&gt;non-capturing parentheses&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;root&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;root:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#root()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-12:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;root(componentClassPath)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Defines a route from &amp;ldquo;&amp;rdquo; to &lt;em&gt;componentClassPath.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;example-10:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  root(&#39;Dashboard&#39;)
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;view&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;view:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#view()&lt;/h3&gt;
-
-&lt;h4 id=&#34;usage-13:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;view(name)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Adds a custom route to a singular resource.&lt;/p&gt;
-
-&lt;h4 id=&#34;example-11:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
-router.draw(function(m) {
-  m.one(&#39;account&#39;, function(m) {
-    m.view &#39;image&#39;
-  });
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This defines a route from &lt;code&gt;account/image&lt;/code&gt; to &lt;code&gt;Account.Image&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;#view()&lt;/code&gt; method must be called within a block that defines a singular resource.&lt;/p&gt;
 </description>
     </item>
     
@@ -3646,394 +3265,996 @@ router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
     </item>
     
     <item>
-      <title>Collection Agents</title>
-      <link>http://oiax.github.io/capejs/collection_agents/</link>
+      <title>Cape.ResourceAgent - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/resource_agent/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/collection_agents/</guid>
+      <guid>http://oiax.github.io/capejs/api/resource_agent/</guid>
       <description>
 
 &lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;#basics&#34;&gt;Basics&lt;/a&gt; -
-&lt;a href=&#34;#setting-up&#34;&gt;Setting up&lt;/a&gt; -
-&lt;a href=&#34;#agent-adapters&#34;&gt;Agent Adapters&lt;/a&gt; -
-&lt;a href=&#34;#defining-classes&#34;&gt;Defining Classes&lt;/a&gt; -
-&lt;a href=&#34;#initialization&#34;&gt;Initialization&lt;/a&gt; -
-&lt;a href=&#34;#creating-resources&#34;&gt;Creating Resources&lt;/a&gt; -
-&lt;a href=&#34;#rest-operations&#34;&gt;REST Operations&lt;/a&gt; -
-&lt;a href=&#34;#callbacks-and-error-handlers&#34;&gt;Callbacks and Error Handlers&lt;/a&gt; -
-&lt;a href=&#34;#changing-path-prefix&#34;&gt;Changing the Path Prefix&lt;/a&gt; -
-&lt;a href=&#34;#options&#34;&gt;Options&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
+&lt;a href=&#34;#_&#34;&gt;#_&lt;/a&gt; -
+&lt;a href=&#34;#adapter&#34;&gt;#adapter&lt;/a&gt; -
+&lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
+&lt;a href=&#34;#base-path&#34;&gt;#basePath&lt;/a&gt; -
+&lt;a href=&#34;#client&#34;&gt;#client&lt;/a&gt; -
+&lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; -
+&lt;a href=&#34;#create&#34;&gt;#create()&lt;/a&gt; -
+&lt;a href=&#34;#data&#34;&gt;#data&lt;/a&gt; -
+&lt;a href=&#34;#data-type&#34;&gt;#dataType&lt;/a&gt; -
+&lt;a href=&#34;#default-error-hander&#34;&gt;#defaultErrorHandler()&lt;/a&gt; -
+&lt;a href=&#34;#destroy&#34;&gt;#destroy()&lt;/a&gt; -
+&lt;a href=&#34;#errors&#34;&gt;#errors&lt;/a&gt; -
+&lt;a href=&#34;#formName&#34;&gt;#formName&lt;/a&gt; -
+&lt;a href=&#34;#headers&#34;&gt;#headers&lt;/a&gt; -
+&lt;a href=&#34;#init&#34;&gt;#init()&lt;/a&gt; -
+&lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
+&lt;a href=&#34;#object&#34;&gt;#object&lt;/a&gt; -
+&lt;a href=&#34;#new-path&#34;&gt;#newPath()&lt;/a&gt; -
+&lt;a href=&#34;#nested-in&#34;&gt;#nestedIn&lt;/a&gt; -
+&lt;a href=&#34;#param-name&#34;&gt;#paramName&lt;/a&gt; -
+&lt;a href=&#34;#resource-name&#34;&gt;#resourceName&lt;/a&gt; -
+&lt;a href=&#34;#singular&#34;&gt;#singular&lt;/a&gt; -
+&lt;a href=&#34;#singular-path&#34;&gt;#singularPath()&lt;/a&gt; -
+&lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;basics:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Basics&lt;/h3&gt;
+&lt;h3 id=&#34;constructor:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Constructor&lt;/h3&gt;
 
-&lt;p&gt;The &lt;em&gt;collection agents&lt;/em&gt; are JavaScript objects that have following capabilities:&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Cape.ResourceAgent&lt;/code&gt; constructor takes
+a &lt;code&gt;Cape.Component&lt;/code&gt; object and an optional object (options) as arguments.&lt;/p&gt;
+
+&lt;h4 id=&#34;options:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Options&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Keeping an array of objects that represent a &lt;em&gt;resource collection&lt;/em&gt; of the server.&lt;/li&gt;
-&lt;li&gt;Creating, updating and deleting the members of this collection by sending Ajax requests to the server.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;resourceName:&lt;/strong&gt; the name of resource.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;basePath:&lt;/strong&gt; the string that is added to the request path. Default value is &amp;lsquo;/&amp;rsquo;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;nestedIn:&lt;/strong&gt; the string that is inserted between path prefix and the resource
+name. Default value is &amp;ldquo;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;adapter:&lt;/strong&gt; the name of adapter (e.g., &lt;code&gt;&#39;rails&#39;&lt;/code&gt;). Default is &lt;code&gt;undefined&lt;/code&gt;.
+Default value can be changed by setting &lt;code&gt;Cape.defaultAgentAdapter&lt;/code&gt; property.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dataType:&lt;/strong&gt; the type of data that you&amp;rsquo;re expecting from the server.
+The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt; (default) or &lt;code&gt;&#39;text&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pathPrefix:&lt;/strong&gt; the string that is added to the request path.
+Default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;singular:&lt;/strong&gt; a boolean value that specifies if the resource is singular or not.
+Resources are called &lt;em&gt;singular&lt;/em&gt; when they have a URL without ID. Default is &lt;code&gt;false&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;formName:&lt;/strong&gt; the name of form with which the users edit the properties
+of the resource. Default is &lt;code&gt;undefiend&lt;/code&gt;.
+When the &lt;code&gt;formName&lt;/code&gt; option is not defined, the name is derived from the
+&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;paramName:&lt;/strong&gt; the name of parameter to be used when the &lt;code&gt;object&lt;/code&gt;
+property is initialized and the request parameter is constructed.
+Default is &lt;code&gt;undefiend&lt;/code&gt;.
+When the &lt;code&gt;paramName&lt;/code&gt; option is not defined, the name is derived from the
+&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Cape.JS provides similar objects called &lt;em&gt;data stores&lt;/em&gt;.
-But, they lack &lt;em&gt;built-in&lt;/em&gt; Ajax functionalities so that
-you have to implement them on your own.&lt;/p&gt;
+&lt;h4 id=&#34;adapters:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Adapters&lt;/h4&gt;
 
-&lt;p&gt;Generally speaking, you will prefer collection agents to data stores,
-if the server provides a set of RESTful APIs.&lt;/p&gt;
+&lt;p&gt;Currently, Cape.JS provides only &lt;code&gt;RailsAdapter&lt;/code&gt;, which sets the &lt;code&gt;X-CSRF-Token&lt;/code&gt; header
+for Ajax requests.&lt;/p&gt;
 
-&lt;p&gt;Note that the collection agents are introduced with the Cape.JS version 1.2.&lt;/p&gt;
+&lt;h4 id=&#34;example:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;setting-up&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
 
-&lt;h3 id=&#34;setting-up:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Setting up&lt;/h3&gt;
+var Form = Cape.createComponentClass({
+  init: function() {
+    this.id = 123;
+    this.agent = new Cape.ResourceAgent(this, { resourceName: &#39;user&#39; });
+    this.agent.init();
+  },
 
-&lt;p&gt;For doing Ajax operations, the collection agents utilize
-&lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/API/Fetch_API&#34;&gt;Fetch API&lt;/a&gt;,
-which is supported only by some modern browsers.
-If you want to support Internet Explorer and Safari,
-you need to include a &lt;em&gt;pollyfill&lt;/em&gt; for the Fetch API into your application
-by adding the following lines to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script src=&amp;quot;//cdn.rawgit.com/jakearchibald/es6-promise/2.3.0/dist/es6-promise.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&amp;quot;//cdnjs.cloudflare.com/ajax/libs/fetch/0.9.0/fetch.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.onclick(e =&amp;gt; this.agent.update()).btn(&#39;Update&#39;);
+    });
+  }
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;agent-adapters&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Usually, You will want to define a class inheriting &lt;code&gt;Cape.ResourceAgent&lt;/code&gt;:&lt;/p&gt;
 
-&lt;h3 id=&#34;agent-adapters:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Agent Adapters&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
 
-&lt;p&gt;Sometimes, the Ajax clients need to send a set of specific HTTP headers to the server.
-A Rails application requires a correct &lt;code&gt;X-CSRF-Token&lt;/code&gt; header, for example.&lt;/p&gt;
-
-&lt;p&gt;In order to cope with the peculiarities of the server, you can use a &lt;em&gt;agent adapter&lt;/em&gt;.
-As of &lt;code&gt;v1.2.0&lt;/code&gt;, the only built-in adapter is &lt;code&gt;Cape.AgentAdapters.RailsAdapter&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;If your server is built on the Ruby on Rails, put the following line at the very
-beginning of your JavaScript code:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;defining-classes&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;defining-classes:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Defining Classes&lt;/h3&gt;
-
-&lt;p&gt;In order to use collection agents, you should define a class inheriting the
-&lt;code&gt;Cape.CollectionAgent&lt;/code&gt; class.&lt;/p&gt;
-
-&lt;p&gt;You can define such a class calling &lt;code&gt;Cape.createCollectionAgentClass()&lt;/code&gt; method:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var UserCollectionAgent = Cape.createCollectionAgentClass({
-  resourceName: &#39;users&#39;
+var UserAgent = Cape.createResourceAgentClass({
+  constructor: function(client, options) {
+    super(client, options);
+    this.resourceName = &#39;user&#39;;
+  }
 })
-&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You can also define it using the ES6 syntax:&lt;/p&gt;
+var Form = Cape.createComponentClass({
+  init: function() {
+    this.id = 123;
+    this.agent = new UserAgent(this);
+    this.agent.init();
+  },
 
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserCollectionAgent extends Cape.CollectionAgent {
-  constructor(options) {
-    super(options);
-    this.resourceName = &#39;users&#39;;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The collection agent uses the &lt;code&gt;resourceName&lt;/code&gt; property to construct the URL paths
-as explained below.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;initialization&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;initialization:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Initialization&lt;/h3&gt;
-
-&lt;p&gt;Suppose that when you send an HTTP request &lt;code&gt;GET /users&lt;/code&gt; to the server,
-it returns the following JSON string:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;&amp;quot;users&amp;quot; : [
-  { &amp;quot;id&amp;quot;: 1, &amp;quot;name&amp;quot;: &amp;quot;John&amp;quot; },
-  { &amp;quot;id&amp;quot;: 2, &amp;quot;name&amp;quot;: &amp;quot;Anna&amp;quot; },
-  { &amp;quot;id&amp;quot;: 3, &amp;quot;name&amp;quot;: &amp;quot;Tommy&amp;quot; }
-]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then, you can build a Cape.JS component like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
-  init() {
-    this.agent = UserCollectionAgent.getInstance();
-    this.agent.attach(this);
-    this.agent.refresh();
-  }
-
-  render(m) {
-    m.ul(m =&amp;gt; {
-      this.agent.objects.forEach(user =&amp;gt; {
-        m.li(user.name);
-      });
+  render: function(m) {
+    m.formFor(&#39;user&#39;, function(m) {
+      m.textField(&#39;login_name&#39;);
+      m.onclick(e =&amp;gt; this.agent.update()).btn(&#39;Update&#39;);
     });
   }
-}
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Note that the &lt;code&gt;UserCollectionAgent.create()&lt;/code&gt; method is a singleton factory method,
-which returns the same object always.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;_&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;The &lt;code&gt;attach&lt;/code&gt; method register the argument as an &lt;em&gt;event listener&lt;/em&gt; of the agent.
-With this the component will get notified
-when the &lt;em&gt;objects&lt;/em&gt; managed by the agent are changed.&lt;/p&gt;
+&lt;h3 id=&#34;toc_4:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#_&lt;/h3&gt;
 
-&lt;p&gt;The &lt;code&gt;refresh&lt;/code&gt; method will trigger an Ajax request to the server and
-initialize the &lt;code&gt;objects&lt;/code&gt; property of the component.&lt;/p&gt;
+&lt;p&gt;This property holds the agent&amp;rsquo;s &lt;em&gt;inner object,&lt;/em&gt; which keeps &lt;em&gt;private&lt;/em&gt; properties
+and methods. Developers should not tamper with it.&lt;/p&gt;
 
-&lt;p&gt;In response to the notification from the agent,
-the component will render the following HTML fragment:&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;ul&amp;gt;
-  &amp;lt;li&amp;gt;John&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Anna&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Tommy&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;adapter:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#adapter&lt;/h3&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;creating-resources&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;creating-resources:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Creating Resources&lt;/h3&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Suppose that you can create a &lt;em&gt;user&lt;/em&gt; by sending a &lt;code&gt;POST&lt;/code&gt; request to the &lt;code&gt;/users&lt;/code&gt;
-with the following body:&lt;/p&gt;
+&lt;h3 id=&#34;ajax:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#ajax()&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;&amp;quot;user&amp;quot;: { &amp;quot;name&amp;quot;: &amp;quot;Nancy&amp;quot; }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then, you can create a form for adding users like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
-  init() {
-    this.agent = UserCollectionAgent.getInstance();
-    this.agent.attach(this);
-    this.agent.refresh();
-  }
-
-  render(m) {
-    m.ul(m =&amp;gt; {
-      this.agent.objects.forEach(user =&amp;gt; {
-        m.li(user.name);
-      });
-    });
-    m.formFor(&#39;user&#39;, m =&amp;gt; {
-      m.textField(&#39;name&#39;);
-      m.onclick(e =&amp;gt; this.agent.create(this.paramsFor(&#39;user&#39;)));
-      m.btn(&#39;Create&#39;);
-    })
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;rest-operations&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;rest-operations:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;REST operations&lt;/h3&gt;
-
-&lt;p&gt;Cape.JS provides four basic methods for REST operations:&lt;/p&gt;
+&lt;h4 id=&#34;usage:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;./api/collection_agent#index&#34;&gt;#index()&lt;/a&gt; to get a collection of resources&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./api/collection_agent#create&#34;&gt;#create()&lt;/a&gt; to create a resource&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./api/collection_agent#update&#34;&gt;#update()&lt;/a&gt; to update (modify) a resource&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./api/collection_agent#destroy&#34;&gt;#destroy()&lt;/a&gt; to delete a resource&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;These methods send an Ajax call using Rails like HTTP verbs and paths.
-If the resource name is &lt;code&gt;&#39;users&#39;&lt;/code&gt;, the HTTP verbs and paths will be as shown in the
-following table, where &lt;code&gt;:id&lt;/code&gt; is an integer denoting the value of object&amp;rsquo;s &lt;code&gt;id&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Sends an Ajax request to the server.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
+
+var Page = Cape.createComponentClass({
+  init: function() {
+    this.agent = new Cape.ResourceAgent(this);
+    this.refresh();
+  },
+
+  render: function(m) {
+    m.onclick(e =&amp;gt; {
+      this.agent.ajax(&#39;POST&#39;, &#39;/counter&#39;, function(data) {
+        alert(data);
+      })
+    });
+    m.btn(&#39;Click&#39;);
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;base-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;basepath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#basePath&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;client&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;client:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#client&lt;/h3&gt;
+
+&lt;p&gt;This property holds an instance of &lt;code&gt;Cape.Component&lt;/code&gt; class, which has been
+passed as the first argument of constructor.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;collectionpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#collectionPath()&lt;/h3&gt;
+
+&lt;p&gt;Returns the URL path to a collection of resources in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;Method&lt;/th&gt;
-&lt;th&gt;HTTP Verb&lt;/th&gt;
-&lt;th&gt;Path&lt;/th&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#collectionPath()&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;#index()&lt;/td&gt;
-&lt;td&gt;GET&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
 &lt;td&gt;/users&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;#create()&lt;/td&gt;
-&lt;td&gt;POST&lt;/td&gt;
-&lt;td&gt;/users&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/users&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;#update()&lt;/td&gt;
-&lt;td&gt;PATCH&lt;/td&gt;
-&lt;td&gt;/users/:id&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/users&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;#destroy()&lt;/td&gt;
-&lt;td&gt;DELETE&lt;/td&gt;
-&lt;td&gt;/users/:id&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/users&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;The following is an example of code which modify the name of a user:&lt;/p&gt;
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.agent.update(1, { name: &#39;johnny&#39; });
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;When you specify other combinations of HTTP verb and path, you should use
-one of following five methods:&lt;/p&gt;
+&lt;h3 id=&#34;create:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#create()&lt;/h3&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;./api/collection_agent#get&#34;&gt;#get()&lt;/a&gt; to send a &lt;code&gt;GET&lt;/code&gt; request&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./api/collection_agent#head&#34;&gt;#head()&lt;/a&gt; to send a &lt;code&gt;HEAD&lt;/code&gt; request&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./api/collection_agent#post&#34;&gt;#post()&lt;/a&gt; to send a &lt;code&gt;POST&lt;/code&gt; request&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./api/collection_agent#patch&#34;&gt;#patch()&lt;/a&gt; to send a &lt;code&gt;PATCH&lt;/code&gt; request&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./api/collection_agent#put&#34;&gt;#put()&lt;/a&gt; to send a &lt;code&gt;PUT&lt;/code&gt; request&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./api/collection_agent#delete&#34;&gt;#delete()&lt;/a&gt; to send a &lt;code&gt;DELETE&lt;/code&gt; request&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For example, if you want to make a &lt;code&gt;PATCH&lt;/code&gt; request to the path &lt;code&gt;/users/123/move_up&lt;/code&gt;,
-write a code like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.agent.patch(&#39;move_up&#39;, 123, {});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;callbacks-and-error-handlers&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;callbacks-and-error-handlers:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Callbacks and Error Handlers&lt;/h3&gt;
-
-&lt;p&gt;If you want the collection agent to perform any jobs after the Ajax request,
-you can pass a &lt;em&gt;callback&lt;/em&gt; as the last argument to the methods:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;m.onclick(e =&amp;gt; this.agent.create(this.paramsFor(&#39;user&#39;), data =&amp;gt; {
-  if (data.result === &#39;OK&#39;) {
-    this.val(&#39;user.name&#39;, &#39;&#39;);
-  }
-  else {
-    // Do something to handle validation errors, for example.
-  }
-}));
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Furthermore, you can specify an &lt;em&gt;error handler&lt;/em&gt; after the callback:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;m.onclick(e =&amp;gt; this.agent.create(this.paramsFor(&#39;user&#39;), data =&amp;gt; {
-  if (data.result === &#39;OK&#39;) {
-    this.val(&#39;user.name&#39;, &#39;&#39;);
-  }
-  else {
-    // Do something to handle validation errors, for example.
-  }
-}, ex =&amp;gt; {
-  // Do some error handling.
-}));
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This error hander is called when an exception is raised due to some reasons
-(network errors, syntax errors, etc.).&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;changing-path-prefix&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;changing-the-path-prefix:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Changing the Path Prefix&lt;/h3&gt;
-
-&lt;p&gt;If the paths of the server-side API has a prefix, you should set the &lt;code&gt;basePath&lt;/code&gt;
-and &lt;code&gt;nestdIn&lt;/code&gt; properties.&lt;/p&gt;
-
-&lt;p&gt;The value of &lt;code&gt;basePath&lt;/code&gt; property is prepended to the resource name
-when the collection agent constructs the API paths. Its default value is &lt;code&gt;/&lt;/code&gt;.
-The values of &lt;code&gt;nestedIn&lt;/code&gt; property is inserted between the base path and
-the resource name. Its default value is &amp;ldquo;.&lt;/p&gt;
-
-&lt;p&gt;Suppose that you defined the &lt;code&gt;ArticleCollectionAgent&lt;/code&gt; class like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class ArticleCollectionAgent extends Cape.CollectionAgent {
-  constructor(options) {
-    super(options);
-    this.resourceName = &#39;articles&#39;;
-    this.basePath = &#39;/api/v2/&#39;;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And, you instantiated it as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class ArticleList extends Cape.Component {
-  init() {
-    this.agent = ArticleCollectionAgent.getInstance({ nestedIn: &#39;members/123/&#39; });
-    this.agent.attach(this);
-    this.agent.refresh();
-  }
-
-  render(m) {
-    // ...
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then, &lt;code&gt;this.agent&lt;/code&gt; will construct paths like these:&lt;/p&gt;
+&lt;h4 id=&#34;usage-1:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;/api/v2/members/123/articles&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;/api/v2/members/123/articles/99&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;create()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;create(callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;create(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Note that you should &lt;em&gt;not&lt;/em&gt; define the &lt;code&gt;init()&lt;/code&gt; method like this:&lt;/p&gt;
+&lt;p&gt;Send an Ajax request with POST method to the URL that is constructed
+by the &lt;code&gt;collectionPath()&lt;/code&gt; method.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  init() {
-    this.agent = ArticleCollectionAgent.getInstance();
-    this.agent.nestedIn = &#39;members/123/&#39;;
-    this.agent.attach(this);
-    this.agent.refresh();
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Superficially it may work well, but problems will occur when multiple components
-attach themselves to this agent.&lt;/p&gt;
+&lt;h3 id=&#34;data:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#data&lt;/h3&gt;
 
-&lt;p&gt;The &lt;code&gt;CollectionAgent&lt;/code&gt; class keeps a map of named instances of
-&lt;code&gt;CollectionAgent&lt;/code&gt; as key-value pairs in order to ensure a single instance
-per key, which is constructed using the &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt;
-options.&lt;/p&gt;
+&lt;p&gt;This property holds the object that is build from the JSON string returned
+from the server during &lt;code&gt;refresh()&lt;/code&gt; process if the response data from the server
+is a valid JSON string.&lt;/p&gt;
 
-&lt;p&gt;See &lt;a href=&#34;https://en.wikipedia.org/wiki/Multiton_pattern&#34;&gt;Multiton pattern&lt;/a&gt;
-&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; on &lt;em&gt;Wikipedia&lt;/em&gt;
-for the technical background.&lt;/p&gt;
+&lt;p&gt;Otherwise, it holds the response data from the server as is.&lt;/p&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;options&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;options:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Options&lt;/h3&gt;
+&lt;h3 id=&#34;datatype:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#dataType&lt;/h3&gt;
 
-&lt;p&gt;The class method &lt;code&gt;.getInstance()&lt;/code&gt; takes following options:&lt;/p&gt;
+&lt;p&gt;This property holds the type of data that you&amp;rsquo;re expecting from the server.
+The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt;, &lt;code&gt;&#39;text&#39;&lt;/code&gt; or &lt;code&gt;undefined&lt;/code&gt;.
+When the &lt;code&gt;dataType&lt;/code&gt; option is not defined, the type is detected automatically.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;default-error-hander&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;defaulterrorhandler:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#defaultErrorHandler()&lt;/h3&gt;
+
+&lt;p&gt;This method handles the exception thrown during the Fetch API.&lt;/p&gt;
+
+&lt;p&gt;The default implementation is just &lt;code&gt;console.log(ex)&lt;/code&gt;.
+Developers may override this for a better exception handling.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;destroy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;destroy:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#destroy()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;resourceName&lt;/code&gt;: the name of resource.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;basePath&lt;/code&gt;: the string that is added to the request path. Default value is &amp;lsquo;/&amp;rsquo;.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;nestedIn&lt;/code&gt;: the string that is inserted between path prefix and the resource
-name. Default value is &amp;ldquo;.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;adapter&lt;/code&gt;: the name of adapter (e.g., &amp;lsquo;rails&amp;rsquo;). Default is undefined.
-Default value can be changed by setting Cape.defaultAgentAdapter property.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;autoRefresh&lt;/code&gt;: a boolean value that controls unsafe Ajax requests trigger
-this.refresh(). Default is true.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;dataType&lt;/code&gt;: the type of data that you&amp;rsquo;re expecting from the server.
-The value must be &amp;lsquo;json&amp;rsquo;, &amp;lsquo;text&amp;rsquo; or undefined. Default is undefiend.
-When the dataType option is not defined, the type is detected automatically.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;paramName&lt;/code&gt;: the name of parameter to be used when the &lt;code&gt;objects&lt;/code&gt;
-property is initialized and refreshed. Default is undefiend.
-When the &lt;code&gt;pathName&lt;/code&gt; option is not defined, the name is derived from the
-&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;users&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;destroy()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;destroy(callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;destroy(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;See &lt;a href=&#34;../api/collection_agent#get-instance&#34;&gt;.getInstance()&lt;/a&gt; for details.&lt;/p&gt;
+&lt;p&gt;Send an Ajax request with DELETE method to the URL that is constructed
+by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;errors&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;errors:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#errors&lt;/h3&gt;
+
+&lt;p&gt;This property holds an object (key-value pairs) whose keys are the
+attribute names of the resource and whose values are the validation
+error messages.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;formname:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#formName&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;headers&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;headers:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#headers&lt;/h3&gt;
+
+&lt;p&gt;This property holds the HTTP headers for Ajax requests.
+The default valued is &lt;code&gt;{ &#39;Content-Type&#39;: &#39;application/json&#39; }&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;init&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;init:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#init()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-3:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;init()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;init(callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;init(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This method initializes the &lt;a href=&#34;#object&#34;&gt;object&lt;/a&gt; property by sending an Ajax
+request to the server.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;memberpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#memberPath()&lt;/h3&gt;
+
+&lt;p&gt;Returns the URL path to a resource in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#memberPath()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/users/9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/users/9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The &lt;code&gt;id&lt;/code&gt; part of the URL path (&lt;code&gt;9&lt;/code&gt;) derives from the &lt;code&gt;client.id&lt;/code&gt; property.&lt;/p&gt;
+
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;object&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;object:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#object&lt;/h3&gt;
+
+&lt;p&gt;This property holds an object (hash) that represents the resource which
+the agent is associated to.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;new-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;newpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#newPath()&lt;/h3&gt;
+
+&lt;p&gt;Returns the URL path to a &lt;em&gt;new&lt;/em&gt; resource in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#newPath()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/users/new&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/users/new&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/users/new&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/users/new&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A &lt;em&gt;new&lt;/em&gt; resource is a resource for a form for creating an resource.&lt;/p&gt;
+
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;nested-in&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;nestedin:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#nestedIn&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;param-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;paramname:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#paramName&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;resourcename:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#resourceName&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;singular:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#singular&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;singularpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#singularPath()&lt;/h3&gt;
+
+&lt;p&gt;Returns the URL path to a &lt;em&gt;singular&lt;/em&gt; resource in accordance with the
+values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#resourceName&lt;/th&gt;
+&lt;th&gt;#basePath&lt;/th&gt;
+&lt;th&gt;#nestedIn&lt;/th&gt;
+&lt;th&gt;#singularPath()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/account&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;/api/account&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/teams/123/account&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;account&lt;/td&gt;
+&lt;td&gt;/api/&lt;/td&gt;
+&lt;td&gt;teams/123/&lt;/td&gt;
+&lt;td&gt;/api/teams/123/account&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A singular resource is a resource that clients always look up without
+referencing an ID.&lt;/p&gt;
+
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;update&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;update:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#update()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-4:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;update()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;update(callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;update(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sends an Ajax request with PATCH method to the URL that is constructed
+by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.RoutingMapper - API Reference</title>
+      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#collection&#34;&gt;collection()&lt;/a&gt; -
+&lt;a href=&#34;#namespace&#34;&gt;namespace()&lt;/a&gt; -
+&lt;a href=&#34;#new&#34;&gt;new()&lt;/a&gt; -
+&lt;a href=&#34;#many&#34;&gt;many()&lt;/a&gt; -
+&lt;a href=&#34;#member&#34;&gt;member()&lt;/a&gt; -
+&lt;a href=&#34;#one&#34;&gt;one()&lt;/a&gt; -
+&lt;a href=&#34;#page&#34;&gt;page()&lt;/a&gt; -
+&lt;a href=&#34;#root&#34;&gt;root()&lt;/a&gt; -
+&lt;a href=&#34;#view&#34;&gt;view()&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;collection:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#collection()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;collection(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds a &lt;em&gt;collection&lt;/em&gt; route (a route which deals with multiple items).&lt;/p&gt;
+
+&lt;h4 id=&#34;example:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;, function(m) {
+    m.collection &#39;draft&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;articles/draft&lt;/code&gt; to &lt;code&gt;Articles.Draft&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;#collection()&lt;/code&gt; method must be called within a block that defines a plural resource.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;namespace:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#namespace()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-1:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;namespace(name, function)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Introduces a &lt;em&gt;function&lt;/em&gt; tha defines resources under the specified &lt;em&gt;namespace&lt;/em&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.namespace(&#39;admin&#39;, function(m) {
+    m.many(&#39;articles&#39;);
+  })
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above code defines four routes. See the table below:&lt;/p&gt;
+
+&lt;table class=&#34;table&#34;&gt;
+&lt;tr&gt;
+  &lt;th&gt;Hash pattern&lt;/th&gt;
+  &lt;th&gt;Container&lt;/th&gt;
+  &lt;th&gt;Component&lt;/th&gt;
+  &lt;th&gt;Namespace&lt;/th&gt;
+  &lt;th&gt;Resource&lt;/th&gt;
+  &lt;th&gt;Action&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;admin/articles&lt;/td&gt;
+  &lt;td&gt;Admin.Articles&lt;/td&gt;
+  &lt;td&gt;List&lt;/td&gt;
+  &lt;td&gt;admin&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;index&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;admin/articles/:id&lt;/td&gt;
+  &lt;td&gt;Admin.Articles&lt;/td&gt;
+  &lt;td&gt;Item&lt;/td&gt;
+  &lt;td&gt;admin&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;show&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;admin/articles/new&lt;/td&gt;
+  &lt;td&gt;Admin.Articles&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;admin&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;new&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;admin/articles/:id/edit&lt;/td&gt;
+  &lt;td&gt;Admin.Articles&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;admin&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;edit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;new&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;new:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#new()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-2:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;new(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds an alternate &lt;em&gt;new&lt;/em&gt; action to a resource, which can be plural or singular.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;, function(m) {
+    m.new &#39;preview&#39;
+  });
+  m.many(&#39;articles&#39;, function(m) {
+    m.new &#39;preview&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines two routes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From &lt;code&gt;account/new/preview&lt;/code&gt; to &lt;code&gt;Account.Preview&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;From &lt;code&gt;articles/new/preview&lt;/code&gt; to &lt;code&gt;Articles.Preview&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;many&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;many:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#many()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-3:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;many(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines four routes for a plural resource.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-1:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;);
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above code defines four routes. See the table below:&lt;/p&gt;
+
+&lt;table class=&#34;table&#34;&gt;
+&lt;tr&gt;
+  &lt;th&gt;Hash pattern&lt;/th&gt;
+  &lt;th&gt;Container&lt;/th&gt;
+  &lt;th&gt;Component&lt;/th&gt;
+  &lt;th&gt;Resource&lt;/th&gt;
+  &lt;th&gt;Action&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;Articles&lt;/td&gt;
+  &lt;td&gt;List&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;index&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;articles/:id&lt;/td&gt;
+  &lt;td&gt;Articles&lt;/td&gt;
+  &lt;td&gt;Item&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;show&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;articles/new&lt;/td&gt;
+  &lt;td&gt;Articles&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;new&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;articles/:id/edit&lt;/td&gt;
+  &lt;td&gt;Articles&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;articles&lt;/td&gt;
+  &lt;td&gt;edit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;usage-4:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;many(name, { only: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds routes for &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a plural resource.
+The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;index&amp;rdquo;, &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-2:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;, { only: [ &#39;index&#39;, &#39;show&#39; ] });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines two routes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From &lt;code&gt;articles/&lt;/code&gt; to &lt;code&gt;Articles.List&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;From &lt;code&gt;articles/:id&lt;/code&gt; to &lt;code&gt;Articles.Item&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;usage-5:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;many(name, { except: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds basic routes excepting &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a plural resource.
+The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;index&amp;rdquo;, &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-3:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;, { except: [ &#39;new&#39;, &#39;edit&#39; ] });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines two routes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From &lt;code&gt;articles/&lt;/code&gt; to &lt;code&gt;Articles.List&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;From &lt;code&gt;articles/:id&lt;/code&gt; to &lt;code&gt;Articles.Item&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;member:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#member()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-6:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;member(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds a &lt;em&gt;member&lt;/em&gt; route (a route which deals with a specific item).&lt;/p&gt;
+
+&lt;h4 id=&#34;example-4:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example.&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.many(&#39;articles&#39;, function(m) {
+    m.member &#39;info&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;articles/:id/info&lt;/code&gt; to &lt;code&gt;Articles.Info&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;#member()&lt;/code&gt; method must be called within a block that defines a plural resource.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;one&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;one:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#one()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-7:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;one(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines four routes for a singular resource.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-5:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;);
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above code defines four routes. See the table below:&lt;/p&gt;
+
+&lt;table class=&#34;table&#34;&gt;
+&lt;tr&gt;
+  &lt;th&gt;Hash pattern&lt;/th&gt;
+  &lt;th&gt;Container&lt;/th&gt;
+  &lt;th&gt;Component&lt;/th&gt;
+  &lt;th&gt;Resource&lt;/th&gt;
+  &lt;th&gt;Action&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;account&lt;/td&gt;
+  &lt;td&gt;Account&lt;/td&gt;
+  &lt;td&gt;Content&lt;/td&gt;
+  &lt;td&gt;account&lt;/td&gt;
+  &lt;td&gt;show&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;account/new&lt;/td&gt;
+  &lt;td&gt;Account&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;account&lt;/td&gt;
+  &lt;td&gt;new&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;account/edit&lt;/td&gt;
+  &lt;td&gt;Account&lt;/td&gt;
+  &lt;td&gt;Form&lt;/td&gt;
+  &lt;td&gt;account&lt;/td&gt;
+  &lt;td&gt;edit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;usage-8:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;one(name, { only: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds routes for &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a singular resource.
+The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-6:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.new(&#39;account&#39;, { only: [ &#39;show&#39; ] });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From &lt;code&gt;account/&lt;/code&gt; to &lt;code&gt;Account.Content&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;usage-9:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;one(name, { except: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds basic routes excepting &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a singular resource.
+The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-7:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;, { except: [ &#39;new&#39; ] });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines two routes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From &lt;code&gt;account&lt;/code&gt; to &lt;code&gt;Account.Content&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;From &lt;code&gt;account/edit&lt;/code&gt; to &lt;code&gt;Account.Form&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;page&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;page:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#page()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-10:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;page(hashPattern, componentClassPath)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines a route from &lt;em&gt;hashPattern&lt;/em&gt; to &lt;em&gt;componentClassPath.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-8:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.page(&#39;dashboard&#39;, &#39;dashboard&#39;);
+  m.page(&#39;about&#39;, &#39;docs.about&#39;);
+  m.page(&#39;help/:name&#39;, &#39;docs.help&#39;);
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;usage-11:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;page(hashPattern, componentClassPath, constraints)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines a route from &lt;em&gt;hashPattern&lt;/em&gt; to &lt;em&gt;componentClassPath&lt;/em&gt; with constraints
+on the parameters, which are specified by regular expression string.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-9:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.page(&#39;blog/:year/:month&#39;, &#39;blog.articles&#39;,
+    { year: &#39;201\\d&#39;, month: &#39;(:?0[1-9]|1[012])&#39; });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you should put &lt;code&gt;:?&lt;/code&gt; to make parentheses
+&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-non-capturing-parentheses&#34;&gt;non-capturing parentheses&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;root&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;root:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#root()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-12:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;root(componentClassPath)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines a route from &amp;ldquo;&amp;rdquo; to &lt;em&gt;componentClassPath.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-10:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  root(&#39;Dashboard&#39;)
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;view&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;view:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#view()&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-13:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;view(name)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adds a custom route to a singular resource.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-11:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.one(&#39;account&#39;, function(m) {
+    m.view &#39;image&#39;
+  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This defines a route from &lt;code&gt;account/image&lt;/code&gt; to &lt;code&gt;Account.Image&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;#view()&lt;/code&gt; method must be called within a block that defines a singular resource.&lt;/p&gt;
 </description>
     </item>
     
@@ -4679,6 +4900,398 @@ within the definition of &lt;code&gt;SimpleForm&lt;/code&gt; class.&lt;/p&gt;
 
 &lt;p&gt;You can find the source code of working demo on
 &lt;a href=&#34;https://github.com/oiax/capejs/tree/master/demo/mixins&#34;&gt;https://github.com/oiax/capejs/tree/master/demo/mixins&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Collection Agents</title>
+      <link>http://oiax.github.io/capejs/collection_agents/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/collection_agents/</guid>
+      <description>
+
+&lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;#basics&#34;&gt;Basics&lt;/a&gt; -
+&lt;a href=&#34;#setting-up&#34;&gt;Setting up&lt;/a&gt; -
+&lt;a href=&#34;#agent-adapters&#34;&gt;Agent Adapters&lt;/a&gt; -
+&lt;a href=&#34;#defining-classes&#34;&gt;Defining Classes&lt;/a&gt; -
+&lt;a href=&#34;#initialization&#34;&gt;Initialization&lt;/a&gt; -
+&lt;a href=&#34;#creating-resources&#34;&gt;Creating Resources&lt;/a&gt; -
+&lt;a href=&#34;#rest-operations&#34;&gt;REST Operations&lt;/a&gt; -
+&lt;a href=&#34;#callbacks-and-error-handlers&#34;&gt;Callbacks and Error Handlers&lt;/a&gt; -
+&lt;a href=&#34;#changing-path-prefix&#34;&gt;Changing the Path Prefix&lt;/a&gt; -
+&lt;a href=&#34;#options&#34;&gt;Options&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;basics&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;basics:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Basics&lt;/h3&gt;
+
+&lt;p&gt;The &lt;em&gt;collection agents&lt;/em&gt; are JavaScript objects that have following capabilities:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Keeping an array of objects that represent a &lt;em&gt;resource collection&lt;/em&gt; of the server.&lt;/li&gt;
+&lt;li&gt;Creating, updating and deleting the members of this collection by sending Ajax requests to the server.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cape.JS provides similar objects called &lt;em&gt;data stores&lt;/em&gt;.
+But, they lack &lt;em&gt;built-in&lt;/em&gt; Ajax functionalities so that
+you have to implement them on your own.&lt;/p&gt;
+
+&lt;p&gt;Generally speaking, you will prefer collection agents to data stores,
+if the server provides a set of RESTful APIs.&lt;/p&gt;
+
+&lt;p&gt;Note that the collection agents are introduced with the Cape.JS version 1.2.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;setting-up&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;setting-up:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Setting up&lt;/h3&gt;
+
+&lt;p&gt;For doing Ajax operations, the collection agents utilize
+&lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/API/Fetch_API&#34;&gt;Fetch API&lt;/a&gt;,
+which is supported only by some modern browsers.
+If you want to support Internet Explorer and Safari,
+you need to include a &lt;em&gt;pollyfill&lt;/em&gt; for the Fetch API into your application
+by adding the following lines to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section of your HTML files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script src=&amp;quot;//cdn.rawgit.com/jakearchibald/es6-promise/2.3.0/dist/es6-promise.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;//cdnjs.cloudflare.com/ajax/libs/fetch/0.9.0/fetch.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;agent-adapters&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;agent-adapters:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Agent Adapters&lt;/h3&gt;
+
+&lt;p&gt;Sometimes, the Ajax clients need to send a set of specific HTTP headers to the server.
+A Rails application requires a correct &lt;code&gt;X-CSRF-Token&lt;/code&gt; header, for example.&lt;/p&gt;
+
+&lt;p&gt;In order to cope with the peculiarities of the server, you can use a &lt;em&gt;agent adapter&lt;/em&gt;.
+As of &lt;code&gt;v1.2.0&lt;/code&gt;, the only built-in adapter is &lt;code&gt;Cape.AgentAdapters.RailsAdapter&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If your server is built on the Ruby on Rails, put the following line at the very
+beginning of your JavaScript code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;defining-classes&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;defining-classes:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Defining Classes&lt;/h3&gt;
+
+&lt;p&gt;In order to use collection agents, you should define a class inheriting the
+&lt;code&gt;Cape.CollectionAgent&lt;/code&gt; class.&lt;/p&gt;
+
+&lt;p&gt;You can define such a class calling &lt;code&gt;Cape.createCollectionAgentClass()&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var UserCollectionAgent = Cape.createCollectionAgentClass({
+  resourceName: &#39;users&#39;
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can also define it using the ES6 syntax:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserCollectionAgent extends Cape.CollectionAgent {
+  constructor(options) {
+    super(options);
+    this.resourceName = &#39;users&#39;;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The collection agent uses the &lt;code&gt;resourceName&lt;/code&gt; property to construct the URL paths
+as explained below.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;initialization&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;initialization:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Initialization&lt;/h3&gt;
+
+&lt;p&gt;Suppose that when you send an HTTP request &lt;code&gt;GET /users&lt;/code&gt; to the server,
+it returns the following JSON string:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;&amp;quot;users&amp;quot; : [
+  { &amp;quot;id&amp;quot;: 1, &amp;quot;name&amp;quot;: &amp;quot;John&amp;quot; },
+  { &amp;quot;id&amp;quot;: 2, &amp;quot;name&amp;quot;: &amp;quot;Anna&amp;quot; },
+  { &amp;quot;id&amp;quot;: 3, &amp;quot;name&amp;quot;: &amp;quot;Tommy&amp;quot; }
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, you can build a Cape.JS component like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
+  init() {
+    this.agent = UserCollectionAgent.getInstance();
+    this.agent.attach(this);
+    this.agent.refresh();
+  }
+
+  render(m) {
+    m.ul(m =&amp;gt; {
+      this.agent.objects.forEach(user =&amp;gt; {
+        m.li(user.name);
+      });
+    });
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that the &lt;code&gt;UserCollectionAgent.getInstance()&lt;/code&gt; method is a singleton factory method,
+which returns the same object always.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;attach&lt;/code&gt; method register the argument as an &lt;em&gt;event listener&lt;/em&gt; of the agent.
+With this the component will get notified
+when the &lt;em&gt;objects&lt;/em&gt; managed by the agent are changed.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;refresh&lt;/code&gt; method will trigger an Ajax request to the server and
+initialize the &lt;code&gt;objects&lt;/code&gt; property of the component.&lt;/p&gt;
+
+&lt;p&gt;In response to the notification from the agent,
+the component will render the following HTML fragment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;ul&amp;gt;
+  &amp;lt;li&amp;gt;John&amp;lt;/li&amp;gt;
+  &amp;lt;li&amp;gt;Anna&amp;lt;/li&amp;gt;
+  &amp;lt;li&amp;gt;Tommy&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;creating-resources&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;creating-resources:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Creating Resources&lt;/h3&gt;
+
+&lt;p&gt;Suppose that you can create a &lt;em&gt;user&lt;/em&gt; by sending a &lt;code&gt;POST&lt;/code&gt; request to the &lt;code&gt;/users&lt;/code&gt;
+with the following body:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;&amp;quot;user&amp;quot;: { &amp;quot;name&amp;quot;: &amp;quot;Nancy&amp;quot; }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, you can create a form for adding users like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
+  init() {
+    this.agent = UserCollectionAgent.getInstance();
+    this.agent.attach(this);
+    this.agent.refresh();
+  }
+
+  render(m) {
+    m.ul(m =&amp;gt; {
+      this.agent.objects.forEach(user =&amp;gt; {
+        m.li(user.name);
+      });
+    });
+    m.formFor(&#39;user&#39;, m =&amp;gt; {
+      m.textField(&#39;name&#39;);
+      m.onclick(e =&amp;gt; this.agent.create(this.paramsFor(&#39;user&#39;)));
+      m.btn(&#39;Create&#39;);
+    })
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;rest-operations&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;rest-operations:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;REST operations&lt;/h3&gt;
+
+&lt;p&gt;Cape.JS provides four basic methods for REST operations:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;./api/collection_agent#index&#34;&gt;#index()&lt;/a&gt; to get a collection of resources&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./api/collection_agent#create&#34;&gt;#create()&lt;/a&gt; to create a resource&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./api/collection_agent#update&#34;&gt;#update()&lt;/a&gt; to update (modify) a resource&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./api/collection_agent#destroy&#34;&gt;#destroy()&lt;/a&gt; to delete a resource&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These methods send an Ajax call using Rails like HTTP verbs and paths.
+If the resource name is &lt;code&gt;&#39;users&#39;&lt;/code&gt;, the HTTP verbs and paths will be as shown in the
+following table, where &lt;code&gt;:id&lt;/code&gt; is an integer denoting the value of object&amp;rsquo;s &lt;code&gt;id&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Method&lt;/th&gt;
+&lt;th&gt;HTTP Verb&lt;/th&gt;
+&lt;th&gt;Path&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;#index()&lt;/td&gt;
+&lt;td&gt;GET&lt;/td&gt;
+&lt;td&gt;/users&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;#create()&lt;/td&gt;
+&lt;td&gt;POST&lt;/td&gt;
+&lt;td&gt;/users&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;#update()&lt;/td&gt;
+&lt;td&gt;PATCH&lt;/td&gt;
+&lt;td&gt;/users/:id&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;#destroy()&lt;/td&gt;
+&lt;td&gt;DELETE&lt;/td&gt;
+&lt;td&gt;/users/:id&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The following is an example of code which modify the name of a user:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.agent.update(1, { name: &#39;johnny&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you specify other combinations of HTTP verb and path, you should use
+one of following five methods:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;./api/collection_agent#get&#34;&gt;#get()&lt;/a&gt; to send a &lt;code&gt;GET&lt;/code&gt; request&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./api/collection_agent#head&#34;&gt;#head()&lt;/a&gt; to send a &lt;code&gt;HEAD&lt;/code&gt; request&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./api/collection_agent#post&#34;&gt;#post()&lt;/a&gt; to send a &lt;code&gt;POST&lt;/code&gt; request&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./api/collection_agent#patch&#34;&gt;#patch()&lt;/a&gt; to send a &lt;code&gt;PATCH&lt;/code&gt; request&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./api/collection_agent#put&#34;&gt;#put()&lt;/a&gt; to send a &lt;code&gt;PUT&lt;/code&gt; request&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./api/collection_agent#delete&#34;&gt;#delete()&lt;/a&gt; to send a &lt;code&gt;DELETE&lt;/code&gt; request&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example, if you want to make a &lt;code&gt;PATCH&lt;/code&gt; request to the path &lt;code&gt;/users/123/move_up&lt;/code&gt;,
+write a code like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.agent.patch(&#39;move_up&#39;, 123, {});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;callbacks-and-error-handlers&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;callbacks-and-error-handlers:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Callbacks and Error Handlers&lt;/h3&gt;
+
+&lt;p&gt;If you want the collection agent to perform any jobs after the Ajax request,
+you can pass a &lt;em&gt;callback&lt;/em&gt; as the last argument to the methods:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;m.onclick(e =&amp;gt; this.agent.create(this.paramsFor(&#39;user&#39;), data =&amp;gt; {
+  if (data.result === &#39;OK&#39;) {
+    this.val(&#39;user.name&#39;, &#39;&#39;);
+  }
+  else {
+    // Do something to handle validation errors, for example.
+  }
+}));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Furthermore, you can specify an &lt;em&gt;error handler&lt;/em&gt; after the callback:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;m.onclick(e =&amp;gt; this.agent.create(this.paramsFor(&#39;user&#39;), data =&amp;gt; {
+  if (data.result === &#39;OK&#39;) {
+    this.val(&#39;user.name&#39;, &#39;&#39;);
+  }
+  else {
+    // Do something to handle validation errors, for example.
+  }
+}, ex =&amp;gt; {
+  // Do some error handling.
+}));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This error hander is called when an exception is raised due to some reasons
+(network errors, syntax errors, etc.).&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;changing-path-prefix&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;changing-the-path-prefix:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Changing the Path Prefix&lt;/h3&gt;
+
+&lt;p&gt;If the paths of the server-side API has a prefix, you should set the &lt;code&gt;basePath&lt;/code&gt;
+and &lt;code&gt;nestdIn&lt;/code&gt; properties.&lt;/p&gt;
+
+&lt;p&gt;The value of &lt;code&gt;basePath&lt;/code&gt; property is prepended to the resource name
+when the collection agent constructs the API paths. Its default value is &lt;code&gt;/&lt;/code&gt;.
+The values of &lt;code&gt;nestedIn&lt;/code&gt; property is inserted between the base path and
+the resource name. Its default value is &amp;ldquo;.&lt;/p&gt;
+
+&lt;p&gt;Suppose that you defined the &lt;code&gt;ArticleCollectionAgent&lt;/code&gt; class like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class ArticleCollectionAgent extends Cape.CollectionAgent {
+  constructor(options) {
+    super(options);
+    this.resourceName = &#39;articles&#39;;
+    this.basePath = &#39;/api/v2/&#39;;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And, you instantiated it as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class ArticleList extends Cape.Component {
+  init() {
+    this.agent = ArticleCollectionAgent.getInstance({ nestedIn: &#39;members/123/&#39; });
+    this.agent.attach(this);
+    this.agent.refresh();
+  }
+
+  render(m) {
+    // ...
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, &lt;code&gt;this.agent&lt;/code&gt; will construct paths like these:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/api/v2/members/123/articles&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/api/v2/members/123/articles/99&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note that you should &lt;em&gt;not&lt;/em&gt; define the &lt;code&gt;init()&lt;/code&gt; method like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  init() {
+    this.agent = ArticleCollectionAgent.getInstance();
+    this.agent.nestedIn = &#39;members/123/&#39;;
+    this.agent.attach(this);
+    this.agent.refresh();
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Superficially it may work well, but problems will occur when multiple components
+attach themselves to this agent.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;CollectionAgent&lt;/code&gt; class keeps a map of named instances of
+&lt;code&gt;CollectionAgent&lt;/code&gt; as key-value pairs in order to ensure a single instance
+per key, which is constructed using the &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt;
+options.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;https://en.wikipedia.org/wiki/Multiton_pattern&#34;&gt;Multiton pattern&lt;/a&gt;
+&lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt; on &lt;em&gt;Wikipedia&lt;/em&gt;
+for the technical background.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;options&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;options:0b3dd9ce14f479a81f8252af01a87547&#34;&gt;Options&lt;/h3&gt;
+
+&lt;p&gt;The class method &lt;code&gt;.getInstance()&lt;/code&gt; takes following options:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;resourceName&lt;/code&gt;: the name of resource.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;basePath&lt;/code&gt;: the string that is added to the request path. Default value is &amp;lsquo;/&amp;rsquo;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nestedIn&lt;/code&gt;: the string that is inserted between path prefix and the resource
+name. Default value is &amp;ldquo;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;adapter&lt;/code&gt;: the name of adapter (e.g., &amp;lsquo;rails&amp;rsquo;). Default is undefined.
+Default value can be changed by setting Cape.defaultAgentAdapter property.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;autoRefresh&lt;/code&gt;: a boolean value that controls unsafe Ajax requests trigger
+this.refresh(). Default is true.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dataType&lt;/code&gt;: the type of data that you&amp;rsquo;re expecting from the server.
+The value must be &amp;lsquo;json&amp;rsquo;, &amp;lsquo;text&amp;rsquo; or undefined. Default is undefiend.
+When the dataType option is not defined, the type is detected automatically.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;paramName&lt;/code&gt;: the name of parameter to be used when the &lt;code&gt;objects&lt;/code&gt;
+property is initialized and refreshed. Default is undefiend.
+When the &lt;code&gt;pathName&lt;/code&gt; option is not defined, the name is derived from the
+&lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;users&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;See &lt;a href=&#34;../api/collection_agent#get-instance&#34;&gt;.getInstance()&lt;/a&gt; for details.&lt;/p&gt;
 </description>
     </item>
     

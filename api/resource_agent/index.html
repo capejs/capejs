@@ -218,6 +218,8 @@
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#adapter">#adapter</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/api/collection_agent#after-refresh">#afterRefresh()</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#ajax">#ajax()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#attach">#attach()</a></li>
@@ -253,6 +255,8 @@
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#member-path">#memberPath()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#objects">#objects</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/api/collection_agent#params-for-refresh">#paramsForRefresh()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#param-name">#paramName</a></li>
           
@@ -482,8 +486,8 @@ When the <code>formName</code> option is not defined, the name is derived from t
 <code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>user</code>.</li>
 <li><strong>paramName:</strong> the name of parameter to be used when the <code>object</code>
 property is initialized and the request parameter is constructed.
-Default is undefiend.
-When the <code>pathName</code> option is not defined, the name is derived from the
+Default is <code>undefiend</code>.
+When the <code>paramName</code> option is not defined, the name is derived from the
 <code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>user</code>.</li>
 </ul>
 
@@ -550,8 +554,7 @@ and methods. Developers should not tamper with it.</p>
 
 <h3 id="adapter:04a8a0920f0d1f82717b9a315e5e6489">#adapter</h3>
 
-<p>This property holds the name of adapter (e.g., &lsquo;rails&rsquo;). Default is undefined.
-Default value can be changed by setting <code>Cape.defaultAgentAdapter</code> property.</p>
+<p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="ajax"></a></p>
 
@@ -560,12 +563,12 @@ Default value can be changed by setting <code>Cape.defaultAgentAdapter</code> pr
 <h4 id="usage:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
 
 <ul>
-<li><strong>attr(httpMethod, path)</strong></li>
-<li><strong>attr(httpMethod, path, callback)</strong></li>
-<li><strong>attr(httpMethod, path, callback, errorHandler)</strong></li>
+<li><strong>ajax(httpMethod, path)</strong></li>
+<li><strong>ajax(httpMethod, path, callback)</strong></li>
+<li><strong>ajax(httpMethod, path, callback, errorHandler)</strong></li>
 </ul>
 
-<p>Send an Ajax request to the server.</p>
+<p>Sends an Ajax request to the server.</p>
 
 <h4 id="example-1:04a8a0920f0d1f82717b9a315e5e6489">Example</h4>
 
@@ -592,8 +595,7 @@ var Page = Cape.createComponentClass({
 
 <h3 id="basepath:04a8a0920f0d1f82717b9a315e5e6489">#basePath</h3>
 
-<p>This property holds the string that is added to the request path.
-Default value is <code>'/'</code>.</p>
+<p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="client"></a></p>
 
@@ -621,28 +623,28 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <tbody>
 <tr>
-<td>users</td>
+<td>user</td>
 <td></td>
 <td></td>
 <td>/users</td>
 </tr>
 
 <tr>
-<td>users</td>
+<td>user</td>
 <td>/api/</td>
 <td></td>
 <td>/api/users</td>
 </tr>
 
 <tr>
-<td>users</td>
+<td>user</td>
 <td></td>
 <td>teams/123/</td>
 <td>/teams/123/users</td>
 </tr>
 
 <tr>
-<td>users</td>
+<td>user</td>
 <td>/api/</td>
 <td>teams/123/</td>
 <td>/api/teams/123/users</td>
@@ -692,7 +694,7 @@ When the <code>dataType</code> option is not defined, the type is detected autom
 <p>This method handles the exception thrown during the Fetch API.</p>
 
 <p>The default implementation is just <code>console.log(ex)</code>.
-Developers should override this for a better exception handling.</p>
+Developers may override this for a better exception handling.</p>
 
 <p><a class="anchor" id="destroy"></a></p>
 
@@ -721,11 +723,7 @@ error messages.</p>
 
 <h3 id="formname:04a8a0920f0d1f82717b9a315e5e6489">#formName</h3>
 
-<p>This property holds the name of form with which the users edit the properties
-of the resource. Default is <code>undefiend</code>.</p>
-
-<p>When the <code>formName</code> option is not defined, the name is derived from the
-<code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>user</code>.</p>
+<p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="headers"></a></p>
 
@@ -738,7 +736,16 @@ The default valued is <code>{ 'Content-Type': 'application/json' }</code>.</p>
 
 <h3 id="init:04a8a0920f0d1f82717b9a315e5e6489">#init()</h3>
 
-<p>This property holds the object that represents the resource.</p>
+<h4 id="usage-3:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
+
+<ul>
+<li><strong>init()</strong></li>
+<li><strong>init(callback)</strong></li>
+<li><strong>init(callback, errorHandler)</strong></li>
+</ul>
+
+<p>This method initializes the <a href="#object">object</a> property by sending an Ajax
+request to the server.</p>
 
 <p><a class="anchor" id="member-path"></a></p>
 
@@ -759,28 +766,28 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <tbody>
 <tr>
-<td>users</td>
+<td>user</td>
 <td></td>
 <td></td>
 <td>/users/9</td>
 </tr>
 
 <tr>
-<td>users</td>
+<td>user</td>
 <td>/api/</td>
 <td></td>
 <td>/api/users/9</td>
 </tr>
 
 <tr>
-<td>users</td>
+<td>user</td>
 <td></td>
 <td>teams/123/</td>
 <td>/teams/123/users/9</td>
 </tr>
 
 <tr>
-<td>users</td>
+<td>user</td>
 <td>/api/</td>
 <td>teams/123/</td>
 <td>/api/teams/123/users/9</td>
@@ -795,6 +802,9 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 <p><a class="anchor" id="object"></a></p>
 
 <h3 id="object:04a8a0920f0d1f82717b9a315e5e6489">#object</h3>
+
+<p>This property holds an object (hash) that represents the resource which
+the agent is associated to.</p>
 
 <p><a class="anchor" id="new-path"></a></p>
 
@@ -815,28 +825,28 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <tbody>
 <tr>
-<td>account</td>
+<td>user</td>
 <td></td>
 <td></td>
 <td>/users/new</td>
 </tr>
 
 <tr>
-<td>account</td>
+<td>user</td>
 <td>/api/</td>
 <td></td>
 <td>/api/users/new</td>
 </tr>
 
 <tr>
-<td>account</td>
+<td>user</td>
 <td></td>
 <td>teams/123/</td>
 <td>/teams/123/users/new</td>
 </tr>
 
 <tr>
-<td>account</td>
+<td>user</td>
 <td>/api/</td>
 <td>teams/123/</td>
 <td>/api/teams/123/users/new</td>
@@ -852,17 +862,25 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <h3 id="nestedin:04a8a0920f0d1f82717b9a315e5e6489">#nestedIn</h3>
 
+<p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
+
 <p><a class="anchor" id="param-name"></a></p>
 
 <h3 id="paramname:04a8a0920f0d1f82717b9a315e5e6489">#paramName</h3>
+
+<p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="resource-name"></a></p>
 
 <h3 id="resourcename:04a8a0920f0d1f82717b9a315e5e6489">#resourceName</h3>
 
+<p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
+
 <p><a class="anchor" id="singular"></a></p>
 
 <h3 id="singular:04a8a0920f0d1f82717b9a315e5e6489">#singular</h3>
+
+<p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="singular-path"></a></p>
 
@@ -921,7 +939,7 @@ referencing an ID.</p>
 
 <h3 id="update:04a8a0920f0d1f82717b9a315e5e6489">#update()</h3>
 
-<h4 id="usage-3:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
+<h4 id="usage-4:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
 
 <ul>
 <li><strong>update()</strong></li>
@@ -929,7 +947,7 @@ referencing an ID.</p>
 <li><strong>update(callback, errorHandler)</strong></li>
 </ul>
 
-<p>Send an Ajax request with PATCH method to the URL that is constructed
+<p>Sends an Ajax request with PATCH method to the URL that is constructed
 by the <code>memberPath()</code> method.</p>
 
         </div>
