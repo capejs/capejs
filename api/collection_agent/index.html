@@ -222,8 +222,6 @@
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#ajax">#ajax()</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/api/collection_agent#attach">#attach()</a></li>
-          
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#auto-refresh">#autoRefresh</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#base-path">#basePath</a></li>
@@ -240,11 +238,7 @@
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#destroy">#destory()</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/api/collection_agent#detach">#detach()</a></li>
-          
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#get">#get</a></li>
-          
-            <li><a href="http://oiax.github.io/capejs/api/collection_agent#get-instance">.getInstance()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#head">#head()</a></li>
           
@@ -263,8 +257,6 @@
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#patch">#patch()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#post">#post()</a></li>
-          
-            <li><a href="http://oiax.github.io/capejs/api/collection_agent#propagate">#propagate()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#put">#put()</a></li>
           
@@ -437,7 +429,6 @@
 <a href="#adapter">#adapter</a> -
 <a href="#after-refresh">#afterRefresh()</a> -
 <a href="#ajax">#ajax()</a> -
-<a href="#attach">#attach()</a> -
 <a href="#auto-refresh">#autoRefresh</a> -
 <a href="#base-path">#basePath</a> -
 <a href="#collection-path">#collectionPath()</a> -
@@ -447,9 +438,7 @@
 <a href="#default-error-handler">#defaultErrorHandler()</a> -
 <a href="#delete">#delete()</a> -
 <a href="#destroy">#destroy()</a> -
-<a href="#detach">#detach()</a> -
 <a href="#get">#get()</a> -
-<a href="#get-instance">.getInstance()</a> -
 <a href="#head">#head()</a> -
 <a href="#headers">#headers</a> -
 <a href="#index">#index()</a> -
@@ -460,7 +449,6 @@
 <a href="#params-for-refresh">#paramsForRefresh()</a> -
 <a href="#patch">#patch()</a> -
 <a href="#post">#post()</a> -
-<a href="#propagate">#propagate()</a> -
 <a href="#put">#put()</a> -
 <a href="#refresh">#refresh()</a> -
 <a href="#resource-name">#resourceName</a> -
@@ -498,10 +486,11 @@ When the <code>paramName</code> option is not defined, the name is derived from 
 <h4 id="example:7cf50d10a54b2c097102d0c8a749f9fb">Example</h4>
 
 <pre><code class="language-javascript">Cape.defaultAgentAdapter = 'rails';
-var agent1 = new Cape.CollectionAgent({ resourceName: 'users' });
-var agent2 = new Cape.CollectionAgent({ resourceName: 'tags', basePath: '/api/' });
-var agent3 = new Cape.CollectionAgent({ resourceName: 'members', nestedIn: 'teams/123/' });
-var agent4 = new Cape.CollectionAgent({ resourceName: 'articles', dataType: 'text' });
+var comp = new Cape.Component();
+var agent1 = new Cape.CollectionAgent(comp, { resourceName: 'users' });
+var agent2 = new Cape.CollectionAgent(comp, { resourceName: 'tags', basePath: '/api/' });
+var agent3 = new Cape.CollectionAgent(comp, { resourceName: 'members', nestedIn: 'teams/123/' });
+var agent4 = new Cape.CollectionAgent(comp, { resourceName: 'articles', dataType: 'text' });
 </code></pre>
 
 <p><a class="anchor" id="_"></a></p>
@@ -524,7 +513,7 @@ and methods. Developers should not tamper with it.</p>
 <p>This method gets called by the <code>refresh()</code> method after it updates the <code>data</code>
 and <code>objects</code> properties.</p>
 
-<p>The <code>afterRefresh()</code> does nothing by default.
+<p>The <code>afterRefresh()</code> does <code>this.client.refresh()</code> by default.
 Developers may override this method to let the agent do some
 post-processing jobs.</p>
 
@@ -547,20 +536,6 @@ post-processing jobs.</p>
 </ul>
 
 <p>Sends an Ajax request to the server.</p>
-
-<p><a class="anchor" id="attach"></a></p>
-
-<h3 id="attach:7cf50d10a54b2c097102d0c8a749f9fb">#attach()</h3>
-
-<h4 id="usage-1:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
-
-<ul>
-<li><strong>attach(component)</strong></li>
-</ul>
-
-<p>This method registers the <em>component</em> as a target of <em>propagation</em> from this data store.</p>
-
-<p>See <a href="#propagate">#propagate()</a> for details.</p>
 
 <p><a class="anchor" id="auto-refresh"></a></p>
 
@@ -628,7 +603,7 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <h3 id="create:7cf50d10a54b2c097102d0c8a749f9fb">#create()</h3>
 
-<h4 id="usage-2:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-1:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>create(params)</strong></li>
@@ -651,13 +626,8 @@ which takes an exception and does some error-handling jobs.</p>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {
-    this.agent = Cape.CollectionAgent.getInstance({ resourceName: 'users' })
-    this.agent.attach(this)
+    this.agent = new Cape.CollectionAgent(this, { resourceName: 'users' })
     this.agent.refresh()
-  }
-
-  beforeUnmount() {
-    this.agent.detach(this)
   }
 
   render(m) {
@@ -707,7 +677,7 @@ Developers may override this for a better exception handling.</p>
 
 <h3 id="delete:7cf50d10a54b2c097102d0c8a749f9fb">#delete()</h3>
 
-<h4 id="usage-3:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-2:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>delete(actionName, id, params)</strong></li>
@@ -722,7 +692,7 @@ by given arguments.</p>
 
 <h3 id="destroy:7cf50d10a54b2c097102d0c8a749f9fb">#destroy()</h3>
 
-<h4 id="usage-4:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-3:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>destroy(id)</strong></li>
@@ -747,13 +717,8 @@ which takes an exception and does some error-handling jobs.</p>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {
-    this.agent = Cape.CollectionAgent.getInstance({ resourceName: 'users' })
-    this.agent.attach(this)
+    this.agent = new Cape.CollectionAgent(this, { resourceName: 'users' })
     this.agent.refresh()
-  }
-
-  beforeUnmount() {
-    this.agent.detach(this)
   }
 
   render(m) {
@@ -772,25 +737,11 @@ which takes an exception and does some error-handling jobs.</p>
 }
 </code></pre>
 
-<p><a class="anchor" id="detach"></a></p>
-
-<h3 id="detach:7cf50d10a54b2c097102d0c8a749f9fb">#detach()</h3>
-
-<h4 id="usage-5:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
-
-<ul>
-<li><strong>detach(component)</strong></li>
-</ul>
-
-<p>This method removes the <em>component</em> from the list of targets of <em>propagation</em> from this agent.</p>
-
-<p>See <a href="#propagate">#propagate()</a> for details.</p>
-
 <p><a class="anchor" id="get"></a></p>
 
 <h3 id="get:7cf50d10a54b2c097102d0c8a749f9fb">#get()</h3>
 
-<h4 id="usage-6:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-4:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>get(actionName, id, params)</strong></li>
@@ -805,7 +756,7 @@ by given arguments.</p>
 
 <h3 id="getinstance:7cf50d10a54b2c097102d0c8a749f9fb">.getInstance()</h3>
 
-<h4 id="usage-7:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-5:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <p>Returns an instance of collection agent.</p>
 
@@ -820,7 +771,7 @@ the key.</p>
 
 <h3 id="head:7cf50d10a54b2c097102d0c8a749f9fb">#head()</h3>
 
-<h4 id="usage-8:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-6:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>head(actionName, id, params)</strong></li>
@@ -843,7 +794,7 @@ by given arguments.</p>
 
 <h3 id="index:7cf50d10a54b2c097102d0c8a749f9fb">#index()</h3>
 
-<h4 id="usage-9:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-7:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>index(params)</strong></li>
@@ -858,7 +809,7 @@ by the <code>collectionPath()</code> method and the <code>params</code>.</p>
 
 <h3 id="memberpath:7cf50d10a54b2c097102d0c8a749f9fb">#memberPath()</h3>
 
-<h4 id="usage-10:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-8:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>memberPath(id)</strong></li>
@@ -935,7 +886,7 @@ collection of resources which the agent is associated to.</p>
 
 <h3 id="paramsforrefresh:7cf50d10a54b2c097102d0c8a749f9fb">#paramsForRefresh()</h3>
 
-<h4 id="usage-11:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-9:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>paramsForRefresh()</strong></li>
@@ -965,7 +916,7 @@ the query string of the request URL during the <code>refresh()</code> process.</
 
 <h3 id="patch:7cf50d10a54b2c097102d0c8a749f9fb">#patch()</h3>
 
-<h4 id="usage-12:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-10:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>patch(actionName, id, params)</strong></li>
@@ -980,7 +931,7 @@ by given arguments.</p>
 
 <h3 id="post:7cf50d10a54b2c097102d0c8a749f9fb">#post()</h3>
 
-<h4 id="usage-13:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-11:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>post(actionName, id, params)</strong></li>
@@ -991,30 +942,11 @@ by given arguments.</p>
 <p>Sends an Ajax request with POST method to the URL that is constructed
 by given arguments.</p>
 
-<p><a class="anchor" id="propagate"></a></p>
-
-<h3 id="propagate:7cf50d10a54b2c097102d0c8a749f9fb">#propagate()</h3>
-
-<h4 id="usage-14:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
-
-<ul>
-<li><strong>propagate()</strong></li>
-</ul>
-
-<p>This method triggars the <em>propagation</em> process, which calls the <code>#refresh()</code> method
-of all components registerd as targets of <em>propagation</em> of this agent.</p>
-
-<p>Eventually, the <code>#refresh</code> method of each component calls its <code>#render()</code> method,
-which has to be defined by developers.</p>
-
-<p>Thus, we can assure that each time the data of an agent changes,
-its all dependent components get refreshed.</p>
-
 <p><a class="anchor" id="put"></a></p>
 
 <h3 id="put:7cf50d10a54b2c097102d0c8a749f9fb">#put()</h3>
 
-<h4 id="usage-15:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-12:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>put(actionName, id, params)</strong></li>
@@ -1043,7 +975,7 @@ by the <a href="#collection-path">#collectionPath()</a> and
 
 <h3 id="update:7cf50d10a54b2c097102d0c8a749f9fb">#update()</h3>
 
-<h4 id="usage-16:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-13:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
 
 <ul>
 <li><strong>update(id, params)</strong></li>
@@ -1070,13 +1002,8 @@ which takes an exception and does some error-handling jobs.</p>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {
-    this.agent = Cape.CollectionAgent.getInstance({ resourceName: 'users' })
-    this.agent.attach(this)
+    this.agent = new Cape.CollectionAgent(this, { resourceName: 'users' })
     this.agent.refresh()
-  }
-
-  beforeUnmount() {
-    this.agent.detach(this)
   }
 
   render(m) {

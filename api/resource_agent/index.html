@@ -222,8 +222,6 @@
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#ajax">#ajax()</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/api/collection_agent#attach">#attach()</a></li>
-          
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#auto-refresh">#autoRefresh</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#base-path">#basePath</a></li>
@@ -240,11 +238,7 @@
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#destroy">#destory()</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/api/collection_agent#detach">#detach()</a></li>
-          
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#get">#get</a></li>
-          
-            <li><a href="http://oiax.github.io/capejs/api/collection_agent#get-instance">.getInstance()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#head">#head()</a></li>
           
@@ -263,8 +257,6 @@
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#patch">#patch()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#post">#post()</a></li>
-          
-            <li><a href="http://oiax.github.io/capejs/api/collection_agent#propagate">#propagate()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#put">#put()</a></li>
           
@@ -474,6 +466,8 @@ a <code>Cape.Component</code> object and an optional object (options) as argumen
 name. Default value is &ldquo;.</li>
 <li><strong>adapter:</strong> the name of adapter (e.g., <code>'rails'</code>). Default is <code>undefined</code>.
 Default value can be changed by setting <code>Cape.defaultAgentAdapter</code> property.</li>
+<li><strong>autoRefresh:</strong> a boolean value that controls if a <code>POST/PATCH/PUT/DELETE</code> request
+triggers <code>this.refresh()</code> after its completion. Default is <code>false</code>.</li>
 <li><strong>dataType:</strong> the type of data that you&rsquo;re expecting from the server.
 The value must be <code>'json'</code> (default) or <code>'text'</code>.</li>
 <li><strong>pathPrefix:</strong> the string that is added to the request path.
@@ -563,9 +557,9 @@ and methods. Developers should not tamper with it.</p>
 <h4 id="usage:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
 
 <ul>
-<li><strong>ajax(httpMethod, path)</strong></li>
-<li><strong>ajax(httpMethod, path, callback)</strong></li>
-<li><strong>ajax(httpMethod, path, callback, errorHandler)</strong></li>
+<li><strong>ajax(httpMethod, path, params)</strong></li>
+<li><strong>ajax(httpMethod, path, params, callback)</strong></li>
+<li><strong>ajax(httpMethod, path, params, callback, errorHandler)</strong></li>
 </ul>
 
 <p>Sends an Ajax request to the server.</p>
@@ -582,7 +576,7 @@ var Page = Cape.createComponentClass({
 
   render: function(m) {
     m.onclick(e =&gt; {
-      this.agent.ajax('POST', '/counter', function(data) {
+      this.agent.ajax('POST', '/counter', {}, function(data) {
         alert(data);
       })
     });

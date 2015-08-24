@@ -287,8 +287,8 @@ beginning of your JavaScript code:</p>
 <p>You can also define it using the ES6 syntax:</p>
 
 <pre><code class="language-javascript">class UserCollectionAgent extends Cape.CollectionAgent {
-  constructor(options) {
-    super(options);
+  constructor(client, options) {
+    super(client, options);
     this.resourceName = 'users';
   }
 }
@@ -315,8 +315,7 @@ it returns the following JSON string:</p>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {
-    this.agent = UserCollectionAgent.getInstance();
-    this.agent.attach(this);
+    this.agent = new UserCollectionAgent(this);
     this.agent.refresh();
   }
 
@@ -364,8 +363,7 @@ with the following body:</p>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {
-    this.agent = UserCollectionAgent.getInstance();
-    this.agent.attach(this);
+    this.agent = new UserCollectionAgent(this);
     this.agent.refresh();
   }
 
@@ -521,8 +519,7 @@ the resource name. Its default value is &ldquo;.</p>
 
 <pre><code class="language-javascript">class ArticleList extends Cape.Component {
   init() {
-    this.agent = ArticleCollectionAgent.getInstance({ nestedIn: 'members/123/' });
-    this.agent.attach(this);
+    this.agent = new ArticleCollectionAgent(this, { nestedIn: 'members/123/' });
     this.agent.refresh();
   }
 
@@ -542,9 +539,8 @@ the resource name. Its default value is &ldquo;.</p>
 <p>Note that you should <em>not</em> define the <code>init()</code> method like this:</p>
 
 <pre><code class="language-javascript">  init() {
-    this.agent = ArticleCollectionAgent.getInstance();
+    this.agent = new ArticleCollectionAgent();
     this.agent.nestedIn = 'members/123/';
-    this.agent.attach(this);
     this.agent.refresh();
   }
 }
