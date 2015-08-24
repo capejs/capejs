@@ -77,31 +77,15 @@ var Cape = require('./utilities');
 //     which can be initialized by it are `resourceName`, `basePath`,
 //     `nestedIn`, `adapter`, `autoRefresh`, `dataType`, and `paramName`.
 //
-var CollectionAgent = function CollectionAgent(options) {
+var CollectionAgent = function CollectionAgent(client, options) {
   this._ = new _Internal(this);
   this.init(options);
 
+  this.client = client;
   this.objects = [];
   this.data = undefined;
   this.headers = { 'Content-Type': 'application/json' };
 };
-
-// Here, we adopt the multiton design pattern (a kind of singleton pattern).
-// The `CollectionAgent` class keeps a map of named instances of
-// `CollectionAgent` as key-value pairs in order to ensure a single instance
-// per key.
-CollectionAgent.getInstance = function(options) {
-  options = options || {};
-  var key = options.basePath || '/';
-  if (options.nestedIn) key = key + options.nestedIn;
-  if (options.resourceName) key = key + options.resourceName;
-  this.instances = this.instances || {};
-  if (!this.instances[key]) this.instances[key] = new this(options);
-  return this.instances[key];
-}
-
-var PropagatorMethods = require('./mixins/propagator_methods');
-Cape.extend(CollectionAgent.prototype, PropagatorMethods);
 
 Cape.extend(CollectionAgent.prototype, {
   init: function(options) {
@@ -130,7 +114,6 @@ Cape.extend(CollectionAgent.prototype, {
       self.data = data;
       self.refreshObjects(data);
       self.afterRefresh();
-      self.propagate();
     })
   },
 
@@ -162,6 +145,7 @@ Cape.extend(CollectionAgent.prototype, {
   // Developers may override this method to let the agent do some
   // post-processing jobs.
   afterRefresh: function() {
+    this.client.refresh();
   },
 
   index: function(params, callback, errorHandler) {
@@ -245,29 +229,9 @@ var AgentCommonInnerMethods = require('./mixins/agent_common_inner_methods');
 // Internal methods of Cape.CollectionAgent
 Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
 
-Cape.extend(_Internal.prototype, {
-  dataHandler: function(data, callback) {
-    if (this.main.dataType === undefined) {
-      try {
-        this.main.data = JSON.parse(data);
-      }
-      catch (e) {
-        this.main.data = data;
-      }
-    }
-    else {
-      this.main.data = data;
-    }
-
-    if (typeof callback === 'function') {
-      callback.call(this.main, this.main.data);
-    }
-  }
-});
-
 module.exports = CollectionAgent;
 
-},{"./mixins/agent_common_inner_methods":7,"./mixins/agent_common_methods":8,"./mixins/propagator_methods":9,"./utilities":13,"inflected":17}],4:[function(require,module,exports){
+},{"./mixins/agent_common_inner_methods":7,"./mixins/agent_common_methods":8,"./utilities":13,"inflected":17}],4:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -968,6 +932,24 @@ var AgentCommonInnerMethods = {
     else {
       throw new Error('Unsupported data type: ' + this.main.dataType);
     }
+  },
+
+  dataHandler: function(data, callback) {
+    if (this.main.dataType === undefined) {
+      try {
+        this.main.data = JSON.parse(data);
+      }
+      catch (e) {
+        this.main.data = data;
+      }
+    }
+    else {
+      this.main.data = data;
+    }
+
+    if (typeof callback === 'function') {
+      callback.call(this.main.client, this.main.data);
+    }
   }
 }
 
@@ -1275,24 +1257,6 @@ Cape.extend(_Internal.prototype, {
     else if (this.main.object) {
       this.main.client.setValues(formName, this.main.object);
       this.main.client.refresh();
-    }
-  },
-
-  dataHandler: function(data, callback) {
-    if (this.main.dataType === undefined) {
-      try {
-        this.main.data = JSON.parse(data);
-      }
-      catch (e) {
-        this.main.data = data;
-      }
-    }
-    else {
-      this.main.data = data;
-    }
-
-    if (typeof callback === 'function') {
-      callback.call(this.main.client, this.main.data);
     }
   }
 });
@@ -1916,7 +1880,6 @@ Cape.createCollectionAgentClass = function(methods) {
     this._.applyAdapter();
   };
   Cape.extend(klass.prototype, Cape.CollectionAgent.prototype, methods);
-  klass.getInstance = Cape.CollectionAgent.getInstance;
   return klass;
 }
 
@@ -1927,6 +1890,7 @@ Cape.createResourceAgentClass = function(methods) {
       methods.constructor.apply(this, arguments);
     this._.applyAdapter();
   };
+  Cape.extend(klass.prototype, Cape.ResourceAgent.prototype, methods);
   return klass;
 }
 
@@ -1999,7 +1963,8 @@ Cape.extend(VirtualForms.prototype, {
           elem.checked = (elem.value === tForm[elemName]);
         }
         else {
-          elem.value = tForm[elemName] ? tForm[elemName] : '';
+          if (elem.value !== tForm[elemName])
+            elem.value = tForm[elemName] ? tForm[elemName] : '';
         }
       }
     }
@@ -3403,6 +3368,7 @@ var applyProperties = require("./apply-properties")
 var isWidget = require("../vnode/is-widget.js")
 var VPatch = require("../vnode/vpatch.js")
 
+var render = require("./create-element")
 var updateWidget = require("./update-widget")
 
 module.exports = applyPatch
@@ -3450,7 +3416,7 @@ function removeNode(domNode, vNode) {
 }
 
 function insertNode(parentNode, vNode, renderOptions) {
-    var newNode = renderOptions.render(vNode, renderOptions)
+    var newNode = render(vNode, renderOptions)
 
     if (parentNode) {
         parentNode.appendChild(newNode)
@@ -3467,7 +3433,7 @@ function stringPatch(domNode, leftVNode, vText, renderOptions) {
         newNode = domNode
     } else {
         var parentNode = domNode.parentNode
-        newNode = renderOptions.render(vText, renderOptions)
+        newNode = render(vText, renderOptions)
 
         if (parentNode && newNode !== domNode) {
             parentNode.replaceChild(newNode, domNode)
@@ -3484,7 +3450,7 @@ function widgetPatch(domNode, leftVNode, widget, renderOptions) {
     if (updating) {
         newNode = widget.update(leftVNode, domNode) || domNode
     } else {
-        newNode = renderOptions.render(widget, renderOptions)
+        newNode = render(widget, renderOptions)
     }
 
     var parentNode = domNode.parentNode
@@ -3502,7 +3468,7 @@ function widgetPatch(domNode, leftVNode, widget, renderOptions) {
 
 function vNodePatch(domNode, leftVNode, vNode, renderOptions) {
     var parentNode = domNode.parentNode
-    var newNode = renderOptions.render(vNode, renderOptions)
+    var newNode = render(vNode, renderOptions)
 
     if (parentNode && newNode !== domNode) {
         parentNode.replaceChild(newNode, domNode)
@@ -3550,23 +3516,16 @@ function replaceRoot(oldRoot, newRoot) {
     return newRoot;
 }
 
-},{"../vnode/is-widget.js":54,"../vnode/vpatch.js":57,"./apply-properties":39,"./update-widget":44}],43:[function(require,module,exports){
+},{"../vnode/is-widget.js":54,"../vnode/vpatch.js":57,"./apply-properties":39,"./create-element":40,"./update-widget":44}],43:[function(require,module,exports){
 var document = require("global/document")
 var isArray = require("x-is-array")
 
-var render = require("./create-element")
 var domIndex = require("./dom-index")
 var patchOp = require("./patch-op")
 module.exports = patch
 
-function patch(rootNode, patches, renderOptions) {
-    renderOptions = renderOptions || {}
-    renderOptions.patch = renderOptions.patch && renderOptions.patch !== patch
-        ? renderOptions.patch
-        : patchRecursive
-    renderOptions.render = renderOptions.render || render
-
-    return renderOptions.patch(rootNode, patches, renderOptions)
+function patch(rootNode, patches) {
+    return patchRecursive(rootNode, patches)
 }
 
 function patchRecursive(rootNode, patches, renderOptions) {
@@ -3579,8 +3538,11 @@ function patchRecursive(rootNode, patches, renderOptions) {
     var index = domIndex(rootNode, patches.a, indices)
     var ownerDocument = rootNode.ownerDocument
 
-    if (!renderOptions.document && ownerDocument !== document) {
-        renderOptions.document = ownerDocument
+    if (!renderOptions) {
+        renderOptions = { patch: patchRecursive }
+        if (ownerDocument !== document) {
+            renderOptions.document = ownerDocument
+        }
     }
 
     for (var i = 0; i < indices.length; i++) {
@@ -3632,7 +3594,7 @@ function patchIndices(patches) {
     return indices
 }
 
-},{"./create-element":40,"./dom-index":41,"./patch-op":42,"global/document":35,"x-is-array":37}],44:[function(require,module,exports){
+},{"./dom-index":41,"./patch-op":42,"global/document":35,"x-is-array":37}],44:[function(require,module,exports){
 var isWidget = require("../vnode/is-widget.js")
 
 module.exports = updateWidget
@@ -3763,8 +3725,6 @@ function h(tagName, properties, children) {
 function addChild(c, childNodes, tag, props) {
     if (typeof c === 'string') {
         childNodes.push(new VText(c));
-    } else if (typeof c === 'number') {
-        childNodes.push(new VText(String(c)));
     } else if (isChild(c)) {
         childNodes.push(c);
     } else if (isArray(c)) {
@@ -3841,7 +3801,7 @@ function errorString(obj) {
 
 var split = require('browser-split');
 
-var classIdSplit = /([\.#]?[a-zA-Z0-9\u007F-\uFFFF_:-]+)/;
+var classIdSplit = /([\.#]?[a-zA-Z0-9_:-]+)/;
 var notClassId = /^\.|#/;
 
 module.exports = parseTag;
@@ -4559,7 +4519,7 @@ function keyIndex(children) {
 
     return {
         keys: keys,     // A hash of key name to index
-        free: free      // An array of unkeyed item indices
+        free: free,     // An array of unkeyed item indices
     }
 }
 
