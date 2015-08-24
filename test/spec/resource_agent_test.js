@@ -1,5 +1,13 @@
 'use strict';
 
+var UserAgent = Cape.createResourceAgentClass({
+  constructor: function(client, options) {
+    this.client = client;
+    this.resourceName = 'user';
+    this.adapter = 'foo_bar';
+  }
+});
+
 describe('ResourceAgent', function() {
   describe('constructor', function() {
     it('should take its client as the first argument', function() {
@@ -20,6 +28,17 @@ describe('ResourceAgent', function() {
 
       expect(agent.resourceName).to.equal('user');
       expect(agent.basePath).to.equal('/api/');
+    })
+  })
+
+  describe('.createResourceAgentClass', function() {
+    it('should create a class inheriting Cape.ResrouceAgent', function() {
+      var form, agent;
+
+      form = { id: 123 };
+      agent = new UserAgent(form);
+
+      expect(agent.client).to.equal(form);
     })
   })
 
