@@ -1,12 +1,18 @@
 # CHANGELOG - CapeJS
 
-## 1.0.3 (July, 17, 2015)
+## 1.0.4 (August 24, 2015)
+
+### `Cape.Component`
+
+* Fix #10 Caret position gets reset after refresh()
+
+## 1.0.3 (July 17, 2015)
 
 ### `Cape.Component`
 
 * Fix a bug that tampers other forms. (Backporting)
 
-## 1.0.2 (July, 5, 2015)
+## 1.0.2 (July 5, 2015)
 
 ### `Cape.Component`
 
