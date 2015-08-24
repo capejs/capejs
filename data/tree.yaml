@@ -352,9 +352,6 @@ api_pages:
         id: ajax
         title: "#ajax()"
       -
-        id: attach
-        title: "#attach()"
-      -
         id: auto-refresh
         title: "#autoRefresh"
       -
@@ -379,14 +376,8 @@ api_pages:
         id: destroy
         title: "#destory()"
       -
-        id: detach
-        title: "#detach()"
-      -
         id: get
         title: "#get"
-      -
-        id: get-instance
-        title: ".getInstance()"
       -
         id: head
         title: "#head()"
@@ -414,9 +405,6 @@ api_pages:
       -
         id: post
         title: "#post()"
-      -
-        id: propagate
-        title: "#propagate()"
       -
         id: put
         title: "#put()"

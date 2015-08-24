@@ -81,8 +81,8 @@ You can also define it using the ES6 syntax:
 
 ```javascript
 class UserCollectionAgent extends Cape.CollectionAgent {
-  constructor(options) {
-    super(options);
+  constructor(client, options) {
+    super(client, options);
     this.resourceName = 'users';
   }
 }
@@ -110,8 +110,7 @@ Then, you can build a Cape.JS component like this:
 ```javascript
 class UserList extends Cape.Component {
   init() {
-    this.agent = UserCollectionAgent.getInstance();
-    this.agent.attach(this);
+    this.agent = new UserCollectionAgent(this);
     this.agent.refresh();
   }
 
@@ -161,8 +160,7 @@ Then, you can create a form for adding users like this:
 ```javascript
 class UserList extends Cape.Component {
   init() {
-    this.agent = UserCollectionAgent.getInstance();
-    this.agent.attach(this);
+    this.agent = new UserCollectionAgent(this);
     this.agent.refresh();
   }
 
@@ -288,8 +286,7 @@ And, you instantiated it as follows:
 ```javascript
 class ArticleList extends Cape.Component {
   init() {
-    this.agent = ArticleCollectionAgent.getInstance({ nestedIn: 'members/123/' });
-    this.agent.attach(this);
+    this.agent = new ArticleCollectionAgent(this, { nestedIn: 'members/123/' });
     this.agent.refresh();
   }
 
@@ -308,9 +305,8 @@ Note that you should _not_ define the `init()` method like this:
 
 ```javascript
   init() {
-    this.agent = ArticleCollectionAgent.getInstance();
+    this.agent = new ArticleCollectionAgent();
     this.agent.nestedIn = 'members/123/';
-    this.agent.attach(this);
     this.agent.refresh();
   }
 }

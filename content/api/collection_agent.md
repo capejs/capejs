@@ -9,7 +9,6 @@ title: "Cape.CollectionAgent - API Reference"
 [#adapter](#adapter) -
 [#afterRefresh()](#after-refresh) -
 [#ajax()](#ajax) -
-[#attach()](#attach) -
 [#autoRefresh](#auto-refresh) -
 [#basePath](#base-path) -
 [#collectionPath()](#collection-path) -
@@ -19,9 +18,7 @@ title: "Cape.CollectionAgent - API Reference"
 [#defaultErrorHandler()](#default-error-handler) -
 [#delete()](#delete) -
 [#destroy()](#destroy) -
-[#detach()](#detach) -
 [#get()](#get) -
-[.getInstance()](#get-instance) -
 [#head()](#head) -
 [#headers](#headers) -
 [#index()](#index) -
@@ -32,7 +29,6 @@ title: "Cape.CollectionAgent - API Reference"
 [#paramsForRefresh()](#params-for-refresh) -
 [#patch()](#patch) -
 [#post()](#post) -
-[#propagate()](#propagate) -
 [#put()](#put) -
 [#refresh()](#refresh) -
 [#resourceName](#resource-name) -
@@ -68,10 +64,11 @@ The `Cape.CollectionAgent` constructor takes an object _(options)_ as the first 
 
 ```javascript
 Cape.defaultAgentAdapter = 'rails';
-var agent1 = new Cape.CollectionAgent({ resourceName: 'users' });
-var agent2 = new Cape.CollectionAgent({ resourceName: 'tags', basePath: '/api/' });
-var agent3 = new Cape.CollectionAgent({ resourceName: 'members', nestedIn: 'teams/123/' });
-var agent4 = new Cape.CollectionAgent({ resourceName: 'articles', dataType: 'text' });
+var comp = new Cape.Component();
+var agent1 = new Cape.CollectionAgent(comp, { resourceName: 'users' });
+var agent2 = new Cape.CollectionAgent(comp, { resourceName: 'tags', basePath: '/api/' });
+var agent3 = new Cape.CollectionAgent(comp, { resourceName: 'members', nestedIn: 'teams/123/' });
+var agent4 = new Cape.CollectionAgent(comp, { resourceName: 'articles', dataType: 'text' });
 ```
 
 <a class="anchor" id="_"></a>
@@ -92,10 +89,9 @@ See "Options" section of the [Constructor](#constructor).
 This method gets called by the `refresh()` method after it updates the `data`
 and `objects` properties.
 
-The `afterRefresh()` does nothing by default.
+The `afterRefresh()` does `this.client.refresh()` by default.
 Developers may override this method to let the agent do some
 post-processing jobs.
-
 
 
 <a class="anchor" id="adapter"></a>
@@ -114,19 +110,6 @@ See "Options" section of the [Constructor](#constructor).
 * **ajax(httpMethod, path, params, callback, errorHandler)**
 
 Sends an Ajax request to the server.
-
-
-<a class="anchor" id="attach"></a>
-### #attach()
-
-#### Usage
-
-* **attach(component)**
-
-This method registers the _component_ as a target of _propagation_ from this data store.
-
-See [#propagate()](#propagate) for details.
-
 
 <a class="anchor" id="auto-refresh"></a>
 ### #autoRefresh
@@ -180,13 +163,8 @@ which takes an exception and does some error-handling jobs.
 ```javascript
 class UserList extends Cape.Component {
   init() {
-    this.agent = Cape.CollectionAgent.getInstance({ resourceName: 'users' })
-    this.agent.attach(this)
+    this.agent = new Cape.CollectionAgent(this, { resourceName: 'users' })
     this.agent.refresh()
-  }
-
-  beforeUnmount() {
-    this.agent.detach(this)
   }
 
   render(m) {
@@ -266,13 +244,8 @@ which takes an exception and does some error-handling jobs.
 ```javascript
 class UserList extends Cape.Component {
   init() {
-    this.agent = Cape.CollectionAgent.getInstance({ resourceName: 'users' })
-    this.agent.attach(this)
+    this.agent = new Cape.CollectionAgent(this, { resourceName: 'users' })
     this.agent.refresh()
-  }
-
-  beforeUnmount() {
-    this.agent.detach(this)
   }
 
   render(m) {
@@ -290,17 +263,6 @@ class UserList extends Cape.Component {
   }
 }
 ```
-
-<a class="anchor" id="detach"></a>
-### #detach()
-
-#### Usage
-
-* **detach(component)**
-
-This method removes the _component_ from the list of targets of _propagation_ from this agent.
-
-See [#propagate()](#propagate) for details.
 
 
 <a class="anchor" id="get"></a>
@@ -447,23 +409,6 @@ Sends an Ajax request with POST method to the URL that is constructed
 by given arguments.
 
 
-<a class="anchor" id="propagate"></a>
-### #propagate()
-
-#### Usage
-
-* **propagate()**
-
-This method triggars the _propagation_ process, which calls the `#refresh()` method
-of all components registerd as targets of _propagation_ of this agent.
-
-Eventually, the `#refresh` method of each component calls its `#render()` method,
-which has to be defined by developers.
-
-Thus, we can assure that each time the data of an agent changes,
-its all dependent components get refreshed.
-
-
 <a class="anchor" id="put"></a>
 ### #put()
 #### Usage
@@ -517,13 +462,8 @@ which takes an exception and does some error-handling jobs.
 ```javascript
 class UserList extends Cape.Component {
   init() {
-    this.agent = Cape.CollectionAgent.getInstance({ resourceName: 'users' })
-    this.agent.attach(this)
+    this.agent = new Cape.CollectionAgent(this, { resourceName: 'users' })
     this.agent.refresh()
-  }
-
-  beforeUnmount() {
-    this.agent.detach(this)
   }
 
   render(m) {

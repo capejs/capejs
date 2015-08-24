@@ -44,6 +44,8 @@ a `Cape.Component` object and an optional object (options) as arguments.
   name. Default value is ''.
 * **adapter:** the name of adapter (e.g., `'rails'`). Default is `undefined`.
   Default value can be changed by setting `Cape.defaultAgentAdapter` property.
+* **autoRefresh:** a boolean value that controls if a `POST/PATCH/PUT/DELETE` request
+  triggers `this.refresh()` after its completion. Default is `false`.
 * **dataType:** the type of data that you're expecting from the server.
   The value must be `'json'` (default) or `'text'`.
 * **pathPrefix:** the string that is added to the request path.
@@ -132,9 +134,9 @@ See "Options" section of the [Constructor](#constructor).
 
 #### Usage
 
-* **ajax(httpMethod, path)**
-* **ajax(httpMethod, path, callback)**
-* **ajax(httpMethod, path, callback, errorHandler)**
+* **ajax(httpMethod, path, params)**
+* **ajax(httpMethod, path, params, callback)**
+* **ajax(httpMethod, path, params, callback, errorHandler)**
 
 Sends an Ajax request to the server.
 
@@ -152,7 +154,7 @@ var Page = Cape.createComponentClass({
 
   render: function(m) {
     m.onclick(e => {
-      this.agent.ajax('POST', '/counter', function(data) {
+      this.agent.ajax('POST', '/counter', {}, function(data) {
         alert(data);
       })
     });
