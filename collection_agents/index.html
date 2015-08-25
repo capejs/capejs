@@ -217,7 +217,7 @@
 <a href="#rest-operations">REST Operations</a> -
 <a href="#callbacks-and-error-handlers">Callbacks and Error Handlers</a> -
 <a href="#changing-path-prefix">Changing the Path Prefix</a> -
-<a href="#options">Options</a></p>
+<a href="#cooperation-with-a-data-store">Cooperation with a Data Store</a></p>
 
 <p><a class="anchor" id="basics"></a></p>
 
@@ -234,8 +234,12 @@
 But, they lack <em>built-in</em> Ajax functionalities so that
 you have to implement them on your own.</p>
 
-<p>Generally speaking, you will prefer collection agents to data stores,
-if the server provides a set of RESTful APIs.</p>
+<p>On the other hand, data stores work as the <em>subjects</em>, or <em>observables</em>, in
+the terms of <a href="https://en.wikipedia.org/wiki/Observer_pattern">observer pattern</a>
+while collection agents do not.</p>
+
+<p>But, you can combine a collection agent with a data store in order to notify
+its stage changes to the observers as explained <a href="#cooperation-with-a-data-store">later</a>.</p>
 
 <p>Note that the collection agents are introduced with the Cape.JS version 1.2.</p>
 
@@ -377,7 +381,7 @@ with the following body:</p>
       m.textField('name');
       m.onclick(e =&gt; this.agent.create(this.paramsFor('user')));
       m.btn('Create');
-    })
+    });
   }
 }
 </code></pre>
@@ -558,31 +562,54 @@ options.</p>
 <i class="fa fa-external-link"></i> on <em>Wikipedia</em>
 for the technical background.</p>
 
-<p><a class="anchor" id="options"></a></p>
+<p><a class="anchor" id="cooperation-with-a-data-store"></a></p>
 
-<h3 id="options:0b3dd9ce14f479a81f8252af01a87547">Options</h3>
+<h3 id="cooperation-with-a-data-store:0b3dd9ce14f479a81f8252af01a87547">Cooperation with a Data Store</h3>
 
-<p>The class method <code>.getInstance()</code> takes following options:</p>
+<pre><code class="language-javascript">class TaskStore extends Cape.DataStore {
+  constructor(agent) {
+    super();
+    this.agent = agent;
+    this.tasks = agent.tasks;
+  }
+}
+</code></pre>
 
-<ul>
-<li><code>resourceName</code>: the name of resource.</li>
-<li><code>basePath</code>: the string that is added to the request path. Default value is &lsquo;/&rsquo;.</li>
-<li><code>nestedIn</code>: the string that is inserted between path prefix and the resource
-name. Default value is &ldquo;.</li>
-<li><code>adapter</code>: the name of adapter (e.g., &lsquo;rails&rsquo;). Default is undefined.
-Default value can be changed by setting Cape.defaultAgentAdapter property.</li>
-<li><code>autoRefresh</code>: a boolean value that controls unsafe Ajax requests trigger
-this.refresh(). Default is true.</li>
-<li><code>dataType</code>: the type of data that you&rsquo;re expecting from the server.
-The value must be &lsquo;json&rsquo;, &lsquo;text&rsquo; or undefined. Default is undefiend.
-When the dataType option is not defined, the type is detected automatically.</li>
-<li><code>paramName</code>: the name of parameter to be used when the <code>objects</code>
-property is initialized and refreshed. Default is undefiend.
-When the <code>pathName</code> option is not defined, the name is derived from the
-<code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>users</code>.</li>
-</ul>
+<pre><code class="language-javascript">class TaskCollectionAgent extends Cape.CollectionAgent {
+  constructor(client, dataStore, options) {
+    super(client, options);
+    this.dataStore = dataStore;
+    this.resourceName = 'tasks';
+  }
 
-<p>See <a href="../api/collection_agent#get-instance">.getInstance()</a> for details.</p>
+  afterRefresh() {
+    // this.client.refresh();
+    this.dataStore.propagate();
+  }
+}
+</code></pre>
+
+<pre><code class="language-javascript">class TaskList1 extends Cape.Component {
+  init() {
+    this.ds = new TaskStore();
+    this.ds.attach(this);
+  }
+
+  render(m) { ... }
+}
+</code></pre>
+
+<pre><code class="language-javascript">class TaskList2 extends Cape.Component {
+  init() {
+    this.ds = new TaskStore();
+    this.ds.attach(this);
+    this.agent = new TaskCollectionAgent(this, this.ds);
+    this.refresh();
+  }
+
+  render(m) { ... }
+}
+</code></pre>
 
         </div>
       </article>
