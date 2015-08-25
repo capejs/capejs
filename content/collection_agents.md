@@ -13,7 +13,7 @@ title: "Collection Agents"
 [REST Operations](#rest-operations) -
 [Callbacks and Error Handlers](#callbacks-and-error-handlers) -
 [Changing the Path Prefix](#changing-path-prefix) -
-[Options](#options)
+[Cooperation with a Data Store](#cooperation-with-a-data-store)
 
 <a class="anchor" id="basics"></a>
 ### Basics
@@ -27,8 +27,12 @@ Cape.JS provides similar objects called _data stores_.
 But, they lack _built-in_ Ajax functionalities so that
 you have to implement them on your own.
 
-Generally speaking, you will prefer collection agents to data stores,
-if the server provides a set of RESTful APIs.
+On the other hand, data stores work as the _subjects_, or _observables_, in
+the terms of [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern)
+while collection agents do not.
+
+But, you can combine a collection agent with a data store in order to notify
+its stage changes to the observers as explained [later](#cooperation-with-a-data-store).
 
 Note that the collection agents are introduced with the Cape.JS version 1.2.
 
@@ -174,7 +178,7 @@ class UserList extends Cape.Component {
       m.textField('name');
       m.onclick(e => this.agent.create(this.paramsFor('user')));
       m.btn('Create');
-    })
+    });
   }
 }
 ```
@@ -324,25 +328,54 @@ See [Multiton pattern](https://en.wikipedia.org/wiki/Multiton_pattern)
 <i class="fa fa-external-link"></i> on _Wikipedia_
 for the technical background.
 
-<a class="anchor" id="options"></a>
-### Options
+<a class="anchor" id="cooperation-with-a-data-store"></a>
+### Cooperation with a Data Store
 
-The class method `.getInstance()` takes following options:
+```javascript
+class TaskStore extends Cape.DataStore {
+  constructor(agent) {
+    super();
+    this.agent = agent;
+    this.tasks = agent.tasks;
+  }
+}
+```
 
-* `resourceName`: the name of resource.
-* `basePath`: the string that is added to the request path. Default value is '/'.
-* `nestedIn`: the string that is inserted between path prefix and the resource
-  name. Default value is ''.
-* `adapter`: the name of adapter (e.g., 'rails'). Default is undefined.
-  Default value can be changed by setting Cape.defaultAgentAdapter property.
-* `autoRefresh`: a boolean value that controls unsafe Ajax requests trigger
-  this.refresh(). Default is true.
-* `dataType`: the type of data that you're expecting from the server.
-  The value must be 'json', 'text' or undefined. Default is undefiend.
-  When the dataType option is not defined, the type is detected automatically.
-* `paramName`: the name of parameter to be used when the `objects`
-  property is initialized and refreshed. Default is undefiend.
-  When the `pathName` option is not defined, the name is derived from the
-  `resourceName` property, e.g. `user` if the resource name is `users`.
+```javascript
+class TaskCollectionAgent extends Cape.CollectionAgent {
+  constructor(client, dataStore, options) {
+    super(client, options);
+    this.dataStore = dataStore;
+    this.resourceName = 'tasks';
+  }
 
-See [.getInstance()](../api/collection_agent#get-instance) for details.
+  afterRefresh() {
+    // this.client.refresh();
+    this.dataStore.propagate();
+  }
+}
+```
+
+```javascript
+class TaskList1 extends Cape.Component {
+  init() {
+    this.ds = new TaskStore();
+    this.ds.attach(this);
+  }
+
+  render(m) { ... }
+}
+```
+
+```javascript
+class TaskList2 extends Cape.Component {
+  init() {
+    this.ds = new TaskStore();
+    this.ds.attach(this);
+    this.agent = new TaskCollectionAgent(this, this.ds);
+    this.refresh();
+  }
+
+  render(m) { ... }
+}
+```
