@@ -60,13 +60,31 @@ describe('CollectionAgent', function() {
       expect(agent.memberPath(123)).to.equal('/users/123');
     })
 
-    it('should add prefix to the paths', function() {
+    it('should add prefix to the path', function() {
       var agent;
 
       agent = new Cape.CollectionAgent({},
         { resourceName: 'users', basePath: '/api/' });
 
       expect(agent.memberPath(123)).to.equal('/api/users/123');
+    })
+
+    it('should add "nestedIn" string to the path', function() {
+      var agent;
+
+      agent = new Cape.CollectionAgent({},
+        { resourceName: 'users', nestedIn: 'teams/9/' });
+
+      expect(agent.memberPath(123)).to.equal('/teams/9/users/123');
+    })
+
+    it('should not add "nestedIn" string to the path', function() {
+      var agent;
+
+      agent = new Cape.CollectionAgent({},
+        { resourceName: 'users', nestedIn: 'teams/9/', shallow: true });
+
+      expect(agent.memberPath(123)).to.equal('/users/123');
     })
   })
 

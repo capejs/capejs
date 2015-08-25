@@ -107,6 +107,24 @@ describe('ResourceAgent', function() {
 
       expect(agent.memberPath()).to.equal('/api/users/123');
     })
+
+    it('should add "nestedIn" string to the path', function() {
+      var agent;
+
+      agent = new Cape.ResourceAgent({ id: 123 },
+        { resourceName: 'users', nestedIn: 'teams/9/' });
+
+      expect(agent.memberPath()).to.equal('/teams/9/users/123');
+    })
+
+    it('should not add "nestedIn" string to the path', function() {
+      var agent;
+
+      agent = new Cape.ResourceAgent({ id: 123 },
+        { resourceName: 'users', nestedIn: 'teams/9/', shallow: true });
+
+      expect(agent.memberPath()).to.equal('/users/123');
+    })
   })
 
   describe('#singularPath', function() {
