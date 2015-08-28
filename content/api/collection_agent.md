@@ -32,6 +32,7 @@ title: "Cape.CollectionAgent - API Reference"
 [#put()](#put) -
 [#refresh()](#refresh) -
 [#resourceName](#resource-name) -
+[#shallow](#shallow) -
 [#update()](#update)
 
 <a class="anchor" id="constructor"></a>
@@ -59,6 +60,8 @@ The `Cape.CollectionAgent` constructor takes an object _(options)_ as the first 
   property is refreshed. Default is `undefiend`.
   When the `paramName` option is not defined, the name is derived from the
   `resourceName` property, e.g. `users` if the resource name is `users`.
+* **shallow:** a boolean value that controls whether the agent should omit
+  the `nestedIn` string from the member path. Default is `false`.
 
 #### Example
 
@@ -431,6 +434,11 @@ by the [#collectionPath()](#collection-path) and
 
 <a class="anchor" id="resource-name"></a>
 ### #resourceName
+
+See "Options" section of the [Constructor](#constructor).
+
+<a class="anchor" id="shallow"></a>
+### #shallow
 
 See "Options" section of the [Constructor](#constructor).
 

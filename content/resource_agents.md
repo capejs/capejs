@@ -134,8 +134,8 @@ Then, you can build an HTML form like this:
 ```javascript
 class UserForm extends Cape.Component {
   init() {
-    this.id = 123;
     this.agent = new UserAgent(this);
+    this.agent.id = 123;
     this.agent.init();
   }
 
@@ -187,9 +187,9 @@ we will get the following class:
 ```javascript
 class UserForm extends Cape.Component {
   init() {
-    this.id = this.root.data.id;
     this.agent = new UserAgent(this);
-    if (this.id) this.agent.init();
+    this.agent.id = this.root.data.id;
+    if (this.agent.id) this.agent.init();
     else this.refresh();
   }
 
@@ -204,7 +204,7 @@ class UserForm extends Cape.Component {
         m.textField('email', { type: 'email' });
       });
       m.div(m => {
-        if (this.id) {
+        if (this.agent.id) {
           m.onclick(e => this.agent.update());
           m.btn('Update');
         }
@@ -283,30 +283,3 @@ according to the content type of response.
 ### Changing the Path Prefix
 
 See [Changing the Path Prefix](../collection_agents#changing-path-prefix) of Collection Agents.
-
-<a class="anchor" id="options"></a>
-### Options
-
-The constructor of `ResourceMapper` takes following options:
-
-* `resourceName`: the name of resource.
-* `basePath`: the string that is added to the request path. Default value is '/'.
-* `nestedIn`: the string that is inserted between path prefix and the resource
-  name. Default value is ''.
-* `adapter`: the name of adapter (e.g., 'rails'). Default is undefined.
-  Default value can be changed by setting Cape.defaultAgentAdapter property.
-* `dataType`: the type of data that you're expecting from the server.
-  The value must be 'json', 'text' or undefined. Default is undefiend.
-  When the dataType option is not defined, the type is detected automatically.
-* `singular`: a boolean value that specifies if the resource is singular or not.
-   Resources are called 'singular' when they have a URL without ID.
-   Default is `false`.
-* `formName`: the name of form with which the users edit the properties
-  of the resource. Default is `undefiend`.
-  When the `formName` option is not defined, the name is derived from the
-  `resourceName` property, e.g. `user` if the resource name is `user`.
-* `paramName`: the name of parameter to be used when the `object`
-  property is initialized and the request parameter is constructed.
-  Default is undefiend.
-  When the `pathName` option is not defined, the name is derived from the
-  `resourceName` property, e.g. `user` if the resource name is `user`.

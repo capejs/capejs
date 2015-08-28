@@ -19,6 +19,7 @@ title: "Cape.ResourceAgent - API Reference"
 [#errors](#errors) -
 [#formName](#formName) -
 [#headers](#headers) -
+[#id](#id) -
 [#init()](#init) -
 [#memberPath()](#member-path) -
 [#object](#object) -
@@ -26,6 +27,7 @@ title: "Cape.ResourceAgent - API Reference"
 [#nestedIn](#nested-in) -
 [#paramName](#param-name) -
 [#resourceName](#resource-name) -
+[#shallow](#shallow) -
 [#singular](#singular) -
 [#singularPath()](#singular-path) -
 [#update()](#update)
@@ -61,6 +63,8 @@ a `Cape.Component` object and an optional object (options) as arguments.
   Default is `undefiend`.
   When the `paramName` option is not defined, the name is derived from the
   `resourceName` property, e.g. `user` if the resource name is `user`.
+* **shallow:** a boolean value that controls whether the agent should omit
+  the `nestedIn` string from the member path. Default is `false`.
 
 #### Adapters
 
@@ -74,8 +78,8 @@ Cape.defaultAgentAdapter = 'rails';
 
 var Form = Cape.createComponentClass({
   init: function() {
-    this.id = 123;
     this.agent = new Cape.ResourceAgent(this, { resourceName: 'user' });
+    this.agent.id = 123;
     this.agent.init();
   },
 
@@ -102,8 +106,8 @@ var UserAgent = Cape.createResourceAgentClass({
 
 var Form = Cape.createComponentClass({
   init: function() {
-    this.id = 123;
     this.agent = new UserAgent(this);
+    this.agent.id = 123;
     this.agent.init();
   },
 
@@ -258,6 +262,11 @@ See "Options" section of the [Constructor](#constructor).
 This property holds the HTTP headers for Ajax requests.
 The default valued is `{ 'Content-Type': 'application/json' }`.
 
+<a class="anchor" id="id"></a>
+### #id
+
+This property holds the _id_ of resource.
+
 <a class="anchor" id="init"></a>
 ### #init()
 
@@ -283,9 +292,9 @@ values of `resourceName`, `basePath` and `nestedIn` properties:
 |user||teams/123/|/teams/123/users/9|
 |user|/api/|teams/123/|/api/teams/123/users/9|
 
-The `id` part of the URL path (`9`) derives from the `client.id` property.
+The `id` part of the URL path (`9`) derives from the `id` property of the agent.
 
-Note that the default value of `basePath` property is `/`.
+Note that the default value of `basePath` property is `'/'`.
 
 <a class="anchor" id="object"></a>
 ### #object
@@ -308,7 +317,7 @@ values of `resourceName`, `basePath` and `nestedIn` properties:
 
 A _new_ resource is a resource for a form for creating an resource.
 
-Note that the default value of `basePath` property is `/`.
+Note that the default value of `basePath` property is `'/'`.
 
 <a class="anchor" id="nested-in"></a>
 ### #nestedIn
@@ -322,6 +331,11 @@ See "Options" section of the [Constructor](#constructor).
 
 <a class="anchor" id="resource-name"></a>
 ### #resourceName
+
+See "Options" section of the [Constructor](#constructor).
+
+<a class="anchor" id="shallow"></a>
+### #shallow
 
 See "Options" section of the [Constructor](#constructor).
 
@@ -346,7 +360,7 @@ values of `resourceName`, `basePath` and `nestedIn` properties:
 A singular resource is a resource that clients always look up without
 referencing an ID.
 
-Note that the default value of `basePath` property is `/`.
+Note that the default value of `basePath` property is `'/'`.
 
 
 <a class="anchor" id="update"></a>

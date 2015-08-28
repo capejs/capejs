@@ -412,6 +412,9 @@ api_pages:
         id: refresh
         title: "#refresh()"
       -
+        id: shallow
+        title: "#shallow"
+      -
         id: update
         title: "#update()"
   -
@@ -462,6 +465,9 @@ api_pages:
         id: headers
         title: "#headers"
       -
+        id: id
+        title: "#id"
+      -
         id: init
         title: "#init()"
       -
@@ -482,6 +488,9 @@ api_pages:
       -
         id: resource-name
         title: "#resourceName"
+      -
+        id: shallow
+        title: "#shallow"
       -
         id: singular
         title: "#singular"
