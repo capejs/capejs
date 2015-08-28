@@ -13,7 +13,7 @@ describe('ResourceAgent', function() {
     it('should take its client as the first argument', function() {
       var form, agent;
 
-      form = { id: 123 };
+      form = {};
       agent = new Cape.ResourceAgent(form);
 
       expect(agent.client).to.equal(form);
@@ -22,8 +22,8 @@ describe('ResourceAgent', function() {
     it('should take an object (options) as the second argument', function() {
       var form, options, agent;
 
-      form = { id: 123 };
-      options = { resourceName: 'user', basePath: '/api/' };
+      form = {};
+      options = { resourceName: 'user', basePath: '/api/', id: 123 };
       agent = new Cape.ResourceAgent(form, options);
 
       expect(agent.resourceName).to.equal('user');
@@ -35,7 +35,7 @@ describe('ResourceAgent', function() {
     it('should create a class inheriting Cape.ResrouceAgent', function() {
       var form, agent;
 
-      form = { id: 123 };
+      form = {};
       agent = new UserAgent(form);
 
       expect(agent.client).to.equal(form);
@@ -91,8 +91,8 @@ describe('ResourceAgent', function() {
     it('should return standard values', function() {
       var form, options, agent;
 
-      form = { id: 123 };
-      options = { resourceName: 'user' };
+      form = {};
+      options = { resourceName: 'user', id: 123 };
       agent = new Cape.ResourceAgent(form, options);
 
       expect(agent.memberPath()).to.equal('/users/123');
@@ -101,8 +101,8 @@ describe('ResourceAgent', function() {
     it('should add prefix to the paths', function() {
       var form, options, agent;
 
-      form = { id: 123 };
-      options = { resourceName: 'user', basePath: '/api/' };
+      form = {};
+      options = { resourceName: 'user', basePath: '/api/', id: 123 };
       agent = new Cape.ResourceAgent(form, options);
 
       expect(agent.memberPath()).to.equal('/api/users/123');
@@ -111,8 +111,8 @@ describe('ResourceAgent', function() {
     it('should add "nestedIn" string to the path', function() {
       var agent;
 
-      agent = new Cape.ResourceAgent({ id: 123 },
-        { resourceName: 'users', nestedIn: 'teams/9/' });
+      agent = new Cape.ResourceAgent({},
+        { resourceName: 'users', nestedIn: 'teams/9/', id: 123  });
 
       expect(agent.memberPath()).to.equal('/teams/9/users/123');
     })
@@ -120,8 +120,8 @@ describe('ResourceAgent', function() {
     it('should not add "nestedIn" string to the path', function() {
       var agent;
 
-      agent = new Cape.ResourceAgent({ id: 123 },
-        { resourceName: 'users', nestedIn: 'teams/9/', shallow: true });
+      agent = new Cape.ResourceAgent({},
+        { resourceName: 'users', nestedIn: 'teams/9/', id: 123, shallow: true });
 
       expect(agent.memberPath()).to.equal('/users/123');
     })
@@ -172,8 +172,8 @@ describe('ResourceAgent', function() {
       spy3 = sinon.spy();
 
       Cape.AgentAdapters.FooBarAdapter = sinon.spy();
-      form = { id: 123, setValues: spy2, refresh: spy3 };
-      options = { resourceName: 'user' };
+      form = { setValues: spy2, refresh: spy3 };
+      options = { resourceName: 'user', id: 123 };
       agent = new Cape.ResourceAgent(form, options);
       agent.adapter = 'foo_bar';
       agent.defaultErrorHandler = function(ex) {};
@@ -222,8 +222,8 @@ describe('ResourceAgent', function() {
       var form, options, agent, spy1, spy2, spy3;
 
       Cape.AgentAdapters.FooBarAdapter = sinon.spy();
-      form = { id: 123 };
-      options = { resourceName: 'user' };
+      form = {};
+      options = { resourceName: 'user', id: 123 };
       agent = new Cape.ResourceAgent(form, options);
       agent.adapter = 'foo_bar';
 
@@ -314,8 +314,8 @@ describe('ResourceAgent', function() {
     it('should go through a fetch api chain', function() {
       var form, options, agent, spy1, spy2, spy3;
 
-      form = { id: 123, paramsFor: function() { return {} } };
-      options = { resourceName: 'user' };
+      form = { paramsFor: function() { return {} } };
+      options = { resourceName: 'user', id: 123 };
       agent = new Cape.ResourceAgent(form, options);
 
       spy1 = sinon.spy();
@@ -359,8 +359,8 @@ describe('ResourceAgent', function() {
     it('should go through a fetch api chain', function() {
       var form, options, agent, spy1, spy2, spy3;
 
-      form = { id: 123 };
-      options = { resourceName: 'user' };
+      form = {};
+      options = { resourceName: 'user', id: 123 };
       agent = new Cape.ResourceAgent(form, options);
 
       spy1 = sinon.spy();
@@ -415,7 +415,7 @@ describe('ResourceAgent', function() {
 
   describe('#post', function() {
     it('should call this.ajax() with "POST"', function() {
-      var agent = new Cape.ResourceAgent({ id: 1 }, { resourceName: 'user' });
+      var agent = new Cape.ResourceAgent({}, { resourceName: 'user', id: 1 });
       sinon.stub(agent, 'ajax');
       agent.post('tags', { tags: [ 'A', 'B' ] });
       expect(agent.ajax.calledWith('POST', '/users/1/tags')).to.be.true;
@@ -424,7 +424,7 @@ describe('ResourceAgent', function() {
 
   describe('#patch', function() {
     it('should call this.ajax() with "PATCH"', function() {
-      var agent = new Cape.ResourceAgent({ id: 1 }, { resourceName: 'user' });
+      var agent = new Cape.ResourceAgent({}, { resourceName: 'user', id: 1 });
       sinon.stub(agent, 'ajax');
       agent.patch('suspend', { name: 'X', password: 'Y' });
       expect(agent.ajax.calledWith('PATCH', '/users/1/suspend')).to.be.true;
@@ -433,7 +433,7 @@ describe('ResourceAgent', function() {
 
   describe('#put', function() {
     it('should call this.ajax() with "PUT"', function() {
-      var agent = new Cape.ResourceAgent({ id: 1 }, { resourceName: 'user' });
+      var agent = new Cape.ResourceAgent({}, { resourceName: 'user', id: 1 });
       sinon.stub(agent, 'ajax');
       agent.put('suspend', { name: 'X', password: 'Y' });
       expect(agent.ajax.calledWith('PUT', '/users/1/suspend')).to.be.true;
@@ -442,7 +442,7 @@ describe('ResourceAgent', function() {
 
   describe('#delete', function() {
     it('should call this.ajax() with "DELETE"', function() {
-      var agent = new Cape.ResourceAgent({ id: 1 }, { resourceName: 'user' });
+      var agent = new Cape.ResourceAgent({}, { resourceName: 'user', id: 1 });
       sinon.stub(agent, 'ajax');
       agent.delete('tags');
       expect(agent.ajax.calledWith('DELETE', '/users/1/tags')).to.be.true;
