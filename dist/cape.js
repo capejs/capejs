@@ -53,6 +53,8 @@ var Cape = require('./utilities');
 //   basePath: the string that is added to the request path. Default value is '/'.
 //   nestedIn: the string that is inserted between path prefix and the resource
 //     name. Default value is ''.
+//   shallow: a boolean value that controls whether the agent should omit
+//     the `nestedIn` string from the member path. Default is `false`.
 //   adapter: the name of adapter (e.g., 'rails'). Default is undefined.
 //     Default value can be changed by setting Cape.defaultAgentAdapter property.
 //   autoRefresh: a boolean value that controls unsafe Ajax requests trigger
@@ -93,6 +95,7 @@ Cape.extend(CollectionAgent.prototype, {
     this.resourceName = options.resourceName;
     this.basePath = options.basePath;
     this.nestedIn = options.nestedIn;
+    this.shallow = options.shallow || false;
     this.adapter = options.adapter;
     this.autoRefresh = options.autoRefresh;
     if (this.autoRefresh === undefined) this.autoRefresh = true;
@@ -207,7 +210,7 @@ Cape.extend(CollectionAgent.prototype, {
 
   memberPath: function(id) {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
-    return this._.pathPrefix() + resources + '/' + id;
+    return this._.pathPrefix(this.shallow) + resources + '/' + id;
   },
 
   defaultErrorHandler: function(ex) {
@@ -913,9 +916,9 @@ var AgentCommonInnerMethods = {
     return headers;
   },
 
-  pathPrefix: function() {
+  pathPrefix: function(shallow) {
     var prefix = this.main.basePath || '/';
-    if (this.main.nestedIn) prefix = prefix + this.main.nestedIn;
+    if (this.main.nestedIn && !shallow) prefix = prefix + this.main.nestedIn;
     return prefix;
   },
 
@@ -1041,10 +1044,13 @@ var Cape = require('./utilities');
 //
 // public properties:
 //   resourceName: the name of resource
+//   id: the id of the resource
 //   client: the object that utilizes this agent
 //   basePath: the string that is added to the request path. Default value is '/'.
 //   nestedIn: the string that is inserted between path prefix and the resource
 //     name. Default value is ''.
+//   shallow: a boolean value that controls whether the agent should omit
+//     the `nestedIn` string from the member path. Default is `false`.
 //   adapter: the name of adapter (e.g., 'rails'). Default is undefined.
 //     Default value can be changed by setting Cape.defaultAgentAdapter property.
 //   autoRefresh: a boolean value that controls unsafe Ajax requests trigger
@@ -1085,8 +1091,10 @@ function ResourceAgent(client, options) {
   this._ = new _Internal(this);
   this.resourceName = options.resourceName;
   this.client = client;
+  this.id = options.id;
   this.basePath = options.basePath;
   this.nestedIn = options.nestedIn;
+  this.shallow = options.shallow || false;
   this.adapter = options.adapter;
   this.autoRefresh = options.autoRefresh || false;
   this.dataType = options.dataType;
@@ -1107,7 +1115,7 @@ Cape.extend(ResourceAgent.prototype, {
     if (this.singular) {
       path = this.singularPath();
     }
-    else if (this.client.id) {
+    else if (this.id) {
       path = this.memberPath();
     }
     else {
@@ -1192,7 +1200,7 @@ Cape.extend(ResourceAgent.prototype, {
     if (this.singluar) {
       return this.singularPath();
     }
-    else if (this.client.id === undefined) {
+    else if (this.id === undefined) {
       return this.collectionPath();
     }
     else {
@@ -1212,7 +1220,7 @@ Cape.extend(ResourceAgent.prototype, {
 
   memberPath: function() {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
-    return this._.pathPrefix() + resources + '/' + this.client.id;
+    return this._.pathPrefix(this.shallow) + resources + '/' + this.id;
   },
 
   singularPath: function() {
