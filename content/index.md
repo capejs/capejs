@@ -70,7 +70,7 @@ and we have released the version 1.0.0.
 
 ### Which browsers are supported?
 
-We test Cape.JS on Internet Explorer 11 and the latest versions of Chrome, Firefox and Safari.
+We test Cape.JS on Microsoft Edge, Internet Explorer 11, Safari (6.1+) and the latest versions of Chrome and Firefox.
 
 Note that we have no plan to support the Internet Explorer 8, 9, and 10.
 
