@@ -262,6 +262,8 @@
           
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#refresh">#refresh()</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/api/collection_agent#shallow">#shallow</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/api/collection_agent#update">#update()</a></li>
           
           </ul>
@@ -302,6 +304,8 @@
           
             <li><a href="http://oiax.github.io/capejs/api/resource_agent#headers">#headers</a></li>
           
+            <li><a href="http://oiax.github.io/capejs/api/resource_agent#id">#id</a></li>
+          
             <li><a href="http://oiax.github.io/capejs/api/resource_agent#init">#init()</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/resource_agent#member-path">#memberPath()</a></li>
@@ -315,6 +319,8 @@
             <li><a href="http://oiax.github.io/capejs/api/resource_agent#param-name">#paramName</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/resource_agent#resource-name">#resourceName</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs/api/resource_agent#shallow">#shallow</a></li>
           
             <li><a href="http://oiax.github.io/capejs/api/resource_agent#singular">#singular</a></li>
           
@@ -452,6 +458,7 @@
 <a href="#put">#put()</a> -
 <a href="#refresh">#refresh()</a> -
 <a href="#resource-name">#resourceName</a> -
+<a href="#shallow">#shallow</a> -
 <a href="#update">#update()</a></p>
 
 <p><a class="anchor" id="constructor"></a></p>
@@ -481,6 +488,8 @@ automatically.</li>
 property is refreshed. Default is <code>undefiend</code>.
 When the <code>paramName</code> option is not defined, the name is derived from the
 <code>resourceName</code> property, e.g. <code>users</code> if the resource name is <code>users</code>.</li>
+<li><strong>shallow:</strong> a boolean value that controls whether the agent should omit
+the <code>nestedIn</code> string from the member path. Default is <code>false</code>.</li>
 </ul>
 
 <h4 id="example:7cf50d10a54b2c097102d0c8a749f9fb">Example</h4>
@@ -968,6 +977,12 @@ by the <a href="#collection-path">#collectionPath()</a> and
 <p><a class="anchor" id="resource-name"></a></p>
 
 <h3 id="resourcename:7cf50d10a54b2c097102d0c8a749f9fb">#resourceName</h3>
+
+<p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
+
+<p><a class="anchor" id="shallow"></a></p>
+
+<h3 id="shallow:7cf50d10a54b2c097102d0c8a749f9fb">#shallow</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 

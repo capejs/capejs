@@ -334,8 +334,8 @@ it returns the following JSON string:</p>
 
 <pre><code class="language-javascript">class UserForm extends Cape.Component {
   init() {
-    this.id = 123;
     this.agent = new UserAgent(this);
+    this.agent.id = 123;
     this.agent.init();
   }
 
@@ -388,9 +388,9 @@ we will get the following class:</p>
 
 <pre><code class="language-javascript">class UserForm extends Cape.Component {
   init() {
-    this.id = this.root.data.id;
     this.agent = new UserAgent(this);
-    if (this.id) this.agent.init();
+    this.agent.id = this.root.data.id;
+    if (this.agent.id) this.agent.init();
     else this.refresh();
   }
 
@@ -405,7 +405,7 @@ we will get the following class:</p>
         m.textField('email', { type: 'email' });
       });
       m.div(m =&gt; {
-        if (this.id) {
+        if (this.agent.id) {
           m.onclick(e =&gt; this.agent.update());
           m.btn('Update');
         }
@@ -482,36 +482,6 @@ according to the content type of response.</p>
 <h3 id="changing-the-path-prefix:01090db2bd186f3f2b107103ab7e9173">Changing the Path Prefix</h3>
 
 <p>See <a href="../collection_agents#changing-path-prefix">Changing the Path Prefix</a> of Collection Agents.</p>
-
-<p><a class="anchor" id="options"></a></p>
-
-<h3 id="options:01090db2bd186f3f2b107103ab7e9173">Options</h3>
-
-<p>The constructor of <code>ResourceMapper</code> takes following options:</p>
-
-<ul>
-<li><code>resourceName</code>: the name of resource.</li>
-<li><code>basePath</code>: the string that is added to the request path. Default value is &lsquo;/&rsquo;.</li>
-<li><code>nestedIn</code>: the string that is inserted between path prefix and the resource
-name. Default value is &ldquo;.</li>
-<li><code>adapter</code>: the name of adapter (e.g., &lsquo;rails&rsquo;). Default is undefined.
-Default value can be changed by setting Cape.defaultAgentAdapter property.</li>
-<li><code>dataType</code>: the type of data that you&rsquo;re expecting from the server.
-The value must be &lsquo;json&rsquo;, &lsquo;text&rsquo; or undefined. Default is undefiend.
-When the dataType option is not defined, the type is detected automatically.</li>
-<li><code>singular</code>: a boolean value that specifies if the resource is singular or not.
-Resources are called &lsquo;singular&rsquo; when they have a URL without ID.
-Default is <code>false</code>.</li>
-<li><code>formName</code>: the name of form with which the users edit the properties
-of the resource. Default is <code>undefiend</code>.
-When the <code>formName</code> option is not defined, the name is derived from the
-<code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>user</code>.</li>
-<li><code>paramName</code>: the name of parameter to be used when the <code>object</code>
-property is initialized and the request parameter is constructed.
-Default is undefiend.
-When the <code>pathName</code> option is not defined, the name is derived from the
-<code>resourceName</code> property, e.g. <code>user</code> if the resource name is <code>user</code>.</li>
-</ul>
 
         </div>
       </article>

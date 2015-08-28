@@ -365,6 +365,7 @@ Cape.extend(object1, object2);
 &lt;a href=&#34;#put&#34;&gt;#put()&lt;/a&gt; -
 &lt;a href=&#34;#refresh&#34;&gt;#refresh()&lt;/a&gt; -
 &lt;a href=&#34;#resource-name&#34;&gt;#resourceName&lt;/a&gt; -
+&lt;a href=&#34;#shallow&#34;&gt;#shallow&lt;/a&gt; -
 &lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -394,6 +395,8 @@ automatically.&lt;/li&gt;
 property is refreshed. Default is &lt;code&gt;undefiend&lt;/code&gt;.
 When the &lt;code&gt;paramName&lt;/code&gt; option is not defined, the name is derived from the
 &lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;users&lt;/code&gt; if the resource name is &lt;code&gt;users&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;shallow:&lt;/strong&gt; a boolean value that controls whether the agent should omit
+the &lt;code&gt;nestedIn&lt;/code&gt; string from the member path. Default is &lt;code&gt;false&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;example:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
@@ -881,6 +884,12 @@ by the &lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; and
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;resourcename:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#resourceName&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;shallow&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;shallow:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#shallow&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
@@ -2782,6 +2791,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;a href=&#34;#errors&#34;&gt;#errors&lt;/a&gt; -
 &lt;a href=&#34;#formName&#34;&gt;#formName&lt;/a&gt; -
 &lt;a href=&#34;#headers&#34;&gt;#headers&lt;/a&gt; -
+&lt;a href=&#34;#id&#34;&gt;#id&lt;/a&gt; -
 &lt;a href=&#34;#init&#34;&gt;#init()&lt;/a&gt; -
 &lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; -
 &lt;a href=&#34;#object&#34;&gt;#object&lt;/a&gt; -
@@ -2789,6 +2799,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;a href=&#34;#nested-in&#34;&gt;#nestedIn&lt;/a&gt; -
 &lt;a href=&#34;#param-name&#34;&gt;#paramName&lt;/a&gt; -
 &lt;a href=&#34;#resource-name&#34;&gt;#resourceName&lt;/a&gt; -
+&lt;a href=&#34;#shallow&#34;&gt;#shallow&lt;/a&gt; -
 &lt;a href=&#34;#singular&#34;&gt;#singular&lt;/a&gt; -
 &lt;a href=&#34;#singular-path&#34;&gt;#singularPath()&lt;/a&gt; -
 &lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
@@ -2826,6 +2837,8 @@ property is initialized and the request parameter is constructed.
 Default is &lt;code&gt;undefiend&lt;/code&gt;.
 When the &lt;code&gt;paramName&lt;/code&gt; option is not defined, the name is derived from the
 &lt;code&gt;resourceName&lt;/code&gt; property, e.g. &lt;code&gt;user&lt;/code&gt; if the resource name is &lt;code&gt;user&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;shallow:&lt;/strong&gt; a boolean value that controls whether the agent should omit
+the &lt;code&gt;nestedIn&lt;/code&gt; string from the member path. Default is &lt;code&gt;false&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;adapters:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Adapters&lt;/h4&gt;
@@ -2839,8 +2852,8 @@ for Ajax requests.&lt;/p&gt;
 
 var Form = Cape.createComponentClass({
   init: function() {
-    this.id = 123;
     this.agent = new Cape.ResourceAgent(this, { resourceName: &#39;user&#39; });
+    this.agent.id = 123;
     this.agent.init();
   },
 
@@ -2866,8 +2879,8 @@ var UserAgent = Cape.createResourceAgentClass({
 
 var Form = Cape.createComponentClass({
   init: function() {
-    this.id = 123;
     this.agent = new UserAgent(this);
+    this.agent.id = 123;
     this.agent.init();
   },
 
@@ -3069,6 +3082,12 @@ error messages.&lt;/p&gt;
 &lt;p&gt;This property holds the HTTP headers for Ajax requests.
 The default valued is &lt;code&gt;{ &#39;Content-Type&#39;: &#39;application/json&#39; }&lt;/code&gt;.&lt;/p&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;id&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;id:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#id&lt;/h3&gt;
+
+&lt;p&gt;This property holds the &lt;em&gt;id&lt;/em&gt; of resource.&lt;/p&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;init&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;init:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#init()&lt;/h3&gt;
@@ -3132,9 +3151,9 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;The &lt;code&gt;id&lt;/code&gt; part of the URL path (&lt;code&gt;9&lt;/code&gt;) derives from the &lt;code&gt;client.id&lt;/code&gt; property.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;id&lt;/code&gt; part of the URL path (&lt;code&gt;9&lt;/code&gt;) derives from the &lt;code&gt;id&lt;/code&gt; property of the agent.&lt;/p&gt;
 
-&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;object&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -3193,7 +3212,7 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;p&gt;A &lt;em&gt;new&lt;/em&gt; resource is a resource for a form for creating an resource.&lt;/p&gt;
 
-&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;nested-in&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -3210,6 +3229,12 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;resourcename:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#resourceName&lt;/h3&gt;
+
+&lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;shallow&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;shallow:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#shallow&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
@@ -3270,7 +3295,7 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 &lt;p&gt;A singular resource is a resource that clients always look up without
 referencing an ID.&lt;/p&gt;
 
-&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Note that the default value of &lt;code&gt;basePath&lt;/code&gt; property is &lt;code&gt;&#39;/&#39;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;update&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
