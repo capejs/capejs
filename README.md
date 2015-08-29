@@ -20,7 +20,6 @@ with *unidirectional data flow.*
 * **Resource agents and collection agents:** Using *resource agents* and/or
 *collection agents*, you can perform REST requests
 to the web resources using [Fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API).
-This is a *new* feature of the version 1.2.
 * **Router:** You can define *routes* with a DSL (domain specific language)
 similar to that of Ruby on Rails.
 
@@ -81,7 +80,7 @@ This is built upon the Ruby on Rails. When you start it and open `http://localho
 * Internet Explorer 11
 * Google Chrome (Current)
 * Mozilla Firefox (Current)
-* Safari (6.1+)
+* Safari (7.1+)
 
 Any problem with Cape.JS in the above browsers should be reported as a bug in Cape.JS.
 
