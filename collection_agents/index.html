@@ -108,8 +108,6 @@
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#basics">Basics</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/collection_agents/#setting-up">Setting up</a></li>
-          
             <li><a href="http://oiax.github.io/capejs/collection_agents/#agent-adapters">Agent Adapters</a></li>
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#defining-classes">Defining Classes</a></li>
@@ -209,7 +207,6 @@
 <p><span class="badge alert-info">1.2</span></p>
 
 <p><a href="#basics">Basics</a> -
-<a href="#setting-up">Setting up</a> -
 <a href="#agent-adapters">Agent Adapters</a> -
 <a href="#defining-classes">Defining Classes</a> -
 <a href="#initialization">Initialization</a> -
@@ -238,25 +235,10 @@ you have to implement them on your own.</p>
 the terms of <a href="https://en.wikipedia.org/wiki/Observer_pattern">observer pattern</a>
 while collection agents do not.</p>
 
-<p>But, you can combine a collection agent with a data store in order to notify
+<p>However, you can combine a collection agent with a data store in order to notify
 its stage changes to the observers as explained <a href="#cooperation-with-a-data-store">later</a>.</p>
 
 <p>Note that the collection agents are introduced with the Cape.JS version 1.2.</p>
-
-<p><a class="anchor" id="setting-up"></a></p>
-
-<h3 id="setting-up:0b3dd9ce14f479a81f8252af01a87547">Setting up</h3>
-
-<p>For doing Ajax operations, the collection agents utilize
-<a href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API">Fetch API</a>,
-which is supported only by some modern browsers.
-If you want to support Internet Explorer and Safari,
-you need to include a <em>pollyfill</em> for the Fetch API into your application
-by adding the following lines to the <code>&lt;head&gt;</code> section of your HTML files.</p>
-
-<pre><code class="language-html">&lt;script src=&quot;//cdn.rawgit.com/jakearchibald/es6-promise/2.3.0/dist/es6-promise.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/fetch/0.9.0/fetch.min.js&quot;&gt;&lt;/script&gt;
-</code></pre>
 
 <p><a class="anchor" id="agent-adapters"></a></p>
 

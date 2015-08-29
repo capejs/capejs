@@ -108,8 +108,6 @@
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#basics">Basics</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/collection_agents/#setting-up">Setting up</a></li>
-          
             <li><a href="http://oiax.github.io/capejs/collection_agents/#agent-adapters">Agent Adapters</a></li>
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#defining-classes">Defining Classes</a></li>
@@ -332,7 +330,7 @@ If we post to the server a JSON string such as <code>{ done: true }</code>
 using <code>PATCH /api/items/123</code> interface (<code>123</code> is the <code>id</code> value of an item),
 it records this item as &ldquo;done&rdquo; on the database.</p>
 
-<p>In this settings, we can rewrite the <code>todo_item_store.js</code> of the previous
+<p>Having this settings, we can rewrite the <code>todo_item_store.js</code> of the previous
 example as follows:</p>
 
 <h4 id="todo-item-store-js-1:f92bcc195ac1a154137ec3cd72983d7f">todo_item_store.js</h4>
@@ -385,6 +383,10 @@ See <a href="http://api.jquery.com/jquery.ajax/">http://api.jquery.com/jquery.aj
 <p>You can find a working demo using Ajax techniques on
 <a href="https://github.com/oiax/capejs-demo-on-rails">https://github.com/oiax/capejs-demo-on-rails</a>.
 This demo is built as a Ruby on Rails application.</p>
+
+<p>Note that the Cape.JS v1.2.0 introduced the
+<a href="../collection_agents/">CollectionAgent</a> class which has a <em>built-in</em>
+functionality to send Ajax requests to the server.</p>
 
         </div>
       </article>

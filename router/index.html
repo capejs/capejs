@@ -108,8 +108,6 @@
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#basics">Basics</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/collection_agents/#setting-up">Setting up</a></li>
-          
             <li><a href="http://oiax.github.io/capejs/collection_agents/#agent-adapters">Agent Adapters</a></li>
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#defining-classes">Defining Classes</a></li>
@@ -793,31 +791,6 @@ the error handler is executed if it exists.</p>
 
 <p>The <code>show</code> method of router mounts the specified component (<code>Errors.NetworkError</code>)
 immediately without executing before-navigation callbacks.</p>
-
-<h4 id="notes-on-the-promise:b440f93c1d3adda104fcdb9ed5aa5063">Notes on the <em>Promise</em></h4>
-
-<p>In this example, we use a
-<a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
-<i class="fa fa-external-link"></i>
-object to assure that the callbacks are executed one by one in order before navigation.
-Because Ajax requests are processed <em>asynchronously,</em>
-we can&rsquo;t assure this without the help of <em>Promise</em> objects.</p>
-
-<p>Note that all browsers currently in use in the world do not support the <em>Promise</em> interface.
-See <a href="http://caniuse.com/#feat=promises">http://caniuse.com/#feat=promises</a>.</p>
-
-<p>For browsers that do not support it, you should use one of these <em>Promise polyfills:</em></p>
-
-<ul>
-<li><a href="https://github.com/taylorhakes/promise-polyfill">https://github.com/taylorhakes/promise-polyfill</a></li>
-<li><a href="https://github.com/jakearchibald/es6-promise">https://github.com/jakearchibald/es6-promise</a></li>
-</ul>
-
-<p>If you choose the former, just place the following snippet
-to the <code>&lt;head&gt;</code> section of your HTML files.</p>
-
-<pre><code class="language-html">&lt;link href=&quot;https://cdn.rawgit.com/taylorhakes/promise-polyfill/master/Promise.min.js&quot; rel=&quot;stylesheet&quot;&gt;
-</code></pre>
 
         </div>
       </article>

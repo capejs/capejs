@@ -133,8 +133,6 @@
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#basics">Basics</a></li>
           
-            <li><a href="http://oiax.github.io/capejs/collection_agents/#setting-up">Setting up</a></li>
-          
             <li><a href="http://oiax.github.io/capejs/collection_agents/#agent-adapters">Agent Adapters</a></li>
           
             <li><a href="http://oiax.github.io/capejs/collection_agents/#defining-classes">Defining Classes</a></li>
@@ -300,8 +298,6 @@
       
     
       
-    
-      
       <article>
         <div>
           
@@ -324,6 +320,9 @@ with its simple, easy to learn syntax.</li>
 without <a href="https://jquery.com/">jQuery</a> <i class="fa fa-external-link"></i>.</li>
 <li><strong>Data stores:</strong> Using <em>data stores</em>, you can build web applications
 with <em>unidirectional data flow.</em></li>
+<li><strong>Resource agents and collection agents:</strong> Using <em>resource agents</em> and/or
+<em>collection agents</em>, you can perform REST requests
+to the web resources using <a href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API">Fetch API</a>.</li>
 <li><strong>Router:</strong> You can define <em>routes</em> with a DSL (domain specific language)
 similar to that of Ruby on Rails.</li>
 </ul>
@@ -340,7 +339,7 @@ and <a href="https://github.com/rails/rails">Ruby on Rails</a> <i class="fa fa-e
 <p>If you just want to use Cape.JS in your web site, insert the following snippet
 to the <code>&lt;head&gt;</code> section of your HTML files.</p>
 
-<pre><code class="language-html">&lt;script src=&quot;//cdn.rawgit.com/oiax/capejs/v1.1.3/dist/cape.min.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;//cdn.rawgit.com/oiax/capejs/v1.2.0/dist/cape.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 
 <p>You can get the package for <a href="https://www.npmjs.com/">npm</a> <i class="fa fa-external-link"></i> with following command:</p>
@@ -351,6 +350,24 @@ to the <code>&lt;head&gt;</code> section of your HTML files.</p>
 <p>You can get the package for <a href="http://bower.io/">bower</a> <i class="fa fa-external-link"></i> with following command:</p>
 
 <pre><code>$ bower install capejs
+</code></pre>
+
+<h2 id="notes-on-the-promise-and-fetch-api:d680e8a854a7cbad6d490c445cba2eba">Notes on the <em>Promise</em> and <em>Fetch API</em></h2>
+
+<p>In order to take advantage of the full capabilities of Cape.JS,
+you may have to install <em>pollyfills</em> for
+the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+<i class="fa fa-external-link"></i>
+and <a href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API">Fetch API</a>
+<i class="fa fa-external-link"></i>,
+because these technologies are only supported by some modern browsers (Firefox and Chrome).</p>
+
+<p>If you want to support Microsoft Edge, Internet Explorer and Safari,
+you need to include these pollyfills into your application
+by adding the following lines to the <code>&lt;head&gt;</code> section of your HTML files.</p>
+
+<pre><code class="language-html">&lt;script src=&quot;//cdn.rawgit.com/jakearchibald/es6-promise/3.0.2/dist/es6-promise.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/fetch/0.9.0/fetch.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 
 <p><a class="anchor" id="faq"></a></p>
@@ -374,7 +391,7 @@ and we have released the version 1.0.0.</p>
 
 <h3 id="which-browsers-are-supported:d680e8a854a7cbad6d490c445cba2eba">Which browsers are supported?</h3>
 
-<p>We test Cape.JS on Microsoft Edge, Internet Explorer 11, Safari (6.1+) and the latest versions of Chrome and Firefox.</p>
+<p>We test Cape.JS on Microsoft Edge, Internet Explorer 11, Safari (7.1+) and the latest versions of Chrome and Firefox.</p>
 
 <p>Note that we have no plan to support the Internet Explorer 8, 9, and 10.</p>
 
@@ -400,6 +417,8 @@ See <a href="https://github.com/oiax/capejs/CONTRIBUTING.md">CONTRIBUTING.md</a>
 
         </div>
       </article>
+      
+    
       
     
       
