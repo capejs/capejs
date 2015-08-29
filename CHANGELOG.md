@@ -1,6 +1,6 @@
 # CHANGELOG - Cape.JS
 
-## 1.2.0 (Not yet released)
+## 1.2.0 (August 29, 2015)
 
 ### `Cape`
 
@@ -14,6 +14,7 @@ that includes `constructor` key to override the class constructor.
 * Fix a bug that tampers other forms. Backported as `v1.0.3` and `v1.1.2`.
 * The inner (private) attribute `virtualForms` has been made public.
 * Add `#checkedOn` which returns a boolean value that shows if a check box is checked or not.
+* Fix #10 "Caret position gets reset after refresh()".
 
 ### `Cape.VirtualForms`
 
@@ -33,12 +34,12 @@ been made public.
 
 ### `Cape.ResourceAgent`
 
-* Add new classes called `Cape.ResourceAgent`, which holds a single object and
+* Add a new class called `Cape.ResourceAgent`, which holds a single object and
 performs Ajax requests using `fetch` API.
 
 ### `Cape.CollectionAgent`
 
-* Add new classes called `Cape.CollectionAgent`, which holds a collection of
+* Add a new class called `Cape.CollectionAgent`, which holds a collection of
 objects and performs Ajax requests using `fetch` API.
 
 
