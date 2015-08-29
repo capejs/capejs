@@ -5,7 +5,6 @@ title: "Collection Agents"
 <span class="badge alert-info">1.2</span>
 
 [Basics](#basics) -
-[Setting up](#setting-up) -
 [Agent Adapters](#agent-adapters) -
 [Defining Classes](#defining-classes) -
 [Initialization](#initialization) -
@@ -31,25 +30,11 @@ On the other hand, data stores work as the _subjects_, or _observables_, in
 the terms of [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern)
 while collection agents do not.
 
-But, you can combine a collection agent with a data store in order to notify
+However, you can combine a collection agent with a data store in order to notify
 its stage changes to the observers as explained [later](#cooperation-with-a-data-store).
 
 Note that the collection agents are introduced with the Cape.JS version 1.2.
 
-<a class="anchor" id="setting-up"></a>
-### Setting up
-
-For doing Ajax operations, the collection agents utilize
-[Fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API),
-which is supported only by some modern browsers.
-If you want to support Internet Explorer and Safari,
-you need to include a _pollyfill_ for the Fetch API into your application
-by adding the following lines to the `<head>` section of your HTML files.
-
-```html
-<script src="//cdn.rawgit.com/jakearchibald/es6-promise/2.3.0/dist/es6-promise.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/fetch/0.9.0/fetch.min.js"></script>
-```
 
 <a class="anchor" id="agent-adapters"></a>
 ### Agent Adapters

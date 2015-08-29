@@ -605,27 +605,3 @@ the error handler is executed if it exists.
 
 The `show` method of router mounts the specified component (`Errors.NetworkError`)
 immediately without executing before-navigation callbacks.
-
-#### Notes on the *Promise*
-
-In this example, we use a
-[Promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-<i class="fa fa-external-link"></i>
-object to assure that the callbacks are executed one by one in order before navigation.
-Because Ajax requests are processed *asynchronously,*
-we can't assure this without the help of *Promise* objects.
-
-Note that all browsers currently in use in the world do not support the *Promise* interface.
-See http://caniuse.com/#feat=promises.
-
-For browsers that do not support it, you should use one of these *Promise polyfills:*
-
-* https://github.com/taylorhakes/promise-polyfill
-* https://github.com/jakearchibald/es6-promise
-
-If you choose the former, just place the following snippet
-to the `<head>` section of your HTML files.
-
-```html
-<link href="https://cdn.rawgit.com/taylorhakes/promise-polyfill/master/Promise.min.js" rel="stylesheet">
-```

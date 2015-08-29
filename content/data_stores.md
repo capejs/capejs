@@ -130,7 +130,7 @@ If we post to the server a JSON string such as `{ done: true }`
 using `PATCH /api/items/123` interface (`123` is the `id` value of an item),
 it records this item as "done" on the database.
 
-In this settings, we can rewrite the `todo_item_store.js` of the previous
+Having this settings, we can rewrite the `todo_item_store.js` of the previous
 example as follows:
 
 #### todo_item_store.js
@@ -184,3 +184,7 @@ See http://api.jquery.com/jquery.ajax/ for details.
 You can find a working demo using Ajax techniques on
 https://github.com/oiax/capejs-demo-on-rails.
 This demo is built as a Ruby on Rails application.
+
+Note that the Cape.JS v1.2.0 introduced the
+[CollectionAgent](../collection_agents/) class which has a _built-in_
+functionality to send Ajax requests to the server.

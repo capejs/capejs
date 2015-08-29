@@ -56,9 +56,6 @@ pages:
         id: "basics"
         title: "Basics"
       -
-        id: "setting-up"
-        title: "Setting up"
-      -
         id: "agent-adapters"
         title: "Agent Adapters"
       -

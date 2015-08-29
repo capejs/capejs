@@ -20,6 +20,9 @@ with its simple, easy to learn syntax.
 without [jQuery](https://jquery.com/) <i class="fa fa-external-link"></i>.
 * **Data stores:** Using *data stores*, you can build web applications
 with *unidirectional data flow.*
+* **Resource agents and collection agents:** Using *resource agents* and/or
+*collection agents*, you can perform REST requests
+to the web resources using [Fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API).
 * **Router:** You can define *routes* with a DSL (domain specific language)
 similar to that of Ruby on Rails.
 
@@ -35,7 +38,7 @@ If you just want to use Cape.JS in your web site, insert the following snippet
 to the `<head>` section of your HTML files.
 
 ```html
-<script src="//cdn.rawgit.com/oiax/capejs/v1.1.3/dist/cape.min.js"></script>
+<script src="//cdn.rawgit.com/oiax/capejs/v1.2.0/dist/cape.min.js"></script>
 ```
 
 You can get the package for [npm](https://www.npmjs.com/) <i class="fa fa-external-link"></i> with following command:
@@ -49,6 +52,26 @@ You can get the package for [bower](http://bower.io/) <i class="fa fa-external-l
 ```
 $ bower install capejs
 ```
+
+## Notes on the _Promise_ and _Fetch API_
+
+In order to take advantage of the full capabilities of Cape.JS,
+you may have to install _pollyfills_ for
+the [Promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+<i class="fa fa-external-link"></i>
+and [Fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
+<i class="fa fa-external-link"></i>,
+because these technologies are only supported by some modern browsers (Firefox and Chrome).
+
+If you want to support Microsoft Edge, Internet Explorer and Safari,
+you need to include these pollyfills into your application
+by adding the following lines to the `<head>` section of your HTML files.
+
+```html
+<script src="//cdn.rawgit.com/jakearchibald/es6-promise/3.0.2/dist/es6-promise.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fetch/0.9.0/fetch.min.js"></script>
+```
+
 
 <a class="anchor" id="faq"></a>
 ## FAQ
@@ -70,7 +93,7 @@ and we have released the version 1.0.0.
 
 ### Which browsers are supported?
 
-We test Cape.JS on Microsoft Edge, Internet Explorer 11, Safari (6.1+) and the latest versions of Chrome and Firefox.
+We test Cape.JS on Microsoft Edge, Internet Explorer 11, Safari (7.1+) and the latest versions of Chrome and Firefox.
 
 Note that we have no plan to support the Internet Explorer 8, 9, and 10.
 
