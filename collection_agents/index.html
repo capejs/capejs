@@ -266,7 +266,9 @@ beginning of your JavaScript code:</p>
 <p>You can define such a class calling <code>Cape.createCollectionAgentClass()</code> method:</p>
 
 <pre><code class="language-javascript">var UserCollectionAgent = Cape.createCollectionAgentClass({
-  resourceName: 'users'
+  constructor: function(client, options) {
+    this.resourceName = 'users';
+  }
 })
 </code></pre>
 
@@ -525,7 +527,7 @@ the resource name. Its default value is &ldquo;.</p>
 <p>Note that you should <em>not</em> define the <code>init()</code> method like this:</p>
 
 <pre><code class="language-javascript">  init() {
-    this.agent = new ArticleCollectionAgent();
+    this.agent = new ArticleCollectionAgent(this);
     this.agent.nestedIn = 'members/123/';
     this.agent.refresh();
   }

@@ -247,15 +247,17 @@ which handles a resource collection.</p>
 <p>You can define such a class calling <code>Cape.createResourceAgentClass()</code> method:</p>
 
 <pre><code class="language-javascript">var UserAgent = Cape.createResourceAgentClass({
-  resourceName: 'user'
+  constructor: function(client, options) {
+    this.resourceName = 'user';
+  }
 })
 </code></pre>
 
 <p>You can also define it using the ES6 syntax:</p>
 
 <pre><code class="language-javascript">class UserAgent extends Cape.ResourceAgent {
-  constructor(options) {
-    super(options);
+  constructor(client, options) {
+    super(client, options);
     this.resourceName = 'user';
   }
 }
