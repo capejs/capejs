@@ -43,7 +43,9 @@ You can define such a class calling `Cape.createResourceAgentClass()` method:
 
 ```javascript
 var UserAgent = Cape.createResourceAgentClass({
-  resourceName: 'user'
+  constructor: function(client, options) {
+    this.resourceName = 'user';
+  }
 })
 ```
 
@@ -51,8 +53,8 @@ You can also define it using the ES6 syntax:
 
 ```javascript
 class UserAgent extends Cape.ResourceAgent {
-  constructor(options) {
-    super(options);
+  constructor(client, options) {
+    super(client, options);
     this.resourceName = 'user';
   }
 }

@@ -62,7 +62,9 @@ You can define such a class calling `Cape.createCollectionAgentClass()` method:
 
 ```javascript
 var UserCollectionAgent = Cape.createCollectionAgentClass({
-  resourceName: 'users'
+  constructor: function(client, options) {
+    this.resourceName = 'users';
+  }
 })
 ```
 
@@ -294,7 +296,7 @@ Note that you should _not_ define the `init()` method like this:
 
 ```javascript
   init() {
-    this.agent = new ArticleCollectionAgent();
+    this.agent = new ArticleCollectionAgent(this);
     this.agent.nestedIn = 'members/123/';
     this.agent.refresh();
   }
