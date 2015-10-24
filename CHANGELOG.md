@@ -1,5 +1,11 @@
 # CHANGELOG - CapeJS
 
+## 1.1.4 (October 24, 2015)
+
+### `Cape.Component`
+
+* Bug fix: Do not gather data from disabled elements.
+
 ## 1.1.3 (August 24, 2015)
 
 ### `Cape.Component`
