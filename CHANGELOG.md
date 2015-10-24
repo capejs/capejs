@@ -1,5 +1,13 @@
 # CHANGELOG - Cape.JS
 
+## 1.3.0 (Not yet released)
+
+### `Cape.Partial`
+
+* Add a new class called `Cape.Partial`, which renders HTML elements included
+in an element rendered by a regular component or another partial. This class
+is to be used in order to refactor a large component class.
+
 ## 1.2.0 (August 29, 2015)
 
 ### `Cape`
