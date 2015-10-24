@@ -148,6 +148,7 @@ describe('Component', function() {
             m.a({ name: 'name' })
             m.textField('title');
             m.textField('name', { value: 'B' });
+            m.textField('ghost', { disabled: true, value: 'X' });
             m.textareaField('comment', { value: 'X' });
             m.checkBox('confirmed');
             m.checkBox('published');
@@ -170,6 +171,7 @@ describe('Component', function() {
 
       expect(component.val('title')).to.equal('A');
       expect(component.val('name')).to.equal('C');
+      expect(component.val('ghost')).to.equal('');
       expect(component.val('comment')).to.equal('X');
       expect(component.val('confirmed')).to.equal('1');
       expect(component.val('published')).to.equal('1');
