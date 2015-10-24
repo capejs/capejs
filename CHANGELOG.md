@@ -8,6 +8,10 @@
 in an element rendered by a regular component or another partial. This class
 is to be used in order to refactor a large component class.
 
+### `Cape.VirtualForms`
+
+* Bug fix: Do not gather data from disabled elements.
+
 ## 1.2.0 (August 29, 2015)
 
 ### `Cape`
