@@ -1,5 +1,11 @@
 # CHANGELOG - Cape.JS
 
+## 1.2.1 (October 24, 2015)
+
+### `Cape.VirtualForms`
+
+* Bug fix: Do not gather data from disabled elements.
+
 ## 1.2.0 (August 29, 2015)
 
 ### `Cape`
