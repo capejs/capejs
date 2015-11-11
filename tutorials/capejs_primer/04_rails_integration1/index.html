@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>Cape.JS Primer - A Tutorial - Cape.JS: Documentation</title>
+  <title>Integrate Cape.JS with Ruby on Rails (1) - Cape.JS Primer - Cape.JS: Documentation</title>
   <meta name="generator" content="Bootply" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="http://oiax.github.io/capejs/css/bootstrap.min.css" rel="stylesheet">
@@ -199,57 +199,150 @@
     <div class="col-sm-12 col-md-9">
       <article>
         <header>
-          <h2>Cape.JS Primer - A Tutorial</h2>
+          <h2>Integrate Cape.JS with Ruby on Rails (1) - Cape.JS Primer</h2>
           <div class="post-meta clearfix">
           </div>
         </header>
         <div>
-          
+          <p>On 3 lectures including <a href="../03_creating_text_nodes">the previous time</a>, I explained how to create virtual DOM by Cape.JS.</p>
 
-<p><img src="https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg" alt="Cape.JS Logo" />
-</p>
+<p>From this lecture, I&rsquo;ll explain steps to integrate Cape.JS with <a href="http://rubyonrails.org/">Ruby on Rails</a>.</p>
 
-<h3 id="preface:c9eecd56f2d030a9e3a3fce57054be82">Preface</h3>
+<div class="note">
+Please acquire a demonstration application at <a href="https://github.com/oiax/capejs-demo-on-rails">https://github.com/oiax/capejs-demo-on-rails</a> if you are impatient like "I want you to show me a source code not explanation." A sample Rail application we make on this lecture will be a very similar one like the demonstration application.
+</div>
 
-<p>I start serializing to inform a new-born JavaScript UI framework in 2015, <strong>Cape.JS</strong>.</p>
+<p>As a precondition, Ruby (v2.1 or later), Rails 4.2、Node.js (v0.12 or later) and Git (v2.0 or later) are supposed to be installed on your PC.</p>
 
-<p>Let&rsquo;s learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS and making an easy TODO administration application step by step.</p>
+<div class="note">
+I skip the explanation of steps to install each software. Please search the word such as "node.js install windows" and "git install mac" on the internet.
+</div>
 
-<p>Cape.JS uses a technique &ldquo;virtual DOM&rdquo; like <a href="https://facebook.github.io/react/">React</a> and <a href="https://muut.com/riotjs/">Riot</a> do. You can utilize Cape.JS to create interactive websites, which are websites that changes contents dynamically depend on users&rsquo; actions.</p>
+<hr />
 
-<p>Until recently, it&rsquo;s general to create interactive websites by making full use of <a href="https://jquery.com/">jQuery</a>, but front-end programming will be much easier to if you adopt &ldquo;virtual DOM&rdquo;.</p>
+<p>The application we will make on some lectures from this lecture is easy one to administrate &ldquo;To-do list&rdquo; The data of To-do list is stored in SQlite3 database. We don&rsquo;t create the function of users&rsquo; singing in･out.</p>
 
-<p>I say this again just in case, the writer of this serialization is the person who made Cape.JS (Mr.Kuroda). There were several people who uses it when I started serializing, but I hope many people will use it as many as possible.</p>
+<p>Let&rsquo;s begin to create framework of the application.</p>
 
-<p>Cape.JS is an open source project. It&rsquo;s distributed under the license of MIT. You can use it for free and also re-distribute･sell after you modify its source code. You can find the source code at GitHub&rsquo;s <a href="https://github.com/oiax/capejs">repository</a>. Also, <a href="http://oiax.github.io/capejs/">documents</a> in English are prepared.</p>
+<pre><code class="language-text">$ rails new todo_list --skip-bundle
+$ cd todo_list
+</code></pre>
 
-<h3 id="table-of-contents:c9eecd56f2d030a9e3a3fce57054be82">Table of Contents</h3>
+<p>Open <code>Gemfile</code> on the text editor and add a line as following at the end.:</p>
 
-<ul>
-<li>Preface</li>
-<li><a href="./01_hello_world">Hello, world!</a></li>
-<li><a href="./02_custom_attributes_and_nested_elements">Reference of custom attribute value and nesting of HTLM elements</a></li>
-<li><a href="./03_creating_text_nodes">Creating the text nodes</a></li>
-<li><a href="./04_rails_integration1">Integrate Cape.JS with Ruby on Rails (1)</a></li>
-<li><a href="./05_rails_integration2">Integrate Cape.JS with Ruby on Rails (2)</a></li>
-<li>Let the component have the data</li>
-<li>Initializing the date with Ajax</li>
-<li>Assignment of event handler</li>
-<li>Updating the data with Ajax</li>
-<li>The data store</li>
-<li>The newly added form of the task</li>
-<li>Creating new task</li>
-<li>The edit form of the task</li>
-<li>Update the task</li>
-<li>Delete the task</li>
-<li>Cape.JS 1.2</li>
-<li>Collection agent (1)</li>
-<li>Collection agent (2)</li>
-<li>Collection agent (3)</li>
-<li>Changing displaying order (1)</li>
-<li>Changing displaying order (2)</li>
-<li>Changing displaying order (3)</li>
-</ul>
+<pre><code class="language-ruby">gem 'sprockets-es6', '~&gt; 0.6.1'
+</code></pre>
+
+<div class="note">
+Tell the truth, this added line isn't necessary to use Cape.JS. But, Cape.JS programming becomes more fun if you use the syntax of ECMAScript 6. (which is commonly called ES6. JavaScript's standard issue of next term) <code>sprockets-es6</code> is a Gem package that convert the program written in ES6 to the running one for JavaScript.
+</div>
+
+<p>Then, install the Gem packages.</p>
+
+<pre><code class="language-text">$ bin/bundle
+</code></pre>
+
+<div class="note">
+Write <code>ruby</code> before the command if you are Windows user." Generally, when you run the command starting with <code>bin/</code>, you need to write  <code>ruby</code> at the top on Windows.
+</div>
+
+<hr />
+
+<p>And install <a href="http://bower.io/">Bower</a> (JavaScript&rsquo;s package administration tool).</p>
+
+<pre><code class="language-text">$ sudo npm install -g bower
+</code></pre>
+
+<div class="note">
+On Windows, omit <code>sudo</code>.
+</div>
+
+<p>Create a new file <code>.bowerrc</code> on the text editor and write as following.</p>
+
+<pre><code class="language-json">{
+  &quot;directory&quot;: &quot;vendor/assets/components&quot;
+}
+</code></pre>
+
+<p>The package administrated by Bower is installed at <code>vendor/assets/components</code> directory.</p>
+
+<p>Next, install Cape.JS.:</p>
+
+<pre><code class="language-text">$ bower install capejs
+</code></pre>
+
+<p>As that above, install Bootstrap, Font Awesome, and lodash by using Bower.</p>
+
+<pre><code class="language-text">$ bower install bootstrap fontawesome lodash
+</code></pre>
+
+<div class="note">
+These packages don't need Cape.JS but we install them here because we will use them later of the next lecture.
+</div>
+
+<p>Moreover, set default of Bower. Run the command <code>bower init</code> on terminal. Keep pushing Enter key until the prompt <code>? name: (todo_list)</code> display at first. Since that, about 10 questions is displayed but just keep pushing Enter key with empty value.</p>
+
+<p>As the result, the file <code>bower.json</code> with the content like following is made.</p>
+
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;todo_list&quot;,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;authors&quot;: [
+    &quot;John Doe &lt;john@example.com&gt;&quot;
+  ],
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;ignore&quot;: [
+    &quot;**/.*&quot;,
+    &quot;node_modules&quot;,
+    &quot;bower_components&quot;,
+    &quot;vendor/assets/components&quot;,
+    &quot;test&quot;,
+    &quot;tests&quot;
+  ],
+  &quot;dependencies&quot;: {
+    &quot;capejs&quot;: &quot;~1.0.0&quot;,
+    &quot;bootstrap&quot;: &quot;~3.3.4&quot;,
+    &quot;fontawesome&quot;: &quot;~4.3.0&quot;,
+    &quot;lodash&quot;: &quot;~3.9.3&quot;
+  }
+}
+</code></pre>
+
+<div class="note">
+At the time when I write this article(May 29th, 2015), There are version numbers in <code>dependencies</code> section like above. But, they will change in the future. It may not be a big problem if the last version number changes. In case that first one and second one are different, rewrite <code>bower.json</code> as above and run `bower install` to let them being same before trying the contents of this lecture.
+</div>
+
+<div class="note">
+Bootstrap's <code>3.3.5</code> was released on June 17th, 2015 but it doesn't work well because this version has bad chemistry with Rails (accurately, with Sprockets). So, change bootstrap's version number in <code>dependencies</code> section of <code>bower.json</code> from <code>~3.3.4</code> to <code>=3.3.4</code>. The version number is fixed to <code>3.3.4</code> by doing this.
+</div>
+
+<hr />
+
+<p>Mount Cape.JS to the Rails application. Open <code>app/assets/javascripts/application.js</code> on the text editor and rewrite the content as following.:</p>
+
+<pre><code class="language-javascript">//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require capejs
+//= require bootstrap
+//= require lodash
+//= require_tree .
+</code></pre>
+
+<p>In addition, open <code>app/assets/stylesheets/application.css</code> and rewrite the content as following.:</p>
+
+<pre><code class="language-css">/*
+ *= require_tree .
+ *= require fontawesome
+ *= require_self
+ */
+</code></pre>
+
+<p>Now, it&rsquo;s ready to start developing Rails application by using Cape.JS.</p>
+
+<hr />
+
+<p>On <a href="../05_rails_integration2">the next lecture</a>, we&rsquo;ll still continue to develop &ldquo;To-do list&rdquo; application.</p>
 
         </div>
       </article>

@@ -39,9 +39,9 @@
 &lt;li&gt;Preface&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./01_hello_world&#34;&gt;Hello, world!&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./02_custom_attributes_and_nested_elements&#34;&gt;Reference of custom attribute value and nesting of HTLM elements&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Creating the text nodes&lt;/li&gt;
-&lt;li&gt;Approach to Ruby on Rails (1)&lt;/li&gt;
-&lt;li&gt;Approach to Ruby on Rails (2)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./03_creating_text_nodes&#34;&gt;Creating the text nodes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./04_rails_integration1&#34;&gt;Integrate Cape.JS with Ruby on Rails (1)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./05_rails_integration2&#34;&gt;Integrate Cape.JS with Ruby on Rails (2)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Let the component have the data&lt;/li&gt;
 &lt;li&gt;Initializing the date with Ajax&lt;/li&gt;
 &lt;li&gt;Assignment of event handler&lt;/li&gt;
@@ -60,6 +60,142 @@
 &lt;li&gt;Changing displaying order (2)&lt;/li&gt;
 &lt;li&gt;Changing displaying order (3)&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating the text nodes</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/03_creating_text_nodes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/03_creating_text_nodes/</guid>
+      <description>&lt;p&gt;Follow through on &lt;a href=&#34;../02_custom_attributes_and_nested_elements&#34;&gt;the previous lecture&lt;/a&gt;, I&amp;rsquo;ll introduce the basic functions of &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;Cape.JS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The theme of this lecture is texts. I&amp;rsquo;ll explain 2 cases. The one is that you escape and embed the specified character string and the another case that you don&amp;rsquo;t.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Before going into the main point, let&amp;rsquo;s separate off the JavaScript programming that defines the component class of Cape.JS from the HTML file. It&amp;rsquo;s easier to handle when the programming becomes longer.&lt;/p&gt;
+
+&lt;p&gt;Exact the part defining the class &lt;code&gt;HelloMessage&lt;/code&gt; within the element &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; of &lt;code&gt;hello_message3.html&lt;/code&gt; that you made at the end of the previous lecture and create a new file &lt;code&gt;hello_message4.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.div({ class: &#39;container&#39; }, function(m) {
+      m.h1(&#39;Greetings from Cape.JS&#39;);
+      m.div({ class: &#39;panel panel-default&#39; }, function(m) {
+        m.div(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;,
+          { class: &#39;panel-body&#39; });
+      });
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then rename &lt;code&gt;hello_message3.html&lt;/code&gt; to &lt;code&gt;hello_message4.html&lt;/code&gt;  and change the content of the element &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; to like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;  &amp;lt;div id=&amp;quot;main&amp;quot; data-name=&amp;quot;world&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;script src=&amp;quot;./hello_message4.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script&amp;gt;
+    var component = new HelloMessage();
+    component.mount(&#39;main&#39;);
+  &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Just to make sure, open the file &lt;code&gt;hello_message4.html&lt;/code&gt; on the browser and make sure that the screen display is same like the previous.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The goal of this lecture is to make &amp;ldquo;world!&amp;rdquo; of &amp;ldquo;Hello, world!&amp;rdquo; bold by surrounding with &lt;code&gt;&amp;lt;strong&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;/strong&amp;gt;&lt;/code&gt;. Rewrite &lt;code&gt;hello_message4.js&lt;/code&gt; like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.div({ class: &#39;container&#39; }, function(m) {
+      m.h1(&#39;Greetings from Cape.JS&#39;);
+      m.div({ class: &#39;panel panel-default&#39; }, function(m) {
+        m.div({ class: &#39;panel-body&#39; }, function(m) {
+          m.text(&#39;Hello, &#39;);
+          m.strong(this.root.data.name + &#39;!&#39;);
+        });
+      });
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The screen display is supposed to be like following when you open the file &lt;code&gt;hello_message4.html&lt;/code&gt;.:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message5a.png&#34; alt=&#34;The screen display&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The methods you have never seen before are &lt;code&gt;text()&lt;/code&gt; and &lt;code&gt;strong()&lt;/code&gt;. The latter is a method adding the element &lt;code&gt;&amp;lt;strong&amp;gt;&lt;/code&gt; into virtual DOM tree and it&amp;rsquo;s a companion of &lt;code&gt;div()&lt;/code&gt; and &lt;code&gt;p()&lt;/code&gt;. The method &lt;code&gt;text()&lt;/code&gt; adds &lt;strong&gt;text nodes&lt;/strong&gt; (a part which is nor surrounded within the element) into virtual DOM tree.&lt;/p&gt;
+
+&lt;p&gt;Another method to add text nodes is &lt;code&gt;sp()&lt;/code&gt;. It adds one half-width space into virtual DOM tree. By using this, you can rewrite &lt;code&gt;hello_message4.js&lt;/code&gt; to like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.div({ class: &#39;container&#39; }, function(m) {
+      m.h1(&#39;Greetings from Cape.JS&#39;);
+      m.div({ class: &#39;panel panel-default&#39; }, function(m) {
+        m.div({ class: &#39;panel-body&#39; }, function(m) {
+          m.text(&#39;Hello,&#39;).sp();
+          m.strong(this.root.data.name + &#39;!&#39;);
+        });
+      });
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s used for emphasizing the existence of half-width space and inserting a half-width space between the elements.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;By the way, the character string embedded by the method &lt;code&gt;text()&lt;/code&gt; is escaped. That means, the special character strings like &lt;code&gt;&amp;lt;&lt;/code&gt; や &lt;code&gt;&amp;amp;&lt;/code&gt; is automatically converted to &lt;code&gt;&amp;amp;lt;&lt;/code&gt; and &lt;code&gt;&amp;amp;amp;&lt;/code&gt;. This specification is desirable in the terms of security but there are cases that you don&amp;rsquo;t want to escape. For example, the case that you want to embed the character string by using the entity reference like &lt;code&gt;&amp;amp;x263a;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Copy &lt;code&gt;hello_message4.html&lt;/code&gt; to &lt;code&gt;hello_message5.html&lt;/code&gt; and copy &lt;code&gt;hello_message4.js&lt;/code&gt; to &lt;code&gt;hello_message5.js&lt;/code&gt; and open &lt;code&gt;hello_message5.html&lt;/code&gt; on the editor and rewrite the contents of the element &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;  &amp;lt;div id=&amp;quot;main&amp;quot; data-name=&amp;quot;&amp;amp;amp;#x263a;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;script src=&amp;quot;./hello_message5.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script&amp;gt;
+    var component = new HelloMessage();
+    component.mount(&#39;main&#39;);
+  &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The screen display is supposed to be like following when you open this file on your browser.
+:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message5b.png&#34; alt=&#34;The screen display&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Rewrite &lt;code&gt;hello_message5.js&lt;/code&gt; as following not to escape the character string.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.div({ class: &#39;container&#39; }, function(m) {
+      m.h1(&#39;Greetings from Cape.JS&#39;);
+      m.div({ class: &#39;panel panel-default&#39; }, function(m) {
+        m.div({ class: &#39;panel-body&#39; }, function(m) {
+          m.text(&#39;Hello,&#39;).sp();
+          m.strong({ innerHTML: this.root.data.name + &#39;!&#39; });
+        });
+      });
+    });
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The screen display is supposed to be like following when you reload the browser.:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message5b.png&#34; alt=&#34;The screen display&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;It may difficult to see but &amp;ldquo;smile mark is displayed on the screen. You can specify the content of the element as &amp;ldquo;real HTML&amp;rdquo; by using the option &lt;code&gt;innerHTML&lt;/code&gt; like this.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;On &lt;a href=&#34;../04_rails_integration1&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll explain how to embed Cape.JS to Ruby on Rails.&lt;/p&gt;
 </description>
     </item>
     
@@ -199,6 +335,282 @@ I think observant readers may notice that the program of Cape.JS is very similar
     </item>
     
     <item>
+      <title>Integrate Cape.JS with Ruby on Rails (1) - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/04_rails_integration1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/04_rails_integration1/</guid>
+      <description>&lt;p&gt;On 3 lectures including &lt;a href=&#34;../03_creating_text_nodes&#34;&gt;the previous time&lt;/a&gt;, I explained how to create virtual DOM by Cape.JS.&lt;/p&gt;
+
+&lt;p&gt;From this lecture, I&amp;rsquo;ll explain steps to integrate Cape.JS with &lt;a href=&#34;http://rubyonrails.org/&#34;&gt;Ruby on Rails&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+Please acquire a demonstration application at &lt;a href=&#34;https://github.com/oiax/capejs-demo-on-rails&#34;&gt;https://github.com/oiax/capejs-demo-on-rails&lt;/a&gt; if you are impatient like &#34;I want you to show me a source code not explanation.&#34; A sample Rail application we make on this lecture will be a very similar one like the demonstration application.
+&lt;/div&gt;
+
+&lt;p&gt;As a precondition, Ruby (v2.1 or later), Rails 4.2、Node.js (v0.12 or later) and Git (v2.0 or later) are supposed to be installed on your PC.&lt;/p&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+I skip the explanation of steps to install each software. Please search the word such as &#34;node.js install windows&#34; and &#34;git install mac&#34; on the internet.
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The application we will make on some lectures from this lecture is easy one to administrate &amp;ldquo;To-do list&amp;rdquo; The data of To-do list is stored in SQlite3 database. We don&amp;rsquo;t create the function of users&amp;rsquo; singing in･out.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s begin to create framework of the application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ rails new todo_list --skip-bundle
+$ cd todo_list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Open &lt;code&gt;Gemfile&lt;/code&gt; on the text editor and add a line as following at the end.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;gem &#39;sprockets-es6&#39;, &#39;~&amp;gt; 0.6.1&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+Tell the truth, this added line isn&#39;t necessary to use Cape.JS. But, Cape.JS programming becomes more fun if you use the syntax of ECMAScript 6. (which is commonly called ES6. JavaScript&#39;s standard issue of next term) &lt;code&gt;sprockets-es6&lt;/code&gt; is a Gem package that convert the program written in ES6 to the running one for JavaScript.
+&lt;/div&gt;
+
+&lt;p&gt;Then, install the Gem packages.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bin/bundle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+Write &lt;code&gt;ruby&lt;/code&gt; before the command if you are Windows user.&#34; Generally, when you run the command starting with &lt;code&gt;bin/&lt;/code&gt;, you need to write  &lt;code&gt;ruby&lt;/code&gt; at the top on Windows.
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;And install &lt;a href=&#34;http://bower.io/&#34;&gt;Bower&lt;/a&gt; (JavaScript&amp;rsquo;s package administration tool).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ sudo npm install -g bower
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+On Windows, omit &lt;code&gt;sudo&lt;/code&gt;.
+&lt;/div&gt;
+
+&lt;p&gt;Create a new file &lt;code&gt;.bowerrc&lt;/code&gt; on the text editor and write as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;directory&amp;quot;: &amp;quot;vendor/assets/components&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The package administrated by Bower is installed at &lt;code&gt;vendor/assets/components&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;Next, install Cape.JS.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bower install capejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As that above, install Bootstrap, Font Awesome, and lodash by using Bower.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bower install bootstrap fontawesome lodash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+These packages don&#39;t need Cape.JS but we install them here because we will use them later of the next lecture.
+&lt;/div&gt;
+
+&lt;p&gt;Moreover, set default of Bower. Run the command &lt;code&gt;bower init&lt;/code&gt; on terminal. Keep pushing Enter key until the prompt &lt;code&gt;? name: (todo_list)&lt;/code&gt; display at first. Since that, about 10 questions is displayed but just keep pushing Enter key with empty value.&lt;/p&gt;
+
+&lt;p&gt;As the result, the file &lt;code&gt;bower.json&lt;/code&gt; with the content like following is made.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;name&amp;quot;: &amp;quot;todo_list&amp;quot;,
+  &amp;quot;version&amp;quot;: &amp;quot;0.0.0&amp;quot;,
+  &amp;quot;authors&amp;quot;: [
+    &amp;quot;John Doe &amp;lt;john@example.com&amp;gt;&amp;quot;
+  ],
+  &amp;quot;license&amp;quot;: &amp;quot;MIT&amp;quot;,
+  &amp;quot;ignore&amp;quot;: [
+    &amp;quot;**/.*&amp;quot;,
+    &amp;quot;node_modules&amp;quot;,
+    &amp;quot;bower_components&amp;quot;,
+    &amp;quot;vendor/assets/components&amp;quot;,
+    &amp;quot;test&amp;quot;,
+    &amp;quot;tests&amp;quot;
+  ],
+  &amp;quot;dependencies&amp;quot;: {
+    &amp;quot;capejs&amp;quot;: &amp;quot;~1.0.0&amp;quot;,
+    &amp;quot;bootstrap&amp;quot;: &amp;quot;~3.3.4&amp;quot;,
+    &amp;quot;fontawesome&amp;quot;: &amp;quot;~4.3.0&amp;quot;,
+    &amp;quot;lodash&amp;quot;: &amp;quot;~3.9.3&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+At the time when I write this article(May 29th, 2015), There are version numbers in &lt;code&gt;dependencies&lt;/code&gt; section like above. But, they will change in the future. It may not be a big problem if the last version number changes. In case that first one and second one are different, rewrite &lt;code&gt;bower.json&lt;/code&gt; as above and run `bower install` to let them being same before trying the contents of this lecture.
+&lt;/div&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+Bootstrap&#39;s &lt;code&gt;3.3.5&lt;/code&gt; was released on June 17th, 2015 but it doesn&#39;t work well because this version has bad chemistry with Rails (accurately, with Sprockets). So, change bootstrap&#39;s version number in &lt;code&gt;dependencies&lt;/code&gt; section of &lt;code&gt;bower.json&lt;/code&gt; from &lt;code&gt;~3.3.4&lt;/code&gt; to &lt;code&gt;=3.3.4&lt;/code&gt;. The version number is fixed to &lt;code&gt;3.3.4&lt;/code&gt; by doing this.
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Mount Cape.JS to the Rails application. Open &lt;code&gt;app/assets/javascripts/application.js&lt;/code&gt; on the text editor and rewrite the content as following.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require capejs
+//= require bootstrap
+//= require lodash
+//= require_tree .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In addition, open &lt;code&gt;app/assets/stylesheets/application.css&lt;/code&gt; and rewrite the content as following.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;/*
+ *= require_tree .
+ *= require fontawesome
+ *= require_self
+ */
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, it&amp;rsquo;s ready to start developing Rails application by using Cape.JS.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;On &lt;a href=&#34;../05_rails_integration2&#34;&gt;the next lecture&lt;/a&gt;, we&amp;rsquo;ll still continue to develop &amp;ldquo;To-do list&amp;rdquo; application.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Integrate Cape.JS with Ruby on Rails (2) - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/05_rails_integration2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/05_rails_integration2/</guid>
+      <description>&lt;p&gt;As &lt;a href=&#34;../04_rails_integration1&#34;&gt;the previous lecture&lt;/a&gt;, I&amp;rsquo;ll explain how to approach to Ruby on Rails.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Before you start developing Rail application, prepare one more. Open &lt;code&gt;config/application.rb&lt;/code&gt; on the text editor and rewrite as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;    # (abbreviation of 1-23 lines)
+    config.active_record.raise_in_transactional_callbacks = true
+
+    config.generators do |g|
+      g.helper false
+      g.assets false
+      g.skip_routes true
+      g.test_framework false
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This correction prevents unnecessary (in my opinion) file creations and modifications.&lt;/p&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+With this correction, the command &lt;code&gt;bin/rails g&lt;/code&gt; does not create helper modules, style sheets and JavaScript files. It does not rewrite &lt;code&gt;config/routes.rb&lt;/code&gt;, too.
+We specify &lt;code&gt;g.test_framework false&lt;/code&gt; not to automatically create the templates of test scripts, because we don&#39;t write tests in this tutorial.
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, open &lt;code&gt;config/routes.rb&lt;/code&gt; on the text editor and rewrite like following after getting rid of all comment lines (lines starting from &lt;code&gt;#&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Rails.application.routes.draw do
+  root &#39;top#index&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, run next command on the terminal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ bin/rails g controller top index
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Open  &lt;code&gt;app/views/top/index.html.erb&lt;/code&gt; on the text editor and rewrite like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+  &amp;lt;div class=&amp;quot;page-header&amp;quot;&amp;gt;
+    &amp;lt;h1&amp;gt;
+      &amp;lt;i class=&amp;quot;fa fa-list&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; TODO LIST
+      &amp;lt;small&amp;gt;Cape.JS Demo on Rails&amp;lt;/small&amp;gt;
+    &amp;lt;/h1&amp;gt;
+  &amp;lt;/div&amp;gt;
+
+  &amp;lt;div class=&amp;quot;page-body&amp;quot; id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;script&amp;gt;
+var app = new TodoList();
+app.mount(&#39;todo-list&#39;);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s make sure the move here. Run next command on the terminal to boot Rails application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ bin/rails s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Open &lt;code&gt;http://localhost:3000&lt;/code&gt; on the browser. If the screen displays like following, it&amp;rsquo;s OK.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list01.png&#34; alt=&#34;The screen display&#34; /&gt;
+&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Now, here is the best part.&lt;/p&gt;
+
+&lt;p&gt;Create a new file &lt;code&gt;todo_list.es6&lt;/code&gt; at  &lt;code&gt;app/assets/javascripts&lt;/code&gt; directory and write as following on the text editor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class TodoList extends Cape.Component {
+  render(m) {
+    m.ul(m =&amp;gt; {
+      m.li(m =&amp;gt; {
+        m.label(m =&amp;gt; {
+          m.input({ type: &#39;checkbox&#39; }).sp();
+          m.span(&amp;quot;Buy cat&#39;s feed&amp;quot;);
+        });
+      });
+      m.li(m =&amp;gt; {
+        m.label(m =&amp;gt; {
+          m.input({ type: &#39;checkbox&#39; }).sp();
+          m.span(&#39;Go dentist&#39;);
+        });
+      });
+    });
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is the program of JavaScript but you may get confused because it uses ES6&amp;rsquo;s (ECMAScript 6) syntax. Let me explain briefly.&lt;/p&gt;
+
+&lt;p&gt;On the first line &lt;code&gt;class TodoList extends Cape.Component&lt;/code&gt;, it defines the new class &lt;code&gt;TodoList&lt;/code&gt; by inheriting the class &lt;code&gt;Cape.Component&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;On the second line &lt;code&gt;render()&lt;/code&gt;, it defines the method &lt;code&gt;render&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;m =&amp;gt; { ... }&lt;/code&gt; that you can see on every place on source code is the syntax defining &amp;ldquo;arrow function&amp;rdquo;. It&amp;rsquo;s (almost) same as &lt;code&gt;function(m) { ...}&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+You can write the arrow function more simply than the traditional anonymous function defined by the keyword &lt;code&gt;function&lt;/code&gt;. So it contributes especially on the library using a lot of deep nesting like Cape.JS. It has another important side to &#34;lexically constrain&#34; the value &lt;code&gt;this&lt;/code&gt;. For more information, please refer the MDN&#39;s
+&lt;a href=&#34;https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/arrow_functions&#34;&gt;arrow function&lt;/a&gt;.
+&lt;/div&gt;
+
+&lt;p&gt;Then, let&amp;rsquo;s make sure the move here. Reload the browser. If the screen displays like following, it&amp;rsquo;s OK.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list02.png&#34; alt=&#34;The screen display&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;We have already included the &lt;code&gt;sprockets-es6&lt;/code&gt; gem so the file holding the extension
+&lt;code&gt;.es6&lt;/code&gt; is automatically compiled to the traditional JavaScript code and load it to the page.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;That&amp;rsquo;s all for integrating Cape.JS with Rails application. On the next lecture, I&amp;rsquo;ll explain the way of rendering the component with the data.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Reference of custom attribute value and nesting of HTLM elements - Cape.JS Primer</title>
       <link>http://oiax.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -293,7 +705,7 @@ I think observant readers may notice that the program of Cape.JS is very similar
 
 &lt;hr /&gt;
 
-&lt;p&gt;That&amp;rsquo;s all for today. On the next lecture, I&amp;rsquo;ll explain the method &lt;code&gt;text()&lt;/code&gt; and the option &lt;code&gt;innerHTML&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s all for today. On &lt;a href=&#34;../03_creating_text_nodes&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll explain the method &lt;code&gt;text()&lt;/code&gt; and the option &lt;code&gt;innerHTML&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     

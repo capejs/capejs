@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>Cape.JS Primer - A Tutorial - Cape.JS: Documentation</title>
+  <title>Creating the text nodes - Cape.JS: Documentation</title>
   <meta name="generator" content="Bootply" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="http://oiax.github.io/capejs/css/bootstrap.min.css" rel="stylesheet">
@@ -199,57 +199,138 @@
     <div class="col-sm-12 col-md-9">
       <article>
         <header>
-          <h2>Cape.JS Primer - A Tutorial</h2>
+          <h2>Creating the text nodes</h2>
           <div class="post-meta clearfix">
           </div>
         </header>
         <div>
-          
+          <p>Follow through on <a href="../02_custom_attributes_and_nested_elements">the previous lecture</a>, I&rsquo;ll introduce the basic functions of <a href="http://oiax.github.io/capejs/">Cape.JS</a>.</p>
 
-<p><img src="https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg" alt="Cape.JS Logo" />
+<p>The theme of this lecture is texts. I&rsquo;ll explain 2 cases. The one is that you escape and embed the specified character string and the another case that you don&rsquo;t.</p>
+
+<hr />
+
+<p>Before going into the main point, let&rsquo;s separate off the JavaScript programming that defines the component class of Cape.JS from the HTML file. It&rsquo;s easier to handle when the programming becomes longer.</p>
+
+<p>Exact the part defining the class <code>HelloMessage</code> within the element <code>&lt;script&gt;</code> of <code>hello_message3.html</code> that you made at the end of the previous lecture and create a new file <code>hello_message4.js</code>.</p>
+
+<pre><code class="language-javascript">var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.div({ class: 'container' }, function(m) {
+      m.h1('Greetings from Cape.JS');
+      m.div({ class: 'panel panel-default' }, function(m) {
+        m.div('Hello, ' + this.root.data.name + '!',
+          { class: 'panel-body' });
+      });
+    });
+  }
+});
+</code></pre>
+
+<p>Then rename <code>hello_message3.html</code> to <code>hello_message4.html</code>  and change the content of the element <code>&lt;body&gt;</code> to like following.</p>
+
+<pre><code class="language-html">  &lt;div id=&quot;main&quot; data-name=&quot;world&quot;&gt;&lt;/div&gt;
+  &lt;script src=&quot;./hello_message4.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    var component = new HelloMessage();
+    component.mount('main');
+  &lt;/script&gt;
+</code></pre>
+
+<p>Just to make sure, open the file <code>hello_message4.html</code> on the browser and make sure that the screen display is same like the previous.</p>
+
+<hr />
+
+<p>The goal of this lecture is to make &ldquo;world!&rdquo; of &ldquo;Hello, world!&rdquo; bold by surrounding with <code>&lt;strong&gt;</code> and <code>&lt;/strong&gt;</code>. Rewrite <code>hello_message4.js</code> like following.</p>
+
+<pre><code class="language-javascript">var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.div({ class: 'container' }, function(m) {
+      m.h1('Greetings from Cape.JS');
+      m.div({ class: 'panel panel-default' }, function(m) {
+        m.div({ class: 'panel-body' }, function(m) {
+          m.text('Hello, ');
+          m.strong(this.root.data.name + '!');
+        });
+      });
+    });
+  }
+});
+</code></pre>
+
+<p>The screen display is supposed to be like following when you open the file <code>hello_message4.html</code>.:</p>
+
+<p><img src="/capejs/images/capejs_primer/hello_message5a.png" alt="The screen display" />
 </p>
 
-<h3 id="preface:c9eecd56f2d030a9e3a3fce57054be82">Preface</h3>
+<p>The methods you have never seen before are <code>text()</code> and <code>strong()</code>. The latter is a method adding the element <code>&lt;strong&gt;</code> into virtual DOM tree and it&rsquo;s a companion of <code>div()</code> and <code>p()</code>. The method <code>text()</code> adds <strong>text nodes</strong> (a part which is nor surrounded within the element) into virtual DOM tree.</p>
 
-<p>I start serializing to inform a new-born JavaScript UI framework in 2015, <strong>Cape.JS</strong>.</p>
+<p>Another method to add text nodes is <code>sp()</code>. It adds one half-width space into virtual DOM tree. By using this, you can rewrite <code>hello_message4.js</code> to like following.</p>
 
-<p>Let&rsquo;s learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS and making an easy TODO administration application step by step.</p>
+<pre><code class="language-javascript">var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.div({ class: 'container' }, function(m) {
+      m.h1('Greetings from Cape.JS');
+      m.div({ class: 'panel panel-default' }, function(m) {
+        m.div({ class: 'panel-body' }, function(m) {
+          m.text('Hello,').sp();
+          m.strong(this.root.data.name + '!');
+        });
+      });
+    });
+  }
+});
+</code></pre>
 
-<p>Cape.JS uses a technique &ldquo;virtual DOM&rdquo; like <a href="https://facebook.github.io/react/">React</a> and <a href="https://muut.com/riotjs/">Riot</a> do. You can utilize Cape.JS to create interactive websites, which are websites that changes contents dynamically depend on users&rsquo; actions.</p>
+<p>It&rsquo;s used for emphasizing the existence of half-width space and inserting a half-width space between the elements.</p>
 
-<p>Until recently, it&rsquo;s general to create interactive websites by making full use of <a href="https://jquery.com/">jQuery</a>, but front-end programming will be much easier to if you adopt &ldquo;virtual DOM&rdquo;.</p>
+<hr />
 
-<p>I say this again just in case, the writer of this serialization is the person who made Cape.JS (Mr.Kuroda). There were several people who uses it when I started serializing, but I hope many people will use it as many as possible.</p>
+<p>By the way, the character string embedded by the method <code>text()</code> is escaped. That means, the special character strings like <code>&lt;</code> や <code>&amp;</code> is automatically converted to <code>&amp;lt;</code> and <code>&amp;amp;</code>. This specification is desirable in the terms of security but there are cases that you don&rsquo;t want to escape. For example, the case that you want to embed the character string by using the entity reference like <code>&amp;x263a;</code>.</p>
 
-<p>Cape.JS is an open source project. It&rsquo;s distributed under the license of MIT. You can use it for free and also re-distribute･sell after you modify its source code. You can find the source code at GitHub&rsquo;s <a href="https://github.com/oiax/capejs">repository</a>. Also, <a href="http://oiax.github.io/capejs/">documents</a> in English are prepared.</p>
+<p>Copy <code>hello_message4.html</code> to <code>hello_message5.html</code> and copy <code>hello_message4.js</code> to <code>hello_message5.js</code> and open <code>hello_message5.html</code> on the editor and rewrite the contents of the element <code>&lt;body&gt;</code> as following.</p>
 
-<h3 id="table-of-contents:c9eecd56f2d030a9e3a3fce57054be82">Table of Contents</h3>
+<pre><code class="language-html">  &lt;div id=&quot;main&quot; data-name=&quot;&amp;amp;#x263a;&quot;&gt;&lt;/div&gt;
+  &lt;script src=&quot;./hello_message5.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    var component = new HelloMessage();
+    component.mount('main');
+  &lt;/script&gt;
+</code></pre>
 
-<ul>
-<li>Preface</li>
-<li><a href="./01_hello_world">Hello, world!</a></li>
-<li><a href="./02_custom_attributes_and_nested_elements">Reference of custom attribute value and nesting of HTLM elements</a></li>
-<li><a href="./03_creating_text_nodes">Creating the text nodes</a></li>
-<li><a href="./04_rails_integration1">Integrate Cape.JS with Ruby on Rails (1)</a></li>
-<li><a href="./05_rails_integration2">Integrate Cape.JS with Ruby on Rails (2)</a></li>
-<li>Let the component have the data</li>
-<li>Initializing the date with Ajax</li>
-<li>Assignment of event handler</li>
-<li>Updating the data with Ajax</li>
-<li>The data store</li>
-<li>The newly added form of the task</li>
-<li>Creating new task</li>
-<li>The edit form of the task</li>
-<li>Update the task</li>
-<li>Delete the task</li>
-<li>Cape.JS 1.2</li>
-<li>Collection agent (1)</li>
-<li>Collection agent (2)</li>
-<li>Collection agent (3)</li>
-<li>Changing displaying order (1)</li>
-<li>Changing displaying order (2)</li>
-<li>Changing displaying order (3)</li>
-</ul>
+<p>The screen display is supposed to be like following when you open this file on your browser.
+:</p>
+
+<p><img src="/capejs/images/capejs_primer/hello_message5b.png" alt="The screen display" />
+</p>
+
+<p>Rewrite <code>hello_message5.js</code> as following not to escape the character string.:</p>
+
+<pre><code class="language-javascript">var HelloMessage = Cape.createComponentClass({
+  render: function(m) {
+    m.div({ class: 'container' }, function(m) {
+      m.h1('Greetings from Cape.JS');
+      m.div({ class: 'panel panel-default' }, function(m) {
+        m.div({ class: 'panel-body' }, function(m) {
+          m.text('Hello,').sp();
+          m.strong({ innerHTML: this.root.data.name + '!' });
+        });
+      });
+    });
+  }
+});
+</code></pre>
+
+<p>The screen display is supposed to be like following when you reload the browser.:</p>
+
+<p><img src="/capejs/images/capejs_primer/hello_message5b.png" alt="The screen display" />
+</p>
+
+<p>It may difficult to see but &ldquo;smile mark is displayed on the screen. You can specify the content of the element as &ldquo;real HTML&rdquo; by using the option <code>innerHTML</code> like this.</p>
+
+<hr />
+
+<p>On <a href="../04_rails_integration1">the next lecture</a>, I&rsquo;ll explain how to embed Cape.JS to Ruby on Rails.</p>
 
         </div>
       </article>
