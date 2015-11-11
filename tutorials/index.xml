@@ -10,109 +10,6 @@
     
     <item>
       <title></title>
-      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</guid>
-      <description>
-
-&lt;h1 id=&#34;reference-of-custom-attribute-value-and-nesting-of-htlm-elements:0208ede68aad1c1201c9b6dceda9d02c&#34;&gt;Reference of custom attribute value and nesting of HTLM elements&lt;/h1&gt;
-
-&lt;p&gt;On &lt;a href=&#34;../01_hello_world&#34;&gt;the previous lecture&lt;/a&gt;, we made the easy application displaying &amp;ldquo;Hello, world!&amp;rdquo; on the browser as an introducing of &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;Cape.JS&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;This time, I explain two more things. The one is the way of replacing a part of &amp;ldquo;world&amp;rdquo; with an attribute value of HTML element. And the another one is the way to nest the HTML element.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Well, let&amp;rsquo;s begin. First, open the file &lt;code&gt;hello_message1.html&lt;/code&gt; that you made on the previous lecture by your editor and change the name to  &lt;code&gt;hello_message2.html&lt;/code&gt;. Then, change the content of &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; element to following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;  &amp;lt;div id=&amp;quot;main&amp;quot; data-name=&amp;quot;world&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-  &amp;lt;script&amp;gt;
-    var HelloMessage = Cape.createComponentClass({
-      render: function(m) {
-        m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;);
-      }
-    });
-
-    var component = new HelloMessage();
-    component.mount(&#39;main&#39;);
-  &amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Open this file on the browser. &amp;ldquo;Hello, world!&amp;rdquo; is supposed to be displayed on the upper left of the screen like the precious time.&lt;/p&gt;
-
-&lt;p&gt;In case of this example, it embeds the component &lt;code&gt;HelloMessage&lt;/code&gt; to virtual DOM tree by acquiring &lt;code&gt;data-name&lt;/code&gt; attribute value from the HTML element mounted. It&amp;rsquo;s &lt;code&gt;this.root&lt;/code&gt; within the component&amp;rsquo;s method &lt;code&gt;render&lt;/code&gt; and the HTML element mounted can be referenced. Its data property returns hash holding the custom data attribute (the attribute with name started from &lt;code&gt;data-&lt;/code&gt;) name and value of HTML5.&lt;/p&gt;
-
-&lt;p&gt;The HTML element mounted to is &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; element holding &lt;code&gt;id&lt;/code&gt; of  &lt;code&gt;main&lt;/code&gt;. It has the custom data attribute &lt;code&gt;data-name=&amp;quot;world&amp;quot;&lt;/code&gt;. You can acquire its data &lt;code&gt;&amp;quot;world&amp;quot;&lt;/code&gt; from &lt;code&gt;this.root.data.name&lt;/code&gt;. So,&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;        m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The character string &amp;ldquo;Hello, world!&amp;rdquo; is displayed on the browser when you write like above.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s try to change the element value to &amp;ldquo;ruby&amp;rdquo; and save it and reload the browser. The screen display will change to &amp;ldquo;Hello, ruby!&amp;rdquo;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Next, I&amp;rsquo;ll explain about nesting of HTML elements.&lt;/p&gt;
-
-&lt;p&gt;Change the name of file you made just before &lt;code&gt;hello_message2.html&lt;/code&gt; to &lt;code&gt;hello_message3.html&lt;/code&gt; and save it and add lines at the end of the element &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link rel=&amp;quot;stylesheet&amp;quot;
-  href=&amp;quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://getbootstrap.com/&#34;&gt;Bootstrap&lt;/a&gt; imports the CSS file.&lt;/p&gt;
-
-&lt;p&gt;And, change the content of the element &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; to following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;  &amp;lt;div id=&amp;quot;main&amp;quot; data-name=&amp;quot;world&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-  &amp;lt;script&amp;gt;
-    var HelloMessage = Cape.createComponentClass({
-      render: function(m) {
-        m.div({ class: &#39;container&#39; }, function(m) {
-          m.h1(&#39;Greetings from Cape.JS&#39;);
-          m.div({ class: &#39;panel panel-default&#39; }, function(m) {
-            m.div(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;,
-              { class: &#39;panel-body&#39; });
-          });
-        });
-      }
-    });
-
-    var component = new HelloMessage();
-    component.mount(&#39;main&#39;);
-  &amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The screen display is supposed to be like following when you open this file on your browser.&lt;/p&gt;
-
-&lt;div class=&#34;block-image&#34;&gt;
-&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message3.png&#34; alt=&#34;Screen capture&#34;&gt;
-&lt;/div&gt;
-
-&lt;p&gt;In the case of this example, it runs nesting of the HTML element by specifying the unnamed function to parameter at the end of the method. The following below shows a part of HTML documents created by the code above.:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
-  &amp;lt;h1&amp;gt;Greetings from Cape.JS&amp;lt;/h1&amp;gt;
-  &amp;lt;div class=&amp;quot;panel panel-default&amp;quot;&amp;gt;
-    &amp;lt;div class=&amp;quot;panel-body&amp;quot;&amp;gt;Hello, world!&amp;lt;/div&amp;gt;
-  &amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The unnamed function that is specified as the parameter at the end of the method acquires one parameter (&lt;code&gt;m&lt;/code&gt;). This parameter is markup builder (the object to make virtual DOM tree) that I explained on the previous. The HTML element added into the virtual DOM tree within the unnamed function becomes child elements of the HTML element introducing the unnamed function.&lt;/p&gt;
-
-&lt;p&gt;In the case above, the unnamed function is called again within it. That means that runs 2-level nesting. In the result, the element &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; in the most inner part is the &amp;ldquo;grandchild&amp;rdquo; element of the element &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; in the outer part.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;That&amp;rsquo;s all for today. On the next lecture, I&amp;rsquo;ll explain the method &lt;code&gt;text()&lt;/code&gt; and the option &lt;code&gt;innerHTML&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>http://oiax.github.io/capejs/tutorials/capejs_primer/01_hello_world/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -252,6 +149,109 @@ I think observant readers may notice that the program of Cape.JS is very similar
     
     <item>
       <title></title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</guid>
+      <description>
+
+&lt;h1 id=&#34;reference-of-custom-attribute-value-and-nesting-of-htlm-elements:0208ede68aad1c1201c9b6dceda9d02c&#34;&gt;Reference of custom attribute value and nesting of HTLM elements&lt;/h1&gt;
+
+&lt;p&gt;On &lt;a href=&#34;../01_hello_world&#34;&gt;the previous lecture&lt;/a&gt;, we made the easy application displaying &amp;ldquo;Hello, world!&amp;rdquo; on the browser as an introducing of &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;Cape.JS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This time, I explain two more things. The one is the way of replacing a part of &amp;ldquo;world&amp;rdquo; with an attribute value of HTML element. And the another one is the way to nest the HTML element.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Well, let&amp;rsquo;s begin. First, open the file &lt;code&gt;hello_message1.html&lt;/code&gt; that you made on the previous lecture by your editor and change the name to  &lt;code&gt;hello_message2.html&lt;/code&gt;. Then, change the content of &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; element to following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;  &amp;lt;div id=&amp;quot;main&amp;quot; data-name=&amp;quot;world&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;script&amp;gt;
+    var HelloMessage = Cape.createComponentClass({
+      render: function(m) {
+        m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;);
+      }
+    });
+
+    var component = new HelloMessage();
+    component.mount(&#39;main&#39;);
+  &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Open this file on the browser. &amp;ldquo;Hello, world!&amp;rdquo; is supposed to be displayed on the upper left of the screen like the precious time.&lt;/p&gt;
+
+&lt;p&gt;In case of this example, it embeds the component &lt;code&gt;HelloMessage&lt;/code&gt; to virtual DOM tree by acquiring &lt;code&gt;data-name&lt;/code&gt; attribute value from the HTML element mounted. It&amp;rsquo;s &lt;code&gt;this.root&lt;/code&gt; within the component&amp;rsquo;s method &lt;code&gt;render&lt;/code&gt; and the HTML element mounted can be referenced. Its data property returns hash holding the custom data attribute (the attribute with name started from &lt;code&gt;data-&lt;/code&gt;) name and value of HTML5.&lt;/p&gt;
+
+&lt;p&gt;The HTML element mounted to is &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; element holding &lt;code&gt;id&lt;/code&gt; of  &lt;code&gt;main&lt;/code&gt;. It has the custom data attribute &lt;code&gt;data-name=&amp;quot;world&amp;quot;&lt;/code&gt;. You can acquire its data &lt;code&gt;&amp;quot;world&amp;quot;&lt;/code&gt; from &lt;code&gt;this.root.data.name&lt;/code&gt;. So,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The character string &amp;ldquo;Hello, world!&amp;rdquo; is displayed on the browser when you write like above.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s try to change the element value to &amp;ldquo;ruby&amp;rdquo; and save it and reload the browser. The screen display will change to &amp;ldquo;Hello, ruby!&amp;rdquo;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, I&amp;rsquo;ll explain about nesting of HTML elements.&lt;/p&gt;
+
+&lt;p&gt;Change the name of file you made just before &lt;code&gt;hello_message2.html&lt;/code&gt; to &lt;code&gt;hello_message3.html&lt;/code&gt; and save it and add lines at the end of the element &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link rel=&amp;quot;stylesheet&amp;quot;
+  href=&amp;quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://getbootstrap.com/&#34;&gt;Bootstrap&lt;/a&gt; imports the CSS file.&lt;/p&gt;
+
+&lt;p&gt;And, change the content of the element &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; to following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;  &amp;lt;div id=&amp;quot;main&amp;quot; data-name=&amp;quot;world&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;script&amp;gt;
+    var HelloMessage = Cape.createComponentClass({
+      render: function(m) {
+        m.div({ class: &#39;container&#39; }, function(m) {
+          m.h1(&#39;Greetings from Cape.JS&#39;);
+          m.div({ class: &#39;panel panel-default&#39; }, function(m) {
+            m.div(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;,
+              { class: &#39;panel-body&#39; });
+          });
+        });
+      }
+    });
+
+    var component = new HelloMessage();
+    component.mount(&#39;main&#39;);
+  &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The screen display is supposed to be like following when you open this file on your browser.&lt;/p&gt;
+
+&lt;div class=&#34;block-image&#34;&gt;
+&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message3.png&#34; alt=&#34;Screen capture&#34;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In the case of this example, it runs nesting of the HTML element by specifying the unnamed function to parameter at the end of the method. The following below shows a part of HTML documents created by the code above.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+  &amp;lt;h1&amp;gt;Greetings from Cape.JS&amp;lt;/h1&amp;gt;
+  &amp;lt;div class=&amp;quot;panel panel-default&amp;quot;&amp;gt;
+    &amp;lt;div class=&amp;quot;panel-body&amp;quot;&amp;gt;Hello, world!&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The unnamed function that is specified as the parameter at the end of the method acquires one parameter (&lt;code&gt;m&lt;/code&gt;). This parameter is markup builder (the object to make virtual DOM tree) that I explained on the previous. The HTML element added into the virtual DOM tree within the unnamed function becomes child elements of the HTML element introducing the unnamed function.&lt;/p&gt;
+
+&lt;p&gt;In the case above, the unnamed function is called again within it. That means that runs 2-level nesting. In the result, the element &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; in the most inner part is the &amp;ldquo;grandchild&amp;rdquo; element of the element &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; in the outer part.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;That&amp;rsquo;s all for today. On the next lecture, I&amp;rsquo;ll explain the method &lt;code&gt;text()&lt;/code&gt; and the option &lt;code&gt;innerHTML&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>http://oiax.github.io/capejs/tutorials/capejs_primer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -283,6 +283,26 @@ I think observant readers may notice that the program of Cape.JS is very similar
 &lt;li&gt;Preface&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./01_hello_world&#34;&gt;Hello, world!&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./02_custom_attributes_and_nested_elements&#34;&gt;Reference of custom attribute value and nesting of HTLM elements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Creating the text nodes&lt;/li&gt;
+&lt;li&gt;Approach to Ruby on Rails (1)&lt;/li&gt;
+&lt;li&gt;Approach to Ruby on Rails (2)&lt;/li&gt;
+&lt;li&gt;Let the component have the data&lt;/li&gt;
+&lt;li&gt;Initializing the date with Ajax&lt;/li&gt;
+&lt;li&gt;Assignment of event handler&lt;/li&gt;
+&lt;li&gt;Updating the data with Ajax&lt;/li&gt;
+&lt;li&gt;The data store&lt;/li&gt;
+&lt;li&gt;The newly added form of the task&lt;/li&gt;
+&lt;li&gt;Creating new task&lt;/li&gt;
+&lt;li&gt;The edit form of the task&lt;/li&gt;
+&lt;li&gt;Update the task&lt;/li&gt;
+&lt;li&gt;Delete the task&lt;/li&gt;
+&lt;li&gt;Cape.JS 1.2&lt;/li&gt;
+&lt;li&gt;Collection agent (1)&lt;/li&gt;
+&lt;li&gt;Collection agent (2)&lt;/li&gt;
+&lt;li&gt;Collection agent (3)&lt;/li&gt;
+&lt;li&gt;Changing displaying order (1)&lt;/li&gt;
+&lt;li&gt;Changing displaying order (2)&lt;/li&gt;
+&lt;li&gt;Changing displaying order (3)&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

@@ -7,19 +7,19 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/cape/</loc>
-  </url>
-  
-  <url>
     <loc>http://oiax.github.io/capejs/api/collection_agent/</loc>
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/</loc>
+    <loc>http://oiax.github.io/capejs/api/cape/</loc>
   </url>
   
   <url>
     <loc>http://oiax.github.io/capejs/api/component/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/api/</loc>
   </url>
   
   <url>
@@ -31,7 +31,7 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/router/</loc>
+    <loc>http://oiax.github.io/capejs/api/routing_mapper/</loc>
   </url>
   
   <url>
@@ -39,11 +39,11 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/routing_mapper/</loc>
+    <loc>http://oiax.github.io/capejs/api/markup_builder/</loc>
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/markup_builder/</loc>
+    <loc>http://oiax.github.io/capejs/api/router/</loc>
   </url>
   
   <url>
@@ -55,6 +55,10 @@
   </url>
   
   <url>
+    <loc>http://oiax.github.io/capejs/resource_agents/</loc>
+  </url>
+  
+  <url>
     <loc>http://oiax.github.io/capejs/data_stores/</loc>
   </url>
   
@@ -63,15 +67,7 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/resource_agents/</loc>
-  </url>
-  
-  <url>
     <loc>http://oiax.github.io/capejs/router/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</loc>
   </url>
   
   <url>
@@ -79,11 +75,15 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/</loc>
+    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</loc>
   </url>
   
   <url>
     <loc>http://oiax.github.io/capejs/tutorials/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/</loc>
   </url>
   
 </urlset>
