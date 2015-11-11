@@ -9,19 +9,17 @@
     <atom:link href="http://oiax.github.io/capejs/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Cape.JS Primer</title>
+      <title>Cape.JS Primer - A Tutorial</title>
       <link>http://oiax.github.io/capejs/tutorials/capejs_primer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/</guid>
       <description>
 
-&lt;h1 id=&#34;cape-js-primer:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Cape.JS Primer&lt;/h1&gt;
-
 &lt;p&gt;&lt;img src=&#34;https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg&#34; alt=&#34;Cape.JS Logo&#34; /&gt;
 &lt;/p&gt;
 
-&lt;h2 id=&#34;preface:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Preface&lt;/h2&gt;
+&lt;h3 id=&#34;preface:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Preface&lt;/h3&gt;
 
 &lt;p&gt;I start serializing to inform a new-born JavaScript UI framework in 2015, &lt;strong&gt;Cape.JS&lt;/strong&gt;.&lt;/p&gt;
 
@@ -35,7 +33,7 @@
 
 &lt;p&gt;Cape.JS is an open source project. It&amp;rsquo;s distributed under the license of MIT. You can use it for free and also re-distribute･sell after you modify its source code. You can find the source code at GitHub&amp;rsquo;s &lt;a href=&#34;https://github.com/oiax/capejs&#34;&gt;repository&lt;/a&gt;. Also, &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;documents&lt;/a&gt; in English are prepared.&lt;/p&gt;
 
-&lt;h2 id=&#34;table-of-contents:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Table of Contents&lt;/h2&gt;
+&lt;h3 id=&#34;table-of-contents:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Table of Contents&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Preface&lt;/li&gt;
@@ -71,11 +69,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/01_hello_world/</guid>
-      <description>
-
-&lt;h1 id=&#34;hello-world:7cae6aa1b176223df2ea9b54e9ae96fb&#34;&gt;Hello, world!&lt;/h1&gt;
-
-&lt;p&gt;The first serial story of &amp;ldquo;Cape.JS Primer&amp;rdquo; is starting from a practice to show &amp;ldquo;Hello, world!&amp;rdquo; on a browser screen as the tradition.&lt;/p&gt;
+      <description>&lt;p&gt;The first serial story of &amp;ldquo;Cape.JS Primer&amp;rdquo; is starting from a practice to show &amp;ldquo;Hello, world!&amp;rdquo; on a browser screen as the tradition.&lt;/p&gt;
 
 &lt;div class=&#34;note&#34;&gt;
 Although I&#39;m afraid to inform you this, Cape.JS supports only Firefox, Google Chrome, Safari 6.1 or later, and Internet Explore 11. Especially, it doesn&#39;t operate while using Internet Explorer 10 or earlier.
@@ -200,7 +194,7 @@ I think observant readers may notice that the program of Cape.JS is very similar
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This is the end of the first lecture. &lt;a href=&#34;../02_custom_attributes_and_nested_elements&#34;&gt;Next lecture&lt;/a&gt; will be about acquiring data from elements that components are mounted and explanation of nesting of HTML element.&lt;/p&gt;
+&lt;p&gt;This is the end of the first lecture. &lt;a href=&#34;../02_custom_attributes_and_nested_elements&#34;&gt;The next lecture&lt;/a&gt; will be about acquiring data from elements that components are mounted and explanation of nesting of HTML element.&lt;/p&gt;
 </description>
     </item>
     
@@ -210,11 +204,7 @@ I think observant readers may notice that the program of Cape.JS is very similar
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</guid>
-      <description>
-
-&lt;h1 id=&#34;reference-of-custom-attribute-value-and-nesting-of-htlm-elements:0208ede68aad1c1201c9b6dceda9d02c&#34;&gt;Reference of custom attribute value and nesting of HTLM elements&lt;/h1&gt;
-
-&lt;p&gt;On &lt;a href=&#34;../01_hello_world&#34;&gt;the previous lecture&lt;/a&gt;, we made the easy application displaying &amp;ldquo;Hello, world!&amp;rdquo; on the browser as an introducing of &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;Cape.JS&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;On &lt;a href=&#34;../01_hello_world&#34;&gt;the previous lecture&lt;/a&gt;, we made the easy application displaying &amp;ldquo;Hello, world!&amp;rdquo; on the browser as an introducing of &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;Cape.JS&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;This time, I explain two more things. The one is the way of replacing a part of &amp;ldquo;world&amp;rdquo; with an attribute value of HTML element. And the another one is the way to nest the HTML element.&lt;/p&gt;
 
