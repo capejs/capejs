@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>Resource Agents - Cape.JS: Documentation</title>
+  <title> - Cape.JS: Documentation</title>
   <meta name="generator" content="Bootply" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="http://oiax.github.io/capejs/css/bootstrap.min.css" rel="stylesheet">
@@ -199,291 +199,39 @@
     <div class="col-sm-12 col-md-9">
       <article>
         <header>
-          <h2>Resource Agents</h2>
+          <h2></h2>
           <div class="post-meta clearfix">
           </div>
         </header>
         <div>
           
 
-<p><span class="badge alert-info">1.2</span></p>
+<h1 id="cape-js-primer:c9eecd56f2d030a9e3a3fce57054be82">Cape.JS Primer</h1>
 
-<p><a href="#basics">Basics</a> -
-<a href="#agent-adapters">Agent Adapters</a> -
-<a href="#defining-classes">Defining Classes</a> -
-<a href="#creating-a-new-resource">Creating a New Resource</a> -
-<a href="#deleting-a-resource">Editing a Resource</a> -
-<a href="#building-a-dual-use-form">Building a Dual-Use Form</a> -
-<a href="#deleting-a-resource">Deleting a Resource</a> -
-<a href="#specifying-a-callback">Specifying a Callback</a> -
-<a href="#changing-path-prefix">Changing the Path Prefix</a> -
-<a href="#options">Options</a></p>
+<p><img src="https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg" alt="Cape.JS Logo" />
+</p>
 
-<p><a class="anchor" id="basics"></a></p>
+<h2 id="preface:c9eecd56f2d030a9e3a3fce57054be82">Preface</h2>
 
-<h3 id="basics:01090db2bd186f3f2b107103ab7e9173">Basics</h3>
+<p>I start serializing to inform a new-born JavaScript UI framework in 2015, <strong>Cape.JS</strong>.</p>
 
-<p>The <em>resource agents</em> are JavaScript objects that have following capabilities:</p>
+<p>Let&rsquo;s learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS and making an easy TODO administration application step by step.</p>
+
+<p>Cape.JS uses a technique &ldquo;virtual DOM&rdquo; like <a href="https://facebook.github.io/react/">React</a> and <a href="https://muut.com/riotjs/">Riot</a> do. You can utilize Cape.JS to create interactive websites, which are websites that changes contents dynamically depend on users&rsquo; actions.</p>
+
+<p>Until recently, it&rsquo;s general to create interactive websites by making full use of <a href="https://jquery.com/">jQuery</a>, but front-end programming will be much easier to if you adopt &ldquo;virtual DOM&rdquo;.</p>
+
+<p>I say this again just in case, the writer of this serialization is the person who made Cape.JS (Mr.Kuroda). There were several people who uses it when I started serializing, but I hope many people will use it as many as possible.</p>
+
+<p>Cape.JS is an open source project. It&rsquo;s distributed under the license of MIT. You can use it for free and also re-distribute･sell after you modify its source code. You can find the source code at GitHub&rsquo;s <a href="https://github.com/oiax/capejs">repository</a>. Also, <a href="http://oiax.github.io/capejs/">documents</a> in English are prepared.</p>
+
+<h2 id="table-of-contents:c9eecd56f2d030a9e3a3fce57054be82">Table of Contents</h2>
 
 <ul>
-<li>Keeping an object that represent a resource of the server.</li>
-<li>Creating, updating and deleting it by sending Ajax requests to the server.</li>
+<li>Preface</li>
+<li><a href="./01_hello_world">Hello, world!</a></li>
+<li><a href="./02_custom_attributes_and_nested_elements">Reference of custom attribute value and nesting of HTLM elements</a></li>
 </ul>
-
-<p>Cape.JS provides similar objects called <em>collection agent,</em>
-which handles a resource collection.</p>
-
-<p><a class="anchor" id="agent-adapters"></a></p>
-
-<h3 id="agent-adapters:01090db2bd186f3f2b107103ab7e9173">Agent Adapters</h3>
-
-<p>See <a href="../collection_agents#agent-adapters">Agent Adapters</a> of Collection Agents.</p>
-
-<p><a class="anchor" id="defining-classes"></a></p>
-
-<h3 id="defining-classes:01090db2bd186f3f2b107103ab7e9173">Defining Classes</h3>
-
-<p>In order to use resource agents, you should define a class inheriting the
-<code>Cape.ResourceAgent</code> class.</p>
-
-<p>You can define such a class calling <code>Cape.createResourceAgentClass()</code> method:</p>
-
-<pre><code class="language-javascript">var UserAgent = Cape.createResourceAgentClass({
-  constructor: function(client, options) {
-    this.resourceName = 'user';
-  }
-})
-</code></pre>
-
-<p>You can also define it using the ES6 syntax:</p>
-
-<pre><code class="language-javascript">class UserAgent extends Cape.ResourceAgent {
-  constructor(client, options) {
-    super(client, options);
-    this.resourceName = 'user';
-  }
-}
-</code></pre>
-
-<p>The resource agent uses the <code>resourceName</code> property to construct the URL paths
-as explained below.</p>
-
-<p><a class="anchor" id="creating-a-new-resource"></a></p>
-
-<h3 id="creating-a-new-resource:01090db2bd186f3f2b107103ab7e9173">Creating a New Resource</h3>
-
-<p>Suppose that you can create a resource by sending an HTTP request <code>POST /users</code>
-to the server with following JSON string:</p>
-
-<pre><code class="language-json">{ &quot;user&quot;: { &quot;name&quot;: &quot;John&quot;, &quot;email&quot;: &quot;john@example.com&quot; } }
-</code></pre>
-
-<p>Then, you can build an HTML form like this:</p>
-
-<pre><code class="language-javascript">class UserForm extends Cape.Component {
-  init() {
-    this.agent = new UserAgent(this);
-    this.refresh();
-  }
-
-  render(m) {
-    m.formFor('user', m =&gt; {
-      m.div(m =&gt; {
-        m.labelFor('name', 'Name').sp();
-        m.textField('name');
-      });
-      m.div(m =&gt; {
-        m.labelFor('email', 'Email').sp();
-        m.textField('email', { type: 'email' });
-      });
-      m.div(m =&gt; {
-        m.onclick(e =&gt; this.agent.create());
-        m.btn('Create');
-      });
-    });
-  }
-}
-</code></pre>
-
-<p>If you mount this component into your web page, you will see an HTML form
-whose two blank input fields and a &lsquo;Create&rsquo; button.</p>
-
-<p>When you input <code>'John'</code> and <code>'john@example.com'</code> to these fields and
-click the &lsquo;Create&rsquo; button,
-the resource agent sends a <code>POST</code> request
-to <code>/users</code> with the following JSON body:</p>
-
-<pre><code class="language-json">{ &quot;user&quot;: { &quot;name&quot;: &quot;John&quot;, &quot;email&quot;: &quot;john@example.com&quot; } }
-</code></pre>
-
-<p><a class="anchor" id="editing-a-resource"></a></p>
-
-<h3 id="editing-a-resource:01090db2bd186f3f2b107103ab7e9173">Editing a Resource</h3>
-
-<p>Suppose that when you send an HTTP request <code>GET /users/123</code> to the server,
-it returns the following JSON string:</p>
-
-<pre><code class="language-json">{ &quot;user&quot;: { &quot;id&quot;: 123, &quot;name&quot;: &quot;John&quot;, &quot;email&quot;: &quot;john@example.com&quot; } }
-</code></pre>
-
-<p>And suppose also that you can update this resource by sending an HTTP request
-<code>PATCH /users/123</code> to the server with following JSON string:</p>
-
-<pre><code class="language-json">{ &quot;user&quot;: { &quot;name&quot;: &quot;John&quot;, &quot;email&quot;: &quot;dummy@example.io&quot; } }
-</code></pre>
-
-<p>Then, you can build an HTML form like this:</p>
-
-<pre><code class="language-javascript">class UserForm extends Cape.Component {
-  init() {
-    this.agent = new UserAgent(this);
-    this.agent.id = 123;
-    this.agent.init();
-  }
-
-  render(m) {
-    m.formFor('user', m =&gt; {
-      m.div(m =&gt; {
-        m.labelFor('name', 'Name').sp();
-        m.textField('name');
-      });
-      m.div(m =&gt; {
-        m.labelFor('email', 'Email').sp();
-        m.textField('email', { type: 'email' });
-      });
-      m.div(m =&gt; {
-        m.onclick(e =&gt; this.agent.update());
-        m.btn('Update');
-      });
-    });
-  }
-}
-</code></pre>
-
-<p>If you mount this component into your web page, you will see an HTML form
-whose two text input fields are filled with current values.</p>
-
-<p>Note that we use <code>this.agent.init()</code> instead of <code>this.refresh()</code> here
-(at the line 5).
-The <code>init()</code> method of resource agents does following three things:</p>
-
-<ol>
-<li>Make an Ajax call to the server.</li>
-<li>Initialize the <code>object</code> property using the response data from the server.</li>
-<li>Call the <code>refresh()</code> method of the associated component.</li>
-</ol>
-
-<p>When you modify the value of <code>email</code> field of form to <code>'dummy@example.io'</code> and
-click the &lsquo;Update&rsquo; button,
-the resource agent sends a <code>PATCH</code> request
-to <code>/users/123</code> with the following JSON body:</p>
-
-<pre><code class="language-json">{ &quot;user&quot;: { &quot;name&quot;: &quot;John&quot;, &quot;email&quot;: &quot;dummy@example.io&quot; } }
-</code></pre>
-
-<p><a class="anchor" id="building-a-dual-use-form"></a></p>
-
-<h3 id="building-a-dual-use-form:01090db2bd186f3f2b107103ab7e9173">Building a Dual-Use Form</h3>
-
-<p>By synthesizing the two <code>Component</code> classes defined above,
-we will get the following class:</p>
-
-<pre><code class="language-javascript">class UserForm extends Cape.Component {
-  init() {
-    this.agent = new UserAgent(this);
-    this.agent.id = this.root.data.id;
-    if (this.agent.id) this.agent.init();
-    else this.refresh();
-  }
-
-  render(m) {
-    m.formFor('user', m =&gt; {
-      m.div(m =&gt; {
-        m.labelFor('name', 'Name').sp();
-        m.textField('name');
-      });
-      m.div(m =&gt; {
-        m.labelFor('email', 'Email').sp();
-        m.textField('email', { type: 'email' });
-      });
-      m.div(m =&gt; {
-        if (this.agent.id) {
-          m.onclick(e =&gt; this.agent.update());
-          m.btn('Update');
-        }
-        else {
-          m.onclick(e =&gt; this.agent.create());
-          m.btn('Create');
-        }
-      });
-    });
-  }
-}
-</code></pre>
-
-<p>This <code>UserForm</code> class can be used both for a <em>new user</em> form:</p>
-
-<pre><code class="language-html">&lt;h1&gt;New User&lt;/h1&gt;
-&lt;div id=&quot;user-form&quot;&gt;&lt;/div&gt;
-
-&lt;script src=&quot;./user_form.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-  var component = new UserForm();
-  component.mount('user-form');
-&lt;/script&gt;
-</code></pre>
-
-<p>and for a <em>edit user</em> form:</p>
-
-<pre><code class="language-html">&lt;h1&gt;Edit User&lt;/h1&gt;
-&lt;div id=&quot;user-form&quot; data-id=&quot;123&quot;&gt;&lt;/div&gt;
-
-&lt;script src=&quot;./user_form.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-  var component = new UserForm();
-  component.mount('user-form');
-&lt;/script&gt;
-</code></pre>
-
-<p>Note that the component gets the string <code>'123'</code> through <code>this.root.data.id</code>.</p>
-
-<p><a class="anchor" id="deleting-a-resource"></a></p>
-
-<h3 id="deleting-a-resource:01090db2bd186f3f2b107103ab7e9173">Deleting a Resource</h3>
-
-<p>You can delete an existing resource by calling <code>#destroy</code> method of the resource agent.</p>
-
-<pre><code class="language-javascript">  m.onclick(e =&gt; this.agent.destroy());
-  m.btn('Delete');
-</code></pre>
-
-<p><a class="anchor" id="specifying-a-callback"></a></p>
-
-<h3 id="specifying-a-callback:01090db2bd186f3f2b107103ab7e9173">Specifying a Callback</h3>
-
-<p>If you want to perform some tasks after the Ajax request is done, you should
-specify a callback function as the first argument of <code>#create()</code>, <code>#update()</code>
-or <code>#destroy()</code> like this:</p>
-
-<pre><code class="language-javascript">m.onclick(e =&gt; this.agent.create(function(data) {
-  if (data.result === 'OK') {
-    window.location = '/users';
-  }
-  else {
-    this.agent.errors = data.error_messages;
-    this.refresh();
-  }
-}));
-</code></pre>
-
-<p>The specified callback should take an argument, which can be an object or a string
-according to the content type of response.</p>
-
-<p><a class="anchor" id="changing-path-prefix"></a></p>
-
-<h3 id="changing-the-path-prefix:01090db2bd186f3f2b107103ab7e9173">Changing the Path Prefix</h3>
-
-<p>See <a href="../collection_agents#changing-path-prefix">Changing the Path Prefix</a> of Collection Agents.</p>
 
         </div>
       </article>

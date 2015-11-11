@@ -48,6 +48,18 @@ code {
   color: black;
 }
 
+div.note {
+  background-color: #eef;
+  margin: 10px;
+  padding: 10px;
+  font-size: 90%;
+}
+
+div.block-image {
+  margin: 20px 0;
+  text-align: center;
+}
+
 a.anchor {
   display: block;
   position: relative;

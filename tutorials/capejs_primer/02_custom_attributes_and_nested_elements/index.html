@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>Resource Agents - Cape.JS: Documentation</title>
+  <title> - Cape.JS: Documentation</title>
   <meta name="generator" content="Bootply" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="http://oiax.github.io/capejs/css/bootstrap.min.css" rel="stylesheet">
@@ -199,291 +199,105 @@
     <div class="col-sm-12 col-md-9">
       <article>
         <header>
-          <h2>Resource Agents</h2>
+          <h2></h2>
           <div class="post-meta clearfix">
           </div>
         </header>
         <div>
           
 
-<p><span class="badge alert-info">1.2</span></p>
+<h1 id="reference-of-custom-attribute-value-and-nesting-of-htlm-elements:0208ede68aad1c1201c9b6dceda9d02c">Reference of custom attribute value and nesting of HTLM elements</h1>
 
-<p><a href="#basics">Basics</a> -
-<a href="#agent-adapters">Agent Adapters</a> -
-<a href="#defining-classes">Defining Classes</a> -
-<a href="#creating-a-new-resource">Creating a New Resource</a> -
-<a href="#deleting-a-resource">Editing a Resource</a> -
-<a href="#building-a-dual-use-form">Building a Dual-Use Form</a> -
-<a href="#deleting-a-resource">Deleting a Resource</a> -
-<a href="#specifying-a-callback">Specifying a Callback</a> -
-<a href="#changing-path-prefix">Changing the Path Prefix</a> -
-<a href="#options">Options</a></p>
+<p>On <a href="../01_hello_world">the previous lecture</a>, we made the easy application displaying &ldquo;Hello, world!&rdquo; on the browser as an introducing of <a href="http://oiax.github.io/capejs/">Cape.JS</a>.</p>
 
-<p><a class="anchor" id="basics"></a></p>
+<p>This time, I explain two more things. The one is the way of replacing a part of &ldquo;world&rdquo; with an attribute value of HTML element. And the another one is the way to nest the HTML element.</p>
 
-<h3 id="basics:01090db2bd186f3f2b107103ab7e9173">Basics</h3>
+<hr />
 
-<p>The <em>resource agents</em> are JavaScript objects that have following capabilities:</p>
+<p>Well, let&rsquo;s begin. First, open the file <code>hello_message1.html</code> that you made on the previous lecture by your editor and change the name to  <code>hello_message2.html</code>. Then, change the content of <code>&lt;body&gt;</code> element to following.</p>
 
-<ul>
-<li>Keeping an object that represent a resource of the server.</li>
-<li>Creating, updating and deleting it by sending Ajax requests to the server.</li>
-</ul>
-
-<p>Cape.JS provides similar objects called <em>collection agent,</em>
-which handles a resource collection.</p>
-
-<p><a class="anchor" id="agent-adapters"></a></p>
-
-<h3 id="agent-adapters:01090db2bd186f3f2b107103ab7e9173">Agent Adapters</h3>
-
-<p>See <a href="../collection_agents#agent-adapters">Agent Adapters</a> of Collection Agents.</p>
-
-<p><a class="anchor" id="defining-classes"></a></p>
-
-<h3 id="defining-classes:01090db2bd186f3f2b107103ab7e9173">Defining Classes</h3>
-
-<p>In order to use resource agents, you should define a class inheriting the
-<code>Cape.ResourceAgent</code> class.</p>
-
-<p>You can define such a class calling <code>Cape.createResourceAgentClass()</code> method:</p>
-
-<pre><code class="language-javascript">var UserAgent = Cape.createResourceAgentClass({
-  constructor: function(client, options) {
-    this.resourceName = 'user';
-  }
-})
-</code></pre>
-
-<p>You can also define it using the ES6 syntax:</p>
-
-<pre><code class="language-javascript">class UserAgent extends Cape.ResourceAgent {
-  constructor(client, options) {
-    super(client, options);
-    this.resourceName = 'user';
-  }
-}
-</code></pre>
-
-<p>The resource agent uses the <code>resourceName</code> property to construct the URL paths
-as explained below.</p>
-
-<p><a class="anchor" id="creating-a-new-resource"></a></p>
-
-<h3 id="creating-a-new-resource:01090db2bd186f3f2b107103ab7e9173">Creating a New Resource</h3>
-
-<p>Suppose that you can create a resource by sending an HTTP request <code>POST /users</code>
-to the server with following JSON string:</p>
-
-<pre><code class="language-json">{ &quot;user&quot;: { &quot;name&quot;: &quot;John&quot;, &quot;email&quot;: &quot;john@example.com&quot; } }
-</code></pre>
-
-<p>Then, you can build an HTML form like this:</p>
-
-<pre><code class="language-javascript">class UserForm extends Cape.Component {
-  init() {
-    this.agent = new UserAgent(this);
-    this.refresh();
-  }
-
-  render(m) {
-    m.formFor('user', m =&gt; {
-      m.div(m =&gt; {
-        m.labelFor('name', 'Name').sp();
-        m.textField('name');
-      });
-      m.div(m =&gt; {
-        m.labelFor('email', 'Email').sp();
-        m.textField('email', { type: 'email' });
-      });
-      m.div(m =&gt; {
-        m.onclick(e =&gt; this.agent.create());
-        m.btn('Create');
-      });
+<pre><code class="language-html">  &lt;div id=&quot;main&quot; data-name=&quot;world&quot;&gt;&lt;/div&gt;
+  &lt;script&gt;
+    var HelloMessage = Cape.createComponentClass({
+      render: function(m) {
+        m.p('Hello, ' + this.root.data.name + '!');
+      }
     });
-  }
-}
+
+    var component = new HelloMessage();
+    component.mount('main');
+  &lt;/script&gt;
 </code></pre>
 
-<p>If you mount this component into your web page, you will see an HTML form
-whose two blank input fields and a &lsquo;Create&rsquo; button.</p>
+<p>Open this file on the browser. &ldquo;Hello, world!&rdquo; is supposed to be displayed on the upper left of the screen like the precious time.</p>
 
-<p>When you input <code>'John'</code> and <code>'john@example.com'</code> to these fields and
-click the &lsquo;Create&rsquo; button,
-the resource agent sends a <code>POST</code> request
-to <code>/users</code> with the following JSON body:</p>
+<p>In case of this example, it embeds the component <code>HelloMessage</code> to virtual DOM tree by acquiring <code>data-name</code> attribute value from the HTML element mounted. It&rsquo;s <code>this.root</code> within the component&rsquo;s method <code>render</code> and the HTML element mounted can be referenced. Its data property returns hash holding the custom data attribute (the attribute with name started from <code>data-</code>) name and value of HTML5.</p>
 
-<pre><code class="language-json">{ &quot;user&quot;: { &quot;name&quot;: &quot;John&quot;, &quot;email&quot;: &quot;john@example.com&quot; } }
+<p>The HTML element mounted to is <code>&lt;div&gt;</code> element holding <code>id</code> of  <code>main</code>. It has the custom data attribute <code>data-name=&quot;world&quot;</code>. You can acquire its data <code>&quot;world&quot;</code> from <code>this.root.data.name</code>. So,</p>
+
+<pre><code>        m.p('Hello, ' + this.root.data.name + '!');
 </code></pre>
 
-<p><a class="anchor" id="editing-a-resource"></a></p>
+<p>The character string &ldquo;Hello, world!&rdquo; is displayed on the browser when you write like above.</p>
 
-<h3 id="editing-a-resource:01090db2bd186f3f2b107103ab7e9173">Editing a Resource</h3>
+<p>Let&rsquo;s try to change the element value to &ldquo;ruby&rdquo; and save it and reload the browser. The screen display will change to &ldquo;Hello, ruby!&rdquo;.</p>
 
-<p>Suppose that when you send an HTTP request <code>GET /users/123</code> to the server,
-it returns the following JSON string:</p>
+<hr />
 
-<pre><code class="language-json">{ &quot;user&quot;: { &quot;id&quot;: 123, &quot;name&quot;: &quot;John&quot;, &quot;email&quot;: &quot;john@example.com&quot; } }
+<p>Next, I&rsquo;ll explain about nesting of HTML elements.</p>
+
+<p>Change the name of file you made just before <code>hello_message2.html</code> to <code>hello_message3.html</code> and save it and add lines at the end of the element <code>&lt;head&gt;</code>.</p>
+
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot;
+  href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css&quot;&gt;
 </code></pre>
 
-<p>And suppose also that you can update this resource by sending an HTTP request
-<code>PATCH /users/123</code> to the server with following JSON string:</p>
+<p><a href="http://getbootstrap.com/">Bootstrap</a> imports the CSS file.</p>
 
-<pre><code class="language-json">{ &quot;user&quot;: { &quot;name&quot;: &quot;John&quot;, &quot;email&quot;: &quot;dummy@example.io&quot; } }
-</code></pre>
+<p>And, change the content of the element <code>&lt;body&gt;</code> to following.</p>
 
-<p>Then, you can build an HTML form like this:</p>
-
-<pre><code class="language-javascript">class UserForm extends Cape.Component {
-  init() {
-    this.agent = new UserAgent(this);
-    this.agent.id = 123;
-    this.agent.init();
-  }
-
-  render(m) {
-    m.formFor('user', m =&gt; {
-      m.div(m =&gt; {
-        m.labelFor('name', 'Name').sp();
-        m.textField('name');
-      });
-      m.div(m =&gt; {
-        m.labelFor('email', 'Email').sp();
-        m.textField('email', { type: 'email' });
-      });
-      m.div(m =&gt; {
-        m.onclick(e =&gt; this.agent.update());
-        m.btn('Update');
-      });
+<pre><code class="language-html">  &lt;div id=&quot;main&quot; data-name=&quot;world&quot;&gt;&lt;/div&gt;
+  &lt;script&gt;
+    var HelloMessage = Cape.createComponentClass({
+      render: function(m) {
+        m.div({ class: 'container' }, function(m) {
+          m.h1('Greetings from Cape.JS');
+          m.div({ class: 'panel panel-default' }, function(m) {
+            m.div('Hello, ' + this.root.data.name + '!',
+              { class: 'panel-body' });
+          });
+        });
+      }
     });
-  }
-}
+
+    var component = new HelloMessage();
+    component.mount('main');
+  &lt;/script&gt;
 </code></pre>
 
-<p>If you mount this component into your web page, you will see an HTML form
-whose two text input fields are filled with current values.</p>
+<p>The screen display is supposed to be like following when you open this file on your browser.</p>
 
-<p>Note that we use <code>this.agent.init()</code> instead of <code>this.refresh()</code> here
-(at the line 5).
-The <code>init()</code> method of resource agents does following three things:</p>
+<div class="block-image">
+<img src="/capejs/images/capejs_primer/hello_message3.png" alt="Screen capture">
+</div>
 
-<ol>
-<li>Make an Ajax call to the server.</li>
-<li>Initialize the <code>object</code> property using the response data from the server.</li>
-<li>Call the <code>refresh()</code> method of the associated component.</li>
-</ol>
+<p>In the case of this example, it runs nesting of the HTML element by specifying the unnamed function to parameter at the end of the method. The following below shows a part of HTML documents created by the code above.:</p>
 
-<p>When you modify the value of <code>email</code> field of form to <code>'dummy@example.io'</code> and
-click the &lsquo;Update&rsquo; button,
-the resource agent sends a <code>PATCH</code> request
-to <code>/users/123</code> with the following JSON body:</p>
-
-<pre><code class="language-json">{ &quot;user&quot;: { &quot;name&quot;: &quot;John&quot;, &quot;email&quot;: &quot;dummy@example.io&quot; } }
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;h1&gt;Greetings from Cape.JS&lt;/h1&gt;
+  &lt;div class=&quot;panel panel-default&quot;&gt;
+    &lt;div class=&quot;panel-body&quot;&gt;Hello, world!&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
 
-<p><a class="anchor" id="building-a-dual-use-form"></a></p>
+<p>The unnamed function that is specified as the parameter at the end of the method acquires one parameter (<code>m</code>). This parameter is markup builder (the object to make virtual DOM tree) that I explained on the previous. The HTML element added into the virtual DOM tree within the unnamed function becomes child elements of the HTML element introducing the unnamed function.</p>
 
-<h3 id="building-a-dual-use-form:01090db2bd186f3f2b107103ab7e9173">Building a Dual-Use Form</h3>
+<p>In the case above, the unnamed function is called again within it. That means that runs 2-level nesting. In the result, the element <code>&lt;div&gt;</code> in the most inner part is the &ldquo;grandchild&rdquo; element of the element <code>&lt;div&gt;</code> in the outer part.</p>
 
-<p>By synthesizing the two <code>Component</code> classes defined above,
-we will get the following class:</p>
+<hr />
 
-<pre><code class="language-javascript">class UserForm extends Cape.Component {
-  init() {
-    this.agent = new UserAgent(this);
-    this.agent.id = this.root.data.id;
-    if (this.agent.id) this.agent.init();
-    else this.refresh();
-  }
-
-  render(m) {
-    m.formFor('user', m =&gt; {
-      m.div(m =&gt; {
-        m.labelFor('name', 'Name').sp();
-        m.textField('name');
-      });
-      m.div(m =&gt; {
-        m.labelFor('email', 'Email').sp();
-        m.textField('email', { type: 'email' });
-      });
-      m.div(m =&gt; {
-        if (this.agent.id) {
-          m.onclick(e =&gt; this.agent.update());
-          m.btn('Update');
-        }
-        else {
-          m.onclick(e =&gt; this.agent.create());
-          m.btn('Create');
-        }
-      });
-    });
-  }
-}
-</code></pre>
-
-<p>This <code>UserForm</code> class can be used both for a <em>new user</em> form:</p>
-
-<pre><code class="language-html">&lt;h1&gt;New User&lt;/h1&gt;
-&lt;div id=&quot;user-form&quot;&gt;&lt;/div&gt;
-
-&lt;script src=&quot;./user_form.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-  var component = new UserForm();
-  component.mount('user-form');
-&lt;/script&gt;
-</code></pre>
-
-<p>and for a <em>edit user</em> form:</p>
-
-<pre><code class="language-html">&lt;h1&gt;Edit User&lt;/h1&gt;
-&lt;div id=&quot;user-form&quot; data-id=&quot;123&quot;&gt;&lt;/div&gt;
-
-&lt;script src=&quot;./user_form.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-  var component = new UserForm();
-  component.mount('user-form');
-&lt;/script&gt;
-</code></pre>
-
-<p>Note that the component gets the string <code>'123'</code> through <code>this.root.data.id</code>.</p>
-
-<p><a class="anchor" id="deleting-a-resource"></a></p>
-
-<h3 id="deleting-a-resource:01090db2bd186f3f2b107103ab7e9173">Deleting a Resource</h3>
-
-<p>You can delete an existing resource by calling <code>#destroy</code> method of the resource agent.</p>
-
-<pre><code class="language-javascript">  m.onclick(e =&gt; this.agent.destroy());
-  m.btn('Delete');
-</code></pre>
-
-<p><a class="anchor" id="specifying-a-callback"></a></p>
-
-<h3 id="specifying-a-callback:01090db2bd186f3f2b107103ab7e9173">Specifying a Callback</h3>
-
-<p>If you want to perform some tasks after the Ajax request is done, you should
-specify a callback function as the first argument of <code>#create()</code>, <code>#update()</code>
-or <code>#destroy()</code> like this:</p>
-
-<pre><code class="language-javascript">m.onclick(e =&gt; this.agent.create(function(data) {
-  if (data.result === 'OK') {
-    window.location = '/users';
-  }
-  else {
-    this.agent.errors = data.error_messages;
-    this.refresh();
-  }
-}));
-</code></pre>
-
-<p>The specified callback should take an argument, which can be an object or a string
-according to the content type of response.</p>
-
-<p><a class="anchor" id="changing-path-prefix"></a></p>
-
-<h3 id="changing-the-path-prefix:01090db2bd186f3f2b107103ab7e9173">Changing the Path Prefix</h3>
-
-<p>See <a href="../collection_agents#changing-path-prefix">Changing the Path Prefix</a> of Collection Agents.</p>
+<p>That&rsquo;s all for today. On the next lecture, I&rsquo;ll explain the method <code>text()</code> and the option <code>innerHTML</code>.</p>
 
         </div>
       </article>

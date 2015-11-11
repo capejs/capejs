@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title> - Cape.JS: Documentation</title>
+  <meta name="generator" content="Bootply" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="http://localhost:1313/capejs/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+  <link href="http://localhost:1313/capejs/css/styles.css" rel="stylesheet">
+  <link href="http://localhost:1313/capejs/highlight/styles/default.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://localhost:1313/capejs/images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="http://localhost:1313/capejs/images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+</head>
+
+<body>
+<div id="navbar-md" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="/capejs/" class="navbar-brand">Cape.JS</a>
+    </div>
+    <nav role="navigation">
+      <ul class="nav navbar-nav">
+        <li><a href="http://localhost:1313/capejs/tutorials/" class="link">Tutorials</a></li>
+        <li><a href="http://localhost:1313/capejs/api">API Reference</a></li>
+        <li>
+          <a href="https://github.com/oiax/capejs">GitHub Repository
+          <i class="fa fa-external-link"></i></a>
+        </li>
+      </ul>
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </nav>
+  </div>
+</div>
+<div id="navbar-sm" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="http://localhost:1313/capejs/" class="navbar-brand">Cape.JS Doc</a>
+      <a href="http://localhost:1313/capejs/tutorials/" class="link">Tutorials</a>
+      <a href="http://localhost:1313/capejs/api/" class="link">API</a>
+      <a href="https://github.com/oiax/capejs" class="link">GitHub
+      <i class="fa fa-external-link"></i></a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-offcanvas row-offcanvas-left">
+    
+        <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <ul class="nav">
+      
+      
+        <li><a href="http://localhost:1313/capejs/#what-is">What is Cape.JS?</a></li>
+      
+        <li><a href="http://localhost:1313/capejs/#installation">Installation</a></li>
+      
+        <li><a href="http://localhost:1313/capejs/#faq">FAQ</a></li>
+      
+      
+        <li>
+          <a href="http://localhost:1313/capejs/components">Components</a>
+          
+          <ul>
+          
+            <li><a href="http://localhost:1313/capejs/components/#hello-world">Hello World</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/components/#es6">ECMAScript 6</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/components/#dom-tree">Building Virtual DOM Tree</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/components/#click-counter">Click Counter</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/components/#shortcut-methods">Shortcut Methods</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/components/#html-styles">HTML Styles</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/components/#todo-list">Todo List</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/components/#mixins">Mixins</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://localhost:1313/capejs/data_stores">Data Stores</a>
+          
+          <ul>
+          
+            <li><a href="http://localhost:1313/capejs/data_stores/#basics">Basics</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/data_stores/#ajax">Ajax</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://localhost:1313/capejs/collection_agents">Collection Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://localhost:1313/capejs/collection_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/collection_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/collection_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/collection_agents/#initialization">Initialization</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/collection_agents/#creating-resources">Creating Resources</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/collection_agents/#rest-operations">REST Operations</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/collection_agents/#callbacks-and-error-handlers">Callbacks and Error Handlers</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/collection_agents/#changing-path-prefix">Changing the Path Prefix</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/collection_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://localhost:1313/capejs/resource_agents">Resource Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://localhost:1313/capejs/resource_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/resource_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/resource_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/resource_agents/#creating-a-new-resource">Creating a New Resource</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/resource_agents/#editing-a-resource">Editing a Resource</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/resource_agents/#building-a-dual-use-form">Building a Dual-Use Form</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/resource_agents/#deleting-a-resource">Deleting a Resource</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/resource_agents/#specifying-a-callback">Specifying a Callback</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/resource_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://localhost:1313/capejs/router">Router</a>
+          
+          <ul>
+          
+            <li><a href="http://localhost:1313/capejs/router/#simple-routes">Simple Routes</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/router/#containers">Containers</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/router/#resource-based-routes">Resource Based Routes</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/router/#singular-resources">Singular Resources</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/router/#nested-resources">Nested Resources</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/router/#namespaces">Namespaces</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/router/#adding-custom-actions">Adding Custom Actions</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/router/#changing-root-container">Changing Root Container</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/router/#vars">Vars</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/router/#flash">Flash</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/router/#before-navigation-callbacks">Before-Navigation Callbacks</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://localhost:1313/capejs/tutorials">Tutorials and Demos</a>
+          
+          <ul>
+          
+            <li><a href="http://localhost:1313/capejs/tutorials/#capejs-primer">Cape.JS Primer</a></li>
+          
+            <li><a href="http://localhost:1313/capejs/tutorials/#setting-up-rails-with-capejs">Setting up Rails with Cape.JS</a></li>
+          
+          </ul>
+      
+        <li><a href="http://localhost:1313/capejs/api">API Reference</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="col-sm-12 col-md-9">
+      <article>
+        <header>
+          <h2></h2>
+          <div class="post-meta clearfix">
+          </div>
+        </header>
+        <div>
+          
+
+<h1 id="cape-js-primer-preface:3fec64310978210c11ff0bbc1f710405">Cape.JS Primer: Preface</h1>
+
+<p><img src="https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg" alt="Cape.JS Logo" />
+</p>
+
+<p>I start serializing to inform a new-born JavaScript UI framework in 2015, <strong>Cape.JS</strong>.</p>
+
+<p>Let&rsquo;s learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS and making an easy TODO administration application step by step.</p>
+
+<p>Cape.JS uses a technique &ldquo;virtual DOM&rdquo; like <a href="https://facebook.github.io/react/">React</a> and <a href="https://muut.com/riotjs/">Riot</a> do. You can utilize Cape.JS to create interactive websites, which are websites that changes contents dynamically depend on users&rsquo; actions.</p>
+
+<p>Until recently, it&rsquo;s general to create interactive websites by making full use of <a href="https://jquery.com/">jQuery</a>, but front-end programming will be much easier to if you adopt &ldquo;virtual DOM&rdquo;.</p>
+
+<p>I say this again just in case, the writer of this serialization is the person who made Cape.JS (Mr.Kuroda). There were several people who uses it when I started serializing, but I hope many people will use it as many as possible.</p>
+
+<p>Cape.JS is an open source project. It&rsquo;s distributed under the license of MIT. You can use it for free and also re-distribute･sell after you modify its source code. You can find the source code at GitHub&rsquo;s <a href="https://github.com/oiax/capejs">repository</a>. Also, <a href="http://oiax.github.io/capejs/">documents</a> in English are prepared.</p>
+
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="http://localhost:1313/capejs/js/bootstrap.min.js"></script>
+<script src="http://localhost:1313/capejs/js/scripts.js"></script>
+<script src="http://localhost:1313/capejs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div id="footer-sm" class="footer navbar-fixed-bottom">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+<div id="footer-xs" class="footer">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
