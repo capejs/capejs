@@ -66,6 +66,11 @@ This example is explained in detail
 in the [Hello World](http://oiax.github.io/capejs/components/#hello-world) section
 of *Cape.JS Documentation.*
 
+## Tutorials
+
+* [Cape.JS Primer](http://oiax.github.io/capejs/tutorials/capejs_primer/):
+  Reading through this tutorial, you can learn the basics of Cape.JS programming.
+
 ## A demo application
 
 You can download and try a demo app from https://github.com/oiax/capejs-demo-on-rails.
