@@ -9,9 +9,9 @@ Let's learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS a
 * [Preface](./capejs_primer)
 * [Hello, world!](./capejs_primer/01_hello_world)
 * [Reference of custom attribute value and nesting of HTLM elements](./capejs_primer/02_custom_attributes_and_nested_elements)
-* Creating the text nodes
-* Approach to Ruby on Rails (1)
-* Approach to Ruby on Rails (2)
+* [Creating the text nodes](./capejs_primer/03_creating_text_nodes)
+* [Approach to Ruby on Rails (1)](./capejs_primer/04_rails_integration1)
+* [Approach to Ruby on Rails (2)](./capejs_primer/05_rails_integration2)
 * Let the component have the data
 * Initializing the date with Ajax
 * Assignment of event handler

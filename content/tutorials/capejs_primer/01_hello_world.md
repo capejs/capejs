@@ -141,4 +141,6 @@ render: function(m) {
 }
 ```
 
-This is the end of the first lecture. [The next lecture](../02_custom_attributes_and_nested_elements) will be about acquiring data from elements that components are mounted and explanation of nesting of HTML element.
+This is the end of the first lecture. On [the next lecture](../02_custom_attributes_and_nested_elements)
+we will explain how to acquire data from elements that components are mounted on.
+We will also talk about the nesting of HTML elements.

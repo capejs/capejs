@@ -96,4 +96,4 @@ In the case above, the unnamed function is called again within it. That means th
 
 ----
 
-That's all for today. On the next lecture, I'll explain the method `text()` and the option `innerHTML`.
+That's all for today. On [the next lecture](../03_creating_text_nodes), I'll explain the method `text()` and the option `innerHTML`.

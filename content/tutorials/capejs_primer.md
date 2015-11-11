@@ -23,9 +23,9 @@ Cape.JS is an open source project. It's distributed under the license of MIT. Yo
 * Preface
 * [Hello, world!](./01_hello_world)
 * [Reference of custom attribute value and nesting of HTLM elements](./02_custom_attributes_and_nested_elements)
-* Creating the text nodes
-* Approach to Ruby on Rails (1)
-* Approach to Ruby on Rails (2)
+* [Creating the text nodes](./03_creating_text_nodes)
+* [Integrate Cape.JS with Ruby on Rails (1)](./04_rails_integration1)
+* [Integrate Cape.JS with Ruby on Rails (2)](./05_rails_integration2)
 * Let the component have the data
 * Initializing the date with Ajax
 * Assignment of event handler
