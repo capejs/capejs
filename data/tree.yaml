@@ -149,11 +149,11 @@ pages:
         title: "Before-Navigation Callbacks"
   -
     name: "tutorials"
-    title: "Tutorials and Demos"
+    title: "Tutorials"
     sections:
       -
-        id: "setting-up-rails-with-capejs"
-        title: "Setting up Rails with Cape.JS"
+        id: "capejs-primer"
+        title: "Cape.JS Primer"
 api_pages:
   -
     name: "api"
