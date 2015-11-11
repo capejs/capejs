@@ -1,4 +1,6 @@
-# Reference of custom attribute value and nesting of HTLM elements
+---
+title: "Reference of custom attribute value and nesting of HTLM elements - Cape.JS Primer"
+---
 
 On [the previous lecture](../01_hello_world), we made the easy application displaying "Hello, world!" on the browser as an introducing of [Cape.JS](http://oiax.github.io/capejs/).
 

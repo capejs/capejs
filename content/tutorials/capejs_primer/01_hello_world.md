@@ -1,4 +1,6 @@
-# Hello, world!
+---
+title: "Hello, world! - Cape.JS Primer"
+---
 
 The first serial story of "Cape.JS Primer" is starting from a practice to show "Hello, world!" on a browser screen as the tradition.
 
@@ -139,4 +141,4 @@ render: function(m) {
 }
 ```
 
-This is the end of the first lecture. [Next lecture](../02_custom_attributes_and_nested_elements) will be about acquiring data from elements that components are mounted and explanation of nesting of HTML element.
+This is the end of the first lecture. [The next lecture](../02_custom_attributes_and_nested_elements) will be about acquiring data from elements that components are mounted and explanation of nesting of HTML element.
