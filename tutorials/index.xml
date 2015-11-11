@@ -9,7 +9,64 @@
     <atom:link href="http://oiax.github.io/capejs/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title></title>
+      <title>Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/</guid>
+      <description>
+
+&lt;h1 id=&#34;cape-js-primer:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Cape.JS Primer&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg&#34; alt=&#34;Cape.JS Logo&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&#34;preface:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Preface&lt;/h2&gt;
+
+&lt;p&gt;I start serializing to inform a new-born JavaScript UI framework in 2015, &lt;strong&gt;Cape.JS&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS and making an easy TODO administration application step by step.&lt;/p&gt;
+
+&lt;p&gt;Cape.JS uses a technique &amp;ldquo;virtual DOM&amp;rdquo; like &lt;a href=&#34;https://facebook.github.io/react/&#34;&gt;React&lt;/a&gt; and &lt;a href=&#34;https://muut.com/riotjs/&#34;&gt;Riot&lt;/a&gt; do. You can utilize Cape.JS to create interactive websites, which are websites that changes contents dynamically depend on users&amp;rsquo; actions.&lt;/p&gt;
+
+&lt;p&gt;Until recently, it&amp;rsquo;s general to create interactive websites by making full use of &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt;, but front-end programming will be much easier to if you adopt &amp;ldquo;virtual DOM&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;I say this again just in case, the writer of this serialization is the person who made Cape.JS (Mr.Kuroda). There were several people who uses it when I started serializing, but I hope many people will use it as many as possible.&lt;/p&gt;
+
+&lt;p&gt;Cape.JS is an open source project. It&amp;rsquo;s distributed under the license of MIT. You can use it for free and also re-distribute･sell after you modify its source code. You can find the source code at GitHub&amp;rsquo;s &lt;a href=&#34;https://github.com/oiax/capejs&#34;&gt;repository&lt;/a&gt;. Also, &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;documents&lt;/a&gt; in English are prepared.&lt;/p&gt;
+
+&lt;h2 id=&#34;table-of-contents:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Table of Contents&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Preface&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./01_hello_world&#34;&gt;Hello, world!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./02_custom_attributes_and_nested_elements&#34;&gt;Reference of custom attribute value and nesting of HTLM elements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Creating the text nodes&lt;/li&gt;
+&lt;li&gt;Approach to Ruby on Rails (1)&lt;/li&gt;
+&lt;li&gt;Approach to Ruby on Rails (2)&lt;/li&gt;
+&lt;li&gt;Let the component have the data&lt;/li&gt;
+&lt;li&gt;Initializing the date with Ajax&lt;/li&gt;
+&lt;li&gt;Assignment of event handler&lt;/li&gt;
+&lt;li&gt;Updating the data with Ajax&lt;/li&gt;
+&lt;li&gt;The data store&lt;/li&gt;
+&lt;li&gt;The newly added form of the task&lt;/li&gt;
+&lt;li&gt;Creating new task&lt;/li&gt;
+&lt;li&gt;The edit form of the task&lt;/li&gt;
+&lt;li&gt;Update the task&lt;/li&gt;
+&lt;li&gt;Delete the task&lt;/li&gt;
+&lt;li&gt;Cape.JS 1.2&lt;/li&gt;
+&lt;li&gt;Collection agent (1)&lt;/li&gt;
+&lt;li&gt;Collection agent (2)&lt;/li&gt;
+&lt;li&gt;Collection agent (3)&lt;/li&gt;
+&lt;li&gt;Changing displaying order (1)&lt;/li&gt;
+&lt;li&gt;Changing displaying order (2)&lt;/li&gt;
+&lt;li&gt;Changing displaying order (3)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hello, world! - Cape.JS Primer</title>
       <link>http://oiax.github.io/capejs/tutorials/capejs_primer/01_hello_world/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -148,7 +205,7 @@ I think observant readers may notice that the program of Cape.JS is very similar
     </item>
     
     <item>
-      <title></title>
+      <title>Reference of custom attribute value and nesting of HTLM elements - Cape.JS Primer</title>
       <link>http://oiax.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -247,63 +304,6 @@ I think observant readers may notice that the program of Cape.JS is very similar
 &lt;hr /&gt;
 
 &lt;p&gt;That&amp;rsquo;s all for today. On the next lecture, I&amp;rsquo;ll explain the method &lt;code&gt;text()&lt;/code&gt; and the option &lt;code&gt;innerHTML&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/</guid>
-      <description>
-
-&lt;h1 id=&#34;cape-js-primer:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Cape.JS Primer&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg&#34; alt=&#34;Cape.JS Logo&#34; /&gt;
-&lt;/p&gt;
-
-&lt;h2 id=&#34;preface:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Preface&lt;/h2&gt;
-
-&lt;p&gt;I start serializing to inform a new-born JavaScript UI framework in 2015, &lt;strong&gt;Cape.JS&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS and making an easy TODO administration application step by step.&lt;/p&gt;
-
-&lt;p&gt;Cape.JS uses a technique &amp;ldquo;virtual DOM&amp;rdquo; like &lt;a href=&#34;https://facebook.github.io/react/&#34;&gt;React&lt;/a&gt; and &lt;a href=&#34;https://muut.com/riotjs/&#34;&gt;Riot&lt;/a&gt; do. You can utilize Cape.JS to create interactive websites, which are websites that changes contents dynamically depend on users&amp;rsquo; actions.&lt;/p&gt;
-
-&lt;p&gt;Until recently, it&amp;rsquo;s general to create interactive websites by making full use of &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt;, but front-end programming will be much easier to if you adopt &amp;ldquo;virtual DOM&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;I say this again just in case, the writer of this serialization is the person who made Cape.JS (Mr.Kuroda). There were several people who uses it when I started serializing, but I hope many people will use it as many as possible.&lt;/p&gt;
-
-&lt;p&gt;Cape.JS is an open source project. It&amp;rsquo;s distributed under the license of MIT. You can use it for free and also re-distribute･sell after you modify its source code. You can find the source code at GitHub&amp;rsquo;s &lt;a href=&#34;https://github.com/oiax/capejs&#34;&gt;repository&lt;/a&gt;. Also, &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;documents&lt;/a&gt; in English are prepared.&lt;/p&gt;
-
-&lt;h2 id=&#34;table-of-contents:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Table of Contents&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Preface&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./01_hello_world&#34;&gt;Hello, world!&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./02_custom_attributes_and_nested_elements&#34;&gt;Reference of custom attribute value and nesting of HTLM elements&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Creating the text nodes&lt;/li&gt;
-&lt;li&gt;Approach to Ruby on Rails (1)&lt;/li&gt;
-&lt;li&gt;Approach to Ruby on Rails (2)&lt;/li&gt;
-&lt;li&gt;Let the component have the data&lt;/li&gt;
-&lt;li&gt;Initializing the date with Ajax&lt;/li&gt;
-&lt;li&gt;Assignment of event handler&lt;/li&gt;
-&lt;li&gt;Updating the data with Ajax&lt;/li&gt;
-&lt;li&gt;The data store&lt;/li&gt;
-&lt;li&gt;The newly added form of the task&lt;/li&gt;
-&lt;li&gt;Creating new task&lt;/li&gt;
-&lt;li&gt;The edit form of the task&lt;/li&gt;
-&lt;li&gt;Update the task&lt;/li&gt;
-&lt;li&gt;Delete the task&lt;/li&gt;
-&lt;li&gt;Cape.JS 1.2&lt;/li&gt;
-&lt;li&gt;Collection agent (1)&lt;/li&gt;
-&lt;li&gt;Collection agent (2)&lt;/li&gt;
-&lt;li&gt;Collection agent (3)&lt;/li&gt;
-&lt;li&gt;Changing displaying order (1)&lt;/li&gt;
-&lt;li&gt;Changing displaying order (2)&lt;/li&gt;
-&lt;li&gt;Changing displaying order (3)&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
