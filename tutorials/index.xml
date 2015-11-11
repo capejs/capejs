@@ -330,7 +330,9 @@ I think observant readers may notice that the program of Cape.JS is very similar
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This is the end of the first lecture. &lt;a href=&#34;../02_custom_attributes_and_nested_elements&#34;&gt;The next lecture&lt;/a&gt; will be about acquiring data from elements that components are mounted and explanation of nesting of HTML element.&lt;/p&gt;
+&lt;p&gt;This is the end of the first lecture. On &lt;a href=&#34;../02_custom_attributes_and_nested_elements&#34;&gt;the next lecture&lt;/a&gt;
+we will explain how to acquire data from elements that components are mounted on.
+We will also talk about the nesting of HTML elements.&lt;/p&gt;
 </description>
     </item>
     
