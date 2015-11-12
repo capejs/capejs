@@ -12,11 +12,11 @@ Let's learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS a
 * [Creating the text nodes](./capejs_primer/03_creating_text_nodes)
 * [Approach to Ruby on Rails (1)](./capejs_primer/04_rails_integration1)
 * [Approach to Ruby on Rails (2)](./capejs_primer/05_rails_integration2)
-* Let the component have the data
-* Initializing the date with Ajax
-* Assignment of event handler
-* Updating the data with Ajax
-* The data store
+* [Let the component have the date](./capejs_primer/06_let_the_component_have_the_date)
+* [Initializing the date with Ajax](./capejs_primer/07_initializing_the_date_with_ajax)
+* [Assignment of event handler](./capejs_primer/08_assignment_of_event_handler)
+* [Updating the data with Ajax](./capejs_primer/09_updating_the_data_with_ajax)
+* [The data store](./capejs_primer/10_the_data_store)
 * The newly added form of the task
 * Creating new task
 * The edit form of the task

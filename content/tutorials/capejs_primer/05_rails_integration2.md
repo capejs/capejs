@@ -123,4 +123,4 @@ We have already included the `sprockets-es6` gem so the file holding the extensi
 
 ----
 
-That's all for integrating Cape.JS with Rails application. On the next lecture, I'll explain the way of rendering the component with the data.
+That's all for integrating Cape.JS with Rails application. On [the next lecture](../06_let_the_component_have_the_date), I'll explain the way of rendering the component with the data.

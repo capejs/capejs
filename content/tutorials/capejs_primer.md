@@ -26,11 +26,11 @@ Cape.JS is an open source project. It's distributed under the license of MIT. Yo
 * [Creating the text nodes](./03_creating_text_nodes)
 * [Integrate Cape.JS with Ruby on Rails (1)](./04_rails_integration1)
 * [Integrate Cape.JS with Ruby on Rails (2)](./05_rails_integration2)
-* Let the component have the data
-* Initializing the date with Ajax
-* Assignment of event handler
-* Updating the data with Ajax
-* The data store
+* [Let the component have the date](./06_let_the_component_have_the_date)
+* [Initializing the date with Ajax](./07_initializing_the_date_with_ajax)
+* [Assignment of event handler](./08_assignment_of_event_handler)
+* [Updating the data with Ajax](./09_updating_the_data_with_ajax)
+* [The data store](./10_the_data_store)
 * The newly added form of the task
 * Creating new task
 * The edit form of the task
