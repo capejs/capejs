@@ -17,11 +17,11 @@ Let's learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS a
 * [Assignment of event handler](./capejs_primer/08_assignment_of_event_handler)
 * [Updating the data with Ajax](./capejs_primer/09_updating_the_data_with_ajax)
 * [The data store](./capejs_primer/10_the_data_store)
-* The newly added form of the task
-* Creating new task
-* The edit form of the task
-* Update the task
-* Delete the task
+* [The newly added form of the task](./capejs_primer/11_form_for_new_task)
+* [Creating new task](./capejs_primer/12_creating_new_task)
+* [The edit form of the task](./capejs_primer/13_editing_task)
+* [Update the task](./capejs_primer/14_updating_task)
+* [Delete the task](./capejs_primer/15_deleting_task)
 * Cape.JS 1.2
 * Collection agent (1)
 * Collection agent (2)

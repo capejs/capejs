@@ -31,11 +31,11 @@ Cape.JS is an open source project. It's distributed under the license of MIT. Yo
 * [Assignment of event handler](./08_assignment_of_event_handler)
 * [Updating the data with Ajax](./09_updating_the_data_with_ajax)
 * [The data store](./10_the_data_store)
-* The newly added form of the task
-* Creating new task
-* The edit form of the task
-* Update the task
-* Delete the task
+* [The newly added form of the task](./11_form_for_new_task)
+* [Creating new task](./12_creating_new_task)
+* [The edit form of the task](./13_editing_task)
+* [Update the task](./14_updating_task)
+* [Delete the task](./15_deleting_task)
 * Cape.JS 1.2
 * Collection agent (1)
 * Collection agent (2)

@@ -52,7 +52,7 @@ m.class({ completed: task.done });
 
 As the result, in the case of the task which element `done` is "true", it sets the class `completed` to the element `label`. Boot the Rails application and open `http://localhost:3000/` on the browser. The display will be like following.
 
-![Screen capture](/rails/files/todo_list06.png)
+![Screen capture](/capejs/images/capejs_primer/todo_list06.png)
 
 By clicking the first checkbox here, the warning dialog "1" displays. So click the "OK" button. Make sure that the style of strings of "To buy cat's feed" doesn't change. (The color doesn't change to gray and strike-through doesn't display.)
 

@@ -206,4 +206,4 @@ In addition, I rewrote `this.toggleTask(task)` to `this.ds.toggleTask(task)` on 
 
 The behavior of the application doesn't change by the change of this lecture. Boot Rails application as same as the precious time and click checkboxes of each tasks to make sure that the values of the column of the task `done` changes.
 
-On Next lecture, I'll explain how to display the form that newly adds the task.
+On [Next lecture](../11_form_for_new_task), I'll explain how to display the form that newly adds the task.

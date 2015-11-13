@@ -53,7 +53,7 @@ When you realize that you took mistake of the name of the table and the column, 
 We make the script to insert the sheet data (initialized data). Open `db/seeds.rb` on the text editor and add the following code after deletin all comment lines ( starting from `#`).
 
 ```ruby
-Task.create!(title: 'To buy cat's feed', done: false)
+Task.create!(title: 'To buy cat\'s feed', done: false)
 Task.create!(title: 'To go dentist', done: true)
 Task.create!(title: 'To through away bulk trash', done: false)
 Task.create!(title: 'To write blogs, done: false)
