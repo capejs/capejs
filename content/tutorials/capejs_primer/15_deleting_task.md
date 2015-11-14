@@ -109,4 +109,4 @@ Make sure it works well on the browser. (abbreviate the lecture of screen captur
 
 It might be easy this time for who have read this selections carefully.
 
-On [Next lecture](../15_capejs_1_2), I'll introduce the new version 1.2 of Cape.JS.
+On [Next lecture](../16_capejs_1_2), I'll introduce the new version 1.2 of Cape.JS.

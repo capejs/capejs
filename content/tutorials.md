@@ -22,13 +22,13 @@ Let's learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS a
 * [The edit form of the task](./capejs_primer/13_editing_task)
 * [Update the task](./capejs_primer/14_updating_task)
 * [Delete the task](./capejs_primer/15_deleting_task)
-* Cape.JS 1.2
-* Collection agent (1)
-* Collection agent (2)
-* Collection agent (3)
-* Changing displaying order (1)
-* Changing displaying order (2)
-* Changing displaying order (3)
+* [Cape.JS 1.2](./capejs_primer/16_capejs_1_2)
+* [Collection agent (1)](./capejs_primer/17_collection_agent1)
+* [Collection agent (2)](./capejs_primer/18_collection_agent2)
+* [Collection agent (3)](./capejs_primer/19_collection_agent3)
+* [Changing displaying order (1)](./capejs_primer/20_reordering1)
+* [Changing displaying order (2)](./capejs_primer/21_reordering2)
+* [Changing displaying order (3)](./capejs_primer/22_reordering3)
 
 <div class="note">
 This tutorial is an English translation of <a href="http://www.oiax.jp/rails/capejs_primer.html">blog entries</a> written in Japanese.
