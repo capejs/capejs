@@ -47,7 +47,7 @@ Next, add the method `toggleTask()` to the class `TaskCollectionAgent`.
 
 The method `update()` defined at the parent class `Cape.CollectionAgent` receives 2 parameters. The first parameter is ID of "resource" and second one is the object sending to API server.
 
-If the value of `task.id` is 123, the method `toggleTask()` sends the request to URL `/api/tasks/123` by PATCH method. The objext assigned to the second parameter is changed to string in Jason style and sent to the server,
+If the value of `task.id` is 123, the method `toggleTask()` sends the request to URL `/api/tasks/123` by PATCH method. The object assigned to the second parameter is changed to string in Jason style and sent to the server,
 
 Let's compare with the same name's method of the class `TaskStore`.
 
@@ -82,7 +82,7 @@ Make sure the style of the task's title is change depending on the status of the
 
 Next, reintegrate the function to delete the task.
 
-If you extraxt the part from the method `renderTask()` of the class `TodoList`, it's like following.
+If you extract the part from the method `renderTask()` of the class `TodoList`, it's like following.
 
 ```javascript
   renderTask(m, task) {
@@ -120,7 +120,7 @@ Add the method `destroyTask()` the class `TaskCollectionAgent`.
   }
 ```
 
-The method `destroy()` defined at the parent class `Cape.CollectionAgent`, it receives ID of "resouce" as the first parameter and sends the request to API server by DELETE method.
+The method `destroy()` defined at the parent class `Cape.CollectionAgent`, it receives ID of "resource" as the first parameter and sends the request to API server by DELETE method.
 
 Let's compare the same name method of the class `TaskStore`.
 

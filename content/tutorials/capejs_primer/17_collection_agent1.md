@@ -110,7 +110,7 @@ The class of the collection agent inherits the class `Cape.CollectionAgent`. On 
 Said on rounding language of Rails, the property `basePath` corresponds to namespace.
 </div>
 
-The property `resourceName` means "resouce name" wrote above. This value connects to the value of the property `basePath` when the collect agent creates URL of Ajax request. Also, it's used to acquire the array from JSON data that backs from API server as the key.
+The property `resourceName` means "resource name" wrote above. This value connects to the value of the property `basePath` when the collect agent creates URL of Ajax request. Also, it's used to acquire the array from JSON data that backs from API server as the key.
 
 ----
 
