@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Cape.JS 1.2 - Cape.JS Primer - Cape.JS: Documentation</title>
+  <meta name="generator" content="Bootply" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="http://oiax.github.io/capejs//css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+  <link href="http://oiax.github.io/capejs//css/styles.css" rel="stylesheet">
+  <link href="http://oiax.github.io/capejs//highlight/styles/default.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://oiax.github.io/capejs//images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="http://oiax.github.io/capejs//images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+</head>
+
+<body>
+<div id="navbar-md" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="/capejs/" class="navbar-brand">Cape.JS</a>
+    </div>
+    <nav role="navigation">
+      <ul class="nav navbar-nav">
+        <li><a href="http://oiax.github.io/capejs//tutorials/" class="link">Tutorials</a></li>
+        <li><a href="http://oiax.github.io/capejs//api">API Reference</a></li>
+        <li>
+          <a href="https://github.com/oiax/capejs">GitHub Repository
+          <i class="fa fa-external-link"></i></a>
+        </li>
+      </ul>
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </nav>
+  </div>
+</div>
+<div id="navbar-sm" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="http://oiax.github.io/capejs//" class="navbar-brand">Cape.JS Doc</a>
+      <a href="http://oiax.github.io/capejs//tutorials/" class="link">Tutorials</a>
+      <a href="http://oiax.github.io/capejs//api/" class="link">API</a>
+      <a href="https://github.com/oiax/capejs" class="link">GitHub
+      <i class="fa fa-external-link"></i></a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-offcanvas row-offcanvas-left">
+    
+        <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <ul class="nav">
+      
+      
+        <li><a href="http://oiax.github.io/capejs//#what-is">What is Cape.JS?</a></li>
+      
+        <li><a href="http://oiax.github.io/capejs//#installation">Installation</a></li>
+      
+        <li><a href="http://oiax.github.io/capejs//#faq">FAQ</a></li>
+      
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//components">Components</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#hello-world">Hello World</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#es6">ECMAScript 6</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#dom-tree">Building Virtual DOM Tree</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#click-counter">Click Counter</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#shortcut-methods">Shortcut Methods</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#html-styles">HTML Styles</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#todo-list">Todo List</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#mixins">Mixins</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//data_stores">Data Stores</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//data_stores/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//data_stores/#ajax">Ajax</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//collection_agents">Collection Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#initialization">Initialization</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#creating-resources">Creating Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#rest-operations">REST Operations</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#callbacks-and-error-handlers">Callbacks and Error Handlers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#changing-path-prefix">Changing the Path Prefix</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//resource_agents">Resource Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#creating-a-new-resource">Creating a New Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#editing-a-resource">Editing a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#building-a-dual-use-form">Building a Dual-Use Form</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#deleting-a-resource">Deleting a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#specifying-a-callback">Specifying a Callback</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//router">Router</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#simple-routes">Simple Routes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#containers">Containers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#resource-based-routes">Resource Based Routes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#singular-resources">Singular Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#nested-resources">Nested Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#namespaces">Namespaces</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#adding-custom-actions">Adding Custom Actions</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#changing-root-container">Changing Root Container</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#vars">Vars</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#flash">Flash</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#before-navigation-callbacks">Before-Navigation Callbacks</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//tutorials">Tutorials</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//tutorials/#capejs-primer">Cape.JS Primer</a></li>
+          
+          </ul>
+      
+        <li><a href="http://oiax.github.io/capejs//api">API Reference</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="col-sm-12 col-md-9">
+      <article>
+        <header>
+          <h2>Cape.JS 1.2 - Cape.JS Primer</h2>
+          <div class="post-meta clearfix">
+          </div>
+        </header>
+        <div>
+          <p>It has passed about a month from <a href="../15_deleting_task">the previous lecture</a>.
+I thought I could release Cape.JS 1.2 soon at the time I wrote the article but I&rsquo;ve noticed there are some &ldquo;holes&rdquo; of the spec since my co-workers and I actually use it. It&rsquo;s already updated for 16 times (!) since the first Release Candidate (RC) version.</p>
+
+<p>Now, two new classes are introduced on Cape.JS 1.2.</p>
+
+<ul>
+<li><code>ResourceAgent</code></li>
+<li><code>CollectionAgent</code></li>
+</ul>
+
+<p>Each one is the class to handle &ldquo;resource&rdquo; in the Rails terminology. For more information, I&rsquo;ll explain later of the next time, you can write JavaScript program that accesses REST API easier than ever by using them.</p>
+
+<p>On this lecture, I&rsquo;ll explain how to upgrade Cape.JS to 1.2 of &ldquo;Todo list&rdquo; application you have created.</p>
+
+<hr />
+
+<p>First update the server.(Rails) Open <code>Gemfile</code> on the text editor and rewrite the line starting from <code>gem 'rails'</code> as following.</p>
+
+<pre><code class="language-text">gem 'rails', '4.2.4'
+</code></pre>
+
+<p>In addition, rewrite the last line as following.</p>
+
+<pre><code class="language-text">gem 'sprockets-es6', '~&gt; 0.7.0'
+</code></pre>
+
+<p>And then, run the next command on the terminal.</p>
+
+<pre><code class="language-text">$ bin/bundle update
+</code></pre>
+
+<div class="note">
+In actually, you can use Cape.JS 1.2 if you don't update them. In this opportunity, I hope you to update the version.
+</div>
+
+<hr />
+
+<p>Next, update the front (JavaScript) side. Open <code>bower.json</code> on the text editor and rewrite it as following.</p>
+
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;todo_list&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;authors&quot;: [
+    &quot;Tsutomu Kuroda &lt;t-kuroda@oiax.jp&gt;&quot;
+  ],
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;ignore&quot;: [
+    &quot;**/.*&quot;,
+    &quot;node_modules&quot;,
+    &quot;bower_components&quot;,
+    &quot;vendor/assets/components&quot;,
+    &quot;test&quot;,
+    &quot;tests&quot;
+  ],
+  &quot;dependencies&quot;: {
+    &quot;capejs&quot;: &quot;~1.2.0&quot;,
+    &quot;bootstrap&quot;: &quot;=3.3.4&quot;,
+    &quot;es6-promise&quot;: &quot;~3.0.2&quot;,
+    &quot;fetch&quot;: &quot;~0.9.0&quot;,
+    &quot;fontawesome&quot;: &quot;~4.4.0&quot;,
+    &quot;lodash&quot;: &quot;~3.10.1&quot;
+  }
+}
+</code></pre>
+
+<p>I rewrote <code>&quot;versions&quot;: &quot;0.0.0&quot;,</code> to  <code>&quot;versions&quot;: &quot;0.1.0&quot;,</code> on the third line. And then, I added the points to the section <code>&quot;dependencies&quot;</code> and update the version number of original one. The ones added are <code>es6-promise</code> and <code>fetch</code> and I&rsquo;ll explain their roles later. About original one, it updated the version of <code>capejs</code> to <code>~1.2.0</code> and upgrade each of <code>fontawesome</code> and <code>lodash</code>. But, about <code>bootstrap</code>, the newest 3.3.5 has bad chemistry with Sprockets so it stabilizes <code>=3.3.4</code> and the version.</p>
+
+<p>Run the next command on the terminal.</p>
+
+<pre><code class="language-text">$ bower update
+</code></pre>
+
+<p>Now you can upgrade Cape.JS of &ldquo;Todo list&rdquo; application to 1.2.</p>
+
+<hr />
+
+<p>I&rsquo;ll explain <code>es6-promise</code> and <code>fetch</code> added to the section <code>&quot;dependencies&quot;</code> of <code>bower.json</code>.</p>
+
+<p><a href="https://github.com/jakearchibald/es6-promise">es6-promise</a> is &ldquo;polyfill&rdquo; for
+the new function of ECMAScript 6 <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></p>
+
+<div class="note">
+There is a case that a JavaScript library exists in order to realize the equal function that modern browsers (generally, the newest Chrome and Firefox) provide but other browsers (Internet Explorer and Safari) do not. It's called polyfill.
+</div>
+
+<p>When you use Promise, it&rsquo;s easier to write the non-synchronous processing on JavaScript.</p>
+
+<p>On the other hand, <a href="https://github.com/github/fetch">fetch</a> is the polyfill for another new functional called as <a href="https://developer.mozilla.org/ja/docs/Web/API/Fetch_API">Fetch API</a>.</p>
+
+<p>Fetch API is the new interface to acquire the resource beyond the network. It&rsquo;s an alternative to the <a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a>.</p>
+
+<div class="note">
+jQuery calls Ajax request by using XMLHttpRequest in it. If it can uses Fetch API, it's not necessary to use jQuery for Ajax.
+</div>
+
+<p>The class <code>ResourceAgent</code> and the class <code>CollectionAgent</code> introduced on Cape.JS 1.2 use this Fetch API in it. And, the polyfill <code>fetch</code> depends Promise.</p>
+
+<hr />
+
+<p>From <a href="../17_collection_agent1">the next lecture</a>, I&rsquo;ll rewrite &ldquo;Todo list&rdquo; application by using the new function of Cape.JS 1.2.</p>
+
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="http://oiax.github.io/capejs//js/bootstrap.min.js"></script>
+<script src="http://oiax.github.io/capejs//js/scripts.js"></script>
+<script src="http://oiax.github.io/capejs//highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div id="footer-sm" class="footer navbar-fixed-bottom">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+<div id="footer-xs" class="footer">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+
+</body>
+</html>

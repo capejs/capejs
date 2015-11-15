@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Creating new task - Cape.JS Primer - Cape.JS: Documentation</title>
+  <meta name="generator" content="Bootply" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="http://oiax.github.io/capejs//css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+  <link href="http://oiax.github.io/capejs//css/styles.css" rel="stylesheet">
+  <link href="http://oiax.github.io/capejs//highlight/styles/default.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://oiax.github.io/capejs//images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="http://oiax.github.io/capejs//images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+</head>
+
+<body>
+<div id="navbar-md" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="/capejs/" class="navbar-brand">Cape.JS</a>
+    </div>
+    <nav role="navigation">
+      <ul class="nav navbar-nav">
+        <li><a href="http://oiax.github.io/capejs//tutorials/" class="link">Tutorials</a></li>
+        <li><a href="http://oiax.github.io/capejs//api">API Reference</a></li>
+        <li>
+          <a href="https://github.com/oiax/capejs">GitHub Repository
+          <i class="fa fa-external-link"></i></a>
+        </li>
+      </ul>
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </nav>
+  </div>
+</div>
+<div id="navbar-sm" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="http://oiax.github.io/capejs//" class="navbar-brand">Cape.JS Doc</a>
+      <a href="http://oiax.github.io/capejs//tutorials/" class="link">Tutorials</a>
+      <a href="http://oiax.github.io/capejs//api/" class="link">API</a>
+      <a href="https://github.com/oiax/capejs" class="link">GitHub
+      <i class="fa fa-external-link"></i></a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-offcanvas row-offcanvas-left">
+    
+        <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <ul class="nav">
+      
+      
+        <li><a href="http://oiax.github.io/capejs//#what-is">What is Cape.JS?</a></li>
+      
+        <li><a href="http://oiax.github.io/capejs//#installation">Installation</a></li>
+      
+        <li><a href="http://oiax.github.io/capejs//#faq">FAQ</a></li>
+      
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//components">Components</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#hello-world">Hello World</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#es6">ECMAScript 6</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#dom-tree">Building Virtual DOM Tree</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#click-counter">Click Counter</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#shortcut-methods">Shortcut Methods</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#html-styles">HTML Styles</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#todo-list">Todo List</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#mixins">Mixins</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//data_stores">Data Stores</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//data_stores/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//data_stores/#ajax">Ajax</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//collection_agents">Collection Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#initialization">Initialization</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#creating-resources">Creating Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#rest-operations">REST Operations</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#callbacks-and-error-handlers">Callbacks and Error Handlers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#changing-path-prefix">Changing the Path Prefix</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//resource_agents">Resource Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#creating-a-new-resource">Creating a New Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#editing-a-resource">Editing a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#building-a-dual-use-form">Building a Dual-Use Form</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#deleting-a-resource">Deleting a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#specifying-a-callback">Specifying a Callback</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//router">Router</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#simple-routes">Simple Routes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#containers">Containers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#resource-based-routes">Resource Based Routes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#singular-resources">Singular Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#nested-resources">Nested Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#namespaces">Namespaces</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#adding-custom-actions">Adding Custom Actions</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#changing-root-container">Changing Root Container</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#vars">Vars</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#flash">Flash</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#before-navigation-callbacks">Before-Navigation Callbacks</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//tutorials">Tutorials</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//tutorials/#capejs-primer">Cape.JS Primer</a></li>
+          
+          </ul>
+      
+        <li><a href="http://oiax.github.io/capejs//api">API Reference</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="col-sm-12 col-md-9">
+      <article>
+        <header>
+          <h2>Creating new task - Cape.JS Primer</h2>
+          <div class="post-meta clearfix">
+          </div>
+        </header>
+        <div>
+          <p>On this lecture, we implement the functionality to add a task
+from the form we made on <a href="../11_form_for_new_task">the pvevious lecture</a>.</p>
+
+<hr />
+
+<p>First, rewrite the component. The source code of <code>renderCreateForm()</code> is now followin now.</p>
+
+<pre><code class="language-javascript">  renderCreateForm(m) {
+    m.formFor('new_task', m =&gt; {
+      m.textField('title').sp();
+      m.btn(`Add task #${ this.ds.tasks.length + 1 }`);
+    });
+  }
+</code></pre>
+
+<p>Rewrite it like following, (add 2 lines)</p>
+
+<pre><code class="language-javascript">  renderCreateForm(m) {
+    m.formFor('new_task', m =&gt; {
+      m.textField('title').sp();
+      m.onclick(e =&gt;
+        this.ds.createTask(this.val('new_task.title')));
+      m.btn(`Add task #${ this.ds.tasks.length + 1 }`);
+    });
+  }
+</code></pre>
+
+<p>As the result, when you click the botton of form of new added task, it runs the code <code>this.ds.createTask(this.val('new_task.title'))</code>.</p>
+
+<p>The method <code>val()</code> of the component returns the value of form field. It passes the string as the parameter of the style <code>x.y</code>. <code>x</code> is the form&rsquo;s name and <code>y</code> is the field&rsquo;s name. It requires the value of the field <code>title</code> in the form named <code>new_task</code> here and passes the method <code>createTask()</code> of the data store.</p>
+
+<hr />
+
+<p>Next, add the method <code>createTask()</code> to the data store. Rewrite <code>task_store.es6</code> as following.</p>
+
+<pre><code class="language-javascript">class TaskStore extends Cape.DataStore {
+  constructor() { ... }
+
+  refresh() { ... }
+
+  createTask(title) {
+    $.ajax({
+      type: 'POST',
+      url: '/api/tasks',
+      data: { task: { title: title } }
+    }).done(data =&gt; {
+      if (data === 'OK') this.refresh();
+    });
+  }
+
+  toggleTask(task) { ... }
+}
+</code></pre>
+
+<p>The added method <code>createTask()</code> receives the title of the task as the parameter. It sends it to Ajax by POST method and the if return data is <code>OK</code>, it runs <code>this.refresh()</code>.<code>this.refresh()</code> acquires the list of tasks by accessing the API of Rails application and redraws the component.</p>
+
+<hr />
+
+<p>Next, let&rsquo;s create API. Open <code>app/controllers/api/tasks_controller.rb</code> on the text editor and rewrite it as following. (add the method <code>create</code>)</p>
+
+<pre><code class="language-text">class Api::TasksController &lt; ApplicationController
+  def index
+    ...
+  end
+
+  def create
+    if Task.create(task_params)
+      render text: 'OK'
+    else
+      render text: 'NG'
+    end
+  end
+
+  def update
+    ...
+  end
+
+  private
+  def task_params
+    params.require(:task).permit(:title, :done)
+  end
+end
+</code></pre>
+
+<p>The method <code>Task.create</code> adds the record to the table <code>tasks</code>.</p>
+
+<p>Lastly, it&rsquo;s finished when you finish writing <code>config/routes.rb</code>. (add <code>:create,</code> on the third line from the bottom)</p>
+
+<pre><code class="language-text">Rails.application.routes.draw do
+  root 'top#index'
+
+  namespace :api do
+    resources :tasks, only: [ :index, :create, :update ]
+  end
+end
+</code></pre>
+
+<p>Let&rsquo;s make sure that it works well on the browser. Add the title of the new task…</p>
+
+<p><img src="/capejs/images/capejs_primer/todo_list10.png" alt="Screen capture" />
+</p>
+
+<p>and click the bottton…</p>
+
+<p><img src="/capejs/images/capejs_primer/todo_list11.png" alt="Screen capture" />
+</p>
+
+<p>It adds the task.</p>
+
+<hr />
+
+<p>But, it&rsquo;s a little bit strange. The title written the form is supposed to disapear when adding tasks is done. In order to do so, add the component&rsquo;s method <code>renderCreateForm()</code>.</p>
+
+<pre><code class="language-javascript">  renderCreateForm(m) {
+    m.formFor('new_task', m =&gt; {
+      m.textField('title').sp();
+      m.onclick(e =&gt;
+        this.ds.createTask(this.val('new_task.title', '')));
+      m.btn(`Add task #${ this.ds.tasks.length + 1 }`);
+    });
+  }
+</code></pre>
+
+<p>The point I changed is fourth line. I changed <code>this.val('new_task.title')</code> to <code>this.val('new_task.title', '')</code>.</p>
+
+<p>When number of the parameters is one, the method <code>val()</code> of the component just returns the value of the field. But when it receives the second parameter, it sets the value of the field to the value of the second parameter and then returns the original value of the field. Here, it empties the field <code>title</code> of the form for new task and passes the string written there to the method <code>createTask</code> of the data store.</p>
+
+<p>Let&rsquo;s make sure it works well on the browser. If the form&rsquo;s <code>title</code> field gets empty right after adding the task, it&rsquo;s OK.</p>
+
+<hr />
+
+<p>Let&rsquo;s improve one more UI. Now, you can click the button even if the title is empty and it creates the empty task. If the title is empty, let&rsquo;s disable the button.</p>
+
+<p>First, prepare the style sheet to have clear effect. Rewrite <code>app/assets/stylesheets/todo_list.scss</code> as following (three lines added)</p>
+
+<pre><code class="language-css">#todo-list {
+  label.completed span {
+    color: #888;
+    text-decoration: line-through;
+  }
+  button[disabled] {
+    color: #888;
+  }
+}
+</code></pre>
+
+<p>Then, change the component&rsquo;s method <code>renderCreateForm()</code> as following.</p>
+
+<pre><code class="language-javascript">  renderCreateForm(m) {
+    m.formFor('new_task', m =&gt; {
+      m.onkeyup(e =&gt; this.refresh());
+      m.textField('title').sp();
+      m.attr({ disabled: this.val('new_task.title').trim() === '' });
+      m.onclick(e =&gt;
+        this.ds.createTask(this.val('new_task.title', '')));
+      m.btn(`Add task #${ this.ds.tasks.length + 1 }`);
+    });
+  }
+</code></pre>
+
+<p>I added two lines. I inserted <code>m.onkeyup(e =&gt; this.refresh());</code> in order to redraw the component every time the contents of the title field is changed.
+The event <code>keyup</code> breaks out when a key on the keyboard is released.
+It also breaks out when the string is pasted by the user.</p>
+
+<p>Another added code is following.</p>
+
+<pre><code class="language-javascript">      m.attr({ disabled: this.val('new_task.title').trim() === '' });
+</code></pre>
+
+<p>It seems a little bit complicated but it&rsquo;s simple. It assigns the attribute <code>disabled</code> to the button if it&rsquo;s empty after deleting both side blanks of the title field by <code>trim()</code>.</p>
+
+<p>Every time when the user rewrites the content of the title field, it redraws the whole component. If the content it empty, it&rsquo;s disabled and if nor, it&rsquo;s enabled.</p>
+
+<p>On the screen right after reloading the browser, the button is disabled like following.</p>
+
+<p><img src="/capejs/images/capejs_primer/todo_list12.png" alt="Screen capture" />
+</p>
+
+<p>But, when you add one letter &ldquo;A&rdquo; on the title field,</p>
+
+<p><img src="/capejs/images/capejs_primer/todo_list13.png" alt="Screen capture" />
+</p>
+
+<p>The button is enabled. And then, when you delete &ldquo;A&rdquo;, it&rsquo;s disabled again.</p>
+
+<p><img src="/capejs/images/capejs_primer/todo_list12.png" alt=" Screen capture" />
+</p>
+
+<p>It&rsquo;s relatively annoying if you make this kind of effect happen in jQuery. Virtual DOM can contribute well.</p>
+
+<hr />
+
+<p>On <a href="../13_editing_task">the next lecture</a>, I&rsquo;ll create the function to rewrite the task&rsquo;s title.</p>
+
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="http://oiax.github.io/capejs//js/bootstrap.min.js"></script>
+<script src="http://oiax.github.io/capejs//js/scripts.js"></script>
+<script src="http://oiax.github.io/capejs//highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div id="footer-sm" class="footer navbar-fixed-bottom">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+<div id="footer-xs" class="footer">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+
+</body>
+</html>

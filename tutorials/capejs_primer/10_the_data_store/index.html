@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>The data store - Cape.JS Primer - Cape.JS: Documentation</title>
+  <meta name="generator" content="Bootply" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="http://oiax.github.io/capejs//css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+  <link href="http://oiax.github.io/capejs//css/styles.css" rel="stylesheet">
+  <link href="http://oiax.github.io/capejs//highlight/styles/default.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://oiax.github.io/capejs//images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="http://oiax.github.io/capejs//images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+</head>
+
+<body>
+<div id="navbar-md" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="/capejs/" class="navbar-brand">Cape.JS</a>
+    </div>
+    <nav role="navigation">
+      <ul class="nav navbar-nav">
+        <li><a href="http://oiax.github.io/capejs//tutorials/" class="link">Tutorials</a></li>
+        <li><a href="http://oiax.github.io/capejs//api">API Reference</a></li>
+        <li>
+          <a href="https://github.com/oiax/capejs">GitHub Repository
+          <i class="fa fa-external-link"></i></a>
+        </li>
+      </ul>
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </nav>
+  </div>
+</div>
+<div id="navbar-sm" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="http://oiax.github.io/capejs//" class="navbar-brand">Cape.JS Doc</a>
+      <a href="http://oiax.github.io/capejs//tutorials/" class="link">Tutorials</a>
+      <a href="http://oiax.github.io/capejs//api/" class="link">API</a>
+      <a href="https://github.com/oiax/capejs" class="link">GitHub
+      <i class="fa fa-external-link"></i></a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-offcanvas row-offcanvas-left">
+    
+        <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <ul class="nav">
+      
+      
+        <li><a href="http://oiax.github.io/capejs//#what-is">What is Cape.JS?</a></li>
+      
+        <li><a href="http://oiax.github.io/capejs//#installation">Installation</a></li>
+      
+        <li><a href="http://oiax.github.io/capejs//#faq">FAQ</a></li>
+      
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//components">Components</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#hello-world">Hello World</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#es6">ECMAScript 6</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#dom-tree">Building Virtual DOM Tree</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#click-counter">Click Counter</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#shortcut-methods">Shortcut Methods</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#html-styles">HTML Styles</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#todo-list">Todo List</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#mixins">Mixins</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//data_stores">Data Stores</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//data_stores/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//data_stores/#ajax">Ajax</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//collection_agents">Collection Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#initialization">Initialization</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#creating-resources">Creating Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#rest-operations">REST Operations</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#callbacks-and-error-handlers">Callbacks and Error Handlers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#changing-path-prefix">Changing the Path Prefix</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//resource_agents">Resource Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#creating-a-new-resource">Creating a New Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#editing-a-resource">Editing a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#building-a-dual-use-form">Building a Dual-Use Form</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#deleting-a-resource">Deleting a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#specifying-a-callback">Specifying a Callback</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//router">Router</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#simple-routes">Simple Routes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#containers">Containers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#resource-based-routes">Resource Based Routes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#singular-resources">Singular Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#nested-resources">Nested Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#namespaces">Namespaces</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#adding-custom-actions">Adding Custom Actions</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#changing-root-container">Changing Root Container</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#vars">Vars</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#flash">Flash</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#before-navigation-callbacks">Before-Navigation Callbacks</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//tutorials">Tutorials</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//tutorials/#capejs-primer">Cape.JS Primer</a></li>
+          
+          </ul>
+      
+        <li><a href="http://oiax.github.io/capejs//api">API Reference</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="col-sm-12 col-md-9">
+      <article>
+        <header>
+          <h2>The data store - Cape.JS Primer</h2>
+          <div class="post-meta clearfix">
+          </div>
+        </header>
+        <div>
+          <p>On <a href="../09_updating_the_data_with_ajax">the previous lecture</a>I explained how to update the database by calling the method <code>ajax</code> of jQuery in the Cape.JS component.</p>
+
+<p>The theme of this lecture is <strong>the data store</strong> of Cape.JS. It&rsquo;s a very important concept to do Web development in Cape.JS.</p>
+
+<hr />
+
+<p>The following below is the whole source code of <code>todo_list.es6</code>.</p>
+
+<pre><code class="language-javascript">class TodoList extends Cape.Component {
+  init() {
+    $.ajax({
+      type: 'GET',
+      url: '/api/tasks'
+    }).done(data =&gt; {
+      this.tasks = data;
+      this.refresh();
+    });
+  }
+
+  render(m) {
+    m.ul(m =&gt; {
+      this.tasks.forEach(task =&gt; {
+        m.li(m =&gt; {
+          m.class({ completed: task.done });
+          m.label(m =&gt; {
+            m.onclick(e =&gt; this.toggleTask(task));
+            m.input({ type: 'checkbox', checked: task.done }).sp();
+            m.span(task.title);
+          });
+        });
+      });
+    });
+  }
+
+  toggleTask(task) {
+    $.ajax({
+      type: 'PATCH',
+      url: '/api/tasks/' + task.id,
+      data: { task: { done: !task.done } }
+    }).done(data =&gt; {
+      if (data === 'OK') {
+        task.done = !task.done;
+        this.refresh();
+      }
+    });
+  }
+}
+</code></pre>
+
+<p>It&rsquo;s quiet far from the perfection, it has still 39 lines. It should be better separated.</p>
+
+<p>What part can we separate? In my case, I move he method <code>init</code> and the call of the method <code>$.ajax</code> in the method <code>toggleTask</code> to another class. The component of Cape.JS is &ldquo;V&rdquo; of MVC model, that means view, so it&rsquo;s better not have the code related to acquiring the data and updating.</p>
+
+<p>Here is the data store. It&rsquo;s &ldquo;M&rdquo; of MVC model.</p>
+
+<p>Now, create a new file <code>task_store.es6</code> at the directory <code>app/assets/javascripts</code> as following.</p>
+
+<pre><code class="language-javascript">class TaskStore extends Cape.DataStore {
+  constructor() {
+    super();
+    this.tasks = [];
+  }
+
+  refresh() {
+    $.ajax({
+      type: 'GET',
+      url: '/api/tasks'
+    }).done(data =&gt; {
+      this.tasks = data;
+      this.propagate();
+    });
+  }
+
+  toggleTask(task) {
+    $.ajax({
+      type: 'PATCH',
+      url: '/api/tasks/' + task.id,
+      data: { task: { done: !task.done } }
+    }).done(data =&gt; {
+      if (data === 'OK') {
+        task.done = !task.done;
+        this.propagate();
+      }
+    });
+  }
+}
+</code></pre>
+
+<p>The data store is literally the storage of the data. Inherit the class <code>Cape.DataStore</code> and define it. When the data store is called when it&rsquo;s instanced, initialize the data in the method <code>constructor()</code> after calling the method <code>super()</code> for sure.</p>
+
+<p>The method <code>refresh()</code> of the class <code>TaskStore</code> is same as the content in the method <code>init()</code> of the class <code>TodoList</code>. But, it has 1 difference. <code>this.refresh()</code> changes to <code>this.propagate()</code>.</p>
+
+<p>In addition, the method <code>toggleTask()</code> of the class <code>TaskStore</code> is the copy of the same method of the class <code>TodoList</code>. But, <code>this.refresh()</code> changes to <code>this.propagate()</code>.</p>
+
+<p>I&rsquo;ll write about the role of the method <code>propagate()</code> of the data store later.</p>
+
+<hr />
+
+<p>Next, rewrite the source code of the class <code>TodoList</code>.</p>
+
+<pre><code class="language-javascript">class TodoList extends Cape.Component {
+  init() {
+    this.ds = new TaskStore();
+    this.ds.attach(this);
+    this.ds.refresh();
+  }
+
+  render(m) {
+    m.ul(m =&gt; {
+      this.ds.tasks.forEach(task =&gt; {
+        m.li(m =&gt; {
+          m.class({ completed: task.done });
+          m.label(m =&gt; {
+            m.onclick(e =&gt; this.ds.toggleTask(task));
+            m.input({ type: 'checkbox', checked: task.done }).sp();
+            m.span(task.title);
+          });
+        });
+      });
+    });
+  }
+}
+</code></pre>
+
+<div class="note">
+<code>toggleTask()</code> deletes all of methods.
+</div>
+
+<p>The method <code>init()</code> is completely different now.</p>
+
+<pre><code class="language-javascript">    this.ds = new TaskStore();
+    this.ds.attach(this);
+    this.ds.refresh();
+</code></pre>
+
+<p>It creates the instance of the class <code>TaskStore</code> on the first line and set it to its property <code>ds</code>. Next, it passes its parameter as the method <code>attach()</code> of the object <code>TaskStore</code> on the second line.</p>
+
+<p>This second line is the point of today&rsquo;s lecture.</p>
+
+<p>The component attaches the data store to itself and so that it can receive the notice when the data that the data store holds changes.</p>
+
+<p>We call the notice that the data changes to the component attached to the data store is called as propagation.</p>
+
+<p>When I explained <code>TaskStore</code> just before, I said that I&rsquo;ll explain the method <code>propagate()</code> later. This method uses the propagation.</p>
+
+<p>As the result of the propagation, the method <code>refresh()</code> of the component is called. That means, the component is redraw when the data changes.</p>
+
+<div class="note">
+You can attach many components to the data store. In that case, it sends the notice of data's change to each component in order. In another viewpoint, you can also say that the components "observe" the data store. In this viewpoint, it means that the component redraws itself when the data that the data store holds changes.
+</div>
+
+<p>The method <code>init()</code> is written on the third line.</p>
+
+<pre><code class="language-javascript">    this.ds.refresh();
+</code></pre>
+
+<p>Be careful that it calls the method <code>refresh()</code> not the method <code>refresh()</code>. That means, the following code is run by the object <code>TaskStore</code>.</p>
+
+<pre><code class="language-javascript">    $.ajax({
+      type: 'GET',
+      url: '/api/tasks'
+    }).done(data =&gt; {
+      this.tasks = data;
+      this.propagate();
+    });
+</code></pre>
+
+<p>It calls Ajax call, update the data of the data store (<code>this.tasks</code>), and begins propagation. As the result, it calls the component&rsquo;s method <code>refresh()</code> and redraw for one time.</p>
+
+<p>It might be complicated a little. Understand the flow of the processing by following the source code carefully.</p>
+
+<hr />
+
+<p>It also changes the method <code>render()</code> of the class <code>TodoList</code>. Look at the following.</p>
+
+<pre><code class="language-javascript">    m.ul(m =&gt; {
+      this.ds.tasks.forEach(task =&gt; {
+        m.li(m =&gt; {
+          m.class({ completed: task.done });
+          m.label(m =&gt; {
+            m.onclick(e =&gt; this.ds.toggleTask(task));
+            m.input({ type: 'checkbox', checked: task.done }).sp();
+            m.span(task.title);
+          });
+        });
+      });
+    });
+</code></pre>
+
+<p>First, <code>this.tasks.forEach</code> changes to <code>this.ds.tasks.forEach</code> on the second line. The component stop holding the data itself and it&rsquo;s because it delegates the role to the data store.</p>
+
+<p>In addition, I rewrote <code>this.toggleTask(task)</code> to <code>this.ds.toggleTask(task)</code> on the sixth line. The method <code>toggleTask()</code> moved to the data store calls <code>this.propagate()</code> lastly and the data&rsquo;s change does &ldquo;propagation&rdquo; to the component.</p>
+
+<hr />
+
+<p>The behavior of the application doesn&rsquo;t change by the change of this lecture. Boot Rails application as same as the precious time and click checkboxes of each tasks to make sure that the values of the column of the task <code>done</code> changes.</p>
+
+<p>On <a href="../11_form_for_new_task">the next lecture</a>, I&rsquo;ll explain how to display the form that newly adds the task.</p>
+
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="http://oiax.github.io/capejs//js/bootstrap.min.js"></script>
+<script src="http://oiax.github.io/capejs//js/scripts.js"></script>
+<script src="http://oiax.github.io/capejs//highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div id="footer-sm" class="footer navbar-fixed-bottom">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+<div id="footer-xs" class="footer">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+
+</body>
+</html>

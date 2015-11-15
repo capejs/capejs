@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Collection agent (1) - Cape.JS Primer - Cape.JS: Documentation</title>
+  <meta name="generator" content="Bootply" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="http://oiax.github.io/capejs//css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+  <link href="http://oiax.github.io/capejs//css/styles.css" rel="stylesheet">
+  <link href="http://oiax.github.io/capejs//highlight/styles/default.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://oiax.github.io/capejs//images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="http://oiax.github.io/capejs//images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+</head>
+
+<body>
+<div id="navbar-md" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="/capejs/" class="navbar-brand">Cape.JS</a>
+    </div>
+    <nav role="navigation">
+      <ul class="nav navbar-nav">
+        <li><a href="http://oiax.github.io/capejs//tutorials/" class="link">Tutorials</a></li>
+        <li><a href="http://oiax.github.io/capejs//api">API Reference</a></li>
+        <li>
+          <a href="https://github.com/oiax/capejs">GitHub Repository
+          <i class="fa fa-external-link"></i></a>
+        </li>
+      </ul>
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </nav>
+  </div>
+</div>
+<div id="navbar-sm" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="http://oiax.github.io/capejs//" class="navbar-brand">Cape.JS Doc</a>
+      <a href="http://oiax.github.io/capejs//tutorials/" class="link">Tutorials</a>
+      <a href="http://oiax.github.io/capejs//api/" class="link">API</a>
+      <a href="https://github.com/oiax/capejs" class="link">GitHub
+      <i class="fa fa-external-link"></i></a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-offcanvas row-offcanvas-left">
+    
+        <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <ul class="nav">
+      
+      
+        <li><a href="http://oiax.github.io/capejs//#what-is">What is Cape.JS?</a></li>
+      
+        <li><a href="http://oiax.github.io/capejs//#installation">Installation</a></li>
+      
+        <li><a href="http://oiax.github.io/capejs//#faq">FAQ</a></li>
+      
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//components">Components</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#hello-world">Hello World</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#es6">ECMAScript 6</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#dom-tree">Building Virtual DOM Tree</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#click-counter">Click Counter</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#shortcut-methods">Shortcut Methods</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#html-styles">HTML Styles</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#todo-list">Todo List</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#mixins">Mixins</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//data_stores">Data Stores</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//data_stores/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//data_stores/#ajax">Ajax</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//collection_agents">Collection Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#initialization">Initialization</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#creating-resources">Creating Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#rest-operations">REST Operations</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#callbacks-and-error-handlers">Callbacks and Error Handlers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#changing-path-prefix">Changing the Path Prefix</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//resource_agents">Resource Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#creating-a-new-resource">Creating a New Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#editing-a-resource">Editing a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#building-a-dual-use-form">Building a Dual-Use Form</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#deleting-a-resource">Deleting a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#specifying-a-callback">Specifying a Callback</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//router">Router</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#simple-routes">Simple Routes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#containers">Containers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#resource-based-routes">Resource Based Routes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#singular-resources">Singular Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#nested-resources">Nested Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#namespaces">Namespaces</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#adding-custom-actions">Adding Custom Actions</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#changing-root-container">Changing Root Container</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#vars">Vars</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#flash">Flash</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#before-navigation-callbacks">Before-Navigation Callbacks</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//tutorials">Tutorials</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//tutorials/#capejs-primer">Cape.JS Primer</a></li>
+          
+          </ul>
+      
+        <li><a href="http://oiax.github.io/capejs//api">API Reference</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="col-sm-12 col-md-9">
+      <article>
+        <header>
+          <h2>Collection agent (1) - Cape.JS Primer</h2>
+          <div class="post-meta clearfix">
+          </div>
+        </header>
+        <div>
+          <p>On <a href="../16_capejs_1_2">the previous lecture</a>, I upgraded Cape.JS 1.1 to 1.2 of &ldquo;Todo list application&rdquo;.</p>
+
+<p>From this lecture, I&rsquo;ll rewrite the source code by using the new class <code>CollectionAgent</code> introduced on Cape.JS 1.2. The behavior of the application doesn&rsquo;t change but I&rsquo;ll show you the amount of source code decrease a lot.</p>
+
+<hr />
+
+<p>First, rewrite <code>app/assets/javascripts/application.js</code> as following.</p>
+
+<pre><code class="language-javascript">//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require capejs
+//= require bootstrap
+//= require lodash
+//= require es6-promise
+//= require fetch
+//= require_tree .
+//= require_self
+
+Cape.defaultAgentAdapter = 'rails';
+</code></pre>
+
+<p>I modified 4 points.</p>
+
+<ol>
+<li>I added the directive <code>//= require es6-promise</code>.</li>
+<li>I added the directive <code>//= require fetch</code>.</li>
+<li>I added the directive <code>//= require_self</code>.</li>
+<li>I added the JavaScript code <code>Cape.defaultAgentAdapter = 'rails';</code>.</li>
+</ol>
+
+<p>The first and second one make the browser except Chrome and Firefox hold the function of Fetch API. The directive <code>//= require_self</code> is necessary to write the JavaScript code in the file <code>application.js</code>.</p>
+
+<p>The last sentence sets the default adapter of <code>CollectionAgent</code>. &ldquo;Adapter&rdquo; means here the JavaScript library adjusting the connection to API server.</p>
+
+<p>If you want to connect API server implemented on Ruby on Rails like our &ldquo;Todo list&rdquo;, you need to set the default adapter before making the instance <code>CollectionAgent</code>.</p>
+
+<p>By this setting, the appropriate value is set to the header of <code>X-CSRF-Token</code> of HTTP request sent to API server. Unless you set like this, the request by the method except GET/HEAD is rejected.</p>
+
+<div class="note">
+The only adapter with Cape.JS of existing version (v1.2.0) is <code>'rails'</code>. If you want to use API server implemented by the one except Rails, you need to make the adapter by yourself.
+</div>
+
+<hr />
+
+<p>Next, change the structure of JSON data that API server returns as &ldquo;task&rsquo;s list&rdquo;.</p>
+
+<p>So far, <code>app/views/api/tasks/index.jbuilder</code> is wrote like following.</p>
+
+<pre><code class="language-text">json.array! @tasks, :id, :title, :done
+</code></pre>
+
+<p>The JSON data created from this code is like following.</p>
+
+<pre><code class="language-json">[
+  { &quot;id&quot;: 1, &quot;title&quot;: &quot;Buy cat food&quot;, &quot;done&quot;: true },
+  { &quot;id&quot;: 2, &quot;title&quot;: &quot;Take away the trash&quot;, &quot;done&quot;: false }
+]
+</code></pre>
+
+<p>But, the collection agent requires JSON data of the structure like following,</p>
+
+<pre><code class="language-json">{
+  &quot;tasks&quot;: [
+    { &quot;id&quot;: 1, &quot;title&quot;: &quot;Buy cat food&quot;, &quot;done&quot;: true },
+    { &quot;id&quot;: 2, &quot;title&quot;: &quot;Take away the trash&quot;, &quot;done&quot;: false }
+  ]
+}
+</code></pre>
+
+<p>The whole JSON data is necessary to be the object not the array. And, there is the key which is conform to &ldquo;the resource name&rdquo; of the collection agent in the object, and the key must the array of the value. For this example, <code>&quot;tasks&quot;</code> is the resource name. (For more information, I&rsquo;ll explain later.)</p>
+
+<p>Then, rewrite <code>app/views/api/tasks/index.jbuilder</code> as following.</p>
+
+<pre><code class="language-text">json.tasks do
+  json.array! @tasks, :id, :title, :done
+end
+</code></pre>
+
+<div class="note">
+To say exactly, the rule that JSON data is the object and its key is the resource name of the collect agent is just the configuration. If you need, developers can change the setting. Cape.JS inherits the paradigm "Convention over Configuration" of Ruby on Rails.
+</div>
+
+<hr />
+
+<p>Next, define the class of the collection agent. The name of the class is <code>TaskCollectionAgent</code>. You can decide the name as you want not like the model name of Rail.</p>
+
+<p>Open a new file <code>task_collection_agent.es6</code> on the directory <code>app/assets/javascripts</code> as following.</p>
+
+<pre><code class="language-javascript">class TaskCollectionAgent extends Cape.CollectionAgent {
+  constructor(client, options) {
+    super(client, options);
+    this.basePath = '/api/';
+    this.resourceName = 'tasks';
+  }
+}
+</code></pre>
+
+<p>The class of the collection agent inherits the class <code>Cape.CollectionAgent</code>. On the constructor, it sets some properties. The property <code>basePath</code> is string based on URL of Ajax request. The default value is <code>'/'</code>. On our &ldquo;Todo list&rdquo; application, we set like that because it accesses to the path under the directory <code>/api/</code>.</p>
+
+<div class="note">
+Said on rounding language of Rails, the property <code>basePath</code> corresponds to namespace.
+</div>
+
+<p>The property <code>resourceName</code> means &ldquo;resource name&rdquo; wrote above. This value connects to the value of the property <code>basePath</code> when the collect agent creates URL of Ajax request. Also, it&rsquo;s used to acquire the array from JSON data that backs from API server as the key.</p>
+
+<hr />
+
+<p>The class <code>TaskCollectionAgent</code> just write the constructor but is able to acquire the task&rsquo;s list from the server already.</p>
+
+<p>Open <code>app/assets/javascripts/todo_list.es6</code> on the text editor. Existing the method <code>init()</code> is wrote like following.</p>
+
+<pre><code class="language-javascript">  init() {
+    this.ds = new TaskStore();
+    this.ds.attach(this);
+    this.editingTask = null;
+    this.ds.refresh();
+  }
+</code></pre>
+
+<p>Rewrite it as following.</p>
+
+<pre><code class="language-javascript">  init() {
+    this.agent = new TaskCollectionAgent(this);
+    this.editingTask = null;
+    this.agent.refresh();
+  }
+</code></pre>
+
+<p>Collection agent doesn&rsquo;t have the method <code>attach()</code> not like the data store. Instead of it, it assigns the component that is the collection agent&rsquo;s &ldquo;client&rdquo; as constructor&rsquo;s first parameter.</p>
+
+<p>In addition, developers must implement the method <code>refresh()</code> in the case of the data store, collection agent have existing <code>refresh()</code>.</p>
+
+<p>Look at <code>app/assets/javascripts/task_store.es6</code>. The method <code>refresh()</code> is wrote like following.</p>
+
+<pre><code class="language-javascript">  refresh() {
+    $.ajax({
+      type: 'GET',
+      url: '/api/tasks'
+    }).done(data =&gt; {
+      this.tasks = data;
+      this.propagate();
+    });
+  }
+</code></pre>
+
+<p>The instance method <code>refresh()</code> of the class <code>TaskCollectionAgent</code> corresponds approximately to it. But, the task&rsquo;s array stores in the property <code>objects</code> not the property <code>tasks</code>.</p>
+
+<hr />
+
+<p>Keep rewriting <code>app/assets/javascripts/todo_list.es6</code>. Next is the method <code>render()</code>. Existing code is following.:</p>
+
+<pre><code class="language-javascript">  render(m) {
+    m.ul(m =&gt; {
+      this.ds.tasks.forEach(task =&gt; {
+        m.li(m =&gt; this.renderTask(m, task));
+      });
+    });
+    if (this.editingTask) this.renderUpdateForm(m);
+    else this.renderCreateForm(m);
+  }
+</code></pre>
+
+<p>Rewrite it as following.</p>
+
+<pre><code class="language-javascript">  render(m) {
+    m.ul(m =&gt; {
+      this.agent.objects.forEach(task =&gt; {
+        m.li(m =&gt; this.renderTask(m, task));
+      });
+    });
+    // if (this.editingTask) this.renderUpdateForm(m);
+    // else this.renderCreateForm(m);
+  }
+</code></pre>
+
+<p>I changed 3 points. Rewrite <code>this.ds.tasks.forEach</code> to <code>this.agent.objects.forEach</code> on the third line. And, comment out once the seventh and eighth lines. (to avoid errors)</p>
+
+<p>The task&rsquo;s list will display by changes above.</p>
+
+<p><img src="/capejs/images/capejs_primer/todo_list19.png" alt="Screen capture" />
+</p>
+
+<hr />
+
+<p>The function to toggle the flag &ldquo;done&rdquo; of the task and the function to delete tasks don&rsquo;t move yet. On <a href="../18_collection_agent2">the next lecture</a>, I&rsquo;ll modify a part related these functions.</p>
+
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="http://oiax.github.io/capejs//js/bootstrap.min.js"></script>
+<script src="http://oiax.github.io/capejs//js/scripts.js"></script>
+<script src="http://oiax.github.io/capejs//highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div id="footer-sm" class="footer navbar-fixed-bottom">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+<div id="footer-xs" class="footer">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+
+</body>
+</html>

@@ -43,6 +43,10 @@ body {
   border-bottom-width:1px;
 }
 
+pre {
+  margin: 10px 0;
+}
+
 code {
   background-color: #eee;
   color: black;

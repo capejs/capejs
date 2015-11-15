@@ -9,6 +9,195 @@
     <atom:link href="http://oiax.github.io/capejs/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Assignment of event handler - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/08_assignment_of_event_handler/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/08_assignment_of_event_handler/</guid>
+      <description>&lt;p&gt;On &lt;a href=&#34;../07_initializing_the_date_with_ajax&#34;&gt;the previous lecture&lt;/a&gt;, I explained how to initialize the component data of Cape.JS via Ajax.&lt;/p&gt;
+
+&lt;p&gt;On this lecture, I&amp;rsquo;ll explain how to assign the event handler to HTML element.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Open &lt;code&gt;app/assets/javascripts/todo_list.es6&lt;/code&gt; on the text editor. At this time of now, the method &lt;code&gt;render()&lt;/code&gt; is defined as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  render(m) {
+    m.ul(m =&amp;gt; {
+      this.tasks.forEach(task =&amp;gt; {
+        m.li(m =&amp;gt; {
+          m.label(m =&amp;gt; {
+            m.input({ type: &#39;checkbox&#39;, checked: task.done }).sp();
+            m.span(task.title);
+          });
+        });
+      });
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Rewrite it as following. (add a line behind &lt;code&gt;m.label...&lt;/code&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  render(m) {
+    m.ul(m =&amp;gt; {
+      this.tasks.forEach(task =&amp;gt; {
+        m.li(m =&amp;gt; {
+          m.label(m =&amp;gt; {
+            m.onclick(e =&amp;gt; this.toggleTask(task));
+            m.input({ type: &#39;checkbox&#39;, checked: task.done }).sp();
+            m.span(task.title);
+          });
+        });
+      });
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The line is added is following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;m.onclick(e =&amp;gt; this.toggleTask(task));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This sentence assigns &lt;code&gt;this.toggleTask(task)&lt;/code&gt; as the event &lt;code&gt;click&lt;/code&gt; handler. The object it the element added to virtual DOM right after, which is the check box.&lt;/p&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+Actually, the broad transcription is used that is introduced on ES6 in this sentence. When it&#39;s not simplified, it&#39;s like following.
+
+&lt;pre&gt;&lt;code&gt;m.onclick((e) =&gt; { this.toggleTask(task) });&lt;/code&gt;&lt;/pre&gt;
+
+You can simplify brackets surrounding the parameter when there&#39;s 1 parameter and you can simplify braces surrounding the sentence when there&#39;s 1 content of the function.
+&lt;/div&gt;
+
+&lt;p&gt;Next, let&amp;rsquo;s define the event handler and rewrite &lt;code&gt;app/assets/javascripts/todo_list.es6&lt;/code&gt;. Insert the following code to below the method&amp;rsquo;s &lt;code&gt;render()&lt;/code&gt; definition.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  toggleTask(task) {
+    window.alert(task.id);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It displays the warning dialog just to make sure the event handler can reacts on the click of checkbox.&lt;/p&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s make sure it works well. Boot the server and open &lt;code&gt;http://localhost:3000/&lt;/code&gt; on the browser. By clicking the first checkbox, it displays &amp;ldquo;1&amp;rdquo; like following in the warning dialog. This is the value of the column&amp;rsquo;s &lt;code&gt;id&lt;/code&gt; task.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list05.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;That&amp;rsquo;s all for today. On &lt;a href=&#34;../09_updating_the_data_with_ajax&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll explain how to update the value of the task&amp;rsquo;s  column &lt;code&gt;done&lt;/code&gt; by using Ajax call of this event handler.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cape.JS 1.2 - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/16_capejs_1_2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/16_capejs_1_2/</guid>
+      <description>&lt;p&gt;It has passed about a month from &lt;a href=&#34;../15_deleting_task&#34;&gt;the previous lecture&lt;/a&gt;.
+I thought I could release Cape.JS 1.2 soon at the time I wrote the article but I&amp;rsquo;ve noticed there are some &amp;ldquo;holes&amp;rdquo; of the spec since my co-workers and I actually use it. It&amp;rsquo;s already updated for 16 times (!) since the first Release Candidate (RC) version.&lt;/p&gt;
+
+&lt;p&gt;Now, two new classes are introduced on Cape.JS 1.2.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ResourceAgent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CollectionAgent&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each one is the class to handle &amp;ldquo;resource&amp;rdquo; in the Rails terminology. For more information, I&amp;rsquo;ll explain later of the next time, you can write JavaScript program that accesses REST API easier than ever by using them.&lt;/p&gt;
+
+&lt;p&gt;On this lecture, I&amp;rsquo;ll explain how to upgrade Cape.JS to 1.2 of &amp;ldquo;Todo list&amp;rdquo; application you have created.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;First update the server.(Rails) Open &lt;code&gt;Gemfile&lt;/code&gt; on the text editor and rewrite the line starting from &lt;code&gt;gem &#39;rails&#39;&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;gem &#39;rails&#39;, &#39;4.2.4&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In addition, rewrite the last line as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;gem &#39;sprockets-es6&#39;, &#39;~&amp;gt; 0.7.0&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then, run the next command on the terminal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bin/bundle update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+In actually, you can use Cape.JS 1.2 if you don&#39;t update them. In this opportunity, I hope you to update the version.
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, update the front (JavaScript) side. Open &lt;code&gt;bower.json&lt;/code&gt; on the text editor and rewrite it as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;name&amp;quot;: &amp;quot;todo_list&amp;quot;,
+  &amp;quot;version&amp;quot;: &amp;quot;0.1.0&amp;quot;,
+  &amp;quot;authors&amp;quot;: [
+    &amp;quot;Tsutomu Kuroda &amp;lt;t-kuroda@oiax.jp&amp;gt;&amp;quot;
+  ],
+  &amp;quot;license&amp;quot;: &amp;quot;MIT&amp;quot;,
+  &amp;quot;ignore&amp;quot;: [
+    &amp;quot;**/.*&amp;quot;,
+    &amp;quot;node_modules&amp;quot;,
+    &amp;quot;bower_components&amp;quot;,
+    &amp;quot;vendor/assets/components&amp;quot;,
+    &amp;quot;test&amp;quot;,
+    &amp;quot;tests&amp;quot;
+  ],
+  &amp;quot;dependencies&amp;quot;: {
+    &amp;quot;capejs&amp;quot;: &amp;quot;~1.2.0&amp;quot;,
+    &amp;quot;bootstrap&amp;quot;: &amp;quot;=3.3.4&amp;quot;,
+    &amp;quot;es6-promise&amp;quot;: &amp;quot;~3.0.2&amp;quot;,
+    &amp;quot;fetch&amp;quot;: &amp;quot;~0.9.0&amp;quot;,
+    &amp;quot;fontawesome&amp;quot;: &amp;quot;~4.4.0&amp;quot;,
+    &amp;quot;lodash&amp;quot;: &amp;quot;~3.10.1&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I rewrote &lt;code&gt;&amp;quot;versions&amp;quot;: &amp;quot;0.0.0&amp;quot;,&lt;/code&gt; to  &lt;code&gt;&amp;quot;versions&amp;quot;: &amp;quot;0.1.0&amp;quot;,&lt;/code&gt; on the third line. And then, I added the points to the section &lt;code&gt;&amp;quot;dependencies&amp;quot;&lt;/code&gt; and update the version number of original one. The ones added are &lt;code&gt;es6-promise&lt;/code&gt; and &lt;code&gt;fetch&lt;/code&gt; and I&amp;rsquo;ll explain their roles later. About original one, it updated the version of &lt;code&gt;capejs&lt;/code&gt; to &lt;code&gt;~1.2.0&lt;/code&gt; and upgrade each of &lt;code&gt;fontawesome&lt;/code&gt; and &lt;code&gt;lodash&lt;/code&gt;. But, about &lt;code&gt;bootstrap&lt;/code&gt;, the newest 3.3.5 has bad chemistry with Sprockets so it stabilizes &lt;code&gt;=3.3.4&lt;/code&gt; and the version.&lt;/p&gt;
+
+&lt;p&gt;Run the next command on the terminal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bower update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can upgrade Cape.JS of &amp;ldquo;Todo list&amp;rdquo; application to 1.2.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I&amp;rsquo;ll explain &lt;code&gt;es6-promise&lt;/code&gt; and &lt;code&gt;fetch&lt;/code&gt; added to the section &lt;code&gt;&amp;quot;dependencies&amp;quot;&lt;/code&gt; of &lt;code&gt;bower.json&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/jakearchibald/es6-promise&#34;&gt;es6-promise&lt;/a&gt; is &amp;ldquo;polyfill&amp;rdquo; for
+the new function of ECMAScript 6 &lt;a href=&#34;https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise&#34;&gt;Promise&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+There is a case that a JavaScript library exists in order to realize the equal function that modern browsers (generally, the newest Chrome and Firefox) provide but other browsers (Internet Explorer and Safari) do not. It&#39;s called polyfill.
+&lt;/div&gt;
+
+&lt;p&gt;When you use Promise, it&amp;rsquo;s easier to write the non-synchronous processing on JavaScript.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, &lt;a href=&#34;https://github.com/github/fetch&#34;&gt;fetch&lt;/a&gt; is the polyfill for another new functional called as &lt;a href=&#34;https://developer.mozilla.org/ja/docs/Web/API/Fetch_API&#34;&gt;Fetch API&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Fetch API is the new interface to acquire the resource beyond the network. It&amp;rsquo;s an alternative to the &lt;a href=&#34;https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest&#34;&gt;XMLHttpRequest&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+jQuery calls Ajax request by using XMLHttpRequest in it. If it can uses Fetch API, it&#39;s not necessary to use jQuery for Ajax.
+&lt;/div&gt;
+
+&lt;p&gt;The class &lt;code&gt;ResourceAgent&lt;/code&gt; and the class &lt;code&gt;CollectionAgent&lt;/code&gt; introduced on Cape.JS 1.2 use this Fetch API in it. And, the polyfill &lt;code&gt;fetch&lt;/code&gt; depends Promise.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;From &lt;a href=&#34;../17_collection_agent1&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll rewrite &amp;ldquo;Todo list&amp;rdquo; application by using the new function of Cape.JS 1.2.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Cape.JS Primer - A Tutorial</title>
       <link>http://oiax.github.io/capejs/tutorials/capejs_primer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -38,28 +227,1131 @@
 &lt;ul&gt;
 &lt;li&gt;Preface&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./01_hello_world&#34;&gt;Hello, world!&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./02_custom_attributes_and_nested_elements&#34;&gt;Reference of custom attribute value and nesting of HTLM elements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./02_custom_attributes_and_nested_elements&#34;&gt;Reference of custom attribute value and nesting of HTML elements&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./03_creating_text_nodes&#34;&gt;Creating the text nodes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./04_rails_integration1&#34;&gt;Integrate Cape.JS with Ruby on Rails (1)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./05_rails_integration2&#34;&gt;Integrate Cape.JS with Ruby on Rails (2)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Let the component have the data&lt;/li&gt;
-&lt;li&gt;Initializing the date with Ajax&lt;/li&gt;
-&lt;li&gt;Assignment of event handler&lt;/li&gt;
-&lt;li&gt;Updating the data with Ajax&lt;/li&gt;
-&lt;li&gt;The data store&lt;/li&gt;
-&lt;li&gt;The newly added form of the task&lt;/li&gt;
-&lt;li&gt;Creating new task&lt;/li&gt;
-&lt;li&gt;The edit form of the task&lt;/li&gt;
-&lt;li&gt;Update the task&lt;/li&gt;
-&lt;li&gt;Delete the task&lt;/li&gt;
-&lt;li&gt;Cape.JS 1.2&lt;/li&gt;
-&lt;li&gt;Collection agent (1)&lt;/li&gt;
-&lt;li&gt;Collection agent (2)&lt;/li&gt;
-&lt;li&gt;Collection agent (3)&lt;/li&gt;
-&lt;li&gt;Changing displaying order (1)&lt;/li&gt;
-&lt;li&gt;Changing displaying order (2)&lt;/li&gt;
-&lt;li&gt;Changing displaying order (3)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./06_let_the_component_have_the_date&#34;&gt;Let the component have the date&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./07_initializing_the_date_with_ajax&#34;&gt;Initializing the date with Ajax&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./08_assignment_of_event_handler&#34;&gt;Assignment of event handler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./09_updating_the_data_with_ajax&#34;&gt;Updating the data with Ajax&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./10_the_data_store&#34;&gt;The data store&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./11_form_for_new_task&#34;&gt;Show the form for new task&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./12_creating_new_task&#34;&gt;Creating new task&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./13_editing_task&#34;&gt;The edit form of the task&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./14_updating_task&#34;&gt;Update the task&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./15_deleting_task&#34;&gt;Delete the task&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./16_capejs_1_2&#34;&gt;Cape.JS 1.2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./17_collection_agent1&#34;&gt;Collection agent (1)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./18_collection_agent2&#34;&gt;Collection agent (2)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./19_collection_agent3&#34;&gt;Collection agent (3)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./20_reordering1&#34;&gt;Change displaying order (1)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./21_reordering2&#34;&gt;Change displaying order (2)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./22_reordering3&#34;&gt;Change displaying order (3)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Change displaying order (1) - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/20_reordering1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/20_reordering1/</guid>
+      <description>&lt;p&gt;On the three lectures from this one, I&amp;rsquo;ll add the function to change the displaying order of the tasks to our &amp;ldquo;Todo list&amp;rdquo; application.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;For preparation, organize the source code a little. Look at the code of the method &lt;code&gt;renderTask()&lt;/code&gt; of the class &lt;code&gt;TodoList&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderTask(m, task) {
+    m.class({ completed: task.done });
+    m.label(m =&amp;gt; {
+      m.onclick(e =&amp;gt; this.agent.toggleTask(task));
+      m.input({ type: &#39;checkbox&#39;, checked: task.done }).sp();
+      m.class({ modifying: task.modifying });
+      m.span(task.title);
+    });
+    m.onclick(e =&amp;gt; this.editTask(task));
+    m.span(&#39;Edit&#39;, { class: &#39;button&#39; });
+    m.onclick(e =&amp;gt; {
+      if (confirm(&#39;Are you sure you want to delete this task?&#39;))
+        this.agent.destroyTask(task);
+    });
+    m.span(&#39;Delete&#39;, { class: &#39;button&#39; });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s separate it because it&amp;rsquo;s too long.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderTask(m, task) {
+    m.class({ completed: task.done });
+    m.label(m =&amp;gt; {
+      m.onclick(e =&amp;gt; this.agent.toggleTask(task));
+      m.input({ type: &#39;checkbox&#39;, checked: task.done }).sp();
+      m.class({ modifying: task.modifying });
+      m.span(task.title);
+    });
+  }
+
+  renderButtons(m, task) {
+    m.onclick(e =&amp;gt; this.editTask(task));
+    m.span(&#39;Edit&#39;, { class: &#39;button&#39; });
+    m.onclick(e =&amp;gt; {
+      if (confirm(&#39;Are you sure you want to delete this task?&#39;))
+        this.agent.destroyTask(task);
+    });
+    m.span(&#39;Delete&#39;, { class: &#39;button&#39; });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Rewrite the code of the method &lt;code&gt;render()&lt;/code&gt;. This is the one before rewriting.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  render(m) {
+    m.ul(m =&amp;gt; {
+      this.agent.objects.forEach(task =&amp;gt; {
+        m.li(m =&amp;gt; this.renderTask(m, task));
+      });
+    });
+    if (this.editingTask) this.renderUpdateForm(m);
+    else this.renderCreateForm(m);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Rewrite the fourth line.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  render(m) {
+    m.ul(m =&amp;gt; {
+      this.agent.objects.forEach(task =&amp;gt; {
+        m.li(m =&amp;gt; {
+          this.renderTask(m, task);
+          this.renderButtons(m, task);
+        });
+      });
+    });
+    if (this.editingTask) this.renderUpdateForm(m);
+    else this.renderCreateForm(m);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+When the content of arrow function of ECMAScript6 includes many statements, it needs to be surrounded by brace (&lt;code&gt;{}&lt;/code&gt;).
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Let&amp;rsquo;s get the implementation. First, set the button to move up and down.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderButtons(m, task) {
+    m.onclick(e =&amp;gt; this.editTask(task));
+    m.span(&#39;Edit&#39;, { class: &#39;button&#39; });
+    m.onclick(e =&amp;gt; {
+      if (confirm(&#39;Are you sure you want to delete this task?&#39;))
+        this.agent.destroyTask(task);
+    });
+    m.span(&#39;Delete&#39;, { class: &#39;button&#39; });
+    m.span({ class: &#39;button&#39; }, m =&amp;gt; m.fa(&#39;arrow-circle-up&#39;));
+    m.span({ class: &#39;button&#39; }, m =&amp;gt; m.fa(&#39;arrow-circle-down&#39;));
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I added the third and second lines.&lt;/p&gt;
+
+&lt;p&gt;The method &lt;code&gt;fa()&lt;/code&gt; of markup builder creates the tag to show the icon &lt;a href=&#34;https://fortawesome.github.io/Font-Awesome/&#34;&gt;Font Awesome&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The screen will be like following when the top page displays on the browser. There are up-way and down-way arrows on the button.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list21.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s try some more. It should better to make the up button on the first line and down button on the last line have no effect.&lt;/p&gt;
+
+&lt;p&gt;First, change the method &lt;code&gt;render()&lt;/code&gt; like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  render(m) {
+    m.ul(m =&amp;gt; {
+      this.agent.objects.forEach((task, index) =&amp;gt; {
+        m.li(m =&amp;gt; {
+          this.renderTask(m, task);
+          this.renderButtons(m, task, index);
+        });
+      });
+    });
+    if (this.editingTask) this.renderUpdateForm(m);
+    else this.renderCreateForm(m);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I rewrote 2 points. I rewrote &lt;code&gt;forEach(task =&amp;gt;&lt;/code&gt; to &lt;code&gt;forEach((task, index) =&amp;gt;&lt;/code&gt; on the third line, and &lt;code&gt;this.renderButtons(m, task);&lt;/code&gt; to &lt;code&gt;this.renderButtons(m, task, index);&lt;/code&gt; on the sixth line.&lt;/p&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+When the arrow function of ECMAScript6 takes only one argument, we can omit the parentheses (&lt;code&gt;()&lt;/code&gt;) around the argument but if it takes zero, two or more arguments, we must surround them with parentheses.
+&lt;/div&gt;
+
+&lt;p&gt;Then, rewrite the method &lt;code&gt;renderButtons()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderButtons(m, task, index) {
+    m.onclick(e =&amp;gt; this.editTask(task));
+    m.span(&#39;Edit&#39;, { class: &#39;button&#39; });
+    m.onclick(e =&amp;gt; {
+      if (confirm(&#39;Are you sure you want to delete this task?&#39;))
+        this.agent.destroyTask(task);
+    });
+    m.span(&#39;Delete&#39;, { class: &#39;button&#39; });
+    if (index === 0) m.class(&#39;disabled&#39;);
+    m.span({ class: &#39;button&#39; }, m =&amp;gt; m.fa(&#39;arrow-circle-up&#39;));
+    if (index === this.agent.objects.length - 1) m.class(&#39;disabled&#39;);
+    m.span({ class: &#39;button&#39; }, m =&amp;gt; m.fa(&#39;arrow-circle-down&#39;));
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I rewrote three points. First, I added the third parameter &lt;code&gt;index&lt;/code&gt; to the method &lt;code&gt;renderbuttons()&lt;/code&gt;. In addition, I added the statements starting from &lt;code&gt;if&lt;/code&gt; on the fifth and third lines.&lt;/p&gt;
+
+&lt;p&gt;On the fifth line from the bottom, I added &lt;code&gt;disabled&lt;/code&gt; to the attribute &lt;code&gt;class&lt;/code&gt; of the tag &lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt; surrounding the up button during &lt;code&gt;index == 0&lt;/code&gt;. On the third line from the bottom, I added &lt;code&gt;disabled&lt;/code&gt; the attribute&lt;code&gt;class&lt;/code&gt; of the tag &lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt; surrounding the down button during &lt;code&gt;index == this.agent.object.length - 1&lt;/code&gt;, the last sentence.&lt;/p&gt;
+
+&lt;p&gt;Next, rewrite the style sheet (&lt;code&gt;app/assets/stylesheets/todo_list.es6&lt;/code&gt;) as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;#todo-list {
+  label.completed span {
+    color: #888;
+    text-decoration: line-through;
+  }
+  button[disabled] {
+    color: #888;
+  }
+  button + button {
+    margin-left: 4px;
+  }
+  span.modifying {
+    font-weight: bold;
+    color: #800;
+  }
+  span.button {
+    cursor: pointer;
+    background-color: #888;
+    color: #fff;
+    margin-left: 4px;
+    padding: 4px 8px;
+    font-size: 60%;
+  }
+  span.button.disabled {
+    cursor: not-allowed;
+    background-color: #ccc;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I added lines from the fifth to second from the bottom. Reload the browser and the screen will be like following.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list22.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;That&amp;rsquo;s all for today. On &lt;a href=&#34;../21_reordering2&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll make API on the server to change the displaying order of tasks.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Change displaying order (2) - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/21_reordering2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/21_reordering2/</guid>
+      <description>&lt;p&gt;From &lt;a href=&#34;../20_reordering1&#34;&gt;the previous lecture&lt;/a&gt;, I started making the function to interchange the displaying order of the task. I just set the button moving up and down now. I&amp;rsquo;ll make API on the server this time.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;First, introduce Gem package &lt;a href=&#34;https://github.com/swanandp/acts_as_list&#34;&gt;acts_as_list&lt;/a&gt; that make processing to interchange the list&amp;rsquo;s order.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Gemfile&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;gem &#39;acts_as_list&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run next command on the terminal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;bin/bundle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run the commands below by following &lt;code&gt;acts_as_list&lt;/code&gt;&amp;rsquo;s &lt;a href=&#34;https://github.com/swanandp/acts_as_list#example&#34;&gt;README.md&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;bin/rails g migration AddPositionToTasks position:integer
+bin/rake db:migrate
+bin/rake db:reset
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mount &lt;code&gt;acts_as_list&lt;/code&gt; to the class &lt;code&gt;Task&lt;/code&gt;. Rewrite &lt;code&gt;app/models/task.rb&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;class Task &amp;lt; ActiveRecord::Base
+  acts_as_list
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, I&amp;rsquo;ll make API. &lt;code&gt;config/routes.rb&lt;/code&gt; is now like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Rails.application.routes.draw do
+  root &#39;top#index&#39;
+
+  namespace :api do
+    resources :tasks, only: [ :index, :create, :update, :destroy ]
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Rewrite it as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Rails.application.routes.draw do
+  root &#39;top#index&#39;
+
+  namespace :api do
+    resources :tasks, only: [ :index, :create, :update, :destroy ] do
+      patch :move_higher, :move_lower, on: :member
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;acts_as_list&lt;/code&gt; means &amp;ldquo;move up&amp;rdquo; and as &lt;code&gt;move_higher&lt;/code&gt; and &amp;ldquo;move down&amp;rdquo; as &lt;code&gt;move_lower&lt;/code&gt;. I named API like them.&lt;/p&gt;
+
+&lt;p&gt;Next, implement the action  &lt;code&gt;move_higher&lt;/code&gt; and &lt;code&gt;move_lower&lt;/code&gt;. Rewrite &lt;code&gt;app/controllers/tasks_controller.rb&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;class Api::TasksController &amp;lt; ApplicationController
+  def index
+    @tasks = Task.order(position: :asc)
+  end
+
+  (snip)
+
+  def destroy
+    Task.find(params[:id]).destroy
+    render text: &#39;OK&#39;
+  end
+
+  def move_higher
+    task = Task.find(params[:id])
+    task.move_higher
+    render text: &#39;OK&#39;
+  end
+
+  def move_lower
+    task = Task.find(params[:id])
+    task.move_lower
+    render text: &#39;OK&#39;
+  end
+
+  private
+  (snip)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thank to the &lt;code&gt;acts_as_list&lt;/code&gt; gem, it&amp;rsquo;s very simple code. I use these actions for Ajax requests. It just returns the string &amp;ldquo;OK&amp;rdquo; to the browser from the server.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Now API is ready. On &lt;a href=&#34;../22_reordering3&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll finish JavaScript by using this API.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Change displaying order (3) - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/22_reordering3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/22_reordering3/</guid>
+      <description>&lt;p&gt;On &lt;a href=&#34;../21_reordering2&#34;&gt;the previous lecture&lt;/a&gt;, I made APIs on the server. Let&amp;rsquo;s finish the functionality to change displaying order of the tasks by using then.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;At this moment, the code of the method &lt;code&gt;TodoList#renderButtons&lt;/code&gt; is following. (&lt;code&gt;app/assets/javascripts/todo_list.es6&lt;/code&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderButtons(m, task, index) {
+    m.onclick(e =&amp;gt; this.editTask(task));
+    m.span(&#39;Edit&#39;, { class: &#39;button&#39; });
+    m.onclick(e =&amp;gt; {
+      if (confirm(&#39;Are you sure you want to delete this task?&#39;))
+        this.agent.destroyTask(task);
+    });
+    m.span(&#39;Delete&#39;, { class: &#39;button&#39; });
+    if (index === 0) m.class(&#39;disabled&#39;);
+    m.span({ class: &#39;button&#39; }, m =&amp;gt; m.fa(&#39;arrow-circle-up&#39;));
+    if (index === this.agent.objects.length - 1) m.class(&#39;disabled&#39;);
+    m.span({ class: &#39;button&#39; }, m =&amp;gt; m.fa(&#39;arrow-circle-down&#39;));
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The APIs to move up and down the task are like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;PATCH /api/tasks/:id/move_higher
+PATCH /api/tasks/:id/move_lower
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, rewrite the method &lt;code&gt;TodoList#renderButtons&lt;/code&gt; like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderButtons(m, task, index) {
+    m.onclick(e =&amp;gt; this.editTask(task));
+    m.span(&#39;Edit&#39;, { class: &#39;button&#39; });
+    m.onclick(e =&amp;gt; {
+      if (confirm(&#39;Are you sure you want to delete this task?&#39;))
+        this.agent.destroyTask(task);
+    });
+    m.span(&#39;Delete&#39;, { class: &#39;button&#39; });
+    if (index === 0) m.class(&#39;disabled&#39;);
+    else m.onclick(e =&amp;gt; this.agent.patch(&#39;move_higher&#39;, task.id));
+    m.span({ class: &#39;button&#39; }, m =&amp;gt; m.fa(&#39;arrow-circle-up&#39;));
+    if (index === this.agent.objects.length - 1) m.class(&#39;disabled&#39;);
+    else m.onclick(e =&amp;gt; this.agent.patch(&#39;move_lower&#39;, task.id));
+    m.span({ class: &#39;button&#39; }, m =&amp;gt; m.fa(&#39;arrow-circle-down&#39;));
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I added two lines starting from &lt;code&gt;else&lt;/code&gt; of last half of the method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;    else m.onclick(e =&amp;gt; this.agent.patch(&#39;move_higher&#39;, task.id));
+
+    else m.onclick(e =&amp;gt; this.agent.patch(&#39;move_lower&#39;, task.id));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If the value of &lt;code&gt;task.id&lt;/code&gt; is 7 and the up-arrow icon is clicked,
+an Ajax request to the following API is executed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;PATCH /api/tasks/7/move_higher
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;this.agent&lt;/code&gt; that is used in the method above is the instance &lt;code&gt;TaskCollectionAgent&lt;/code&gt;,
+which executes the Ajax request.&lt;/p&gt;
+
+&lt;p&gt;On the &lt;a href=&#34;http://oiax.github.io/capejs/rails/capejs_primer/collection_agent1.html&#34;&gt;&amp;ldquo;Collection agent (1)&amp;rdquo;&lt;/a&gt;, I defined &lt;code&gt;TaskCollectionAgent&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class TaskCollectionAgent extends Cape.CollectionAgent {
+  constructor(client, options) {
+    super(client, options);
+    this.basePath = &#39;/api/&#39;;
+    this.resourceName = &#39;tasks&#39;;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The properties &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;resourceName&lt;/code&gt; determine the URL of Ajax request.
+The code &lt;code&gt;this.agent.patch(&#39;move_higher&#39;, task.id)&lt;/code&gt; will make an Ajax requiest
+to the URL that is made from the following expression:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  this.basePath + this.resourceName + &#39;/&#39; + &#39;move_higher&#39; + &#39;/&#39; + task.id
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Collection agent sends Ajax request and receives the request from the server
+and refreshes Cape.JS component which is its client.
+Thus the functionality to change the displaying order of tasks is realized.&lt;/p&gt;
+
+&lt;p&gt;Now, make sure it works well on the browser.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list22.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;If you click the up-arrow icon on right side of &amp;ldquo;Take out the trash&amp;rdquo;, the screen will be following.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list23.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Next, if you click the down-arrow icon of the same task, it will be back.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The functionality to change the task&amp;rsquo;s order is now ready. Also, the tutorial &lt;a href=&#34;../../capejs_primer&#34;&gt;&amp;ldquo;Cape.JS Primer&amp;rdquo;&lt;/a&gt; for five month running is finished.&lt;/p&gt;
+
+&lt;p&gt;I couldn&amp;rsquo;t mention about the &lt;strong&gt;routing&lt;/strong&gt; of Cape.JS at all. I&amp;rsquo;ll explain it on the next tutorial. Wait till it!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Collection agent (1) - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/17_collection_agent1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/17_collection_agent1/</guid>
+      <description>&lt;p&gt;On &lt;a href=&#34;../16_capejs_1_2&#34;&gt;the previous lecture&lt;/a&gt;, I upgraded Cape.JS 1.1 to 1.2 of &amp;ldquo;Todo list application&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;From this lecture, I&amp;rsquo;ll rewrite the source code by using the new class &lt;code&gt;CollectionAgent&lt;/code&gt; introduced on Cape.JS 1.2. The behavior of the application doesn&amp;rsquo;t change but I&amp;rsquo;ll show you the amount of source code decrease a lot.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;First, rewrite &lt;code&gt;app/assets/javascripts/application.js&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require capejs
+//= require bootstrap
+//= require lodash
+//= require es6-promise
+//= require fetch
+//= require_tree .
+//= require_self
+
+Cape.defaultAgentAdapter = &#39;rails&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I modified 4 points.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;I added the directive &lt;code&gt;//= require es6-promise&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;I added the directive &lt;code&gt;//= require fetch&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;I added the directive &lt;code&gt;//= require_self&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;I added the JavaScript code &lt;code&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The first and second one make the browser except Chrome and Firefox hold the function of Fetch API. The directive &lt;code&gt;//= require_self&lt;/code&gt; is necessary to write the JavaScript code in the file &lt;code&gt;application.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The last sentence sets the default adapter of &lt;code&gt;CollectionAgent&lt;/code&gt;. &amp;ldquo;Adapter&amp;rdquo; means here the JavaScript library adjusting the connection to API server.&lt;/p&gt;
+
+&lt;p&gt;If you want to connect API server implemented on Ruby on Rails like our &amp;ldquo;Todo list&amp;rdquo;, you need to set the default adapter before making the instance &lt;code&gt;CollectionAgent&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;By this setting, the appropriate value is set to the header of &lt;code&gt;X-CSRF-Token&lt;/code&gt; of HTTP request sent to API server. Unless you set like this, the request by the method except GET/HEAD is rejected.&lt;/p&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+The only adapter with Cape.JS of existing version (v1.2.0) is &lt;code&gt;&#39;rails&#39;&lt;/code&gt;. If you want to use API server implemented by the one except Rails, you need to make the adapter by yourself.
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, change the structure of JSON data that API server returns as &amp;ldquo;task&amp;rsquo;s list&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;So far, &lt;code&gt;app/views/api/tasks/index.jbuilder&lt;/code&gt; is wrote like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;json.array! @tasks, :id, :title, :done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The JSON data created from this code is like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;[
+  { &amp;quot;id&amp;quot;: 1, &amp;quot;title&amp;quot;: &amp;quot;Buy cat food&amp;quot;, &amp;quot;done&amp;quot;: true },
+  { &amp;quot;id&amp;quot;: 2, &amp;quot;title&amp;quot;: &amp;quot;Take away the trash&amp;quot;, &amp;quot;done&amp;quot;: false }
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But, the collection agent requires JSON data of the structure like following,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;tasks&amp;quot;: [
+    { &amp;quot;id&amp;quot;: 1, &amp;quot;title&amp;quot;: &amp;quot;Buy cat food&amp;quot;, &amp;quot;done&amp;quot;: true },
+    { &amp;quot;id&amp;quot;: 2, &amp;quot;title&amp;quot;: &amp;quot;Take away the trash&amp;quot;, &amp;quot;done&amp;quot;: false }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The whole JSON data is necessary to be the object not the array. And, there is the key which is conform to &amp;ldquo;the resource name&amp;rdquo; of the collection agent in the object, and the key must the array of the value. For this example, &lt;code&gt;&amp;quot;tasks&amp;quot;&lt;/code&gt; is the resource name. (For more information, I&amp;rsquo;ll explain later.)&lt;/p&gt;
+
+&lt;p&gt;Then, rewrite &lt;code&gt;app/views/api/tasks/index.jbuilder&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;json.tasks do
+  json.array! @tasks, :id, :title, :done
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+To say exactly, the rule that JSON data is the object and its key is the resource name of the collect agent is just the configuration. If you need, developers can change the setting. Cape.JS inherits the paradigm &#34;Convention over Configuration&#34; of Ruby on Rails.
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, define the class of the collection agent. The name of the class is &lt;code&gt;TaskCollectionAgent&lt;/code&gt;. You can decide the name as you want not like the model name of Rail.&lt;/p&gt;
+
+&lt;p&gt;Open a new file &lt;code&gt;task_collection_agent.es6&lt;/code&gt; on the directory &lt;code&gt;app/assets/javascripts&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class TaskCollectionAgent extends Cape.CollectionAgent {
+  constructor(client, options) {
+    super(client, options);
+    this.basePath = &#39;/api/&#39;;
+    this.resourceName = &#39;tasks&#39;;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The class of the collection agent inherits the class &lt;code&gt;Cape.CollectionAgent&lt;/code&gt;. On the constructor, it sets some properties. The property &lt;code&gt;basePath&lt;/code&gt; is string based on URL of Ajax request. The default value is &lt;code&gt;&#39;/&#39;&lt;/code&gt;. On our &amp;ldquo;Todo list&amp;rdquo; application, we set like that because it accesses to the path under the directory &lt;code&gt;/api/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+Said on rounding language of Rails, the property &lt;code&gt;basePath&lt;/code&gt; corresponds to namespace.
+&lt;/div&gt;
+
+&lt;p&gt;The property &lt;code&gt;resourceName&lt;/code&gt; means &amp;ldquo;resource name&amp;rdquo; wrote above. This value connects to the value of the property &lt;code&gt;basePath&lt;/code&gt; when the collect agent creates URL of Ajax request. Also, it&amp;rsquo;s used to acquire the array from JSON data that backs from API server as the key.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The class &lt;code&gt;TaskCollectionAgent&lt;/code&gt; just write the constructor but is able to acquire the task&amp;rsquo;s list from the server already.&lt;/p&gt;
+
+&lt;p&gt;Open &lt;code&gt;app/assets/javascripts/todo_list.es6&lt;/code&gt; on the text editor. Existing the method &lt;code&gt;init()&lt;/code&gt; is wrote like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  init() {
+    this.ds = new TaskStore();
+    this.ds.attach(this);
+    this.editingTask = null;
+    this.ds.refresh();
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Rewrite it as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  init() {
+    this.agent = new TaskCollectionAgent(this);
+    this.editingTask = null;
+    this.agent.refresh();
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Collection agent doesn&amp;rsquo;t have the method &lt;code&gt;attach()&lt;/code&gt; not like the data store. Instead of it, it assigns the component that is the collection agent&amp;rsquo;s &amp;ldquo;client&amp;rdquo; as constructor&amp;rsquo;s first parameter.&lt;/p&gt;
+
+&lt;p&gt;In addition, developers must implement the method &lt;code&gt;refresh()&lt;/code&gt; in the case of the data store, collection agent have existing &lt;code&gt;refresh()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Look at &lt;code&gt;app/assets/javascripts/task_store.es6&lt;/code&gt;. The method &lt;code&gt;refresh()&lt;/code&gt; is wrote like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  refresh() {
+    $.ajax({
+      type: &#39;GET&#39;,
+      url: &#39;/api/tasks&#39;
+    }).done(data =&amp;gt; {
+      this.tasks = data;
+      this.propagate();
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The instance method &lt;code&gt;refresh()&lt;/code&gt; of the class &lt;code&gt;TaskCollectionAgent&lt;/code&gt; corresponds approximately to it. But, the task&amp;rsquo;s array stores in the property &lt;code&gt;objects&lt;/code&gt; not the property &lt;code&gt;tasks&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Keep rewriting &lt;code&gt;app/assets/javascripts/todo_list.es6&lt;/code&gt;. Next is the method &lt;code&gt;render()&lt;/code&gt;. Existing code is following.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  render(m) {
+    m.ul(m =&amp;gt; {
+      this.ds.tasks.forEach(task =&amp;gt; {
+        m.li(m =&amp;gt; this.renderTask(m, task));
+      });
+    });
+    if (this.editingTask) this.renderUpdateForm(m);
+    else this.renderCreateForm(m);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Rewrite it as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  render(m) {
+    m.ul(m =&amp;gt; {
+      this.agent.objects.forEach(task =&amp;gt; {
+        m.li(m =&amp;gt; this.renderTask(m, task));
+      });
+    });
+    // if (this.editingTask) this.renderUpdateForm(m);
+    // else this.renderCreateForm(m);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I changed 3 points. Rewrite &lt;code&gt;this.ds.tasks.forEach&lt;/code&gt; to &lt;code&gt;this.agent.objects.forEach&lt;/code&gt; on the third line. And, comment out once the seventh and eighth lines. (to avoid errors)&lt;/p&gt;
+
+&lt;p&gt;The task&amp;rsquo;s list will display by changes above.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list19.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The function to toggle the flag &amp;ldquo;done&amp;rdquo; of the task and the function to delete tasks don&amp;rsquo;t move yet. On &lt;a href=&#34;../18_collection_agent2&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll modify a part related these functions.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Collection agent (2) - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/18_collection_agent2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/18_collection_agent2/</guid>
+      <description>&lt;p&gt;Following &lt;a href=&#34;../17_collection_agent1&#34;&gt;the previous lecture&lt;/a&gt;, I&amp;rsquo;ll keep rewriting the &amp;ldquo;Todo list&amp;rdquo; application by using the class &lt;code&gt;CollectionAgent&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;First, let&amp;rsquo;s make the function to toggle the flag &amp;ldquo;done&amp;rdquo; of the task move.&lt;/p&gt;
+
+&lt;p&gt;Now, the method &lt;code&gt;renderTask()&lt;/code&gt; of the class &lt;code&gt;TodoList&lt;/code&gt; (&lt;code&gt;app/assets/javascripts/todo_list.es6&lt;/code&gt;) is following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderTask(m, task) {
+    m.class({ completed: task.done });
+    m.label(m =&amp;gt; {
+      m.onclick(e =&amp;gt; this.ds.toggleTask(task));
+      m.input({ type: &#39;checkbox&#39;, checked: task.done }).sp();
+      m.class({ modifying: task.modifying });
+      m.span(task.title);
+    });
+(abbreviation)
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There is checkbox in the tag &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; and if users click the checkbox,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.ds.toggleTask(task)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the code above is run. The property &lt;code&gt;ds&lt;/code&gt; in the class &lt;code&gt;TodoList&lt;/code&gt; (&lt;code&gt;this&lt;/code&gt;) doesn&amp;rsquo;t exist so rewrite this part as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;this.agent.toggleTask(task)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, add the method &lt;code&gt;toggleTask()&lt;/code&gt; to the class &lt;code&gt;TaskCollectionAgent&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  toggleTask(task) {
+    this.update(task.id, { task: { done: !task.done } });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The method &lt;code&gt;update()&lt;/code&gt; defined at the parent class &lt;code&gt;Cape.CollectionAgent&lt;/code&gt; receives 2 parameters. The first parameter is ID of &amp;ldquo;resource&amp;rdquo; and second one is the object sending to API server.&lt;/p&gt;
+
+&lt;p&gt;If the value of &lt;code&gt;task.id&lt;/code&gt; is 123, the method &lt;code&gt;toggleTask()&lt;/code&gt; sends the request to URL &lt;code&gt;/api/tasks/123&lt;/code&gt; by PATCH method. The object assigned to the second parameter is changed to string in Jason style and sent to the server,&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s compare with the same name&amp;rsquo;s method of the class &lt;code&gt;TaskStore&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  toggleTask(task) {
+    $.ajax({
+      type: &#39;PATCH&#39;,
+      url: &#39;/api/tasks/&#39; + task.id,
+      data: { task: { done: !task.done } }
+    }).done(data =&amp;gt; {
+      if (data === &#39;OK&#39;) {
+        task.done = !task.done;
+        this.propagate();
+      }
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are much less codes. But, these 2 methods are not same.&lt;/p&gt;
+
+&lt;p&gt;The method &lt;code&gt;toggleTask()&lt;/code&gt; of &lt;code&gt;TaskStore&lt;/code&gt; checks whether the response of API server is &lt;code&gt;&#39;OK&#39;&lt;/code&gt;. If it&amp;rsquo;s so, it reverse the true and false of the property &lt;code&gt;done&lt;/code&gt; of the object &lt;code&gt;task&lt;/code&gt; and calls &lt;code&gt;this.propagate()&lt;/code&gt;. As the result, it redraws all components related to the instance this &lt;code&gt;TaskStore&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, the method &lt;code&gt;toggleTask()&lt;/code&gt; of &lt;code&gt;TaskCollectionAgent&lt;/code&gt; doesn&amp;rsquo;t check the response of API server. If collection agent sends the request to API server by the method POST/PATCH/PUT/DELETE, it calls the method &lt;code&gt;refresh()&lt;/code&gt; of itself (&lt;code&gt;this&lt;/code&gt;) automatically after receiving the response of the server. As the result, it acquires the newest data from API server and updates the property &lt;code&gt;this.objects&lt;/code&gt; and redraws the component, &amp;ldquo;client&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;That is how to rebuilt the function to toggle the flag &amp;ldquo;done&amp;rdquo; of the task. Make sure it works well on the browser. If you check &amp;ldquo;To buy cat&amp;rsquo;s feed&amp;rdquo; from the status of the last time and check out &amp;ldquo;Go dentist&amp;rdquo;, the screen will be like following.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list19.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Make sure the style of the task&amp;rsquo;s title is change depending on the status of the checkbox.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, reintegrate the function to delete the task.&lt;/p&gt;
+
+&lt;p&gt;If you extract the part from the method &lt;code&gt;renderTask()&lt;/code&gt; of the class &lt;code&gt;TodoList&lt;/code&gt;, it&amp;rsquo;s like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderTask(m, task) {
+(abbreviation)
+    m.onclick(e =&amp;gt; {
+      if (confirm(&#39;Are you sure you want to delete this task?&#39;))
+        this.ds.destroyTask(task);
+    });
+    m.span(&#39;Delete&#39;, { class: &#39;button&#39; });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Rewrite the part like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderTask(m, task) {
+(abbreviation)
+    m.onclick(e =&amp;gt; {
+      if (confirm(&#39;Are you sure you want to delete this task?&#39;))
+        this.agent.destroyTask(task);
+    });
+    m.span(&#39;Delete&#39;, { class: &#39;button&#39; });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I just changed &lt;code&gt;.ds&lt;/code&gt; to &lt;code&gt;.agent&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Add the method &lt;code&gt;destroyTask()&lt;/code&gt; the class &lt;code&gt;TaskCollectionAgent&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  toggleTask(task) {
+    this.destroy(task.id);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The method &lt;code&gt;destroy()&lt;/code&gt; defined at the parent class &lt;code&gt;Cape.CollectionAgent&lt;/code&gt;, it receives ID of &amp;ldquo;resource&amp;rdquo; as the first parameter and sends the request to API server by DELETE method.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s compare the same name method of the class &lt;code&gt;TaskStore&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  destroyTask(task) {
+    $.ajax({
+      type: &#39;DELETE&#39;,
+      url: &#39;/api/tasks/&#39; + task.id
+    }).done(data =&amp;gt; {
+      if (data === &#39;OK&#39;) this.refresh();
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are much less code here too.&lt;/p&gt;
+
+&lt;p&gt;We restored the functionality to delete task. Make sure it works well on the browser
+ (the screen capture is omitted).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The point of this time is that the code that accesses to API server is simpler by using collection agent than the case that it uses jQuery.&lt;/p&gt;
+
+&lt;p&gt;On &lt;a href=&#34;../19_collection_agent3&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll recreate the function to add new task and the function to change the title of existing task.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Collection agent (3) - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/19_collection_agent3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/19_collection_agent3/</guid>
+      <description>&lt;p&gt;This is last lecture to upgrade out &amp;ldquo;Todo list&amp;rdquo; application to Cape.JS 1.2. On &lt;a href=&#34;../18_collection_agent2&#34;&gt;the previous lecture&lt;/a&gt;, I explained how to make the function to toggle the flag &amp;ldquo;done&amp;rdquo; of the task and the function to delete the task move.&lt;/p&gt;
+
+&lt;p&gt;On this time, I&amp;rsquo;ll recreate the function to add new task and the function to change the title of existing task.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;First, back to the commented out part of the method &lt;code&gt;render()&lt;/code&gt; of the class &lt;code&gt;TodoList&lt;/code&gt; (&lt;code&gt;app/assets/javascripts/todo_list.es6&lt;/code&gt;) temporally.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  render(m) {
+    m.ul(m =&amp;gt; {
+      this.agent.objects.forEach(task =&amp;gt; {
+        m.li(m =&amp;gt; this.renderTask(m, task));
+      });
+    });
+    if (this.editingTask) this.renderUpdateForm(m);
+    else this.renderCreateForm(m);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The third and second line from the bottom.&lt;/p&gt;
+
+&lt;p&gt;Next, modify the method &lt;code&gt;renderCreateForm()&lt;/code&gt; of the class &lt;code&gt;TodoList&lt;/code&gt; as same. The following below is the one before modifying.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderCreateForm(m) {
+    m.formFor(&#39;new_task&#39;, m =&amp;gt; {
+      m.onkeyup(e =&amp;gt; this.refresh());
+      m.textField(&#39;title&#39;, { value: this.val(&#39;new_task.title&#39;) }).sp();
+      m.attr({ disabled: this.val(&#39;new_task.title&#39;).trim() === &#39;&#39; });
+      m.onclick(e =&amp;gt;
+        this.ds.createTask(this.val(&#39;new_task.title&#39;, &#39;&#39;)));
+      m.btn(`Add task #${ this.ds.tasks.length + 1 }`);
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The one after modifying is following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderCreateForm(m) {
+    m.formFor(&#39;new_task&#39;, m =&amp;gt; {
+      m.onkeyup(e =&amp;gt; this.refresh());
+      m.textField(&#39;title&#39;, { value: this.val(&#39;new_task.title&#39;) }).sp();
+      m.attr({ disabled: this.val(&#39;new_task.title&#39;).trim() === &#39;&#39; });
+      m.onclick(e =&amp;gt;
+        this.agent.createTask(this.val(&#39;new_task.title&#39;, &#39;&#39;)));
+      m.btn(`Add task #${ this.agent.objects.length + 1 }`);
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I modified 2 points. I replaced &lt;code&gt;this.ds&lt;/code&gt; to &lt;code&gt;this.agent&lt;/code&gt; on the fourth line from the bottom and &lt;code&gt;this.ds.tasks&lt;/code&gt; to &lt;code&gt;this.agent.objects&lt;/code&gt; on the third line from the bottom.&lt;/p&gt;
+
+&lt;p&gt;In addition, modify the method &lt;code&gt;updateTask()&lt;/code&gt; of the class &lt;code&gt;TodoList&lt;/code&gt;. Next one is before modifying.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  updateTask() {
+    var task = this.editingTask;
+    task.modifying = false;
+    this.editingTask = null;
+    this.ds.updateTask(task, this.val(&#39;task.title&#39;, &#39;&#39;));
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The one after modifying is following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  updateTask() {
+    var task = this.editingTask;
+    task.modifying = false;
+    this.editingTask = null;
+    this.agent.updateTask(task, this.val(&#39;task.title&#39;, &#39;&#39;));
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The modifying the class &lt;code&gt;TodoList&lt;/code&gt; is done.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, add the method &lt;code&gt;createTask()&lt;/code&gt; and &lt;code&gt;updateTask()&lt;/code&gt; to the class &lt;code&gt;TaskCollectionAgent&lt;/code&gt;. (&lt;code&gt;app/assets/javascripts/task_collection_agent.es6&lt;/code&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  createTask(title) {
+    this.create({ task: { title: title } });
+  }
+
+  updateTask(task, title) {
+    this.update(task.id, { task: { title: title } })
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, I guess &amp;ldquo;Todo list&amp;rdquo; application moves right. Make sure it works well.&lt;/p&gt;
+
+&lt;p&gt;Run next command on the terminal and boot the server after initialize the database.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;bin/rake db:reset
+bin/rails s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then, open &lt;code&gt;http://localhost:3000&lt;/code&gt; on the browser, the screen will be like following.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list17.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When you enter some string in the text entering form and click the button &amp;ldquo; Add task #5&amp;rdquo;, the new task is recorded. Also, when you click &amp;ldquo;Edit&amp;rdquo; button on right side of some tasks, it sets the title of the task in the text entering form. And, rewrite the tile somehow and click &amp;ldquo;Update&amp;rdquo; button, the title of the task is changed. When you click &amp;ldquo;Cancel&amp;rdquo; button instead of &amp;ldquo;Update&amp;rdquo; button, the test entering form is back to the initialize status.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;For some references, the method &lt;code&gt;createTask()&lt;/code&gt; and &lt;code&gt;updateTask()&lt;/code&gt; of the class &lt;code&gt;TaskStore&lt;/code&gt; is wrote like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  createTask(title) {
+    $.ajax({
+      type: &#39;POST&#39;,
+      url: &#39;/api/tasks&#39;,
+      data: { task: { title: title } }
+    }).done(data =&amp;gt; {
+      if (data === &#39;OK&#39;) this.refresh();
+    });
+  }
+
+  updateTask(task, title) {
+    $.ajax({
+      type: &#39;PATCH&#39;,
+      url: &#39;/api/tasks/&#39; + task.id,
+      data: { task: { title: title } }
+    }).done(data =&amp;gt; {
+      if (data === &#39;OK&#39;) {
+        task.title = title;
+        this.propagate();
+      }
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Compare with the same method of the class &lt;code&gt;TaskCollectionAgent&lt;/code&gt;. It&amp;rsquo;s much shorter.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Now, delete source code because the class &lt;code&gt;TaskStore&lt;/code&gt; is not necessary anymore.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;rm app/assets/javascripts/task_store.es6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our &amp;ldquo;Todo list&amp;rdquo; application is now fully conformant to the Cape.JS 1.2.&lt;/p&gt;
+
+&lt;p&gt;On &lt;a href=&#34;../20_reordering1&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll add the function to change the showing order of the task on the different viewpoint.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating new task - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/12_creating_new_task/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/12_creating_new_task/</guid>
+      <description>&lt;p&gt;On this lecture, we implement the functionality to add a task
+from the form we made on &lt;a href=&#34;../11_form_for_new_task&#34;&gt;the pvevious lecture&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;First, rewrite the component. The source code of &lt;code&gt;renderCreateForm()&lt;/code&gt; is now followin now.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderCreateForm(m) {
+    m.formFor(&#39;new_task&#39;, m =&amp;gt; {
+      m.textField(&#39;title&#39;).sp();
+      m.btn(`Add task #${ this.ds.tasks.length + 1 }`);
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Rewrite it like following, (add 2 lines)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderCreateForm(m) {
+    m.formFor(&#39;new_task&#39;, m =&amp;gt; {
+      m.textField(&#39;title&#39;).sp();
+      m.onclick(e =&amp;gt;
+        this.ds.createTask(this.val(&#39;new_task.title&#39;)));
+      m.btn(`Add task #${ this.ds.tasks.length + 1 }`);
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As the result, when you click the botton of form of new added task, it runs the code &lt;code&gt;this.ds.createTask(this.val(&#39;new_task.title&#39;))&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The method &lt;code&gt;val()&lt;/code&gt; of the component returns the value of form field. It passes the string as the parameter of the style &lt;code&gt;x.y&lt;/code&gt;. &lt;code&gt;x&lt;/code&gt; is the form&amp;rsquo;s name and &lt;code&gt;y&lt;/code&gt; is the field&amp;rsquo;s name. It requires the value of the field &lt;code&gt;title&lt;/code&gt; in the form named &lt;code&gt;new_task&lt;/code&gt; here and passes the method &lt;code&gt;createTask()&lt;/code&gt; of the data store.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, add the method &lt;code&gt;createTask()&lt;/code&gt; to the data store. Rewrite &lt;code&gt;task_store.es6&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class TaskStore extends Cape.DataStore {
+  constructor() { ... }
+
+  refresh() { ... }
+
+  createTask(title) {
+    $.ajax({
+      type: &#39;POST&#39;,
+      url: &#39;/api/tasks&#39;,
+      data: { task: { title: title } }
+    }).done(data =&amp;gt; {
+      if (data === &#39;OK&#39;) this.refresh();
+    });
+  }
+
+  toggleTask(task) { ... }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The added method &lt;code&gt;createTask()&lt;/code&gt; receives the title of the task as the parameter. It sends it to Ajax by POST method and the if return data is &lt;code&gt;OK&lt;/code&gt;, it runs &lt;code&gt;this.refresh()&lt;/code&gt;.&lt;code&gt;this.refresh()&lt;/code&gt; acquires the list of tasks by accessing the API of Rails application and redraws the component.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, let&amp;rsquo;s create API. Open &lt;code&gt;app/controllers/api/tasks_controller.rb&lt;/code&gt; on the text editor and rewrite it as following. (add the method &lt;code&gt;create&lt;/code&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;class Api::TasksController &amp;lt; ApplicationController
+  def index
+    ...
+  end
+
+  def create
+    if Task.create(task_params)
+      render text: &#39;OK&#39;
+    else
+      render text: &#39;NG&#39;
+    end
+  end
+
+  def update
+    ...
+  end
+
+  private
+  def task_params
+    params.require(:task).permit(:title, :done)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The method &lt;code&gt;Task.create&lt;/code&gt; adds the record to the table &lt;code&gt;tasks&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Lastly, it&amp;rsquo;s finished when you finish writing &lt;code&gt;config/routes.rb&lt;/code&gt;. (add &lt;code&gt;:create,&lt;/code&gt; on the third line from the bottom)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Rails.application.routes.draw do
+  root &#39;top#index&#39;
+
+  namespace :api do
+    resources :tasks, only: [ :index, :create, :update ]
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s make sure that it works well on the browser. Add the title of the new task…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list10.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;and click the bottton…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list11.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;It adds the task.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;But, it&amp;rsquo;s a little bit strange. The title written the form is supposed to disapear when adding tasks is done. In order to do so, add the component&amp;rsquo;s method &lt;code&gt;renderCreateForm()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderCreateForm(m) {
+    m.formFor(&#39;new_task&#39;, m =&amp;gt; {
+      m.textField(&#39;title&#39;).sp();
+      m.onclick(e =&amp;gt;
+        this.ds.createTask(this.val(&#39;new_task.title&#39;, &#39;&#39;)));
+      m.btn(`Add task #${ this.ds.tasks.length + 1 }`);
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The point I changed is fourth line. I changed &lt;code&gt;this.val(&#39;new_task.title&#39;)&lt;/code&gt; to &lt;code&gt;this.val(&#39;new_task.title&#39;, &#39;&#39;)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;When number of the parameters is one, the method &lt;code&gt;val()&lt;/code&gt; of the component just returns the value of the field. But when it receives the second parameter, it sets the value of the field to the value of the second parameter and then returns the original value of the field. Here, it empties the field &lt;code&gt;title&lt;/code&gt; of the form for new task and passes the string written there to the method &lt;code&gt;createTask&lt;/code&gt; of the data store.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s make sure it works well on the browser. If the form&amp;rsquo;s &lt;code&gt;title&lt;/code&gt; field gets empty right after adding the task, it&amp;rsquo;s OK.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Let&amp;rsquo;s improve one more UI. Now, you can click the button even if the title is empty and it creates the empty task. If the title is empty, let&amp;rsquo;s disable the button.&lt;/p&gt;
+
+&lt;p&gt;First, prepare the style sheet to have clear effect. Rewrite &lt;code&gt;app/assets/stylesheets/todo_list.scss&lt;/code&gt; as following (three lines added)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;#todo-list {
+  label.completed span {
+    color: #888;
+    text-decoration: line-through;
+  }
+  button[disabled] {
+    color: #888;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, change the component&amp;rsquo;s method &lt;code&gt;renderCreateForm()&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderCreateForm(m) {
+    m.formFor(&#39;new_task&#39;, m =&amp;gt; {
+      m.onkeyup(e =&amp;gt; this.refresh());
+      m.textField(&#39;title&#39;).sp();
+      m.attr({ disabled: this.val(&#39;new_task.title&#39;).trim() === &#39;&#39; });
+      m.onclick(e =&amp;gt;
+        this.ds.createTask(this.val(&#39;new_task.title&#39;, &#39;&#39;)));
+      m.btn(`Add task #${ this.ds.tasks.length + 1 }`);
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I added two lines. I inserted &lt;code&gt;m.onkeyup(e =&amp;gt; this.refresh());&lt;/code&gt; in order to redraw the component every time the contents of the title field is changed.
+The event &lt;code&gt;keyup&lt;/code&gt; breaks out when a key on the keyboard is released.
+It also breaks out when the string is pasted by the user.&lt;/p&gt;
+
+&lt;p&gt;Another added code is following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;      m.attr({ disabled: this.val(&#39;new_task.title&#39;).trim() === &#39;&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It seems a little bit complicated but it&amp;rsquo;s simple. It assigns the attribute &lt;code&gt;disabled&lt;/code&gt; to the button if it&amp;rsquo;s empty after deleting both side blanks of the title field by &lt;code&gt;trim()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Every time when the user rewrites the content of the title field, it redraws the whole component. If the content it empty, it&amp;rsquo;s disabled and if nor, it&amp;rsquo;s enabled.&lt;/p&gt;
+
+&lt;p&gt;On the screen right after reloading the browser, the button is disabled like following.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list12.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;But, when you add one letter &amp;ldquo;A&amp;rdquo; on the title field,&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list13.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The button is enabled. And then, when you delete &amp;ldquo;A&amp;rdquo;, it&amp;rsquo;s disabled again.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list12.png&#34; alt=&#34; Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s relatively annoying if you make this kind of effect happen in jQuery. Virtual DOM can contribute well.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;On &lt;a href=&#34;../13_editing_task&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll create the function to rewrite the task&amp;rsquo;s title.&lt;/p&gt;
 </description>
     </item>
     
@@ -200,6 +1492,120 @@
     </item>
     
     <item>
+      <title>Delete the task - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/15_deleting_task/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/15_deleting_task/</guid>
+      <description>&lt;p&gt;On &lt;a href=&#34;../14_updating_task&#34;&gt;the previous lecture&lt;/a&gt;, we implemented the function to update the title of the task.&lt;/p&gt;
+
+&lt;p&gt;On this lecture, it&amp;rsquo;s about deleting the task. Now, we have every CRUD function.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;First, I create the API. Rewrite &lt;code&gt;config/routes.rb&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Rails.application.routes.draw do
+  root &#39;top#index&#39;
+
+  namespace :api do
+    resources :tasks, only: [ :index, :create, :update, :destroy ]
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I added &lt;code&gt;:destroy&lt;/code&gt; after &lt;code&gt;:update&lt;/code&gt; on the third line from the bottom.&lt;/p&gt;
+
+&lt;p&gt;Next, the controller. Add the action &lt;code&gt;destroy&lt;/code&gt; to &lt;code&gt;app/controllers/api/tasks_controller.rb&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;  def destroy
+    Task.find(params[:id]).destroy
+    render text: &#39;OK&#39;
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Insert it before the definition of the action &lt;code&gt;update&lt;/code&gt; and the declaration &lt;code&gt;private&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Let&amp;rsquo;s move on the running JavaScript. Rewrite the method &lt;code&gt;renderTask() of&lt;/code&gt;app/assets/javascripts/todo_list.es6`.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderTask(m, task) {
+    m.class({ completed: task.done });
+    m.label(m =&amp;gt; {
+      m.onclick(e =&amp;gt; this.ds.toggleTask(task));
+      m.input({ type: &#39;checkbox&#39;, checked: task.done }).sp();
+      m.class({ modifying: task.modifying });
+      m.span(task.title);
+    });
+    m.onclick(e =&amp;gt; this.editTask(task));
+    m.span(&#39;Edit&#39;, { class: &#39;button&#39; });
+    m.onclick(e =&amp;gt; this.ds.destroyTask(task));
+    m.span(&#39;Delete&#39;, { class: &#39;button&#39; });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I added the second and third lines from the bottom. It calls the method &lt;code&gt;destroyTask()&lt;/code&gt; as the data store by clicking &amp;ldquo;Delete&amp;rdquo; button.&lt;/p&gt;
+
+&lt;p&gt;Next, run this method. Add the content &lt;code&gt;destroyTask()&lt;/code&gt; as following on &lt;code&gt;app/assets/javascripts/task_store.es6&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  destroyTask(task) {
+    $.ajax({
+      type: &#39;DELETE&#39;,
+      url: &#39;/api/tasks/&#39; + task.id
+    }).done(data =&amp;gt; {
+      if (data === &#39;OK&#39;) this.refresh();
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s finished. Make it sure it works well. The top screen will changes like following.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list17.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;It deletes the task by clicking &amp;ldquo;Delete&amp;rdquo; button on right side of &amp;ldquo;Go dentist&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list18.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Now, there are more mistakes if you can delete the task just by clicking &amp;ldquo;Delete&amp;rdquo; button. Let&amp;rsquo;s display the warning message.&lt;/p&gt;
+
+&lt;p&gt;Rewrite &lt;code&gt;renderTask()&lt;/code&gt; as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  renderTask(m, task) {
+    m.class({ completed: task.done });
+    m.label(m =&amp;gt; {
+      m.onclick(e =&amp;gt; this.ds.toggleTask(task));
+      m.input({ type: &#39;checkbox&#39;, checked: task.done }).sp();
+      m.class({ modifying: task.modifying });
+      m.span(task.title);
+    });
+    m.onclick(e =&amp;gt; this.editTask(task));
+    m.span(&#39;Edit&#39;, { class: &#39;button&#39; });
+    m.onclick(e =&amp;gt; {
+      if (confirm(&#39;Are you sure you want to delete this task?&#39;))
+        this.ds.destroyTask(task);
+    });
+    m.span(&#39;Delete&#39;, { class: &#39;button&#39; });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The lines from the third to sixth from the bottom are changed. They are the method of JavaScript displaying the confirm dialog &lt;code&gt;confirm()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Make sure it works well on the browser (the screen capture is omitted). The dialog saying &amp;ldquo;Are you sure you want to delete this task?&amp;rdquo; by clicking &amp;ldquo;Delete&amp;rdquo; button. If you click &amp;ldquo;Cancel&amp;rdquo;, it does nothing. If you click &amp;ldquo;OK&amp;rdquo;, it deletes the task.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;It might be easy this time for who have read this tutorial carefully so far.&lt;/p&gt;
+
+&lt;p&gt;On &lt;a href=&#34;../16_capejs_1_2&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll introduce the new version 1.2 of Cape.JS.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Hello, world! - Cape.JS Primer</title>
       <link>http://oiax.github.io/capejs/tutorials/capejs_primer/01_hello_world/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -333,6 +1739,159 @@ I think observant readers may notice that the program of Cape.JS is very similar
 &lt;p&gt;This is the end of the first lecture. On &lt;a href=&#34;../02_custom_attributes_and_nested_elements&#34;&gt;the next lecture&lt;/a&gt;
 we will explain how to acquire data from elements that components are mounted on.
 We will also talk about the nesting of HTML elements.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Initializing the date with ajax - Cape.JS Primer</title>
+      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/07_initializing_the_date_with_ajax/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/07_initializing_the_date_with_ajax/</guid>
+      <description>&lt;p&gt;On &lt;a href=&#34;../06_let_the_component_have_the_date&#34;&gt;the previous lecture&lt;/a&gt;, I explained the relation of Cape.JS component and data.&lt;/p&gt;
+
+&lt;p&gt;The theme of this lecture is Ajax. I&amp;rsquo;ll explain how to acquire the initialized data from the database through Rails application&amp;rsquo;s API and assign to the component.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;First, let&amp;rsquo;s create the table &lt;code&gt;tasks&lt;/code&gt; on the database to register tasks of &amp;ldquo;To-do list&amp;rdquo;. Run the following command on the terminal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bin/rails g model task
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, open the file which name ends with &lt;code&gt;_create_tasks.rb&lt;/code&gt; at the directory &lt;code&gt;db/migrate/&lt;/code&gt; on the text editor and rewrite as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;class CreateTasks &amp;lt; ActiveRecord::Migration
+  def change
+    create_table :tasks do |t|
+      t.string :title, null: false
+      t.boolean :done, null: false, default: false
+
+      t.timestamps null: false
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On the table &lt;code&gt;tasks&lt;/code&gt;, it has 2 columns of&lt;code&gt;title&lt;/code&gt; and &lt;code&gt;done&lt;/code&gt;. Each type is string type (&lt;code&gt;string&lt;/code&gt;) and Boolean type (&lt;code&gt;boolean&lt;/code&gt;). It records the title of the task on the column &lt;code&gt;title&lt;/code&gt; and records truth-value whether the task is done or not on the column &lt;code&gt;done&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you run the following command on the terminal, you can create the table &lt;code&gt;tasks&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bin/rake db:migrate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The following result is supposed to display on the terminal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;== 20150612081420 CreateTasks: migrating ======================================
+-- create_table(:tasks)
+   -&amp;gt; 0.0047s
+== 20150612081420 CreateTasks: migrated (0.0048s) =============================
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+When you realize that you took mistake of the name of the table and the column, delete the migration script and restart from the beginning. And, please use the command `bin/rake db:migrate:reset` instead of `bin/rake db:migrate`.
+&lt;/div&gt;
+
+&lt;p&gt;We make the script to insert the sheet data (initialized data). Open &lt;code&gt;db/seeds.rb&lt;/code&gt; on the text editor and add the following code after deletin all comment lines ( starting from &lt;code&gt;#&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Task.create!(title: &#39;Buy cat food&#39;, done: false)
+Task.create!(title: &#39;To go dentist&#39;, done: true)
+Task.create!(title: &#39;Take out the trash&#39;, done: false)
+Task.create!(title: &#39;Write blogs&#39;, done: false)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run the following command on the terminal to insert the sheet data.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;bin/rake db:seed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The next step is to create API to acquire the list of the task.&lt;/p&gt;
+
+&lt;p&gt;Open &lt;code&gt;config/routes.rb&lt;/code&gt; on the text editor and rewrite as following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Rails.application.routes.draw do
+  root &#39;top#index&#39;
+
+  namespace :api do
+    resources :tasks, only: [ :index ]
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As the result, Rails application can receive the access to URL path &lt;code&gt;/api/tasks&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next, we make controller. Run the following command on the terminal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;bin/rails g controller api/tasks
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The file &lt;code&gt;app/controllers/api/tasks_controller.rb&lt;/code&gt; is created so rewrite as following on the text editor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;class Api::TasksController &amp;lt; ApplicationController
+  def index
+    @tasks = Task.order(id: :asc)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, create a new file &lt;code&gt;index.jbuilder&lt;/code&gt; with the content of following at the directory &lt;code&gt;app/views/api/tasks&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;json.array! @tasks, :id, :title, :done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;note&#34;&gt;
+[Jbuilder](https://github.com/rails/jbuilder) is the template engine to create the data of JSON.
+&lt;/div&gt;
+
+&lt;p&gt;We created API. Let&amp;rsquo;s make sure it works right. Boot Rails application and access to &lt;code&gt;http://localhost:3000/api/tasks&lt;/code&gt; on the browser. If the strings like following display, it&amp;rsquo;s OK.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;[{&amp;quot;id&amp;quot;:1,&amp;quot;title&amp;quot;:&amp;quot;Buy cat food&amp;quot;,&amp;quot;done&amp;quot;:false},{&amp;quot;id&amp;quot;:2,&amp;quot;title&amp;quot;:&amp;quot;Go dentist&amp;quot;,&amp;quot;done&amp;quot;:true},{&amp;quot;id&amp;quot;:3,&amp;quot;title&amp;quot;:&amp;quot;Take out the trash &amp;quot;,&amp;quot;done&amp;quot;:false},{&amp;quot;id&amp;quot;:4,&amp;quot;title&amp;quot;:&amp;quot;Write blogs&amp;quot;,&amp;quot;done&amp;quot;:false}]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Let&amp;rsquo;s move on the developing the component side of Cape.JS.&lt;/p&gt;
+
+&lt;p&gt;Open &lt;code&gt;app/assets/javascripts/todo_list.es6&lt;/code&gt; on the text editor. The method &lt;code&gt;init()&lt;/code&gt; of the class &lt;code&gt;TodoList&lt;/code&gt; is now defined like following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  init() {
+    this.tasks = [
+      { title: &amp;quot;Buy cat food&amp;quot;, done: false },
+      { title: &amp;quot;Go dentist&amp;quot;, done: true }
+    ];
+    this.refresh();
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Rewrite it to following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  init() {
+    $.ajax({
+      type: &#39;GET&#39;,
+      url: &#39;/api/tasks&#39;
+    }).done(data =&amp;gt; {
+      this.tasks = data;
+      this.refresh();
+    });
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;$.ajax&lt;/code&gt; is the method of jQuery. It sets the result to the parameter &lt;code&gt;data&lt;/code&gt; by accessing &lt;code&gt;/api/tasks&lt;/code&gt; while using the method &lt;code&gt;GET&lt;/code&gt; here. It&amp;rsquo;s the strings that API returns but jQuery automatically changes the array of the object by judging it&amp;rsquo;s JSON. That means, the array of the object is set to &lt;code&gt;this.tasks&lt;/code&gt; if Ajax call successes.&lt;/p&gt;
+
+&lt;p&gt;Be careful that there is &lt;code&gt;this.refresh()&lt;/code&gt; written within the method &lt;code&gt;done&lt;/code&gt;. The rendering of the component isn&amp;rsquo;t done at the time when the method is run. It&amp;rsquo;s done when Ajax call is complited. It&amp;rsquo;s very important to understand the timing of the rendering at the time of programming Cape.JS&lt;/p&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s make sure it works weel. Access to &lt;code&gt;http://localhost:3000&lt;/code&gt; on the browser and if the screen displays like following, it successes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list04.png&#34; alt=&#34;Screen capture&#34; /&gt;
+&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;You learn a little bit more this time. Well done!&lt;/p&gt;
+
+&lt;p&gt;On &lt;a href=&#34;../08_assignment_of_event_handler&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll explain how to change the value of the column &lt;code&gt;done&lt;/code&gt; by clicking the checkbox in front of the title of each task.&lt;/p&gt;
 </description>
     </item>
     
@@ -481,233 +2040,6 @@ Bootstrap&#39;s &lt;code&gt;3.3.5&lt;/code&gt; was released on June 17th, 2015 b
 &lt;hr /&gt;
 
 &lt;p&gt;On &lt;a href=&#34;../05_rails_integration2&#34;&gt;the next lecture&lt;/a&gt;, we&amp;rsquo;ll still continue to develop &amp;ldquo;To-do list&amp;rdquo; application.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Integrate Cape.JS with Ruby on Rails (2) - Cape.JS Primer</title>
-      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/05_rails_integration2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/05_rails_integration2/</guid>
-      <description>&lt;p&gt;As &lt;a href=&#34;../04_rails_integration1&#34;&gt;the previous lecture&lt;/a&gt;, I&amp;rsquo;ll explain how to approach to Ruby on Rails.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Before you start developing Rail application, prepare one more. Open &lt;code&gt;config/application.rb&lt;/code&gt; on the text editor and rewrite as following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;    # (abbreviation of 1-23 lines)
-    config.active_record.raise_in_transactional_callbacks = true
-
-    config.generators do |g|
-      g.helper false
-      g.assets false
-      g.skip_routes true
-      g.test_framework false
-    end
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This correction prevents unnecessary (in my opinion) file creations and modifications.&lt;/p&gt;
-
-&lt;div class=&#34;note&#34;&gt;
-With this correction, the command &lt;code&gt;bin/rails g&lt;/code&gt; does not create helper modules, style sheets and JavaScript files. It does not rewrite &lt;code&gt;config/routes.rb&lt;/code&gt;, too.
-We specify &lt;code&gt;g.test_framework false&lt;/code&gt; not to automatically create the templates of test scripts, because we don&#39;t write tests in this tutorial.
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Next, open &lt;code&gt;config/routes.rb&lt;/code&gt; on the text editor and rewrite like following after getting rid of all comment lines (lines starting from &lt;code&gt;#&lt;/code&gt;).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Rails.application.routes.draw do
-  root &#39;top#index&#39;
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then, run next command on the terminal.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ bin/rails g controller top index
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Open  &lt;code&gt;app/views/top/index.html.erb&lt;/code&gt; on the text editor and rewrite like following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
-  &amp;lt;div class=&amp;quot;page-header&amp;quot;&amp;gt;
-    &amp;lt;h1&amp;gt;
-      &amp;lt;i class=&amp;quot;fa fa-list&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; TODO LIST
-      &amp;lt;small&amp;gt;Cape.JS Demo on Rails&amp;lt;/small&amp;gt;
-    &amp;lt;/h1&amp;gt;
-  &amp;lt;/div&amp;gt;
-
-  &amp;lt;div class=&amp;quot;page-body&amp;quot; id=&amp;quot;todo-list&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-
-&amp;lt;script&amp;gt;
-var app = new TodoList();
-app.mount(&#39;todo-list&#39;);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Let&amp;rsquo;s make sure the move here. Run next command on the terminal to boot Rails application.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ bin/rails s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Open &lt;code&gt;http://localhost:3000&lt;/code&gt; on the browser. If the screen displays like following, it&amp;rsquo;s OK.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list01.png&#34; alt=&#34;The screen display&#34; /&gt;
-&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Now, here is the best part.&lt;/p&gt;
-
-&lt;p&gt;Create a new file &lt;code&gt;todo_list.es6&lt;/code&gt; at  &lt;code&gt;app/assets/javascripts&lt;/code&gt; directory and write as following on the text editor.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class TodoList extends Cape.Component {
-  render(m) {
-    m.ul(m =&amp;gt; {
-      m.li(m =&amp;gt; {
-        m.label(m =&amp;gt; {
-          m.input({ type: &#39;checkbox&#39; }).sp();
-          m.span(&amp;quot;Buy cat&#39;s feed&amp;quot;);
-        });
-      });
-      m.li(m =&amp;gt; {
-        m.label(m =&amp;gt; {
-          m.input({ type: &#39;checkbox&#39; }).sp();
-          m.span(&#39;Go dentist&#39;);
-        });
-      });
-    });
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is the program of JavaScript but you may get confused because it uses ES6&amp;rsquo;s (ECMAScript 6) syntax. Let me explain briefly.&lt;/p&gt;
-
-&lt;p&gt;On the first line &lt;code&gt;class TodoList extends Cape.Component&lt;/code&gt;, it defines the new class &lt;code&gt;TodoList&lt;/code&gt; by inheriting the class &lt;code&gt;Cape.Component&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;On the second line &lt;code&gt;render()&lt;/code&gt;, it defines the method &lt;code&gt;render&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;m =&amp;gt; { ... }&lt;/code&gt; that you can see on every place on source code is the syntax defining &amp;ldquo;arrow function&amp;rdquo;. It&amp;rsquo;s (almost) same as &lt;code&gt;function(m) { ...}&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&#34;note&#34;&gt;
-You can write the arrow function more simply than the traditional anonymous function defined by the keyword &lt;code&gt;function&lt;/code&gt;. So it contributes especially on the library using a lot of deep nesting like Cape.JS. It has another important side to &#34;lexically constrain&#34; the value &lt;code&gt;this&lt;/code&gt;. For more information, please refer the MDN&#39;s
-&lt;a href=&#34;https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/arrow_functions&#34;&gt;arrow function&lt;/a&gt;.
-&lt;/div&gt;
-
-&lt;p&gt;Then, let&amp;rsquo;s make sure the move here. Reload the browser. If the screen displays like following, it&amp;rsquo;s OK.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list02.png&#34; alt=&#34;The screen display&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;We have already included the &lt;code&gt;sprockets-es6&lt;/code&gt; gem so the file holding the extension
-&lt;code&gt;.es6&lt;/code&gt; is automatically compiled to the traditional JavaScript code and load it to the page.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;That&amp;rsquo;s all for integrating Cape.JS with Rails application. On the next lecture, I&amp;rsquo;ll explain the way of rendering the component with the data.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Reference of custom attribute value and nesting of HTLM elements - Cape.JS Primer</title>
-      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</guid>
-      <description>&lt;p&gt;On &lt;a href=&#34;../01_hello_world&#34;&gt;the previous lecture&lt;/a&gt;, we made the easy application displaying &amp;ldquo;Hello, world!&amp;rdquo; on the browser as an introducing of &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;Cape.JS&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;This time, I explain two more things. The one is the way of replacing a part of &amp;ldquo;world&amp;rdquo; with an attribute value of HTML element. And the another one is the way to nest the HTML element.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Well, let&amp;rsquo;s begin. First, open the file &lt;code&gt;hello_message1.html&lt;/code&gt; that you made on the previous lecture by your editor and change the name to  &lt;code&gt;hello_message2.html&lt;/code&gt;. Then, change the content of &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; element to following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;  &amp;lt;div id=&amp;quot;main&amp;quot; data-name=&amp;quot;world&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-  &amp;lt;script&amp;gt;
-    var HelloMessage = Cape.createComponentClass({
-      render: function(m) {
-        m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;);
-      }
-    });
-
-    var component = new HelloMessage();
-    component.mount(&#39;main&#39;);
-  &amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Open this file on the browser. &amp;ldquo;Hello, world!&amp;rdquo; is supposed to be displayed on the upper left of the screen like the precious time.&lt;/p&gt;
-
-&lt;p&gt;In case of this example, it embeds the component &lt;code&gt;HelloMessage&lt;/code&gt; to virtual DOM tree by acquiring &lt;code&gt;data-name&lt;/code&gt; attribute value from the HTML element mounted. It&amp;rsquo;s &lt;code&gt;this.root&lt;/code&gt; within the component&amp;rsquo;s method &lt;code&gt;render&lt;/code&gt; and the HTML element mounted can be referenced. Its data property returns hash holding the custom data attribute (the attribute with name started from &lt;code&gt;data-&lt;/code&gt;) name and value of HTML5.&lt;/p&gt;
-
-&lt;p&gt;The HTML element mounted to is &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; element holding &lt;code&gt;id&lt;/code&gt; of  &lt;code&gt;main&lt;/code&gt;. It has the custom data attribute &lt;code&gt;data-name=&amp;quot;world&amp;quot;&lt;/code&gt;. You can acquire its data &lt;code&gt;&amp;quot;world&amp;quot;&lt;/code&gt; from &lt;code&gt;this.root.data.name&lt;/code&gt;. So,&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;        m.p(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The character string &amp;ldquo;Hello, world!&amp;rdquo; is displayed on the browser when you write like above.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s try to change the element value to &amp;ldquo;ruby&amp;rdquo; and save it and reload the browser. The screen display will change to &amp;ldquo;Hello, ruby!&amp;rdquo;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Next, I&amp;rsquo;ll explain about nesting of HTML elements.&lt;/p&gt;
-
-&lt;p&gt;Change the name of file you made just before &lt;code&gt;hello_message2.html&lt;/code&gt; to &lt;code&gt;hello_message3.html&lt;/code&gt; and save it and add lines at the end of the element &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;link rel=&amp;quot;stylesheet&amp;quot;
-  href=&amp;quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://getbootstrap.com/&#34;&gt;Bootstrap&lt;/a&gt; imports the CSS file.&lt;/p&gt;
-
-&lt;p&gt;And, change the content of the element &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; to following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;  &amp;lt;div id=&amp;quot;main&amp;quot; data-name=&amp;quot;world&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-  &amp;lt;script&amp;gt;
-    var HelloMessage = Cape.createComponentClass({
-      render: function(m) {
-        m.div({ class: &#39;container&#39; }, function(m) {
-          m.h1(&#39;Greetings from Cape.JS&#39;);
-          m.div({ class: &#39;panel panel-default&#39; }, function(m) {
-            m.div(&#39;Hello, &#39; + this.root.data.name + &#39;!&#39;,
-              { class: &#39;panel-body&#39; });
-          });
-        });
-      }
-    });
-
-    var component = new HelloMessage();
-    component.mount(&#39;main&#39;);
-  &amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The screen display is supposed to be like following when you open this file on your browser.&lt;/p&gt;
-
-&lt;div class=&#34;block-image&#34;&gt;
-&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message3.png&#34; alt=&#34;Screen capture&#34;&gt;
-&lt;/div&gt;
-
-&lt;p&gt;In the case of this example, it runs nesting of the HTML element by specifying the unnamed function to parameter at the end of the method. The following below shows a part of HTML documents created by the code above.:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
-  &amp;lt;h1&amp;gt;Greetings from Cape.JS&amp;lt;/h1&amp;gt;
-  &amp;lt;div class=&amp;quot;panel panel-default&amp;quot;&amp;gt;
-    &amp;lt;div class=&amp;quot;panel-body&amp;quot;&amp;gt;Hello, world!&amp;lt;/div&amp;gt;
-  &amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The unnamed function that is specified as the parameter at the end of the method acquires one parameter (&lt;code&gt;m&lt;/code&gt;). This parameter is markup builder (the object to make virtual DOM tree) that I explained on the previous. The HTML element added into the virtual DOM tree within the unnamed function becomes child elements of the HTML element introducing the unnamed function.&lt;/p&gt;
-
-&lt;p&gt;In the case above, the unnamed function is called again within it. That means that runs 2-level nesting. In the result, the element &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; in the most inner part is the &amp;ldquo;grandchild&amp;rdquo; element of the element &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; in the outer part.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;That&amp;rsquo;s all for today. On &lt;a href=&#34;../03_creating_text_nodes&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll explain the method &lt;code&gt;text()&lt;/code&gt; and the option &lt;code&gt;innerHTML&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     

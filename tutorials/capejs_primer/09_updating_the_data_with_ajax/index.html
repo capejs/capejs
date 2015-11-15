@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Updating the data with Ajax - Cape.JS Primer - Cape.JS: Documentation</title>
+  <meta name="generator" content="Bootply" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="http://oiax.github.io/capejs//css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+  <link href="http://oiax.github.io/capejs//css/styles.css" rel="stylesheet">
+  <link href="http://oiax.github.io/capejs//highlight/styles/default.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://oiax.github.io/capejs//images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="http://oiax.github.io/capejs//images/favicon_capejs.ico" type="image/vnd.microsoft.icon" />
+</head>
+
+<body>
+<div id="navbar-md" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="/capejs/" class="navbar-brand">Cape.JS</a>
+    </div>
+    <nav role="navigation">
+      <ul class="nav navbar-nav">
+        <li><a href="http://oiax.github.io/capejs//tutorials/" class="link">Tutorials</a></li>
+        <li><a href="http://oiax.github.io/capejs//api">API Reference</a></li>
+        <li>
+          <a href="https://github.com/oiax/capejs">GitHub Repository
+          <i class="fa fa-external-link"></i></a>
+        </li>
+      </ul>
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </nav>
+  </div>
+</div>
+<div id="navbar-sm" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="http://oiax.github.io/capejs//" class="navbar-brand">Cape.JS Doc</a>
+      <a href="http://oiax.github.io/capejs//tutorials/" class="link">Tutorials</a>
+      <a href="http://oiax.github.io/capejs//api/" class="link">API</a>
+      <a href="https://github.com/oiax/capejs" class="link">GitHub
+      <i class="fa fa-external-link"></i></a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-offcanvas row-offcanvas-left">
+    
+        <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <ul class="nav">
+      
+      
+        <li><a href="http://oiax.github.io/capejs//#what-is">What is Cape.JS?</a></li>
+      
+        <li><a href="http://oiax.github.io/capejs//#installation">Installation</a></li>
+      
+        <li><a href="http://oiax.github.io/capejs//#faq">FAQ</a></li>
+      
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//components">Components</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#hello-world">Hello World</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#es6">ECMAScript 6</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#dom-tree">Building Virtual DOM Tree</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#click-counter">Click Counter</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#shortcut-methods">Shortcut Methods</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#html-styles">HTML Styles</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#todo-list">Todo List</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//components/#mixins">Mixins</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//data_stores">Data Stores</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//data_stores/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//data_stores/#ajax">Ajax</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//collection_agents">Collection Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#initialization">Initialization</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#creating-resources">Creating Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#rest-operations">REST Operations</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#callbacks-and-error-handlers">Callbacks and Error Handlers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#changing-path-prefix">Changing the Path Prefix</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//collection_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//resource_agents">Resource Agents</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#basics">Basics</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#agent-adapters">Agent Adapters</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#defining-classes">Defining Classes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#creating-a-new-resource">Creating a New Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#editing-a-resource">Editing a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#building-a-dual-use-form">Building a Dual-Use Form</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#deleting-a-resource">Deleting a Resource</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#specifying-a-callback">Specifying a Callback</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//resource_agents/#options">Options</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//router">Router</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#simple-routes">Simple Routes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#containers">Containers</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#resource-based-routes">Resource Based Routes</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#singular-resources">Singular Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#nested-resources">Nested Resources</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#namespaces">Namespaces</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#adding-custom-actions">Adding Custom Actions</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#changing-root-container">Changing Root Container</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#vars">Vars</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#flash">Flash</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//router/#before-navigation-callbacks">Before-Navigation Callbacks</a></li>
+          
+          </ul>
+      
+        <li>
+          <a href="http://oiax.github.io/capejs//tutorials">Tutorials</a>
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//tutorials/#capejs-primer">Cape.JS Primer</a></li>
+          
+          </ul>
+      
+        <li><a href="http://oiax.github.io/capejs//api">API Reference</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="col-sm-12 col-md-9">
+      <article>
+        <header>
+          <h2>Updating the data with Ajax - Cape.JS Primer</h2>
+          <div class="post-meta clearfix">
+          </div>
+        </header>
+        <div>
+          <p>On <a href="../08_assignment_of_event_handler">the previous lecture</a>, I explained the event handler. It&rsquo;s the event handler that the function that users run by some actions (like clicking) to HTML element (like the checkbox).</p>
+
+<p>On this lecture, I explain how to update the database by using Ajax call in the event handler.</p>
+
+<hr />
+
+<p>Before I explain the point, I use the style sheet to make it easier to understand the work of the event handler visually.</p>
+
+<p>Create a new file <code>todo_list.scss</code> at the directory <code>app/assets/stylesheets</code> on the text editor.</p>
+
+<pre><code class="language-css">#todo-list {
+  label.completed span {
+    color: #888;
+    text-decoration: line-through;
+  }
+}
+</code></pre>
+
+<div class="note">
+The file's extension <code>.scss</code> means that this file is written in the style of <a href="http://sass-lang.com/guide">Sass/SCSS</a>. SCSS is the style sheet language expanded CSS and it's converted into CSS by Rails automatically. The first character of SCSS is that it can nest the selector. The example above, it sets the style of the element <code>span</code> within the element <code>label</code> of the class <code>completed</code> which is inside of element with ID <code>todo-list</code>.
+</div>
+
+<p>And, rewrite the method <code>render()</code> of the component <code>TodoList</code>. Rewrite the part of <code>app/assets/javascripts/todo_list.es6 as following on the text editor. (add 1 line in front of</code>m.label`)</p>
+
+<pre><code class="language-javascript">  render(m) {
+    m.ul(m =&gt; {
+      this.tasks.forEach(task =&gt; {
+        m.li(m =&gt; {
+          m.class({ completed: task.done });
+          m.label(m =&gt; {
+            m.onclick(e =&gt; this.toggleTask(task));
+            m.input({ type: 'checkbox', checked: task.done }).sp();
+            m.span(task.title);
+          });
+        });
+      });
+    });
+  }
+</code></pre>
+
+<p>The line added is following.</p>
+
+<pre><code class="language-javascript">m.class({ completed: task.done });
+</code></pre>
+
+<p>As the result, in the case of the task which element <code>done</code> is &ldquo;true&rdquo;, it sets the class <code>completed</code> to the element <code>label</code>. Boot the Rails application and open <code>http://localhost:3000/</code> on the browser. The display will be like following.</p>
+
+<p><img src="/capejs/images/capejs_primer/todo_list06.png" alt="Screen capture" />
+</p>
+
+<p>By clicking the first checkbox here, the warning dialog &ldquo;1&rdquo; displays. So click the &ldquo;OK&rdquo; button. Make sure that the style of strings of &ldquo;To buy cat&rsquo;s feed&rdquo; doesn&rsquo;t change. (The color doesn&rsquo;t change to gray and strike-through doesn&rsquo;t display.)</p>
+
+<hr />
+
+<p>Next, rewrite the method <code>toggleTask()</code> of the component <code>TodoList</code>. Rewrite the part of <code>app/assets/javascripts/todo_list.es6</code> as following on the text editor.</p>
+
+<pre><code class="language-javascript">  toggleTask(task) {
+    task.done = !task.done;
+    this.refresh();
+  }
+</code></pre>
+
+<p>The last goal of this lecture is to update the database with Ajax but we haven&rsquo;t got there yet. First, we update the data that the component <code>TodoList</code> has and just retry the rendering of the component.</p>
+
+<p>Reload the browser and click the first checkbox. It&rsquo;s different from the last time, make sure that the style of strings of &ldquo;To buy cat&rsquo;s feed&rdquo; changes depending on checks. The parameter <code>task</code> of the method <code>toggleTask</code> refers the specific task included the task list that the component has. By calling <code>this.refresh()</code> after reversing the value of the attribute <code>done</code>, the style of the task&rsquo;s title changes because the whole component is redraw.</p>
+
+<div class="note">
+The reader who gets used to "virtual DOM" but not to jQuery may have trouble in running this way. When you run this kind of things in jQuery, change the style of HTML element directly by this kind of code <code>$(e.target).parent().toggleClass("completed");</code>. You may worry about the performance by writting this, it's "virtual DOM" that makes you relieved. The library <code>virtual-dom</code> which is the foundation of Cape.JS caliculates the difference between virtual DOM and real DOM and redraw only necessary parts to be changed.
+</div>
+
+<hr />
+
+<p>Next, run API on Rail. First, rewrite <code>config/routes.rb</code> as following.</p>
+
+<pre><code class="language-ruby">Rails.application.routes.draw do
+  root 'top#index'
+
+  namespace :api do
+    resources :tasks, only: [ :index, :update ]
+  end
+end
+</code></pre>
+
+<p>The changed place id 3 lines from the bottom. (insert comma and <code>:update</code>.)</p>
+
+<p>Then, rewrite <code>app/controllers/api/tasks_controller.rb</code> as following.</p>
+
+<pre><code class="language-text">class Api::TasksController &lt; ApplicationController
+  def index
+    @tasks = Task.order(id: :asc)
+  end
+
+  def update
+    task = Task.find(params[:id])
+    if task.update_attributes(task_params)
+      render text: 'OK'
+    else
+      render text: 'NG'
+    end
+  end
+
+  private
+  def task_params
+    params.require(:task).permit(:title, :done)
+  end
+end
+</code></pre>
+
+<div class="note">
+It's a long story if I start explaining this meaning of the change. If you have developed Rails, accept the source code once.
+
+You can learn the methods like <code>params</code>, <code>find</code>, <code>update_attributes</code> and <code>render</code> by the textbooks and tutorials. You can search on Internet by using the keyword "Strong Parameters" for the role of the method <code>task_params</code>.
+</div>
+
+<hr />
+
+<p>Lastly, mount the method <code>toggleTask()</code> of the component <code>TodoList</code>.</p>
+
+<pre><code class="language-javascript">  toggleTask(task) {
+    $.ajax({
+      type: 'PATCH',
+      url: `/api/tasks/${task.id}`,
+      data: { task: { done: !task.done } }
+    }).done(data =&gt; {
+      if (data === 'OK') {
+        task.done = !task.done;
+        this.refresh();
+      }
+    });
+  }
+</code></pre>
+
+<p>It accesses to API by the method <code>PATCH</code> which means &ldquo;updating the data&rdquo; in Rails. If the value of <code>task.id</code> is 1 and <code>task.done</code> is &ldquo;false&rdquo;, it sends the message <code>{ task: done: true }</code> to URL parameter <code>/api/tasks/1</code>.</p>
+
+<div class="note">
+Be careful to write like <code>`/api/tasks/${task.id}`</code>. The string surrounded by the back quote in ECMAScript6 mounts the expression (interpolation). That means, it converts the part <code>${task.id}</code> into the value <code>task.id</code> (like the integer "1" ).
+</div>
+
+<p>Rails application recieves it and updates the database and returns the string &ldquo;OK&rdquo;. On the side of Cape.JS receives that and set it into the parameter <code>data</code> of the method <code>done</code>. So, the conditional expression of if statement comes into effect and reverses the attribute <code>done</code> . Then, it redraws the whole component by calling <code>this.refresh()</code>.</p>
+
+<p>Then, make sure that it works well. Reload the browser, check the first checkbox. Then, the display will be like following.</p>
+
+<p><img src="/capejs/images/capejs_primer/todo_list07.png" alt="Screen capture" />
+</p>
+
+<p>Reload the browser again now. If there is still the check of the first checkbox, that means the data base id updated.</p>
+
+<hr />
+
+<p>That&rsquo;s all for today. It might be a bit difficult because I abbreviate some explanations. I&rsquo;m sorry.</p>
+
+<p>On <a href="../10_the_data_store">the next lecture</a>, I&rsquo;ll explain the data store.</p>
+
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="http://oiax.github.io/capejs//js/bootstrap.min.js"></script>
+<script src="http://oiax.github.io/capejs//js/scripts.js"></script>
+<script src="http://oiax.github.io/capejs//highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div id="footer-sm" class="footer navbar-fixed-bottom">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+<div id="footer-xs" class="footer">
+  <div>Copyright &copy; 2015 <a href="http://www.oiax.jp/">Oiax, Inc.</a> and contributors.</div>
+</div>
+
+</body>
+</html>
