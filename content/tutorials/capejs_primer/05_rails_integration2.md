@@ -87,7 +87,7 @@ class TodoList extends Cape.Component {
       m.li(m => {
         m.label(m => {
           m.input({ type: 'checkbox' }).sp();
-          m.span("Buy cat's feed");
+          m.span("Buy cat food");
         });
       });
       m.li(m => {

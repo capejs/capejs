@@ -2,7 +2,7 @@
 title: "Delete the task - Cape.JS Primer"
 ---
 
-On [the precious lecture](../14_updating_task), I run the function to update the title of the task.
+On [the previous lecture](../14_updating_task), we implemented the function to update the title of the task.
 
 On this lecture, it's about deleting the task. Now, we have every CRUD function.
 
@@ -10,7 +10,7 @@ On this lecture, it's about deleting the task. Now, we have every CRUD function.
 
 First, I create the API. Rewrite `config/routes.rb` as following.
 
-```ruby
+```text
 Rails.application.routes.draw do
   root 'top#index'
 
@@ -20,11 +20,11 @@ Rails.application.routes.draw do
 end
 ```
 
-I added :destroy` after `:update` on the third line from the bottom.
+I added `:destroy` after `:update` on the third line from the bottom.
 
 Next, the controller. Add the action `destroy` to `app/controllers/api/tasks_controller.rb`.
 
-```ruby
+```text
   def destroy
     Task.find(params[:id]).destroy
     render text: 'OK'
@@ -109,4 +109,4 @@ Make sure it works well on the browser. (abbreviate the lecture of screen captur
 
 It might be easy this time for who have read this selections carefully.
 
-On [Next lecture](../16_capejs_1_2), I'll introduce the new version 1.2 of Cape.JS.
+On [the next lecture](../16_capejs_1_2), I'll introduce the new version 1.2 of Cape.JS.

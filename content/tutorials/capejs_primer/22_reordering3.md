@@ -1,8 +1,8 @@
 ---
-title: "Changing displaying order (3) - Cape.JS Primer"
+title: "Change displaying order (3) - Cape.JS Primer"
 ---
 
-On [the previous lecture](../21_reordering2), I made API on the server. Let's finish the function to change displaying order of the task by using it.
+On [the previous lecture](../21_reordering2), I made APIs on the server. Let's finish the functionality to change displaying order of the tasks by using then.
 
 ----
 
@@ -24,7 +24,7 @@ At this moment, the code of the method `TodoList#renderButtons` is following. (`
   }
 ```
 
-API to move up and down the task is like following.
+The APIs to move up and down the task are like following.
 
 ```text
 PATCH /api/tasks/:id/move_higher
@@ -51,7 +51,7 @@ So, rewrite the method `TodoList#renderButtons` like following.
   }
 ```
 
-I added 2 lines starting from `else` of last half of the method.
+I added two lines starting from `else` of last half of the method.
 
 ```javascript
     else m.onclick(e => this.agent.patch('move_higher', task.id));
@@ -69,7 +69,7 @@ Ajax request above is run.
 
 `this.agent` that is used in the method above is the instance `TaskCollectionAgent`. It runs Ajax request.
 
-On [Collection agent (1)](/rails/capejs_primer/collection_agent1.html), I defined `TaskCollectionAgent` as following.
+On the ["Collection agent (1)"](/rails/capejs_primer/collection_agent1.html), I defined `TaskCollectionAgent` as following.
 
 ```javascript
 class TaskCollectionAgent extends Cape.CollectionAgent {
@@ -103,6 +103,6 @@ Next, if you click the down-arrow icon of the same task, it will be back.
 
 ---
 
-The function to change the task's order is now over. Also, the selection [Cape.JS approach] (../../capejs_primer) for 5 month running is finished.
+The function to change the task's order is now over. Also, the tutorial ["Cape.JS Primer"] (../../capejs_primer) for five month running is finished.
 
-I couldn't mention about the routing function of Cape.JS at all. I'll explain it on the next selection "Next Cape.JS approach". Wait till it!
+I couldn't mention about the **routing** of Cape.JS at all. I'll explain it on the next tutorial. Wait till it!

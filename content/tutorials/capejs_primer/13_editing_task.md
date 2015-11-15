@@ -38,7 +38,7 @@ Before rewriting the JavaScript program, let's rewrite CSS first.
 ```
 
 <div class="note">
-Insert lines below the line <code>button + button {</code>. (except the last line)
+Insert lines below the line <code>button + button {</code> except the last line.
 </div>
 
 ----
@@ -192,4 +192,4 @@ Let's make sure it works well on the browser. If you click "Edit" button on the 
 
 That's all for today.
 
-On [Next lecture](../14_updating_task), I'll run the processing to update the database by Ajax request from this form.
+On [the next lecture](../14_updating_task), I'll run the processing to update the database by Ajax request from this form.

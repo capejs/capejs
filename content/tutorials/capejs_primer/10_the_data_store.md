@@ -2,7 +2,7 @@
 title: "The data store - Cape.JS Primer"
 ---
 
-On [the previous lecture](../09_updating_the_data_with_ajax)I explained how to update the database by calling the method `ajax` of jQuery in the component Cape.JS.
+On [the previous lecture](../09_updating_the_data_with_ajax)I explained how to update the database by calling the method `ajax` of jQuery in the Cape.JS component.
 
 The theme of this lecture is **the data store** of Cape.JS. It's a very important concept to do Web development in Cape.JS.
 
@@ -130,7 +130,7 @@ class TodoList extends Cape.Component {
 ```
 
 <div class="note">
-`toggleTask()` deletes all of methods.
+<code>toggleTask()</code> deletes all of methods.
 </div>
 
 The method `init()` is completely different now.
@@ -206,4 +206,4 @@ In addition, I rewrote `this.toggleTask(task)` to `this.ds.toggleTask(task)` on 
 
 The behavior of the application doesn't change by the change of this lecture. Boot Rails application as same as the precious time and click checkboxes of each tasks to make sure that the values of the column of the task `done` changes.
 
-On [Next lecture](../11_form_for_new_task), I'll explain how to display the form that newly adds the task.
+On [the next lecture](../11_form_for_new_task), I'll explain how to display the form that newly adds the task.

@@ -2,7 +2,7 @@
 title: "Collection agent (2) - Cape.JS Primer"
 ---
 
-On [the precious lecture](../17_collection_agent1), I'll keep rewriting the "Todo list" application by using the class `CollectionAgent`.
+Following [the previous lecture](../17_collection_agent1), I'll keep rewriting the "Todo list" application by using the class `CollectionAgent`.
 
 ----
 
@@ -143,4 +143,4 @@ The function to delete task moves right by above. Make sure it works well on the
 
 The point of this time is that the code that accesses to API server is simpler by using collection agent than the case that it uses jQuery.
 
-On [Next lecture](../19_collection_agent3), I'll recreate the function to add new task and the function to change the title of existing task.
+On [the next lecture](../19_collection_agent3), I'll recreate the function to add new task and the function to change the title of existing task.

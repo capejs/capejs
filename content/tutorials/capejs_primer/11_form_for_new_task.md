@@ -1,5 +1,5 @@
 ---
-title: "The newly added form of the task - Cape.JS Primer"
+title: "Show the form for new task - Cape.JS Primer"
 ---
 
 On [the previous lecture](../10_the_data_store), I explained the important concept of Cape.JS, the data store.
@@ -93,7 +93,7 @@ class TodoList extends Cape.Component {
 There are new 3 methods in this serialization such as `formFor()`, `textField()`, and ()`. formFor()` creates the element `<form>`. It assign the form's name on string as the first parameter. The name is used as the value of the attribute `name` of the element `<form>`. It must be unique within the component.
 
 <div class="note">
-Markup builder of Cape.JS has the method responding every valid HTML's element's name so you can create the element `<form>` as the method `form()`. But, you need to use `formFor()` in order to use the convenient methods like `val()` and `paramsFor()` that I'll explain later of next lecture.
+Markup builder of Cape.JS has the method responding every valid HTML's element's name so you can create the element <code>&lt;form&gt;</code> as the method <code>form()</code>. But, you need to use <code>formFor()</code> in order to use the convenient methods like <code>val()</code> and <code>paramsFor()</code> that I'll explain later of next lecture.
 </div>
 
 `textField()` create the text field. (the element `<input type="text">`) Assign the field's name on string as the parameter.
@@ -101,7 +101,7 @@ Markup builder of Cape.JS has the method responding every valid HTML's element's
 `btn()` creates the button for general purpose. (the element `<button type="button">`) Assign the label string as the parameter.
 
 <div class="note">
-You can also write it as `m.button('Add task', { type: 'button' })`. But, it's easier if you use the mthod `btn()`.
+You can also write it as <code>m.button('Add task', { type: 'button' })</code>. But, it's easier if you use the mthod <code>btn()</code>.
 </div>
 
 Now, let's make sure that it works well. Boot the server and access the top page on the browser. The screen will be like following.
@@ -133,4 +133,4 @@ When you write the string of the style `${ ... }` in the string surrounded by ba
 
 That's all for today.
 
-On [Next lecture](../12_creating_new_task), I'll explain the function to add new task by using this form.
+On [the next lecture](../12_creating_new_task), I'll explain the function to add new task by using this form.

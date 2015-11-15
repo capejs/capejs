@@ -2,7 +2,7 @@
 title: "Creating new task - Cape.JS Primer"
 ---
 
-On this lecture, we run the function to add the form of new added task to the database on [the pvericous lecture](../11_form_for_new_task).
+On this lecture, we run the function to add the form of new added task to the database on [the pvevious lecture](../11_form_for_new_task).
 
 ----
 
@@ -138,7 +138,7 @@ Let's make sure it works well on the browser. If the form's field `title` right 
 
 Let's improve one more UI. Now, you can click the button even if the title is empty and it creates the empty task. If the title is empty, let's disable the button.
 
-First, prepare the style sheet to have clear effect. Rewrite `app/assets/stylesheets/todo_list.scss` as following. (add 3 lines)
+First, prepare the style sheet to have clear effect. Rewrite `app/assets/stylesheets/todo_list.scss` as following (3 lines added)
 
 ```css
 #todo-list {
@@ -183,11 +183,11 @@ On the screen right after reloading the browser, the button is disabled like fol
 
 ![Screen capture](/capejs/images/capejs_primer/todo_list12.png)
 
-But, when you add 1 letter "あ" on the title field,
+But, when you add 1 letter "A" on the title field,
 
 ![Screen capture](/capejs/images/capejs_primer/todo_list13.png)
 
-The button is enabled. And then, when you delete "あ", it's disabled again.
+The button is enabled. And then, when you delete "A", it's disabled again.
 
 ![ Screen capture](/capejs/images/capejs_primer/todo_list12.png)
 
@@ -195,4 +195,4 @@ It's relatively annoying if you make this kind of effect happen in jQuery. Virtu
 
 ----
 
-On [Next lecture](../13_editing_task), I'll create the function to rewrite the task's title.
+On [the next lecture](../13_editing_task), I'll create the function to rewrite the task's title.

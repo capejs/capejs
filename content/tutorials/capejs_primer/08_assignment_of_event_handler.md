@@ -2,7 +2,7 @@
 title: "Assignment of event handler - Cape.JS Primer"
 ---
 
-On [the previous lecture](../07_initializing_the_date_with_ajax), I explained how to initialize the component data of Cape.JS on Ajax.
+On [the previous lecture](../07_initializing_the_date_with_ajax), I explained how to initialize the component data of Cape.JS via Ajax.
 
 On this lecture, I'll explain how to assign the event handler to HTML element.
 
@@ -54,7 +54,7 @@ This sentence assigns `this.toggleTask(task)` as the event `click` handler. The 
 <div class="note">
 Actually, the broad transcription is used that is introduced on ES6 in this sentence. When it's not simplified, it's like following.
 
-<pre>m.onclick((e) => { this.toggleTask(task) });</pre>
+<pre><code>m.onclick((e) => { this.toggleTask(task) });</code></pre>
 
 You can simplify brackets surrounding the parameter when there's 1 parameter and you can simplify braces surrounding the sentence when there's 1 content of the function.
 </div>

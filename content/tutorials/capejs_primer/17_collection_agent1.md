@@ -41,7 +41,7 @@ If you want to connect API server implemented on Ruby on Rails like our "Todo li
 By this setting, the appropriate value is set to the header of `X-CSRF-Token` of HTTP request sent to API server. Unless you set like this, the request by the method except GET/HEAD is rejected.
 
 <div class="note">
-The only adapter with Cape.JS of existing version (v1.2.0) is `'rails'`. If you want to use API server implemented by the one except Rails, you need to make the adapter by yourself.
+The only adapter with Cape.JS of existing version (v1.2.0) is <code>'rails'</code>. If you want to use API server implemented by the one except Rails, you need to make the adapter by yourself.
 </div>
 
 ----
@@ -50,7 +50,7 @@ Next, change the structure of JSON data that API server returns as "task's list"
 
 So far, `app/views/api/tasks/index.jbuilder` is wrote like following.
 
-```ruby
+```text
 json.array! @tasks, :id, :title, :done
 ```
 
@@ -58,8 +58,8 @@ The JSON data created from this code is like following.
 
 ```json
 [
-  { "id": 1, "title": "To buy cat's feet.", "done": true },
-  { "id": 2, "title": "To through bulk trash", "done": false }
+  { "id": 1, "title": "Buy cat food", "done": true },
+  { "id": 2, "title": "Take away the trash", "done": false }
 ]
 ```
 
@@ -68,8 +68,8 @@ But, the collection agent requires JSON data of the structure like following,
 ```json
 {
   "tasks": [
-    { "id": 1, "title": " To buy cat's feet", "done": true },
-    { "id": 2, "title": " To through bulk trash ", "done": false }
+    { "id": 1, "title": "Buy cat food", "done": true },
+    { "id": 2, "title": "Take away the trash", "done": false }
   ]
 }
 ```
@@ -78,7 +78,7 @@ The whole JSON data is necessary to be the object not the array. And, there is t
 
 Then, rewrite `app/views/api/tasks/index.jbuilder` as following.
 
-```ruby
+```text
 json.tasks do
   json.array! @tasks, :id, :title, :done
 end
@@ -107,7 +107,7 @@ class TaskCollectionAgent extends Cape.CollectionAgent {
 The class of the collection agent inherits the class `Cape.CollectionAgent`. On the constructor, it sets some properties. The property `basePath` is string based on URL of Ajax request. The default value is `'/'`. On our "Todo list" application, we set like that because it accesses to the path under the directory `/api/`.
 
 <div class="note">
-Said on rounding language of Rails, the property `basePath` corresponds to namespace.
+Said on rounding language of Rails, the property <code>basePath</code> corresponds to namespace.
 </div>
 
 The property `resourceName` means "resource name" wrote above. This value connects to the value of the property `basePath` when the collect agent creates URL of Ajax request. Also, it's used to acquire the array from JSON data that backs from API server as the key.
@@ -195,4 +195,4 @@ The task's list will display by changes above.
 
 ----
 
-The function to toggle the flag "done" of the task and the function to delete tasks don't move yet. On [Next lecture](../18_collection_agent2), I'll modify a part related these functions.
+The function to toggle the flag "done" of the task and the function to delete tasks don't move yet. On [the next lecture](../18_collection_agent2), I'll modify a part related these functions.

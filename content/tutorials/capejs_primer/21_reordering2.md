@@ -1,5 +1,5 @@
 ---
-title: "Changing displaying order (2) - Cape.JS Primer"
+title: "Change displaying order (2) - Cape.JS Primer"
 ---
 
 From [the previous lecture](../20_reordering1), I started making the function to interchange the displaying order of the task. I just set the button moving up and down now. I'll make API on the server this time.
@@ -10,7 +10,7 @@ First, introduce Gem package [acts_as_list](https://github.com/swanandp/acts_as_
 
 `Gemfile`
 
-```ruby
+```text
 gem 'acts_as_list'
 ```
 
@@ -30,7 +30,7 @@ bin/rake db:reset
 
 Mount `acts_as_list` to the class `Task`. Rewrite `app/models/task.rb` as following.
 
-```ruby
+```text
 class Task < ActiveRecord::Base
   acts_as_list
 end
@@ -40,7 +40,7 @@ end
 
 Next, I'll make API. `config/routes.rb` is now like following.
 
-```ruby
+```text
 Rails.application.routes.draw do
   root 'top#index'
 
@@ -52,7 +52,7 @@ end
 
 Rewrite it as following.
 
-```ruby
+```text
 Rails.application.routes.draw do
   root 'top#index'
 
@@ -68,7 +68,7 @@ end
 
 Next, implement the action  `move_higher` and `move_lower`. Rewrite `app/controllers/tasks_controller.rb` as following.
 
-```ruby
+```text
 class Api::TasksController < ApplicationController
   def index
     @tasks = Task.order(position: :asc)
@@ -94,11 +94,11 @@ class Api::TasksController < ApplicationController
   end
 
   private
-  (abbreviation)
+  (snip)
 ```
 
-Thank to `acts_as_list`, it's very simple code. I use these actions on Ajax. It just returns the string "OK" to the browser from the server.
+Thank to the `acts_as_list` gem, it's very simple code. I use these actions for Ajax requests. It just returns the string "OK" to the browser from the server.
 
 ----
 
-Now API is ready. On [Next lecture](../22_reordering3), I'll finish JavaScript by using this API.
+Now API is ready. On [the next lecture](../22_reordering3), I'll finish JavaScript by using this API.

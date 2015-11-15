@@ -22,7 +22,7 @@ Cape.JS is an open source project. It's distributed under the license of MIT. Yo
 
 * Preface
 * [Hello, world!](./01_hello_world)
-* [Reference of custom attribute value and nesting of HTLM elements](./02_custom_attributes_and_nested_elements)
+* [Reference of custom attribute value and nesting of HTML elements](./02_custom_attributes_and_nested_elements)
 * [Creating the text nodes](./03_creating_text_nodes)
 * [Integrate Cape.JS with Ruby on Rails (1)](./04_rails_integration1)
 * [Integrate Cape.JS with Ruby on Rails (2)](./05_rails_integration2)
@@ -31,7 +31,7 @@ Cape.JS is an open source project. It's distributed under the license of MIT. Yo
 * [Assignment of event handler](./08_assignment_of_event_handler)
 * [Updating the data with Ajax](./09_updating_the_data_with_ajax)
 * [The data store](./10_the_data_store)
-* [The newly added form of the task](./11_form_for_new_task)
+* [Show the form for new task](./11_form_for_new_task)
 * [Creating new task](./12_creating_new_task)
 * [The edit form of the task](./13_editing_task)
 * [Update the task](./14_updating_task)
@@ -40,6 +40,6 @@ Cape.JS is an open source project. It's distributed under the license of MIT. Yo
 * [Collection agent (1)](./17_collection_agent1)
 * [Collection agent (2)](./18_collection_agent2)
 * [Collection agent (3)](./19_collection_agent3)
-* [Changing displaying order (1)](./20_reordering1)
-* [Changing displaying order (2)](./21_reordering2)
-* [Changing displaying order (3)](./22_reordering3)
+* [Change displaying order (1)](./20_reordering1)
+* [Change displaying order (2)](./21_reordering2)
+* [Change displaying order (3)](./22_reordering3)

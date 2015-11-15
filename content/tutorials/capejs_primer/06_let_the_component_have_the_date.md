@@ -17,15 +17,15 @@ The "object" here is JavaScript object. JavaScript object has characters of Ruby
 Let's express the object like following of each task.:
 
 ```javascript
-{ title: "To buy cat's feed", done: false }
+{ title: "Buy cat food", done: false }
 ```
 
 Then, the array of the object becomes "list of tasks".
 
 ```
 [
-  { title: " To buy cat's feed ", done: false },
-  { title: "To go dentist", done: true }
+  { title: "Buy cat food", done: false },
+  { title: "Go dentist", done: true }
 ]
 ```
 
@@ -57,8 +57,8 @@ So, let's let the component of Cape.JS have the array of tasks. Rewrite `app/ass
 class TodoList extends Cape.Component {
   init() {
     this.tasks = [
-      { title: " To buy cat's feed ", done: false },
-      { title: " To go dentist ", done: true }
+      { title: "Buy cat food", done: false },
+      { title: "Go dentist", done: true }
     ];
     this.refresh();
   }

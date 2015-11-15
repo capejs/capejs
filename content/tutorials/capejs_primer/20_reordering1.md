@@ -1,12 +1,12 @@
 ---
-title: "Changing displaying order (1) - Cape.JS Primer"
+title: "Change displaying order (1) - Cape.JS Primer"
 ---
 
-3 lectures from this time, I'll add the function to change the displaying order of the task to our "Todo list" application.
+On the three lectures from this one, I'll add the function to change the displaying order of the tasks to our "Todo list" application.
 
 ----
 
-For preparation, organize the source code a little. Look at the code of the method `renderTask()` of the class `TodoList.
+For preparation, organize the source code a little. Look at the code of the method `renderTask()` of the class `TodoList`.
 
 ```javascript
   renderTask(m, task) {
@@ -83,7 +83,7 @@ Rewrite the fourth line.
 ```
 
 <div class="note">
-When the content of arrow function of ECMAScript6 includes many statements, it needs to be surrounded by brace. (`{}`)
+When the content of arrow function of ECMAScript6 includes many statements, it needs to be surrounded by brace (<code>{}</code>).
 </div>
 
 ----
@@ -134,10 +134,10 @@ First, change the method `render()` like following.
 I rewrote 2 points. I rewrote `forEach(task =>` to `forEach((task, index) =>` on the third line, and `this.renderButtons(m, task);` to `this.renderButtons(m, task, index);` on the sixth line.
 
 <div class="note">
-When the parameter of arrow function of ECMAScript6 is 1, it can abbreviate the quote (`()`) but if it 0 or many, it should be surrounded by quote.
+When the arrow function of ECMAScript6 takes only one argument, we can omit the parentheses (<code>()</code>) around the argument but if it takes zero, two or more arguments, we must surround them with parentheses.
 </div>
 
-Then, rewrite the method `renderbuttons()`.
+Then, rewrite the method `renderButtons()`.
 
 ```javascript
   renderButtons(m, task, index) {
@@ -155,7 +155,7 @@ Then, rewrite the method `renderbuttons()`.
   }
 ```
 
-I rewrote 3 points. First, I added the third parameter `index` to the method `renderbuttons()`. In addition, I added the statements starting from `if` on the fifth and third lines.
+I rewrote three points. First, I added the third parameter `index` to the method `renderbuttons()`. In addition, I added the statements starting from `if` on the fifth and third lines.
 
 On the fifth line from the bottom, I added `disabled` to the attribute `class` of the tag `<span>` surrounding the up button during `index == 0`. On the third line from the bottom, I added `disabled` the attribute`class` of the tag `<span>` surrounding the down button during `index == this.agent.object.length - 1`, the last sentence.
 
@@ -198,4 +198,4 @@ I added lines from the fifth to second from the bottom. Reload the browser and t
 
 ----
 
-That's all for today. On [Next time](../21_reordering2), I'll make API on server to interchange the task's order.
+That's all for today. On [the next lecture](../21_reordering2), I'll make API on the server to change the displaying order of tasks.

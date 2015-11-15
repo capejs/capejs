@@ -16,7 +16,7 @@ $ bin/rails g model task
 
 Then, open the file which name ends with `_create_tasks.rb` at the directory `db/migrate/` on the text editor and rewrite as following.
 
-```ruby
+```text
 class CreateTasks < ActiveRecord::Migration
   def change
     create_table :tasks do |t|
@@ -53,10 +53,10 @@ When you realize that you took mistake of the name of the table and the column, 
 We make the script to insert the sheet data (initialized data). Open `db/seeds.rb` on the text editor and add the following code after deletin all comment lines ( starting from `#`).
 
 ```ruby
-Task.create!(title: 'To buy cat\'s feed', done: false)
+Task.create!(title: 'Buy cat food', done: false)
 Task.create!(title: 'To go dentist', done: true)
-Task.create!(title: 'To through away bulk trash', done: false)
-Task.create!(title: 'To write blogs, done: false)
+Task.create!(title: 'Take out the trash', done: false)
+Task.create!(title: 'Write blogs', done: false)
 ```
 
 Run the following command on the terminal to insert the sheet data.
@@ -91,7 +91,7 @@ bin/rails g controller api/tasks
 
 The file `app/controllers/api/tasks_controller.rb` is created so rewrite as following on the text editor.
 
-```ruby
+```text
 class Api::TasksController < ApplicationController
   def index
     @tasks = Task.order(id: :asc)
@@ -112,7 +112,7 @@ json.array! @tasks, :id, :title, :done
 We created API. Let's make sure it works right. Boot Rails application and access to `http://localhost:3000/api/tasks` on the browser. If the strings like following display, it's OK.
 
 ```text
-[{"id":1,"title":"To buy cat's feed","done":false},{"id":2,"title":"To go dentist","done":true},{"id":3,"title":" To through away bulk trash ","done":false},{"id":4,"title":"To write blogs","done":false}]
+[{"id":1,"title":"Buy cat food","done":false},{"id":2,"title":"Go dentist","done":true},{"id":3,"title":"Take out the trash ","done":false},{"id":4,"title":"Write blogs","done":false}]
 ```
 
 ---
@@ -124,8 +124,8 @@ Open `app/assets/javascripts/todo_list.es6` on the text editor. The method `init
 ```javascript
   init() {
     this.tasks = [
-      { title: " To buy cat's feed ", done: false },
-      { title: " To go dentist ", done: true }
+      { title: "Buy cat food", done: false },
+      { title: "Go dentist", done: true }
     ];
     this.refresh();
   }

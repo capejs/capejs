@@ -2,7 +2,7 @@
 title: "Update the task - Cape.JS Primer"
 ---
 
-On [the precious lecture](../13_editing_task), I explain how to display the form modifying the task's title.
+On [the previous lecture](../13_editing_task), I explain how to display the form modifying the task's title.
 
 On this lecture, I'll run the function to update the database by using the form.
 
@@ -52,7 +52,7 @@ But, it doesn't work well unless it's Cape.JS 1.1.2 or later. Run the command `b
 ```
 
 <div class="note">
-Be careful that the version of `bootstrap` is `=3.3.4`. It doesn't work well on `3.3.5`, the newest version now on August 1st, 2015. For more information, let's go to [Q&A](http://stackoverflow.com/questions/31467635/sprockets-cant-find-bootstrap-v3-3-5-while-it-finds-v3-3-4) that I wrote on Stack Overflow.
+Be careful that the version of <code>bootstrap</code> is <code>=3.3.4</code>. It doesn't work well on <code>3.3.5</code>, the newest version now on August 1st, 2015. For more information, see <a href="http://stackoverflow.com/questions/31467635/sprockets-cant-find-bootstrap-v3-3-5-while-it-finds-v3-3-4">the question and answer</a> that I wrote on Stack Overflow.
 </div>
 
 The second one is to change `renderCreateForm()` and `renderUpdateForm()`.
@@ -101,7 +101,7 @@ Then, API of Rails application has already showed. The action `update` has alrea
   end
 ```
 
-I created it with "[updating data by Ajax](../09_updating_the_data_with_ajax)".
+I created it within [the 9th lecture](../09_updating_the_data_with_ajax) of this tutorial.
 
 So, here is relatively easy.
 
@@ -123,7 +123,7 @@ First, add the method `updateTask()` to the class `TaskStore`.
 ```
 
 <div class="note">
-Insert it next to the method `createTask()`.
+Insert it next to the method <code>createTask()</code>.
 </div>
 
 Next, rewrite the method `renderUpdateForm()` of the class `TodoList` as following. (the fourth line from the bottom)
@@ -155,6 +155,6 @@ Make sure it works well on the browser. If you click "Edit" button on right side
 
 ----
 
-On [Next lexture](../15_deleting_task), I'll run the function to delete the task. What's going to happen?
+On [the next lexture](../15_deleting_task), I'll run the function to delete the task. What's going to happen?
 
 I hope you, readers, try to think it as the practice.

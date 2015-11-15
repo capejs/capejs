@@ -2,7 +2,7 @@
 title: "Collection agent (3) - Cape.JS Primer"
 ---
 
-This is last lecture to upgrade out "Todo list" application to Cape.JS 1.2. On [the precious lecture](../18_collection_agent2), I explained how to make the function to toggle the flag "done" of the task and the function to delete the task move.
+This is last lecture to upgrade out "Todo list" application to Cape.JS 1.2. On [the previous lecture](../18_collection_agent2), I explained how to make the function to toggle the flag "done" of the task and the function to delete the task move.
 
 On this time, I'll recreate the function to add new task and the function to change the title of existing task.
 
@@ -148,6 +148,6 @@ Now, delete source code because the class `TaskStore` is not necessary anymore.
 rm app/assets/javascripts/task_store.es6
 ```
 
-Our "Todo list" application is now able to respond Cape.JS 1.2.
+Our "Todo list" application is now fully conformant to the Cape.JS 1.2.
 
-On [Next lecture](../20_reordering1), I'll add the function to change the showing order of the task on the different viewpoint.
+On [the next lecture](../20_reordering1), I'll add the function to change the showing order of the task on the different viewpoint.
