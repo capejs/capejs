@@ -59,15 +59,15 @@ I added two lines starting from `else` of last half of the method.
     else m.onclick(e => this.agent.patch('move_lower', task.id));
 ```
 
-If the value of `task.id` is 7 now and the up-arrow icon is clicked,
+If the value of `task.id` is 7 and the up-arrow icon is clicked,
+an Ajax request to the following API is executed:
 
 ```text
 PATCH /api/tasks/7/move_higher
 ```
 
-Ajax request above is run.
-
-`this.agent` that is used in the method above is the instance `TaskCollectionAgent`. It runs Ajax request.
+`this.agent` that is used in the method above is the instance `TaskCollectionAgent`,
+which executes the Ajax request.
 
 On the ["Collection agent (1)"](/rails/capejs_primer/collection_agent1.html), I defined `TaskCollectionAgent` as following.
 
@@ -81,28 +81,30 @@ class TaskCollectionAgent extends Cape.CollectionAgent {
 }
 ```
 
-The property `basePath` and `resourceName` determines URL of Ajax request. If it calles the method `this.agent.patch('move_higher', task.id)`,
+The properties `basePath` and `resourceName` determine the URL of Ajax request.
+The code `this.agent.patch('move_higher', task.id)` will make an Ajax requiest
+to the URL that is made from the following expression:
 
 ```javascript
   this.basePath + this.resourceName + '/' + 'move_higher' + '/' + task.id
 ```
 
-the sentences above make URL of Ajax request.
-
-Collection agent sends Ajax request and receives the request from the server and refresh CapeJS component as its client. This spec realizes the function to make task move up and down.
+Collection agent sends Ajax request and receives the request from the server
+and refreshes Cape.JS component which is its client.
+Thus the functionality to change the displaying order of tasks is realized.
 
 Now, make sure it works well on the browser.
 
-![Screen capture](/rails/files/todo_list23.png)
+![Screen capture](/capejs/images/capejs_primer/todo_list22.png)
 
-If you click the up-arrow icon on right side of "To through bulk trash", the screen will be following.
+If you click the up-arrow icon on right side of "Take out the trash", the screen will be following.
 
-![Screen capture](/rails/files/todo_list24.png)
+![Screen capture](/capejs/images/capejs_primer/todo_list23.png)
 
 Next, if you click the down-arrow icon of the same task, it will be back.
 
 ---
 
-The function to change the task's order is now over. Also, the tutorial ["Cape.JS Primer"] (../../capejs_primer) for five month running is finished.
+The functionality to change the task's order is now ready. Also, the tutorial ["Cape.JS Primer"] (../../capejs_primer) for five month running is finished.
 
 I couldn't mention about the **routing** of Cape.JS at all. I'll explain it on the next tutorial. Wait till it!

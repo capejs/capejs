@@ -72,7 +72,7 @@ The method `toggleTask()` of `TaskStore` checks whether the response of API serv
 
 On the other hand, the method `toggleTask()` of `TaskCollectionAgent` doesn't check the response of API server. If collection agent sends the request to API server by the method POST/PATCH/PUT/DELETE, it calls the method `refresh()` of itself (`this`) automatically after receiving the response of the server. As the result, it acquires the newest data from API server and updates the property `this.objects` and redraws the component, "client".
 
-That is how to rebuilt the function to toggle the flag "done" of the task. Make sure it works well on the browser. If you check "To buy cat's feed" from the status of the last time and check out "To go dentist", the screen will be like following.
+That is how to rebuilt the function to toggle the flag "done" of the task. Make sure it works well on the browser. If you check "To buy cat's feed" from the status of the last time and check out "Go dentist", the screen will be like following.
 
 ![Screen capture](/capejs/images/capejs_primer/todo_list19.png)
 
@@ -137,7 +137,8 @@ Let's compare the same name method of the class `TaskStore`.
 
 There are much less code here too.
 
-The function to delete task moves right by above. Make sure it works well on the browser. (abbreviate the article of capturing screen)
+We restored the functionality to delete task. Make sure it works well on the browser
+ (the screen capture is omitted).
 
 ----
 

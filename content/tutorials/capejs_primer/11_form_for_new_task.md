@@ -133,4 +133,4 @@ When you write the string of the style `${ ... }` in the string surrounded by ba
 
 That's all for today.
 
-On [the next lecture](../12_creating_new_task), I'll explain the function to add new task by using this form.
+On [the next lecture](../12_creating_new_task), I'll explain how to implement the functionality to add new task by using this form.

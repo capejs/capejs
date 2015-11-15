@@ -2,15 +2,15 @@
 title: "Cape.JS 1.2 - Cape.JS Primer"
 ---
 
-It has passed about a month from from [the previous lecture](../15_deleting_task).
-I thought I could release Cape.JS 1.2 soon at the time I wrote the article but I've noticed there are some "holes" of the spec since my co-workers and I actually use it. It's already updated for 16 times since the first Release Candidate (RC) version.
+It has passed about a month from [the previous lecture](../15_deleting_task).
+I thought I could release Cape.JS 1.2 soon at the time I wrote the article but I've noticed there are some "holes" of the spec since my co-workers and I actually use it. It's already updated for 16 times (!) since the first Release Candidate (RC) version.
 
-Now, 2 new classes are introduced on Cape.JS 1.2.
+Now, two new classes are introduced on Cape.JS 1.2.
 
 * `ResourceAgent`
 * `CollectionAgent`
 
-Each one is the class to handle "resource" that is called as Ruby on Rails. For more information, I'll explain later of the next time, you can write JavaScript program that accesses REST APIT easier than ever by using them.
+Each one is the class to handle "resource" in the Rails terminology. For more information, I'll explain later of the next time, you can write JavaScript program that accesses REST API easier than ever by using them.
 
 On this lecture, I'll explain how to upgrade Cape.JS to 1.2 of "Todo list" application you have created.
 
@@ -18,13 +18,13 @@ On this lecture, I'll explain how to upgrade Cape.JS to 1.2 of "Todo list" appli
 
 First update the server.(Rails) Open `Gemfile` on the text editor and rewrite the line starting from `gem 'rails'` as following.
 
-```ruby
+```text
 gem 'rails', '4.2.4'
 ```
 
 In addition, rewrite the last line as following.
 
-```ruby
+```text
 gem 'sprockets-es6', '~> 0.7.0'
 ```
 

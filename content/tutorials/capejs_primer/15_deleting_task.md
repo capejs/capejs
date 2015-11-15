@@ -72,7 +72,7 @@ It's finished. Make it sure it works well. The top screen will changes like foll
 
 ![Screen capture](/capejs/images/capejs_primer/todo_list17.png)
 
-It deletes the task by clicking "Delete" button on right side of "To go dentist".
+It deletes the task by clicking "Delete" button on right side of "Go dentist".
 
 ![Screen capture] (/capejs/images/capejs_primer/todo_list18.png)
 
@@ -103,10 +103,10 @@ Rewrite `renderTask()` as following.
 
 The lines from the third to sixth from the bottom are changed. They are the method of JavaScript displaying the confirm dialog `confirm()`.
 
-Make sure it works well on the browser. (abbreviate the lecture of screen capture) The dialog saying "Are you sure you want to delete this task?" by clicking "Delete" button. If you click "Cancel", it does nothing. If you click "OK", it deletes the task.
+Make sure it works well on the browser (the screen capture is omitted). The dialog saying "Are you sure you want to delete this task?" by clicking "Delete" button. If you click "Cancel", it does nothing. If you click "OK", it deletes the task.
 
 ----
 
-It might be easy this time for who have read this selections carefully.
+It might be easy this time for who have read this tutorial carefully so far.
 
 On [the next lecture](../16_capejs_1_2), I'll introduce the new version 1.2 of Cape.JS.

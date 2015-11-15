@@ -2,7 +2,8 @@
 title: "Creating new task - Cape.JS Primer"
 ---
 
-On this lecture, we run the function to add the form of new added task to the database on [the pvevious lecture](../11_form_for_new_task).
+On this lecture, we implement the functionality to add a task
+from the form we made on [the pvevious lecture](../11_form_for_new_task).
 
 ----
 
@@ -64,7 +65,7 @@ The added method `createTask()` receives the title of the task as the parameter.
 
 Next, let's create API. Open `app/controllers/api/tasks_controller.rb` on the text editor and rewrite it as following. (add the method `create`)
 
-```ruby
+```text
 class Api::TasksController < ApplicationController
   def index
     ...
@@ -93,7 +94,7 @@ The method `Task.create` adds the record to the table `tasks`.
 
 Lastly, it's finished when you finish writing `config/routes.rb`. (add `:create,` on the third line from the bottom)
 
- ```ruby
+ ```text
 Rails.application.routes.draw do
   root 'top#index'
 
@@ -128,17 +129,17 @@ But, it's a little bit strange. The title written the form is supposed to disape
   }
 ```
 
-The point I changed is fourth line. I cahnged `this.val('new_task.title')` to `this.val('new_task.title', '')`.
+The point I changed is fourth line. I changed `this.val('new_task.title')` to `this.val('new_task.title', '')`.
 
-When number of the parameters is 1, the method `val()` of the component just returns the value of the field. But when it receives the second parameter, it sets the value of the field to the value of the second parameter and then retuns the original value of the filed. Here, it empties the filed `title` of the form of new added task and passes the string wrote there the method `createTask` of the data store.
+When number of the parameters is one, the method `val()` of the component just returns the value of the field. But when it receives the second parameter, it sets the value of the field to the value of the second parameter and then returns the original value of the field. Here, it empties the field `title` of the form for new task and passes the string written there to the method `createTask` of the data store.
 
-Let's make sure it works well on the browser. If the form's field `title` right after adding the task is empty, it's OK.
+Let's make sure it works well on the browser. If the form's `title` field gets empty right after adding the task, it's OK.
 
 ----
 
 Let's improve one more UI. Now, you can click the button even if the title is empty and it creates the empty task. If the title is empty, let's disable the button.
 
-First, prepare the style sheet to have clear effect. Rewrite `app/assets/stylesheets/todo_list.scss` as following (3 lines added)
+First, prepare the style sheet to have clear effect. Rewrite `app/assets/stylesheets/todo_list.scss` as following (three lines added)
 
 ```css
 #todo-list {
@@ -167,7 +168,9 @@ Then, change the component's method `renderCreateForm()` as following.
   }
 ```
 
-I added 2 lines. It inserts `m.onkeyup(e => this.refresh());` at first and redraws the component every time the contents of the title field is changed. The even `keyup` breaks out when the key of the keyboard is up after down by pushing. It also breaks out when the string is pasted by the mouse.
+I added two lines. I inserted `m.onkeyup(e => this.refresh());` in order to redraw the component every time the contents of the title field is changed.
+The event `keyup` breaks out when a key on the keyboard is released.
+It also breaks out when the string is pasted by the user.
 
 Another added code is following.
 
@@ -183,7 +186,7 @@ On the screen right after reloading the browser, the button is disabled like fol
 
 ![Screen capture](/capejs/images/capejs_primer/todo_list12.png)
 
-But, when you add 1 letter "A" on the title field,
+But, when you add one letter "A" on the title field,
 
 ![Screen capture](/capejs/images/capejs_primer/todo_list13.png)
 

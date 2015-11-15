@@ -75,4 +75,4 @@ Now, let's make sure it works well. Boot the server and open `http://localhost:3
 
 ----
 
-That's all for today. On [Next lecture](../09_updating_the_data_with_ajax), I'll explain how to update the value of the task's  column `done` by using Ajax call of this event handler.
+That's all for today. On [the next lecture](../09_updating_the_data_with_ajax), I'll explain how to update the value of the task's  column `done` by using Ajax call of this event handler.

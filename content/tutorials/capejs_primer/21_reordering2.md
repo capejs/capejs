@@ -74,7 +74,7 @@ class Api::TasksController < ApplicationController
     @tasks = Task.order(position: :asc)
   end
 
-  (abbreviation)
+  (snip)
 
   def destroy
     Task.find(params[:id]).destroy
