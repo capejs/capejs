@@ -77,7 +77,7 @@ You can download and try a demo app from https://github.com/oiax/capejs-demo-on-
 
 This is built upon the Ruby on Rails. When you start it and open `http://localhost:3000` with your browser, you will see a page like this:
 
-![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/043f6996bd66979bb1dc9063f646780b27eeeb7a/doc/captures/todo_demo.png)
+![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/94008702fa48c14e525a13c1f138f02de85c7546/doc/captures/todo_demo.png)
 
 ## Browser Support
 
