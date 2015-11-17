@@ -6,17 +6,22 @@ title: "Cape.JS Primer - A Tutorial"
 
 ### Preface
 
-I start serializing to inform a new-born JavaScript UI framework in 2015, **Cape.JS**.
+With this series of tutorials you can learn the the programming of *Cape.JS,*
+a JavaScript UI framework that was born in 2015.
 
-Let's learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS and making an easy TODO administration application step by step.
+You will also learn how to integrate it with a back-end server written in Ruby on Rails,
+by creating a simple *to-do* list application step by step.
 
-Cape.JS uses a technique "virtual DOM" like [React](https://facebook.github.io/react/) and [Riot](https://muut.com/riotjs/) do. You can utilize Cape.JS to create interactive websites, which are websites that changes contents dynamically depend on users' actions.
+Cape.JS uses a technique "virtual DOM" just like [React](https://facebook.github.io/react/) and [Riot](https://muut.com/riotjs/) do.
+You can utilize Cape.JS to create interactive websites, whose contents change dynamically in response to user actions.
 
-Until recently, it's general to create interactive websites by making full use of [jQuery](https://jquery.com/), but front-end programming will be much easier to if you adopt "virtual DOM".
+Until recently, it's general to create such interactive websites by making full use of [jQuery](https://jquery.com/),
+but front-end programming will be much easier to if you adopt "virtual DOM".
 
-I say this again just in case, the writer of this serialization is the person who made Cape.JS (Mr.Kuroda). There were several people who uses it when I started serializing, but I hope many people will use it as many as possible.
-
-Cape.JS is an open source project. It's distributed under the license of MIT. You can use it for free and also re-distribute･sell after you modify its source code. You can find the source code at GitHub's [repository](https://github.com/oiax/capejs). Also, [documents](http://oiax.github.io/capejs/) in English are prepared.
+Cape.JS is an open source project. It's distributed under the MIT license.
+You can use it for free and also redistribute or sell it after you modify its source code.
+You can find the source code at GitHub's [repository](https://github.com/oiax/capejs).
+Also, [documents](http://oiax.github.io/capejs/) are prepared.
 
 ### Table of Contents
 
