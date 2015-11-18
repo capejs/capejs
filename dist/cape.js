@@ -1919,6 +1919,16 @@ Cape.createComponentClass = function(methods) {
   return klass;
 }
 
+Cape.createPartialClass = function(methods) {
+  var klass = function() {
+    Cape.Partial.apply(this, arguments);
+    if (typeof methods.constructor === 'function')
+      methods.constructor.apply(this, arguments);
+  };
+  Cape.extend(klass.prototype, Cape.Partial.prototype, methods);
+  return klass;
+}
+
 Cape.createDataStoreClass = function(methods) {
   var klass = function() {
     Cape.DataStore.apply(this, arguments);
