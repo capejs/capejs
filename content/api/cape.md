@@ -5,6 +5,7 @@ type: "api"
 
 [Cape.createCollectionAgentClass()](#create-collection-agent-class) -
 [Cape.createComponentClass()](#create-component-class) -
+[Cape.createPartialClass()](#create-partial-class) -
 [Cape.createDataStoreClass()](#create-data-store-class) -
 [Cape.createResourceAgentClass()](#create-resource-agent-class) -
 [Cape.deepExtend()](#deep-extend) -
@@ -45,6 +46,36 @@ With ECMAScript 6 syntax, you can write the above as follows:
 
 ```
 class HelloMessage extends Cape.Component {
+  render(m) {
+    m.p('Hello, ' + this.root.data.name + '!')
+  }
+}
+```
+
+<a class="anchor" id="create-partial-class"></a>
+### Cape.createPartialClass
+
+#### Usage
+
+* **Cape.createPartialClass(*methods*)**
+
+Create a class extending `Cape.Partial` with `methods`.
+
+
+#### Example
+
+```
+var HelloMessage = Cape.createPartialClass({
+  render: function(m) {
+    m.p('Hello, ' + this.root.data.name + '!')
+  }
+});
+```
+
+With ECMAScript 6 syntax, you can write the above as follows:
+
+```
+class HelloMessage extends Cape.Partial {
   render(m) {
     m.p('Hello, ' + this.root.data.name + '!')
   }

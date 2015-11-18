@@ -223,6 +223,32 @@ api_pages:
         id: values-for
         title: "#valuesFor()"
   -
+    name: "api/partial"
+    title: "Cape.Partial"
+    showSections: true
+    sections:
+      -
+        id: checked-on
+        title: "#checkedOn()"
+      -
+        id: form-data
+        title: "#formData()"
+      -
+        id: json-for
+        title: "#jsonFor()"
+      -
+        id: params-for
+        title: "#paramsFor()"
+      -
+        id: refresh
+        title: "#refresh()"
+      -
+        id: val
+        title: "#val()"
+      -
+        id: values-for
+        title: "#valuesFor()"
+  -
     name: "api/markup_builder"
     title: "Cape.MarkupBuilder"
     showSections: true

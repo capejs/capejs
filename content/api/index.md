@@ -5,6 +5,7 @@ type: "api"
 
 [Cape](./cape) -
 [Cape.Component](./component) -
+[Cape.Partial](./partial) -
 [Cape.MarkupBuilder](./markup_builder) -
 [Cape.DataStore](./data_store) -
 [Cape.CollectionAgent](./collection_agent) -
@@ -19,13 +20,14 @@ It has some utility methods, such as `extend`, `merge`, etc.
 
 ### Overview of classes
 
-The **Cape.JS** consists of following five classes:
+The **Cape.JS** consists of following eight classes:
 
 * [Cape.Component](./component)
+* [Cape.Partial](./partial) <span class="badge alert-info">1.3</span>
 * [Cape.MarkupBuilder](./markup_builder)
 * [Cape.DataStore](./data_store)
-* [Cape.CollectionAgent](./collection_agent)
-* [Cape.ResourceAgent](./resource_agent)
+* [Cape.CollectionAgent](./collection_agent) <span class="badge alert-info">1.2</span>
+* [Cape.ResourceAgent](./resource_agent) <span class="badge alert-info">1.2</span>
 * [Cape.Router](./router)
 * [Cape.RoutingMapper](./routing_mapper)
 
@@ -35,6 +37,10 @@ The most basic class is `Cape.Component`.
 You need to define a class extending it in order to create a web widget using Cape.JS.
 At least, instances of this class must have a method called `render`, which defines
 how the component should be rendered in HTML.
+
+`Cape.Partial` is a class for _partial_ components, namely
+the components that are include into another component.
+Partial components can not be mounted as a web widget directly.
 
 `Cape.MarkupBuilder` is a class whose instances build *virtual dom trees.*
 Usually you don't instantiate markup builders by yourself.
