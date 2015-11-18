@@ -1,6 +1,6 @@
 {
   "name": "capejs_demo_apps_es6_version",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "A demo apps for the CapeJS (ES6 version)",
   "author": "Oiax, Inc. and other contributors",
   "license": "MIT",
@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build": "cd hello_message; browserify hello_message.es6 -t babelify --standalone ES6HelloMessage --outfile hello_message.js",
-    "todo": "cd todo_list; browserify todo_list.es6 -t babelify --standalone ES6TodoList --outfile todo_list.js"
+    "todo": "cd todo_list; browserify todo_list.es6 -t babelify --standalone ES6TodoList --outfile todo_list.js",
+    "partials": "cd partials; browserify clickable_area.es6 -t babelify --standalone ES6ClickableArea --outfile clickable_area.js; browserify partial_container.es6 -t babelify --standalone ES6PartialContainer --outfile partial_container.js; "
   }
 }
