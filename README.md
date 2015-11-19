@@ -3,6 +3,8 @@
 ![Cape.JS logo](https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg)
 
 [![Circle CI](https://circleci.com/gh/oiax/capejs.png?style=badge)](https://circleci.com/gh/oiax/capejs)
+[![Npm Version](https://badge.fury.io/js/capejs.svg)](http://badge.fury.io/js/capejs)
+[![Bower Version](https://badge.fury.io/bo/capejs.svg)](http://badge.fury.io/bo/capejs)
 
 Cape.JS is a lightweight JavaScript UI framework with following features:
 
