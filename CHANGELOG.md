@@ -1,6 +1,6 @@
 # CHANGELOG - Cape.JS
 
-## 1.3.0 (Not yet released)
+## 1.3.0 (November 19, 2015)
 
 ### `Cape.Partial`
 
