@@ -6,11 +6,6 @@ general:
 machine:
   node:
     version: 4.2.1
-  environment:
-    PATH: "~/.node/bin:$PATH"
-dependencies:
-  post:
-    - bash ./bin/install-bower-gulp-etc.sh
 test:
   override:
     - gulp test
