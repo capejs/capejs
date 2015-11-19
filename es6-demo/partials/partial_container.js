@@ -31,7 +31,7 @@ var ES6PartialContainer = (function (_Cape$Component) {
       var _this = this;
 
       m.div({ 'class': 'partial-container' }, function (m) {
-        m.div(function (m) {
+        m.div({ id: 'total' }, function (m) {
           m.text(String(_this.area1.counter));
           m.text(' + ');
           m.text(String(_this.area2.counter));

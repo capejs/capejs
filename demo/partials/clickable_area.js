@@ -1,6 +1,7 @@
-class ES6ClickableArea extends Cape.Partial {
-  constructor() {
-    super();
+"use strict";
+
+var ClickableArea = Cape.createPartialClass({
+  constructor: function() {
     this.counter = 0;
   },
 

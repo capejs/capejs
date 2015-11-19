@@ -7,7 +7,7 @@ class ES6PartialContainer extends Cape.Component {
 
   render(m) {
     m.div({ class: 'partial-container' }, m => {
-      m.div(m => {
+      m.div({ id: 'total' }, m => {
         m.text(String(this.area1.counter));
         m.text(' + ');
         m.text(String(this.area2.counter));

@@ -9,7 +9,7 @@ var PartialContainer = Cape.createComponentClass({
 
   render: function(m) {
     m.div({ class: 'partial-container' }, function(m) {
-      m.div(function(m) {
+      m.div({ id: 'total' }, function(m) {
         m.text(String(this.area1.counter));
         m.text(' + ');
         m.text(String(this.area2.counter));

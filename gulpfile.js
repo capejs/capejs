@@ -31,7 +31,9 @@ var testFiles = [
   'demo/**/*.js',
   'es6-demo/hello_message/*.js',
   'es6-demo/todo_list/*.js',
+  'es6-demo/partials/*.js',
   'test/integration/*.js',
+  'test/integration/es6/*.js',
   'test/helpers.js',
   'test/spec/*.js'
 ];
