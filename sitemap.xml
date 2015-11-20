@@ -7,7 +7,11 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/component/</loc>
+    <loc>http://oiax.github.io/capejs/api/collection_agent/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/api/data_store/</loc>
   </url>
   
   <url>
@@ -19,11 +23,7 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/data_store/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/api/collection_agent/</loc>
+    <loc>http://oiax.github.io/capejs/api/component/</loc>
   </url>
   
   <url>
@@ -31,7 +31,7 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/resource_agent/</loc>
+    <loc>http://oiax.github.io/capejs/api/partial/</loc>
   </url>
   
   <url>
@@ -39,7 +39,7 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/api/routing_mapper/</loc>
+    <loc>http://oiax.github.io/capejs/api/resource_agent/</loc>
   </url>
   
   <url>
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/data_stores/</loc>
+    <loc>http://oiax.github.io/capejs/api/routing_mapper/</loc>
   </url>
   
   <url>
@@ -55,11 +55,11 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/</loc>
+    <loc>http://oiax.github.io/capejs/data_stores/</loc>
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/resource_agents/</loc>
+    <loc>http://oiax.github.io/capejs/</loc>
   </url>
   
   <url>
@@ -67,15 +67,7 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/router/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/04_rails_integration1/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/03_creating_text_nodes/</loc>
+    <loc>http://oiax.github.io/capejs/resource_agents/</loc>
   </url>
   
   <url>
@@ -83,19 +75,19 @@
   </url>
   
   <url>
+    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/03_creating_text_nodes/</loc>
+  </url>
+  
+  <url>
     <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/05_rails_integration2/</loc>
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/07_initializing_the_date_with_ajax/</loc>
+    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/04_rails_integration1/</loc>
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/09_updating_the_data_with_ajax/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/08_assignment_of_event_handler/</loc>
+    <loc>http://oiax.github.io/capejs/router/</loc>
   </url>
   
   <url>
@@ -103,7 +95,19 @@
   </url>
   
   <url>
+    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/07_initializing_the_date_with_ajax/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/08_assignment_of_event_handler/</loc>
+  </url>
+  
+  <url>
     <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/11_form_for_new_task/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/09_updating_the_data_with_ajax/</loc>
   </url>
   
   <url>
@@ -127,15 +131,7 @@
   </url>
   
   <url>
-    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/17_collection_agent1/</loc>
-  </url>
-  
-  <url>
     <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/16_capejs_1_2/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/19_collection_agent3/</loc>
   </url>
   
   <url>
@@ -143,7 +139,23 @@
   </url>
   
   <url>
+    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/17_collection_agent1/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/19_collection_agent3/</loc>
+  </url>
+  
+  <url>
     <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/20_reordering1/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/21_reordering2/</loc>
+  </url>
+  
+  <url>
+    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/22_reordering3/</loc>
   </url>
   
   <url>
@@ -152,14 +164,6 @@
   
   <url>
     <loc>http://oiax.github.io/capejs/tutorials/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/22_reordering3/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oiax.github.io/capejs/tutorials/capejs_primer/21_reordering2/</loc>
   </url>
   
 </urlset>

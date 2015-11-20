@@ -125,6 +125,30 @@
         </li>
       
         <li>
+          <a href="http://oiax.github.io/capejs//api/partial">Cape.Partial</a>
+          
+          
+          <ul>
+          
+            <li><a href="http://oiax.github.io/capejs//api/partial#checked-on">#checkedOn()</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//api/partial#form-data">#formData()</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//api/partial#json-for">#jsonFor()</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//api/partial#params-for">#paramsFor()</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//api/partial#refresh">#refresh()</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//api/partial#val">#val()</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//api/partial#values-for">#valuesFor()</a></li>
+          
+          </ul>
+          
+        </li>
+      
+        <li>
           <a href="http://oiax.github.io/capejs//api/markup_builder">Cape.MarkupBuilder</a>
           
           
@@ -432,6 +456,7 @@
 
 <p><a href="#create-collection-agent-class">Cape.createCollectionAgentClass()</a> -
 <a href="#create-component-class">Cape.createComponentClass()</a> -
+<a href="#create-partial-class">Cape.createPartialClass()</a> -
 <a href="#create-data-store-class">Cape.createDataStoreClass()</a> -
 <a href="#create-resource-agent-class">Cape.createResourceAgentClass()</a> -
 <a href="#deep-extend">Cape.deepExtend()</a> -
@@ -481,11 +506,41 @@
 }
 </code></pre>
 
+<p><a class="anchor" id="create-partial-class"></a></p>
+
+<h3 id="cape-createpartialclass:e3a066ada4b0c96341f2c8dadc13df88">Cape.createPartialClass</h3>
+
+<h4 id="usage-2:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
+
+<ul>
+<li><strong>Cape.createPartialClass(<em>methods</em>)</strong></li>
+</ul>
+
+<p>Create a class extending <code>Cape.Partial</code> with <code>methods</code>.</p>
+
+<h4 id="example-1:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
+
+<pre><code>var HelloMessage = Cape.createPartialClass({
+  render: function(m) {
+    m.p('Hello, ' + this.root.data.name + '!')
+  }
+});
+</code></pre>
+
+<p>With ECMAScript 6 syntax, you can write the above as follows:</p>
+
+<pre><code>class HelloMessage extends Cape.Partial {
+  render(m) {
+    m.p('Hello, ' + this.root.data.name + '!')
+  }
+}
+</code></pre>
+
 <p><a class="anchor" id="create-component-class"></a></p>
 
 <h3 id="cape-createdatastoreclass:e3a066ada4b0c96341f2c8dadc13df88">Cape.createDataStoreClass</h3>
 
-<h4 id="usage-2:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
+<h4 id="usage-3:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
 
 <ul>
 <li><strong>Cape.createDataStoreClass(<em>methods</em>)</strong></li>
@@ -493,7 +548,7 @@
 
 <p>Create a class extending <code>Cape.DataStore</code> with <code>methods</code>.</p>
 
-<h4 id="example-1:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
+<h4 id="example-2:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
 
 <pre><code>var TodoItemStore = Cape.createDataStoreClass({
   init: function() {
@@ -537,7 +592,7 @@
 
 <h3 id="cape-createresourceagentclass:e3a066ada4b0c96341f2c8dadc13df88">Cape.createResourceAgentClass</h3>
 
-<h4 id="usage-3:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
+<h4 id="usage-4:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
 
 <ul>
 <li><strong>Cape.createResourceAgentClass(<em>methods</em>)</strong></li>
@@ -559,7 +614,7 @@ collection agents and resource agents.</p>
 
 <h3 id="cape-deepextend:e3a066ada4b0c96341f2c8dadc13df88">Cape.deepExtend</h3>
 
-<h4 id="usage-4:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
+<h4 id="usage-5:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
 
 <ul>
 <li><strong>Cape.extend(<em>target[, object1, object2, &hellip; objectN]</em>)</strong></li>
@@ -567,7 +622,7 @@ collection agents and resource agents.</p>
 
 <p>Merge the properties of two or more objects together into the first object recursively.</p>
 
-<h4 id="example-2:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
+<h4 id="example-3:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
 
 <pre><code>var object1 = {
   apple: 0,
@@ -595,7 +650,7 @@ Cape.extend(object1, object2);
 
 <h3 id="cape-extend:e3a066ada4b0c96341f2c8dadc13df88">Cape.extend</h3>
 
-<h4 id="usage-5:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
+<h4 id="usage-6:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
 
 <ul>
 <li><strong>Cape.extend(<em>target[, object1, object2, &hellip; objectN]</em>)</strong></li>
@@ -603,7 +658,7 @@ Cape.extend(object1, object2);
 
 <p>Merge the properties of two or more objects together into the first object.</p>
 
-<h4 id="example-3:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
+<h4 id="example-4:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
 
 <pre><code>var object1 = {
   apple: 0,
@@ -631,7 +686,7 @@ Cape.extend(object1, object2);
 
 <h3 id="cape-merge:e3a066ada4b0c96341f2c8dadc13df88">Cape.merge</h3>
 
-<h4 id="usage-6:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
+<h4 id="usage-7:e3a066ada4b0c96341f2c8dadc13df88">Usage</h4>
 
 <ul>
 <li><strong>Cape.merge(target<em>[, object1, object2, &hellip; objectN]</em>)</strong></li>
@@ -640,7 +695,7 @@ Cape.extend(object1, object2);
 <p>Merge (but not override) the properties of two or more objects together
 into the first object</p>
 
-<h4 id="example-4:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
+<h4 id="example-5:e3a066ada4b0c96341f2c8dadc13df88">Example</h4>
 
 <pre><code>var object1 = {
   apple: 0,
