@@ -3,9 +3,9 @@ general:
     ignore:
       - documentation
       - gh-pages
-machine:
-  node:
-    version: 4.2.1
 test:
   override:
+    - nvm alias default 4.2.6
+    - gulp test
+    - nvm alias default 5.5.0
     - gulp test
