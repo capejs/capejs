@@ -1,15 +1,15 @@
-# Contributing to CapeJS
+# Contributing to Cape.JS
 
 If you’d like to contribute a feature or bug fix,
-you can [fork](https://help.github.com/articles/fork-a-repo/) CapeJS,
+you can [fork](https://help.github.com/articles/fork-a-repo/) Cape.JS,
 commit your changes,
 and [send a pull request](https://help.github.com/articles/using-pull-requests/).
 
-Please make sure to [search the issue tracker](https://github.com/oiax/capejs/issues) first.
+Please make sure to [search the issue tracker](https://github.com/oiax/Cape.JS/issues) first.
 
 ## Setting up your development environment
 
-You need [Node.js](https://nodejs.org/) to build CapeJS and run the tests.
+You need [Node.js](https://nodejs.org/) 4 or newer to build Cape.JS and run the tests.
 
 You also need [gulp](http://gulpjs.com/) and [browserify](http://browserify.org/),
 which can be installed via `npm` (a package manager for Node.js):
@@ -24,7 +24,7 @@ Then run the following command (without `sudo`) to install dependencies:
 $ npm install
 ```
 
-## How to build CapeJS
+## How to build Cape.JS
 
 ```shell
 $ gulp
@@ -60,5 +60,3 @@ Run the following command on the terminal:
 ```shell
 $ npm run test2
 ```
-
-You need [io.js](https://iojs.org) to run the test this way.
