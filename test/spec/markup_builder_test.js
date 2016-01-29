@@ -3,13 +3,13 @@
 var isNode = typeof module !== 'undefined' && module.exports !== undefined;
 
 describe('MarkupBuilder', function() {
-  before(function() {
+  beforeEach(function() {
     var div = document.createElement('div');
     div.id = "target";
     document.body.appendChild(div);
   })
 
-  after(function() {
+  afterEach(function() {
     var element = document.getElementById('target');
     document.body.removeChild(element);
   })
