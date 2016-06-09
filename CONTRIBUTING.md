@@ -9,7 +9,7 @@ Please make sure to [search the issue tracker](https://github.com/oiax/Cape.JS/i
 
 ## Setting up your development environment
 
-You need [Node.js](https://nodejs.org/) 4 or newer to build Cape.JS and run the tests.
+You need [Node.js](https://nodejs.org/) 5.5 to build Cape.JS and run the tests.
 
 You also need [gulp](http://gulpjs.com/) and [browserify](http://browserify.org/),
 which can be installed via `npm` (a package manager for Node.js):

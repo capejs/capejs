@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/oiax/capejs",
   "engines": {
-    "node": ">=4.2"
+    "node": ">=5.5"
   },
   "dependencies": {
     "inflected": "^1.1.6",
