@@ -1,19 +1,19 @@
     <div class="col-xs-12 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
       <ul class="nav">
-      {{ $baseUrl := .Site.BaseUrl }}
+      {{ $BaseURL := .Site.BaseURL }}
       {{ range $.Site.Data.tree.top }}
-        <li><a href="{{ $baseUrl }}/#{{ .id }}">{{ .title }}</a></li>
+        <li><a href="{{ $BaseURL }}/#{{ .id }}">{{ .title }}</a></li>
       {{ end}}
       {{ range $.Site.Data.tree.pages }}
         <li>
-          <a href="{{ $baseUrl }}/{{ .name }}">{{ .title }}</a>
+          <a href="{{ $BaseURL }}/{{ .name }}">{{ .title }}</a>
           {{ $name := .name }}
           <ul>
           {{ range .sections }}
-            <li><a href="{{ $baseUrl }}/{{ $name }}/#{{ .id }}">{{ .title }}</a></li>
+            <li><a href="{{ $BaseURL }}/{{ $name }}/#{{ .id }}">{{ .title }}</a></li>
           {{ end}}
           </ul>
       {{ end}}
-        <li><a href="{{ $baseUrl }}/api">API Reference</a></li>
+        <li><a href="{{ $BaseURL }}/api">API Reference</a></li>
       </ul>
     </div>

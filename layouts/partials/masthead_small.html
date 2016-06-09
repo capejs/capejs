@@ -10,7 +10,7 @@
         <div class="well well-lg">
           <div class="row">
             <div class="col-sm-12">
-              <img src="{{ .Site.BaseUrl }}/images/capejs.svg" class="img-responsive">
+              <img src="{{ .Site.BaseURL }}/images/capejs.svg" class="img-responsive">
             </div>
           </div>
         </div>
@@ -18,22 +18,22 @@
     </div>
     <div class="row">
       <div class="col-xs-12" style="padding-bottom: 10px">
-        {{ $baseUrl := .Site.BaseUrl }}
+        {{ $BaseURL := .Site.BaseURL }}
         {{ range $.Site.Data.tree.top }}
-        <a href="{{ $baseUrl }}/#{{ .id }}">{{ .title }}</a> -
+        <a href="{{ $BaseURL }}/#{{ .id }}">{{ .title }}</a> -
         {{ end}}
-        <a href="{{ $baseUrl }}/#acknowledgements">Acknowledgements</a> -
-        <a href="{{ $baseUrl }}/#trademarks">Trademarks</a> -
-        <a href="{{ $baseUrl }}/#license">License</a>
+        <a href="{{ $BaseURL }}/#acknowledgements">Acknowledgements</a> -
+        <a href="{{ $BaseURL }}/#trademarks">Trademarks</a> -
+        <a href="{{ $BaseURL }}/#license">License</a>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12" style="padding-bottom: 10px">
-        {{ $baseUrl := .Site.BaseUrl }}
+        {{ $BaseURL := .Site.BaseURL }}
         {{ range $.Site.Data.tree.pages }}
-        <a href="{{ $baseUrl }}/{{ .name }}">{{ .title }}</a> -
+        <a href="{{ $BaseURL }}/{{ .name }}">{{ .title }}</a> -
         {{ end}}
-        <a href="{{ $baseUrl }}/api">API Reference</a>
+        <a href="{{ $BaseURL }}/api">API Reference</a>
       </div>
     </div>
   </div>
