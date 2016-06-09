@@ -8,7 +8,7 @@ var watch = require('gulp-watch');
 var Server = require('karma').Server;
 
 gulp.task('build', function(cb) {
-  exec('browserify --standalone Cape lib/cape.js > dist/cape.js', function (err, stdout, stderr) {
+  exec('browserify --transform babelify --standalone Cape lib/cape.js > dist/cape.js', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);
