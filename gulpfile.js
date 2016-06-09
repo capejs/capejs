@@ -5,7 +5,7 @@ var uglify = require('gulp-uglify');
 var run = require('gulp-run');
 var rename = require('gulp-rename');
 var watch = require('gulp-watch');
-var karma = require('gulp-karma');
+var Server = require('karma').Server;
 
 gulp.task('build', function() {
   return run('browserify --standalone Cape lib/cape.js > dist/cape.js').exec()
@@ -38,15 +38,13 @@ var testFiles = [
   'test/spec/*.js'
 ];
 
-gulp.task('test', function() {
-  return gulp.src(testFiles)
-    .pipe(karma({
-      configFile: 'test/karma.conf.js',
-      action: 'run'
-    }))
-    .on('error', function(err) {
-      throw err;
-    });
+gulp.task('test', function (done) {
+  new Server({
+    configFile: __dirname + '/test/karma.conf.js',
+    singleRun: true
+  }, function(exitCode) {
+    process.exit(exitCode)
+  }).start();
 });
 
 gulp.task('default', ['build']);

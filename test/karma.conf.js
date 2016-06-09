@@ -9,6 +9,20 @@ module.exports = function(config) {
     ],
     browsers: ['Chrome'],
     reporters: ['progress'],
-    singleRun: true
+    singleRun: true,
+    files: [
+      '../node_modules/chai/chai.js',
+      '../node_modules/sinon/pkg/sinon.js',
+      '../dist/cape.js',
+      '../test/chai.js',
+      '../demo/**/*.js',
+      '../es6-demo/hello_message/*.js',
+      '../es6-demo/todo_list/*.js',
+      '../es6-demo/partials/*.js',
+      'integration/*.js',
+      'integration/es6/*.js',
+      'helpers.js',
+      'spec/*.js'
+    ]
   })
 }
