@@ -81,9 +81,15 @@ This is built upon the Ruby on Rails. When you start it and open `http://localho
 
 ![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/26ce9cefc92d7dd30921995af57545ea1a41fc7a/doc/captures/todo-demo0.png)
 
+Click the "Start" button to navigate to Login form. Then, enter your credentials (`alice` and `hotyoga`) to login to the sytem.
+
 ![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/26ce9cefc92d7dd30921995af57545ea1a41fc7a/doc/captures/todo-demo1.png)
 
+You can list, add, update and delete tasks here.
+
 ![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/26ce9cefc92d7dd30921995af57545ea1a41fc7a/doc/captures/todo-demo2.png)
+
+Click the "Logout" button to show the modal for confirmation.
 
 ![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/26ce9cefc92d7dd30921995af57545ea1a41fc7a/doc/captures/todo-demo3.png)
 
