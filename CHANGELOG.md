@@ -1,6 +1,6 @@
 # CHANGELOG - Cape.JS
 
-## 1.4.0 (Not yet released)
+## 1.4.0 (June 11, 2016)
 
 ### `Cape.Router`
 
