@@ -3857,7 +3857,7 @@ by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
 &lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
 &lt;a href=&#34;#namespace&#34;&gt;#namespace&lt;/a&gt; -
 &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; -
-&lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt; -
+&lt;a href=&#34;#navigate-to&#34;&gt;#navigateTo()&lt;/a&gt; -
 &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; -
 &lt;a href=&#34;#mount&#34;&gt;#mount()&lt;/a&gt; -
 &lt;a href=&#34;#params&#34;&gt;#params&lt;/a&gt; -
@@ -4048,7 +4048,7 @@ console.log(router.namespace); // =&amp;gt; &amp;quot;admin&amp;quot;
 &lt;p&gt;Sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;
 See &lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;navigateTo&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;navigate-to&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;navigateto-span-class-badge-alert-info-1-4-span&#34;&gt;#navigateTo() &lt;span class=&#34;badge alert-info&#34;&gt;1.4&lt;/span&gt;&lt;/h3&gt;
 
