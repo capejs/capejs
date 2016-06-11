@@ -13,6 +13,7 @@ title: "Cape.Router - API Reference"
 [#flash](#flash) -
 [#namespace](#namespace) -
 [#navigate()](#navigate) -
+[#navigateTo()](#navigateTo) -
 [#notify()](#notify) -
 [#mount()](#mount) -
 [#params](#params) -
@@ -37,7 +38,7 @@ var router = new Cape.Router();
 router.draw(function(m) {
   m.many('articles');
 });
-router.navigate('articles/123/edit');
+router.navigateTo('articles/123/edit');
 console.log(router.action); // => "edit"
 ```
 
@@ -72,9 +73,9 @@ router.draw(function(m) {
     m.many('articles');
   });
 });
-router.navigate('articles/123/edit');
+router.navigateTo('articles/123/edit');
 console.log(router.component); // => "edit"
-router.navigate('admin/articles/123/edit');
+router.navigateTo('admin/articles/123/edit');
 console.log(router.component); // => "edit"
 ```
 
@@ -93,9 +94,9 @@ router.draw(function(m) {
     m.many('articles');
   });
 });
-router.navigate('articles/123/edit');
+router.navigateTo('articles/123/edit');
 console.log(router.container); // => "articles"
-router.navigate('admin/articles/123/edit');
+router.navigateTo('admin/articles/123/edit');
 console.log(router.container); // => "admin.articles"
 ```
 
@@ -153,7 +154,7 @@ which is emptied after each navigation.
 
 ```javascript
 router.flash.alert = 'The specified article has been deleted.';
-router.navigate('articles');
+router.navigateTo('articles');
 ```
 
 
@@ -172,18 +173,30 @@ router.draw(function(m) {
     m.many('articles');
   });
 });
-router.navigate('articles/123/edit');
+router.navigateTo('articles/123/edit');
 console.log(router.namespace); // => null
-router.navigate('admin/articles/123/edit');
+router.navigateTo('admin/articles/123/edit');
 console.log(router.namespace); // => "admin"
 ```
 
 <a class="anchor" id="navigate"></a>
 ### #navigate()
 
+This method is *deprecated* as of v1.4.
+
 #### Usage
 
 * **navigate(hash)**
+
+Sets the anchor part (begins with a `#` symbol) of the browser's current URL to _hash._
+See [#navigateTo()](#navigateTo).
+
+<a class="anchor" id="navigateTo"></a>
+### #navigateTo() <span class="badge alert-info">1.4</span>
+
+#### Usage
+
+* **navigateTo(hash)**
 
 This method sets the anchor part (begins with a `#` symbol) of the browser's current URL to _hash._
 
@@ -204,9 +217,34 @@ Lastly, the `#notify()` method is executed.
 
 If you don't want the `#notify()` method to be executed, use [#show()](#show) instead.
 
+#### Usage
+
+* **navigateTo(hash, params)**
+
+Sets the anchor part (begins with a `#` symbol) of the browser's current URL to _hash_
+adding query string which is constructed from _params._
+
+#### Example
+
+```javascript
+router.navigateTo('articles', { page: '2' });
+```
+
+#### Usage
+
+* **navigateTo(hash, params, options)**
+
+Same as the previous usage, except that the flash messages are set using _options._
+
+#### Example
+
+```javascript
+router.navigateTo('articles', {}, { notice: 'A new article has been uploaded.' });
+router.navigateTo('articles/new', {}, { alert: 'Failed to upload a new article.' });
+```
+
 <a class="anchor" id="notify"></a>
 ### #notify()
-
 
 #### Usage
 
@@ -218,7 +256,7 @@ of all components registerd as targets of _notification_ of this data store.
 Eventually, each target component executes its `#render()` method,
 which has to be defined by developers.
 
-The `#notify()` method is executed after each time the [#navigate()](#navigate) method is called.
+The `#notify()` method is executed after each time the [#navigateTo()](#navigateTo) method is called.
 
 <a class="anchor" id="mount"></a>
 ### #mount()
@@ -270,11 +308,11 @@ router.draw(function(m) {
     m.many('comments');
   });
 })
-router.navigate('help/password');
+router.navigateTo('help/password');
 // router.params.name === 'password'
-router.navigate('articles/123')
+router.navigateTo('articles/123')
 // router.params.id === '123'
-router.navigate('articles/123/comments/7')
+router.navigateTo('articles/123/comments/7')
 // router.params.article_id === '123'
 // router.params.id === '7'
 ```
@@ -292,11 +330,11 @@ var router = new Cape.Router();
 router.draw(function(m) {
   m.many('articles')
 })
-router.navigate('articles')
+router.navigateTo('articles')
 // router.query === {}
-router.navigate('articles?page=2')
+router.navigateTo('articles?page=2')
 // router.query.page === '2'
-router.navigate('articles?page=2&deleted')
+router.navigateTo('articles?page=2&deleted')
 // router.query.page === '2'
 // router.query.deleted === ''
 ```
@@ -307,7 +345,7 @@ router.navigate('articles?page=2&deleted')
 
 This method sets the anchor part (begins with a `#` symbol) of the browser's current URL to _hash._
 
-Unlike [#navigate()](#navigate) method, before-navigationi callbacks are *not* executed
+Unlike [#navigateTo()](#navigateTo) method, before-navigationi callbacks are *not* executed
 before changing the anchor part of URL.
 
 After setting the anchor part of URL, this method choose a component
@@ -339,13 +377,13 @@ router.draw(function(m) {
     m.many('articles');
   });
 });
-router.navigate('account/edit');
+router.navigateTo('account/edit');
 console.log(router.resource); // => "account"
-router.navigate('articles/123/edit');
+router.navigateTo('articles/123/edit');
 console.log(router.resource); // => "articles"
-router.navigate('articles/123/comments');
+router.navigateTo('articles/123/comments');
 console.log(router.resource); // => "articles/comments"
-router.navigate('admin/articles/123/edit');
+router.navigateTo('admin/articles/123/edit');
 console.log(router.resource); // => "articles"
 ```
 
@@ -381,7 +419,7 @@ var route = router.routeFor('admin/articles/123/edit');
 
 This method mounts an instance of *componentClass* class.
 
-Unlike [#navigate()](#navigate), it does neither change the anchor part of
+Unlike [#navigateTo()](#navigateTo), it does neither change the anchor part of
 current URL, nor call the [#notify()](#notify) method.
 
 
