@@ -13,7 +13,7 @@ title: "Cape.Router - API Reference"
 [#flash](#flash) -
 [#namespace](#namespace) -
 [#navigate()](#navigate) -
-[#navigateTo()](#navigateTo) -
+[#navigateTo()](#navigate-to) -
 [#notify()](#notify) -
 [#mount()](#mount) -
 [#params](#params) -
@@ -191,7 +191,7 @@ This method is *deprecated* as of v1.4.
 Sets the anchor part (begins with a `#` symbol) of the browser's current URL to _hash._
 See [#navigateTo()](#navigateTo).
 
-<a class="anchor" id="navigateTo"></a>
+<a class="anchor" id="navigate-to"></a>
 ### #navigateTo() <span class="badge alert-info">1.4</span>
 
 #### Usage

@@ -562,6 +562,9 @@ api_pages:
         id: navigate
         title: "#navigate()"
       -
+        id: navigate-to
+        title: "#navigateTo()"
+      -
         id: notify
         title: "#notify()"
       -
