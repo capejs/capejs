@@ -390,6 +390,26 @@ router.draw(function(m) {
 Note that you should put `:?` to make parentheses
 [non-capturing parentheses](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-non-capturing-parentheses) <i class="fa fa-external-link"></i>.
 
+#### Usage
+
+* **page(hashPattern)** <span class="badge alert-info">1.4</span>
+
+Defines a route from *hashPattern* to the component class path which is consturcted
+from *hashPattern* by replacing all slashes with dots.
+
+#### Example
+
+```javascript
+var router = new Cape.Router();
+router.draw(function(m) {
+  m.page('dashboard');
+  m.page('docs/about');
+  // The above codes have same meanings as the following alternatives:
+  //   m.page('dashboard', 'dashboard');
+  //   m.page('docs/about', 'docs.about');
+})
+```
+
 <a class="anchor" id="root"></a>
 ### #root()
 
