@@ -220,7 +220,7 @@
 
 <p><a class="anchor" id="basics"></a></p>
 
-<h3 id="basics:0b3dd9ce14f479a81f8252af01a87547">Basics</h3>
+<h3 id="basics">Basics</h3>
 
 <p>The <em>collection agents</em> are JavaScript objects that have following capabilities:</p>
 
@@ -244,7 +244,7 @@ its stage changes to the observers as explained <a href="#cooperation-with-a-dat
 
 <p><a class="anchor" id="agent-adapters"></a></p>
 
-<h3 id="agent-adapters:0b3dd9ce14f479a81f8252af01a87547">Agent Adapters</h3>
+<h3 id="agent-adapters">Agent Adapters</h3>
 
 <p>Sometimes, the Ajax clients need to send a set of specific HTTP headers to the server.
 A Rails application requires a correct <code>X-CSRF-Token</code> header, for example.</p>
@@ -260,7 +260,7 @@ beginning of your JavaScript code:</p>
 
 <p><a class="anchor" id="defining-classes"></a></p>
 
-<h3 id="defining-classes:0b3dd9ce14f479a81f8252af01a87547">Defining Classes</h3>
+<h3 id="defining-classes">Defining Classes</h3>
 
 <p>In order to use collection agents, you should define a class inheriting the
 <code>Cape.CollectionAgent</code> class.</p>
@@ -289,7 +289,7 @@ as explained below.</p>
 
 <p><a class="anchor" id="initialization"></a></p>
 
-<h3 id="initialization:0b3dd9ce14f479a81f8252af01a87547">Initialization</h3>
+<h3 id="initialization">Initialization</h3>
 
 <p>Suppose that when you send an HTTP request <code>GET /users</code> to the server,
 it returns the following JSON string:</p>
@@ -341,7 +341,7 @@ the component will render the following HTML fragment:</p>
 
 <p><a class="anchor" id="creating-resources"></a></p>
 
-<h3 id="creating-resources:0b3dd9ce14f479a81f8252af01a87547">Creating Resources</h3>
+<h3 id="creating-resources">Creating Resources</h3>
 
 <p>Suppose that you can create a <em>user</em> by sending a <code>POST</code> request to the <code>/users</code>
 with the following body:</p>
@@ -374,7 +374,7 @@ with the following body:</p>
 
 <p><a class="anchor" id="rest-operations"></a></p>
 
-<h3 id="rest-operations:0b3dd9ce14f479a81f8252af01a87547">REST operations</h3>
+<h3 id="rest-operations">REST operations</h3>
 
 <p>Cape.JS provides four basic methods for REST operations:</p>
 
@@ -450,7 +450,7 @@ write a code like this:</p>
 
 <p><a class="anchor" id="callbacks-and-error-handlers"></a></p>
 
-<h3 id="callbacks-and-error-handlers:0b3dd9ce14f479a81f8252af01a87547">Callbacks and Error Handlers</h3>
+<h3 id="callbacks-and-error-handlers">Callbacks and Error Handlers</h3>
 
 <p>If you want the collection agent to perform any jobs after the Ajax request,
 you can pass a <em>callback</em> as the last argument to the methods:</p>
@@ -484,7 +484,7 @@ you can pass a <em>callback</em> as the last argument to the methods:</p>
 
 <p><a class="anchor" id="changing-path-prefix"></a></p>
 
-<h3 id="changing-the-path-prefix:0b3dd9ce14f479a81f8252af01a87547">Changing the Path Prefix</h3>
+<h3 id="changing-the-path-prefix">Changing the Path Prefix</h3>
 
 <p>If the paths of the server-side API has a prefix, you should set the <code>basePath</code>
 and <code>nestdIn</code> properties.</p>
@@ -550,7 +550,7 @@ for the technical background.</p>
 
 <p><a class="anchor" id="cooperation-with-a-data-store"></a></p>
 
-<h3 id="cooperation-with-a-data-store:0b3dd9ce14f479a81f8252af01a87547">Cooperation with a Data Store</h3>
+<h3 id="cooperation-with-a-data-store">Cooperation with a Data Store</h3>
 
 <pre><code class="language-javascript">class TaskStore extends Cape.DataStore {
   constructor(agent) {

@@ -26,12 +26,12 @@
 &lt;a href=&#34;./router&#34;&gt;Cape.Router&lt;/a&gt; -
 &lt;a href=&#34;./routing_mapper&#34;&gt;Cape.RoutingMapper&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;the-cape-object:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;The &lt;code&gt;Cape&lt;/code&gt; object&lt;/h3&gt;
+&lt;h3 id=&#34;the-cape-object&#34;&gt;The &lt;code&gt;Cape&lt;/code&gt; object&lt;/h3&gt;
 
 &lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; defines a single global variable &lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt;.
 It has some utility methods, such as &lt;code&gt;extend&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, etc.&lt;/p&gt;
 
-&lt;h3 id=&#34;overview-of-classes:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Overview of classes&lt;/h3&gt;
+&lt;h3 id=&#34;overview-of-classes&#34;&gt;Overview of classes&lt;/h3&gt;
 
 &lt;p&gt;The &lt;strong&gt;Cape.JS&lt;/strong&gt; consists of following eight classes:&lt;/p&gt;
 
@@ -108,9 +108,9 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-collection-agent-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-createcollectionagentclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createCollectionAgentClass&lt;/h3&gt;
+&lt;h3 id=&#34;cape-createcollectionagentclass&#34;&gt;Cape.createCollectionAgentClass&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.createCollectionAgentClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -120,9 +120,9 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-createcomponentclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createComponentClass&lt;/h3&gt;
+&lt;h3 id=&#34;cape-createcomponentclass&#34;&gt;Cape.createComponentClass&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-1&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.createComponentClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -130,7 +130,7 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Create a class extending &lt;code&gt;Cape.Component&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -150,9 +150,9 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-partial-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-createpartialclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createPartialClass&lt;/h3&gt;
+&lt;h3 id=&#34;cape-createpartialclass&#34;&gt;Cape.createPartialClass&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-2&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.createPartialClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -160,7 +160,7 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Create a class extending &lt;code&gt;Cape.Partial&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-1&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var HelloMessage = Cape.createPartialClass({
   render: function(m) {
@@ -180,9 +180,9 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-component-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-createdatastoreclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createDataStoreClass&lt;/h3&gt;
+&lt;h3 id=&#34;cape-createdatastoreclass&#34;&gt;Cape.createDataStoreClass&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-3&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.createDataStoreClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -190,7 +190,7 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Create a class extending &lt;code&gt;Cape.DataStore&lt;/code&gt; with &lt;code&gt;methods&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-2&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var TodoItemStore = Cape.createDataStoreClass({
   init: function() {
@@ -232,9 +232,9 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create-resource-agent-class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-createresourceagentclass:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.createResourceAgentClass&lt;/h3&gt;
+&lt;h3 id=&#34;cape-createresourceagentclass&#34;&gt;Cape.createResourceAgentClass&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-4&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.createResourceAgentClass(&lt;em&gt;methods&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -244,7 +244,7 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;default-agent-adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-defaultagentadapter:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.defaultAgentAdapter&lt;/h3&gt;
+&lt;h3 id=&#34;cape-defaultagentadapter&#34;&gt;Cape.defaultAgentAdapter&lt;/h3&gt;
 
 &lt;p&gt;This property is used as the default value of &lt;code&gt;adapter&lt;/code&gt; property of
 collection agents and resource agents.&lt;/p&gt;
@@ -254,9 +254,9 @@ collection agents and resource agents.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;deep-extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-deepextend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.deepExtend&lt;/h3&gt;
+&lt;h3 id=&#34;cape-deepextend&#34;&gt;Cape.deepExtend&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-5:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-5&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -264,7 +264,7 @@ collection agents and resource agents.&lt;/p&gt;
 
 &lt;p&gt;Merge the properties of two or more objects together into the first object recursively.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-3:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-3&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var object1 = {
   apple: 0,
@@ -290,9 +290,9 @@ Cape.extend(object1, object2);
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;extend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-extend:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.extend&lt;/h3&gt;
+&lt;h3 id=&#34;cape-extend&#34;&gt;Cape.extend&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-6:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-6&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.extend(&lt;em&gt;target[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -300,7 +300,7 @@ Cape.extend(object1, object2);
 
 &lt;p&gt;Merge the properties of two or more objects together into the first object.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-4:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-4&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var object1 = {
   apple: 0,
@@ -326,9 +326,9 @@ Cape.extend(object1, object2);
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;merge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cape-merge:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Cape.merge&lt;/h3&gt;
+&lt;h3 id=&#34;cape-merge&#34;&gt;Cape.merge&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-7:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-7&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cape.merge(target&lt;em&gt;[, object1, object2, &amp;hellip; objectN]&lt;/em&gt;)&lt;/strong&gt;&lt;/li&gt;
@@ -337,7 +337,7 @@ Cape.extend(object1, object2);
 &lt;p&gt;Merge (but not override) the properties of two or more objects together
 into the first object&lt;/p&gt;
 
-&lt;h4 id=&#34;example-5:e3a066ada4b0c96341f2c8dadc13df88&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-5&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var object1 = {
   apple: 0,
@@ -407,11 +407,11 @@ Cape.extend(object1, object2);
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;constructor:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Constructor&lt;/h3&gt;
+&lt;h3 id=&#34;constructor&#34;&gt;Constructor&lt;/h3&gt;
 
 &lt;p&gt;The &lt;code&gt;Cape.CollectionAgent&lt;/code&gt; constructor takes an object &lt;em&gt;(options)&lt;/em&gt; as the first argument.&lt;/p&gt;
 
-&lt;h4 id=&#34;options:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Options&lt;/h4&gt;
+&lt;h4 id=&#34;options&#34;&gt;Options&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;resourceName:&lt;/strong&gt; the name of resource which is located on the web.
@@ -436,7 +436,7 @@ When the &lt;code&gt;paramName&lt;/code&gt; option is not defined, the name is d
 the &lt;code&gt;nestedIn&lt;/code&gt; string from the member path. Default is &lt;code&gt;false&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;example:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
 var comp = new Cape.Component();
@@ -448,20 +448,20 @@ var agent4 = new Cape.CollectionAgent(comp, { resourceName: &#39;articles&#39;, 
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;_&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_3:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#_&lt;/h3&gt;
+&lt;h3 id=&#34;toc_3&#34;&gt;#_&lt;/h3&gt;
 
 &lt;p&gt;This property holds the agent&amp;rsquo;s &lt;em&gt;inner object,&lt;/em&gt; which keeps &lt;em&gt;private&lt;/em&gt; properties
 and methods. Developers should not tamper with it.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;adapter:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#adapter&lt;/h3&gt;
+&lt;h3 id=&#34;adapter&#34;&gt;#adapter&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;after-refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;afterrefresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#afterRefresh&lt;/h3&gt;
+&lt;h3 id=&#34;afterrefresh&#34;&gt;#afterRefresh&lt;/h3&gt;
 
 &lt;p&gt;This method gets called by the &lt;code&gt;refresh()&lt;/code&gt; method after it updates the &lt;code&gt;data&lt;/code&gt;
 and &lt;code&gt;objects&lt;/code&gt; properties.&lt;/p&gt;
@@ -472,15 +472,15 @@ post-processing jobs.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;adapter-1:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#adapter&lt;/h3&gt;
+&lt;h3 id=&#34;adapter-1&#34;&gt;#adapter&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;ajax:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#ajax()&lt;/h3&gt;
+&lt;h3 id=&#34;ajax&#34;&gt;#ajax()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, params)&lt;/strong&gt;&lt;/li&gt;
@@ -492,19 +492,19 @@ post-processing jobs.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;auto-refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;autorefresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#autoRefresh&lt;/h3&gt;
+&lt;h3 id=&#34;autorefresh&#34;&gt;#autoRefresh&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;base-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;basepath:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#basePath&lt;/h3&gt;
+&lt;h3 id=&#34;basepath&#34;&gt;#basePath&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;collectionpath:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#collectionPath()&lt;/h3&gt;
+&lt;h3 id=&#34;collectionpath&#34;&gt;#collectionPath()&lt;/h3&gt;
 
 &lt;p&gt;Returns the URL path to a collection of resources in accordance with the
 values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
@@ -554,9 +554,9 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;create:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#create()&lt;/h3&gt;
+&lt;h3 id=&#34;create&#34;&gt;#create()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-1:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-1&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;create(params)&lt;/strong&gt;&lt;/li&gt;
@@ -575,7 +575,7 @@ agent itself as the single argument and does some post-processing jobs.&lt;/p&gt
 &lt;p&gt;Ths optional third argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
 which takes an exception and does some error-handling jobs.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-1&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
   init() {
@@ -605,7 +605,7 @@ which takes an exception and does some error-handling jobs.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;data:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#data&lt;/h3&gt;
+&lt;h3 id=&#34;data&#34;&gt;#data&lt;/h3&gt;
 
 &lt;p&gt;This property holds an object (hash)
 if the response data is a valid JSON string.
@@ -613,13 +613,13 @@ Otherwise, it holds the original string value.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;datatype:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#dataType&lt;/h3&gt;
+&lt;h3 id=&#34;datatype&#34;&gt;#dataType&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;default-error-hander&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;defaulterrorhandler:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#defaultErrorHandler()&lt;/h3&gt;
+&lt;h3 id=&#34;defaulterrorhandler&#34;&gt;#defaultErrorHandler()&lt;/h3&gt;
 
 &lt;p&gt;This method handles the exception thrown during the Fetch API.&lt;/p&gt;
 
@@ -628,9 +628,9 @@ Developers may override this for a better exception handling.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;delete&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;delete:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#delete()&lt;/h3&gt;
+&lt;h3 id=&#34;delete&#34;&gt;#delete()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-2:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-2&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;delete(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
@@ -643,9 +643,9 @@ by given arguments.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;destroy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;destroy:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#destroy()&lt;/h3&gt;
+&lt;h3 id=&#34;destroy&#34;&gt;#destroy()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-3:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-3&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;destroy(id)&lt;/strong&gt;&lt;/li&gt;
@@ -666,7 +666,7 @@ agent itself as the single argument and does some post-processing jobs.&lt;/p&gt
 &lt;p&gt;Ths optional third argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
 which takes an exception and does some error-handling jobs.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-2&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
   init() {
@@ -692,9 +692,9 @@ which takes an exception and does some error-handling jobs.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;get&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;get:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#get()&lt;/h3&gt;
+&lt;h3 id=&#34;get&#34;&gt;#get()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-4:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-4&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;get(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
@@ -707,9 +707,9 @@ by given arguments.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;get-instance&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;getinstance:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;.getInstance()&lt;/h3&gt;
+&lt;h3 id=&#34;getinstance&#34;&gt;.getInstance()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-5:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-5&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;p&gt;Returns an instance of collection agent.&lt;/p&gt;
 
@@ -722,9 +722,9 @@ the key.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;head&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;head:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#head()&lt;/h3&gt;
+&lt;h3 id=&#34;head&#34;&gt;#head()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-6:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-6&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;head(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
@@ -737,7 +737,7 @@ by given arguments.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;headers&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;headers:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#headers&lt;/h3&gt;
+&lt;h3 id=&#34;headers&#34;&gt;#headers&lt;/h3&gt;
 
 &lt;p&gt;This property holds the HTTP headers for Ajax requests.&lt;/p&gt;
 
@@ -745,9 +745,9 @@ by given arguments.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;index&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;index:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#index()&lt;/h3&gt;
+&lt;h3 id=&#34;index&#34;&gt;#index()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-7:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-7&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;index(params)&lt;/strong&gt;&lt;/li&gt;
@@ -760,9 +760,9 @@ by the &lt;code&gt;collectionPath()&lt;/code&gt; method and the &lt;code&gt;para
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;memberpath:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#memberPath()&lt;/h3&gt;
+&lt;h3 id=&#34;memberpath&#34;&gt;#memberPath()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-8:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-8&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;memberPath(id)&lt;/strong&gt;&lt;/li&gt;
@@ -818,28 +818,28 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;nested-in&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;nestedin:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#nestedIn&lt;/h3&gt;
+&lt;h3 id=&#34;nestedin&#34;&gt;#nestedIn&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;objects&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;objects:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#objects&lt;/h3&gt;
+&lt;h3 id=&#34;objects&#34;&gt;#objects&lt;/h3&gt;
 
 &lt;p&gt;This property holds an array of objects (hashes) that represents the
 collection of resources which the agent is associated to.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;param-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;paramname:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#paramName&lt;/h3&gt;
+&lt;h3 id=&#34;paramname&#34;&gt;#paramName&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params-for-refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;paramsforrefresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#paramsForRefresh()&lt;/h3&gt;
+&lt;h3 id=&#34;paramsforrefresh&#34;&gt;#paramsForRefresh()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-9:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-9&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;paramsForRefresh()&lt;/strong&gt;&lt;/li&gt;
@@ -850,7 +850,7 @@ the query string of the request URL during the &lt;code&gt;refresh()&lt;/code&gt
 
 &lt;p&gt;Developers may override this method to change this behavior.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-3:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-3&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserAgent extends Cape.CollectionAgent {
   constructor(options) {
@@ -867,9 +867,9 @@ the query string of the request URL during the &lt;code&gt;refresh()&lt;/code&gt
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;patch&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;patch:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#patch()&lt;/h3&gt;
+&lt;h3 id=&#34;patch&#34;&gt;#patch()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-10:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-10&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;patch(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
@@ -882,9 +882,9 @@ by given arguments.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;post&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;post:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#post()&lt;/h3&gt;
+&lt;h3 id=&#34;post&#34;&gt;#post()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-11:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-11&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;post(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
@@ -897,9 +897,9 @@ by given arguments.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;put&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;put:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#put()&lt;/h3&gt;
+&lt;h3 id=&#34;put&#34;&gt;#put()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-12:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-12&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;put(actionName, id, params)&lt;/strong&gt;&lt;/li&gt;
@@ -912,7 +912,7 @@ by given arguments.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;refresh:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#refresh()&lt;/h3&gt;
+&lt;h3 id=&#34;refresh&#34;&gt;#refresh()&lt;/h3&gt;
 
 &lt;p&gt;This method sends an Ajax request with GET method to the URL that is constructed
 by the &lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; and
@@ -920,21 +920,21 @@ by the &lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; and
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;resourcename:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#resourceName&lt;/h3&gt;
+&lt;h3 id=&#34;resourcename&#34;&gt;#resourceName&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;shallow&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;shallow:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#shallow&lt;/h3&gt;
+&lt;h3 id=&#34;shallow&#34;&gt;#shallow&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;update&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;update:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;#update()&lt;/h3&gt;
+&lt;h3 id=&#34;update&#34;&gt;#update()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-13:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-13&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;update(id, params)&lt;/strong&gt;&lt;/li&gt;
@@ -957,7 +957,7 @@ agent itself as the single argument and does some post-processing jobs.&lt;/p&gt
 &lt;p&gt;Ths optional fourth argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
 which takes an exception and does some error-handling jobs.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-4:7cf50d10a54b2c097102d0c8a749f9fb&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-4&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class UserList extends Cape.Component {
   init() {
@@ -1004,9 +1004,9 @@ which takes an exception and does some error-handling jobs.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;checked-on&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;checkedon-span-class-badge-alert-info-1-2-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#checkedOn() &lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;checkedon-span-class-badge-alert-info-1-2-span&#34;&gt;#checkedOn() &lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;checkedOn(name)&lt;/strong&gt;&lt;/li&gt;
@@ -1020,7 +1020,7 @@ which takes an exception and does some error-handling jobs.&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;undefined&lt;/code&gt; if the check box whose name is &lt;code&gt;name&lt;/code&gt; does not exist.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;example:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -1038,7 +1038,7 @@ which takes an exception and does some error-handling jobs.&lt;/p&gt;
 &lt;p&gt;When the form has a &lt;code&gt;name&lt;/code&gt; attribute, you should prepend its value and a dot
 to the name of check box.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-1&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;task&#39;, function(m) {
@@ -1055,9 +1055,9 @@ to the name of check box.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;formdata:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#formData()&lt;/h3&gt;
+&lt;h3 id=&#34;formdata&#34;&gt;#formData()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-1:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-1&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;formData()&lt;/strong&gt;&lt;/li&gt;
@@ -1068,7 +1068,7 @@ all form controls within the component.&lt;/p&gt;
 
 &lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-2&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a component defined like this,&lt;/p&gt;
 
@@ -1092,7 +1092,7 @@ all form controls within the component.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-3&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a component defined like this,&lt;/p&gt;
 
@@ -1134,9 +1134,9 @@ all form controls within the component.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;json-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;jsonfor-span-class-badge-alert-info-1-1-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#jsonFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;jsonfor-span-class-badge-alert-info-1-1-span&#34;&gt;#jsonFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1&lt;/span&gt;&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-2:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-2&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;jsonFor(formName)&lt;/strong&gt;&lt;/li&gt;
@@ -1147,7 +1147,7 @@ a named form.&lt;/p&gt;
 
 &lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-4&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a component defined like this,&lt;/p&gt;
 
@@ -1166,7 +1166,7 @@ a named form.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&amp;quot;user&amp;quot;: { &amp;quot;login_name&amp;quot;: &amp;quot;john&amp;quot;, &amp;quot;password&amp;quot;: &amp;quot;p@ssw0rd&amp;quot;}}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-5:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-5&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a component defined like this,&lt;/p&gt;
 
@@ -1193,9 +1193,9 @@ a named form.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;mount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#mount()&lt;/h3&gt;
+&lt;h3 id=&#34;mount&#34;&gt;#mount()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-3:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-3&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;mount(id)&lt;/strong&gt;&lt;/li&gt;
@@ -1203,7 +1203,7 @@ a named form.&lt;/p&gt;
 
 &lt;p&gt;This method renders the component and inserts it within the element specified by &lt;em&gt;id.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;example-6:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-6&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;body&amp;gt;
 &amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
@@ -1222,7 +1222,7 @@ component.mount(&#39;main&#39;);
 &lt;p&gt;If the component has the &lt;code&gt;init()&lt;/code&gt; method, the &lt;code&gt;mount()&lt;/code&gt; calls it
 instead of rendering the component.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-7:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-7&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloWorld = Cape.createComponentClass({
   init: function() {
@@ -1241,7 +1241,7 @@ to render the component.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;paramsfor-span-class-badge-alert-info-1-1-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#paramsFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;paramsfor-span-class-badge-alert-info-1-1-span&#34;&gt;#paramsFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1&lt;/span&gt;&lt;/h3&gt;
 
 &lt;p&gt;Thid method returns an object that represents the field values of
 a named form.&lt;/p&gt;
@@ -1249,7 +1249,7 @@ a named form.&lt;/p&gt;
 &lt;p&gt;The returned object is organized in hierarchical structure
 so that you can pass it to the &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;ajax()&lt;/a&gt; method of jQuery.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-8:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;Suppose that you have a component defined like this:&lt;/p&gt;
 
@@ -1290,7 +1290,7 @@ to the &lt;code&gt;data&lt;/code&gt; option of the &lt;code&gt;ajax()&lt;/code&g
 &lt;pre&gt;&lt;code&gt;user[name]=john&amp;amp;user[password]=1234
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-9:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-9&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;Suppose that you have a component defined like this:&lt;/p&gt;
 
@@ -1359,7 +1359,7 @@ the following object:&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;refresh:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#refresh()&lt;/h3&gt;
+&lt;h3 id=&#34;refresh&#34;&gt;#refresh()&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;refresh()&lt;/strong&gt;&lt;/li&gt;
@@ -1369,13 +1369,13 @@ the following object:&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;root&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;root:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#root&lt;/h3&gt;
+&lt;h3 id=&#34;root&#34;&gt;#root&lt;/h3&gt;
 
 &lt;p&gt;This property refers to the HTML element which the component is mounted on.&lt;/p&gt;
 
 &lt;p&gt;Its &lt;code&gt;data&lt;/code&gt; subproperty holds the values of &lt;code&gt;data-*&lt;/code&gt; attributes of the root element.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-10:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-10&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;The following example shows &amp;ldquo;Hello, John!&amp;rdquo; on your browser.&lt;/p&gt;
 
@@ -1395,9 +1395,9 @@ component.mount(&#39;main&#39;);
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;unmount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;unmount:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#unmount()&lt;/h3&gt;
+&lt;h3 id=&#34;unmount&#34;&gt;#unmount()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-4:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-4&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;unmount()&lt;/strong&gt;&lt;/li&gt;
@@ -1410,9 +1410,9 @@ If the component has the &lt;code&gt;afterUnmount()&lt;/code&gt; method, it is c
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;val:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#val()&lt;/h3&gt;
+&lt;h3 id=&#34;val&#34;&gt;#val()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-5:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-5&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;val(name)&lt;/strong&gt;&lt;/li&gt;
@@ -1425,7 +1425,7 @@ If the component has the &lt;code&gt;afterUnmount()&lt;/code&gt; method, it is c
 &lt;p&gt;When the number of arguments is one and that argument is a string,
 this method returns the value of the corresponding field.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-11:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-11&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1447,7 +1447,7 @@ this method sets the value of a field whose name is corresponding
 to the first argument to the second argument and returns
 the original value of the field.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-12:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-12&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;message&#39;, function(m) {
@@ -1469,7 +1469,7 @@ the original value of the field.&lt;/p&gt;
 &lt;p&gt;When the number of arguments is one and that argument is an object,
 this method sets the value of corresponding fields.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-13:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-13&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -1492,13 +1492,13 @@ this method sets the value of corresponding fields.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;values-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;valuesfor-span-class-badge-alert-info-1-1-span:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;#valuesFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;valuesfor-span-class-badge-alert-info-1-1-span&#34;&gt;#valuesFor() &lt;span class=&#34;badge alert-info&#34;&gt;1.1&lt;/span&gt;&lt;/h3&gt;
 
 &lt;p&gt;Thid method sets the field values of a named form by passing an object as the first argument.&lt;/p&gt;
 
 &lt;p&gt;The values of this object must be organized in hierarchical structure as explained following examples:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-14:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-14&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you render a component defined like this,&lt;/p&gt;
 
@@ -1525,7 +1525,7 @@ this method sets the value of corresponding fields.&lt;/p&gt;
 &lt;p&gt;you will see the only text field is filled with a string &amp;ldquo;john&amp;rdquo; and the first
 radio button is checked.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-15:202695ef52bd0f88ec46c8b4eb5ea1d8&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-15&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you render a component defined like this,&lt;/p&gt;
 
@@ -1576,12 +1576,12 @@ radio button is checked.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;constructor:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Constructor&lt;/h3&gt;
+&lt;h3 id=&#34;constructor&#34;&gt;Constructor&lt;/h3&gt;
 
 &lt;p&gt;The &lt;code&gt;Cape.DataStore&lt;/code&gt; constructor takes no argument and calls its &lt;code&gt;#init&lt;/code&gt; method
 if defined.&lt;/p&gt;
 
-&lt;h4 id=&#34;example:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
   init: function() {
@@ -1601,9 +1601,9 @@ var cs = new CounterStore();
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;attach:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#attach()&lt;/h3&gt;
+&lt;h3 id=&#34;attach&#34;&gt;#attach()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
@@ -1615,11 +1615,11 @@ var cs = new CounterStore();
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;create:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;.create()&lt;/h3&gt;
+&lt;h3 id=&#34;create&#34;&gt;.create()&lt;/h3&gt;
 
 &lt;p&gt;This class method returns a singleton object of this Class.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-1&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
   init: function() {
@@ -1638,9 +1638,9 @@ var cs2 = CounterStore.create();
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;detach:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#detach()&lt;/h3&gt;
+&lt;h3 id=&#34;detach&#34;&gt;#detach()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-1:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-1&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
@@ -1652,9 +1652,9 @@ var cs2 = CounterStore.create();
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;propagate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;propagate:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;#propagate()&lt;/h3&gt;
+&lt;h3 id=&#34;propagate&#34;&gt;#propagate()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-2:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-2&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;propagate()&lt;/strong&gt;&lt;/li&gt;
@@ -1669,7 +1669,7 @@ which has to be defined by developers.&lt;/p&gt;
 &lt;p&gt;Thus, we can assure that each time the data of a data store changes,
 its all dependent components get refreshed.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:0e6ae5d019a4f974c32809ae28a8dc8f&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-2&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var CounterStore = Cape.createDataStoreClass({
   init: function() {
@@ -1742,12 +1742,12 @@ comp2.mount(&#39;counter2&#39;);
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;general-notes&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;general-notes:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;General notes&lt;/h3&gt;
+&lt;h3 id=&#34;general-notes&#34;&gt;General notes&lt;/h3&gt;
 
 &lt;p&gt;All instance methods of &lt;code&gt;Cape.MarkupBuilder&lt;/code&gt; are &lt;em&gt;chainable.&lt;/em&gt;
 Each method returns the instance itself.&lt;/p&gt;
 
-&lt;h4 id=&#34;example:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -1768,7 +1768,7 @@ Each method returns the instance itself.&lt;/p&gt;
 and &lt;code&gt;#text&lt;/code&gt; take the &lt;em&gt;options&lt;/em&gt; argument, which will be translated into the
 attributes of element to be created.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-1&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascrpt&#34;&gt;var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -1785,7 +1785,7 @@ attributes of element to be created.&lt;/p&gt;
 (&lt;code&gt;false&lt;/code&gt;, &lt;code&gt;null&lt;/code&gt;, &lt;code&gt;0&lt;/code&gt;, &lt;code&gt;[]&lt;/code&gt;, &lt;em&gt;etc.&lt;/em&gt;),
 it sets the &lt;code&gt;display&lt;/code&gt; style to &lt;code&gt;none&lt;/code&gt; to make this element invisible.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-2&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascrpt&#34;&gt;var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -1803,9 +1803,9 @@ it sets the &lt;code&gt;display&lt;/code&gt; style to &lt;code&gt;none&lt;/code&
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;a-abbr-address-etc&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;a-abbr-address-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#a(), #abbr(), #address(), etc.&lt;/h3&gt;
+&lt;h3 id=&#34;a-abbr-address-etc&#34;&gt;#a(), #abbr(), #address(), etc.&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;a(content [, options])&lt;/strong&gt;&lt;/li&gt;
@@ -1837,7 +1837,7 @@ method with the same name:&lt;/p&gt;
 &lt;p&gt;When the first argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-3:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-3&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -1857,7 +1857,7 @@ When the last argument is a function, it creates a dependent virtual dom tree.&l
 of the element. The position of this argument should be after the string argument
 and before the function argument.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-4&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -1876,9 +1876,9 @@ and before the function argument.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;area-base-br-etc&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;area-base-br-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#area(), #base(), #br(), etc.&lt;/h3&gt;
+&lt;h3 id=&#34;area-base-br-etc&#34;&gt;#area(), #base(), #br(), etc.&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-1:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-1&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;area([options])&lt;/strong&gt;&lt;/li&gt;
@@ -1898,7 +1898,7 @@ link, menuitem, meta, param, source, track, wbr&lt;/p&gt;
 &lt;p&gt;They don&amp;rsquo;t take a string argument nor a function argument, though.
 They only accept a hash object to set the attribute values of the element.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-5&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var LogoMark = Cape.createComponentClass({
   render: function(m) {
@@ -1911,9 +1911,9 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attr&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;attr:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#attr()&lt;/h3&gt;
+&lt;h3 id=&#34;attr&#34;&gt;#attr()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-2:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-2&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;attr(name, value)&lt;/strong&gt;&lt;/li&gt;
@@ -1922,7 +1922,7 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;p&gt;Set the value of attributes for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-6&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.attr(&#39;alt&#39;, &#39;Logo Image&#39;);
@@ -1937,7 +1937,7 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;p&gt;The attribute values are set cumulatively.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-7&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.attr(&#39;alt&#39;, &#39;Logo Image&#39;);
@@ -1956,7 +1956,7 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;p&gt;The values set by &lt;code&gt;#attr&lt;/code&gt; does not affect the elements created after the next element.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.attr(&#39;alt&#39;, &#39;Logo Image&#39;);
@@ -1969,9 +1969,9 @@ They only accept a hash object to set the attribute values of the element.&lt;/p
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;check-box&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;checkbox:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#checkBox()&lt;/h3&gt;
+&lt;h3 id=&#34;checkbox&#34;&gt;#checkBox()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-3:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-3&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;checkBox(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -1983,7 +1983,7 @@ If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name 
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.
 See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-9&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -2003,9 +2003,9 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;btn&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;btn:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#btn()&lt;/h3&gt;
+&lt;h3 id=&#34;btn&#34;&gt;#btn()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-4:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-4&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;btn(content, options)&lt;/strong&gt;&lt;/li&gt;
@@ -2014,7 +2014,7 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;p&gt;Create a &lt;code&gt;&amp;lt;button&amp;gt;&lt;/code&gt; element whose &lt;code&gt;type&lt;/code&gt; attribute is set to &lt;code&gt;button&lt;/code&gt; by default.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-10&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;test&#39;, function(m) {
@@ -2029,9 +2029,9 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;checked&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;checked:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#checked()&lt;/h3&gt;
+&lt;h3 id=&#34;checked&#34;&gt;#checked()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-5:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-5&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;checked(boolean)&lt;/strong&gt;&lt;/li&gt;
@@ -2040,7 +2040,7 @@ See &lt;a href=&#34;#formFor&#34;&gt;#formFor&lt;/a&gt; for details.&lt;/p&gt;
 &lt;p&gt;This is a shortcut method which has the same effect with &lt;code&gt;#attr(&#39;checked&#39;, boolean)&lt;/code&gt;.
 See &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-11&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.checked(true).input({ type: &#39;checkbox&#39; })
@@ -2051,9 +2051,9 @@ See &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;class&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;class:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#class()&lt;/h3&gt;
+&lt;h3 id=&#34;class&#34;&gt;#class()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-6:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-6&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;class(name)&lt;/strong&gt;&lt;/li&gt;
@@ -2063,7 +2063,7 @@ See &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Set the &lt;code&gt;class&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-12&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.class(&#39;container&#39;);
@@ -2077,7 +2077,7 @@ See &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt;.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-13&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.class(&#39;panel panel-standard&#39;);
@@ -2089,7 +2089,7 @@ See &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt;.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-14&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.class({ panel: true, &#39;panel-standard&#39;: true, top: false });
@@ -2106,9 +2106,9 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;css&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;css:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#css()&lt;/h3&gt;
+&lt;h3 id=&#34;css&#34;&gt;#css()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-7:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-7&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;css(name, value)&lt;/strong&gt;&lt;/li&gt;
@@ -2117,7 +2117,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;Set the styles for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-15&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.css(&#39;color&#39;, &#39;red&#39;).span(&#39;Danger&#39;);
@@ -2128,7 +2128,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;Note that you should write names of style in camel case.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-16&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.css({ backgroundColor: &#39;red&#39; }).p(&#39;Danger&#39;);
@@ -2139,9 +2139,9 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;data:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#data()&lt;/h3&gt;
+&lt;h3 id=&#34;data&#34;&gt;#data()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-8:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-8&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;data(name, value)&lt;/strong&gt;&lt;/li&gt;
@@ -2150,7 +2150,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;Set the &lt;code&gt;data-*&lt;/code&gt; attribute value for the element which will be added nextly.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-17&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.data(&#39;id&#39;, &#39;7&#39;);
@@ -2167,7 +2167,7 @@ affects only the nextly added element.&lt;/p&gt;
 &lt;p&gt;As &lt;a href=&#34;#attr&#34;&gt;#attr&lt;/a&gt;, the &lt;code&gt;#data&lt;/code&gt; method sets attribute values cumulatively and
 affects only the nextly added element.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-18&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.data({ id: &#39;7&#39; });
@@ -2181,7 +2181,7 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;The names specified in camel case are converted into a string separated by dashes.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-19&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.data({ messageId: &#39;7&#39; });
@@ -2193,9 +2193,9 @@ affects only the nextly added element.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;disabled&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;disabled:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#disabled()&lt;/h3&gt;
+&lt;h3 id=&#34;disabled&#34;&gt;#disabled()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-9:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-9&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;disabled(boolean)&lt;/strong&gt;&lt;/li&gt;
@@ -2204,7 +2204,7 @@ affects only the nextly added element.&lt;/p&gt;
 &lt;p&gt;This is a shortcut method which has the same effect with &lt;code&gt;#attr(&#39;disabled&#39;, boolean)&lt;/code&gt;.
 See &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-20&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.disabled(true).input({ type: &#39;text&#39; })
@@ -2215,9 +2215,9 @@ See &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;elem&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;elem:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#elem()&lt;/h3&gt;
+&lt;h3 id=&#34;elem&#34;&gt;#elem()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-10:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-10&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;elem(content [, options])&lt;/strong&gt;&lt;/li&gt;
@@ -2229,7 +2229,7 @@ See &lt;a href=&#34;#attr&#34;&gt;#attr()&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;When the second argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-21:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-21&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.elem(&#39;div#wrapper&#39;, function(m) {
@@ -2256,7 +2256,7 @@ When the last argument is a function, it creates a dependent virtual dom tree.&l
 of the element. The position of this argument should be after the string argument
 and before the function argument.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-22:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-22&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.elem(&#39;div#wrapper&#39;, { style: &#39;margin-top: 10px&#39; },
@@ -2284,9 +2284,9 @@ and before the function argument.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;fa&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;fa:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fa()&lt;/h3&gt;
+&lt;h3 id=&#34;fa&#34;&gt;#fa()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-11:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-11&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;fa(name [, options])&lt;/strong&gt;&lt;/li&gt;
@@ -2298,7 +2298,7 @@ Its first argument is the icon&amp;rsquo;s name, such as &lt;code&gt;&amp;quot;d
 You can pass a hash object as the optional second argument to set the
 attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-23:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-23&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.a({ href: &#39;./download.html&#39; }, function(m) {
@@ -2312,9 +2312,9 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;fields-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;fieldsfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#fieldsFor()&lt;/h3&gt;
+&lt;h3 id=&#34;fieldsfor&#34;&gt;#fieldsFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-12:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-12&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;fieldsFor(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -2323,7 +2323,7 @@ attribute values of &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tag.&lt;/p&gt;
 &lt;p&gt;Create a scope for nested forms. In this scope, a prefix is
 addded to the name of each form control.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-24:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-24&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -2344,7 +2344,7 @@ addded to the name of each form control.&lt;/p&gt;
 
 &lt;p&gt;If you pass the &lt;code&gt;index&lt;/code&gt; option to this method, the prefix is numbered:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-25:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-25&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -2371,9 +2371,9 @@ addded to the name of each form control.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;formfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#formFor()&lt;/h3&gt;
+&lt;h3 id=&#34;formfor&#34;&gt;#formFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-13:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-13&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;formFor(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -2387,7 +2387,7 @@ added to the &lt;code&gt;name&lt;/code&gt; attribute of subordinate form control
 &lt;p&gt;The &lt;code&gt;id&lt;/code&gt; attribute is set automatically. When the form name is &lt;code&gt;&#39;foo&#39;&lt;/code&gt;,
 the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;code&gt;bar&lt;/code&gt; becomes &lt;code&gt;&#39;foo-field-bar&#39;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-26:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-26&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -2408,9 +2408,9 @@ the &lt;code&gt;id&lt;/code&gt; attribute of a form control whose name is &lt;co
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;hidden-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;hiddenfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#hiddenField()&lt;/h3&gt;
+&lt;h3 id=&#34;hiddenfield&#34;&gt;#hiddenField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-14:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-14&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;hiddenField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -2421,7 +2421,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-27:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-27&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -2437,9 +2437,9 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;label-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;labelfor:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#labelFor()&lt;/h3&gt;
+&lt;h3 id=&#34;labelfor&#34;&gt;#labelFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-15:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-15&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;labelFor(name, label)&lt;/strong&gt;&lt;/li&gt;
@@ -2448,7 +2448,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;Create a &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; tag whose &lt;code&gt;name&lt;/code&gt; attribute is &lt;code&gt;name&lt;/code&gt;.
 Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-28:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-28&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -2490,15 +2490,15 @@ Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;markup&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;markup:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#markup()&lt;/h3&gt;
+&lt;h3 id=&#34;markup&#34;&gt;#markup()&lt;/h3&gt;
 
 &lt;p&gt;This method is for internal use. Do not override it.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;on&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;on:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#on()&lt;/h3&gt;
+&lt;h3 id=&#34;on&#34;&gt;#on()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-16:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-16&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;on(eventName, function)&lt;/strong&gt;&lt;/li&gt;
@@ -2507,7 +2507,7 @@ Its &lt;code&gt;for&lt;/code&gt; attribute is set appropriately.&lt;/p&gt;
 &lt;p&gt;Set the handler of event &lt;em&gt;eventName&lt;/em&gt; for the element which will be added nextly
 to &lt;em&gt;function.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;example-29:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-29&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.on(&#39;click&#39;, function(e) { this.counter++ });
@@ -2525,9 +2525,9 @@ to &lt;em&gt;function.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;onblur-onfocus-etc&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;onblur-onfocus-etc:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#onblur(), #onfocus(), etc.&lt;/h3&gt;
+&lt;h3 id=&#34;onblur-onfocus-etc&#34;&gt;#onblur(), #onfocus(), etc.&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-17:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-17&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;onblur(function)&lt;/strong&gt;&lt;/li&gt;
@@ -2546,7 +2546,7 @@ load, unload, click, dblclick, keyup, keydown, keypress,
 mouseout, mouseover, mouseup, mousedown, mousemove&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h4 id=&#34;example-30:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-30&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.onclick(function(e) { this.counter++ });
@@ -2562,9 +2562,9 @@ mouseout, mouseover, mouseup, mousedown, mousemove&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;password-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;passwordfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#passwordField()&lt;/h3&gt;
+&lt;h3 id=&#34;passwordfield&#34;&gt;#passwordField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-18:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-18&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;passwordField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -2575,7 +2575,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-31:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-31&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -2595,9 +2595,9 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;radio-button&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;radiobutton:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#radioButton()&lt;/h3&gt;
+&lt;h3 id=&#34;radiobutton&#34;&gt;#radioButton()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-19:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-19&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;radioButton(name, value[, options])&lt;/strong&gt;&lt;/li&gt;
@@ -2610,7 +2610,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;The second argument becomes the value of this radio button.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-32:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-32&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -2644,7 +2644,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;select-box&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;selectbox:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#selectBox()&lt;/h3&gt;
+&lt;h3 id=&#34;selectbox&#34;&gt;#selectBox()&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;selectBox(name, [options,] callback)&lt;/strong&gt;&lt;/li&gt;
@@ -2655,7 +2655,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-33:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-33&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -2678,15 +2678,15 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;sp&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;sp:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#sp()&lt;/h3&gt;
+&lt;h3 id=&#34;sp&#34;&gt;#sp()&lt;/h3&gt;
 
 &lt;p&gt;This is an alias to &lt;a href=&#34;#space&#34;&gt;#space()&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;space&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;space:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#space()&lt;/h3&gt;
+&lt;h3 id=&#34;space&#34;&gt;#space()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-20:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-20&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;space()&lt;/strong&gt;&lt;/li&gt;
@@ -2694,7 +2694,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;Add a single space character. Same as &lt;code&gt;text(&#39; &#39;)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-34:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-34&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.p(function(m) {
@@ -2708,9 +2708,9 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;text&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;text:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#text()&lt;/h3&gt;
+&lt;h3 id=&#34;text&#34;&gt;#text()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-21:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-21&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;text(string)&lt;/strong&gt;&lt;/li&gt;
@@ -2719,7 +2719,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;Add &lt;em&gt;string&lt;/em&gt; as a text node to the virtual dom tree.
 The special characters (&lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;) are escaped automatically.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-35:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-35&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.h1(function(m) {
@@ -2739,9 +2739,9 @@ use &lt;code&gt;innerHTML&lt;/code&gt; property:&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;textarea-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;textareafield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#textareaField()&lt;/h3&gt;
+&lt;h3 id=&#34;textareafield&#34;&gt;#textareaField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-22:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-22&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;textField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -2752,7 +2752,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-36:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-36&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -2771,9 +2771,9 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;text-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;textfield:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;#textField()&lt;/h3&gt;
+&lt;h3 id=&#34;textfield&#34;&gt;#textField()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-23:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-23&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;textField(name, [options,] function)&lt;/strong&gt;&lt;/li&gt;
@@ -2784,7 +2784,7 @@ Its first argument is the base of &lt;code&gt;name&lt;/code&gt; attribute value.
 If the surrounding &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag has a name &lt;code&gt;&amp;quot;user&amp;quot;&lt;/code&gt;,
 then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;user.name&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-37:2f94c9da1a5f7ca2887265bec799d255&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-37&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -2823,9 +2823,9 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;checked-on&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;checkedon:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;#checkedOn()&lt;/h3&gt;
+&lt;h3 id=&#34;checkedon&#34;&gt;#checkedOn()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;checkedOn(name)&lt;/strong&gt;&lt;/li&gt;
@@ -2839,7 +2839,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;li&gt;&lt;code&gt;undefined&lt;/code&gt; if the check box whose name is &lt;code&gt;name&lt;/code&gt; does not exist.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;example:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.form(function(m) {
@@ -2857,7 +2857,7 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
 &lt;p&gt;When the form has a &lt;code&gt;name&lt;/code&gt; attribute, you should prepend its value and a dot
 to the name of check box.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-1&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;task&#39;, function(m) {
@@ -2874,9 +2874,9 @@ to the name of check box.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;formdata:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;#formData()&lt;/h3&gt;
+&lt;h3 id=&#34;formdata&#34;&gt;#formData()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-1:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-1&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;formData()&lt;/strong&gt;&lt;/li&gt;
@@ -2887,7 +2887,7 @@ all form controls within the partial&amp;rsquo;s root component.&lt;/p&gt;
 
 &lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-2&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a partial defined like this,&lt;/p&gt;
 
@@ -2911,7 +2911,7 @@ all form controls within the partial&amp;rsquo;s root component.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-3:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-3&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a partial defined like this,&lt;/p&gt;
 
@@ -2953,9 +2953,9 @@ all form controls within the partial&amp;rsquo;s root component.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;json-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;jsonfor:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;#jsonFor()&lt;/h3&gt;
+&lt;h3 id=&#34;jsonfor&#34;&gt;#jsonFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-2:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-2&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;jsonFor(formName)&lt;/strong&gt;&lt;/li&gt;
@@ -2966,7 +2966,7 @@ a named form.&lt;/p&gt;
 
 &lt;p&gt;The values are organized in hierarchical structure as explained following examples:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-4:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-4&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a component defined like this,&lt;/p&gt;
 
@@ -2985,7 +2985,7 @@ a named form.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&amp;quot;user&amp;quot;: { &amp;quot;login_name&amp;quot;: &amp;quot;john&amp;quot;, &amp;quot;password&amp;quot;: &amp;quot;p@ssw0rd&amp;quot;}}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-5:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-5&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you have a partial defined like this,&lt;/p&gt;
 
@@ -3012,7 +3012,7 @@ a named form.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;paramsfor:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;#paramsFor()&lt;/h3&gt;
+&lt;h3 id=&#34;paramsfor&#34;&gt;#paramsFor()&lt;/h3&gt;
 
 &lt;p&gt;Thid method returns an object that represents the field values of
 a named form.&lt;/p&gt;
@@ -3020,7 +3020,7 @@ a named form.&lt;/p&gt;
 &lt;p&gt;The returned object is organized in hierarchical structure
 so that you can pass it to the &lt;a href=&#34;http://api.jquery.com/jquery.ajax/&#34;&gt;ajax()&lt;/a&gt; method of jQuery.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-6:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-6&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;Suppose that you have a partial defined like this:&lt;/p&gt;
 
@@ -3061,7 +3061,7 @@ to the &lt;code&gt;data&lt;/code&gt; option of the &lt;code&gt;ajax()&lt;/code&g
 &lt;pre&gt;&lt;code&gt;user[name]=john&amp;amp;user[password]=1234
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;example-7:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-7&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;Suppose that you have a partial defined like this:&lt;/p&gt;
 
@@ -3130,7 +3130,7 @@ the following object:&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;refresh:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;#refresh()&lt;/h3&gt;
+&lt;h3 id=&#34;refresh&#34;&gt;#refresh()&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;refresh()&lt;/strong&gt;&lt;/li&gt;
@@ -3140,9 +3140,9 @@ the following object:&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;val&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;val:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;#val()&lt;/h3&gt;
+&lt;h3 id=&#34;val&#34;&gt;#val()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-3:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-3&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;val(name)&lt;/strong&gt;&lt;/li&gt;
@@ -3155,7 +3155,7 @@ the following object:&lt;/p&gt;
 &lt;p&gt;When the number of arguments is one and that argument is a string,
 this method returns the value of the corresponding field.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-8:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -3177,7 +3177,7 @@ this method sets the value of a field whose name is corresponding
 to the first argument to the second argument and returns
 the original value of the field.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-9:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-9&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;message&#39;, function(m) {
@@ -3199,7 +3199,7 @@ the original value of the field.&lt;/p&gt;
 &lt;p&gt;When the number of arguments is one and that argument is an object,
 this method sets the value of corresponding fields.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-10:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-10&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;render: function(m) {
   m.formFor(&#39;user&#39;, function(m) {
@@ -3222,13 +3222,13 @@ this method sets the value of corresponding fields.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;values-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;valuesfor:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;#valuesFor()&lt;/h3&gt;
+&lt;h3 id=&#34;valuesfor&#34;&gt;#valuesFor()&lt;/h3&gt;
 
 &lt;p&gt;Thid method sets the field values of a named form by passing an object as the first argument.&lt;/p&gt;
 
 &lt;p&gt;The values of this object must be organized in hierarchical structure as explained following examples:&lt;/p&gt;
 
-&lt;h4 id=&#34;example-11:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-11&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you render a component defined like this,&lt;/p&gt;
 
@@ -3255,7 +3255,7 @@ this method sets the value of corresponding fields.&lt;/p&gt;
 &lt;p&gt;you will see the only text field is filled with a string &amp;ldquo;john&amp;rdquo; and the first
 radio button is checked.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-12:76ad13d16b36aab99720cf6c44975fbc&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-12&#34;&gt;Example&lt;/h4&gt;
 
 &lt;p&gt;If you render a component defined like this,&lt;/p&gt;
 
@@ -3330,12 +3330,12 @@ radio button is checked.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;constructor&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;constructor:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Constructor&lt;/h3&gt;
+&lt;h3 id=&#34;constructor&#34;&gt;Constructor&lt;/h3&gt;
 
 &lt;p&gt;The &lt;code&gt;Cape.ResourceAgent&lt;/code&gt; constructor takes
 a &lt;code&gt;Cape.Component&lt;/code&gt; object and an optional object (options) as arguments.&lt;/p&gt;
 
-&lt;h4 id=&#34;options:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Options&lt;/h4&gt;
+&lt;h4 id=&#34;options&#34;&gt;Options&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;resourceName:&lt;/strong&gt; the name of resource.&lt;/li&gt;
@@ -3365,12 +3365,12 @@ When the &lt;code&gt;paramName&lt;/code&gt; option is not defined, the name is d
 the &lt;code&gt;nestedIn&lt;/code&gt; string from the member path. Default is &lt;code&gt;false&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;adapters:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Adapters&lt;/h4&gt;
+&lt;h4 id=&#34;adapters&#34;&gt;Adapters&lt;/h4&gt;
 
 &lt;p&gt;Currently, Cape.JS provides only &lt;code&gt;RailsAdapter&lt;/code&gt;, which sets the &lt;code&gt;X-CSRF-Token&lt;/code&gt; header
 for Ajax requests.&lt;/p&gt;
 
-&lt;h4 id=&#34;example:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
 
@@ -3419,22 +3419,22 @@ var Form = Cape.createComponentClass({
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;_&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_4:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#_&lt;/h3&gt;
+&lt;h3 id=&#34;toc_4&#34;&gt;#_&lt;/h3&gt;
 
 &lt;p&gt;This property holds the agent&amp;rsquo;s &lt;em&gt;inner object,&lt;/em&gt; which keeps &lt;em&gt;private&lt;/em&gt; properties
 and methods. Developers should not tamper with it.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;adapter&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;adapter:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#adapter&lt;/h3&gt;
+&lt;h3 id=&#34;adapter&#34;&gt;#adapter&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;ajax:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#ajax()&lt;/h3&gt;
+&lt;h3 id=&#34;ajax&#34;&gt;#ajax()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;ajax(httpMethod, path, params)&lt;/strong&gt;&lt;/li&gt;
@@ -3444,7 +3444,7 @@ and methods. Developers should not tamper with it.&lt;/p&gt;
 
 &lt;p&gt;Sends an Ajax request to the server.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-1&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Cape.defaultAgentAdapter = &#39;rails&#39;;
 
@@ -3467,20 +3467,20 @@ var Page = Cape.createComponentClass({
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;base-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;basepath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#basePath&lt;/h3&gt;
+&lt;h3 id=&#34;basepath&#34;&gt;#basePath&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;client&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;client:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#client&lt;/h3&gt;
+&lt;h3 id=&#34;client&#34;&gt;#client&lt;/h3&gt;
 
 &lt;p&gt;This property holds an instance of &lt;code&gt;Cape.Component&lt;/code&gt; class, which has been
 passed as the first argument of constructor.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;collectionpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#collectionPath()&lt;/h3&gt;
+&lt;h3 id=&#34;collectionpath&#34;&gt;#collectionPath()&lt;/h3&gt;
 
 &lt;p&gt;Returns the URL path to a collection of resources in accordance with the
 values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
@@ -3530,9 +3530,9 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;create&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;create:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#create()&lt;/h3&gt;
+&lt;h3 id=&#34;create&#34;&gt;#create()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-1:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-1&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;create()&lt;/strong&gt;&lt;/li&gt;
@@ -3545,7 +3545,7 @@ by the &lt;code&gt;collectionPath()&lt;/code&gt; method.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;data:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#data&lt;/h3&gt;
+&lt;h3 id=&#34;data&#34;&gt;#data&lt;/h3&gt;
 
 &lt;p&gt;This property holds the object that is build from the JSON string returned
 from the server during &lt;code&gt;refresh()&lt;/code&gt; process if the response data from the server
@@ -3555,7 +3555,7 @@ is a valid JSON string.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;data-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;datatype:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#dataType&lt;/h3&gt;
+&lt;h3 id=&#34;datatype&#34;&gt;#dataType&lt;/h3&gt;
 
 &lt;p&gt;This property holds the type of data that you&amp;rsquo;re expecting from the server.
 The value must be &lt;code&gt;&#39;json&#39;&lt;/code&gt;, &lt;code&gt;&#39;text&#39;&lt;/code&gt; or &lt;code&gt;undefined&lt;/code&gt;.
@@ -3563,7 +3563,7 @@ When the &lt;code&gt;dataType&lt;/code&gt; option is not defined, the type is de
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;default-error-hander&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;defaulterrorhandler:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#defaultErrorHandler()&lt;/h3&gt;
+&lt;h3 id=&#34;defaulterrorhandler&#34;&gt;#defaultErrorHandler()&lt;/h3&gt;
 
 &lt;p&gt;This method handles the exception thrown during the Fetch API.&lt;/p&gt;
 
@@ -3572,9 +3572,9 @@ Developers may override this for a better exception handling.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;destroy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;destroy:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#destroy()&lt;/h3&gt;
+&lt;h3 id=&#34;destroy&#34;&gt;#destroy()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-2:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-2&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;destroy()&lt;/strong&gt;&lt;/li&gt;
@@ -3587,7 +3587,7 @@ by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;errors&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;errors:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#errors&lt;/h3&gt;
+&lt;h3 id=&#34;errors&#34;&gt;#errors&lt;/h3&gt;
 
 &lt;p&gt;This property holds an object (key-value pairs) whose keys are the
 attribute names of the resource and whose values are the validation
@@ -3595,28 +3595,28 @@ error messages.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;form-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;formname:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#formName&lt;/h3&gt;
+&lt;h3 id=&#34;formname&#34;&gt;#formName&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;headers&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;headers:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#headers&lt;/h3&gt;
+&lt;h3 id=&#34;headers&#34;&gt;#headers&lt;/h3&gt;
 
 &lt;p&gt;This property holds the HTTP headers for Ajax requests.
 The default valued is &lt;code&gt;{ &#39;Content-Type&#39;: &#39;application/json&#39; }&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;id&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;id:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#id&lt;/h3&gt;
+&lt;h3 id=&#34;id&#34;&gt;#id&lt;/h3&gt;
 
 &lt;p&gt;This property holds the &lt;em&gt;id&lt;/em&gt; of resource.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;init&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;init:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#init()&lt;/h3&gt;
+&lt;h3 id=&#34;init&#34;&gt;#init()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-3:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-3&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;init()&lt;/strong&gt;&lt;/li&gt;
@@ -3629,7 +3629,7 @@ request to the server.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;memberpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#memberPath()&lt;/h3&gt;
+&lt;h3 id=&#34;memberpath&#34;&gt;#memberPath()&lt;/h3&gt;
 
 &lt;p&gt;Returns the URL path to a resource in accordance with the
 values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
@@ -3681,14 +3681,14 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;object&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;object:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#object&lt;/h3&gt;
+&lt;h3 id=&#34;object&#34;&gt;#object&lt;/h3&gt;
 
 &lt;p&gt;This property holds an object (hash) that represents the resource which
 the agent is associated to.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;new-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;newpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#newPath()&lt;/h3&gt;
+&lt;h3 id=&#34;newpath&#34;&gt;#newPath()&lt;/h3&gt;
 
 &lt;p&gt;Returns the URL path to a &lt;em&gt;new&lt;/em&gt; resource in accordance with the
 values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
@@ -3740,37 +3740,37 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;nested-in&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;nestedin:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#nestedIn&lt;/h3&gt;
+&lt;h3 id=&#34;nestedin&#34;&gt;#nestedIn&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;param-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;paramname:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#paramName&lt;/h3&gt;
+&lt;h3 id=&#34;paramname&#34;&gt;#paramName&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;resourcename:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#resourceName&lt;/h3&gt;
+&lt;h3 id=&#34;resourcename&#34;&gt;#resourceName&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;shallow&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;shallow:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#shallow&lt;/h3&gt;
+&lt;h3 id=&#34;shallow&#34;&gt;#shallow&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;singular:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#singular&lt;/h3&gt;
+&lt;h3 id=&#34;singular&#34;&gt;#singular&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;singularpath:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#singularPath()&lt;/h3&gt;
+&lt;h3 id=&#34;singularpath&#34;&gt;#singularPath()&lt;/h3&gt;
 
 &lt;p&gt;Returns the URL path to a &lt;em&gt;singular&lt;/em&gt; resource in accordance with the
 values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&gt; and &lt;code&gt;nestedIn&lt;/code&gt; properties:&lt;/p&gt;
@@ -3823,9 +3823,9 @@ referencing an ID.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;update&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;update:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;#update()&lt;/h3&gt;
+&lt;h3 id=&#34;update&#34;&gt;#update()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-4:04a8a0920f0d1f82717b9a315e5e6489&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-4&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;update()&lt;/strong&gt;&lt;/li&gt;
@@ -3857,6 +3857,7 @@ by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
 &lt;a href=&#34;#flash&#34;&gt;#flash&lt;/a&gt; -
 &lt;a href=&#34;#namespace&#34;&gt;#namespace&lt;/a&gt; -
 &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; -
+&lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt; -
 &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; -
 &lt;a href=&#34;#mount&#34;&gt;#mount()&lt;/a&gt; -
 &lt;a href=&#34;#params&#34;&gt;#params&lt;/a&gt; -
@@ -3871,25 +3872,25 @@ by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;action&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;action:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#action&lt;/h3&gt;
+&lt;h3 id=&#34;action&#34;&gt;#action&lt;/h3&gt;
 
 &lt;p&gt;This property holds the &lt;em&gt;action name&lt;/em&gt; of the current route.&lt;/p&gt;
 
-&lt;h4 id=&#34;example:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
   m.many(&#39;articles&#39;);
 });
-router.navigate(&#39;articles/123/edit&#39;);
+router.navigateTo(&#39;articles/123/edit&#39;);
 console.log(router.action); // =&amp;gt; &amp;quot;edit&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;attach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;attach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#attach()&lt;/h3&gt;
+&lt;h3 id=&#34;attach&#34;&gt;#attach()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
@@ -3901,17 +3902,17 @@ console.log(router.action); // =&amp;gt; &amp;quot;edit&amp;quot;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;before-navigation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;beforenavigation:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#beforeNavigation()&lt;/h3&gt;
+&lt;h3 id=&#34;beforenavigation&#34;&gt;#beforeNavigation()&lt;/h3&gt;
 
 &lt;p&gt;See &lt;a href=&#34;../../router/#before-navigation-callbacks&#34;&gt;Before-Navigation Callbacks&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;component&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;component:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#component&lt;/h3&gt;
+&lt;h3 id=&#34;component&#34;&gt;#component&lt;/h3&gt;
 
 &lt;p&gt;This property holds the &lt;em&gt;component name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-1&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -3920,19 +3921,19 @@ router.draw(function(m) {
     m.many(&#39;articles&#39;);
   });
 });
-router.navigate(&#39;articles/123/edit&#39;);
+router.navigateTo(&#39;articles/123/edit&#39;);
 console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
-router.navigate(&#39;admin/articles/123/edit&#39;);
+router.navigateTo(&#39;admin/articles/123/edit&#39;);
 console.log(router.component); // =&amp;gt; &amp;quot;edit&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;container&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;container:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
+&lt;h3 id=&#34;container&#34;&gt;#container&lt;/h3&gt;
 
 &lt;p&gt;This property holds the &lt;em&gt;container name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-2&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -3941,17 +3942,17 @@ router.draw(function(m) {
     m.many(&#39;articles&#39;);
   });
 });
-router.navigate(&#39;articles/123/edit&#39;);
+router.navigateTo(&#39;articles/123/edit&#39;);
 console.log(router.container); // =&amp;gt; &amp;quot;articles&amp;quot;
-router.navigate(&#39;admin/articles/123/edit&#39;);
+router.navigateTo(&#39;admin/articles/123/edit&#39;);
 console.log(router.container); // =&amp;gt; &amp;quot;admin.articles&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;detach&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;detach:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#detach()&lt;/h3&gt;
+&lt;h3 id=&#34;detach&#34;&gt;#detach()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-1&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;detach(component)&lt;/strong&gt;&lt;/li&gt;
@@ -3963,9 +3964,9 @@ console.log(router.container); // =&amp;gt; &amp;quot;admin.articles&amp;quot;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;draw&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;draw:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#draw()&lt;/h3&gt;
+&lt;h3 id=&#34;draw&#34;&gt;#draw()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-2:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-2&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;draw(function)&lt;/strong&gt;&lt;/li&gt;
@@ -3973,7 +3974,7 @@ console.log(router.container); // =&amp;gt; &amp;quot;admin.articles&amp;quot;
 
 &lt;p&gt;This method specify a function that takes a &lt;code&gt;RoutingMapper&lt;/code&gt; object and defines routes.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-3:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-3&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -3987,15 +3988,15 @@ router.draw(function(m) {
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;error-handler&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;errorhandler:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#errorHandler()&lt;/h3&gt;
+&lt;h3 id=&#34;errorhandler&#34;&gt;#errorHandler()&lt;/h3&gt;
 
 &lt;p&gt;See &lt;a href=&#34;../../router/#before-navigation-callbacks&#34;&gt;Before-Navigation Callbacks&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;flash&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;flash:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#flash&lt;/h3&gt;
+&lt;h3 id=&#34;flash&#34;&gt;#flash&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-3:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-3&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;flash[key] = value&lt;/strong&gt;&lt;/li&gt;
@@ -4005,19 +4006,19 @@ router.draw(function(m) {
 &lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;flash&lt;/em&gt; object,
 which is emptied after each navigation.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-4:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-4&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.flash.alert = &#39;The specified article has been deleted.&#39;;
-router.navigate(&#39;articles&#39;);
+router.navigateTo(&#39;articles&#39;);
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;container-1:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#container&lt;/h3&gt;
+&lt;h3 id=&#34;container-1&#34;&gt;#container&lt;/h3&gt;
 
 &lt;p&gt;This property holds the &lt;em&gt;namespace&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-5:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-5&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4026,20 +4027,35 @@ router.draw(function(m) {
     m.many(&#39;articles&#39;);
   });
 });
-router.navigate(&#39;articles/123/edit&#39;);
+router.navigateTo(&#39;articles/123/edit&#39;);
 console.log(router.namespace); // =&amp;gt; null
-router.navigate(&#39;admin/articles/123/edit&#39;);
+router.navigateTo(&#39;admin/articles/123/edit&#39;);
 console.log(router.namespace); // =&amp;gt; &amp;quot;admin&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;navigate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;navigate:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#navigate()&lt;/h3&gt;
+&lt;h3 id=&#34;navigate&#34;&gt;#navigate()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-4:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+&lt;p&gt;This method is &lt;em&gt;deprecated&lt;/em&gt; as of v1.4.&lt;/p&gt;
+
+&lt;h4 id=&#34;usage-4&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;navigate(hash)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;
+See &lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;navigateTo&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;navigateto-span-class-badge-alert-info-1-4-span&#34;&gt;#navigateTo() &lt;span class=&#34;badge alert-info&#34;&gt;1.4&lt;/span&gt;&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-5&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;navigateTo(hash)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;This method sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
@@ -4061,11 +4077,39 @@ it calls the &lt;code&gt;#refresh&lt;/code&gt; method of mounted component.&lt;/
 
 &lt;p&gt;If you don&amp;rsquo;t want the &lt;code&gt;#notify()&lt;/code&gt; method to be executed, use &lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; instead.&lt;/p&gt;
 
+&lt;h4 id=&#34;usage-6&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;navigateTo(hash, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash&lt;/em&gt;
+adding query string which is constructed from &lt;em&gt;params.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-6&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.navigateTo(&#39;articles&#39;, { page: &#39;2&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;usage-7&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;navigateTo(hash, params, options)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Same as the previous usage, except that the flash messages are set using &lt;em&gt;options.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-7&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.navigateTo(&#39;articles&#39;, {}, { notice: &#39;A new article has been uploaded.&#39; });
+router.navigateTo(&#39;articles/new&#39;, {}, { alert: &#39;Failed to upload a new article.&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;notify&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;notify:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#notify()&lt;/h3&gt;
+&lt;h3 id=&#34;notify&#34;&gt;#notify()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-5:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-8&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;notify()&lt;/strong&gt;&lt;/li&gt;
@@ -4077,13 +4121,13 @@ of all components registerd as targets of &lt;em&gt;notification&lt;/em&gt; of t
 &lt;p&gt;Eventually, each target component executes its &lt;code&gt;#render()&lt;/code&gt; method,
 which has to be defined by developers.&lt;/p&gt;
 
-&lt;p&gt;The &lt;code&gt;#notify()&lt;/code&gt; method is executed after each time the &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method is called.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;#notify()&lt;/code&gt; method is executed after each time the &lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt; method is called.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;mount:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#mount()&lt;/h3&gt;
+&lt;h3 id=&#34;mount&#34;&gt;#mount()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-6:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-9&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;mount(id)&lt;/strong&gt;&lt;/li&gt;
@@ -4092,7 +4136,7 @@ which has to be defined by developers.&lt;/p&gt;
 &lt;p&gt;This method specifies the &lt;code&gt;id&lt;/code&gt; of the HTML element which this router
 inserts the components into.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-6:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div&amp;gt;
   &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;Top&amp;lt;/a&amp;gt;
@@ -4117,12 +4161,12 @@ router.mount(&#39;main&#39;);
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;params&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;params:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#params&lt;/h3&gt;
+&lt;h3 id=&#34;params&#34;&gt;#params&lt;/h3&gt;
 
 &lt;p&gt;This property holds a set of key-value pairs, which represents the parameters
 embedded in the main part (before the first &amp;lsquo;?&amp;rsquo; symbol) of hash.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-7:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-9&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4131,44 +4175,44 @@ router.draw(function(m) {
     m.many(&#39;comments&#39;);
   });
 })
-router.navigate(&#39;help/password&#39;);
+router.navigateTo(&#39;help/password&#39;);
 // router.params.name === &#39;password&#39;
-router.navigate(&#39;articles/123&#39;)
+router.navigateTo(&#39;articles/123&#39;)
 // router.params.id === &#39;123&#39;
-router.navigate(&#39;articles/123/comments/7&#39;)
+router.navigateTo(&#39;articles/123/comments/7&#39;)
 // router.params.article_id === &#39;123&#39;
 // router.params.id === &#39;7&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;query&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;query:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#query&lt;/h3&gt;
+&lt;h3 id=&#34;query&#34;&gt;#query&lt;/h3&gt;
 
 &lt;p&gt;This property holds a set of key-value pairs, which represents the parameters
 embedded in the query part (after the first &amp;lsquo;?&amp;rsquo; symbol) of hash .&lt;/p&gt;
 
-&lt;h4 id=&#34;example-8:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-10&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
   m.many(&#39;articles&#39;)
 })
-router.navigate(&#39;articles&#39;)
+router.navigateTo(&#39;articles&#39;)
 // router.query === {}
-router.navigate(&#39;articles?page=2&#39;)
+router.navigateTo(&#39;articles?page=2&#39;)
 // router.query.page === &#39;2&#39;
-router.navigate(&#39;articles?page=2&amp;amp;deleted&#39;)
+router.navigateTo(&#39;articles?page=2&amp;amp;deleted&#39;)
 // router.query.page === &#39;2&#39;
 // router.query.deleted === &#39;&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;redirect-to&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;redirectto:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#redirectTo()&lt;/h3&gt;
+&lt;h3 id=&#34;redirectto&#34;&gt;#redirectTo()&lt;/h3&gt;
 
 &lt;p&gt;This method sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Unlike &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt; method, before-navigationi callbacks are &lt;em&gt;not&lt;/em&gt; executed
+&lt;p&gt;Unlike &lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt; method, before-navigationi callbacks are &lt;em&gt;not&lt;/em&gt; executed
 before changing the anchor part of URL.&lt;/p&gt;
 
 &lt;p&gt;After setting the anchor part of URL, this method choose a component
@@ -4183,11 +4227,11 @@ it calls the &lt;code&gt;#refresh&lt;/code&gt; method of the mounted component.&
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;resource:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#resource&lt;/h3&gt;
+&lt;h3 id=&#34;resource&#34;&gt;#resource&lt;/h3&gt;
 
 &lt;p&gt;This property holds the &lt;em&gt;resource name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-9:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-11&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4199,21 +4243,21 @@ router.draw(function(m) {
     m.many(&#39;articles&#39;);
   });
 });
-router.navigate(&#39;account/edit&#39;);
+router.navigateTo(&#39;account/edit&#39;);
 console.log(router.resource); // =&amp;gt; &amp;quot;account&amp;quot;
-router.navigate(&#39;articles/123/edit&#39;);
+router.navigateTo(&#39;articles/123/edit&#39;);
 console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
-router.navigate(&#39;articles/123/comments&#39;);
+router.navigateTo(&#39;articles/123/comments&#39;);
 console.log(router.resource); // =&amp;gt; &amp;quot;articles/comments&amp;quot;
-router.navigate(&#39;admin/articles/123/edit&#39;);
+router.navigateTo(&#39;admin/articles/123/edit&#39;);
 console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;route-for&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;routefor:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#routeFor()&lt;/h3&gt;
+&lt;h3 id=&#34;routefor&#34;&gt;#routeFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-7:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-10&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;routeFor(hash)&lt;/strong&gt;&lt;/li&gt;
@@ -4221,7 +4265,7 @@ console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
 
 &lt;p&gt;This method returns the first route matching to the &lt;em&gt;hash,&lt;/em&gt; if any.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-10:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-12&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4234,9 +4278,9 @@ var route = router.routeFor(&#39;admin/articles/123/edit&#39;);
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;show&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;show:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#show()&lt;/h3&gt;
+&lt;h3 id=&#34;show&#34;&gt;#show()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-8:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-11&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;show(componentClass)&lt;/strong&gt;&lt;/li&gt;
@@ -4244,26 +4288,26 @@ var route = router.routeFor(&#39;admin/articles/123/edit&#39;);
 
 &lt;p&gt;This method mounts an instance of &lt;em&gt;componentClass&lt;/em&gt; class.&lt;/p&gt;
 
-&lt;p&gt;Unlike &lt;a href=&#34;#navigate&#34;&gt;#navigate()&lt;/a&gt;, it does neither change the anchor part of
+&lt;p&gt;Unlike &lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt;, it does neither change the anchor part of
 current URL, nor call the &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; method.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;start&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;start:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#start()&lt;/h3&gt;
+&lt;h3 id=&#34;start&#34;&gt;#start()&lt;/h3&gt;
 
 &lt;p&gt;With this method call, routers begin to listen to &lt;code&gt;hashchange&lt;/code&gt; events.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;stop&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;stop:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#stop()&lt;/h3&gt;
+&lt;h3 id=&#34;stop&#34;&gt;#stop()&lt;/h3&gt;
 
 &lt;p&gt;With this method call, routers stop to listen to &lt;code&gt;hashchange&lt;/code&gt; events.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;vars&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;vars:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;#vars&lt;/h3&gt;
+&lt;h3 id=&#34;vars&#34;&gt;#vars&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-9:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-12&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;vars[key] = value&lt;/strong&gt;&lt;/li&gt;
@@ -4272,7 +4316,7 @@ current URL, nor call the &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; me
 
 &lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;vars&lt;/em&gt; object.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-11:b440f93c1d3adda104fcdb9ed5aa5063&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-13&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.vars.signedIn = Date.now();
 router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
@@ -4300,9 +4344,9 @@ router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;collection&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;collection:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#collection()&lt;/h3&gt;
+&lt;h3 id=&#34;collection&#34;&gt;#collection()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;collection(name)&lt;/strong&gt;&lt;/li&gt;
@@ -4310,7 +4354,7 @@ router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
 
 &lt;p&gt;Adds a &lt;em&gt;collection&lt;/em&gt; route (a route which deals with multiple items).&lt;/p&gt;
 
-&lt;h4 id=&#34;example:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4326,9 +4370,9 @@ router.draw(function(m) {
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;namespace&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;namespace:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#namespace()&lt;/h3&gt;
+&lt;h3 id=&#34;namespace&#34;&gt;#namespace()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-1:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-1&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;namespace(name, function)&lt;/strong&gt;&lt;/li&gt;
@@ -4391,9 +4435,9 @@ router.draw(function(m) {
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;new&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;new:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#new()&lt;/h3&gt;
+&lt;h3 id=&#34;new&#34;&gt;#new()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-2:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-2&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;new(name)&lt;/strong&gt;&lt;/li&gt;
@@ -4421,9 +4465,9 @@ router.draw(function(m) {
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;many&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;many:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#many()&lt;/h3&gt;
+&lt;h3 id=&#34;many&#34;&gt;#many()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-3:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-3&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;many(name)&lt;/strong&gt;&lt;/li&gt;
@@ -4431,7 +4475,7 @@ router.draw(function(m) {
 
 &lt;p&gt;Defines four routes for a plural resource.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-1:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-1&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4479,7 +4523,7 @@ router.draw(function(m) {
 &lt;/tr&gt;
 &lt;/table&gt;
 
-&lt;h4 id=&#34;usage-4:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-4&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;many(name, { only: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
@@ -4488,7 +4532,7 @@ router.draw(function(m) {
 &lt;p&gt;Adds routes for &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a plural resource.
 The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;index&amp;rdquo;, &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-2:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-2&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4503,7 +4547,7 @@ router.draw(function(m) {
 &lt;li&gt;From &lt;code&gt;articles/:id&lt;/code&gt; to &lt;code&gt;Articles.Item&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;usage-5:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-5&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;many(name, { except: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
@@ -4512,7 +4556,7 @@ router.draw(function(m) {
 &lt;p&gt;Adds basic routes excepting &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a plural resource.
 The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;index&amp;rdquo;, &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-3:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-3&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4529,9 +4573,9 @@ router.draw(function(m) {
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;member&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;member:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#member()&lt;/h3&gt;
+&lt;h3 id=&#34;member&#34;&gt;#member()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-6:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-6&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;member(name)&lt;/strong&gt;&lt;/li&gt;
@@ -4539,7 +4583,7 @@ router.draw(function(m) {
 
 &lt;p&gt;Adds a &lt;em&gt;member&lt;/em&gt; route (a route which deals with a specific item).&lt;/p&gt;
 
-&lt;h4 id=&#34;example-4:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example.&lt;/h4&gt;
+&lt;h4 id=&#34;example-4&#34;&gt;Example.&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4555,9 +4599,9 @@ router.draw(function(m) {
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;one&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;one:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#one()&lt;/h3&gt;
+&lt;h3 id=&#34;one&#34;&gt;#one()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-7:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-7&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;one(name)&lt;/strong&gt;&lt;/li&gt;
@@ -4565,7 +4609,7 @@ router.draw(function(m) {
 
 &lt;p&gt;Defines four routes for a singular resource.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-5:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-5&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4606,7 +4650,7 @@ router.draw(function(m) {
 &lt;/tr&gt;
 &lt;/table&gt;
 
-&lt;h4 id=&#34;usage-8:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-8&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;one(name, { only: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
@@ -4615,7 +4659,7 @@ router.draw(function(m) {
 &lt;p&gt;Adds routes for &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a singular resource.
 The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-6:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-6&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4629,7 +4673,7 @@ router.draw(function(m) {
 &lt;li&gt;From &lt;code&gt;account/&lt;/code&gt; to &lt;code&gt;Account.Content&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;usage-9:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-9&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;one(name, { except: [ action1, action2, &amp;hellip; ] })&lt;/strong&gt;&lt;/li&gt;
@@ -4638,7 +4682,7 @@ router.draw(function(m) {
 &lt;p&gt;Adds basic routes excepting &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; to a singular resource.
 The value of &lt;em&gt;action1, action2, &amp;hellip;&lt;/em&gt; must be &amp;ldquo;show&amp;rdquo;, &amp;ldquo;new&amp;rdquo; or &amp;ldquo;edit&amp;rdquo;.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-7:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-7&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4655,9 +4699,9 @@ router.draw(function(m) {
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;page&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;page:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#page()&lt;/h3&gt;
+&lt;h3 id=&#34;page&#34;&gt;#page()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-10:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-10&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;page(hashPattern, componentClassPath)&lt;/strong&gt;&lt;/li&gt;
@@ -4665,7 +4709,7 @@ router.draw(function(m) {
 
 &lt;p&gt;Defines a route from &lt;em&gt;hashPattern&lt;/em&gt; to &lt;em&gt;componentClassPath.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;example-8:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-8&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4675,7 +4719,7 @@ router.draw(function(m) {
 })
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;usage-11:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-11&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;page(hashPattern, componentClassPath, constraints)&lt;/strong&gt;&lt;/li&gt;
@@ -4684,7 +4728,7 @@ router.draw(function(m) {
 &lt;p&gt;Defines a route from &lt;em&gt;hashPattern&lt;/em&gt; to &lt;em&gt;componentClassPath&lt;/em&gt; with constraints
 on the parameters, which are specified by regular expression string.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-9:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-9&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4696,11 +4740,32 @@ router.draw(function(m) {
 &lt;p&gt;Note that you should put &lt;code&gt;:?&lt;/code&gt; to make parentheses
 &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-non-capturing-parentheses&#34;&gt;non-capturing parentheses&lt;/a&gt; &lt;i class=&#34;fa fa-external-link&#34;&gt;&lt;/i&gt;.&lt;/p&gt;
 
+&lt;h4 id=&#34;usage-12&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;page(hashPattern)&lt;/strong&gt; &lt;span class=&#34;badge alert-info&#34;&gt;1.4&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Defines a route from &lt;em&gt;hashPattern&lt;/em&gt; to the component class path which is consturcted
+from &lt;em&gt;hashPattern&lt;/em&gt; by replacing all slashes with dots.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-10&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
+router.draw(function(m) {
+  m.page(&#39;dashboard&#39;);
+  m.page(&#39;docs/about&#39;);
+  // The above codes have same meanings as the following alternatives:
+  //   m.page(&#39;dashboard&#39;, &#39;dashboard&#39;);
+  //   m.page(&#39;docs/about&#39;, &#39;docs.about&#39;);
+})
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;root&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;root:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#root()&lt;/h3&gt;
+&lt;h3 id=&#34;root&#34;&gt;#root()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-12:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-13&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;root(componentClassPath)&lt;/strong&gt;&lt;/li&gt;
@@ -4708,7 +4773,7 @@ router.draw(function(m) {
 
 &lt;p&gt;Defines a route from &amp;ldquo;&amp;rdquo; to &lt;em&gt;componentClassPath.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;example-10:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-11&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4718,9 +4783,9 @@ router.draw(function(m) {
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;view&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;view:ae7ef07c676989612e8905eb7075ea67&#34;&gt;#view()&lt;/h3&gt;
+&lt;h3 id=&#34;view&#34;&gt;#view()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-13:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-14&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;view(name)&lt;/strong&gt;&lt;/li&gt;
@@ -4728,7 +4793,7 @@ router.draw(function(m) {
 
 &lt;p&gt;Adds a custom route to a singular resource.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-11:ae7ef07c676989612e8905eb7075ea67&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-12&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {

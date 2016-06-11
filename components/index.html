@@ -217,11 +217,11 @@
 
 <p><a class="anchor" id="hello-world"></a></p>
 
-<h3 id="hello-world:d1b8a910971345212cdb562d8742fa2d">Hello World</h3>
+<h3 id="hello-world">Hello World</h3>
 
 <p>The following example will insert <code>&lt;div&gt;Hello, World!&lt;/div&gt;</code> into the <code>div#hello-message</code> element.</p>
 
-<h4 id="index-html:d1b8a910971345212cdb562d8742fa2d">index.html</h4>
+<h4 id="index-html">index.html</h4>
 
 <pre><code class="language-html">&lt;h1&gt;Greeting from Cape.JS&lt;/h1&gt;
 &lt;div id=&quot;hello-message&quot; data-name=&quot;World&quot;&gt;&lt;/div&gt;
@@ -233,7 +233,7 @@
 &lt;/script&gt;
 </code></pre>
 
-<h4 id="hello-message-js:d1b8a910971345212cdb562d8742fa2d">hello_message.js</h4>
+<h4 id="hello-message-js">hello_message.js</h4>
 
 <pre><code class="language-javascript">var HelloMesage = Cape.createComponentClass({
   render: function(m) {
@@ -260,11 +260,11 @@ And you can access to <code>data-name</code> attributes of the <code>root</code>
 
 <p><a class="anchor" id="es6"></a></p>
 
-<h3 id="ecmascript-6:d1b8a910971345212cdb562d8742fa2d">ECMAScript 6</h3>
+<h3 id="ecmascript-6">ECMAScript 6</h3>
 
 <p>If you want to write more concisely, try to define class using ECMAScript 6 (ES6) syntax.</p>
 
-<h4 id="hello-message-es6:d1b8a910971345212cdb562d8742fa2d">hello_message.es6</h4>
+<h4 id="hello-message-es6">hello_message.es6</h4>
 
 <pre><code class="language-javascript">class HelloMessage extends Cape.Component {
   render(m) {
@@ -283,9 +283,9 @@ You must also have <code>browserify</code> to convert <code>.es6</code> file to 
 
 <p><a class="anchor" id="dom-tree"></a></p>
 
-<h3 id="building-virtual-dom-tree:d1b8a910971345212cdb562d8742fa2d">Building Virtual DOM Tree</h3>
+<h3 id="building-virtual-dom-tree">Building Virtual DOM Tree</h3>
 
-<h4 id="index-html-1:d1b8a910971345212cdb562d8742fa2d">index.html</h4>
+<h4 id="index-html-1">index.html</h4>
 
 <pre><code class="language-html">&lt;h1&gt;Greeting from Cape.JS&lt;/h1&gt;
 &lt;div id=&quot;hello-message&quot; data-name=&quot;World&quot;&gt;&lt;/div&gt;
@@ -297,7 +297,7 @@ You must also have <code>browserify</code> to convert <code>.es6</code> file to 
 &lt;/script&gt;
 </code></pre>
 
-<h4 id="hello-message2-js:d1b8a910971345212cdb562d8742fa2d">hello_message2.js</h4>
+<h4 id="hello-message2-js">hello_message2.js</h4>
 
 <pre><code class="language-javascript">var HelloMesage2 = Cape.createComponentClass({
   render: function(m) {
@@ -351,11 +351,11 @@ See MDN&rsquo;s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript
 
 <p><a class="anchor" id="click-counter"></a></p>
 
-<h3 id="click-counter:d1b8a910971345212cdb562d8742fa2d">Click Counter</h3>
+<h3 id="click-counter">Click Counter</h3>
 
 <p>On this example, your will see the number which gets incremented each time you click on the surrounding <code>div</code> box.</p>
 
-<h4 id="index-html-2:d1b8a910971345212cdb562d8742fa2d">index.html</h4>
+<h4 id="index-html-2">index.html</h4>
 
 <pre><code class="language-html">&lt;div id=&quot;click-counter&quot;&gt;&lt;/div&gt;
 
@@ -366,7 +366,7 @@ See MDN&rsquo;s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript
 &lt;/script&gt;
 </code></pre>
 
-<h4 id="click-counter-js:d1b8a910971345212cdb562d8742fa2d">click_counter.js</h4>
+<h4 id="click-counter-js">click_counter.js</h4>
 
 <pre><code class="language-javascript">var ClickCounter = Cape.createComponentClass({
   render: function(m) {
@@ -412,7 +412,7 @@ is called when the component is mounted.</p>
 
 <p><a class="anchor" id="shortcut-methods"></a></p>
 
-<h2 id="shortcut-methods:d1b8a910971345212cdb562d8742fa2d">Shortcut Methods</h2>
+<h2 id="shortcut-methods">Shortcut Methods</h2>
 
 <p>Cape.JS provides some shortcut methods for the ease of programming, such as
 <code>#class</code>, <code>#disabled</code>, <code>#onclick</code>, <em>etc.</em>
@@ -455,7 +455,7 @@ In the following example, the second <code>&lt;div&gt;</code> element will have 
 
 <p><a class="anchor" id="html-styles"></a></p>
 
-<h2 id="html-styles:d1b8a910971345212cdb562d8742fa2d">HTML Styles</h2>
+<h2 id="html-styles">HTML Styles</h2>
 
 <p>When you want to change the style of an element, you have two choices.
 The first one is to give the <code>style</code> option to <code>div</code> method etc.
@@ -490,12 +490,12 @@ You <em>can not</em> write like this:</p>
 
 <p><a class="anchor" id="todo-list"></a></p>
 
-<h2 id="todo-list:d1b8a910971345212cdb562d8742fa2d">Todo List</h2>
+<h2 id="todo-list">Todo List</h2>
 
 <p>On this example, your can add a todo item from a HTML form and toggle the
 <code>completed</code> property of todo items by clicking check boxes.</p>
 
-<h4 id="index-html-3:d1b8a910971345212cdb562d8742fa2d">index.html</h4>
+<h4 id="index-html-3">index.html</h4>
 
 <pre><code class="language-html">&lt;div id=&quot;todo-list&quot;&gt;&lt;/div&gt;
 
@@ -506,7 +506,7 @@ You <em>can not</em> write like this:</p>
 &lt;/script&gt;
 </code></pre>
 
-<h4 id="todo-list-js:d1b8a910971345212cdb562d8742fa2d">todo_list.js</h4>
+<h4 id="todo-list-js">todo_list.js</h4>
 
 <pre><code class="language-javascript">var TodoList = Cape.createComponentClass({
   render: function(m) {
@@ -576,7 +576,7 @@ You can also set its value with <code>val</code> method by giving a new value as
 
 <p><a class="anchor" id="mixins"></a></p>
 
-<h3 id="mixins:d1b8a910971345212cdb562d8742fa2d">Mixins</h3>
+<h3 id="mixins">Mixins</h3>
 
 <p>When you build a large application with many similar components,
 you will want to extract common methods to <em>mixins</em>,
@@ -585,7 +585,7 @@ objects that contain a combination of methods.</p>
 <p>The following example illustrates how to create <em>mixins</em> and incorporate them
 into component classes.</p>
 
-<h4 id="index-html-4:d1b8a910971345212cdb562d8742fa2d">index.html</h4>
+<h4 id="index-html-4">index.html</h4>
 
 <pre><code class="language-html">&lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
 
@@ -597,7 +597,7 @@ into component classes.</p>
 &lt;/script&gt;
 </code></pre>
 
-<h4 id="form-controls-js:d1b8a910971345212cdb562d8742fa2d">form_controls.js</h4>
+<h4 id="form-controls-js">form_controls.js</h4>
 
 <pre><code class="language-javascript">var FormControls = {
   renderTextField: function(markup, fieldName, labelText) {
@@ -623,7 +623,7 @@ into component classes.</p>
 }
 </code></pre>
 
-<h4 id="simple-form-js:d1b8a910971345212cdb562d8742fa2d">simple_form.js</h4>
+<h4 id="simple-form-js">simple_form.js</h4>
 
 <pre><code class="language-javascript">var SimpleForm = Cape.createComponentClass({
   render: function(m) {

@@ -489,11 +489,11 @@
 
 <p><a class="anchor" id="constructor"></a></p>
 
-<h3 id="constructor:7cf50d10a54b2c097102d0c8a749f9fb">Constructor</h3>
+<h3 id="constructor">Constructor</h3>
 
 <p>The <code>Cape.CollectionAgent</code> constructor takes an object <em>(options)</em> as the first argument.</p>
 
-<h4 id="options:7cf50d10a54b2c097102d0c8a749f9fb">Options</h4>
+<h4 id="options">Options</h4>
 
 <ul>
 <li><strong>resourceName:</strong> the name of resource which is located on the web.
@@ -518,7 +518,7 @@ When the <code>paramName</code> option is not defined, the name is derived from 
 the <code>nestedIn</code> string from the member path. Default is <code>false</code>.</li>
 </ul>
 
-<h4 id="example:7cf50d10a54b2c097102d0c8a749f9fb">Example</h4>
+<h4 id="example">Example</h4>
 
 <pre><code class="language-javascript">Cape.defaultAgentAdapter = 'rails';
 var comp = new Cape.Component();
@@ -530,20 +530,20 @@ var agent4 = new Cape.CollectionAgent(comp, { resourceName: 'articles', dataType
 
 <p><a class="anchor" id="_"></a></p>
 
-<h3 id="toc_3:7cf50d10a54b2c097102d0c8a749f9fb">#_</h3>
+<h3 id="toc_3">#_</h3>
 
 <p>This property holds the agent&rsquo;s <em>inner object,</em> which keeps <em>private</em> properties
 and methods. Developers should not tamper with it.</p>
 
 <p><a class="anchor" id="adapter"></a></p>
 
-<h3 id="adapter:7cf50d10a54b2c097102d0c8a749f9fb">#adapter</h3>
+<h3 id="adapter">#adapter</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="after-refresh"></a></p>
 
-<h3 id="afterrefresh:7cf50d10a54b2c097102d0c8a749f9fb">#afterRefresh</h3>
+<h3 id="afterrefresh">#afterRefresh</h3>
 
 <p>This method gets called by the <code>refresh()</code> method after it updates the <code>data</code>
 and <code>objects</code> properties.</p>
@@ -554,15 +554,15 @@ post-processing jobs.</p>
 
 <p><a class="anchor" id="adapter"></a></p>
 
-<h3 id="adapter-1:7cf50d10a54b2c097102d0c8a749f9fb">#adapter</h3>
+<h3 id="adapter-1">#adapter</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="ajax"></a></p>
 
-<h3 id="ajax:7cf50d10a54b2c097102d0c8a749f9fb">#ajax()</h3>
+<h3 id="ajax">#ajax()</h3>
 
-<h4 id="usage:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage">Usage</h4>
 
 <ul>
 <li><strong>ajax(httpMethod, path, params)</strong></li>
@@ -574,19 +574,19 @@ post-processing jobs.</p>
 
 <p><a class="anchor" id="auto-refresh"></a></p>
 
-<h3 id="autorefresh:7cf50d10a54b2c097102d0c8a749f9fb">#autoRefresh</h3>
+<h3 id="autorefresh">#autoRefresh</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="base-path"></a></p>
 
-<h3 id="basepath:7cf50d10a54b2c097102d0c8a749f9fb">#basePath</h3>
+<h3 id="basepath">#basePath</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="collection-path"></a></p>
 
-<h3 id="collectionpath:7cf50d10a54b2c097102d0c8a749f9fb">#collectionPath()</h3>
+<h3 id="collectionpath">#collectionPath()</h3>
 
 <p>Returns the URL path to a collection of resources in accordance with the
 values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</code> properties:</p>
@@ -636,9 +636,9 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <p><a class="anchor" id="create"></a></p>
 
-<h3 id="create:7cf50d10a54b2c097102d0c8a749f9fb">#create()</h3>
+<h3 id="create">#create()</h3>
 
-<h4 id="usage-1:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-1">Usage</h4>
 
 <ul>
 <li><strong>create(params)</strong></li>
@@ -657,7 +657,7 @@ agent itself as the single argument and does some post-processing jobs.</p>
 <p>Ths optional third argument (<code>errorHandler</code>) must be a function,
 which takes an exception and does some error-handling jobs.</p>
 
-<h4 id="example-1:7cf50d10a54b2c097102d0c8a749f9fb">Example</h4>
+<h4 id="example-1">Example</h4>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {
@@ -687,7 +687,7 @@ which takes an exception and does some error-handling jobs.</p>
 
 <p><a class="anchor" id="data"></a></p>
 
-<h3 id="data:7cf50d10a54b2c097102d0c8a749f9fb">#data</h3>
+<h3 id="data">#data</h3>
 
 <p>This property holds an object (hash)
 if the response data is a valid JSON string.
@@ -695,13 +695,13 @@ Otherwise, it holds the original string value.</p>
 
 <p><a class="anchor" id="data-type"></a></p>
 
-<h3 id="datatype:7cf50d10a54b2c097102d0c8a749f9fb">#dataType</h3>
+<h3 id="datatype">#dataType</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="default-error-hander"></a></p>
 
-<h3 id="defaulterrorhandler:7cf50d10a54b2c097102d0c8a749f9fb">#defaultErrorHandler()</h3>
+<h3 id="defaulterrorhandler">#defaultErrorHandler()</h3>
 
 <p>This method handles the exception thrown during the Fetch API.</p>
 
@@ -710,9 +710,9 @@ Developers may override this for a better exception handling.</p>
 
 <p><a class="anchor" id="delete"></a></p>
 
-<h3 id="delete:7cf50d10a54b2c097102d0c8a749f9fb">#delete()</h3>
+<h3 id="delete">#delete()</h3>
 
-<h4 id="usage-2:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-2">Usage</h4>
 
 <ul>
 <li><strong>delete(actionName, id, params)</strong></li>
@@ -725,9 +725,9 @@ by given arguments.</p>
 
 <p><a class="anchor" id="destroy"></a></p>
 
-<h3 id="destroy:7cf50d10a54b2c097102d0c8a749f9fb">#destroy()</h3>
+<h3 id="destroy">#destroy()</h3>
 
-<h4 id="usage-3:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-3">Usage</h4>
 
 <ul>
 <li><strong>destroy(id)</strong></li>
@@ -748,7 +748,7 @@ agent itself as the single argument and does some post-processing jobs.</p>
 <p>Ths optional third argument (<code>errorHandler</code>) must be a function,
 which takes an exception and does some error-handling jobs.</p>
 
-<h4 id="example-2:7cf50d10a54b2c097102d0c8a749f9fb">Example</h4>
+<h4 id="example-2">Example</h4>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {
@@ -774,9 +774,9 @@ which takes an exception and does some error-handling jobs.</p>
 
 <p><a class="anchor" id="get"></a></p>
 
-<h3 id="get:7cf50d10a54b2c097102d0c8a749f9fb">#get()</h3>
+<h3 id="get">#get()</h3>
 
-<h4 id="usage-4:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-4">Usage</h4>
 
 <ul>
 <li><strong>get(actionName, id, params)</strong></li>
@@ -789,9 +789,9 @@ by given arguments.</p>
 
 <p><a class="anchor" id="get-instance"></a></p>
 
-<h3 id="getinstance:7cf50d10a54b2c097102d0c8a749f9fb">.getInstance()</h3>
+<h3 id="getinstance">.getInstance()</h3>
 
-<h4 id="usage-5:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-5">Usage</h4>
 
 <p>Returns an instance of collection agent.</p>
 
@@ -804,9 +804,9 @@ the key.</p>
 
 <p><a class="anchor" id="head"></a></p>
 
-<h3 id="head:7cf50d10a54b2c097102d0c8a749f9fb">#head()</h3>
+<h3 id="head">#head()</h3>
 
-<h4 id="usage-6:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-6">Usage</h4>
 
 <ul>
 <li><strong>head(actionName, id, params)</strong></li>
@@ -819,7 +819,7 @@ by given arguments.</p>
 
 <p><a class="anchor" id="headers"></a></p>
 
-<h3 id="headers:7cf50d10a54b2c097102d0c8a749f9fb">#headers</h3>
+<h3 id="headers">#headers</h3>
 
 <p>This property holds the HTTP headers for Ajax requests.</p>
 
@@ -827,9 +827,9 @@ by given arguments.</p>
 
 <p><a class="anchor" id="index"></a></p>
 
-<h3 id="index:7cf50d10a54b2c097102d0c8a749f9fb">#index()</h3>
+<h3 id="index">#index()</h3>
 
-<h4 id="usage-7:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-7">Usage</h4>
 
 <ul>
 <li><strong>index(params)</strong></li>
@@ -842,9 +842,9 @@ by the <code>collectionPath()</code> method and the <code>params</code>.</p>
 
 <p><a class="anchor" id="member-path"></a></p>
 
-<h3 id="memberpath:7cf50d10a54b2c097102d0c8a749f9fb">#memberPath()</h3>
+<h3 id="memberpath">#memberPath()</h3>
 
-<h4 id="usage-8:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-8">Usage</h4>
 
 <ul>
 <li><strong>memberPath(id)</strong></li>
@@ -900,28 +900,28 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <p><a class="anchor" id="nested-in"></a></p>
 
-<h3 id="nestedin:7cf50d10a54b2c097102d0c8a749f9fb">#nestedIn</h3>
+<h3 id="nestedin">#nestedIn</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="objects"></a></p>
 
-<h3 id="objects:7cf50d10a54b2c097102d0c8a749f9fb">#objects</h3>
+<h3 id="objects">#objects</h3>
 
 <p>This property holds an array of objects (hashes) that represents the
 collection of resources which the agent is associated to.</p>
 
 <p><a class="anchor" id="param-name"></a></p>
 
-<h3 id="paramname:7cf50d10a54b2c097102d0c8a749f9fb">#paramName</h3>
+<h3 id="paramname">#paramName</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="params-for-refresh"></a></p>
 
-<h3 id="paramsforrefresh:7cf50d10a54b2c097102d0c8a749f9fb">#paramsForRefresh()</h3>
+<h3 id="paramsforrefresh">#paramsForRefresh()</h3>
 
-<h4 id="usage-9:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-9">Usage</h4>
 
 <ul>
 <li><strong>paramsForRefresh()</strong></li>
@@ -932,7 +932,7 @@ the query string of the request URL during the <code>refresh()</code> process.</
 
 <p>Developers may override this method to change this behavior.</p>
 
-<h4 id="example-3:7cf50d10a54b2c097102d0c8a749f9fb">Example</h4>
+<h4 id="example-3">Example</h4>
 
 <pre><code class="language-javascript">class UserAgent extends Cape.CollectionAgent {
   constructor(options) {
@@ -949,9 +949,9 @@ the query string of the request URL during the <code>refresh()</code> process.</
 
 <p><a class="anchor" id="patch"></a></p>
 
-<h3 id="patch:7cf50d10a54b2c097102d0c8a749f9fb">#patch()</h3>
+<h3 id="patch">#patch()</h3>
 
-<h4 id="usage-10:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-10">Usage</h4>
 
 <ul>
 <li><strong>patch(actionName, id, params)</strong></li>
@@ -964,9 +964,9 @@ by given arguments.</p>
 
 <p><a class="anchor" id="post"></a></p>
 
-<h3 id="post:7cf50d10a54b2c097102d0c8a749f9fb">#post()</h3>
+<h3 id="post">#post()</h3>
 
-<h4 id="usage-11:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-11">Usage</h4>
 
 <ul>
 <li><strong>post(actionName, id, params)</strong></li>
@@ -979,9 +979,9 @@ by given arguments.</p>
 
 <p><a class="anchor" id="put"></a></p>
 
-<h3 id="put:7cf50d10a54b2c097102d0c8a749f9fb">#put()</h3>
+<h3 id="put">#put()</h3>
 
-<h4 id="usage-12:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-12">Usage</h4>
 
 <ul>
 <li><strong>put(actionName, id, params)</strong></li>
@@ -994,7 +994,7 @@ by given arguments.</p>
 
 <p><a class="anchor" id="refresh"></a></p>
 
-<h3 id="refresh:7cf50d10a54b2c097102d0c8a749f9fb">#refresh()</h3>
+<h3 id="refresh">#refresh()</h3>
 
 <p>This method sends an Ajax request with GET method to the URL that is constructed
 by the <a href="#collection-path">#collectionPath()</a> and
@@ -1002,21 +1002,21 @@ by the <a href="#collection-path">#collectionPath()</a> and
 
 <p><a class="anchor" id="resource-name"></a></p>
 
-<h3 id="resourcename:7cf50d10a54b2c097102d0c8a749f9fb">#resourceName</h3>
+<h3 id="resourcename">#resourceName</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="shallow"></a></p>
 
-<h3 id="shallow:7cf50d10a54b2c097102d0c8a749f9fb">#shallow</h3>
+<h3 id="shallow">#shallow</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="update"></a></p>
 
-<h3 id="update:7cf50d10a54b2c097102d0c8a749f9fb">#update()</h3>
+<h3 id="update">#update()</h3>
 
-<h4 id="usage-13:7cf50d10a54b2c097102d0c8a749f9fb">Usage</h4>
+<h4 id="usage-13">Usage</h4>
 
 <ul>
 <li><strong>update(id, params)</strong></li>
@@ -1039,7 +1039,7 @@ agent itself as the single argument and does some post-processing jobs.</p>
 <p>Ths optional fourth argument (<code>errorHandler</code>) must be a function,
 which takes an exception and does some error-handling jobs.</p>
 
-<h4 id="example-4:7cf50d10a54b2c097102d0c8a749f9fb">Example</h4>
+<h4 id="example-4">Example</h4>
 
 <pre><code class="language-javascript">class UserList extends Cape.Component {
   init() {

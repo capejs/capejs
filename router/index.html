@@ -220,14 +220,14 @@
 
 <p><a class="anchor" id="simple-routes"></a></p>
 
-<h3 id="simple-routes:b440f93c1d3adda104fcdb9ed5aa5063">Simple Routes</h3>
+<h3 id="simple-routes">Simple Routes</h3>
 
 <p>Cape.JS&rsquo;s router reacts to the changes of URL hash fragment and replace the
 component mounted on the target node.</p>
 
 <p>The following example illustrates the basic concept of router and routes.</p>
 
-<h4 id="index-html:b440f93c1d3adda104fcdb9ed5aa5063">index.html</h4>
+<h4 id="index-html">index.html</h4>
 
 <pre><code class="language-html">&lt;div&gt;
   &lt;a href=&quot;#&quot;&gt;Top&lt;/a&gt;
@@ -241,7 +241,7 @@ component mounted on the target node.</p>
 &lt;script src=&quot;./router.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 
-<h4 id="components-js:b440f93c1d3adda104fcdb9ed5aa5063">components.js</h4>
+<h4 id="components-js">components.js</h4>
 
 <pre><code class="language-javascript">var TopPage = Cape.createComponentClass({
   render: function(m) {
@@ -262,7 +262,7 @@ var HelpPage = Cape.createComponentClass({
 });
 </code></pre>
 
-<h4 id="router-js:b440f93c1d3adda104fcdb9ed5aa5063">router.js</h4>
+<h4 id="router-js">router.js</h4>
 
 <pre><code class="language-javascript">var router = new Cape.Router();
 router.draw(function(m) {
@@ -290,7 +290,7 @@ components according to the routes.</p>
 
 <p><a class="anchor" id="containers"></a></p>
 
-<h3 id="containers:b440f93c1d3adda104fcdb9ed5aa5063">Containers</h3>
+<h3 id="containers">Containers</h3>
 
 <p>When the number of components is getting larger, you may want to organize
 them in a hyerarchical structure. In this case, you can create some objects
@@ -331,7 +331,7 @@ router.draw(function(m) {
 
 <p><a class="anchor" id="resource-based-routes"></a></p>
 
-<h3 id="resource-based-routes:b440f93c1d3adda104fcdb9ed5aa5063">Resource Based Routes</h3>
+<h3 id="resource-based-routes">Resource Based Routes</h3>
 
 <p>When you create a user interface for CRUD operations on a database table, say <code>articles</code>,
 you will need four pages typically:</p>
@@ -443,7 +443,7 @@ control the flow of processing when we render components:</p>
 
 <p><a class="anchor" id="singular-resources"></a></p>
 
-<h3 id="singular-resources:b440f93c1d3adda104fcdb9ed5aa5063">Singular Resources</h3>
+<h3 id="singular-resources">Singular Resources</h3>
 
 <p>When you want to define routes for a resource that can have only zero or
 one instance, you should use <code>one</code> method as follows:</p>
@@ -492,7 +492,7 @@ The container&rsquo;s name is singular, not plural.</p>
 
 <p><a class="anchor" id="nested-resources"></a></p>
 
-<h3 id="nested-resources:b440f93c1d3adda104fcdb9ed5aa5063">Nested Resources</h3>
+<h3 id="nested-resources">Nested Resources</h3>
 
 <p>You can define resources which are logically children
 of other resources as follows:</p>
@@ -550,7 +550,7 @@ They are not <code>Articles.Comments.List</code>, <code>Articles.Comments.Item</
 
 <p><a class="anchor" id="namespaces"></a></p>
 
-<h3 id="namespaces:b440f93c1d3adda104fcdb9ed5aa5063">Namespaces</h3>
+<h3 id="namespaces">Namespaces</h3>
 
 <p>You can define resources under a <em>namespace</em> as follows:</p>
 
@@ -609,9 +609,9 @@ router.draw(function(m) {
 
 <p><a class="anchor" id="adding-custom-actions"></a></p>
 
-<h3 id="adding-custom-actions:b440f93c1d3adda104fcdb9ed5aa5063">Adding Custom Actions</h3>
+<h3 id="adding-custom-actions">Adding Custom Actions</h3>
 
-<h4 id="adding-collection-routes:b440f93c1d3adda104fcdb9ed5aa5063">Adding Collection Routes</h4>
+<h4 id="adding-collection-routes">Adding Collection Routes</h4>
 
 <p>To add a <em>collection</em> route (a route which deals with multiple items), use <code>collection</code> method:</p>
 
@@ -625,7 +625,7 @@ router.draw(function(m) {
 
 <p>This defines a route from <code>articles/draft</code> to <code>Articles.Draft</code>.</p>
 
-<h4 id="adding-member-routes:b440f93c1d3adda104fcdb9ed5aa5063">Adding Member Routes</h4>
+<h4 id="adding-member-routes">Adding Member Routes</h4>
 
 <p>To add a <em>member</em> route (a route which deals with a specific item), use <code>member</code> method:</p>
 
@@ -639,7 +639,7 @@ router.draw(function(m) {
 
 <p>This defines a route from <code>articles/:id/info</code> to <code>Articles.Info</code>.</p>
 
-<h4 id="adding-routes-for-additional-new-actions:b440f93c1d3adda104fcdb9ed5aa5063">Adding Routes for Additional New Actions</h4>
+<h4 id="adding-routes-for-additional-new-actions">Adding Routes for Additional New Actions</h4>
 
 <p>To add an alternate new action, use <code>new</code> method:</p>
 
@@ -653,7 +653,7 @@ router.draw(function(m) {
 
 <p>This defines a route from <code>articles/new/preview</code> to <code>Articles.Preview</code>.</p>
 
-<h4 id="adding-additional-routes-to-singular-resources:b440f93c1d3adda104fcdb9ed5aa5063">Adding Additional Routes to Singular Resources</h4>
+<h4 id="adding-additional-routes-to-singular-resources">Adding Additional Routes to Singular Resources</h4>
 
 <p>To add an additional route to singular resources, use <code>view</code> method:</p>
 
@@ -667,7 +667,7 @@ router.draw(function(m) {
 
 <p>This defines a route from <code>account/photo</code> to <code>Account.Photo</code>.</p>
 
-<h4 id="adding-routes-for-additional-new-actions-of-singular-resources:b440f93c1d3adda104fcdb9ed5aa5063">Adding Routes for Additional New Actions of Singular Resources</h4>
+<h4 id="adding-routes-for-additional-new-actions-of-singular-resources">Adding Routes for Additional New Actions of Singular Resources</h4>
 
 <p>To add an alternate new action to singular resources, use <code>new</code> method:</p>
 
@@ -683,7 +683,7 @@ router.draw(function(m) {
 
 <p><a class="anchor" id="changing-root-container"></a></p>
 
-<h3 id="changing-root-container:b440f93c1d3adda104fcdb9ed5aa5063">Changing Root Container</h3>
+<h3 id="changing-root-container">Changing Root Container</h3>
 
 <p>By default, the root container is <code>window</code> object.
 In other words, variables for components and containers are defined globally.</p>
@@ -703,7 +703,7 @@ and the container for the <code>articles</code> resource becomes <code>MyApp.Art
 
 <p><a class="anchor" id="vars"></a></p>
 
-<h3 id="vars:b440f93c1d3adda104fcdb9ed5aa5063">Vars</h3>
+<h3 id="vars">Vars</h3>
 
 <p>Routers have a property named <code>vars</code>, which developers can store arbitrary data to.</p>
 
@@ -726,7 +726,7 @@ router.vars.current_user = { id: 123, name: 'john', privileged: true }
 
 <p><a class="anchor" id="flash"></a></p>
 
-<h3 id="flash:b440f93c1d3adda104fcdb9ed5aa5063">Flash</h3>
+<h3 id="flash">Flash</h3>
 
 <p>Routers have a property named <code>flash</code>, which developers can store arbitrary data to,
 but is erased after each navigation.</p>
@@ -748,7 +748,7 @@ router.flash.alert = &quot;You can't delete this item.&quot;;
 
 <p><a class="anchor" id="before-navigation-callbacks"></a></p>
 
-<h3 id="before-navigation-callbacks:b440f93c1d3adda104fcdb9ed5aa5063">Before-Navigation Callbacks</h3>
+<h3 id="before-navigation-callbacks">Before-Navigation Callbacks</h3>
 
 <p>You can register one or more callbacks which are executed before each <em>navigation</em>.</p>
 

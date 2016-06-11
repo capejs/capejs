@@ -486,12 +486,12 @@
 
 <p><a class="anchor" id="constructor"></a></p>
 
-<h3 id="constructor:04a8a0920f0d1f82717b9a315e5e6489">Constructor</h3>
+<h3 id="constructor">Constructor</h3>
 
 <p>The <code>Cape.ResourceAgent</code> constructor takes
 a <code>Cape.Component</code> object and an optional object (options) as arguments.</p>
 
-<h4 id="options:04a8a0920f0d1f82717b9a315e5e6489">Options</h4>
+<h4 id="options">Options</h4>
 
 <ul>
 <li><strong>resourceName:</strong> the name of resource.</li>
@@ -521,12 +521,12 @@ When the <code>paramName</code> option is not defined, the name is derived from 
 the <code>nestedIn</code> string from the member path. Default is <code>false</code>.</li>
 </ul>
 
-<h4 id="adapters:04a8a0920f0d1f82717b9a315e5e6489">Adapters</h4>
+<h4 id="adapters">Adapters</h4>
 
 <p>Currently, Cape.JS provides only <code>RailsAdapter</code>, which sets the <code>X-CSRF-Token</code> header
 for Ajax requests.</p>
 
-<h4 id="example:04a8a0920f0d1f82717b9a315e5e6489">Example</h4>
+<h4 id="example">Example</h4>
 
 <pre><code class="language-javascript">Cape.defaultAgentAdapter = 'rails';
 
@@ -575,22 +575,22 @@ var Form = Cape.createComponentClass({
 
 <p><a class="anchor" id="_"></a></p>
 
-<h3 id="toc_4:04a8a0920f0d1f82717b9a315e5e6489">#_</h3>
+<h3 id="toc_4">#_</h3>
 
 <p>This property holds the agent&rsquo;s <em>inner object,</em> which keeps <em>private</em> properties
 and methods. Developers should not tamper with it.</p>
 
 <p><a class="anchor" id="adapter"></a></p>
 
-<h3 id="adapter:04a8a0920f0d1f82717b9a315e5e6489">#adapter</h3>
+<h3 id="adapter">#adapter</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="ajax"></a></p>
 
-<h3 id="ajax:04a8a0920f0d1f82717b9a315e5e6489">#ajax()</h3>
+<h3 id="ajax">#ajax()</h3>
 
-<h4 id="usage:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
+<h4 id="usage">Usage</h4>
 
 <ul>
 <li><strong>ajax(httpMethod, path, params)</strong></li>
@@ -600,7 +600,7 @@ and methods. Developers should not tamper with it.</p>
 
 <p>Sends an Ajax request to the server.</p>
 
-<h4 id="example-1:04a8a0920f0d1f82717b9a315e5e6489">Example</h4>
+<h4 id="example-1">Example</h4>
 
 <pre><code class="language-javascript">Cape.defaultAgentAdapter = 'rails';
 
@@ -623,20 +623,20 @@ var Page = Cape.createComponentClass({
 
 <p><a class="anchor" id="base-path"></a></p>
 
-<h3 id="basepath:04a8a0920f0d1f82717b9a315e5e6489">#basePath</h3>
+<h3 id="basepath">#basePath</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="client"></a></p>
 
-<h3 id="client:04a8a0920f0d1f82717b9a315e5e6489">#client</h3>
+<h3 id="client">#client</h3>
 
 <p>This property holds an instance of <code>Cape.Component</code> class, which has been
 passed as the first argument of constructor.</p>
 
 <p><a class="anchor" id="collection-path"></a></p>
 
-<h3 id="collectionpath:04a8a0920f0d1f82717b9a315e5e6489">#collectionPath()</h3>
+<h3 id="collectionpath">#collectionPath()</h3>
 
 <p>Returns the URL path to a collection of resources in accordance with the
 values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</code> properties:</p>
@@ -686,9 +686,9 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <p><a class="anchor" id="create"></a></p>
 
-<h3 id="create:04a8a0920f0d1f82717b9a315e5e6489">#create()</h3>
+<h3 id="create">#create()</h3>
 
-<h4 id="usage-1:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
+<h4 id="usage-1">Usage</h4>
 
 <ul>
 <li><strong>create()</strong></li>
@@ -701,7 +701,7 @@ by the <code>collectionPath()</code> method.</p>
 
 <p><a class="anchor" id="data"></a></p>
 
-<h3 id="data:04a8a0920f0d1f82717b9a315e5e6489">#data</h3>
+<h3 id="data">#data</h3>
 
 <p>This property holds the object that is build from the JSON string returned
 from the server during <code>refresh()</code> process if the response data from the server
@@ -711,7 +711,7 @@ is a valid JSON string.</p>
 
 <p><a class="anchor" id="data-type"></a></p>
 
-<h3 id="datatype:04a8a0920f0d1f82717b9a315e5e6489">#dataType</h3>
+<h3 id="datatype">#dataType</h3>
 
 <p>This property holds the type of data that you&rsquo;re expecting from the server.
 The value must be <code>'json'</code>, <code>'text'</code> or <code>undefined</code>.
@@ -719,7 +719,7 @@ When the <code>dataType</code> option is not defined, the type is detected autom
 
 <p><a class="anchor" id="default-error-hander"></a></p>
 
-<h3 id="defaulterrorhandler:04a8a0920f0d1f82717b9a315e5e6489">#defaultErrorHandler()</h3>
+<h3 id="defaulterrorhandler">#defaultErrorHandler()</h3>
 
 <p>This method handles the exception thrown during the Fetch API.</p>
 
@@ -728,9 +728,9 @@ Developers may override this for a better exception handling.</p>
 
 <p><a class="anchor" id="destroy"></a></p>
 
-<h3 id="destroy:04a8a0920f0d1f82717b9a315e5e6489">#destroy()</h3>
+<h3 id="destroy">#destroy()</h3>
 
-<h4 id="usage-2:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
+<h4 id="usage-2">Usage</h4>
 
 <ul>
 <li><strong>destroy()</strong></li>
@@ -743,7 +743,7 @@ by the <code>memberPath()</code> method.</p>
 
 <p><a class="anchor" id="errors"></a></p>
 
-<h3 id="errors:04a8a0920f0d1f82717b9a315e5e6489">#errors</h3>
+<h3 id="errors">#errors</h3>
 
 <p>This property holds an object (key-value pairs) whose keys are the
 attribute names of the resource and whose values are the validation
@@ -751,28 +751,28 @@ error messages.</p>
 
 <p><a class="anchor" id="form-name"></a></p>
 
-<h3 id="formname:04a8a0920f0d1f82717b9a315e5e6489">#formName</h3>
+<h3 id="formname">#formName</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="headers"></a></p>
 
-<h3 id="headers:04a8a0920f0d1f82717b9a315e5e6489">#headers</h3>
+<h3 id="headers">#headers</h3>
 
 <p>This property holds the HTTP headers for Ajax requests.
 The default valued is <code>{ 'Content-Type': 'application/json' }</code>.</p>
 
 <p><a class="anchor" id="id"></a></p>
 
-<h3 id="id:04a8a0920f0d1f82717b9a315e5e6489">#id</h3>
+<h3 id="id">#id</h3>
 
 <p>This property holds the <em>id</em> of resource.</p>
 
 <p><a class="anchor" id="init"></a></p>
 
-<h3 id="init:04a8a0920f0d1f82717b9a315e5e6489">#init()</h3>
+<h3 id="init">#init()</h3>
 
-<h4 id="usage-3:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
+<h4 id="usage-3">Usage</h4>
 
 <ul>
 <li><strong>init()</strong></li>
@@ -785,7 +785,7 @@ request to the server.</p>
 
 <p><a class="anchor" id="member-path"></a></p>
 
-<h3 id="memberpath:04a8a0920f0d1f82717b9a315e5e6489">#memberPath()</h3>
+<h3 id="memberpath">#memberPath()</h3>
 
 <p>Returns the URL path to a resource in accordance with the
 values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</code> properties:</p>
@@ -837,14 +837,14 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <p><a class="anchor" id="object"></a></p>
 
-<h3 id="object:04a8a0920f0d1f82717b9a315e5e6489">#object</h3>
+<h3 id="object">#object</h3>
 
 <p>This property holds an object (hash) that represents the resource which
 the agent is associated to.</p>
 
 <p><a class="anchor" id="new-path"></a></p>
 
-<h3 id="newpath:04a8a0920f0d1f82717b9a315e5e6489">#newPath()</h3>
+<h3 id="newpath">#newPath()</h3>
 
 <p>Returns the URL path to a <em>new</em> resource in accordance with the
 values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</code> properties:</p>
@@ -896,37 +896,37 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <p><a class="anchor" id="nested-in"></a></p>
 
-<h3 id="nestedin:04a8a0920f0d1f82717b9a315e5e6489">#nestedIn</h3>
+<h3 id="nestedin">#nestedIn</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="param-name"></a></p>
 
-<h3 id="paramname:04a8a0920f0d1f82717b9a315e5e6489">#paramName</h3>
+<h3 id="paramname">#paramName</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="resource-name"></a></p>
 
-<h3 id="resourcename:04a8a0920f0d1f82717b9a315e5e6489">#resourceName</h3>
+<h3 id="resourcename">#resourceName</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="shallow"></a></p>
 
-<h3 id="shallow:04a8a0920f0d1f82717b9a315e5e6489">#shallow</h3>
+<h3 id="shallow">#shallow</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="singular"></a></p>
 
-<h3 id="singular:04a8a0920f0d1f82717b9a315e5e6489">#singular</h3>
+<h3 id="singular">#singular</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
 <p><a class="anchor" id="singular-path"></a></p>
 
-<h3 id="singularpath:04a8a0920f0d1f82717b9a315e5e6489">#singularPath()</h3>
+<h3 id="singularpath">#singularPath()</h3>
 
 <p>Returns the URL path to a <em>singular</em> resource in accordance with the
 values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</code> properties:</p>
@@ -979,9 +979,9 @@ referencing an ID.</p>
 
 <p><a class="anchor" id="update"></a></p>
 
-<h3 id="update:04a8a0920f0d1f82717b9a315e5e6489">#update()</h3>
+<h3 id="update">#update()</h3>
 
-<h4 id="usage-4:04a8a0920f0d1f82717b9a315e5e6489">Usage</h4>
+<h4 id="usage-4">Usage</h4>
 
 <ul>
 <li><strong>update()</strong></li>

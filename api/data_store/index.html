@@ -462,12 +462,12 @@
 
 <p><a class="anchor" id="constructor"></a></p>
 
-<h3 id="constructor:0e6ae5d019a4f974c32809ae28a8dc8f">Constructor</h3>
+<h3 id="constructor">Constructor</h3>
 
 <p>The <code>Cape.DataStore</code> constructor takes no argument and calls its <code>#init</code> method
 if defined.</p>
 
-<h4 id="example:0e6ae5d019a4f974c32809ae28a8dc8f">Example</h4>
+<h4 id="example">Example</h4>
 
 <pre><code class="language-javascript">var CounterStore = Cape.createDataStoreClass({
   init: function() {
@@ -487,9 +487,9 @@ var cs = new CounterStore();
 
 <p><a class="anchor" id="attach"></a></p>
 
-<h3 id="attach:0e6ae5d019a4f974c32809ae28a8dc8f">#attach()</h3>
+<h3 id="attach">#attach()</h3>
 
-<h4 id="usage:0e6ae5d019a4f974c32809ae28a8dc8f">Usage</h4>
+<h4 id="usage">Usage</h4>
 
 <ul>
 <li><strong>attach(component)</strong></li>
@@ -501,11 +501,11 @@ var cs = new CounterStore();
 
 <p><a class="anchor" id="create"></a></p>
 
-<h3 id="create:0e6ae5d019a4f974c32809ae28a8dc8f">.create()</h3>
+<h3 id="create">.create()</h3>
 
 <p>This class method returns a singleton object of this Class.</p>
 
-<h4 id="example-1:0e6ae5d019a4f974c32809ae28a8dc8f">Example</h4>
+<h4 id="example-1">Example</h4>
 
 <pre><code class="language-javascript">var CounterStore = Cape.createDataStoreClass({
   init: function() {
@@ -524,9 +524,9 @@ var cs2 = CounterStore.create();
 
 <p><a class="anchor" id="detach"></a></p>
 
-<h3 id="detach:0e6ae5d019a4f974c32809ae28a8dc8f">#detach()</h3>
+<h3 id="detach">#detach()</h3>
 
-<h4 id="usage-1:0e6ae5d019a4f974c32809ae28a8dc8f">Usage</h4>
+<h4 id="usage-1">Usage</h4>
 
 <ul>
 <li><strong>detach(component)</strong></li>
@@ -538,9 +538,9 @@ var cs2 = CounterStore.create();
 
 <p><a class="anchor" id="propagate"></a></p>
 
-<h3 id="propagate:0e6ae5d019a4f974c32809ae28a8dc8f">#propagate()</h3>
+<h3 id="propagate">#propagate()</h3>
 
-<h4 id="usage-2:0e6ae5d019a4f974c32809ae28a8dc8f">Usage</h4>
+<h4 id="usage-2">Usage</h4>
 
 <ul>
 <li><strong>propagate()</strong></li>
@@ -555,7 +555,7 @@ which has to be defined by developers.</p>
 <p>Thus, we can assure that each time the data of a data store changes,
 its all dependent components get refreshed.</p>
 
-<h4 id="example-2:0e6ae5d019a4f974c32809ae28a8dc8f">Example</h4>
+<h4 id="example-2">Example</h4>
 
 <pre><code class="language-javascript">var CounterStore = Cape.createDataStoreClass({
   init: function() {

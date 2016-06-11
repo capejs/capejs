@@ -485,12 +485,12 @@
 
 <p><a class="anchor" id="general-notes"></a></p>
 
-<h3 id="general-notes:2f94c9da1a5f7ca2887265bec799d255">General notes</h3>
+<h3 id="general-notes">General notes</h3>
 
 <p>All instance methods of <code>Cape.MarkupBuilder</code> are <em>chainable.</em>
 Each method returns the instance itself.</p>
 
-<h4 id="example:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example">Example</h4>
 
 <pre><code>var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -511,7 +511,7 @@ Each method returns the instance itself.</p>
 and <code>#text</code> take the <em>options</em> argument, which will be translated into the
 attributes of element to be created.</p>
 
-<h4 id="example-1:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-1">Example</h4>
 
 <pre><code class="language-javascrpt">var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -528,7 +528,7 @@ attributes of element to be created.</p>
 (<code>false</code>, <code>null</code>, <code>0</code>, <code>[]</code>, <em>etc.</em>),
 it sets the <code>display</code> style to <code>none</code> to make this element invisible.</p>
 
-<h4 id="example-2:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-2">Example</h4>
 
 <pre><code class="language-javascrpt">var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -546,9 +546,9 @@ it sets the <code>display</code> style to <code>none</code> to make this element
 
 <p><a class="anchor" id="a-abbr-address-etc"></a></p>
 
-<h3 id="a-abbr-address-etc:2f94c9da1a5f7ca2887265bec799d255">#a(), #abbr(), #address(), etc.</h3>
+<h3 id="a-abbr-address-etc">#a(), #abbr(), #address(), etc.</h3>
 
-<h4 id="usage:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage">Usage</h4>
 
 <ul>
 <li><strong>a(content [, options])</strong></li>
@@ -580,7 +580,7 @@ method with the same name:</p>
 <p>When the first argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.</p>
 
-<h4 id="example-3:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-3">Example</h4>
 
 <pre><code>var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -600,7 +600,7 @@ When the last argument is a function, it creates a dependent virtual dom tree.</
 of the element. The position of this argument should be after the string argument
 and before the function argument.</p>
 
-<h4 id="example-4:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-4">Example</h4>
 
 <pre><code class="language-javascript">var HelloMessage = Cape.createComponentClass({
   render: function(m) {
@@ -619,9 +619,9 @@ and before the function argument.</p>
 
 <p><a class="anchor" id="area-base-br-etc"></a></p>
 
-<h3 id="area-base-br-etc:2f94c9da1a5f7ca2887265bec799d255">#area(), #base(), #br(), etc.</h3>
+<h3 id="area-base-br-etc">#area(), #base(), #br(), etc.</h3>
 
-<h4 id="usage-1:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-1">Usage</h4>
 
 <ul>
 <li><strong>area([options])</strong></li>
@@ -641,7 +641,7 @@ link, menuitem, meta, param, source, track, wbr</p>
 <p>They don&rsquo;t take a string argument nor a function argument, though.
 They only accept a hash object to set the attribute values of the element.</p>
 
-<h4 id="example-5:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-5">Example</h4>
 
 <pre><code class="language-javascript">var LogoMark = Cape.createComponentClass({
   render: function(m) {
@@ -654,9 +654,9 @@ They only accept a hash object to set the attribute values of the element.</p>
 
 <p><a class="anchor" id="attr"></a></p>
 
-<h3 id="attr:2f94c9da1a5f7ca2887265bec799d255">#attr()</h3>
+<h3 id="attr">#attr()</h3>
 
-<h4 id="usage-2:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-2">Usage</h4>
 
 <ul>
 <li><strong>attr(name, value)</strong></li>
@@ -665,7 +665,7 @@ They only accept a hash object to set the attribute values of the element.</p>
 
 <p>Set the value of attributes for the element which will be added nextly.</p>
 
-<h4 id="example-6:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-6">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.attr('alt', 'Logo Image');
@@ -680,7 +680,7 @@ They only accept a hash object to set the attribute values of the element.</p>
 
 <p>The attribute values are set cumulatively.</p>
 
-<h4 id="example-7:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-7">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.attr('alt', 'Logo Image');
@@ -699,7 +699,7 @@ They only accept a hash object to set the attribute values of the element.</p>
 
 <p>The values set by <code>#attr</code> does not affect the elements created after the next element.</p>
 
-<h4 id="example-8:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-8">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.attr('alt', 'Logo Image');
@@ -712,9 +712,9 @@ They only accept a hash object to set the attribute values of the element.</p>
 
 <p><a class="anchor" id="check-box"></a></p>
 
-<h3 id="checkbox:2f94c9da1a5f7ca2887265bec799d255">#checkBox()</h3>
+<h3 id="checkbox">#checkBox()</h3>
 
-<h4 id="usage-3:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-3">Usage</h4>
 
 <ul>
 <li><strong>checkBox(name, [options,] function)</strong></li>
@@ -726,7 +726,7 @@ If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quo
 then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 See <a href="#formFor">#formFor</a> for details.</p>
 
-<h4 id="example-9:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-9">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -746,9 +746,9 @@ See <a href="#formFor">#formFor</a> for details.</p>
 
 <p><a class="anchor" id="btn"></a></p>
 
-<h3 id="btn:2f94c9da1a5f7ca2887265bec799d255">#btn()</h3>
+<h3 id="btn">#btn()</h3>
 
-<h4 id="usage-4:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-4">Usage</h4>
 
 <ul>
 <li><strong>btn(content, options)</strong></li>
@@ -757,7 +757,7 @@ See <a href="#formFor">#formFor</a> for details.</p>
 
 <p>Create a <code>&lt;button&gt;</code> element whose <code>type</code> attribute is set to <code>button</code> by default.</p>
 
-<h4 id="example-10:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-10">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('test', function(m) {
@@ -772,9 +772,9 @@ See <a href="#formFor">#formFor</a> for details.</p>
 
 <p><a class="anchor" id="checked"></a></p>
 
-<h3 id="checked:2f94c9da1a5f7ca2887265bec799d255">#checked()</h3>
+<h3 id="checked">#checked()</h3>
 
-<h4 id="usage-5:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-5">Usage</h4>
 
 <ul>
 <li><strong>checked(boolean)</strong></li>
@@ -783,7 +783,7 @@ See <a href="#formFor">#formFor</a> for details.</p>
 <p>This is a shortcut method which has the same effect with <code>#attr('checked', boolean)</code>.
 See <a href="#attr">#attr()</a>.</p>
 
-<h4 id="example-11:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-11">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.checked(true).input({ type: 'checkbox' })
@@ -794,9 +794,9 @@ See <a href="#attr">#attr()</a>.</p>
 
 <p><a class="anchor" id="class"></a></p>
 
-<h3 id="class:2f94c9da1a5f7ca2887265bec799d255">#class()</h3>
+<h3 id="class">#class()</h3>
 
-<h4 id="usage-6:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-6">Usage</h4>
 
 <ul>
 <li><strong>class(name)</strong></li>
@@ -806,7 +806,7 @@ See <a href="#attr">#attr()</a>.</p>
 
 <p>Set the <code>class</code> attribute value for the element which will be added nextly.</p>
 
-<h4 id="example-12:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-12">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.class('container');
@@ -820,7 +820,7 @@ See <a href="#attr">#attr()</a>.</p>
 }
 </code></pre>
 
-<h4 id="example-13:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-13">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.class('panel panel-standard');
@@ -832,7 +832,7 @@ See <a href="#attr">#attr()</a>.</p>
 }
 </code></pre>
 
-<h4 id="example-14:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-14">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.class({ panel: true, 'panel-standard': true, top: false });
@@ -849,9 +849,9 @@ affects only the nextly added element.</p>
 
 <p><a class="anchor" id="css"></a></p>
 
-<h3 id="css:2f94c9da1a5f7ca2887265bec799d255">#css()</h3>
+<h3 id="css">#css()</h3>
 
-<h4 id="usage-7:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-7">Usage</h4>
 
 <ul>
 <li><strong>css(name, value)</strong></li>
@@ -860,7 +860,7 @@ affects only the nextly added element.</p>
 
 <p>Set the styles for the element which will be added nextly.</p>
 
-<h4 id="example-15:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-15">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.css('color', 'red').span('Danger');
@@ -871,7 +871,7 @@ affects only the nextly added element.</p>
 
 <p>Note that you should write names of style in camel case.</p>
 
-<h4 id="example-16:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-16">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.css({ backgroundColor: 'red' }).p('Danger');
@@ -882,9 +882,9 @@ affects only the nextly added element.</p>
 
 <p><a class="anchor" id="data"></a></p>
 
-<h3 id="data:2f94c9da1a5f7ca2887265bec799d255">#data()</h3>
+<h3 id="data">#data()</h3>
 
-<h4 id="usage-8:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-8">Usage</h4>
 
 <ul>
 <li><strong>data(name, value)</strong></li>
@@ -893,7 +893,7 @@ affects only the nextly added element.</p>
 
 <p>Set the <code>data-*</code> attribute value for the element which will be added nextly.</p>
 
-<h4 id="example-17:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-17">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.data('id', '7');
@@ -910,7 +910,7 @@ affects only the nextly added element.</p>
 <p>As <a href="#attr">#attr</a>, the <code>#data</code> method sets attribute values cumulatively and
 affects only the nextly added element.</p>
 
-<h4 id="example-18:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-18">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.data({ id: '7' });
@@ -924,7 +924,7 @@ affects only the nextly added element.</p>
 
 <p>The names specified in camel case are converted into a string separated by dashes.</p>
 
-<h4 id="example-19:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-19">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.data({ messageId: '7' });
@@ -936,9 +936,9 @@ affects only the nextly added element.</p>
 
 <p><a class="anchor" id="disabled"></a></p>
 
-<h3 id="disabled:2f94c9da1a5f7ca2887265bec799d255">#disabled()</h3>
+<h3 id="disabled">#disabled()</h3>
 
-<h4 id="usage-9:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-9">Usage</h4>
 
 <ul>
 <li><strong>disabled(boolean)</strong></li>
@@ -947,7 +947,7 @@ affects only the nextly added element.</p>
 <p>This is a shortcut method which has the same effect with <code>#attr('disabled', boolean)</code>.
 See <a href="#attr">#attr()</a>.</p>
 
-<h4 id="example-20:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-20">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.disabled(true).input({ type: 'text' })
@@ -958,9 +958,9 @@ See <a href="#attr">#attr()</a>.</p>
 
 <p><a class="anchor" id="elem"></a></p>
 
-<h3 id="elem:2f94c9da1a5f7ca2887265bec799d255">#elem()</h3>
+<h3 id="elem">#elem()</h3>
 
-<h4 id="usage-10:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-10">Usage</h4>
 
 <ul>
 <li><strong>elem(content [, options])</strong></li>
@@ -972,7 +972,7 @@ See <a href="#attr">#attr()</a>.</p>
 <p>When the second argument is a string, it becomes the content of element.
 When the last argument is a function, it creates a dependent virtual dom tree.</p>
 
-<h4 id="example-21:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-21">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.elem('div#wrapper', function(m) {
@@ -999,7 +999,7 @@ When the last argument is a function, it creates a dependent virtual dom tree.</
 of the element. The position of this argument should be after the string argument
 and before the function argument.</p>
 
-<h4 id="example-22:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-22">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.elem('div#wrapper', { style: 'margin-top: 10px' },
@@ -1027,9 +1027,9 @@ and before the function argument.</p>
 
 <p><a class="anchor" id="fa"></a></p>
 
-<h3 id="fa:2f94c9da1a5f7ca2887265bec799d255">#fa()</h3>
+<h3 id="fa">#fa()</h3>
 
-<h4 id="usage-11:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-11">Usage</h4>
 
 <ul>
 <li><strong>fa(name [, options])</strong></li>
@@ -1041,7 +1041,7 @@ Its first argument is the icon&rsquo;s name, such as <code>&quot;download&quot;<
 You can pass a hash object as the optional second argument to set the
 attribute values of <code>&lt;i&gt;</code> tag.</p>
 
-<h4 id="example-23:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-23">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.a({ href: './download.html' }, function(m) {
@@ -1055,9 +1055,9 @@ attribute values of <code>&lt;i&gt;</code> tag.</p>
 
 <p><a class="anchor" id="fields-for"></a></p>
 
-<h3 id="fieldsfor:2f94c9da1a5f7ca2887265bec799d255">#fieldsFor()</h3>
+<h3 id="fieldsfor">#fieldsFor()</h3>
 
-<h4 id="usage-12:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-12">Usage</h4>
 
 <ul>
 <li><strong>fieldsFor(name, [options,] function)</strong></li>
@@ -1066,7 +1066,7 @@ attribute values of <code>&lt;i&gt;</code> tag.</p>
 <p>Create a scope for nested forms. In this scope, a prefix is
 addded to the name of each form control.</p>
 
-<h4 id="example-24:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-24">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.form(function(m) {
@@ -1087,7 +1087,7 @@ addded to the name of each form control.</p>
 
 <p>If you pass the <code>index</code> option to this method, the prefix is numbered:</p>
 
-<h4 id="example-25:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-25">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.form(function(m) {
@@ -1114,9 +1114,9 @@ addded to the name of each form control.</p>
 
 <p><a class="anchor" id="form-for"></a></p>
 
-<h3 id="formfor:2f94c9da1a5f7ca2887265bec799d255">#formFor()</h3>
+<h3 id="formfor">#formFor()</h3>
 
-<h4 id="usage-13:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-13">Usage</h4>
 
 <ul>
 <li><strong>formFor(name, [options,] function)</strong></li>
@@ -1130,7 +1130,7 @@ added to the <code>name</code> attribute of subordinate form controls.</p>
 <p>The <code>id</code> attribute is set automatically. When the form name is <code>'foo'</code>,
 the <code>id</code> attribute of a form control whose name is <code>bar</code> becomes <code>'foo-field-bar'</code>.</p>
 
-<h4 id="example-26:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-26">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -1151,9 +1151,9 @@ the <code>id</code> attribute of a form control whose name is <code>bar</code> b
 
 <p><a class="anchor" id="hidden-field"></a></p>
 
-<h3 id="hiddenfield:2f94c9da1a5f7ca2887265bec799d255">#hiddenField()</h3>
+<h3 id="hiddenfield">#hiddenField()</h3>
 
-<h4 id="usage-14:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-14">Usage</h4>
 
 <ul>
 <li><strong>hiddenField(name, [options,] function)</strong></li>
@@ -1164,7 +1164,7 @@ Its first argument is the base of <code>name</code> attribute value.
 If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
 then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.</p>
 
-<h4 id="example-27:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-27">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -1180,9 +1180,9 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <p><a class="anchor" id="label-for"></a></p>
 
-<h3 id="labelfor:2f94c9da1a5f7ca2887265bec799d255">#labelFor()</h3>
+<h3 id="labelfor">#labelFor()</h3>
 
-<h4 id="usage-15:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-15">Usage</h4>
 
 <ul>
 <li><strong>labelFor(name, label)</strong></li>
@@ -1191,7 +1191,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 <p>Create a <code>&lt;label&gt;</code> tag whose <code>name</code> attribute is <code>name</code>.
 Its <code>for</code> attribute is set appropriately.</p>
 
-<h4 id="example-28:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-28">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -1233,15 +1233,15 @@ Its <code>for</code> attribute is set appropriately.</p>
 
 <p><a class="anchor" id="markup"></a></p>
 
-<h3 id="markup:2f94c9da1a5f7ca2887265bec799d255">#markup()</h3>
+<h3 id="markup">#markup()</h3>
 
 <p>This method is for internal use. Do not override it.</p>
 
 <p><a class="anchor" id="on"></a></p>
 
-<h3 id="on:2f94c9da1a5f7ca2887265bec799d255">#on()</h3>
+<h3 id="on">#on()</h3>
 
-<h4 id="usage-16:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-16">Usage</h4>
 
 <ul>
 <li><strong>on(eventName, function)</strong></li>
@@ -1250,7 +1250,7 @@ Its <code>for</code> attribute is set appropriately.</p>
 <p>Set the handler of event <em>eventName</em> for the element which will be added nextly
 to <em>function.</em></p>
 
-<h4 id="example-29:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-29">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.on('click', function(e) { this.counter++ });
@@ -1268,9 +1268,9 @@ to <em>function.</em></p>
 
 <p><a class="anchor" id="onblur-onfocus-etc"></a></p>
 
-<h3 id="onblur-onfocus-etc:2f94c9da1a5f7ca2887265bec799d255">#onblur(), #onfocus(), etc.</h3>
+<h3 id="onblur-onfocus-etc">#onblur(), #onfocus(), etc.</h3>
 
-<h4 id="usage-17:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-17">Usage</h4>
 
 <ul>
 <li><strong>onblur(function)</strong></li>
@@ -1289,7 +1289,7 @@ load, unload, click, dblclick, keyup, keydown, keypress,
 mouseout, mouseover, mouseup, mousedown, mousemove</p>
 </blockquote>
 
-<h4 id="example-30:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-30">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.onclick(function(e) { this.counter++ });
@@ -1305,9 +1305,9 @@ mouseout, mouseover, mouseup, mousedown, mousemove</p>
 
 <p><a class="anchor" id="password-field"></a></p>
 
-<h3 id="passwordfield:2f94c9da1a5f7ca2887265bec799d255">#passwordField()</h3>
+<h3 id="passwordfield">#passwordField()</h3>
 
-<h4 id="usage-18:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-18">Usage</h4>
 
 <ul>
 <li><strong>passwordField(name, [options,] function)</strong></li>
@@ -1318,7 +1318,7 @@ Its first argument is the base of <code>name</code> attribute value.
 If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
 then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.</p>
 
-<h4 id="example-31:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-31">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -1338,9 +1338,9 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <p><a class="anchor" id="radio-button"></a></p>
 
-<h3 id="radiobutton:2f94c9da1a5f7ca2887265bec799d255">#radioButton()</h3>
+<h3 id="radiobutton">#radioButton()</h3>
 
-<h4 id="usage-19:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-19">Usage</h4>
 
 <ul>
 <li><strong>radioButton(name, value[, options])</strong></li>
@@ -1353,7 +1353,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <p>The second argument becomes the value of this radio button.</p>
 
-<h4 id="example-32:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-32">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -1387,7 +1387,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <p><a class="anchor" id="select-box"></a></p>
 
-<h3 id="selectbox:2f94c9da1a5f7ca2887265bec799d255">#selectBox()</h3>
+<h3 id="selectbox">#selectBox()</h3>
 
 <ul>
 <li><strong>selectBox(name, [options,] callback)</strong></li>
@@ -1398,7 +1398,7 @@ Its first argument is the base of <code>name</code> attribute value.
 If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
 then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.</p>
 
-<h4 id="example-33:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-33">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -1421,15 +1421,15 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <p><a class="anchor" id="sp"></a></p>
 
-<h3 id="sp:2f94c9da1a5f7ca2887265bec799d255">#sp()</h3>
+<h3 id="sp">#sp()</h3>
 
 <p>This is an alias to <a href="#space">#space()</a>.</p>
 
 <p><a class="anchor" id="space"></a></p>
 
-<h3 id="space:2f94c9da1a5f7ca2887265bec799d255">#space()</h3>
+<h3 id="space">#space()</h3>
 
-<h4 id="usage-20:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-20">Usage</h4>
 
 <ul>
 <li><strong>space()</strong></li>
@@ -1437,7 +1437,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <p>Add a single space character. Same as <code>text(' ')</code>.</p>
 
-<h4 id="example-34:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-34">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.p(function(m) {
@@ -1451,9 +1451,9 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <p><a class="anchor" id="text"></a></p>
 
-<h3 id="text:2f94c9da1a5f7ca2887265bec799d255">#text()</h3>
+<h3 id="text">#text()</h3>
 
-<h4 id="usage-21:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-21">Usage</h4>
 
 <ul>
 <li><strong>text(string)</strong></li>
@@ -1462,7 +1462,7 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 <p>Add <em>string</em> as a text node to the virtual dom tree.
 The special characters (<code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>) are escaped automatically.</p>
 
-<h4 id="example-35:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-35">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.h1(function(m) {
@@ -1482,9 +1482,9 @@ use <code>innerHTML</code> property:</p>
 
 <p><a class="anchor" id="textarea-field"></a></p>
 
-<h3 id="textareafield:2f94c9da1a5f7ca2887265bec799d255">#textareaField()</h3>
+<h3 id="textareafield">#textareaField()</h3>
 
-<h4 id="usage-22:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-22">Usage</h4>
 
 <ul>
 <li><strong>textField(name, [options,] function)</strong></li>
@@ -1495,7 +1495,7 @@ Its first argument is the base of <code>name</code> attribute value.
 If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
 then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.</p>
 
-<h4 id="example-36:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-36">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {
@@ -1514,9 +1514,9 @@ then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.
 
 <p><a class="anchor" id="text-field"></a></p>
 
-<h3 id="textfield:2f94c9da1a5f7ca2887265bec799d255">#textField()</h3>
+<h3 id="textfield">#textField()</h3>
 
-<h4 id="usage-23:2f94c9da1a5f7ca2887265bec799d255">Usage</h4>
+<h4 id="usage-23">Usage</h4>
 
 <ul>
 <li><strong>textField(name, [options,] function)</strong></li>
@@ -1527,7 +1527,7 @@ Its first argument is the base of <code>name</code> attribute value.
 If the surrounding <code>&lt;form&gt;</code> tag has a name <code>&quot;user&quot;</code>,
 then the <code>name</code> attribute becomes <code>&quot;user.name&quot;</code>.</p>
 
-<h4 id="example-37:2f94c9da1a5f7ca2887265bec799d255">Example</h4>
+<h4 id="example-37">Example</h4>
 
 <pre><code class="language-javascript">render: function(m) {
   m.formFor('user', function(m) {

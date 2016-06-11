@@ -79,8 +79,7 @@ You can simplify brackets surrounding the parameter when there&#39;s 1 parameter
 
 &lt;p&gt;Now, let&amp;rsquo;s make sure it works well. Boot the server and open &lt;code&gt;http://localhost:3000/&lt;/code&gt; on the browser. By clicking the first checkbox, it displays &amp;ldquo;1&amp;rdquo; like following in the warning dialog. This is the value of the column&amp;rsquo;s &lt;code&gt;id&lt;/code&gt; task.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list05.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list05.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -205,10 +204,9 @@ jQuery calls Ajax request by using XMLHttpRequest in it. If it can uses Fetch AP
       <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/</guid>
       <description>
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg&#34; alt=&#34;Cape.JS Logo&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg&#34; alt=&#34;Cape.JS Logo&#34; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;preface:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Preface&lt;/h3&gt;
+&lt;h3 id=&#34;preface&#34;&gt;Preface&lt;/h3&gt;
 
 &lt;p&gt;With this series of tutorials you can learn the the programming of &lt;em&gt;Cape.JS,&lt;/em&gt;
 a JavaScript UI framework that was born in 2015.&lt;/p&gt;
@@ -227,7 +225,7 @@ You can use it for free and also redistribute or sell it after you modify its so
 You can find the source code at GitHub&amp;rsquo;s &lt;a href=&#34;https://github.com/oiax/capejs&#34;&gt;repository&lt;/a&gt;.
 Also, &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;documents&lt;/a&gt; are prepared.&lt;/p&gt;
 
-&lt;h3 id=&#34;table-of-contents:c9eecd56f2d030a9e3a3fce57054be82&#34;&gt;Table of Contents&lt;/h3&gt;
+&lt;h3 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Preface&lt;/li&gt;
@@ -366,8 +364,7 @@ When the content of arrow function of ECMAScript6 includes many statements, it n
 
 &lt;p&gt;The screen will be like following when the top page displays on the browser. There are up-way and down-way arrows on the button.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list21.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list21.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s try some more. It should better to make the up button on the first line and down button on the last line have no effect.&lt;/p&gt;
 
@@ -448,8 +445,7 @@ When the arrow function of ECMAScript6 takes only one argument, we can omit the 
 
 &lt;p&gt;I added lines from the fifth to second from the bottom. Reload the browser and the screen will be like following.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list22.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list22.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -651,13 +647,11 @@ Thus the functionality to change the displaying order of tasks is realized.&lt;/
 
 &lt;p&gt;Now, make sure it works well on the browser.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list22.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list22.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If you click the up-arrow icon on right side of &amp;ldquo;Take out the trash&amp;rdquo;, the screen will be following.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list23.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list23.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Next, if you click the down-arrow icon of the same task, it will be back.&lt;/p&gt;
 
@@ -855,8 +849,7 @@ Said on rounding language of Rails, the property &lt;code&gt;basePath&lt;/code&g
 
 &lt;p&gt;The task&amp;rsquo;s list will display by changes above.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list19.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list19.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -937,8 +930,7 @@ Said on rounding language of Rails, the property &lt;code&gt;basePath&lt;/code&g
 
 &lt;p&gt;That is how to rebuilt the function to toggle the flag &amp;ldquo;done&amp;rdquo; of the task. Make sure it works well on the browser. If you check &amp;ldquo;To buy cat&amp;rsquo;s feed&amp;rdquo; from the status of the last time and check out &amp;ldquo;Go dentist&amp;rdquo;, the screen will be like following.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list19.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list19.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Make sure the style of the task&amp;rsquo;s title is change depending on the status of the checkbox.&lt;/p&gt;
 
@@ -1110,8 +1102,7 @@ bin/rails s
 
 &lt;p&gt;And then, open &lt;code&gt;http://localhost:3000&lt;/code&gt; on the browser, the screen will be like following.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list17.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list17.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;When you enter some string in the text entering form and click the button &amp;ldquo; Add task #5&amp;rdquo;, the new task is recorded. Also, when you click &amp;ldquo;Edit&amp;rdquo; button on right side of some tasks, it sets the title of the task in the text entering form. And, rewrite the tile somehow and click &amp;ldquo;Update&amp;rdquo; button, the title of the task is changed. When you click &amp;ldquo;Cancel&amp;rdquo; button instead of &amp;ldquo;Update&amp;rdquo; button, the test entering form is back to the initialize status.&lt;/p&gt;
 
@@ -1263,13 +1254,11 @@ end
 
 &lt;p&gt;Let&amp;rsquo;s make sure that it works well on the browser. Add the title of the new task…&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list10.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list10.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;and click the bottton…&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list11.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list11.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It adds the task.&lt;/p&gt;
 
@@ -1339,18 +1328,15 @@ It also breaks out when the string is pasted by the user.&lt;/p&gt;
 
 &lt;p&gt;On the screen right after reloading the browser, the button is disabled like following.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list12.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list12.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;But, when you add one letter &amp;ldquo;A&amp;rdquo; on the title field,&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list13.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list13.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The button is enabled. And then, when you delete &amp;ldquo;A&amp;rdquo;, it&amp;rsquo;s disabled again.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list12.png&#34; alt=&#34; Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list12.png&#34; alt=&#34; Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It&amp;rsquo;s relatively annoying if you make this kind of effect happen in jQuery. Virtual DOM can contribute well.&lt;/p&gt;
 
@@ -1422,8 +1408,7 @@ It also breaks out when the string is pasted by the user.&lt;/p&gt;
 
 &lt;p&gt;The screen display is supposed to be like following when you open the file &lt;code&gt;hello_message4.html&lt;/code&gt;.:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message5a.png&#34; alt=&#34;The screen display&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message5a.png&#34; alt=&#34;The screen display&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The methods you have never seen before are &lt;code&gt;text()&lt;/code&gt; and &lt;code&gt;strong()&lt;/code&gt;. The latter is a method adding the element &lt;code&gt;&amp;lt;strong&amp;gt;&lt;/code&gt; into virtual DOM tree and it&amp;rsquo;s a companion of &lt;code&gt;div()&lt;/code&gt; and &lt;code&gt;p()&lt;/code&gt;. The method &lt;code&gt;text()&lt;/code&gt; adds &lt;strong&gt;text nodes&lt;/strong&gt; (a part which is nor surrounded within the element) into virtual DOM tree.&lt;/p&gt;
 
@@ -1463,8 +1448,7 @@ It also breaks out when the string is pasted by the user.&lt;/p&gt;
 &lt;p&gt;The screen display is supposed to be like following when you open this file on your browser.
 :&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message5b.png&#34; alt=&#34;The screen display&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message5b.png&#34; alt=&#34;The screen display&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Rewrite &lt;code&gt;hello_message5.js&lt;/code&gt; as following not to escape the character string.:&lt;/p&gt;
 
@@ -1485,8 +1469,7 @@ It also breaks out when the string is pasted by the user.&lt;/p&gt;
 
 &lt;p&gt;The screen display is supposed to be like following when you reload the browser.:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message5b.png&#34; alt=&#34;The screen display&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/hello_message5b.png&#34; alt=&#34;The screen display&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It may difficult to see but &amp;ldquo;smile mark is displayed on the screen. You can specify the content of the element as &amp;ldquo;real HTML&amp;rdquo; by using the option &lt;code&gt;innerHTML&lt;/code&gt; like this.&lt;/p&gt;
 
@@ -1566,13 +1549,11 @@ end
 
 &lt;p&gt;It&amp;rsquo;s finished. Make it sure it works well. The top screen will changes like following.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list17.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list17.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It deletes the task by clicking &amp;ldquo;Delete&amp;rdquo; button on right side of &amp;ldquo;Go dentist&amp;rdquo;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list18.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list18.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -1889,8 +1870,7 @@ end
 
 &lt;p&gt;Now, let&amp;rsquo;s make sure it works weel. Access to &lt;code&gt;http://localhost:3000&lt;/code&gt; on the browser and if the screen displays like following, it successes.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list04.png&#34; alt=&#34;Screen capture&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list04.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
