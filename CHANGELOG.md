@@ -1,5 +1,11 @@
 # CHANGELOG - Cape.JS
 
+## 1.4.1 (June 11, 2016)
+
+### `Cape.ResourceAgent`
+
+* Bug fix: Fix typo `singluar` to `singular`.
+
 ## 1.4.0 (June 11, 2016)
 
 ### `Cape.Router`
