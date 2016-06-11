@@ -1,5 +1,12 @@
 # CHANGELOG - Cape.JS
 
+## 1.4.0 (Not yet released)
+
+### `Cape.RoutingMapper`
+
+* Make `#page` guess the component class path from the hash pattern if the former is missing
+and the latter does not include parameters.
+
 ## 1.3.0 (November 19, 2015)
 
 ### `Cape.Partial`

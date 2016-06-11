@@ -86,6 +86,36 @@ describe('RoutingMapper', function() {
       expect(route.keys.length).to.equal(1);
       expect(route.keys[0]).to.equal('name');
     })
+
+    it('should infer component class path from the hash pattern', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      mapper.page('company/info');
+      expect(router.routes.length).to.equal(1);
+
+      route = router.routes[0];
+      expect('company/info').to.match(route.regexp);
+      expect(route.container).to.equal('company');
+      expect(route.component).to.equal('info');
+    })
+
+    it('should throw exception when the first argument is missing', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      expect(mapper.page.bind(mapper)).to.throw('Missing hash pattern.');
+    })
+
+    it('should throw exception when the second argument is missing', function() {
+      var router = { routes: [] },
+          mapper = new Cape.RoutingMapper(router),
+          route;
+
+      expect(mapper.page.bind(mapper, 'help/:page')).to.throw('Missing class name path.');
+    })
   })
 
   describe('root', function() {
