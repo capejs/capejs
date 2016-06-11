@@ -17,7 +17,9 @@ gulp.task('build', function(cb) {
 
 gulp.task('minify', function() {
   return gulp.src('dist/cape.js')
-  .pipe(uglify())
+  .pipe(uglify().on('error', function(e) {
+    console.log(e)
+  }))
   .pipe(rename('cape.min.js'))
   .pipe(gulp.dest('./dist'));
 })
