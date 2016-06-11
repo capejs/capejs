@@ -26,7 +26,7 @@ gulp.task('watch', function() {
   gulp.watch('./lib/**/*.js', ['build']);
 });
 
-gulp.task('test', function (done) {
+gulp.task('test', ['build'], function (done) {
   new Server({
     configFile: __dirname + '/test/karma.conf.js',
     singleRun: true
