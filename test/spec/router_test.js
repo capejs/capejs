@@ -34,7 +34,7 @@ describe('Router', function() {
       router.attach(component);
       router.attach(component);
 
-      expect(router._.attachedComponents.length).to.equal(1);
+      expect(router._.notificationListeners.length).to.equal(1);
     })
   })
 
