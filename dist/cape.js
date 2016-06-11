@@ -1152,7 +1152,7 @@ _extends(ResourceAgent.prototype, {
   },
 
   requestPath: function () {
-    if (this.singluar) {
+    if (this.singular) {
       return this.singularPath();
     } else if (this.id === undefined) {
       return this.collectionPath();
