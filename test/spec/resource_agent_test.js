@@ -159,6 +159,38 @@ describe('ResourceAgent', function() {
     })
   })
 
+  describe('#requestPath', function() {
+    it('should return singular path', function() {
+      var form, options, agent;
+
+      form = {};
+      options = { resourceName: 'profile', singular: true };
+      agent = new Cape.ResourceAgent(form, options);
+
+      expect(agent.requestPath()).to.equal('/profile');
+    })
+
+    it('should return collection path', function() {
+      var form, options, agent;
+
+      form = {};
+      options = { resourceName: 'articles', singular: false };
+      agent = new Cape.ResourceAgent(form, options);
+
+      expect(agent.requestPath()).to.equal('/articles');
+    })
+
+    it('should return member path', function() {
+      var form, options, agent;
+
+      form = {};
+      options = { resourceName: 'articles', id: 99, singular: false };
+      agent = new Cape.ResourceAgent(form, options);
+
+      expect(agent.requestPath()).to.equal('/articles/99');
+    })
+  })
+
   describe('#init', function() {
     afterEach(function() {
       global.fetch.restore();
