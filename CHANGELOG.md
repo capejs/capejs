@@ -2,6 +2,11 @@
 
 ## 1.4.0 (Not yet released)
 
+### `Cape.Router`
+
+* Add `#navigateTo` to change the URL hash fragment and refresh components.
+* Deprecate `#navigate` in favor of `#navigateTo`.
+
 ### `Cape.RoutingMapper`
 
 * Make `#page` guess the component class path from the hash pattern if the former is missing

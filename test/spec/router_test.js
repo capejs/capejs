@@ -152,7 +152,7 @@ describe('Router', function() {
     })
   })
 
-  describe('navigate', function() {
+  describe('navigateTo', function() {
     afterEach(function() {
       window.TestMessage = undefined;
       window.Members = undefined;
@@ -172,7 +172,7 @@ describe('Router', function() {
         m.page('hello', 'test_message');
       })
       router.mount('main');
-      router.navigate('hello');
+      router.navigateTo('hello');
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.component).to.equal('test_message');
@@ -189,13 +189,33 @@ describe('Router', function() {
         m.page('hello', 'test_message');
       })
       router.mount('main');
-      router.navigate('hello?name=John&message=Goodby&x');
+      router.navigateTo('hello', { name: 'John', message: 'Goodby'});
+      router.navigateTo('hello?name=John&message=Goodby&x');
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.component).to.equal('test_message');
       expect(router.query.name).to.equal('John');
       expect(router.query.message).to.equal('Goodby');
       expect(router.query.x).to.equal('');
+    })
+
+    it('should take the second argument as query params', function() {
+      var router, method;
+
+      window.TestMessage = function() {};
+      window.TestMessage.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('hello', 'test_message');
+      })
+      router.mount('main');
+      router.navigateTo('hello', { name: 'John', message: 'Goodby'});
+
+      expect(method.calledWith('main')).to.equal(true);
+      expect(router.component).to.equal('test_message');
+      expect(router.query.name).to.equal('John');
+      expect(router.query.message).to.equal('Goodby');
     })
 
     it('should mount the matched component and set Router#params', function() {
@@ -210,7 +230,7 @@ describe('Router', function() {
         m.many('members');
       })
       router.mount('main');
-      router.navigate('members/123');
+      router.navigateTo('members/123');
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.params.id).to.equal('123');
@@ -235,7 +255,7 @@ describe('Router', function() {
         });
       })
       router.mount('main');
-      router.navigate('groups/9/members/123');
+      router.navigateTo('groups/9/members/123');
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.params.group_id).to.equal('9');
@@ -258,8 +278,8 @@ describe('Router', function() {
         m.many('members');
       })
       router.mount('main');
-      router.navigate('members');
-      router.navigate('members/123');
+      router.navigateTo('members');
+      router.navigateTo('members/123');
 
       expect(method1.calledWith('main')).to.equal(true);
       expect(method2.called).to.equal(true);
@@ -280,7 +300,7 @@ describe('Router', function() {
         })
       })
       router.mount('main');
-      router.navigate('admin/members/123');
+      router.navigateTo('admin/members/123');
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.params.id).to.equal('123');
@@ -307,7 +327,7 @@ describe('Router', function() {
         })
       })
       router.mount('main');
-      router.navigate('app/admin/members/123');
+      router.navigateTo('app/admin/members/123');
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.params.id).to.equal('123');
@@ -327,7 +347,7 @@ describe('Router', function() {
         })
       })
       router.mount('main');
-      router.navigate('admin/members/123');
+      router.navigateTo('admin/members/123');
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.params.id).to.equal('123');
@@ -361,7 +381,7 @@ describe('Router', function() {
       });
 
       router.mount('main');
-      router.navigate('members');
+      router.navigateTo('members');
     })
 
     it('should run errorHandler', function(done) {
@@ -386,7 +406,7 @@ describe('Router', function() {
       });
 
       router.mount('main');
-      router.navigate('members');
+      router.navigateTo('members');
     })
 
     it ('should call notify()', function() {
@@ -403,8 +423,8 @@ describe('Router', function() {
         m.many('members');
       })
       router.mount('main');
-      router.navigate('members/1')
-      router.navigate('members/2')
+      router.navigateTo('members/1')
+      router.navigateTo('members/2')
 
       expect(router.notify.calledOnce)
     })
@@ -419,7 +439,7 @@ describe('Router', function() {
       })
       router.mount('main');
 
-      expect(function() { router.navigate(0) }).to.throw(/must be a string/);
+      expect(function() { router.navigateTo(0) }).to.throw(/must be a string/);
     })
   })
 
