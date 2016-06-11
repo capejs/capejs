@@ -1,19 +1,18 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Cape = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var Cape = require('./cape/utilities')
-Cape.MarkupBuilder = require('./cape/markup_builder')
-Cape.VirtualForms = require('./cape/virtual_forms')
-Cape.Component = require('./cape/component.js')
-Cape.Partial = require('./cape/partial.js')
-Cape.DataStore = require('./cape/data_store.js')
+var Cape = require('./cape/utilities');
+Cape.MarkupBuilder = require('./cape/markup_builder');
+Cape.VirtualForms = require('./cape/virtual_forms');
+Cape.Component = require('./cape/component.js');
+Cape.Partial = require('./cape/partial.js');
+Cape.DataStore = require('./cape/data_store.js');
 Cape.AgentAdapters = {};
-Cape.AgentAdapters.RailsAdapter =
-  require('./cape/agent_adapters/rails_adapter.js')
-Cape.ResourceAgent = require('./cape/resource_agent.js')
-Cape.CollectionAgent = require('./cape/collection_agent.js')
-Cape.RoutingMapper = require('./cape/routing_mapper.js')
-Cape.Router = require('./cape/router.js')
+Cape.AgentAdapters.RailsAdapter = require('./cape/agent_adapters/rails_adapter.js');
+Cape.ResourceAgent = require('./cape/resource_agent.js');
+Cape.CollectionAgent = require('./cape/collection_agent.js');
+Cape.RoutingMapper = require('./cape/routing_mapper.js');
+Cape.Router = require('./cape/router.js');
 
 // Default name of adapter fo CollectionAgent and ResourceAgent (e.g. 'rails')
 Cape.defaultAgentAdapter = undefined;
@@ -29,6 +28,7 @@ module.exports = Cape;
 // Cape.ResourceCollectionAgent makes an Ajax request.
 //
 // The purpose of this adapter is to set the X-CSRF-Token header of Ajax requests.
+
 function RailsAdapter(resourceName, client, options) {
   var metaElements = document.getElementsByTagName('meta');
   for (var i = metaElements.length - 1; i >= 0; i--) {
@@ -43,6 +43,8 @@ module.exports = RailsAdapter;
 
 },{}],3:[function(require,module,exports){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var Inflector = require('inflected');
 var Cape = require('./utilities');
@@ -90,8 +92,8 @@ var CollectionAgent = function CollectionAgent(client, options) {
   this.headers = { 'Content-Type': 'application/json' };
 };
 
-Cape.extend(CollectionAgent.prototype, {
-  init: function(options) {
+_extends(CollectionAgent.prototype, {
+  init: function (options) {
     options = options || {};
     this.resourceName = options.resourceName;
     this.basePath = options.basePath;
@@ -112,33 +114,33 @@ Cape.extend(CollectionAgent.prototype, {
   //
   // Developers may change this assumption by overriding the `paramsForRefresh()`
   // method or setting the `paramName` property.
-  refresh: function() {
+  refresh: function () {
     var self = this;
-    this.index(this.paramsForRefresh(), function(data) {
+    this.index(this.paramsForRefresh(), function (data) {
       self.data = data;
       self.refreshObjects(data);
       self.afterRefresh();
-    })
+    });
   },
 
   // Returns an empty object always. This object is used to construct
   // the query string of the request URL during the `refresh()` process.
   //
   // Developers may override this method to change this behavior.
-  paramsForRefresh: function() {
+  paramsForRefresh: function () {
     return {};
   },
 
   // Refresh the `objects` property using the response data from the server.
   //
   // Developers may override this method to change its default behavior.
-  refreshObjects: function(data) {
+  refreshObjects: function (data) {
     var paramName = this.paramName || Inflector.tableize(this.resourceName);
 
     this.objects.length = 0;
     if (typeof data === 'object' && Array.isArray(data[paramName])) {
       for (var i = 0; i < data[paramName].length; i++) {
-       this.objects.push(data[paramName][i]);
+        this.objects.push(data[paramName][i]);
       }
     }
   },
@@ -148,96 +150,98 @@ Cape.extend(CollectionAgent.prototype, {
   //
   // Developers may override this method to let the agent do some
   // post-processing jobs.
-  afterRefresh: function() {
+  afterRefresh: function () {
     this.client.refresh();
   },
 
-  index: function(params, callback, errorHandler) {
+  index: function (params, callback, errorHandler) {
     this.get('', null, params, callback, errorHandler);
   },
 
-  create: function(params, callback, errorHandler) {
+  create: function (params, callback, errorHandler) {
     this.post('', null, params, callback, errorHandler);
   },
 
-  update: function(id, params, callback, errorHandler) {
+  update: function (id, params, callback, errorHandler) {
     this.patch('', id, params, callback, errorHandler);
   },
 
-  destroy: function(id, callback, errorHandler) {
+  destroy: function (id, callback, errorHandler) {
     this.delete('', id, {}, callback, errorHandler);
   },
 
-  get: function(actionName, id, params, callback, errorHandler) {
+  get: function (actionName, id, params, callback, errorHandler) {
     var path = id ? this.memberPath(id) : this.collectionPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('GET', path, params, callback, errorHandler);
   },
 
-  head: function(actionName, id, params, callback, errorHandler) {
+  head: function (actionName, id, params, callback, errorHandler) {
     var path = id ? this.memberPath(id) : this.collectionPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('HEAD', path, params, callback, errorHandler);
   },
 
-  post: function(actionName, id, params, callback, errorHandler) {
+  post: function (actionName, id, params, callback, errorHandler) {
     var path = id ? this.memberPath(id) : this.collectionPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('POST', path, params, callback, errorHandler);
   },
 
-  patch: function(actionName, id, params, callback, errorHandler) {
+  patch: function (actionName, id, params, callback, errorHandler) {
     var path = id ? this.memberPath(id) : this.collectionPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('PATCH', path, params, callback, errorHandler);
   },
 
-  put: function(actionName, id, params, callback, errorHandler) {
+  put: function (actionName, id, params, callback, errorHandler) {
     var path = id ? this.memberPath(id) : this.collectionPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('PUT', path, params, callback, errorHandler);
   },
 
-  delete: function(actionName, id, params, callback, errorHandler) {
+  delete: function (actionName, id, params, callback, errorHandler) {
     var path = id ? this.memberPath(id) : this.collectionPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('DELETE', path, params, callback, errorHandler);
   },
 
-  collectionPath: function() {
+  collectionPath: function () {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
     return this._.pathPrefix() + resources;
   },
 
-  memberPath: function(id) {
+  memberPath: function (id) {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
     return this._.pathPrefix(this.shallow) + resources + '/' + id;
   },
 
-  defaultErrorHandler: function(ex) {
-    console.log(ex)
+  defaultErrorHandler: function (ex) {
+    console.log(ex);
   }
 });
 
 var AgentCommonMethods = require('./mixins/agent_common_methods');
-Cape.extend(CollectionAgent.prototype, AgentCommonMethods);
+_extends(CollectionAgent.prototype, AgentCommonMethods);
 
 // Internal properties of Cape.CollectionAgent
 var _Internal = function _Internal(main) {
   this.main = main;
   this.components = [];
-}
+};
 
 var AgentCommonInnerMethods = require('./mixins/agent_common_inner_methods');
 
 // Internal methods of Cape.CollectionAgent
-Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
+_extends(_Internal.prototype, AgentCommonInnerMethods);
 
 module.exports = CollectionAgent;
 
-},{"./mixins/agent_common_inner_methods":7,"./mixins/agent_common_methods":8,"./utilities":14,"inflected":18}],4:[function(require,module,exports){
+},{"./mixins/agent_common_inner_methods":7,"./mixins/agent_common_methods":8,"./utilities":14,"inflected":21}],4:[function(require,module,exports){
 (function (global){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var virtualDom = require('virtual-dom');
 var Inflector = require('inflected');
@@ -256,25 +260,20 @@ var Component = function Component() {
   this._ = new _Internal(this);
 };
 
-Cape.extend(Component.prototype, {
-  mount: function(id) {
-    if (id === undefined)
-      throw new Error("The first argument is missing.");
-    if (typeof id !== 'string')
-      throw new Error("The first argument must be a string.");
-    if (this._.mounted)
-      throw new Error("This component has been mounted already.");
+_extends(Component.prototype, {
+  mount: function (id) {
+    if (id === undefined) throw new Error("The first argument is missing.");
+    if (typeof id !== 'string') throw new Error("The first argument must be a string.");
+    if (this._.mounted) throw new Error("This component has been mounted already.");
 
     this._.mounted = true;
     this.root = document.getElementById(id);
     this.root.data = this._.getElementData(this.root);
 
-    if (this.init) this.init();
-    else this.refresh();
+    if (this.init) this.init();else this.refresh();
   },
-  unmount: function() {
-    if (!this._.mounted)
-      throw new Error("This component has not been mounted yet.");
+  unmount: function () {
+    if (!this._.mounted) throw new Error("This component has not been mounted yet.");
 
     this._.mounted = false;
 
@@ -282,9 +281,8 @@ Cape.extend(Component.prototype, {
     while (this.root.firstChild) this.root.removeChild(this.root.firstChild);
     if (this.afterUnmount) this.afterUnmount();
   },
-  refresh: function() {
-    var builder, newTree, patches, tempNode, textareaNodes, i, j, len, form,
-        elements, elem, formName, vform, elemName;
+  refresh: function () {
+    var builder, newTree, patches, tempNode, textareaNodes, i, j, len, form, elements, elem, formName, vform, elemName;
 
     builder = new global.Cape.MarkupBuilder(this);
 
@@ -294,8 +292,7 @@ Cape.extend(Component.prototype, {
       patches = virtualDom.diff(this._.tree, newTree);
       this.root = virtualDom.patch(this.root, patches);
       this._.tree = newTree;
-    }
-    else {
+    } else {
       this._.tree = builder.markup(this.render);
       tempNode = virtualDom.create(this._.tree);
       this.root.parentNode.replaceChild(tempNode, this.root);
@@ -303,25 +300,22 @@ Cape.extend(Component.prototype, {
     }
     this.virtualForms.apply();
   },
-  val: function(arg1, arg2) {
-    if (arguments.length === 1)
-      return this.virtualForms.val(arg1);
-    else
-      return this.virtualForms.val(arg1, arg2);
+  val: function (arg1, arg2) {
+    if (arguments.length === 1) return this.virtualForms.val(arg1);else return this.virtualForms.val(arg1, arg2);
   },
-  setValues: function(formName, obj) {
+  setValues: function (formName, obj) {
     this.virtualForms.setValues(formName, obj);
   },
-  formData: function(formName) {
+  formData: function (formName) {
     return this.virtualForms.formData(formName);
   },
-  paramsFor: function(formName, options) {
+  paramsFor: function (formName, options) {
     return this.virtualForms.paramsFor(formName, options);
   },
-  jsonFor: function(formName, options) {
+  jsonFor: function (formName, options) {
     return this.virtualForms.jsonFor(formName, options);
   },
-  checkedOn: function(name) {
+  checkedOn: function (name) {
     return this.virtualForms.checkedOn(name);
   }
 });
@@ -330,13 +324,14 @@ Cape.extend(Component.prototype, {
 var _Internal = function _Internal(main) {
   this.main = main;
   this.mounted = false;
-}
+};
 
 // Internal methods of Cape.Component
-Cape.extend(_Internal.prototype, {
-  getElementData: function(element) {
-    var data = {}, camelCaseName;
-    [].forEach.call(element.attributes, function(attr) {
+_extends(_Internal.prototype, {
+  getElementData: function (element) {
+    var data = {},
+        camelCaseName;
+    [].forEach.call(element.attributes, function (attr) {
       if (/^data-/.test(attr.name)) {
         camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
           return $1.toUpperCase();
@@ -346,13 +341,15 @@ Cape.extend(_Internal.prototype, {
     });
     return data;
   }
-})
+});
 
 module.exports = Component;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":14,"inflected":18,"virtual-dom":31}],5:[function(require,module,exports){
+},{"./utilities":14,"inflected":21,"virtual-dom":35}],5:[function(require,module,exports){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var Cape = require('./utilities');
 
@@ -368,25 +365,26 @@ var DataStore = function DataStore(options) {
   if (typeof this.init === 'function') this.init();
 };
 
-DataStore.create = function(options) {
+DataStore.create = function (options) {
   if (!this.instance) this.instance = new this(options);
   return this.instance;
-}
+};
 
 var PropagatorMethods = require('./mixins/propagator_methods');
-Cape.extend(DataStore.prototype, PropagatorMethods);
+_extends(DataStore.prototype, PropagatorMethods);
 
 // Internal properties of Cape.DataStore
 var _Internal = function _Internal(main) {
   this.main = main;
   this.components = [];
-}
+};
 
 module.exports = DataStore;
 
 },{"./mixins/propagator_methods":9,"./utilities":14}],6:[function(require,module,exports){
-(function (global){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var virtualDom = require('virtual-dom');
 var Inflector = require('inflected');
@@ -411,24 +409,24 @@ var MarkupBuilder = function MarkupBuilder(component, options) {
   }
 };
 
-Cape.extend(MarkupBuilder.prototype, {
-  markup: function(callback) {
-    var root = this.component.root, formName, builder, attributes;
+_extends(MarkupBuilder.prototype, {
+  markup: function (callback) {
+    var root = this.component.root,
+        formName,
+        builder,
+        attributes;
 
-    if (typeof callback !== 'function')
-      throw new Error("The first agument must be a function.");
-    if (callback.length === 0)
-      throw new Error("Callback requires an argument.");
+    if (typeof callback !== 'function') throw new Error("The first agument must be a function.");
+    if (callback.length === 0) throw new Error("Callback requires an argument.");
     if (root.tagName == 'form') formName = root.attributes.name;
-    builder = new MarkupBuilder(this.component, { formName: formName } );
+    builder = new MarkupBuilder(this.component, { formName: formName });
     callback.call(this.component, builder);
 
     attributes = {};
-    for (var i = root.attributes.length; i--;)
-      attributes[root.attributes[i].nodeName] = root.attributes[i].value;
+    for (var i = root.attributes.length; i--;) attributes[root.attributes[i].nodeName] = root.attributes[i].value;
     return this._.h(root.tagName, attributes, builder._.elements);
   },
-  elem: function(tagName) {
+  elem: function (tagName) {
     var args, options, content, callback, builder, attributes;
 
     args = Array.prototype.slice.call(arguments, 1);
@@ -437,119 +435,111 @@ Cape.extend(MarkupBuilder.prototype, {
     callback = this._.extractCallback(args);
 
     if (callback) {
-      builder = new MarkupBuilder(this.component,
-        { formName: this.formName,
-          selectBoxName: this.selectBoxName,
-          fieldNamePrefix: this.fieldNamePrefix });
-      if (callback.length === 0) { throw new Error("Callback requires an argument.") }
+      builder = new MarkupBuilder(this.component, { formName: this.formName,
+        selectBoxName: this.selectBoxName,
+        fieldNamePrefix: this.fieldNamePrefix });
+      if (callback.length === 0) {
+        throw new Error("Callback requires an argument.");
+      }
       callback.call(this.component, builder);
       attributes = this._.generateAttributes(options);
       this._.elements.push(this._.h(tagName, attributes, builder._.elements));
-    }
-    else {
+    } else {
       content = content || '';
       attributes = this._.generateAttributes(options);
       this._.elements.push(this._.h(tagName, attributes, content));
     }
     return this;
   },
-  text: function(content) {
+  text: function (content) {
     this._.elements.push(content);
     return this;
   },
-  space: function() {
+  space: function () {
     this._.elements.push(' ');
     return this;
   },
-  sp: function() {
+  sp: function () {
     this.space();
     return this;
   },
-  formFor: function(name) {
+  formFor: function (name) {
     var args, options, callback, name, builder, attributes;
 
     args = Array.prototype.slice.call(arguments);
     options = this._.extractOptions(args) || {};
     callback = this._.extractCallback(args);
 
-    if (typeof callback !== 'function')
-      throw new Error("One of arguments must be a function.");
-    if (callback.length === 0)
-      throw new Error("Callback requires an argument.");
+    if (typeof callback !== 'function') throw new Error("One of arguments must be a function.");
+    if (callback.length === 0) throw new Error("Callback requires an argument.");
 
     builder = new MarkupBuilder(this.component, { formName: name });
     callback.call(this.component, builder);
     options = options || {};
     options.name = name;
     if (options.onsubmit === undefined && this._.eventCallbacks.onsubmit === undefined) {
-      options.onsubmit = function(e) { return false };
+      options.onsubmit = function (e) {
+        return false;
+      };
     }
     attributes = this._.generateAttributes(options);
     this._.elements.push(this._.h('form', attributes, builder._.elements));
     return this;
   },
-  fieldsFor: function(name) {
+  fieldsFor: function (name) {
     var args, options, callback, prefix, builder;
 
     args = Array.prototype.slice.call(arguments, 1);
     options = this._.extractOptions(args) || {};
     callback = this._.extractCallback(args);
 
-    if (typeof callback !== 'function')
-      throw new Error("One of arguments must be a function.");
-    if (callback.length === 0)
-      throw new Error("Callback requires an argument.");
+    if (typeof callback !== 'function') throw new Error("One of arguments must be a function.");
+    if (callback.length === 0) throw new Error("Callback requires an argument.");
 
-    if (this.fieldNamePrefix !== undefined)
-      prefix = this.fieldNamePrefix + '/' + name;
-    else
-      prefix = name
-    if (options.index !== undefined)
-      prefix = prefix + '/' + String(options.index);
+    if (this.fieldNamePrefix !== undefined) prefix = this.fieldNamePrefix + '/' + name;else prefix = name;
+    if (options.index !== undefined) prefix = prefix + '/' + String(options.index);
 
-    builder = new MarkupBuilder(this.component,
-      { formName: this.formName, fieldNamePrefix: prefix });
+    builder = new MarkupBuilder(this.component, { formName: this.formName, fieldNamePrefix: prefix });
     callback.call(this.component, builder);
-    builder._.elements.forEach(function(elem) {
+    builder._.elements.forEach(function (elem) {
       this._.elements.push(elem);
     }.bind(this));
 
     return this;
   },
-  labelFor: function(name, content, options) {
+  labelFor: function (name, content, options) {
     var fieldName;
 
     options = options || {};
     options.htmlFor = this._.elementIdFor(name);
-    this.elem('label', content, options)
+    this.elem('label', content, options);
     return this;
   },
-  hiddenField: function(name, options) {
+  hiddenField: function (name, options) {
     options = options || {};
     options.type = 'hidden';
     options.name = name;
     this._.inputField(options);
     return this;
   },
-  textField: function(name, options) {
+  textField: function (name, options) {
     options = options || {};
     options.type = options.type || 'text';
     options.name = name;
     this._.inputField(options);
     return this;
   },
-  passwordField: function(name, options) {
+  passwordField: function (name, options) {
     options = options || {};
     options.type = 'password';
     options.name = name;
     this._.inputField(options);
     return this;
   },
-  textareaField: function(attrName, options) {
+  textareaField: function (attrName, options) {
     var formName, vform, dasherized;
 
-    if (attrName && this.fieldNamePrefix)
-      attrName = this.fieldNamePrefix + '/' + attrName
+    if (attrName && this.fieldNamePrefix) attrName = this.fieldNamePrefix + '/' + attrName;
     options = options || {};
     options.name = attrName;
 
@@ -558,15 +548,12 @@ Cape.extend(MarkupBuilder.prototype, {
 
     dasherized = Inflector.dasherize(attrName.replace(/\//g, '_'));
     if (!options.id) {
-      if (this.formName)
-        options.id = this.formName + '-field-' + dasherized;
-      else
-        options.id = 'field-' + dasherized;
+      if (this.formName) options.id = this.formName + '-field-' + dasherized;else options.id = 'field-' + dasherized;
     }
     this.elem('textarea', '', options);
     return this;
   },
-  checkBox: function(attrName, options) {
+  checkBox: function (attrName, options) {
     var fieldName;
 
     options = options || {};
@@ -574,20 +561,15 @@ Cape.extend(MarkupBuilder.prototype, {
     if (attrName) options.name = attrName;
     if (!options.value) options.value = '1';
 
-    if (options.name && this.fieldNamePrefix)
-      fieldName = this.fieldNamePrefix + '/' + options.name
-    else
-      fieldName = options.name
+    if (options.name && this.fieldNamePrefix) fieldName = this.fieldNamePrefix + '/' + options.name;else fieldName = options.name;
 
     if (attrName.slice(-2) !== '[]') {
-      this._.elements.push(
-        this._.h('input', global.Cape.extend({},
-          { name: fieldName, type: 'hidden', value: '0' })));
+      this._.elements.push(this._.h('input', _extends({}, { name: fieldName, type: 'hidden', value: '0' })));
     }
     this._.inputField(options);
     return this;
   },
-  radioButton: function(attrName, value, options) {
+  radioButton: function (attrName, value, options) {
     options = options || {};
     options.type = 'radio';
     options.value = value;
@@ -595,39 +577,32 @@ Cape.extend(MarkupBuilder.prototype, {
     this._.inputField(options);
     return this;
   },
-  selectBox: function(name) {
+  selectBox: function (name) {
     var args, options, callback, builder, attributes, dasherized, formName;
 
     args = Array.prototype.slice.call(arguments, 1);
     options = this._.extractOptions(args) || {};
     callback = this._.extractCallback(args);
 
-    if (typeof callback !== 'function')
-      throw new Error("One of arguments must be a function.");
-    if (callback.length === 0)
-      throw new Error("Callback requires an argument.");
+    if (typeof callback !== 'function') throw new Error("One of arguments must be a function.");
+    if (callback.length === 0) throw new Error("Callback requires an argument.");
 
-    if (name && this.fieldNamePrefix)
-      options.name = this.fieldNamePrefix + '/' + name;
-    else
-      options.name = name;
+    if (name && this.fieldNamePrefix) options.name = this.fieldNamePrefix + '/' + name;else options.name = name;
 
     options.id = options.id || this._.elementIdFor(name);
 
-    builder = new MarkupBuilder(this.component,
-      { formName: this.formName, selectBoxName: name });
+    builder = new MarkupBuilder(this.component, { formName: this.formName, selectBoxName: name });
     callback.call(this.component, builder);
     options = options || {};
     attributes = this._.generateAttributes(options);
 
     formName = this.formName || '';
-    this.component.virtualForms.update(
-      formName, { name: name, value: options.value });
+    this.component.virtualForms.update(formName, { name: name, value: options.value });
 
     this._.elements.push(this._.h('select', attributes, builder._.elements));
     return this;
   },
-  btn: function() {
+  btn: function () {
     var args, options, content, callback;
 
     args = Array.prototype.slice.call(arguments);
@@ -639,49 +614,33 @@ Cape.extend(MarkupBuilder.prototype, {
     this.elem('button', content, options, callback);
     return this;
   },
-  attr: function(name, value) {
-    if (typeof name === 'object')
-      Cape.extend(this._.attr, name)
-    else if (typeof name === 'string')
-      this._.attr[name] = value;
+  attr: function (name, value) {
+    if (typeof name === 'object') _extends(this._.attr, name);else if (typeof name === 'string') this._.attr[name] = value;
 
     return this;
   },
-  class: function(name) {
-    if (typeof name === 'object')
-      Cape.extend(this._.classNames, name)
-    else if (typeof name === 'string')
-      this._.classNames[name] = true;
+  class: function (name) {
+    if (typeof name === 'object') _extends(this._.classNames, name);else if (typeof name === 'string') this._.classNames[name] = true;
     return this;
   },
-  data: function(name, value) {
-    if (typeof name === 'object')
-      Cape.extend(this._.data, name)
-    else if (typeof name === 'string')
-      this._.data[name] = value;
+  data: function (name, value) {
+    if (typeof name === 'object') _extends(this._.data, name);else if (typeof name === 'string') this._.data[name] = value;
     return this;
   },
-  css: function(name, value) {
-    if (typeof name === 'object')
-      Cape.extend(this._.style, name)
-    else if (typeof name === 'string')
-      this._.style[name] = value;
+  css: function (name, value) {
+    if (typeof name === 'object') _extends(this._.style, name);else if (typeof name === 'string') this._.style[name] = value;
 
     return this;
   },
-  on: function(eventName, callback) {
-    if (typeof eventName === 'string')
-      this._.eventCallbacks['on' + eventName] = callback
-    else
-      throw new Error("The first agument must be a string.");
+  on: function (eventName, callback) {
+    if (typeof eventName === 'string') this._.eventCallbacks['on' + eventName] = callback;else throw new Error("The first agument must be a string.");
   },
-  fa: function(iconName, options) {
+  fa: function (iconName, options) {
     options = options || {};
     var htmlClass = options.class || options.className;
     if (htmlClass) {
       htmlClass = htmlClass + ' fa fa-' + iconName;
-    }
-    else {
+    } else {
       htmlClass = 'fa fa-' + iconName;
     }
     options.class = htmlClass;
@@ -700,23 +659,21 @@ var _Internal = function _Internal(main) {
   this.data = {};
   this.style = {};
   this.eventCallbacks = {};
-}
+};
 
 // Internal methods of Cape.MarkupBuilder
-Cape.extend(_Internal.prototype, {
-  inputField: function(options) {
+_extends(_Internal.prototype, {
+  inputField: function (options) {
     var attributes, dasherized, formName, vform;
 
     options = options || {};
 
     if (options.id === undefined) {
       options.id = this.elementIdFor(options.name);
-      if (options.type === 'radio')
-        options.id = options.id + '-' + String(options.value);
+      if (options.type === 'radio') options.id = options.id + '-' + String(options.value);
     }
     if (options.id === null) delete options.id;
-    if (options.name && this.main.fieldNamePrefix)
-      options.name = this.main.fieldNamePrefix + '/' + options.name;
+    if (options.name && this.main.fieldNamePrefix) options.name = this.main.fieldNamePrefix + '/' + options.name;
 
     formName = this.main.formName || '';
     this.main.component.virtualForms.update(formName, options);
@@ -726,40 +683,31 @@ Cape.extend(_Internal.prototype, {
     return this;
   },
 
-  elementIdFor: function(name) {
+  elementIdFor: function (name) {
     var dasherized;
 
-    if (this.main.fieldNamePrefix)
-      dasherized = Inflector.dasherize(
-        this.main.fieldNamePrefix.replace(/\//g, '-') + '-' + name);
-    else
-      dasherized = Inflector.dasherize(name);
+    if (this.main.fieldNamePrefix) dasherized = Inflector.dasherize(this.main.fieldNamePrefix.replace(/\//g, '-') + '-' + name);else dasherized = Inflector.dasherize(name);
 
-    if (this.main.formName)
-      return this.main.formName + '-field-' + dasherized;
-    else
-      return 'field-' + dasherized;
+    if (this.main.formName) return this.main.formName + '-field-' + dasherized;else return 'field-' + dasherized;
   },
 
-  extractContent: function(args) {
+  extractContent: function (args) {
     if (typeof args[0] === 'string') return args[0];
   },
 
-  extractOptions: function(args) {
-    for (var i = 0; i < args.length; i++)
-      if (typeof args[i] === 'object') return args[i];
+  extractOptions: function (args) {
+    for (var i = 0; i < args.length; i++) if (typeof args[i] === 'object') return args[i];
   },
 
-  extractCallback: function(args) {
-    for (var i = 0; i < args.length; i++)
-      if (typeof args[i] === 'function') return args[i];
+  extractCallback: function (args) {
+    for (var i = 0; i < args.length; i++) if (typeof args[i] === 'function') return args[i];
   },
 
-  generateAttributes: function(options) {
+  generateAttributes: function (options) {
     var classNames, data;
 
     options = options || {};
-    options = global.Cape.extend({}, this.attr, options);
+    options = _extends({}, this.attr, options);
     this.attr = {};
 
     if ('visible' in options && !options['visible']) {
@@ -775,32 +723,28 @@ Cape.extend(_Internal.prototype, {
       delete options['for'];
     }
 
-    classNames = []
-    for (key in this.classNames)
-      if (this.classNames.hasOwnProperty(key) && this.classNames[key])
-        classNames.push(key)
+    classNames = [];
+    for (key in this.classNames) if (this.classNames.hasOwnProperty(key) && this.classNames[key]) classNames.push(key);
     this.classNames = [];
 
     if (typeof options['className'] === 'object') {
       for (var name in options['className']) {
         if (options['className'][name]) {
-          classNames.push(name)
+          classNames.push(name);
         }
       }
-    }
-    else if (typeof options['className'] === 'string') {
-      options['className'].split(' ').forEach(function(e) {
+    } else if (typeof options['className'] === 'string') {
+      options['className'].split(' ').forEach(function (e) {
         classNames.push(e);
-      })
+      });
     }
 
     if (classNames.length) {
-      classNames = classNames.filter(function(e, i, self) {
+      classNames = classNames.filter(function (e, i, self) {
         return self.indexOf(e) === i;
-      })
-      options['className'] = classNames.join(' ')
-    }
-    else {
+      });
+      options['className'] = classNames.join(' ');
+    } else {
       delete options['className'];
     }
 
@@ -809,88 +753,62 @@ Cape.extend(_Internal.prototype, {
       delete options['data'];
     }
     data = options.dataset || {};
-    data = global.Cape.extend({}, this.data, data);
+    data = _extends({}, this.data, data);
     this.data = {};
     options.dataset = data;
 
-    if (typeof options.style === 'object')
-      options.style = global.Cape.extend({}, this.style, options.style);
-    else
-      options.style = this.style
-    this.style = {}
+    if (typeof options.style === 'object') options.style = _extends({}, this.style, options.style);else options.style = this.style;
+    this.style = {};
 
     Cape.merge(options, this.eventCallbacks);
     this.eventCallbacks = {};
 
     for (var key in options) {
       if (typeof options[key] === 'function') {
-        options[key] = options[key].bind(this.main.component)
+        options[key] = options[key].bind(this.main.component);
       }
     }
     return options;
   }
 });
 
-var normalElementNames = [
-  'a', 'abbr', 'address', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo',
-  'blockquote', 'body', 'button', 'canvas', 'caption', 'cite', 'code',
-  'colgroup', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div',
-  'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer',
-  'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'html',
-  'i', 'iframe', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark',
-  'menu', 'menuitem', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup',
-  'option', 'output', 'p', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's',
-  'samp', 'script', 'section', 'select', 'small', 'span', 'strong', 'style',
-  'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot',
-  'th', 'thead', 'time', 'title', 'tr', 'u', 'ul', 'var', 'video' ];
+var normalElementNames = ['a', 'abbr', 'address', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'blockquote', 'body', 'button', 'canvas', 'caption', 'cite', 'code', 'colgroup', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'html', 'i', 'iframe', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark', 'menu', 'menuitem', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'u', 'ul', 'var', 'video'];
 
 for (var i = normalElementNames.length; i--;) {
   var tagName = normalElementNames[i];
-  MarkupBuilder.prototype[tagName] = new Function("arg1", "arg2",
-    "this.elem('" + tagName + "', arg1, arg2); return this");
+  MarkupBuilder.prototype[tagName] = new Function("arg1", "arg2", "this.elem('" + tagName + "', arg1, arg2); return this");
 }
 
-var voidElementNames = [
-  'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen',
-  'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr'
-]
+var voidElementNames = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr'];
 
 for (var i = voidElementNames.length; i--;) {
   var tagName = voidElementNames[i];
-  MarkupBuilder.prototype[tagName] = new Function("options",
-    "this.elem('" + tagName + "', options); return this");
+  MarkupBuilder.prototype[tagName] = new Function("options", "this.elem('" + tagName + "', options); return this");
 }
 
-var attrNames = [ 'checked', 'disabled' ];
+var attrNames = ['checked', 'disabled'];
 
 for (var i = attrNames.length; i--;) {
   var attrName = attrNames[i];
-  MarkupBuilder.prototype[attrName] = new Function("value",
-    "this.attr('" + attrName + "', value); return this");
+  MarkupBuilder.prototype[attrName] = new Function("value", "this.attr('" + attrName + "', value); return this");
 }
 
-var eventNames = [
-  'blur', 'focus', 'change', 'select', 'submit', 'reset', 'abort', 'error',
-  'load', 'unload', 'click', 'dblclick', 'keyup', 'keydown', 'keypress',
-  'mouseout', 'mouseover', 'mouseup', 'mousedown', 'mousemove'
-]
+var eventNames = ['blur', 'focus', 'change', 'select', 'submit', 'reset', 'abort', 'error', 'load', 'unload', 'click', 'dblclick', 'keyup', 'keydown', 'keypress', 'mouseout', 'mouseover', 'mouseup', 'mousedown', 'mousemove'];
 
 for (var i = eventNames.length; i--;) {
   var eventName = eventNames[i];
-  MarkupBuilder.prototype['on' + eventName] = new Function("callback",
-    "this.on('" + eventName + "', callback); return this");
+  MarkupBuilder.prototype['on' + eventName] = new Function("callback", "this.on('" + eventName + "', callback); return this");
 }
 
 module.exports = MarkupBuilder;
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":14,"inflected":18,"virtual-dom":31}],7:[function(require,module,exports){
+},{"./utilities":14,"inflected":21,"virtual-dom":35}],7:[function(require,module,exports){
 'use strict';
 
 var Inflector = require('inflected');
 
 var AgentCommonInnerMethods = {
-  applyAdapter: function() {
+  applyAdapter: function () {
     var adapterName, adapter;
 
     adapterName = this.main.adapter || Cape.defaultAgentAdapter;
@@ -900,54 +818,52 @@ var AgentCommonInnerMethods = {
     }
   },
 
-  headers: function() {
+  headers: function () {
     var headers = this.main.headers;
     if (this.main.dataType === undefined) {
       headers['Accept'] = 'application/json, text/plain';
-    }
-    else if (this.main.dataType === 'json') {
+    } else if (this.main.dataType === 'json') {
       headers['Accept'] = 'application/json';
-    }
-    else if (this.main.dataType === 'text') {
+    } else if (this.main.dataType === 'text') {
       headers['Accept'] = 'text/plain';
-    }
-    else {
+    } else {
       throw new Error('Unsupported data type: ' + this.main.dataType);
     }
     return headers;
   },
 
-  pathPrefix: function(shallow) {
+  pathPrefix: function (shallow) {
     var prefix = this.main.basePath || '/';
     if (this.main.nestedIn && !shallow) prefix = prefix + this.main.nestedIn;
     return prefix;
   },
 
-  responseHandler: function() {
+  responseHandler: function () {
     if (this.main.dataType === undefined) {
-      return function(response) { return response.text() };
-    }
-    else if (this.main.dataType === 'json') {
-      return function(response) { return response.json() };
-    }
-    else if (this.main.dataType === 'text') {
-      return function(response) { return response.text() };
-    }
-    else {
+      return function (response) {
+        return response.text();
+      };
+    } else if (this.main.dataType === 'json') {
+      return function (response) {
+        return response.json();
+      };
+    } else if (this.main.dataType === 'text') {
+      return function (response) {
+        return response.text();
+      };
+    } else {
       throw new Error('Unsupported data type: ' + this.main.dataType);
     }
   },
 
-  dataHandler: function(data, callback) {
+  dataHandler: function (data, callback) {
     if (this.main.dataType === undefined) {
       try {
         this.main.data = JSON.parse(data);
-      }
-      catch (e) {
+      } catch (e) {
         this.main.data = data;
       }
-    }
-    else {
+    } else {
       this.main.data = data;
     }
 
@@ -955,50 +871,47 @@ var AgentCommonInnerMethods = {
       callback.call(this.main.client, this.main.data);
     }
   }
-}
+};
 
 module.exports = AgentCommonInnerMethods;
 
-},{"inflected":18}],8:[function(require,module,exports){
+},{"inflected":21}],8:[function(require,module,exports){
 'use strict';
 
 var Inflector = require('inflected');
 
 var AgentCommonMethods = {
-  ajax: function(httpMethod, path, params, callback, errorHandler) {
-    var self = this, isSafeMethod, fetchOptions;
+  ajax: function (httpMethod, path, params, callback, errorHandler) {
+    var self = this,
+        isSafeMethod,
+        fetchOptions;
 
     params = params || {};
     errorHandler = errorHandler || this.defaultErrorHandler;
 
     this._.applyAdapter();
 
-    isSafeMethod = (httpMethod === 'GET' || httpMethod === 'HEAD');
+    isSafeMethod = httpMethod === 'GET' || httpMethod === 'HEAD';
     fetchOptions = {
       method: httpMethod,
       headers: this._.headers(),
       credentials: 'same-origin'
-    }
+    };
 
     if (isSafeMethod) {
       var pairs = [];
       for (var key in params) {
-        pairs.push(encodeURIComponent(key) + "=" +
-          encodeURIComponent(params[key]));
+        pairs.push(encodeURIComponent(key) + "=" + encodeURIComponent(params[key]));
       }
       if (pairs.length) path = path + '?' + pairs.join('&');
-    }
-    else {
-      fetchOptions.body = JSON.stringify(params)
+    } else {
+      fetchOptions.body = JSON.stringify(params);
     }
 
-    fetch(path, fetchOptions)
-      .then(this._.responseHandler())
-      .then(function(data) {
-        self._.dataHandler(data, callback);
-        if (self.autoRefresh && !isSafeMethod) self.refresh();
-      })
-      .catch(errorHandler);
+    fetch(path, fetchOptions).then(this._.responseHandler()).then(function (data) {
+      self._.dataHandler(data, callback);
+      if (self.autoRefresh && !isSafeMethod) self.refresh();
+    }).catch(errorHandler);
 
     return false;
   }
@@ -1006,11 +919,11 @@ var AgentCommonMethods = {
 
 module.exports = AgentCommonMethods;
 
-},{"inflected":18}],9:[function(require,module,exports){
+},{"inflected":21}],9:[function(require,module,exports){
 'use strict';
 
 var PropagatorMethods = {
-  attach: function(component) {
+  attach: function (component) {
     var target = component;
     for (var i = 0, len = this._.components.length; i < len; i++) {
       if (this._.components[i] === component) return;
@@ -1018,7 +931,7 @@ var PropagatorMethods = {
     this._.components.push(component);
   },
 
-  detach: function(component) {
+  detach: function (component) {
     for (var i = 0, len = this._.components.length; i < len; i++) {
       if (this._.components[i] === component) {
         this._.components.splice(i, 1);
@@ -1027,16 +940,17 @@ var PropagatorMethods = {
     }
   },
 
-  propagate: function() {
-    for (var i = this._.components.length; i--;)
-      this._.components[i].refresh();
+  propagate: function () {
+    for (var i = this._.components.length; i--;) this._.components[i].refresh();
   }
-}
+};
 
 module.exports = PropagatorMethods;
 
 },{}],10:[function(require,module,exports){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var Cape = require('./utilities');
 
@@ -1049,35 +963,32 @@ var Partial = function Partial(parent) {
   this.virtualForms = parent.virtualForms;
 };
 
-Cape.extend(Partial.prototype, {
-  refresh: function() {
-    this.parent.refresh()
+_extends(Partial.prototype, {
+  refresh: function () {
+    this.parent.refresh();
   },
 
-  val: function(arg1, arg2) {
-    if (arguments.length === 1)
-      return this.parent.val(arg1);
-    else
-      return this.parent.val(arg1, arg2);
+  val: function (arg1, arg2) {
+    if (arguments.length === 1) return this.parent.val(arg1);else return this.parent.val(arg1, arg2);
   },
 
-  setValues: function(formName, obj) {
+  setValues: function (formName, obj) {
     this.virtualForms.setValues(formName, obj);
   },
 
-  formData: function(formName) {
+  formData: function (formName) {
     return this.virtualForms.formData(formName);
   },
 
-  paramsFor: function(formName, options) {
+  paramsFor: function (formName, options) {
     return this.virtualForms.paramsFor(formName, options);
   },
 
-  jsonFor: function(formName, options) {
+  jsonFor: function (formName, options) {
     return this.virtualForms.jsonFor(formName, options);
   },
 
-  checkedOn: function(name) {
+  checkedOn: function (name) {
     return this.virtualForms.checkedOn(name);
   }
 });
@@ -1086,6 +997,8 @@ module.exports = Partial;
 
 },{"./utilities":14}],11:[function(require,module,exports){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var Inflector = require('inflected');
 var Cape = require('./utilities');
@@ -1158,17 +1071,16 @@ function ResourceAgent(client, options) {
   this.headers = { 'Content-Type': 'application/json' };
 };
 
-Cape.extend(ResourceAgent.prototype, {
-  init: function(afterInitialize, errorHandler) {
-    var self = this, path;
+_extends(ResourceAgent.prototype, {
+  init: function (afterInitialize, errorHandler) {
+    var self = this,
+        path;
 
     if (this.singular) {
       path = this.singularPath();
-    }
-    else if (this.id) {
+    } else if (this.id) {
       path = this.memberPath();
-    }
-    else {
+    } else {
       path = this.newPath();
     }
     errorHandler = errorHandler || this.defaultErrorHandler;
@@ -1178,141 +1090,130 @@ Cape.extend(ResourceAgent.prototype, {
     fetch(path, {
       headers: this._.headers(),
       credentials: 'same-origin'
-    })
-    .then(this._.responseHandler())
-    .then(function(data) { self._.initialDataHandler(data, afterInitialize); })
-    .catch(errorHandler);
+    }).then(this._.responseHandler()).then(function (data) {
+      self._.initialDataHandler(data, afterInitialize);
+    }).catch(errorHandler);
   },
 
-  create: function(afterCreate, errorHandler) {
+  create: function (afterCreate, errorHandler) {
     var path = this.singular ? this.singularPath() : this.collectionPath();
-    var params = this.client.paramsFor(
-      this.formName || this.resourceName,
-      { as: this.paramName || this.resourceName }
-    );
+    var params = this.client.paramsFor(this.formName || this.resourceName, { as: this.paramName || this.resourceName });
     this.ajax('POST', path, params, afterCreate, errorHandler);
     return false;
   },
 
-  update: function(afterUpdate, errorHandler) {
+  update: function (afterUpdate, errorHandler) {
     var path = this.singular ? this.singularPath() : this.memberPath();
-    var params = this.client.paramsFor(
-      this.formName || this.resourceName,
-      { as: this.paramName || this.resourceName }
-    );
+    var params = this.client.paramsFor(this.formName || this.resourceName, { as: this.paramName || this.resourceName });
     this.ajax('PATCH', path, params, afterUpdate, errorHandler);
     return false;
   },
 
-  destroy: function(afterDestroy, errorHandler) {
+  destroy: function (afterDestroy, errorHandler) {
     var path = this.singular ? this.singularPath() : this.memberPath();
     this.ajax('DELETE', path, {}, afterDestroy, errorHandler);
     return false;
   },
 
-  get: function(actionName, params, callback, errorHandler) {
+  get: function (actionName, params, callback, errorHandler) {
     var path = this.requestPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('GET', path, params, callback, errorHandler);
   },
 
-  head: function(actionName, params, callback, errorHandler) {
+  head: function (actionName, params, callback, errorHandler) {
     var path = this.requestPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('HEAD', path, params, callback, errorHandler);
   },
 
-  post: function(actionName, params, callback, errorHandler) {
+  post: function (actionName, params, callback, errorHandler) {
     var path = this.requestPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('POST', path, params, callback, errorHandler);
   },
 
-  patch: function(actionName, params, callback, errorHandler) {
+  patch: function (actionName, params, callback, errorHandler) {
     var path = this.requestPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('PATCH', path, params, callback, errorHandler);
   },
 
-  put: function(actionName, params, callback, errorHandler) {
+  put: function (actionName, params, callback, errorHandler) {
     var path = this.requestPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('PUT', path, params, callback, errorHandler);
   },
 
-  delete: function(actionName, params, callback, errorHandler) {
+  delete: function (actionName, params, callback, errorHandler) {
     var path = this.requestPath();
     if (actionName !== '') path = path + '/' + actionName;
     this.ajax('DELETE', path, params, callback, errorHandler);
   },
 
-  requestPath: function() {
+  requestPath: function () {
     if (this.singluar) {
       return this.singularPath();
-    }
-    else if (this.id === undefined) {
+    } else if (this.id === undefined) {
       return this.collectionPath();
-    }
-    else {
+    } else {
       return this.memberPath();
     }
   },
 
-  collectionPath: function() {
+  collectionPath: function () {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
     return this._.pathPrefix() + resources;
   },
 
-  newPath: function() {
+  newPath: function () {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
     return this._.pathPrefix() + resources + '/new';
   },
 
-  memberPath: function() {
+  memberPath: function () {
     var resources = Inflector.pluralize(Inflector.underscore(this.resourceName));
     return this._.pathPrefix(this.shallow) + resources + '/' + this.id;
   },
 
-  singularPath: function() {
+  singularPath: function () {
     var resource = Inflector.underscore(this.resourceName);
     return this._.pathPrefix() + resource;
   },
 
-  defaultErrorHandler: function(ex) {
-    console.log(ex)
+  defaultErrorHandler: function (ex) {
+    console.log(ex);
   }
 });
 
 var AgentCommonMethods = require('./mixins/agent_common_methods');
-Cape.extend(ResourceAgent.prototype, AgentCommonMethods);
+_extends(ResourceAgent.prototype, AgentCommonMethods);
 
 // Internal properties of Cape.ResourceAgent
 var _Internal = function _Internal(main) {
   this.main = main;
-}
+};
 
 var AgentCommonInnerMethods = require('./mixins/agent_common_inner_methods');
 
 // Internal methods of Cape.ResourceAgent
-Cape.extend(_Internal.prototype, AgentCommonInnerMethods);
+_extends(_Internal.prototype, AgentCommonInnerMethods);
 
-Cape.extend(_Internal.prototype, {
-  initialDataHandler: function(data, afterInitialize) {
+_extends(_Internal.prototype, {
+  initialDataHandler: function (data, afterInitialize) {
     var formName = this.main.formName || this.main.resourceName,
         paramName = this.main.paramName || this.main.resourceName;
 
     try {
       this.main.data = JSON.parse(data);
       this.main.object = this.main.data[paramName] || {};
-    }
-    catch (e) {
+    } catch (e) {
       console.log("Could not parse the response data as JSON.");
       this.main.data = data;
     }
     if (typeof afterInitialize === 'function') {
       afterInitialize.call(this.main.client, this.main);
-    }
-    else if (this.main.object) {
+    } else if (this.main.object) {
       this.main.client.setValues(formName, this.main.object);
       this.main.client.refresh();
     }
@@ -1321,9 +1222,11 @@ Cape.extend(_Internal.prototype, {
 
 module.exports = ResourceAgent;
 
-},{"./mixins/agent_common_inner_methods":7,"./mixins/agent_common_methods":8,"./utilities":14,"inflected":18}],12:[function(require,module,exports){
+},{"./mixins/agent_common_inner_methods":7,"./mixins/agent_common_methods":8,"./utilities":14,"inflected":21}],12:[function(require,module,exports){
 (function (global){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var Inflector = require('inflected');
 var Cape = require('./utilities');
@@ -1359,41 +1262,34 @@ var Router = function Router(rootContainer) {
   this.component = null;
 };
 
-Cape.extend(Router.prototype, {
-  draw: function(callback) {
+_extends(Router.prototype, {
+  draw: function (callback) {
     var mapper;
 
-    if (typeof callback !== 'function')
-      throw new Error("The last argument must be a function.");
-    if (callback.length === 0)
-      throw new Error("Callback requires an argument.");
+    if (typeof callback !== 'function') throw new Error("The last argument must be a function.");
+    if (callback.length === 0) throw new Error("Callback requires an argument.");
 
     mapper = new global.Cape.RoutingMapper(this);
     callback(mapper);
   },
-  mount: function(elementId) {
+  mount: function (elementId) {
     this._.targetElementId = elementId;
   },
-  start: function() {
-    var self = this, callback;
+  start: function () {
+    var self = this,
+        callback;
 
-    if (window.addEventListener)
-      window.addEventListener('hashchange', self._.eventListener, false);
-    else if (window.attachEvent)
-      window.attachEvent('onhashchange', self._.eventListener);
+    if (window.addEventListener) window.addEventListener('hashchange', self._.eventListener, false);else if (window.attachEvent) window.attachEvent('onhashchange', self._.eventListener);
 
     this.currentHash = window.location.href.split('#')[1] || '';
     this.navigate(this.currentHash);
   },
-  stop: function() {
+  stop: function () {
     var self = this;
 
-    if (window.removeEventListener)
-      window.removeEventListener('hashchange', self._.eventListener, false);
-    else if (window.detachEvent)
-      window.detachEvent('onhashchange', self._.eventListener);
+    if (window.removeEventListener) window.removeEventListener('hashchange', self._.eventListener, false);else if (window.detachEvent) window.detachEvent('onhashchange', self._.eventListener);
   },
-  routeFor: function(hash) {
+  routeFor: function (hash) {
     var i, len, route;
 
     for (i = 0, len = this.routes.length; i < len; i++) {
@@ -1402,8 +1298,22 @@ Cape.extend(Router.prototype, {
     }
     throw new Error("No route match. [" + hash + "]");
   },
-  navigate: function(hash, options) {
-    var self = this, promises, promise, i, len;
+  navigateTo: function (hash, params, options) {
+    var self = this,
+        prop,
+        pairs,
+        promises,
+        promise,
+        i,
+        len;
+
+    if (params !== undefined) {
+      pairs = [];
+      for (prop in params) {
+        pairs.push(prop + '=' + params[prop]);
+      }
+      if (pairs.length > 0) hash = hash + '?' + pairs.join('&');
+    }
 
     this._.currentHash = hash;
     this._.setHash(hash);
@@ -1414,22 +1324,31 @@ Cape.extend(Router.prototype, {
 
     if (this._.beforeNavigationCallbacks.length) {
       promises = [];
-      promise = new Promise(function(resolve, reject) { resolve(hash) });
+      promise = new Promise(function (resolve, reject) {
+        resolve(hash);
+      });
       promises.push(promise);
       for (i = 0, len = this._.beforeNavigationCallbacks.length; i < len; i++) {
         promise = promise.then(this._.beforeNavigationCallbacks[i]);
-        promises.push(promise)
+        promises.push(promise);
       }
-      Promise.all(promises).then(function(results) {
-        self._.mountComponent(results.pop())
+      Promise.all(promises).then(function (results) {
+        self._.mountComponent(results.pop());
       }, self._.errorHandler);
-    }
-    else {
+    } else {
       self._.mountComponent(hash);
     }
   },
-  redirectTo: function(hash, options) {
-    var self = this, promises, promise, i, len;
+  // Deprecated. Use navigateTo() instead.
+  navigate: function (hash, options) {
+    this.navigateTo(hash, {}, options);
+  },
+  redirectTo: function (hash, options) {
+    var self = this,
+        promises,
+        promise,
+        i,
+        len;
 
     this._.currentHash = hash;
     this._.setHash(hash);
@@ -1439,38 +1358,40 @@ Cape.extend(Router.prototype, {
     this.flash.alert = options.alert;
     self._.mountComponent(hash);
   },
-  show: function(klass) {
+  show: function (klass) {
     var component = new klass();
     component.mount(this._.targetElementId);
     this._.mountedComponentClass = klass;
     this._.mountedComponent = component;
   },
-  attach: function(component) {
-    var target = component;
-    for (var i = 0, len = this._.attachedComponents.length; i < len; i++) {
-      if (this._.attachedComponents[i] === component) return;
+  attach: function (listener) {
+    if (listener === undefined) throw new Error("Missing listener.");
+    if (typeof listener.refresh !== 'function') throw new Error('The listener must have the "refresh" function.');
+
+    for (var i = 0, len = this._.notificationListeners.length; i < len; i++) {
+      if (this._.notificationListeners[i] === listener) return;
     }
-    this._.attachedComponents.push(component);
+    this._.notificationListeners.push(listener);
   },
-  detach: function(component) {
-    for (var i = 0, len = this._.attachedComponents.length; i < len; i++) {
-      if (this._.attachedComponents[i] === component) {
-        this._.attachedComponents.splice(i, 1);
+  detach: function (listener) {
+    for (var i = 0, len = this._.notificationListeners.length; i < len; i++) {
+      if (this._.notificationListeners[i] === listener) {
+        this._.notificationListeners.splice(i, 1);
         break;
       }
     }
   },
-  beforeNavigation: function(callback) {
+  beforeNavigation: function (callback) {
     this._.beforeNavigationCallbacks.push(callback);
   },
-  errorHandler: function(callback) {
+  errorHandler: function (callback) {
     this._.errorHandler = callback;
   },
-  notify: function() {
+  notify: function () {
     var i;
 
-    for (i = this._.attachedComponents.length; i--;) {
-      this._.attachedComponents[i].refresh();
+    for (i = this._.notificationListeners.length; i--;) {
+      this._.notificationListeners[i].refresh();
     }
   }
 });
@@ -1479,24 +1400,23 @@ Cape.extend(Router.prototype, {
 var _Internal = function _Internal(main) {
   var self = this;
   this.main = main;
-  this.eventListener = function() {
+  this.eventListener = function () {
     var hash = window.location.href.split('#')[1] || '';
     if (hash != self.currentHash) self.main.navigate(hash);
   };
   this.beforeNavigationCallbacks = [];
-  this.attachedComponents = [];
+  this.notificationListeners = [];
   this.currentHash = null;
   this.mountedComponent = null;
   this.targetElementId = null;
-}
+};
 
 // Internal methods of Cape.Router
-Cape.extend(_Internal.prototype, {
-  mountComponent: function(hash) {
+_extends(_Internal.prototype, {
+  mountComponent: function (hash) {
     var route, componentClass, component;
 
-    if (typeof hash !== 'string')
-      throw new Error("The first argument must be a string.");
+    if (typeof hash !== 'string') throw new Error("The first argument must be a string.");
 
     route = this.main.routeFor(hash);
     this.main.namespace = route.namespace;
@@ -1510,11 +1430,10 @@ Cape.extend(_Internal.prototype, {
 
     if (componentClass === this.mountedComponentClass) {
       this.main.notify();
-    }
-    else {
+    } else {
       if (this.mountedComponent) this.mountedComponent.unmount();
       this.main.notify();
-      component = new componentClass;
+      component = new componentClass();
       component.mount(this.targetElementId);
       this.mountedComponentClass = componentClass;
       this.mountedComponent = component;
@@ -1522,60 +1441,57 @@ Cape.extend(_Internal.prototype, {
 
     this.main.flash = {};
   },
-  setHash: function(hash) {
+  setHash: function (hash) {
     window.location.hash = hash;
   },
-  setParams: function(route) {
+  setParams: function (route) {
     var md = this.currentHash.match(route.regexp);
     this.main.params = {};
-    route.keys.forEach(function(key, i) {
+    route.keys.forEach(function (key, i) {
       this.main.params[key] = md[i + 1];
     }.bind(this));
   },
-  setQuery: function(route) {
+  setQuery: function (route) {
     var queryString, pairs;
 
     this.main.query = {};
     queryString = this.currentHash.split('?')[1];
     if (queryString === undefined) return;
     pairs = queryString.split('&');
-    pairs.forEach(function(pair) {
+    pairs.forEach(function (pair) {
       var parts = pair.split('=');
       this.main.query[parts[0]] = parts[1] || '';
-    }.bind(this))
+    }.bind(this));
   },
-  getComponentClassFor: function(route) {
+  getComponentClassFor: function (route) {
     var fragments, obj, i, componentName;
 
     fragments = [];
     if (route.container) {
-      route.container.split('.').forEach(function(part) {
+      route.container.split('.').forEach(function (part) {
         fragments.push(Inflector.camelize(part));
-      })
+      });
     }
 
     obj = this.main.rootContainer;
     for (i = 0; obj && i < fragments.length; i++) {
-      if (obj[fragments[i]]) obj = obj[fragments[i]];
-      else obj = null;
+      if (obj[fragments[i]]) obj = obj[fragments[i]];else obj = null;
     }
 
     componentName = Inflector.camelize(route.component);
     if (obj && obj[componentName]) return obj[componentName];
 
-    throw new Error(
-      "Component class "
-        + fragments.concat([componentName]).join('.')
-        + " is not defined."
-    );
+    throw new Error("Component class " + fragments.concat([componentName]).join('.') + " is not defined.");
   }
 });
 
 module.exports = Router;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./utilities":14,"inflected":18}],13:[function(require,module,exports){
+},{"./utilities":14,"inflected":21}],13:[function(require,module,exports){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var Inflector = require('inflected');
 var Cape = require('./utilities');
@@ -1595,9 +1511,18 @@ function RoutingMapper(router, options) {
   }
 };
 
-Cape.extend(RoutingMapper.prototype, {
-  page: function(path, className, constraints, options) {
-    var route = {}, fullClassName, fragments, resourceNames;
+_extends(RoutingMapper.prototype, {
+  page: function (path, className, constraints, options) {
+    var route = {},
+        fullClassName,
+        fragments,
+        resourceNames;
+
+    if (path === undefined) throw new Error("Missing hash pattern.");
+
+    if (className === undefined) {
+      if (path.match(/^\w+(\/\w+)*$/)) className = path.replace('/', '.');else throw new Error("Missing class name path.");
+    }
 
     options = options || {};
 
@@ -1607,10 +1532,7 @@ Cape.extend(RoutingMapper.prototype, {
     route.keys = this._.extractKeys(path);
     route.regexp = this._.constructRegexp(path, constraints);
 
-    if (this.classNamePrefix)
-      fullClassName = this.classNamePrefix + '.' + className;
-    else
-      fullClassName = className;
+    if (this.classNamePrefix) fullClassName = this.classNamePrefix + '.' + className;else fullClassName = className;
 
     fragments = fullClassName.split('.');
     route.component = fragments.pop();
@@ -1621,17 +1543,16 @@ Cape.extend(RoutingMapper.prototype, {
     resourceNames = [];
     if (this.resourcePath) resourceNames.push(this.resourcePath);
     if (options.resource) resourceNames.push(options.resource);
-    if (resourceNames.length) route.resource = resourceNames.join('/');
-    else route.resource = null;
+    if (resourceNames.length) route.resource = resourceNames.join('/');else route.resource = null;
 
     route.action = options.action || null;
 
     this.router.routes.push(route);
   },
-  root: function(className) {
+  root: function (className) {
     this.page('', className);
   },
-  many: function(resourceName) {
+  many: function (resourceName) {
     var options, callback, resourcePath;
 
     options = this._.extractOptions(arguments);
@@ -1641,7 +1562,7 @@ Cape.extend(RoutingMapper.prototype, {
     this._.addPagesForPluralResource(resourceName, resourcePath, options);
     this._.executeCallback(callback, resourceName, resourcePath, false);
   },
-  one: function(resourceName) {
+  one: function (resourceName) {
     var options, callback, resourcePath;
 
     options = this._.extractOptions(arguments);
@@ -1651,316 +1572,273 @@ Cape.extend(RoutingMapper.prototype, {
     this._.addPagesForSingularResource(resourceName, resourcePath, options);
     this._.executeCallback(callback, resourceName, resourcePath, true);
   },
-  collection: function() {
+  collection: function () {
     var args;
 
-    if (this.resourcePath === undefined || this.singular)
-      throw new Error("The collection method must be called within a plural resource definition.")
+    if (this.resourcePath === undefined || this.singular) throw new Error("The collection method must be called within a plural resource definition.");
 
     args = Array.prototype.slice.call(arguments, 0);
-    args.forEach(function(path) {
-      this.page(this.resourcePath + '/' + path,
-        this.resourcePath + '.' + path, {}, { action: path });
-    }.bind(this))
+    args.forEach(function (path) {
+      this.page(this.resourcePath + '/' + path, this.resourcePath + '.' + path, {}, { action: path });
+    }.bind(this));
   },
-  member: function() {
+  member: function () {
     var args;
 
-    if (this.resourcePath === undefined || this.singular)
-      throw new Error("The member method must be called within a plural resource definition.")
+    if (this.resourcePath === undefined || this.singular) throw new Error("The member method must be called within a plural resource definition.");
 
     args = Array.prototype.slice.call(arguments, 0);
-    args.forEach(function(path) {
-      this.page(this.resourcePath + '/:id/' + path,
-        this.resourcePath + '.' + path, { id: '\\d+' }, {}, { action: path });
-    }.bind(this))
+    args.forEach(function (path) {
+      this.page(this.resourcePath + '/:id/' + path, this.resourcePath + '.' + path, { id: '\\d+' }, {}, { action: path });
+    }.bind(this));
   },
-  new: function() {
+  new: function () {
     var args;
 
-    if (this.resourcePath === undefined)
-      throw new Error("The member method must be called within a resource definition.")
+    if (this.resourcePath === undefined) throw new Error("The member method must be called within a resource definition.");
 
     args = Array.prototype.slice.call(arguments, 0);
-    args.forEach(function(path) {
-      this.page(this.resourcePath + '/new/' + path,
-        this.resourcePath + '.' + path, {}, { action: path });
-    }.bind(this))
+    args.forEach(function (path) {
+      this.page(this.resourcePath + '/new/' + path, this.resourcePath + '.' + path, {}, { action: path });
+    }.bind(this));
   },
-  view: function() {
+  view: function () {
     var args;
 
-    if (this.resourcePath === undefined || !this.singular)
-      throw new Error("The view method must be called within a singular resource definition.")
+    if (this.resourcePath === undefined || !this.singular) throw new Error("The view method must be called within a singular resource definition.");
 
     args = Array.prototype.slice.call(arguments, 0);
-    args.forEach(function(path) {
-      this.page(this.resourcePath + '/' + path,
-        this.resourcePath + '.' + path, {}, { action: path });
-    }.bind(this))
+    args.forEach(function (path) {
+      this.page(this.resourcePath + '/' + path, this.resourcePath + '.' + path, {}, { action: path });
+    }.bind(this));
   },
-  namespace: function(className) {
+  namespace: function (className) {
     var args, callback, options, namespacePath, path;
 
     args = Array.prototype.slice.call(arguments, 1);
     callback = args.pop();
     options = args.pop() || {};
 
-    if (typeof callback !== 'function')
-      throw new Error("The last argument must be a function.");
-    if (callback.length === 0)
-      throw new Error("Callback requires an argument.");
+    if (typeof callback !== 'function') throw new Error("The last argument must be a function.");
+    if (callback.length === 0) throw new Error("Callback requires an argument.");
 
     path = options.path || className;
-    if (this.namespacePath) namespacePath = this.namespacePath + '/' + path;
-    else namespacePath = path;
+    if (this.namespacePath) namespacePath = this.namespacePath + '/' + path;else namespacePath = path;
     if (this.pathPrefix) path = this.pathPrefix + '/' + path;
     if (this.classNamePrefix) className = this.classNamePrefix + '.' + className;
 
-    callback(
-      new RoutingMapper(this.router, {
-        namespacePath: namespacePath,
-        pathPrefix: path,
-        classNamePrefix: className
-      })
-    );
+    callback(new RoutingMapper(this.router, {
+      namespacePath: namespacePath,
+      pathPrefix: path,
+      classNamePrefix: className
+    }));
   }
-})
+});
 
 // Internal properties of Cape.Component
 var _Internal = function _Internal(main) {
   this.main = main;
-}
+};
 
 // Internal methods of Cape.Component
-Cape.extend(_Internal.prototype, {
-  extractKeys: function(path) {
-    var keys = [], md;
+_extends(_Internal.prototype, {
+  extractKeys: function (path) {
+    var keys = [],
+        md;
 
-    path.split('/').forEach(function(fragment) {
+    path.split('/').forEach(function (fragment) {
       if (md = fragment.match(/^:(\w+)$/)) keys.push(md[1]);
-    })
+    });
     return keys;
   },
-  constructRegexp: function(path, constraints) {
-    var fragments = [], md;
+  constructRegexp: function (path, constraints) {
+    var fragments = [],
+        md;
 
     constraints = constraints || {};
-    path.split('/').forEach(function(fragment) {
+    path.split('/').forEach(function (fragment) {
       if (md = fragment.match(/^:(\w+)$/)) {
-        if (constraints[md[1]])
-          fragments.push('(' + constraints[md[1]] + ')')
-        else
-          fragments.push('([^/]+)');
-      }
-      else if (fragment.match(/^\w+$/)) {
+        if (constraints[md[1]]) fragments.push('(' + constraints[md[1]] + ')');else fragments.push('([^/]+)');
+      } else if (fragment.match(/^\w+$/)) {
         fragments.push(fragment);
       }
-    })
-    return new RegExp('^' + fragments.join('/') +
-      '(?:\\?[\\w-]+(?:=[\\w-]*)?(?:&[\\w-]+(?:=[\\w-]*)?)*)?$')
+    });
+    return new RegExp('^' + fragments.join('/') + '(?:\\?[\\w-]+(?:=[\\w-]*)?(?:&[\\w-]+(?:=[\\w-]*)?)*)?$');
   },
-  extractOptions: function(args) {
-    if (typeof args[1] === 'function') return {};
-    else return args[1] || {};
+  extractOptions: function (args) {
+    if (typeof args[1] === 'function') return {};else return args[1] || {};
   },
-  extractCallback: function(args) {
-    if (typeof args[1] === 'function') return args[1];
-    else return args[2];
+  extractCallback: function (args) {
+    if (typeof args[1] === 'function') return args[1];else return args[2];
   },
-  filterActions: function(actions, options) {
+  filterActions: function (actions, options) {
     var idx;
 
     options = options || {};
     if (typeof options['only'] === 'string') {
       actions.length = 0;
-      actions.push(options['only'])
+      actions.push(options['only']);
     }
     if (Array.isArray(options['only'])) {
       actions.length = 0;
-      options['only'].forEach(function(name) { actions.push(name) })
+      options['only'].forEach(function (name) {
+        actions.push(name);
+      });
     }
     if (typeof options['except'] === 'string') {
-      idx = actions.indexOf(options['except'])
-      if (idx !== -1) actions.splice(idx, 1)
+      idx = actions.indexOf(options['except']);
+      if (idx !== -1) actions.splice(idx, 1);
     }
     if (Array.isArray(options['except'])) {
-      options['except'].forEach(function(name) {
-        idx = actions.indexOf(name)
-        if (idx !== -1) actions.splice(idx, 1)
-      })
+      options['except'].forEach(function (name) {
+        idx = actions.indexOf(name);
+        if (idx !== -1) actions.splice(idx, 1);
+      });
     }
   },
-  getResourcePath: function(path) {
+  getResourcePath: function (path) {
     if (this.main.resourcePath) {
       if (this.main.singular) {
         path = this.main.resourcePath + '/' + path;
-      }
-      else {
-        path = this.main.resourcePath
-          + '/:' + Inflector.singularize(this.main.resourcePath) + '_id/' + path;
+      } else {
+        path = this.main.resourcePath + '/:' + Inflector.singularize(this.main.resourcePath) + '_id/' + path;
       }
     }
-    return path
+    return path;
   },
-  addPagesForPluralResource: function(resourceName, resourcePath, options) {
-    var actions = [ 'index', 'new', 'show', 'edit' ], pathName;
+  addPagesForPluralResource: function (resourceName, resourcePath, options) {
+    var actions = ['index', 'new', 'show', 'edit'],
+        pathName;
     this.filterActions(actions, options);
 
     options.pathNames = options.pathNames || {};
 
-    if (actions.indexOf('index') != -1)
-      this.main.page(resourcePath, resourceName + '.list', {},
-        { resource: resourceName, action: 'index' });
+    if (actions.indexOf('index') != -1) this.main.page(resourcePath, resourceName + '.list', {}, { resource: resourceName, action: 'index' });
     if (actions.indexOf('new') != -1) {
       pathName = options.pathNames.new ? options.pathNames.new : 'new';
-      this.main.page(resourcePath + '/' + pathName, resourceName + '.form', {},
-        { resource: resourceName, action: 'new' });
+      this.main.page(resourcePath + '/' + pathName, resourceName + '.form', {}, { resource: resourceName, action: 'new' });
     }
-    if (actions.indexOf('show') != -1)
-      this.main.page(resourcePath + '/:id', resourceName + '.item', { id: '\\d+' },
-        { resource: resourceName, action: 'show' });
+    if (actions.indexOf('show') != -1) this.main.page(resourcePath + '/:id', resourceName + '.item', { id: '\\d+' }, { resource: resourceName, action: 'show' });
     if (actions.indexOf('edit') != -1) {
       pathName = options.pathNames.edit ? options.pathNames.edit : 'edit';
-      this.main.page(resourcePath + '/:id/' + pathName, resourceName + '.form',
-        { id: '\\d+' }, { resource: resourceName, action: 'edit' });
+      this.main.page(resourcePath + '/:id/' + pathName, resourceName + '.form', { id: '\\d+' }, { resource: resourceName, action: 'edit' });
     }
   },
-  addPagesForSingularResource: function(resourceName, resourcePath, options) {
-    var actions = [ 'new', 'show', 'edit' ], pathName;
+  addPagesForSingularResource: function (resourceName, resourcePath, options) {
+    var actions = ['new', 'show', 'edit'],
+        pathName;
     this.filterActions(actions, options);
 
     options.pathNames = options.pathNames || {};
 
-    if (actions.indexOf('show') != -1)
-      this.main.page(resourcePath, resourceName + '.content', {},
-        { resource: resourceName, action: 'show' });
+    if (actions.indexOf('show') != -1) this.main.page(resourcePath, resourceName + '.content', {}, { resource: resourceName, action: 'show' });
     if (actions.indexOf('new') != -1) {
       pathName = options.pathNames.new ? options.pathNames.new : 'new';
-      this.main.page(resourcePath + '/' + pathName, resourceName + '.form', {},
-        { resource: resourceName, action: 'new' });
+      this.main.page(resourcePath + '/' + pathName, resourceName + '.form', {}, { resource: resourceName, action: 'new' });
     }
     if (actions.indexOf('edit') != -1) {
       pathName = options.pathNames.edit ? options.pathNames.edit : 'edit';
-      this.main.page(resourcePath + '/' + pathName, resourceName + '.form', {},
-        { resource: resourceName, action: 'edit' });
+      this.main.page(resourcePath + '/' + pathName, resourceName + '.form', {}, { resource: resourceName, action: 'edit' });
     }
   },
-  executeCallback: function(callback, resourceName, resourcePath, singular) {
+  executeCallback: function (callback, resourceName, resourcePath, singular) {
     if (typeof callback == 'function') {
-      if (callback.length === 0)
-        throw new Error("Callback requires an argument.");
-      callback(
-        new RoutingMapper(this.main.router, {
-          singular: singular,
-          pathPrefix: this.main.pathPrefix,
-          resourcePath: resourcePath,
-          classNamePrefix: this.main.classNamePrefix,
-          resourceClassName: resourceName
-        })
-      );
+      if (callback.length === 0) throw new Error("Callback requires an argument.");
+      callback(new RoutingMapper(this.main.router, {
+        singular: singular,
+        pathPrefix: this.main.pathPrefix,
+        resourcePath: resourcePath,
+        classNamePrefix: this.main.classNamePrefix,
+        resourceClassName: resourceName
+      }));
     }
   }
-})
+});
 
 module.exports = RoutingMapper;
 
-},{"./utilities":14,"inflected":18}],14:[function(require,module,exports){
+},{"./utilities":14,"inflected":21}],14:[function(require,module,exports){
 (function (global){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var Cape = {};
 
 // Merge the properties of two or more objects together into the first object.
-Cape.extend = function() {
+Cape.extend = function () {
   var i, key;
 
-  for (i = 1; i < arguments.length; i++)
-    for (key in arguments[i])
-      if(arguments[i].hasOwnProperty(key))
-        arguments[0][key] = arguments[i][key];
+  for (i = 1; i < arguments.length; i++) for (key in arguments[i]) if (arguments[i].hasOwnProperty(key)) arguments[0][key] = arguments[i][key];
   return arguments[0];
-}
+};
 
 // Merge the properties of two or more objects together into the first object recursively.
-Cape.deepExtend = function() {
+Cape.deepExtend = function () {
   var i, key;
 
-  for (i = 1; i < arguments.length; i++)
-    for (key in arguments[i])
-      if(arguments[i].hasOwnProperty(key)) {
-        if (typeof arguments[0][key] === 'object' && typeof arguments[i][key] === 'object')
-          global.Cape.deepExtend(arguments[0][key], arguments[i][key]);
-        else
-          arguments[0][key] = arguments[i][key];
-      }
+  for (i = 1; i < arguments.length; i++) for (key in arguments[i]) if (arguments[i].hasOwnProperty(key)) {
+    if (typeof arguments[0][key] === 'object' && typeof arguments[i][key] === 'object') global.Cape.deepExtend(arguments[0][key], arguments[i][key]);else arguments[0][key] = arguments[i][key];
+  }
   return arguments[0];
-}
+};
 
 // Merge (but not override) the properties of two or more objects together
 // into the first object
-Cape.merge = function() {
+Cape.merge = function () {
   var i, key;
 
-  for (i = 1; i < arguments.length; i++)
-    for (key in arguments[i])
-      if(!arguments[0].hasOwnProperty(key) && arguments[i].hasOwnProperty(key))
-        arguments[0][key] = arguments[i][key];
+  for (i = 1; i < arguments.length; i++) for (key in arguments[i]) if (!arguments[0].hasOwnProperty(key) && arguments[i].hasOwnProperty(key)) arguments[0][key] = arguments[i][key];
   return arguments[0];
-}
+};
 
-Cape.createComponentClass = function(methods) {
-  var klass = function() {
+Cape.createComponentClass = function (methods) {
+  var klass = function () {
     Cape.Component.apply(this, arguments);
-    if (typeof methods.constructor === 'function')
-      methods.constructor.apply(this, arguments);
+    if (typeof methods.constructor === 'function') methods.constructor.apply(this, arguments);
   };
-  Cape.extend(klass.prototype, Cape.Component.prototype, methods);
+  _extends(klass.prototype, Cape.Component.prototype, methods);
   return klass;
-}
+};
 
-Cape.createPartialClass = function(methods) {
-  var klass = function() {
+Cape.createPartialClass = function (methods) {
+  var klass = function () {
     Cape.Partial.apply(this, arguments);
-    if (typeof methods.constructor === 'function')
-      methods.constructor.apply(this, arguments);
+    if (typeof methods.constructor === 'function') methods.constructor.apply(this, arguments);
   };
-  Cape.extend(klass.prototype, Cape.Partial.prototype, methods);
+  _extends(klass.prototype, Cape.Partial.prototype, methods);
   return klass;
-}
+};
 
-Cape.createDataStoreClass = function(methods) {
-  var klass = function() {
+Cape.createDataStoreClass = function (methods) {
+  var klass = function () {
     Cape.DataStore.apply(this, arguments);
-    if (typeof methods.constructor === 'function')
-      methods.constructor.apply(this, arguments);
+    if (typeof methods.constructor === 'function') methods.constructor.apply(this, arguments);
   };
-  Cape.extend(klass.prototype, Cape.DataStore.prototype, methods);
+  _extends(klass.prototype, Cape.DataStore.prototype, methods);
   klass.create = Cape.DataStore.create;
   return klass;
-}
+};
 
-Cape.createCollectionAgentClass = function(methods) {
-  var klass = function() {
+Cape.createCollectionAgentClass = function (methods) {
+  var klass = function () {
     Cape.CollectionAgent.apply(this, arguments);
-    if (typeof methods.constructor === 'function')
-      methods.constructor.apply(this, arguments);
+    if (typeof methods.constructor === 'function') methods.constructor.apply(this, arguments);
     this._.applyAdapter();
   };
-  Cape.extend(klass.prototype, Cape.CollectionAgent.prototype, methods);
+  _extends(klass.prototype, Cape.CollectionAgent.prototype, methods);
   return klass;
-}
+};
 
-Cape.createResourceAgentClass = function(methods) {
-  var klass = function() {
+Cape.createResourceAgentClass = function (methods) {
+  var klass = function () {
     Cape.ResourceAgent.apply(this, arguments);
-    if (typeof methods.constructor === 'function')
-      methods.constructor.apply(this, arguments);
+    if (typeof methods.constructor === 'function') methods.constructor.apply(this, arguments);
     this._.applyAdapter();
   };
-  Cape.extend(klass.prototype, Cape.ResourceAgent.prototype, methods);
+  _extends(klass.prototype, Cape.ResourceAgent.prototype, methods);
   return klass;
-}
+};
 
 module.exports = Cape;
 
@@ -1968,6 +1846,8 @@ module.exports = Cape;
 },{}],15:[function(require,module,exports){
 (function (global){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var Cape = require('./utilities');
 
@@ -1987,14 +1867,14 @@ var VirtualForms = function VirtualForms(component) {
   this._ = new _Internal(this);
 };
 
-Cape.extend(VirtualForms.prototype, {
-  prepare: function() {
+_extends(VirtualForms.prototype, {
+  prepare: function () {
     this._.compile();
     global.Cape.deepExtend(this._.realForms, this.items);
     this._.tempForms = global.Cape.deepExtend({}, this._.realForms);
   },
 
-  apply: function() {
+  apply: function () {
     var forms, i, len, form, formName, tForm, j, elements, elem, elemName, k;
 
     forms = this.component.root.getElementsByTagName('form');
@@ -2022,17 +1902,13 @@ Cape.extend(VirtualForms.prototype, {
                 break;
               }
             }
-          }
-          else {
+          } else {
             elem.checked = tForm[elemName] === true || tForm[elemName] === '1';
           }
-        }
-        else if (elem.type === 'radio') {
-          elem.checked = (elem.value === tForm[elemName]);
-        }
-        else {
-          if (elem.value !== tForm[elemName])
-            elem.value = tForm[elemName] ? tForm[elemName] : '';
+        } else if (elem.type === 'radio') {
+          elem.checked = elem.value === tForm[elemName];
+        } else {
+          if (elem.value !== tForm[elemName]) elem.value = tForm[elemName] ? tForm[elemName] : '';
         }
       }
     }
@@ -2041,7 +1917,7 @@ Cape.extend(VirtualForms.prototype, {
     this._.compiled = false;
   },
 
-  update: function(formName, options) {
+  update: function (formName, options) {
     var tForm;
 
     tForm = this._.tempForms[formName];
@@ -2049,22 +1925,17 @@ Cape.extend(VirtualForms.prototype, {
       tForm = this._.tempForms[formName] = {};
     }
     if (options.type === 'checkbox') {
-      if (tForm[options.name] === undefined)
-        tForm[options.name] = !!options.checked;
-    }
-    else if (options.type === 'radio' && options.checked) {
-      if (tForm[options.name] === undefined)
-        tForm[options.name] = options.value;
-    }
-    else {
+      if (tForm[options.name] === undefined) tForm[options.name] = !!options.checked;
+    } else if (options.type === 'radio' && options.checked) {
+      if (tForm[options.name] === undefined) tForm[options.name] = options.value;
+    } else {
       if (options.value) {
-        if (tForm[options.name] === undefined)
-          tForm[options.name] = options.value;
+        if (tForm[options.name] === undefined) tForm[options.name] = options.value;
       }
     }
   },
 
-  val: function(arg1, arg2) {
+  val: function (arg1, arg2) {
     var key1, key2, value;
 
     if (typeof arg1 === 'object') {
@@ -2077,51 +1948,46 @@ Cape.extend(VirtualForms.prototype, {
                 this._.setValue(key1 + '.' + key2, value[key2]);
               }
             }
-          }
-          else {
+          } else {
             this._.setValue(key1, value);
           }
         }
       }
-    }
-    else {
-      if (arguments.length === 1) return this._.getValue(arg1);
-      else return this._.setValue(arg1, arg2);
+    } else {
+      if (arguments.length === 1) return this._.getValue(arg1);else return this._.setValue(arg1, arg2);
     }
   },
 
-  setValues: function(formName, obj) {
+  setValues: function (formName, obj) {
     var key;
 
-    if (typeof formName !== 'string')
-      throw new Error("The first argument must be a string.");
+    if (typeof formName !== 'string') throw new Error("The first argument must be a string.");
 
-    if (typeof obj !== 'object')
-      throw new Error("The second argument must be an object.");
+    if (typeof obj !== 'object') throw new Error("The second argument must be an object.");
 
     if (!this.items[formName]) this.items[formName] = {};
     this._.setValuesOfNestedFields(formName, null, obj);
   },
 
-  formData: function(formName) {
+  formData: function (formName) {
     var form, data, name, segments, lastSegment, obj;
 
     this._.compile();
     if (formName === undefined) formName = '';
     form = this._.realForms[formName] || {};
 
-    data = {}
+    data = {};
 
     for (name in form) {
       segments = name.split('/');
       lastSegment = segments.pop();
       obj = data;
-      segments.forEach(function(segment) {
+      segments.forEach(function (segment) {
         if (!obj[segment]) obj[segment] = {};
         obj = obj[segment];
-      })
+      });
       if (lastSegment.slice(-2) === '[]') {
-        lastSegment = lastSegment.slice(0, -2)
+        lastSegment = lastSegment.slice(0, -2);
       }
       obj[lastSegment] = form[name];
     }
@@ -2129,7 +1995,7 @@ Cape.extend(VirtualForms.prototype, {
     return data;
   },
 
-  paramsFor: function(formName, options) {
+  paramsFor: function (formName, options) {
     var paramName, params;
 
     options = options || {};
@@ -2139,7 +2005,7 @@ Cape.extend(VirtualForms.prototype, {
     return params;
   },
 
-  jsonFor: function(formName, options) {
+  jsonFor: function (formName, options) {
     var paramName, obj, params;
 
     options = options || {};
@@ -2153,7 +2019,7 @@ Cape.extend(VirtualForms.prototype, {
     return JSON.stringify(params);
   },
 
-  checkedOn: function(name) {
+  checkedOn: function (name) {
     var names, formName, attrName, forms, elements, cb, value;
 
     names = this._.getNames(name);
@@ -2175,9 +2041,9 @@ Cape.extend(VirtualForms.prototype, {
 
     value = this._.getValue(name);
 
-    return (value === '1' || value === true);
+    return value === '1' || value === true;
   }
-})
+});
 
 // Internal properties of Cape.VirtualForms
 var _Internal = function _Internal(main) {
@@ -2185,11 +2051,11 @@ var _Internal = function _Internal(main) {
   this.realForms = {};
   this.tempForms = {};
   this.compiled = false;
-}
+};
 
 // Internal methods of Cape.VirtualForms
-Cape.extend(_Internal.prototype, {
-  getValue: function(name) {
+_extends(_Internal.prototype, {
+  getValue: function (name) {
     var names, formName, attrName, form, _form;
 
     names = this.getNames(name);
@@ -2211,7 +2077,7 @@ Cape.extend(_Internal.prototype, {
     return '';
   },
 
-  setValue: function(name, value) {
+  setValue: function (name, value) {
     var names, formName, attrName, origValue;
 
     names = this.getNames(name);
@@ -2225,7 +2091,7 @@ Cape.extend(_Internal.prototype, {
     return origValue;
   },
 
-  setValuesOfNestedFields: function(formName, prefix, obj) {
+  setValuesOfNestedFields: function (formName, prefix, obj) {
     var attrName, key, self;
 
     for (key in obj) {
@@ -2234,26 +2100,22 @@ Cape.extend(_Internal.prototype, {
         if (Array.isArray(obj[key])) {
           this.main.items[formName][attrName] = obj[key];
         }
-      }
-      else {
+      } else {
         if (Array.isArray(obj[key])) {
           self = this;
-          obj[key].forEach(function(element, index) {
-            self.setValuesOfNestedFields(formName, attrName + '/' + index,
-              element)
+          obj[key].forEach(function (element, index) {
+            self.setValuesOfNestedFields(formName, attrName + '/' + index, element);
           });
-        }
-        else if (typeof obj[key] === 'object') {
-          this.setValuesOfNestedFields(formName, attrName, obj[key])
-        }
-        else {
+        } else if (typeof obj[key] === 'object') {
+          this.setValuesOfNestedFields(formName, attrName, obj[key]);
+        } else {
           this.main.items[formName][attrName] = obj[key];
         }
       }
     }
   },
 
-  compile: function() {
+  compile: function () {
     var forms, elements, i, j, elem, segments, lastSegment, obj, o, name;
 
     this.realForms = {};
@@ -2263,169 +2125,264 @@ Cape.extend(_Internal.prototype, {
       obj = {};
       for (j = 0; j < elements.length; j++) {
         elem = elements[j];
-        if (elem.name && (elem.value !== undefined) && !elem.disabled) {
+        if (elem.name && elem.value !== undefined && !elem.disabled) {
           if (elem.type === 'checkbox') {
             if (elem.name.slice(-2) === '[]') {
               if (!Array.isArray(obj[elem.name])) obj[elem.name] = [];
               if (elem.checked) obj[elem.name].push(elem.value);
-            }
-            else {
+            } else {
               if (elem.checked) obj[elem.name] = elem.value;
             }
-          }
-          else if (elem.type === 'radio') {
+          } else if (elem.type === 'radio') {
             if (elem.checked) obj[elem.name] = elem.value;
-          }
-          else {
+          } else {
             obj[elem.name] = elem.value;
           }
         }
       }
       if (forms[i].getAttribute('name')) {
         this.realForms[forms[i].getAttribute('name')] = obj;
-      }
-      else {
+      } else {
         this.realForms[''] = obj;
       }
     }
     this.compiled = true;
   },
 
-  getNames: function(name) {
+  getNames: function (name) {
     if (typeof name === 'string' && name.indexOf('.') >= 0) {
       return name.split('.', 2);
-    }
-    else {
-      return [ '', name ]
+    } else {
+      return ['', name];
     }
   },
 
-  object2array: function(obj) {
-    var isArray = true, _obj, key, ary = [];
+  object2array: function (obj) {
+    var isArray = true,
+        _obj,
+        key,
+        ary = [];
 
     _obj = Cape.deepExtend({}, obj);
     for (key in _obj) {
       if (key.length === 0 || key.match(/\D/)) {
         isArray = false;
-        if (typeof obj[key] === 'object')
-          obj[key] = this.object2array(_obj[key]);
-      }
-      else {
-        if (typeof obj[key] === 'object')
-          ary.push(this.object2array(_obj[key]));
-        else
-          ary.push(obj[key]);
+        if (typeof obj[key] === 'object') obj[key] = this.object2array(_obj[key]);
+      } else {
+        if (typeof obj[key] === 'object') ary.push(this.object2array(_obj[key]));else ary.push(obj[key]);
       }
     }
 
-    if (isArray) return ary;
-    else return obj;
+    if (isArray) return ary;else return obj;
   }
-})
+});
 
 module.exports = VirtualForms;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./utilities":14}],16:[function(require,module,exports){
+/*!
+ * Cross-Browser Split 1.1.1
+ * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
+ * Available under the MIT License
+ * ECMAScript compliant, uniform cross-browser split method
+ */
+
+/**
+ * Splits a string into an array of strings using a regex or string separator. Matches of the
+ * separator are not included in the result array. However, if `separator` is a regex that contains
+ * capturing groups, backreferences are spliced into the result each time `separator` is matched.
+ * Fixes browser bugs compared to the native `String.prototype.split` and can be used reliably
+ * cross-browser.
+ * @param {String} str String to split.
+ * @param {RegExp|String} separator Regex or string to use for separating the string.
+ * @param {Number} [limit] Maximum number of items to include in the result array.
+ * @returns {Array} Array of substrings.
+ * @example
+ *
+ * // Basic use
+ * split('a b c d', ' ');
+ * // -> ['a', 'b', 'c', 'd']
+ *
+ * // With limit
+ * split('a b c d', ' ', 2);
+ * // -> ['a', 'b']
+ *
+ * // Backreferences in result array
+ * split('..word1 word2..', /([a-z]+)(\d+)/i);
+ * // -> ['..', 'word', '1', ' ', 'word', '2', '..']
+ */
+module.exports = (function split(undef) {
+
+  var nativeSplit = String.prototype.split,
+    compliantExecNpcg = /()??/.exec("")[1] === undef,
+    // NPCG: nonparticipating capturing group
+    self;
+
+  self = function(str, separator, limit) {
+    // If `separator` is not a regex, use `nativeSplit`
+    if (Object.prototype.toString.call(separator) !== "[object RegExp]") {
+      return nativeSplit.call(str, separator, limit);
+    }
+    var output = [],
+      flags = (separator.ignoreCase ? "i" : "") + (separator.multiline ? "m" : "") + (separator.extended ? "x" : "") + // Proposed for ES6
+      (separator.sticky ? "y" : ""),
+      // Firefox 3+
+      lastLastIndex = 0,
+      // Make `global` and avoid `lastIndex` issues by working with a copy
+      separator = new RegExp(separator.source, flags + "g"),
+      separator2, match, lastIndex, lastLength;
+    str += ""; // Type-convert
+    if (!compliantExecNpcg) {
+      // Doesn't need flags gy, but they don't hurt
+      separator2 = new RegExp("^" + separator.source + "$(?!\\s)", flags);
+    }
+    /* Values for `limit`, per the spec:
+     * If undefined: 4294967295 // Math.pow(2, 32) - 1
+     * If 0, Infinity, or NaN: 0
+     * If positive number: limit = Math.floor(limit); if (limit > 4294967295) limit -= 4294967296;
+     * If negative number: 4294967296 - Math.floor(Math.abs(limit))
+     * If other: Type-convert, then use the above rules
+     */
+    limit = limit === undef ? -1 >>> 0 : // Math.pow(2, 32) - 1
+    limit >>> 0; // ToUint32(limit)
+    while (match = separator.exec(str)) {
+      // `separator.lastIndex` is not reliable cross-browser
+      lastIndex = match.index + match[0].length;
+      if (lastIndex > lastLastIndex) {
+        output.push(str.slice(lastLastIndex, match.index));
+        // Fix browsers whose `exec` methods don't consistently return `undefined` for
+        // nonparticipating capturing groups
+        if (!compliantExecNpcg && match.length > 1) {
+          match[0].replace(separator2, function() {
+            for (var i = 1; i < arguments.length - 2; i++) {
+              if (arguments[i] === undef) {
+                match[i] = undef;
+              }
+            }
+          });
+        }
+        if (match.length > 1 && match.index < str.length) {
+          Array.prototype.push.apply(output, match.slice(1));
+        }
+        lastLength = match[0].length;
+        lastLastIndex = lastIndex;
+        if (output.length >= limit) {
+          break;
+        }
+      }
+      if (separator.lastIndex === match.index) {
+        separator.lastIndex++; // Avoid an infinite loop
+      }
+    }
+    if (lastLastIndex === str.length) {
+      if (lastLength || !separator.test("")) {
+        output.push("");
+      }
+    } else {
+      output.push(str.slice(lastLastIndex));
+    }
+    return output.length > limit ? output.slice(0, limit) : output;
+  };
+
+  return self;
+})();
 
 },{}],17:[function(require,module,exports){
-// shim for using process in browser
+'use strict';
 
-var process = module.exports = {};
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
+var OneVersionConstraint = require('individual/one-version');
 
-function cleanUpNextTick() {
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
+var MY_VERSION = '7';
+OneVersionConstraint('ev-store', MY_VERSION);
+
+var hashKey = '__EV_STORE_KEY@' + MY_VERSION;
+
+module.exports = EvStore;
+
+function EvStore(elem) {
+    var hash = elem[hashKey];
+
+    if (!hash) {
+        hash = elem[hashKey] = {};
     }
-    if (queue.length) {
-        drainQueue();
-    }
+
+    return hash;
 }
 
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = setTimeout(cleanUpNextTick);
-    draining = true;
+},{"individual/one-version":20}],18:[function(require,module,exports){
+(function (global){
+var topLevel = typeof global !== 'undefined' ? global :
+    typeof window !== 'undefined' ? window : {}
+var minDoc = require('min-document');
 
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
+if (typeof document !== 'undefined') {
+    module.exports = document;
+} else {
+    var doccy = topLevel['__GLOBAL_DOCUMENT_CACHE@4'];
+
+    if (!doccy) {
+        doccy = topLevel['__GLOBAL_DOCUMENT_CACHE@4'] = minDoc;
     }
-    currentQueue = null;
-    draining = false;
-    clearTimeout(timeout);
+
+    module.exports = doccy;
 }
 
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        setTimeout(drainQueue, 0);
-    }
-};
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"min-document":60}],19:[function(require,module,exports){
+(function (global){
+'use strict';
 
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
+/*global window, global*/
+
+var root = typeof window !== 'undefined' ?
+    window : typeof global !== 'undefined' ?
+    global : {};
+
+module.exports = Individual;
+
+function Individual(key, value) {
+    if (key in root) {
+        return root[key];
+    }
+
+    root[key] = value;
+
+    return value;
 }
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
 
-function noop() {}
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],20:[function(require,module,exports){
+'use strict';
 
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
+var Individual = require('./index.js');
 
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
+module.exports = OneVersion;
 
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
+function OneVersion(moduleName, version, defaultValue) {
+    var key = '__INDIVIDUAL_ONE_VERSION_' + moduleName;
+    var enforceKey = key + '_ENFORCE_SINGLETON';
 
-},{}],18:[function(require,module,exports){
+    var versionValue = Individual(enforceKey, version);
+
+    if (versionValue !== version) {
+        throw new Error('Can only have one copy of ' +
+            moduleName + '.\n' +
+            'You already have version ' + versionValue +
+            ' installed.\n' +
+            'This means you cannot install version ' + version);
+    }
+
+    return Individual(key, defaultValue);
+}
+
+},{"./index.js":19}],21:[function(require,module,exports){
+"use strict";
+
 module.exports = require('./lib/Inflector');
 
-},{"./lib/Inflector":20}],19:[function(require,module,exports){
-(function (process){
+},{"./lib/Inflector":23}],22:[function(require,module,exports){
+(function (process,global){
 'use strict';
 
 var hasProp = require('./hasProp');
@@ -2442,10 +2399,11 @@ function Inflections() {
 }
 
 Inflections.getInstance = function(locale) {
-  process.__Inflector_Inflections = process.__Inflector_Inflections || {};
-  process.__Inflector_Inflections[locale] = process.__Inflector_Inflections[locale] || new Inflections();
+  var storage = typeof process !== 'undefined' ? process : global;
+  storage.__Inflector_Inflections = storage.__Inflector_Inflections || {};
+  storage.__Inflector_Inflections[locale] = storage.__Inflector_Inflections[locale] || new Inflections();
 
-  return process.__Inflector_Inflections[locale];
+  return storage.__Inflector_Inflections[locale];
 };
 
 Inflections.prototype.acronym = function(word) {
@@ -2536,8 +2494,8 @@ Inflections.prototype.clear = function(scope) {
 
 module.exports = Inflections;
 
-}).call(this,require('_process'))
-},{"./hasProp":24,"./icPart":25,"./remove":27,"_process":17}],20:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./hasProp":27,"./icPart":28,"./remove":30,"_process":61}],23:[function(require,module,exports){
 'use strict';
 
 var Inflections     = require('./Inflections');
@@ -2584,7 +2542,7 @@ for (var locale in defaults) {
 
 module.exports = Inflector;
 
-},{"./Inflections":19,"./Methods":21,"./Transliterator":22,"./defaults":23,"./isFunc":26}],21:[function(require,module,exports){
+},{"./Inflections":22,"./Methods":24,"./Transliterator":25,"./defaults":26,"./isFunc":29}],24:[function(require,module,exports){
 'use strict';
 
 var Methods = {
@@ -2798,8 +2756,8 @@ var Methods = {
 
 module.exports = Methods;
 
-},{}],22:[function(require,module,exports){
-(function (process){
+},{}],25:[function(require,module,exports){
+(function (process,global){
 'use strict';
 
 var DEFAULT_APPROXIMATIONS = {
@@ -2844,10 +2802,11 @@ function Transliterator() {
 }
 
 Transliterator.getInstance = function(locale) {
-  process.__Inflector_Transliterator = process.__Inflector_Transliterator || {};
-  process.__Inflector_Transliterator[locale] = process.__Inflector_Transliterator[locale] || new Transliterator();
+  var storage = typeof process !== 'undefined' ? process : global;
+  storage.__Inflector_Transliterator = storage.__Inflector_Transliterator || {};
+  storage.__Inflector_Transliterator[locale] = storage.__Inflector_Transliterator[locale] || new Transliterator();
 
-  return process.__Inflector_Transliterator[locale];
+  return storage.__Inflector_Transliterator[locale];
 };
 
 Transliterator.prototype.approximate = function(string, replacement) {
@@ -2864,8 +2823,8 @@ Transliterator.prototype.transliterate = function(string, replacement) {
 
 module.exports = Transliterator;
 
-}).call(this,require('_process'))
-},{"_process":17}],23:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"_process":61}],26:[function(require,module,exports){
 'use strict';
 
 function enDefaults(inflect) {
@@ -2933,7 +2892,7 @@ module.exports = {
   en: enDefaults
 };
 
-},{}],24:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 var hasOwnProp = Object.prototype.hasOwnProperty;
@@ -2944,7 +2903,7 @@ function hasProp(obj, key) {
 
 module.exports = hasProp;
 
-},{}],25:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 function icPart(str) {
@@ -2953,7 +2912,7 @@ function icPart(str) {
 
 module.exports = icPart;
 
-},{}],26:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 var toString = Object.prototype.toString;
@@ -2964,7 +2923,7 @@ function isFunc(obj) {
 
 module.exports = isFunc;
 
-},{}],27:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 var splice = Array.prototype.splice;
@@ -2979,22 +2938,29 @@ function remove(arr, elem) {
 
 module.exports = remove;
 
-},{}],28:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
+"use strict";
+
+module.exports = function isObject(x) {
+	return typeof x === "object" && x !== null;
+};
+
+},{}],32:[function(require,module,exports){
 var createElement = require("./vdom/create-element.js")
 
 module.exports = createElement
 
-},{"./vdom/create-element.js":41}],29:[function(require,module,exports){
+},{"./vdom/create-element.js":38}],33:[function(require,module,exports){
 var diff = require("./vtree/diff.js")
 
 module.exports = diff
 
-},{"./vtree/diff.js":61}],30:[function(require,module,exports){
+},{"./vtree/diff.js":58}],34:[function(require,module,exports){
 var h = require("./virtual-hyperscript/index.js")
 
 module.exports = h
 
-},{"./virtual-hyperscript/index.js":48}],31:[function(require,module,exports){
+},{"./virtual-hyperscript/index.js":45}],35:[function(require,module,exports){
 var diff = require("./diff.js")
 var patch = require("./patch.js")
 var h = require("./h.js")
@@ -3011,225 +2977,12 @@ module.exports = {
     VText: VText
 }
 
-},{"./create-element.js":28,"./diff.js":29,"./h.js":30,"./patch.js":39,"./vnode/vnode.js":57,"./vnode/vtext.js":59}],32:[function(require,module,exports){
-/*!
- * Cross-Browser Split 1.1.1
- * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
- * Available under the MIT License
- * ECMAScript compliant, uniform cross-browser split method
- */
-
-/**
- * Splits a string into an array of strings using a regex or string separator. Matches of the
- * separator are not included in the result array. However, if `separator` is a regex that contains
- * capturing groups, backreferences are spliced into the result each time `separator` is matched.
- * Fixes browser bugs compared to the native `String.prototype.split` and can be used reliably
- * cross-browser.
- * @param {String} str String to split.
- * @param {RegExp|String} separator Regex or string to use for separating the string.
- * @param {Number} [limit] Maximum number of items to include in the result array.
- * @returns {Array} Array of substrings.
- * @example
- *
- * // Basic use
- * split('a b c d', ' ');
- * // -> ['a', 'b', 'c', 'd']
- *
- * // With limit
- * split('a b c d', ' ', 2);
- * // -> ['a', 'b']
- *
- * // Backreferences in result array
- * split('..word1 word2..', /([a-z]+)(\d+)/i);
- * // -> ['..', 'word', '1', ' ', 'word', '2', '..']
- */
-module.exports = (function split(undef) {
-
-  var nativeSplit = String.prototype.split,
-    compliantExecNpcg = /()??/.exec("")[1] === undef,
-    // NPCG: nonparticipating capturing group
-    self;
-
-  self = function(str, separator, limit) {
-    // If `separator` is not a regex, use `nativeSplit`
-    if (Object.prototype.toString.call(separator) !== "[object RegExp]") {
-      return nativeSplit.call(str, separator, limit);
-    }
-    var output = [],
-      flags = (separator.ignoreCase ? "i" : "") + (separator.multiline ? "m" : "") + (separator.extended ? "x" : "") + // Proposed for ES6
-      (separator.sticky ? "y" : ""),
-      // Firefox 3+
-      lastLastIndex = 0,
-      // Make `global` and avoid `lastIndex` issues by working with a copy
-      separator = new RegExp(separator.source, flags + "g"),
-      separator2, match, lastIndex, lastLength;
-    str += ""; // Type-convert
-    if (!compliantExecNpcg) {
-      // Doesn't need flags gy, but they don't hurt
-      separator2 = new RegExp("^" + separator.source + "$(?!\\s)", flags);
-    }
-    /* Values for `limit`, per the spec:
-     * If undefined: 4294967295 // Math.pow(2, 32) - 1
-     * If 0, Infinity, or NaN: 0
-     * If positive number: limit = Math.floor(limit); if (limit > 4294967295) limit -= 4294967296;
-     * If negative number: 4294967296 - Math.floor(Math.abs(limit))
-     * If other: Type-convert, then use the above rules
-     */
-    limit = limit === undef ? -1 >>> 0 : // Math.pow(2, 32) - 1
-    limit >>> 0; // ToUint32(limit)
-    while (match = separator.exec(str)) {
-      // `separator.lastIndex` is not reliable cross-browser
-      lastIndex = match.index + match[0].length;
-      if (lastIndex > lastLastIndex) {
-        output.push(str.slice(lastLastIndex, match.index));
-        // Fix browsers whose `exec` methods don't consistently return `undefined` for
-        // nonparticipating capturing groups
-        if (!compliantExecNpcg && match.length > 1) {
-          match[0].replace(separator2, function() {
-            for (var i = 1; i < arguments.length - 2; i++) {
-              if (arguments[i] === undef) {
-                match[i] = undef;
-              }
-            }
-          });
-        }
-        if (match.length > 1 && match.index < str.length) {
-          Array.prototype.push.apply(output, match.slice(1));
-        }
-        lastLength = match[0].length;
-        lastLastIndex = lastIndex;
-        if (output.length >= limit) {
-          break;
-        }
-      }
-      if (separator.lastIndex === match.index) {
-        separator.lastIndex++; // Avoid an infinite loop
-      }
-    }
-    if (lastLastIndex === str.length) {
-      if (lastLength || !separator.test("")) {
-        output.push("");
-      }
-    } else {
-      output.push(str.slice(lastLastIndex));
-    }
-    return output.length > limit ? output.slice(0, limit) : output;
-  };
-
-  return self;
-})();
-
-},{}],33:[function(require,module,exports){
-'use strict';
-
-var OneVersionConstraint = require('individual/one-version');
-
-var MY_VERSION = '7';
-OneVersionConstraint('ev-store', MY_VERSION);
-
-var hashKey = '__EV_STORE_KEY@' + MY_VERSION;
-
-module.exports = EvStore;
-
-function EvStore(elem) {
-    var hash = elem[hashKey];
-
-    if (!hash) {
-        hash = elem[hashKey] = {};
-    }
-
-    return hash;
-}
-
-},{"individual/one-version":35}],34:[function(require,module,exports){
-(function (global){
-'use strict';
-
-/*global window, global*/
-
-var root = typeof window !== 'undefined' ?
-    window : typeof global !== 'undefined' ?
-    global : {};
-
-module.exports = Individual;
-
-function Individual(key, value) {
-    if (key in root) {
-        return root[key];
-    }
-
-    root[key] = value;
-
-    return value;
-}
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],35:[function(require,module,exports){
-'use strict';
-
-var Individual = require('./index.js');
-
-module.exports = OneVersion;
-
-function OneVersion(moduleName, version, defaultValue) {
-    var key = '__INDIVIDUAL_ONE_VERSION_' + moduleName;
-    var enforceKey = key + '_ENFORCE_SINGLETON';
-
-    var versionValue = Individual(enforceKey, version);
-
-    if (versionValue !== version) {
-        throw new Error('Can only have one copy of ' +
-            moduleName + '.\n' +
-            'You already have version ' + versionValue +
-            ' installed.\n' +
-            'This means you cannot install version ' + version);
-    }
-
-    return Individual(key, defaultValue);
-}
-
-},{"./index.js":34}],36:[function(require,module,exports){
-(function (global){
-var topLevel = typeof global !== 'undefined' ? global :
-    typeof window !== 'undefined' ? window : {}
-var minDoc = require('min-document');
-
-if (typeof document !== 'undefined') {
-    module.exports = document;
-} else {
-    var doccy = topLevel['__GLOBAL_DOCUMENT_CACHE@4'];
-
-    if (!doccy) {
-        doccy = topLevel['__GLOBAL_DOCUMENT_CACHE@4'] = minDoc;
-    }
-
-    module.exports = doccy;
-}
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"min-document":16}],37:[function(require,module,exports){
-"use strict";
-
-module.exports = function isObject(x) {
-	return typeof x === "object" && x !== null;
-};
-
-},{}],38:[function(require,module,exports){
-var nativeIsArray = Array.isArray
-var toString = Object.prototype.toString
-
-module.exports = nativeIsArray || isArray
-
-function isArray(obj) {
-    return toString.call(obj) === "[object Array]"
-}
-
-},{}],39:[function(require,module,exports){
+},{"./create-element.js":32,"./diff.js":33,"./h.js":34,"./patch.js":36,"./vnode/vnode.js":54,"./vnode/vtext.js":56}],36:[function(require,module,exports){
 var patch = require("./vdom/patch.js")
 
 module.exports = patch
 
-},{"./vdom/patch.js":44}],40:[function(require,module,exports){
+},{"./vdom/patch.js":41}],37:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook.js")
 
@@ -3328,7 +3081,7 @@ function getPrototype(value) {
     }
 }
 
-},{"../vnode/is-vhook.js":52,"is-object":37}],41:[function(require,module,exports){
+},{"../vnode/is-vhook.js":49,"is-object":31}],38:[function(require,module,exports){
 var document = require("global/document")
 
 var applyProperties = require("./apply-properties")
@@ -3376,7 +3129,7 @@ function createElement(vnode, opts) {
     return node
 }
 
-},{"../vnode/handle-thunk.js":50,"../vnode/is-vnode.js":53,"../vnode/is-vtext.js":54,"../vnode/is-widget.js":55,"./apply-properties":40,"global/document":36}],42:[function(require,module,exports){
+},{"../vnode/handle-thunk.js":47,"../vnode/is-vnode.js":50,"../vnode/is-vtext.js":51,"../vnode/is-widget.js":52,"./apply-properties":37,"global/document":18}],39:[function(require,module,exports){
 // Maps a virtual DOM tree onto a real DOM tree in an efficient manner.
 // We don't want to read all of the DOM nodes in the tree so we use
 // the in-order tree indexing to eliminate recursion down certain branches.
@@ -3463,7 +3216,7 @@ function ascending(a, b) {
     return a > b ? 1 : -1
 }
 
-},{}],43:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 var applyProperties = require("./apply-properties")
 
 var isWidget = require("../vnode/is-widget.js")
@@ -3616,7 +3369,7 @@ function replaceRoot(oldRoot, newRoot) {
     return newRoot;
 }
 
-},{"../vnode/is-widget.js":55,"../vnode/vpatch.js":58,"./apply-properties":40,"./update-widget":45}],44:[function(require,module,exports){
+},{"../vnode/is-widget.js":52,"../vnode/vpatch.js":55,"./apply-properties":37,"./update-widget":42}],41:[function(require,module,exports){
 var document = require("global/document")
 var isArray = require("x-is-array")
 
@@ -3698,7 +3451,7 @@ function patchIndices(patches) {
     return indices
 }
 
-},{"./create-element":41,"./dom-index":42,"./patch-op":43,"global/document":36,"x-is-array":38}],45:[function(require,module,exports){
+},{"./create-element":38,"./dom-index":39,"./patch-op":40,"global/document":18,"x-is-array":59}],42:[function(require,module,exports){
 var isWidget = require("../vnode/is-widget.js")
 
 module.exports = updateWidget
@@ -3715,7 +3468,7 @@ function updateWidget(a, b) {
     return false
 }
 
-},{"../vnode/is-widget.js":55}],46:[function(require,module,exports){
+},{"../vnode/is-widget.js":52}],43:[function(require,module,exports){
 'use strict';
 
 var EvStore = require('ev-store');
@@ -3744,7 +3497,7 @@ EvHook.prototype.unhook = function(node, propertyName) {
     es[propName] = undefined;
 };
 
-},{"ev-store":33}],47:[function(require,module,exports){
+},{"ev-store":17}],44:[function(require,module,exports){
 'use strict';
 
 module.exports = SoftSetHook;
@@ -3763,7 +3516,7 @@ SoftSetHook.prototype.hook = function (node, propertyName) {
     }
 };
 
-},{}],48:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict';
 
 var isArray = require('x-is-array');
@@ -3902,7 +3655,7 @@ function errorString(obj) {
     }
 }
 
-},{"../vnode/is-thunk":51,"../vnode/is-vhook":52,"../vnode/is-vnode":53,"../vnode/is-vtext":54,"../vnode/is-widget":55,"../vnode/vnode.js":57,"../vnode/vtext.js":59,"./hooks/ev-hook.js":46,"./hooks/soft-set-hook.js":47,"./parse-tag.js":49,"x-is-array":38}],49:[function(require,module,exports){
+},{"../vnode/is-thunk":48,"../vnode/is-vhook":49,"../vnode/is-vnode":50,"../vnode/is-vtext":51,"../vnode/is-widget":52,"../vnode/vnode.js":54,"../vnode/vtext.js":56,"./hooks/ev-hook.js":43,"./hooks/soft-set-hook.js":44,"./parse-tag.js":46,"x-is-array":59}],46:[function(require,module,exports){
 'use strict';
 
 var split = require('browser-split');
@@ -3958,7 +3711,7 @@ function parseTag(tag, props) {
     return props.namespace ? tagName : tagName.toUpperCase();
 }
 
-},{"browser-split":32}],50:[function(require,module,exports){
+},{"browser-split":16}],47:[function(require,module,exports){
 var isVNode = require("./is-vnode")
 var isVText = require("./is-vtext")
 var isWidget = require("./is-widget")
@@ -4000,14 +3753,14 @@ function renderThunk(thunk, previous) {
     return renderedThunk
 }
 
-},{"./is-thunk":51,"./is-vnode":53,"./is-vtext":54,"./is-widget":55}],51:[function(require,module,exports){
+},{"./is-thunk":48,"./is-vnode":50,"./is-vtext":51,"./is-widget":52}],48:[function(require,module,exports){
 module.exports = isThunk
 
 function isThunk(t) {
     return t && t.type === "Thunk"
 }
 
-},{}],52:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 module.exports = isHook
 
 function isHook(hook) {
@@ -4016,7 +3769,7 @@ function isHook(hook) {
        typeof hook.unhook === "function" && !hook.hasOwnProperty("unhook"))
 }
 
-},{}],53:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualNode
@@ -4025,7 +3778,7 @@ function isVirtualNode(x) {
     return x && x.type === "VirtualNode" && x.version === version
 }
 
-},{"./version":56}],54:[function(require,module,exports){
+},{"./version":53}],51:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualText
@@ -4034,17 +3787,17 @@ function isVirtualText(x) {
     return x && x.type === "VirtualText" && x.version === version
 }
 
-},{"./version":56}],55:[function(require,module,exports){
+},{"./version":53}],52:[function(require,module,exports){
 module.exports = isWidget
 
 function isWidget(w) {
     return w && w.type === "Widget"
 }
 
-},{}],56:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 module.exports = "2"
 
-},{}],57:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 var version = require("./version")
 var isVNode = require("./is-vnode")
 var isWidget = require("./is-widget")
@@ -4118,7 +3871,7 @@ function VirtualNode(tagName, properties, children, key, namespace) {
 VirtualNode.prototype.version = version
 VirtualNode.prototype.type = "VirtualNode"
 
-},{"./is-thunk":51,"./is-vhook":52,"./is-vnode":53,"./is-widget":55,"./version":56}],58:[function(require,module,exports){
+},{"./is-thunk":48,"./is-vhook":49,"./is-vnode":50,"./is-widget":52,"./version":53}],55:[function(require,module,exports){
 var version = require("./version")
 
 VirtualPatch.NONE = 0
@@ -4142,7 +3895,7 @@ function VirtualPatch(type, vNode, patch) {
 VirtualPatch.prototype.version = version
 VirtualPatch.prototype.type = "VirtualPatch"
 
-},{"./version":56}],59:[function(require,module,exports){
+},{"./version":53}],56:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = VirtualText
@@ -4154,7 +3907,7 @@ function VirtualText(text) {
 VirtualText.prototype.version = version
 VirtualText.prototype.type = "VirtualText"
 
-},{"./version":56}],60:[function(require,module,exports){
+},{"./version":53}],57:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook")
 
@@ -4214,7 +3967,7 @@ function getPrototype(value) {
   }
 }
 
-},{"../vnode/is-vhook":52,"is-object":37}],61:[function(require,module,exports){
+},{"../vnode/is-vhook":49,"is-object":31}],58:[function(require,module,exports){
 var isArray = require("x-is-array")
 
 var VPatch = require("../vnode/vpatch")
@@ -4643,5 +4396,110 @@ function appendPatch(apply, patch) {
     }
 }
 
-},{"../vnode/handle-thunk":50,"../vnode/is-thunk":51,"../vnode/is-vnode":53,"../vnode/is-vtext":54,"../vnode/is-widget":55,"../vnode/vpatch":58,"./diff-props":60,"x-is-array":38}]},{},[1])(1)
+},{"../vnode/handle-thunk":47,"../vnode/is-thunk":48,"../vnode/is-vnode":50,"../vnode/is-vtext":51,"../vnode/is-widget":52,"../vnode/vpatch":55,"./diff-props":57,"x-is-array":59}],59:[function(require,module,exports){
+var nativeIsArray = Array.isArray
+var toString = Object.prototype.toString
+
+module.exports = nativeIsArray || isArray
+
+function isArray(obj) {
+    return toString.call(obj) === "[object Array]"
+}
+
+},{}],60:[function(require,module,exports){
+
+},{}],61:[function(require,module,exports){
+// shim for using process in browser
+
+var process = module.exports = {};
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = setTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    clearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        setTimeout(drainQueue, 0);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+},{}]},{},[1])(1)
 });
