@@ -36,6 +36,14 @@ describe('Router', function() {
 
       expect(router._.notificationListeners.length).to.equal(1);
     })
+
+    it('should throw an exception when the listener does not have "refresh" method', function() {
+      var router, component;
+
+      router = new Cape.Router();
+      expect(router.attach.bind(router, {})).to
+        .throw('The listener must have the "refresh" function.')
+    })
   })
 
   describe('detach', function() {
