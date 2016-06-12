@@ -91,7 +91,7 @@ You can list, add, update and delete tasks here.
 
 Click the "Logout" button to show the modal for confirmation.
 
-![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/26ce9cefc92d7dd30921995af57545ea1a41fc7a/doc/captures/todo-demo3.png)
+![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/915d96806352d70cce139cfb5b5020aec312444b/doc/captures/todo-demo3.png)
 
 ## Browser Support
 
