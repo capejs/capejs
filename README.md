@@ -164,6 +164,7 @@ Click the "Logout" button to show the modal for confirmation.
 * Google Chrome (Current)
 * Mozilla Firefox (Current)
 * Safari (7.1+)
+* Vivaldi (Current)
 
 Any problem with Cape.JS in the above browsers should be reported as a bug in Cape.JS.
 
