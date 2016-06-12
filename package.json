@@ -43,6 +43,7 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-mocha": "^0.2.1",
     "mocha": "^2.2.4",
+    "node-fetch": "^1.5.3",
     "sinon": "^1.14.1",
     "uglify-js": "latest",
     "vinyl-source-stream": "^1.1.0"
