@@ -19,30 +19,30 @@ describe('Router', function() {
       var router, component;
 
       router = new Cape.Router();
-      component = { refresh: sinon.spy() };
+      component = { reload: sinon.spy() };
       router.attach(component);
       router.notify();
 
-      expect(component.refresh.called).to.equal(true);
+      expect(component.reload.called).to.equal(true);
     })
 
     it('should not register a component twice', function() {
       var router, component;
 
       router = new Cape.Router();
-      component = { refresh: sinon.spy() };
+      component = { reload: sinon.spy() };
       router.attach(component);
       router.attach(component);
 
       expect(router._.notificationListeners.length).to.equal(1);
     })
 
-    it('should throw an exception when the listener does not have "refresh" method', function() {
+    it('should throw an exception when the listener does not have "reload" method', function() {
       var router, component;
 
       router = new Cape.Router();
       expect(router.attach.bind(router, {})).to
-        .throw('The listener must have the "refresh" function.')
+        .throw('The listener must have the "reload" function.')
     })
   })
 
@@ -51,12 +51,12 @@ describe('Router', function() {
       var router, component;
 
       router = new Cape.Router();
-      component = { refresh: sinon.spy() };
+      component = { reload: sinon.spy() };
       router.attach(component);
       router.detach(component);
       router.notify();
 
-      expect(component.refresh.called).not.to.equal(true);
+      expect(component.reload.called).not.to.equal(true);
     })
   })
 

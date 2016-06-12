@@ -1,5 +1,27 @@
 # CHANGELOG - Cape.JS
 
+## 1.5.0 (Not yet released)
+
+### `Cape.Component`
+
+* Add `#reload` method, which calls `#refresh` method by default.
+
+### `Cape.CollectionAgent`
+
+* Add `#reload` method, which calls `#refresh` method by default.
+
+### `Cape.ResourceAgent`
+
+* Add `#show` method, which fetch the data from the server.
+* Add `#afterRefresh` method, which refresh the agent's client by default.
+* Add `#refresh` method, which calls `#show` and `#afterRefresh` methods by default.
+* Add `#reload` method, which calls `#refresh` method by default.
+
+### `Cape.Router`
+
+* Its `#notify` should call the `#reload` method of listeners instead of their
+`#refresh` method.
+
 ## 1.4.1 (June 11, 2016)
 
 ### `Cape.ResourceAgent`
