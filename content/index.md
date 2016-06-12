@@ -38,7 +38,7 @@ If you just want to use Cape.JS in your web site, insert the following snippet
 to the `<head>` section of your HTML files.
 
 ```html
-<script src="//cdn.rawgit.com/oiax/capejs/v1.4.0/dist/cape.min.js"></script>
+<script src="//cdn.rawgit.com/oiax/capejs/v1.4.1/dist/cape.min.js"></script>
 ```
 
 You can get the package for [npm](https://www.npmjs.com/) <i class="fa fa-external-link"></i> with following command:
@@ -68,10 +68,9 @@ you need to include these pollyfills into your application
 by adding the following lines to the `<head>` section of your HTML files.
 
 ```html
-<script src="//cdn.rawgit.com/jakearchibald/es6-promise/3.0.2/dist/es6-promise.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/fetch/0.9.0/fetch.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/es6-promise/3.2.2/es6-promise.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
 ```
-
 
 <a class="anchor" id="faq"></a>
 ## FAQ
