@@ -68,6 +68,70 @@ This example is explained in detail
 in the [Hello World](http://oiax.github.io/capejs/components/#hello-world) section
 of *Cape.JS Documentation.*
 
+## Router
+
+Cape.JS has a built-in routing library. Using this you can define *routes* with a DSL (domain specific language)
+similar to that of Ruby on Rails. Here is an example of `routes.js`:
+
+```javascript
+window.router = new Cape.Router();
+
+window.router.draw(function(m) {
+  m.root('welcome')
+  m.page('login')
+  m.page('help')
+  m.many('articles')
+});
+```
+
+You can navigate the user to another page by the `navigateTo()` method:
+
+```javascript
+window.router.navigateTo('help')
+```
+
+The following is a full example of Component definition:
+
+```javascript
+var WelcomePage = Cape.createComponentClass({
+  render: function(m) {
+    m.div(function(m) {
+      m.span('Help', {
+        class: 'link',
+        onclick: function(e) { window.router.navigateTo('help') }
+      })
+    })
+  }
+});
+```
+
+When the user clicks on the "Help" link, the hash fragment of the URL changes
+to `#help` and the `Help` component will be mounted.
+
+Note that you can construct a _single-page application_ (SPA) in this manner.
+In the above example, when the user is navigated to the `Help` component,
+the HTML document itself does _not_ get reloaded. The `Help` component is rendered
+by Cape.JS with the assistance of _virtual-dom._
+An apparent _page transition_ happens within a _single_ page in fact.
+
+## ECMAScript 2015 (_a.k.a._ ES6)
+
+If you are familiar with [Babel](https://babeljs.io/), you can write the code above
+more concisely using the ECMAScript 2015 syntax like this:
+
+```javascript
+class WelcomePage extends Cape.Component {
+  render(m) {
+    m.div(m => {
+      m.span('Help', {
+        class: 'link',
+        onclick: e => window.router.navigateTo('doc/help')
+      })
+    })
+  }
+}
+```
+
 ## Tutorials
 
 * [Cape.JS Primer](http://oiax.github.io/capejs/tutorials/capejs_primer/):
