@@ -2,8 +2,13 @@
 
 ## 1.5.0 (Not yet released)
 
+### `Cape.CollectionAgent`
+
+* Better handling of HTTP status.
+
 ### `Cape.ResourceAgent`
 
+* Better handling of HTTP status.
 * Add `#show` method, which fetches the client's data from the server.
 * Add `#afterRefresh` method, which refreshes the agent's client by default.
 * Add `#refresh` method, which calls `#show` and `#afterRefresh` methods by default.
