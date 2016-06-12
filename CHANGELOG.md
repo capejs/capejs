@@ -1,5 +1,13 @@
 # CHANGELOG - Cape.JS
 
+## 1.5.0 (Not yet released)
+
+### `Cape.ResourceAgent`
+
+* Add `#show` method, which fetches the client's data from the server.
+* Add `#afterRefresh` method, which refreshes the agent's client by default.
+* Add `#refresh` method, which calls `#show` and `#afterRefresh` methods by default.
+
 ## 1.4.1 (June 11, 2016)
 
 ### `Cape.ResourceAgent`

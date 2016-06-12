@@ -294,6 +294,70 @@ describe('ResourceAgent', function() {
     })
   })
 
+  describe('#refresh', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
+    it('should go through a fetch api chain', function() {
+      var form, options, agent, spy0, spy1;
+
+      options = { resourceName: 'user', id: 123 };
+      spy0 = sinon.spy();
+      agent = new Cape.ResourceAgent({ refresh: spy0 }, options);
+
+      spy1 = sinon.spy();
+      stubFetchAPI(spy1);
+
+      agent.refresh();
+      expect(spy0.called).to.be.true;
+      expect(spy1.called).to.be.true;
+      expect(global.fetch.calledWith('/users/123')).to.be.true;
+    })
+  })
+
+  describe('#show', function() {
+    afterEach(function() {
+      global.fetch.restore();
+    })
+
+    it('should go through a fetch api chain', function() {
+      var form, options, agent, spy1, spy2, spy3;
+
+      options = { resourceName: 'user', id: 123 };
+      agent = new Cape.ResourceAgent({}, options);
+
+      spy1 = sinon.spy();
+      spy2 = sinon.spy();
+      spy3 = sinon.spy();
+      stubFetchAPI(spy1);
+
+      agent.show(spy2, spy3);
+      expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
+      expect(spy3.called).to.be.true;
+      expect(global.fetch.calledWith('/users/123')).to.be.true;
+    })
+
+    it('should get a singular resource', function() {
+      var form, options, agent, spy1, spy2, spy3;
+
+      options = { resourceName: 'profile', singular: true };
+      agent = new Cape.ResourceAgent({}, options);
+
+      spy1 = sinon.spy();
+      spy2 = sinon.spy();
+      spy3 = sinon.spy();
+      stubFetchAPI(spy1);
+
+      agent.show(spy2, spy3);
+      expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
+      expect(spy3.called).to.be.true;
+      expect(global.fetch.calledWith('/profile')).to.be.true;
+    })
+  })
+
   describe('#create', function() {
     afterEach(function() {
       global.fetch.restore();
