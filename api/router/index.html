@@ -822,7 +822,7 @@ router.navigateTo('articles?page=2&amp;deleted')
 
 <p>This method sets the anchor part (begins with a <code>#</code> symbol) of the browser&rsquo;s current URL to <em>hash.</em></p>
 
-<p>Unlike <a href="#navigateTo">#navigateTo()</a> method, before-navigationi callbacks are <em>not</em> executed
+<p>Unlike <a href="#navigate-to">#navigateTo()</a> method, before-navigation callbacks are <em>not</em> executed
 before changing the anchor part of URL.</p>
 
 <p>After setting the anchor part of URL, this method choose a component
@@ -835,13 +835,71 @@ it calls the <code>#refresh</code> method of the mounted component.</p>
 
 <p>Lastly, the <code>#notify()</code> method is executed.</p>
 
+<h4 id="usage-10">Usage</h4>
+
+<ul>
+<li><strong>redirectTo(hash)</strong></li>
+</ul>
+
+<p>Sets the anchor part (begins with a <code>#</code> symbol) of the browser&rsquo;s current URL to <em>hash.</em></p>
+
+<h4 id="example-11">Example</h4>
+
+<pre><code class="language-javascript">router.redirectTo('docs/help');
+</code></pre>
+
+<h4 id="usage-span-class-badge-alert-info-1-5-span">Usage <span class="badge alert-info">1.5</span></h4>
+
+<ul>
+<li><strong>redirectTo(hash, params)</strong></li>
+</ul>
+
+<p>Sets the anchor part (begins with a <code>#</code> symbol) of the browser&rsquo;s current URL to <em>hash</em>
+adding query string which is constructed from <em>params.</em></p>
+
+<h4 id="example-12">Example</h4>
+
+<pre><code class="language-javascript">router.redirectTo('articles', { page: '2' });
+</code></pre>
+
+<h4 id="usage-span-class-badge-alert-info-1-5-span-1">Usage <span class="badge alert-info">1.5</span></h4>
+
+<ul>
+<li><strong>redirectTo(hash, params, options)</strong></li>
+</ul>
+
+<p>Same as the previous usage, except that the flash messages are set using <em>options.</em></p>
+
+<h4 id="example-13">Example</h4>
+
+<pre><code class="language-javascript">router.redirectTo('articles', {}, { notice: 'A new article has been uploaded.' });
+router.redirectTo('articles/new', {}, { alert: 'Failed to upload a new article.' });
+</code></pre>
+
+<h4 id="usage-span-class-badge-alert-warning-deprecated-span">Usage <span class="badge alert-warning">Deprecated</span></h4>
+
+<ul>
+<li><strong>redirectTo(hash, options)</strong></li>
+</ul>
+
+<p>This usage is deprecated as of version 1.5.</p>
+
+<p>For backward compatibility, if the second argument has &lsquo;notice&rsquo; or &lsquo;alert&rsquo; as a key
+and the third argument is not given, the second argument should be treated as <em>options.</em></p>
+
+<h4 id="example-14">Example</h4>
+
+<pre><code class="language-javascript">router.redirectTo('articles', { notice: 'A new article has been uploaded.' });
+router.redirectTo('articles/new', { alert: 'Failed to upload a new article.' });
+</code></pre>
+
 <p><a class="anchor" id="resource"></a></p>
 
 <h3 id="resource">#resource</h3>
 
 <p>This property holds the <em>resource name</em> of the current route in lower case.</p>
 
-<h4 id="example-11">Example</h4>
+<h4 id="example-15">Example</h4>
 
 <pre><code class="language-javascript">var router = new Cape.Router();
 router.draw(function(m) {
@@ -867,7 +925,7 @@ console.log(router.resource); // =&gt; &quot;articles&quot;
 
 <h3 id="routefor">#routeFor()</h3>
 
-<h4 id="usage-10">Usage</h4>
+<h4 id="usage-11">Usage</h4>
 
 <ul>
 <li><strong>routeFor(hash)</strong></li>
@@ -875,7 +933,7 @@ console.log(router.resource); // =&gt; &quot;articles&quot;
 
 <p>This method returns the first route matching to the <em>hash,</em> if any.</p>
 
-<h4 id="example-12">Example</h4>
+<h4 id="example-16">Example</h4>
 
 <pre><code class="language-javascript">var router = new Cape.Router();
 router.draw(function(m) {
@@ -890,7 +948,7 @@ var route = router.routeFor('admin/articles/123/edit');
 
 <h3 id="show">#show()</h3>
 
-<h4 id="usage-11">Usage</h4>
+<h4 id="usage-12">Usage</h4>
 
 <ul>
 <li><strong>show(componentClass)</strong></li>
@@ -900,6 +958,27 @@ var route = router.routeFor('admin/articles/123/edit');
 
 <p>Unlike <a href="#navigateTo">#navigateTo()</a>, it does neither change the anchor part of
 current URL, nor call the <a href="#notify">#notify()</a> method.</p>
+
+<h4 id="example-17">Example</h4>
+
+<pre><code class="language-javascript">router.show(LoginForm);
+</code></pre>
+
+<h4 id="usage-span-class-badge-alert-info-1-5-span-2">Usage <span class="badge alert-info">1.5</span></h4>
+
+<ul>
+<li><strong>show(componentClass, params)</strong></li>
+</ul>
+
+<p>Mounts an instance of <em>componentClass</em> class passing values to the <em>query</em> attribute
+of the router.</p>
+
+<h4 id="example-18">Example</h4>
+
+<pre><code class="language-javascript">router.show(LoginForm, { email: 'alice@example.com', checked: '1' });
+console.log(router.query.email); // =&gt; 'alice@example.com'
+console.log(router.query.checked); // =&gt; '1'
+</code></pre>
 
 <p><a class="anchor" id="start"></a></p>
 
@@ -917,7 +996,7 @@ current URL, nor call the <a href="#notify">#notify()</a> method.</p>
 
 <h3 id="vars">#vars</h3>
 
-<h4 id="usage-12">Usage</h4>
+<h4 id="usage-13">Usage</h4>
 
 <ul>
 <li><strong>vars[key] = value</strong></li>
@@ -926,7 +1005,7 @@ current URL, nor call the <a href="#notify">#notify()</a> method.</p>
 
 <p>Set an arbitrary value (object, string, integer, etc.) to the <em>vars</em> object.</p>
 
-<h4 id="example-13">Example</h4>
+<h4 id="example-19">Example</h4>
 
 <pre><code class="language-javascript">router.vars.signedIn = Date.now();
 router.vars.currentUser = { id: 99, name: 'john', privileged: true };

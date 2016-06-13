@@ -4459,7 +4459,7 @@ router.navigateTo(&#39;articles?page=2&amp;amp;deleted&#39;)
 
 &lt;p&gt;This method sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Unlike &lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt; method, before-navigationi callbacks are &lt;em&gt;not&lt;/em&gt; executed
+&lt;p&gt;Unlike &lt;a href=&#34;#navigate-to&#34;&gt;#navigateTo()&lt;/a&gt; method, before-navigation callbacks are &lt;em&gt;not&lt;/em&gt; executed
 before changing the anchor part of URL.&lt;/p&gt;
 
 &lt;p&gt;After setting the anchor part of URL, this method choose a component
@@ -4472,13 +4472,71 @@ it calls the &lt;code&gt;#refresh&lt;/code&gt; method of the mounted component.&
 
 &lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
 
+&lt;h4 id=&#34;usage-10&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;redirectTo(hash)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-11&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.redirectTo(&#39;docs/help&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;usage-span-class-badge-alert-info-1-5-span&#34;&gt;Usage &lt;span class=&#34;badge alert-info&#34;&gt;1.5&lt;/span&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;redirectTo(hash, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash&lt;/em&gt;
+adding query string which is constructed from &lt;em&gt;params.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-12&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.redirectTo(&#39;articles&#39;, { page: &#39;2&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;usage-span-class-badge-alert-info-1-5-span-1&#34;&gt;Usage &lt;span class=&#34;badge alert-info&#34;&gt;1.5&lt;/span&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;redirectTo(hash, params, options)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Same as the previous usage, except that the flash messages are set using &lt;em&gt;options.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-13&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.redirectTo(&#39;articles&#39;, {}, { notice: &#39;A new article has been uploaded.&#39; });
+router.redirectTo(&#39;articles/new&#39;, {}, { alert: &#39;Failed to upload a new article.&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;usage-span-class-badge-alert-warning-deprecated-span&#34;&gt;Usage &lt;span class=&#34;badge alert-warning&#34;&gt;Deprecated&lt;/span&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;redirectTo(hash, options)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This usage is deprecated as of version 1.5.&lt;/p&gt;
+
+&lt;p&gt;For backward compatibility, if the second argument has &amp;lsquo;notice&amp;rsquo; or &amp;lsquo;alert&amp;rsquo; as a key
+and the third argument is not given, the second argument should be treated as &lt;em&gt;options.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;example-14&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.redirectTo(&#39;articles&#39;, { notice: &#39;A new article has been uploaded.&#39; });
+router.redirectTo(&#39;articles/new&#39;, { alert: &#39;Failed to upload a new article.&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;resource&#34;&gt;#resource&lt;/h3&gt;
 
 &lt;p&gt;This property holds the &lt;em&gt;resource name&lt;/em&gt; of the current route in lower case.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-11&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-15&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4504,7 +4562,7 @@ console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
 
 &lt;h3 id=&#34;routefor&#34;&gt;#routeFor()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-10&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-11&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;routeFor(hash)&lt;/strong&gt;&lt;/li&gt;
@@ -4512,7 +4570,7 @@ console.log(router.resource); // =&amp;gt; &amp;quot;articles&amp;quot;
 
 &lt;p&gt;This method returns the first route matching to the &lt;em&gt;hash,&lt;/em&gt; if any.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-12&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-16&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var router = new Cape.Router();
 router.draw(function(m) {
@@ -4527,7 +4585,7 @@ var route = router.routeFor(&#39;admin/articles/123/edit&#39;);
 
 &lt;h3 id=&#34;show&#34;&gt;#show()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-11&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-12&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;show(componentClass)&lt;/strong&gt;&lt;/li&gt;
@@ -4537,6 +4595,27 @@ var route = router.routeFor(&#39;admin/articles/123/edit&#39;);
 
 &lt;p&gt;Unlike &lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt;, it does neither change the anchor part of
 current URL, nor call the &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; method.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-17&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.show(LoginForm);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;usage-span-class-badge-alert-info-1-5-span-2&#34;&gt;Usage &lt;span class=&#34;badge alert-info&#34;&gt;1.5&lt;/span&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;show(componentClass, params)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Mounts an instance of &lt;em&gt;componentClass&lt;/em&gt; class passing values to the &lt;em&gt;query&lt;/em&gt; attribute
+of the router.&lt;/p&gt;
+
+&lt;h4 id=&#34;example-18&#34;&gt;Example&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.show(LoginForm, { email: &#39;alice@example.com&#39;, checked: &#39;1&#39; });
+console.log(router.query.email); // =&amp;gt; &#39;alice@example.com&#39;
+console.log(router.query.checked); // =&amp;gt; &#39;1&#39;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;start&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -4554,7 +4633,7 @@ current URL, nor call the &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; me
 
 &lt;h3 id=&#34;vars&#34;&gt;#vars&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-12&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-13&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;vars[key] = value&lt;/strong&gt;&lt;/li&gt;
@@ -4563,7 +4642,7 @@ current URL, nor call the &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; me
 
 &lt;p&gt;Set an arbitrary value (object, string, integer, etc.) to the &lt;em&gt;vars&lt;/em&gt; object.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-13&#34;&gt;Example&lt;/h4&gt;
+&lt;h4 id=&#34;example-19&#34;&gt;Example&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;router.vars.signedIn = Date.now();
 router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
