@@ -339,13 +339,12 @@ router.navigateTo('articles?page=2&deleted')
 // router.query.deleted === ''
 ```
 
-
 <a class="anchor" id="redirect-to"></a>
 ### #redirectTo()
 
 This method sets the anchor part (begins with a `#` symbol) of the browser's current URL to _hash._
 
-Unlike [#navigateTo()](#navigateTo) method, before-navigationi callbacks are *not* executed
+Unlike [#navigateTo()](#navigate-to) method, before-navigation callbacks are *not* executed
 before changing the anchor part of URL.
 
 After setting the anchor part of URL, this method choose a component
@@ -358,6 +357,59 @@ it calls the `#refresh` method of the mounted component.
 
 Lastly, the `#notify()` method is executed.
 
+#### Usage
+
+* **redirectTo(hash)**
+
+Sets the anchor part (begins with a `#` symbol) of the browser's current URL to _hash._
+
+#### Example
+
+```javascript
+router.redirectTo('docs/help');
+```
+
+#### Usage <span class="badge alert-info">1.5</span>
+
+* **redirectTo(hash, params)**
+
+Sets the anchor part (begins with a `#` symbol) of the browser's current URL to _hash_
+adding query string which is constructed from _params._
+
+#### Example
+
+```javascript
+router.redirectTo('articles', { page: '2' });
+```
+
+#### Usage <span class="badge alert-info">1.5</span>
+
+* **redirectTo(hash, params, options)**
+
+Same as the previous usage, except that the flash messages are set using _options._
+
+#### Example
+
+```javascript
+router.redirectTo('articles', {}, { notice: 'A new article has been uploaded.' });
+router.redirectTo('articles/new', {}, { alert: 'Failed to upload a new article.' });
+```
+
+#### Usage <span class="badge alert-warning">Deprecated</span>
+
+* **redirectTo(hash, options)**
+
+This usage is deprecated as of version 1.5.
+
+For backward compatibility, if the second argument has 'notice' or 'alert' as a key
+and the third argument is not given, the second argument should be treated as _options._
+
+#### Example
+
+```javascript
+router.redirectTo('articles', { notice: 'A new article has been uploaded.' });
+router.redirectTo('articles/new', { alert: 'Failed to upload a new article.' });
+```
 
 <a class="anchor" id="resource"></a>
 ### #resource
