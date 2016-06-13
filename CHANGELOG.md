@@ -13,6 +13,15 @@
 * Add `#afterRefresh` method, which refreshes the agent's client by default.
 * Add `#refresh` method, which calls `#show` and `#afterRefresh` methods by default.
 
+### `Cape.Router`
+
+* Change the signature of `#redirectTo` method as follows:
+    * It accepts the second argument as _params_ and the third argument as _options._
+    * For backward compatibility, if the second argument has 'notice' or 'alert' as a key
+    and the third argument is not given, the second argument should be treated as _options._
+    * Even if the second argument has 'notice' or 'alert' as a key, when the third argument
+    is given, the second argument should be treated as _params._
+
 ## 1.4.1 (June 11, 2016)
 
 ### `Cape.ResourceAgent`

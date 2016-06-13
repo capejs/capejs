@@ -210,12 +210,37 @@ describe('Router', function() {
         m.page('hello', 'test_message');
       })
       router.mount('main');
-      router.navigateTo('hello', { name: 'John', message: 'Goodby'});
+      router.navigateTo('hello', { name: 'John', message: 'Goodby' });
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.component).to.equal('test_message');
       expect(router.query.name).to.equal('John');
       expect(router.query.message).to.equal('Goodby');
+    })
+
+    it('should take the third argument as options', function() {
+      var router, method;
+
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('hello', 'test_message');
+      })
+
+      window.TestMessage = Cape.createComponentClass({
+        init: function() {
+          this.notice = router.flash.notice;
+          this.alert = router.flash.alert;
+        }
+      })
+
+      window.TestMessage.prototype.mount = function() { this.init() };
+      router.mount('main');
+      router.navigateTo('hello', {}, { notice: 'X', alert: 'Y' });
+
+      expect(router.component).to.equal('test_message');
+      expect(router._.mountedComponent.notice).to.equal('X');
+      expect(router._.mountedComponent.alert).to.equal('Y');
     })
 
     it('should mount the matched component and set Router#params', function() {
@@ -463,6 +488,103 @@ describe('Router', function() {
 
       expect(method.calledWith('main')).to.equal(true);
       expect(router.component).to.equal('test_message');
+    })
+
+    it('should take the second argument as query params', function() {
+      var router, method;
+
+      window.TestMessage = function() {};
+      window.TestMessage.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('hello', 'test_message');
+      })
+      router.mount('main');
+      router.redirectTo('hello', { name: 'John', message: 'Goodby'});
+
+      expect(method.calledWith('main')).to.equal(true);
+      expect(router.component).to.equal('test_message');
+      expect(router.query.name).to.equal('John');
+      expect(router.query.message).to.equal('Goodby');
+    })
+
+    it('should take the third argument as options', function() {
+      var router, method;
+
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('hello', 'test_message');
+      })
+
+      window.TestMessage = Cape.createComponentClass({
+        init: function() {
+          this.notice = router.flash.notice;
+          this.alert = router.flash.alert;
+        }
+      })
+
+      window.TestMessage.prototype.mount = function() { this.init() };
+      router.mount('main');
+      router.redirectTo('hello', {}, { notice: 'X', alert: 'Y' });
+
+      expect(router.component).to.equal('test_message');
+      expect(router._.mountedComponent.notice).to.equal('X');
+      expect(router._.mountedComponent.alert).to.equal('Y');
+    })
+
+    // For backward compatibility. This example should be removed on the vertion 2.x.
+    it('should take the second argument as options if it has a notice/alert key', function() {
+      var router, method;
+
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('hello', 'test_message');
+      })
+
+      window.TestMessage = Cape.createComponentClass({
+        init: function() {
+          this.notice = router.flash.notice;
+          this.alert = router.flash.alert;
+        }
+      })
+
+      window.TestMessage.prototype.mount = function() { this.init() };
+      router.mount('main');
+      router.redirectTo('hello', { notice: 'X', alert: 'Y' });
+
+      expect(router.component).to.equal('test_message');
+      expect(router._.mountedComponent.notice).to.equal('X');
+      expect(router._.mountedComponent.alert).to.equal('Y');
+    })
+
+    it('should not take the second argument as options if the third argument is given', function() {
+      var router, method;
+
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('hello', 'test_message');
+      })
+
+      window.TestMessage = Cape.createComponentClass({
+        init: function() {
+          this.notice = router.flash.notice;
+          this.alert = router.flash.alert;
+        }
+      })
+
+      window.TestMessage.prototype.mount = function() { this.init() };
+      router.mount('main');
+      router.redirectTo('hello', { notice: 'X', alert: 'Y' }, {});
+
+      expect(router.component).to.equal('test_message');
+      expect(router.query.notice).to.equal('X');
+      expect(router.query.alert).to.equal('Y');
+      expect(router._.mountedComponent.notice).to.be_null;
+      expect(router._.mountedComponent.alert).to.be_null;
     })
   })
 
