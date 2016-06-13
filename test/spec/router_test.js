@@ -608,5 +608,23 @@ describe('Router', function() {
 
       expect(method.calledWith('main')).to.equal(true);
     })
+
+    it('should take the second argument as query params', function() {
+      var router, method;
+
+      window.TestMessage = function() {};
+      window.TestMessage.prototype.mount = method = sinon.spy();
+      router = new Cape.Router();
+      router._.setHash = function() {};
+      router.draw(function(m) {
+        m.page('hello', 'test_message');
+      })
+      router.mount('main');
+      router.show(window.TestMessage, { name: 'John', message: 'Goodby'});
+
+      expect(method.calledWith('main')).to.equal(true);
+      expect(router.query.name).to.equal('John');
+      expect(router.query.message).to.equal('Goodby');
+    })
   })
 })

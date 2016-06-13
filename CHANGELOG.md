@@ -16,11 +16,12 @@
 ### `Cape.Router`
 
 * Change the signature of `#redirectTo` method as follows:
-    * It accepts the second argument as _params_ and the third argument as _options._
+    * It accepts the second argument as _query params_ and the third argument as _options._
     * For backward compatibility, if the second argument has 'notice' or 'alert' as a key
     and the third argument is not given, the second argument should be treated as _options._
     * Even if the second argument has 'notice' or 'alert' as a key, when the third argument
-    is given, the second argument should be treated as _params._
+    is given, the second argument should be treated as _query params._
+* Change the signature of `#show` method so that it accepts the second argument as _query params._
 
 ## 1.4.1 (June 11, 2016)
 
