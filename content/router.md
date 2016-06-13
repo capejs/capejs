@@ -12,6 +12,9 @@ title: "Router"
 [Changing Root Container](#changing-root-container) -
 [Vars](#vars) -
 [Flash](#flash) -
+[Navigation and Redirection](#navigation-and-redirection) -
+[Component Replacement](#component-replacement) -
+[Query Rarams](#query-params) -
 [Before-Navigation Callbacks](#before-navigation-callbacks)
 
 <a class="anchor" id="simple-routes"></a>
@@ -557,6 +560,20 @@ render: function(m) {
 }
 ```
 
+<a class="anchor" id="navigation-and-redirection"></a>
+### Navigation and Redirection
+
+_This section is not yet written._
+
+<a class="anchor" id="component-replacement"></a>
+### Component Replacement
+
+_This section is not yet written._
+
+<a class="anchor" id="query-params"></a>
+### Query Params
+
+_This section is not yet written._
 
 <a class="anchor" id="before-navigation-callbacks"></a>
 ### Before-Navigation Callbacks

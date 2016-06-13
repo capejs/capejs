@@ -145,6 +145,15 @@ pages:
         id: "flash"
         title: "Flash"
       -
+        id: "navigation-and-redirection"
+        title: "Navigation and Redirection"
+      -
+        id: "component-replacement"
+        title: "Component Replacement"
+      -
+        id: "query-params"
+        title: "Query Rarams"
+      -
         id: "before-navigation-callbacks"
         title: "Before-Navigation Callbacks"
   -
