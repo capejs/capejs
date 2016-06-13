@@ -474,6 +474,26 @@ This method mounts an instance of *componentClass* class.
 Unlike [#navigateTo()](#navigateTo), it does neither change the anchor part of
 current URL, nor call the [#notify()](#notify) method.
 
+#### Example
+
+```javascript
+router.show(LoginForm);
+```
+
+#### Usage <span class="badge alert-info">1.5</span>
+
+* **show(componentClass, params)**
+
+Mounts an instance of *componentClass* class passing values to the _query_ attribute
+of the router.
+
+#### Example
+
+```javascript
+router.show(LoginForm, { email: 'alice@example.com', checked: '1' });
+console.log(router.query.email); // => 'alice@example.com'
+console.log(router.query.checked); // => '1'
+```
 
 <a class="anchor" id="start"></a>
 ### #start()
