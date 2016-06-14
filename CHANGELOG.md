@@ -1,6 +1,6 @@
 # CHANGELOG - Cape.JS
 
-## 1.5.0 (Not yet released)
+## 1.5.0 (June 14, 2016)
 
 ### `Cape.CollectionAgent`
 
