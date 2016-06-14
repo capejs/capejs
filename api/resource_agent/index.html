@@ -306,6 +306,8 @@
           
             <li><a href="http://oiax.github.io/capejs//api/resource_agent#adapter">#adapter</a></li>
           
+            <li><a href="http://oiax.github.io/capejs//api/resource_agent#after-refresh">#afterRefresh()</a></li>
+          
             <li><a href="http://oiax.github.io/capejs//api/resource_agent#ajax">#ajax()</a></li>
           
             <li><a href="http://oiax.github.io/capejs//api/resource_agent#base-path">#basePath</a></li>
@@ -344,9 +346,15 @@
           
             <li><a href="http://oiax.github.io/capejs//api/resource_agent#param-name">#paramName</a></li>
           
+            <li><a href="http://oiax.github.io/capejs//api/resource_agent#refresh">#refresh()</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//api/resource_agent#request-path">#requestPath()</a></li>
+          
             <li><a href="http://oiax.github.io/capejs//api/resource_agent#resource-name">#resourceName</a></li>
           
             <li><a href="http://oiax.github.io/capejs//api/resource_agent#shallow">#shallow</a></li>
+          
+            <li><a href="http://oiax.github.io/capejs//api/resource_agent#show">#show</a></li>
           
             <li><a href="http://oiax.github.io/capejs//api/resource_agent#singular">#singular</a></li>
           
@@ -461,6 +469,7 @@
 <p><a href="#constructor">Constructor</a> -
 <a href="#_">#_</a> -
 <a href="#adapter">#adapter</a> -
+<a href="#after-refresh">#afterRefresh()</a> -
 <a href="#ajax">#ajax()</a> -
 <a href="#base-path">#basePath</a> -
 <a href="#client">#client</a> -
@@ -480,8 +489,10 @@
 <a href="#new-path">#newPath()</a> -
 <a href="#nested-in">#nestedIn</a> -
 <a href="#param-name">#paramName</a> -
+<a href="#refresh">#refresh()</a> -
 <a href="#resource-name">#resourceName</a> -
 <a href="#shallow">#shallow</a> -
+<a href="#show">#show</a> -
 <a href="#singular">#singular</a> -
 <a href="#singular-path">#singularPath()</a> -
 <a href="#update">#update()</a></p>
@@ -587,6 +598,16 @@ and methods. Developers should not tamper with it.</p>
 <h3 id="adapter">#adapter</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
+
+<p><a class="anchor" id="after-refresh"></a></p>
+
+<h3 id="afterrefresh-span-class-badge-alert-info-1-5-span">#afterRefresh <span class="badge alert-info">1.5</span></h3>
+
+<p>This method gets called by the <code>refresh()</code> method after it updates the <code>data</code> property.</p>
+
+<p>The <code>afterRefresh()</code> does <code>this.client.refresh()</code> by default.
+Developers may override this method to let the agent do some
+post-processing jobs.</p>
 
 <p><a class="anchor" id="ajax"></a></p>
 
@@ -908,6 +929,25 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
 
+<p><a class="anchor" id="refresh"></a></p>
+
+<h3 id="refresh-span-class-badge-alert-info-1-5-span">#refresh() <span class="badge alert-info">1.5</span></h3>
+
+<p>This method sends an Ajax request with GET method to the URL that is constructed
+by the <a href="#request-path">#requestPath()</a>.</p>
+
+<p><a class="anchor" id="request-path"></a></p>
+
+<h3 id="requestpath">#requestPath()</h3>
+
+<p>This method returns the return value of:</p>
+
+<ul>
+<li><a href="#singular-path">#singularPath()</a> if the attribute <code>singular</code> is set true</li>
+<li><a href="#collection-path">#collectionPath()</a> if the attribute <code>singular</code> is set false and the attribute <code>id</code> is undefined</li>
+<li><a href="#member-path">#memberPath()</a> if the attribute <code>singular</code> is set false and the attribute <code>id</code> is defined</li>
+</ul>
+
 <p><a class="anchor" id="resource-name"></a></p>
 
 <h3 id="resourcename">#resourceName</h3>
@@ -919,6 +959,21 @@ values of <code>resourceName</code>, <code>basePath</code> and <code>nestedIn</c
 <h3 id="shallow">#shallow</h3>
 
 <p>See &ldquo;Options&rdquo; section of the <a href="#constructor">Constructor</a>.</p>
+
+<p><a class="anchor" id="show"></a></p>
+
+<h3 id="show-span-class-badge-alert-info-1-5-span">#show() <span class="badge alert-info">1.5</span></h3>
+
+<h4 id="usage-4">Usage</h4>
+
+<ul>
+<li><strong>show()</strong></li>
+<li><strong>show(callback)</strong></li>
+<li><strong>show(callback, errorHandler)</strong></li>
+</ul>
+
+<p>Send an Ajax request with POST method to the URL that is constructed
+by the <a href="#request-path">#requestPath()</a>.</p>
 
 <p><a class="anchor" id="singular"></a></p>
 
@@ -983,7 +1038,7 @@ referencing an ID.</p>
 
 <h3 id="update">#update()</h3>
 
-<h4 id="usage-4">Usage</h4>
+<h4 id="usage-5">Usage</h4>
 
 <ul>
 <li><strong>update()</strong></li>

@@ -3550,6 +3550,7 @@ radio button is checked.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
 &lt;a href=&#34;#_&#34;&gt;#_&lt;/a&gt; -
 &lt;a href=&#34;#adapter&#34;&gt;#adapter&lt;/a&gt; -
+&lt;a href=&#34;#after-refresh&#34;&gt;#afterRefresh()&lt;/a&gt; -
 &lt;a href=&#34;#ajax&#34;&gt;#ajax()&lt;/a&gt; -
 &lt;a href=&#34;#base-path&#34;&gt;#basePath&lt;/a&gt; -
 &lt;a href=&#34;#client&#34;&gt;#client&lt;/a&gt; -
@@ -3569,8 +3570,10 @@ radio button is checked.&lt;/p&gt;
 &lt;a href=&#34;#new-path&#34;&gt;#newPath()&lt;/a&gt; -
 &lt;a href=&#34;#nested-in&#34;&gt;#nestedIn&lt;/a&gt; -
 &lt;a href=&#34;#param-name&#34;&gt;#paramName&lt;/a&gt; -
+&lt;a href=&#34;#refresh&#34;&gt;#refresh()&lt;/a&gt; -
 &lt;a href=&#34;#resource-name&#34;&gt;#resourceName&lt;/a&gt; -
 &lt;a href=&#34;#shallow&#34;&gt;#shallow&lt;/a&gt; -
+&lt;a href=&#34;#show&#34;&gt;#show&lt;/a&gt; -
 &lt;a href=&#34;#singular&#34;&gt;#singular&lt;/a&gt; -
 &lt;a href=&#34;#singular-path&#34;&gt;#singularPath()&lt;/a&gt; -
 &lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
@@ -3676,6 +3679,16 @@ and methods. Developers should not tamper with it.&lt;/p&gt;
 &lt;h3 id=&#34;adapter&#34;&gt;#adapter&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;after-refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;afterrefresh-span-class-badge-alert-info-1-5-span&#34;&gt;#afterRefresh &lt;span class=&#34;badge alert-info&#34;&gt;1.5&lt;/span&gt;&lt;/h3&gt;
+
+&lt;p&gt;This method gets called by the &lt;code&gt;refresh()&lt;/code&gt; method after it updates the &lt;code&gt;data&lt;/code&gt; property.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;afterRefresh()&lt;/code&gt; does &lt;code&gt;this.client.refresh()&lt;/code&gt; by default.
+Developers may override this method to let the agent do some
+post-processing jobs.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;ajax&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -3997,6 +4010,25 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
 
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;refresh&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;refresh-span-class-badge-alert-info-1-5-span&#34;&gt;#refresh() &lt;span class=&#34;badge alert-info&#34;&gt;1.5&lt;/span&gt;&lt;/h3&gt;
+
+&lt;p&gt;This method sends an Ajax request with GET method to the URL that is constructed
+by the &lt;a href=&#34;#request-path&#34;&gt;#requestPath()&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;request-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;requestpath&#34;&gt;#requestPath()&lt;/h3&gt;
+
+&lt;p&gt;This method returns the return value of:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#singular-path&#34;&gt;#singularPath()&lt;/a&gt; if the attribute &lt;code&gt;singular&lt;/code&gt; is set true&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#collection-path&#34;&gt;#collectionPath()&lt;/a&gt; if the attribute &lt;code&gt;singular&lt;/code&gt; is set false and the attribute &lt;code&gt;id&lt;/code&gt; is undefined&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#member-path&#34;&gt;#memberPath()&lt;/a&gt; if the attribute &lt;code&gt;singular&lt;/code&gt; is set false and the attribute &lt;code&gt;id&lt;/code&gt; is defined&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;resource-name&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;resourcename&#34;&gt;#resourceName&lt;/h3&gt;
@@ -4008,6 +4040,21 @@ values of &lt;code&gt;resourceName&lt;/code&gt;, &lt;code&gt;basePath&lt;/code&g
 &lt;h3 id=&#34;shallow&#34;&gt;#shallow&lt;/h3&gt;
 
 &lt;p&gt;See &amp;ldquo;Options&amp;rdquo; section of the &lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;show&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;show-span-class-badge-alert-info-1-5-span&#34;&gt;#show() &lt;span class=&#34;badge alert-info&#34;&gt;1.5&lt;/span&gt;&lt;/h3&gt;
+
+&lt;h4 id=&#34;usage-4&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;show()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;show(callback)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;show(callback, errorHandler)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Send an Ajax request with POST method to the URL that is constructed
+by the &lt;a href=&#34;#request-path&#34;&gt;#requestPath()&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;singular&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -4072,7 +4119,7 @@ referencing an ID.&lt;/p&gt;
 
 &lt;h3 id=&#34;update&#34;&gt;#update()&lt;/h3&gt;
 
-&lt;h4 id=&#34;usage-4&#34;&gt;Usage&lt;/h4&gt;
+&lt;h4 id=&#34;usage-5&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;update()&lt;/strong&gt;&lt;/li&gt;
