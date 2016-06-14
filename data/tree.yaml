@@ -534,7 +534,7 @@ api_pages:
         title: "#shallow"
       -
         id: show
-        title: "#show"
+        title: "#show()"
       -
         id: singular
         title: "#singular"

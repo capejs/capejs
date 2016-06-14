@@ -30,7 +30,7 @@ title: "Cape.ResourceAgent - API Reference"
 [#refresh()](#refresh) -
 [#resourceName](#resource-name) -
 [#shallow](#shallow) -
-[#show](#show) -
+[#show()](#show) -
 [#singular](#singular) -
 [#singularPath()](#singular-path) -
 [#update()](#update)
