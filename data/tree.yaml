@@ -461,6 +461,9 @@ api_pages:
         id: adapter
         title: "#adapter"
       -
+        id: after-refresh
+        title: "#afterRefresh()"
+      -
         id: ajax
         title: "#ajax()"
       -
@@ -518,11 +521,20 @@ api_pages:
         id: param-name
         title: "#paramName"
       -
+        id: refresh
+        title: "#refresh()"
+      -
+        id: request-path
+        title: "#requestPath()"
+      -
         id: resource-name
         title: "#resourceName"
       -
         id: shallow
         title: "#shallow"
+      -
+        id: show
+        title: "#show"
       -
         id: singular
         title: "#singular"

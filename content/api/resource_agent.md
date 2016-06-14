@@ -7,6 +7,7 @@ title: "Cape.ResourceAgent - API Reference"
 [Constructor](#constructor) -
 [#_](#_) -
 [#adapter](#adapter) -
+[#afterRefresh()](#after-refresh) -
 [#ajax()](#ajax) -
 [#basePath](#base-path) -
 [#client](#client) -
@@ -26,8 +27,10 @@ title: "Cape.ResourceAgent - API Reference"
 [#newPath()](#new-path) -
 [#nestedIn](#nested-in) -
 [#paramName](#param-name) -
+[#refresh()](#refresh) -
 [#resourceName](#resource-name) -
 [#shallow](#shallow) -
+[#show](#show) -
 [#singular](#singular) -
 [#singularPath()](#singular-path) -
 [#update()](#update)
@@ -131,6 +134,16 @@ and methods. Developers should not tamper with it.
 ### #adapter
 
 See "Options" section of the [Constructor](#constructor).
+
+
+<a class="anchor" id="after-refresh"></a>
+### #afterRefresh <span class="badge alert-info">1.5</span>
+
+This method gets called by the `refresh()` method after it updates the `data` property.
+
+The `afterRefresh()` does `this.client.refresh()` by default.
+Developers may override this method to let the agent do some
+post-processing jobs.
 
 
 <a class="anchor" id="ajax"></a>
@@ -329,6 +342,21 @@ See "Options" section of the [Constructor](#constructor).
 
 See "Options" section of the [Constructor](#constructor).
 
+<a class="anchor" id="refresh"></a>
+### #refresh() <span class="badge alert-info">1.5</span>
+
+This method sends an Ajax request with GET method to the URL that is constructed
+by the [#requestPath()](#request-path).
+
+<a class="anchor" id="request-path"></a>
+### #requestPath()
+
+This method returns the return value of:
+
+* [#singularPath()](#singular-path) if the attribute `singular` is set true
+* [#collectionPath()](#collection-path) if the attribute `singular` is set false and the attribute `id` is undefined
+* [#memberPath()](#member-path) if the attribute `singular` is set false and the attribute `id` is defined
+
 <a class="anchor" id="resource-name"></a>
 ### #resourceName
 
@@ -338,6 +366,17 @@ See "Options" section of the [Constructor](#constructor).
 ### #shallow
 
 See "Options" section of the [Constructor](#constructor).
+
+<a class="anchor" id="show"></a>
+### #show() <span class="badge alert-info">1.5</span>
+#### Usage
+
+* **show()**
+* **show(callback)**
+* **show(callback, errorHandler)**
+
+Send an Ajax request with POST method to the URL that is constructed
+by the [#requestPath()](#request-path).
 
 <a class="anchor" id="singular"></a>
 ### #singular
