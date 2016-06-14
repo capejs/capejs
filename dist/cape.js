@@ -1337,19 +1337,13 @@ _extends(Router.prototype, {
   },
   navigateTo: function (hash, params, options) {
     var self = this,
-        prop,
-        pairs,
         promises,
         promise,
         i,
         len;
 
     if (params !== undefined) {
-      pairs = [];
-      for (prop in params) {
-        pairs.push(prop + '=' + params[prop]);
-      }
-      if (pairs.length > 0) hash = hash + '?' + pairs.join('&');
+      hash = this._.constructHash(params, hash);
     }
 
     this._.currentHash = hash;
@@ -1380,12 +1374,22 @@ _extends(Router.prototype, {
   navigate: function (hash, options) {
     this.navigateTo(hash, {}, options);
   },
-  redirectTo: function (hash, options) {
-    var self = this,
-        promises,
-        promise,
-        i,
-        len;
+  redirectTo: function (hash, params, options) {
+    var self = this;
+
+    // For backward compatibility, if the second argument has a key 'notice'
+    // or 'alert' and the third argument is undefined, the second argument
+    // should be treated as options.
+    if (typeof params === 'object' && options === undefined) {
+      if (params.hasOwnProperty('notice') || params.hasOwnProperty('alert')) {
+        options = params;
+        params = undefined;
+      }
+    }
+
+    if (params !== undefined) {
+      hash = this._.constructHash(params, hash);
+    }
 
     this._.currentHash = hash;
     this._.setHash(hash);
@@ -1395,8 +1399,17 @@ _extends(Router.prototype, {
     this.flash.alert = options.alert;
     self._.mountComponent(hash);
   },
-  show: function (klass) {
-    var component = new klass();
+  show: function (klass, params) {
+    var prop, component;
+
+    this.query = {};
+    if (params !== undefined) {
+      for (prop in params) {
+        this.query[prop] = params[prop];
+      }
+    }
+
+    component = new klass();
     component.mount(this._.targetElementId);
     this._.mountedComponentClass = klass;
     this._.mountedComponent = component;
@@ -1477,6 +1490,15 @@ _extends(_Internal.prototype, {
     }
 
     this.main.flash = {};
+  },
+  constructHash: function (params, hash) {
+    var pairs, prop;
+
+    pairs = [];
+    for (prop in params) {
+      pairs.push(prop + '=' + params[prop]);
+    }
+    if (pairs.length > 0) return hash + '?' + pairs.join('&');else return hash;
   },
   setHash: function (hash) {
     window.location.hash = hash;
