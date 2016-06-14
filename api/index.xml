@@ -3326,7 +3326,7 @@ radio button is checked.&lt;/p&gt;
 &lt;a href=&#34;#refresh&#34;&gt;#refresh()&lt;/a&gt; -
 &lt;a href=&#34;#resource-name&#34;&gt;#resourceName&lt;/a&gt; -
 &lt;a href=&#34;#shallow&#34;&gt;#shallow&lt;/a&gt; -
-&lt;a href=&#34;#show&#34;&gt;#show&lt;/a&gt; -
+&lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; -
 &lt;a href=&#34;#singular&#34;&gt;#singular&lt;/a&gt; -
 &lt;a href=&#34;#singular-path&#34;&gt;#singularPath()&lt;/a&gt; -
 &lt;a href=&#34;#update&#34;&gt;#update()&lt;/a&gt;&lt;/p&gt;
