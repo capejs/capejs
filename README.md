@@ -134,12 +134,13 @@ class WelcomePage extends Cape.Component {
 
 ## Tutorials
 
+* [How to Make a Single Page Application (SPA) with Cape.JS and Rails - A Tutorial](http://capejs.github.io/capejs/tutorials/greeter/): A tutorial about Cape.JS router.
 * [Cape.JS Primer](http://capejs.github.io/capejs/tutorials/capejs_primer/):
   Reading through this tutorial, you can learn the basics of Cape.JS programming.
 
 ## A demo application
 
-You can download and try a demo app from https://github.com/capejs/capejs-demo-on-rails.
+You can download and try a demo app from https://github.com/oiax/capejs-demo-on-rails.
 
 This is built upon the Ruby on Rails. When you start it and open `http://localhost:3000` with your browser, you will see a page like this:
 
