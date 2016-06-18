@@ -6,10 +6,6 @@
   </url>
   
   <url>
-    <loc>http://capejs.github.io/capejs/tutorials/greeter/</loc>
-  </url>
-  
-  <url>
     <loc>http://capejs.github.io/capejs/api/</loc>
   </url>
   
@@ -98,6 +94,10 @@
   </url>
   
   <url>
+    <loc>http://capejs.github.io/capejs/tutorials/greeter/02_creating_top_page/</loc>
+  </url>
+  
+  <url>
     <loc>http://capejs.github.io/capejs/tutorials/capejs_primer/03_creating_text_nodes/</loc>
   </url>
   
@@ -111,6 +111,10 @@
   
   <url>
     <loc>http://capejs.github.io/capejs/tutorials/capejs_primer/01_hello_world/</loc>
+  </url>
+  
+  <url>
+    <loc>http://capejs.github.io/capejs/tutorials/greeter/</loc>
   </url>
   
   <url>
@@ -146,7 +150,15 @@
   </url>
   
   <url>
+    <loc>http://capejs.github.io/capejs/tutorials/greeter/01_setting_up/</loc>
+  </url>
+  
+  <url>
     <loc>http://capejs.github.io/capejs/tutorials/capejs_primer/11_form_for_new_task/</loc>
+  </url>
+  
+  <url>
+    <loc>http://capejs.github.io/capejs/tutorials/greeter/03_showing_reception_component/</loc>
   </url>
   
   <url>

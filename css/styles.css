@@ -59,6 +59,10 @@ div.note {
   font-size: 90%;
 }
 
+div.note code {
+  background-color: #dde;
+}
+
 div.block-image {
   margin: 20px 0;
   text-align: center;

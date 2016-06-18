@@ -3,8 +3,8 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>Delete the task - Cape.JS Primer - Cape.JS: Documentation</title>
-  <meta name="description" content="" />
+  <title>Showing the Reception Component - How to make a SPA with Cape.JS and Rails - Cape.JS: Documentation</title>
+  <meta name="description" content="Creating the Reception component and introducing the Cape.JS router." />
   <meta name="generator" content="Bootply" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="http://capejs.github.io/capejs//css/bootstrap.min.css" rel="stylesheet">
@@ -208,114 +208,56 @@
     <div class="col-sm-12 col-md-9">
       <article>
         <header>
-          <h2>Delete the task - Cape.JS Primer</h2>
+          <h2>Showing the Reception Component - How to make a SPA with Cape.JS and Rails</h2>
           <div class="post-meta clearfix">
           </div>
         </header>
         <div>
-          <p>On <a href="../14_updating_task">the previous lecture</a>, we implemented the function to update the title of the task.</p>
+          
 
-<p>On this lecture, it&rsquo;s about deleting the task. Now, we have every CRUD function.</p>
+<p><a href="../">Table of Contents</a> - <a href="#">Next Section</a></p>
 
-<hr />
+<h3 id="creating-the-reception-component">Creating the <code>Reception</code> component</h3>
 
-<p>First, I create the API. Rewrite <code>config/routes.rb</code> as following.</p>
-
-<pre><code class="language-text">Rails.application.routes.draw do
-  root 'top#index'
-
-  namespace :api do
-    resources :tasks, only: [ :index, :create, :update, :destroy ]
-  end
-end
+<pre><code class="language-text">$ mkdir -p app/assets/javascripts/components
+$ touch app/assets/javascripts/components/reception.es6
 </code></pre>
 
-<p>I added <code>:destroy</code> after <code>:update</code> on the third line from the bottom.</p>
+<p>Edit <code>app/assets/javascripts/components/reception.es6</code> so that its content becomes like as:</p>
 
-<p>Next, the controller. Add the action <code>destroy</code> to <code>app/controllers/api/tasks_controller.rb</code>.</p>
-
-<pre><code class="language-text">  def destroy
-    Task.find(params[:id]).destroy
-    render text: 'OK'
-  end
-</code></pre>
-
-<p>Insert it before the definition of the action <code>update</code> and the declaration <code>private</code>.</p>
-
-<hr />
-
-<p>Let&rsquo;s move on the running JavaScript. Rewrite the method <code>renderTask() of</code>app/assets/javascripts/todo_list.es6`.</p>
-
-<pre><code class="language-javascript">  renderTask(m, task) {
-    m.class({ completed: task.done });
-    m.label(m =&gt; {
-      m.onclick(e =&gt; this.ds.toggleTask(task));
-      m.input({ type: 'checkbox', checked: task.done }).sp();
-      m.class({ modifying: task.modifying });
-      m.span(task.title);
-    });
-    m.onclick(e =&gt; this.editTask(task));
-    m.span('Edit', { class: 'button' });
-    m.onclick(e =&gt; this.ds.destroyTask(task));
-    m.span('Delete', { class: 'button' });
+<pre><code class="language-javascript">class Reception extends Cape.Component {
+  render(m) {
+    m.p(&quot;Hi, I am Greeter. Nice to meet you!&quot;)
   }
+}
 </code></pre>
 
-<p>I added the second and third lines from the bottom. It calls the method <code>destroyTask()</code> as the data store by clicking &ldquo;Delete&rdquo; button.</p>
+<h3 id="introducing-the-cape-js-router">Introducing the Cape.JS router</h3>
 
-<p>Next, run this method. Add the content <code>destroyTask()</code> as following on <code>app/assets/javascripts/task_store.es6</code>.</p>
-
-<pre><code class="language-javascript">  destroyTask(task) {
-    $.ajax({
-      type: 'DELETE',
-      url: '/api/tasks/' + task.id
-    }).done(data =&gt; {
-      if (data === 'OK') this.refresh();
-    });
-  }
+<pre><code class="language-text">$ touch app/assets/javascripts/router.es6
 </code></pre>
 
-<p>It&rsquo;s finished. Make it sure it works well. The top screen will changes like following.</p>
+<p>Add these lines to <code>app/assets/javascripts/routes.es6</code>:</p>
 
-<p><img src="/capejs/images/capejs_primer/todo_list17.png" alt="Screen capture" /></p>
+<pre><code class="language-javascript">var $router = new Cape.Router()
 
-<p>It deletes the task by clicking &ldquo;Delete&rdquo; button on right side of &ldquo;Go dentist&rdquo;.</p>
+$router.draw(m =&gt; {
+  m.root('reception')
+})
 
-<p><img src="/capejs/images/capejs_primer/todo_list18.png" alt="Screen capture" /></p>
-
-<hr />
-
-<p>Now, there are more mistakes if you can delete the task just by clicking &ldquo;Delete&rdquo; button. Let&rsquo;s display the warning message.</p>
-
-<p>Rewrite <code>renderTask()</code> as following.</p>
-
-<pre><code class="language-javascript">  renderTask(m, task) {
-    m.class({ completed: task.done });
-    m.label(m =&gt; {
-      m.onclick(e =&gt; this.ds.toggleTask(task));
-      m.input({ type: 'checkbox', checked: task.done }).sp();
-      m.class({ modifying: task.modifying });
-      m.span(task.title);
-    });
-    m.onclick(e =&gt; this.editTask(task));
-    m.span('Edit', { class: 'button' });
-    m.onclick(e =&gt; {
-      if (confirm('Are you sure you want to delete this task?'))
-        this.ds.destroyTask(task);
-    });
-    m.span('Delete', { class: 'button' });
-  }
+document.addEventListener(&quot;DOMContentLoaded&quot;, event =&gt; {
+  $router.mount('main')
+  $router.start()
+})
 </code></pre>
 
-<p>The lines from the third to sixth from the bottom are changed. They are the method of JavaScript displaying the confirm dialog <code>confirm()</code>.</p>
+<p>Reload your browser to see if the page is rendered without errors. Below the heading you will see a <p> element with following content:</p>
 
-<p>Make sure it works well on the browser (the screen capture is omitted). The dialog saying &ldquo;Are you sure you want to delete this task?&rdquo; by clicking &ldquo;Delete&rdquo; button. If you click &ldquo;Cancel&rdquo;, it does nothing. If you click &ldquo;OK&rdquo;, it deletes the task.</p>
+<blockquote>
+<p>Hi, I am Greeter. Nice to meet you!</p>
+</blockquote>
 
-<hr />
-
-<p>It might be easy this time for who have read this tutorial carefully so far.</p>
-
-<p>On <a href="../16_capejs_1_2">the next lecture</a>, I&rsquo;ll introduce the new version 1.2 of Cape.JS.</p>
+<p><a href="../">Table of Contents</a> - <a href="#">Next Section</a></p>
 
         </div>
       </article>

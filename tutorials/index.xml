@@ -9,15 +9,6 @@
     <atom:link href="http://capejs.github.io/capejs/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title></title>
-      <link>http://capejs.github.io/capejs/tutorials/greeter/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://capejs.github.io/capejs/tutorials/greeter/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Assignment of event handler - Cape.JS Primer</title>
       <link>http://capejs.github.io/capejs/tutorials/capejs_primer/08_assignment_of_event_handler/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1356,6 +1347,48 @@ It also breaks out when the string is pasted by the user.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Creating the Top Page - How to make a SPA with Cape.JS and Rails</title>
+      <link>http://capejs.github.io/capejs/tutorials/greeter/02_creating_top_page/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://capejs.github.io/capejs/tutorials/greeter/02_creating_top_page/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;../&#34;&gt;Table of Contents&lt;/a&gt; - &lt;a href=&#34;../03_showing_reception_component&#34;&gt;Next Section&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;add-a-route-to-the-top-index-action&#34;&gt;Add a route to the &lt;code&gt;top#index&lt;/code&gt; action&lt;/h3&gt;
+
+&lt;p&gt;Edit &lt;code&gt;config/routes.rb&lt;/code&gt; so that its content becomes like as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Rails.application.routes.draw do
+  root &#39;top#index&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;creating-the-top-index-action&#34;&gt;Creating the &lt;code&gt;top#index&lt;/code&gt; action&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bin/rails g controller top index
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit &lt;code&gt;app/views/top/index.html.erb&lt;/code&gt; so that its content becomes like as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;&amp;lt;h1&amp;gt;Greeter&amp;lt;/h1&amp;gt;
+&amp;lt;div id=&#39;main&#39;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;starting-the-server&#34;&gt;Starting the server&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bin/rails s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Open &lt;code&gt;http://localhost:3000/&lt;/code&gt; with your browser to see if the page is rendered without errors.
+It should have just a single &amp;ldquo;Greeter&amp;rdquo; heading.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;../&#34;&gt;Table of Contents&lt;/a&gt; - &lt;a href=&#34;../03_showing_reception_component&#34;&gt;Next Section&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Creating the text nodes</title>
       <link>http://capejs.github.io/capejs/tutorials/capejs_primer/03_creating_text_nodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1738,154 +1771,44 @@ We will also talk about the nesting of HTML elements.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Initializing the date with ajax - Cape.JS Primer</title>
-      <link>http://capejs.github.io/capejs/tutorials/capejs_primer/07_initializing_the_date_with_ajax/</link>
+      <title>How to Make a Single Page Application (SPA) with Cape.JS and Rails - A Tutorial</title>
+      <link>http://capejs.github.io/capejs/tutorials/greeter/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://capejs.github.io/capejs/tutorials/capejs_primer/07_initializing_the_date_with_ajax/</guid>
-      <description>&lt;p&gt;On &lt;a href=&#34;../06_let_the_component_have_the_date&#34;&gt;the previous lecture&lt;/a&gt;, I explained the relation of Cape.JS component and data.&lt;/p&gt;
+      <guid>http://capejs.github.io/capejs/tutorials/greeter/</guid>
+      <description>
 
-&lt;p&gt;The theme of this lecture is Ajax. I&amp;rsquo;ll explain how to acquire the initialized data from the database through Rails application&amp;rsquo;s API and assign to the component.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.rawgit.com/capejs/capejs/master/doc/logo/capejs.svg&#34; alt=&#34;Cape.JS Logo&#34; /&gt;&lt;/p&gt;
 
-&lt;hr /&gt;
+&lt;h3 id=&#34;preface&#34;&gt;Preface&lt;/h3&gt;
 
-&lt;p&gt;First, let&amp;rsquo;s create the table &lt;code&gt;tasks&lt;/code&gt; on the database to register tasks of &amp;ldquo;To-do list&amp;rdquo;. Run the following command on the terminal.&lt;/p&gt;
+&lt;p&gt;By reading through this tutorial,
+you can learn how to construct &lt;em&gt;Single Page Applications&lt;/em&gt; (SPAs)
+combining the &lt;a href=&#34;https://github.com/capejs/capejs&#34;&gt;Cape.JS&lt;/a&gt; as front-end framework
+with the &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt; as back-end framework.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bin/rails g model task
+&lt;p&gt;This tutorial is based on the Cape.JS 1.5 and Ruby on Rails 5.0.0.rc1.&lt;/p&gt;
+
+&lt;h3 id=&#34;legend&#34;&gt;Legend&lt;/h3&gt;
+
+&lt;p&gt;If you should run one or more commands on your shell, we denote like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ mkdir foo/bar
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Then, open the file which name ends with &lt;code&gt;_create_tasks.rb&lt;/code&gt; at the directory &lt;code&gt;db/migrate/&lt;/code&gt; on the text editor and rewrite as following.&lt;/p&gt;
+&lt;p&gt;Note that the dollar sign (&lt;code&gt;$&lt;/code&gt;) at the beginning of each line means the command prompt.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;class CreateTasks &amp;lt; ActiveRecord::Migration
-  def change
-    create_table :tasks do |t|
-      t.string :title, null: false
-      t.boolean :done, null: false, default: false
+&lt;h3 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h3&gt;
 
-      t.timestamps null: false
-    end
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;On the table &lt;code&gt;tasks&lt;/code&gt;, it has 2 columns of&lt;code&gt;title&lt;/code&gt; and &lt;code&gt;done&lt;/code&gt;. Each type is string type (&lt;code&gt;string&lt;/code&gt;) and Boolean type (&lt;code&gt;boolean&lt;/code&gt;). It records the title of the task on the column &lt;code&gt;title&lt;/code&gt; and records truth-value whether the task is done or not on the column &lt;code&gt;done&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you run the following command on the terminal, you can create the table &lt;code&gt;tasks&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bin/rake db:migrate
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The following result is supposed to display on the terminal.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;== 20150612081420 CreateTasks: migrating ======================================
--- create_table(:tasks)
-   -&amp;gt; 0.0047s
-== 20150612081420 CreateTasks: migrated (0.0048s) =============================
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;./01_setting_up&#34;&gt;Setting up&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./02_creating_top_page&#34;&gt;Creating the Top Page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./03_showing_reception_component&#34;&gt;Showing the Reception Component&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&#34;note&#34;&gt;
-When you realize that you took mistake of the name of the table and the column, delete the migration script and restart from the beginning. And, please use the command `bin/rake db:migrate:reset` instead of `bin/rake db:migrate`.
+This tutorial has not been completed yet.
 &lt;/div&gt;
-
-&lt;p&gt;We make the script to insert the sheet data (initialized data). Open &lt;code&gt;db/seeds.rb&lt;/code&gt; on the text editor and add the following code after deletin all comment lines ( starting from &lt;code&gt;#&lt;/code&gt;).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Task.create!(title: &#39;Buy cat food&#39;, done: false)
-Task.create!(title: &#39;To go dentist&#39;, done: true)
-Task.create!(title: &#39;Take out the trash&#39;, done: false)
-Task.create!(title: &#39;Write blogs&#39;, done: false)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Run the following command on the terminal to insert the sheet data.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;bin/rake db:seed
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;The next step is to create API to acquire the list of the task.&lt;/p&gt;
-
-&lt;p&gt;Open &lt;code&gt;config/routes.rb&lt;/code&gt; on the text editor and rewrite as following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Rails.application.routes.draw do
-  root &#39;top#index&#39;
-
-  namespace :api do
-    resources :tasks, only: [ :index ]
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As the result, Rails application can receive the access to URL path &lt;code&gt;/api/tasks&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Next, we make controller. Run the following command on the terminal.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;bin/rails g controller api/tasks
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The file &lt;code&gt;app/controllers/api/tasks_controller.rb&lt;/code&gt; is created so rewrite as following on the text editor.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;class Api::TasksController &amp;lt; ApplicationController
-  def index
-    @tasks = Task.order(id: :asc)
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then, create a new file &lt;code&gt;index.jbuilder&lt;/code&gt; with the content of following at the directory &lt;code&gt;app/views/api/tasks&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;json.array! @tasks, :id, :title, :done
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&#34;note&#34;&gt;
-[Jbuilder](https://github.com/rails/jbuilder) is the template engine to create the data of JSON.
-&lt;/div&gt;
-
-&lt;p&gt;We created API. Let&amp;rsquo;s make sure it works right. Boot Rails application and access to &lt;code&gt;http://localhost:3000/api/tasks&lt;/code&gt; on the browser. If the strings like following display, it&amp;rsquo;s OK.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;[{&amp;quot;id&amp;quot;:1,&amp;quot;title&amp;quot;:&amp;quot;Buy cat food&amp;quot;,&amp;quot;done&amp;quot;:false},{&amp;quot;id&amp;quot;:2,&amp;quot;title&amp;quot;:&amp;quot;Go dentist&amp;quot;,&amp;quot;done&amp;quot;:true},{&amp;quot;id&amp;quot;:3,&amp;quot;title&amp;quot;:&amp;quot;Take out the trash &amp;quot;,&amp;quot;done&amp;quot;:false},{&amp;quot;id&amp;quot;:4,&amp;quot;title&amp;quot;:&amp;quot;Write blogs&amp;quot;,&amp;quot;done&amp;quot;:false}]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Let&amp;rsquo;s move on the developing the component side of Cape.JS.&lt;/p&gt;
-
-&lt;p&gt;Open &lt;code&gt;app/assets/javascripts/todo_list.es6&lt;/code&gt; on the text editor. The method &lt;code&gt;init()&lt;/code&gt; of the class &lt;code&gt;TodoList&lt;/code&gt; is now defined like following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  init() {
-    this.tasks = [
-      { title: &amp;quot;Buy cat food&amp;quot;, done: false },
-      { title: &amp;quot;Go dentist&amp;quot;, done: true }
-    ];
-    this.refresh();
-  }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Rewrite it to following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  init() {
-    $.ajax({
-      type: &#39;GET&#39;,
-      url: &#39;/api/tasks&#39;
-    }).done(data =&amp;gt; {
-      this.tasks = data;
-      this.refresh();
-    });
-  }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;$.ajax&lt;/code&gt; is the method of jQuery. It sets the result to the parameter &lt;code&gt;data&lt;/code&gt; by accessing &lt;code&gt;/api/tasks&lt;/code&gt; while using the method &lt;code&gt;GET&lt;/code&gt; here. It&amp;rsquo;s the strings that API returns but jQuery automatically changes the array of the object by judging it&amp;rsquo;s JSON. That means, the array of the object is set to &lt;code&gt;this.tasks&lt;/code&gt; if Ajax call successes.&lt;/p&gt;
-
-&lt;p&gt;Be careful that there is &lt;code&gt;this.refresh()&lt;/code&gt; written within the method &lt;code&gt;done&lt;/code&gt;. The rendering of the component isn&amp;rsquo;t done at the time when the method is run. It&amp;rsquo;s done when Ajax call is complited. It&amp;rsquo;s very important to understand the timing of the rendering at the time of programming Cape.JS&lt;/p&gt;
-
-&lt;p&gt;Now, let&amp;rsquo;s make sure it works weel. Access to &lt;code&gt;http://localhost:3000&lt;/code&gt; on the browser and if the screen displays like following, it successes.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://capejs.github.io/capejs/capejs/images/capejs_primer/todo_list04.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;You learn a little bit more this time. Well done!&lt;/p&gt;
-
-&lt;p&gt;On &lt;a href=&#34;../08_assignment_of_event_handler&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll explain how to change the value of the column &lt;code&gt;done&lt;/code&gt; by clicking the checkbox in front of the title of each task.&lt;/p&gt;
 </description>
     </item>
     
