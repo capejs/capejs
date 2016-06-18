@@ -156,7 +156,7 @@ by the [collectionPath()](#collection-path) method.
 The first argument (`params`) must be an object (hash).
 
 The optional second argument (`callback`) must be a function, which takes the
-agent itself as the single argument and does some post-processing jobs.
+response data from the server as the single argument and does some post-processing jobs.
 
 Ths optional third argument (`errorHandler`) must be a function,
 which takes an exception and does some error-handling jobs.
@@ -237,7 +237,7 @@ This is usually the value of primary key of a database record, but is not
 always the case.
 
 The optional second argument (`callback`) must be a function, which takes the
-agent itself as the single argument and does some post-processing jobs.
+response data from the server as the single argument and does some post-processing jobs.
 
 Ths optional third argument (`errorHandler`) must be a function,
 which takes an exception and does some error-handling jobs.
@@ -460,7 +460,7 @@ always the case.
 The second argument (`params`) must be an object (hash).
 
 The optional third argument (`callback`) must be a function, which takes the
-agent itself as the single argument and does some post-processing jobs.
+response data from the server as the single argument and does some post-processing jobs.
 
 Ths optional fourth argument (`errorHandler`) must be a function,
 which takes an exception and does some error-handling jobs.
