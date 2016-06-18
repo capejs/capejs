@@ -1804,6 +1804,9 @@ with the &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt
 &lt;li&gt;&lt;a href=&#34;./01_setting_up&#34;&gt;Setting up&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./02_creating_top_page&#34;&gt;Creating the Top Page&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./03_showing_reception_component&#34;&gt;Showing the Reception Component&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./04_navigation_among_pages&#34;&gt;Navigation Among Pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./05_form_for&#34;&gt;Rendering an HTML Form&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./06_models_and_resources&#34;&gt;Models and Resources&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&#34;note&#34;&gt;

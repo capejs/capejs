@@ -138,6 +138,18 @@
   </url>
   
   <url>
+    <loc>http://capejs.github.io/capejs/tutorials/greeter/05_form_for/</loc>
+  </url>
+  
+  <url>
+    <loc>http://capejs.github.io/capejs/tutorials/greeter/06_models_and_resources/</loc>
+  </url>
+  
+  <url>
+    <loc>http://capejs.github.io/capejs/tutorials/greeter/04_navigation_among_pages/</loc>
+  </url>
+  
+  <url>
     <loc>http://capejs.github.io/capejs/tutorials/capejs_primer/02_custom_attributes_and_nested_elements/</loc>
   </url>
   

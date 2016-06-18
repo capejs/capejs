@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>Tutorials - Cape.JS: Documentation</title>
+  <title>Navigation Among Pages - How to make a SPA with Cape.JS and Rails - Cape.JS: Documentation</title>
   <meta name="description" content="" />
   <meta name="generator" content="Bootply" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -208,70 +208,79 @@
     <div class="col-sm-12 col-md-9">
       <article>
         <header>
-          <h2>Tutorials</h2>
+          <h2>Navigation Among Pages - How to make a SPA with Cape.JS and Rails</h2>
           <div class="post-meta clearfix">
           </div>
         </header>
         <div>
           
 
-<p><a class="anchor" id="greeter"></a></p>
+<p><a href="../">Table of Contents</a> - <a href="../05_form_for">Next Section</a></p>
 
-<h3 id="how-to-make-a-single-page-application-spa-with-cape-js-and-rails">How to Make a Single Page Application (SPA) with Cape.JS and Rails</h3>
+<h2 id="adding-visitorform-and-thanks-components">Adding <code>VisitorForm</code> and <code>Thanks</code> components</h2>
 
-<p>By reading through this tutorial,
-you can learn how to construct <em>Single Page Applications</em> (SPAs)
-combining the Cape.JS with Ruby on Rails.</p>
+<p>Edit <code>app/assets/javascripts/omponents/reception.es6</code>:</p>
 
-<ul>
-<li><a href="./greeter">Preface</a></li>
-<li><a href="./greeter/01_setting_up">Setting up</a></li>
-<li><a href="./greeter/02_creating_top_page">Creating the Top Page</a></li>
-<li><a href="./greeter/03_showing_reception_component">Showing the Reception Component</a></li>
-<li><a href="./greeter/04_navigation_among_pages">Navigation Among Pages</a></li>
-<li><a href="./greeter/05_form_for">Rendering an HTML Form</a></li>
-<li><a href="./greeter/06_models_and_resources">Models and Resources</a></li>
-</ul>
+<pre><code class="language-javascript">class Reception extends Cape.Component {
+  render(m) {
+    m.p(&quot;Hi, I am Greeter. Nice to meet you!&quot;)
+    m.div(m =&gt; {
+      m.onclick(e =&gt; $router.navigateTo('visitor_form'))
+        .btn('Proceed to the Entry Form')
+    })
+  }
+}
+</code></pre>
 
-<div class="note">
-This tutorial has not been completed yet.
-</div>
+<pre><code class="language-text">$ touch app/assets/javascripts/components/visitor_form.es6
+$ touch app/assets/javascripts/components/thanks.es6
+</code></pre>
 
-<p><a class="anchor" id="capejs-primer"></a></p>
+<p>Add these lines to <code>app/assets/javascripts/components/visitor_form.es6</code>:</p>
 
-<h3 id="cape-js-primer">Cape.JS Primer</h3>
+<pre><code class="language-javascript">class VisitorForm extends Cape.Component {
+  render(m) {
+    m.h2('Visitors Entry Form')
+    m.p(&quot;Please fill in your name on this form.&quot;)
+    m.div(m =&gt; {
+      m.onclick(e =&gt; $router.navigateTo('thanks')).btn('Submit')
+    })
+  }
+}
+</code></pre>
 
-<p>Let&rsquo;s learn the programming of Cape.JS by combining Ruby on Rails with Cape.JS and making an easy TODO administration application step by step.</p>
+<p>Add these lines to <code>app/assets/javascripts/components/thanks.es6</code>:</p>
 
-<ul>
-<li><a href="./capejs_primer">Preface</a></li>
-<li><a href="./capejs_primer/01_hello_world">Hello, world!</a></li>
-<li><a href="./capejs_primer/02_custom_attributes_and_nested_elements">Reference of custom attribute value and nesting of HTML elements</a></li>
-<li><a href="./capejs_primer/03_creating_text_nodes">Creating the text nodes</a></li>
-<li><a href="./capejs_primer/04_rails_integration1">Integrate Cape.JS with Ruby on Rails (1)</a></li>
-<li><a href="./capejs_primer/05_rails_integration2">Integrate Cape.JS with Ruby on Rails (2)</a></li>
-<li><a href="./capejs_primer/06_let_the_component_have_the_date">Let the component have the date</a></li>
-<li><a href="./capejs_primer/07_initializing_the_date_with_ajax">Initializing the date with Ajax</a></li>
-<li><a href="./capejs_primer/08_assignment_of_event_handler">Assignment of event handler</a></li>
-<li><a href="./capejs_primer/09_updating_the_data_with_ajax">Updating the data with Ajax</a></li>
-<li><a href="./capejs_primer/10_the_data_store">The data store</a></li>
-<li><a href="./capejs_primer/11_form_for_new_task">Show the form for new task</a></li>
-<li><a href="./capejs_primer/12_creating_new_task">Creating new task</a></li>
-<li><a href="./capejs_primer/13_editing_task">The edit form of the task</a></li>
-<li><a href="./capejs_primer/14_updating_task">Update the task</a></li>
-<li><a href="./capejs_primer/15_deleting_task">Delete the task</a></li>
-<li><a href="./capejs_primer/16_capejs_1_2">Cape.JS 1.2</a></li>
-<li><a href="./capejs_primer/17_collection_agent1">Collection agent (1)</a></li>
-<li><a href="./capejs_primer/18_collection_agent2">Collection agent (2)</a></li>
-<li><a href="./capejs_primer/19_collection_agent3">Collection agent (3)</a></li>
-<li><a href="./capejs_primer/20_reordering1">Change displaying order (1)</a></li>
-<li><a href="./capejs_primer/21_reordering2">Change displaying order (2)</a></li>
-<li><a href="./capejs_primer/22_reordering3">Change displaying order (3)</a></li>
-</ul>
+<pre><code class="language-javascript">class Thanks extends Cape.Component {
+  render(m) {
+    m.p(&quot;Thank you!&quot;)
+    m.div(m =&gt; {
+      m.onclick(e =&gt; $router.navigateTo('')).btn('Return to the top page')
+    })
+  }
+}
+</code></pre>
 
-<div class="note">
-This tutorial is an English translation of <a href="http://www.oiax.jp/rails/capejs_primer.html">blog entries</a> written in Japanese.
-</div>
+<p>Edit <code>app/assets/javascripts/routes.es6</code> so that its content becomes like this:</p>
+
+<pre><code class="language-javascript">var $router = new Cape.Router();
+
+$router.draw(m =&gt; {
+  m.root('reception')
+  m.page('visitor_form')
+  m.page('thanks')
+})
+
+document.addEventListener(&quot;DOMContentLoaded&quot;, event =&gt; {
+  $router.mount('main')
+  $router.start()
+});
+</code></pre>
+
+<p>Reload your browser to check if the page is rendered without errors.
+You can see three pages in turn by clicking buttons.</p>
+
+<p><a href="../">Table of Contents</a> - <a href="../05_form_for">Next Section</a></p>
 
         </div>
       </article>
