@@ -56,7 +56,7 @@ var HelloMesage = Cape.createComponentClass({
   render: function(m) {
     m.div('Hello, ' + this.root.data.name + '!')
   }
-});
+})
 ```
 
 In this example, the `div` method corresponds to the `div` tag of HTML.
@@ -80,20 +80,20 @@ Cape.JS has a built-in routing library. Using this you can define *routes* with 
 similar to that of Ruby on Rails. Here is an example of `routes.js`:
 
 ```javascript
-window.router = new Cape.Router();
+var $router = new Cape.Router()
 
-window.router.draw(function(m) {
+$router.draw(function(m) {
   m.root('welcome')
   m.page('login')
   m.page('help')
   m.many('articles')
-});
+})
 ```
 
 You can navigate the user to another page by the `navigateTo()` method:
 
 ```javascript
-window.router.navigateTo('help')
+$router.navigateTo('help')
 ```
 
 The following is a full example of Component definition:
@@ -104,11 +104,11 @@ var WelcomePage = Cape.createComponentClass({
     m.div(function(m) {
       m.span('Help', {
         class: 'link',
-        onclick: function(e) { window.router.navigateTo('help') }
+        onclick: function(e) { $router.navigateTo('help') }
       })
     })
   }
-});
+})
 ```
 
 When the user clicks on the "Help" link, the hash fragment of the URL changes
@@ -131,7 +131,7 @@ class WelcomePage extends Cape.Component {
     m.div(m => {
       m.span('Help', {
         class: 'link',
-        onclick: e => window.router.navigateTo('doc/help')
+        onclick: e => $router.navigateTo('doc/help')
       })
     })
   }
