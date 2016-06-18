@@ -3,7 +3,7 @@ title: "Showing the Reception Component - How to make a SPA with Cape.JS and Rai
 description: "Creating the Reception component and introducing the Cape.JS router."
 ---
 
-[Table of Contents](../) - [Next Section](#)
+[Table of Contents](../) - [Next Section](../04_navigation_among_pages)
 
 ### Creating the `Reception` component
 
@@ -47,4 +47,4 @@ Reload your browser to see if the page is rendered without errors. Below the hea
 
 > Hi, I am Greeter. Nice to meet you!
 
-[Table of Contents](../) - [Next Section](#)
+[Table of Contents](../) - [Next Section](../04_navigation_among_pages)

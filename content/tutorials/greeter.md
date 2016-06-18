@@ -28,6 +28,9 @@ Note that the dollar sign (`$`) at the beginning of each line means the command 
 * [Setting up](./01_setting_up)
 * [Creating the Top Page](./02_creating_top_page)
 * [Showing the Reception Component](./03_showing_reception_component)
+* [Navigation Among Pages](./04_navigation_among_pages)
+* [Rendering an HTML Form](./05_form_for)
+* [Models and Resources](./06_models_and_resources)
 
 <div class="note">
 This tutorial has not been completed yet.
