@@ -68,6 +68,12 @@ This example is explained in detail
 in the [Hello World](http://capejs.github.io/capejs/components/#hello-world) section
 of *Cape.JS Documentation.*
 
+## Using with Rails
+
+If you combile Cape.JS with Ruby on Rails, you are recommended to use `capejs-rails` gem.
+
+See [capejs/capejs-rails](https://github.com/capejs/capejs-rails) for details.
+
 ## Router
 
 Cape.JS has a built-in routing library. Using this you can define *routes* with a DSL (domain specific language)
