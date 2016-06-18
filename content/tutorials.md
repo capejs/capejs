@@ -16,10 +16,10 @@ combining the Cape.JS with Ruby on Rails.
 * [Navigation Among Pages](./greeter/04_navigation_among_pages)
 * [Rendering an HTML Form](./greeter/05_form_for)
 * [Models and Resources](./greeter/06_models_and_resources)
-
-<div class="note">
-This tutorial has not been completed yet.
-</div>
+* [Collection Agent](./greeter/07_collection_agent)
+* [Showing Error Messages](./greeter/08_error_messages)
+* [Refactoring with Partials](./greeter/09_partial)
+* [Listing Registered Visitors](./greeter/10_listing_visitors)
 
 <a class="anchor" id="capejs-primer"></a>
 ### Cape.JS Primer

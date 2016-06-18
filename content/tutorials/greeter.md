@@ -31,7 +31,7 @@ Note that the dollar sign (`$`) at the beginning of each line means the command 
 * [Navigation Among Pages](./04_navigation_among_pages)
 * [Rendering an HTML Form](./05_form_for)
 * [Models and Resources](./06_models_and_resources)
-
-<div class="note">
-This tutorial has not been completed yet.
-</div>
+* [Collection Agent](./07_collection_agent)
+* [Showing Error Messages](./08_error_messages)
+* [Refactoring with Partials](./09_partial)
+* [Listing Registered Visitors](./10_listing_visitors)

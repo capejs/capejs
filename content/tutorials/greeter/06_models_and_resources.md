@@ -3,7 +3,7 @@ title: "Models and Resources - How to make a SPA with Cape.JS and Rails"
 description: ""
 ---
 
-[Table of Contents](../) - [Next Section](#)
+[Table of Contents](../) - [Next Section](../07_collection_agent)
 
 ### Creating `Visitor` model
 
@@ -74,4 +74,4 @@ Add this line to `app/views/api/visitors/index.jbuilder`:
 json.visitors(@visitors, :id, :family_name, :given_name)
 ```
 
-[Table of Contents](../) - [Next Section](#)
+[Table of Contents](../) - [Next Section](../07_collection_agent)
