@@ -87,7 +87,7 @@ The *router* continues to watch the changes of URL hash and switches
 components according to the routes.
 
 You can find the source code of working demo on
-https://github.com/oiax/capejs/tree/master/demo/simple_routes.
+https://github.com/capejs/capejs/tree/master/demo/simple_routes.
 
 <a class="anchor" id="containers"></a>
 ### Containers

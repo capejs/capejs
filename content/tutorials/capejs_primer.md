@@ -20,7 +20,7 @@ but front-end programming will be much easier to if you adopt "virtual DOM".
 
 Cape.JS is an open source project. It's distributed under the MIT license.
 You can use it for free and also redistribute or sell it after you modify its source code.
-You can find the source code at GitHub's [repository](https://github.com/oiax/capejs).
+You can find the source code at GitHub's [repository](https://github.com/capejs/capejs).
 Also, [documents](http://oiax.github.io/capejs/) are prepared.
 
 ### Table of Contents

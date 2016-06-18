@@ -100,7 +100,7 @@ Note that we have no plan to support the Internet Explorer 8, 9, and 10.
 ### How can I contribute?
 
 The Cape.JS is an open source project. Everyone can help.
-See [CONTRIBUTING.md](https://github.com/oiax/capejs/CONTRIBUTING.md)
+See [CONTRIBUTING.md](https://github.com/capejs/capejs/CONTRIBUTING.md)
 <i class="fa fa-external-link"></i>for details.
 
 <h2 id="acknowledgements">Acknowledgements</h2>
@@ -115,4 +115,4 @@ The logo of Cape.JS is created by
 <h2 id="license">License</h2>
 
 Cape.JS is released under
-[the MIT License](https://github.com/oiax/capejs/LICENSE) <i class="fa fa-external-link"></i>.
+[the MIT License](https://github.com/capejs/capejs/LICENSE) <i class="fa fa-external-link"></i>.

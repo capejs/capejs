@@ -7,7 +7,7 @@ On 3 lectures including [the previous time](../03_creating_text_nodes), I explai
 From this lecture, I'll explain steps to integrate Cape.JS with [Ruby on Rails](http://rubyonrails.org/).
 
 <div class="note">
-Please acquire a demonstration application at <a href="https://github.com/oiax/capejs-demo-on-rails">https://github.com/oiax/capejs-demo-on-rails</a> if you are impatient like "I want you to show me a source code not explanation." A sample Rail application we make on this lecture will be a very similar one like the demonstration application.
+Please acquire a demonstration application at <a href="https://github.com/capejs/capejs-demo-on-rails">https://github.com/capejs/capejs-demo-on-rails</a> if you are impatient like "I want you to show me a source code not explanation." A sample Rail application we make on this lecture will be a very similar one like the demonstration application.
 </div>
 
 As a precondition, Ruby (v2.1 or later), Rails 4.2、Node.js (v0.12 or later) and Git (v2.0 or later) are supposed to be installed on your PC.

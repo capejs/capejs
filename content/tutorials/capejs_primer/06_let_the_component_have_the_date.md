@@ -33,7 +33,7 @@ Then, the array of the object becomes "list of tasks".
 
 By the way, I'll introduce how to update Cape.JS before I'll come to the point.
 
-Today（2015/06/07）、[Cape.JS 1.1.0](https://github.com/oiax/capejs/releases/tag/v1.1.0) was released. It's better to use the newest one so upgrade Cape.JS of "To-do list".
+Today（2015/06/07）、[Cape.JS 1.1.0](https://github.com/capejs/capejs/releases/tag/v1.1.0) was released. It's better to use the newest one so upgrade Cape.JS of "To-do list".
 
 Open <code>bower.json</code> on the text editor,
 
