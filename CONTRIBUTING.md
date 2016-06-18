@@ -5,7 +5,7 @@ you can [fork](https://help.github.com/articles/fork-a-repo/) Cape.JS,
 commit your changes,
 and [send a pull request](https://help.github.com/articles/using-pull-requests/).
 
-Please make sure to [search the issue tracker](https://github.com/oiax/Cape.JS/issues) first.
+Please make sure to [search the issue tracker](https://github.com/capejs/Cape.JS/issues) first.
 
 ## Setting up your development environment
 

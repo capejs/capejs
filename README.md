@@ -1,8 +1,8 @@
 # Cape.JS
 
-![Cape.JS logo](https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg)
+![Cape.JS logo](https://cdn.rawgit.com/capejs/capejs/master/doc/logo/capejs.svg)
 
-[![Circle CI](https://circleci.com/gh/oiax/capejs.png?style=badge)](https://circleci.com/gh/oiax/capejs)
+[![Circle CI](https://circleci.com/gh/capejs/capejs.png?style=badge)](https://circleci.com/gh/capejs/capejs)
 [![Npm Version](https://badge.fury.io/js/capejs.svg)](http://badge.fury.io/js/capejs)
 [![Bower Version](https://badge.fury.io/bo/capejs.svg)](http://badge.fury.io/bo/capejs)
 
@@ -30,7 +30,7 @@ The architecture and terminology of Cape.JS are strongly influenced by
 [Riot](https://github.com/muut/riotjs)
 and [Ruby on Rails](https://github.com/rails/rails).
 
-If you want to learn about Cape.JS, check out the [Cape.JS Documentation](http://oiax.github.io/capejs/).
+If you want to learn about Cape.JS, check out the [Cape.JS Documentation](http://capejs.github.io/capejs/).
 
 ## A simple example
 
@@ -65,7 +65,7 @@ In this way, you can generate [any HTML5 element](http://www.w3.org/TR/html-mark
 such as `blockquote`, `h1`, `strong`, `video`, etc.
 
 This example is explained in detail
-in the [Hello World](http://oiax.github.io/capejs/components/#hello-world) section
+in the [Hello World](http://capejs.github.io/capejs/components/#hello-world) section
 of *Cape.JS Documentation.*
 
 ## Router
@@ -134,28 +134,28 @@ class WelcomePage extends Cape.Component {
 
 ## Tutorials
 
-* [Cape.JS Primer](http://oiax.github.io/capejs/tutorials/capejs_primer/):
+* [Cape.JS Primer](http://capejs.github.io/capejs/tutorials/capejs_primer/):
   Reading through this tutorial, you can learn the basics of Cape.JS programming.
 
 ## A demo application
 
-You can download and try a demo app from https://github.com/oiax/capejs-demo-on-rails.
+You can download and try a demo app from https://github.com/capejs/capejs-demo-on-rails.
 
 This is built upon the Ruby on Rails. When you start it and open `http://localhost:3000` with your browser, you will see a page like this:
 
-![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/26ce9cefc92d7dd30921995af57545ea1a41fc7a/doc/captures/todo-demo0.png)
+![Screen shot of demo app](https://cdn.rawgit.com/capejs/capejs/26ce9cefc92d7dd30921995af57545ea1a41fc7a/doc/captures/todo-demo0.png)
 
 Click the "Start" button to navigate to Login form. Then, enter your credentials (`alice` and `hotyoga`) to login to the sytem.
 
-![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/26ce9cefc92d7dd30921995af57545ea1a41fc7a/doc/captures/todo-demo1.png)
+![Screen shot of demo app](https://cdn.rawgit.com/capejs/capejs/26ce9cefc92d7dd30921995af57545ea1a41fc7a/doc/captures/todo-demo1.png)
 
 You can list, add, update and delete tasks here.
 
-![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/26ce9cefc92d7dd30921995af57545ea1a41fc7a/doc/captures/todo-demo2.png)
+![Screen shot of demo app](https://cdn.rawgit.com/capejs/capejs/26ce9cefc92d7dd30921995af57545ea1a41fc7a/doc/captures/todo-demo2.png)
 
 Click the "Logout" button to show the modal for confirmation.
 
-![Screen shot of demo app](https://cdn.rawgit.com/oiax/capejs/915d96806352d70cce139cfb5b5020aec312444b/doc/captures/todo-demo3.png)
+![Screen shot of demo app](https://cdn.rawgit.com/capejs/capejs/915d96806352d70cce139cfb5b5020aec312444b/doc/captures/todo-demo3.png)
 
 ## Browser Support
 

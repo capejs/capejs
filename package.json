@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/oiax/capejs.git"
+    "url": "https://github.com/capejs/capejs.git"
   },
-  "author": "Oiax, Inc. and other contributors",
+  "author": "Tsutomu Kuroda and other contributors",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/oiax/capejs/issues"
+    "url": "https://github.com/capejs/capejs/issues"
   },
-  "homepage": "https://github.com/oiax/capejs",
+  "homepage": "https://github.com/capejs/capejs",
   "engines": {
     "node": ">=5.5"
   },
