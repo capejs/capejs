@@ -1,6 +1,6 @@
 {
   "name": "capejs",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "A lightweight Javascript UI framework based on virtual-dom",
   "main": "lib/cape.js",
   "directories": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/capejs/capejs.git"
+    "url": "git://github.com/capejs/capejs.git"
   },
   "author": "Tsutomu Kuroda and other contributors",
   "license": "MIT",

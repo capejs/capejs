@@ -1,5 +1,9 @@
 # CHANGELOG - Cape.JS
 
+## 1.5.1 (June 19, 2016)
+
+* Change the Git repository from `git://github.com/oiax/capejs` to `git://github.com/capejs/capejs`.
+
 ## 1.5.0 (June 14, 2016)
 
 ### `Cape.CollectionAgent`
