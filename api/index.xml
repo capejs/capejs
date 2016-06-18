@@ -570,7 +570,7 @@ by the &lt;a href=&#34;#collection-path&#34;&gt;collectionPath()&lt;/a&gt; metho
 &lt;p&gt;The first argument (&lt;code&gt;params&lt;/code&gt;) must be an object (hash).&lt;/p&gt;
 
 &lt;p&gt;The optional second argument (&lt;code&gt;callback&lt;/code&gt;) must be a function, which takes the
-agent itself as the single argument and does some post-processing jobs.&lt;/p&gt;
+response data from the server as the single argument and does some post-processing jobs.&lt;/p&gt;
 
 &lt;p&gt;Ths optional third argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
 which takes an exception and does some error-handling jobs.&lt;/p&gt;
@@ -661,7 +661,7 @@ This is usually the value of primary key of a database record, but is not
 always the case.&lt;/p&gt;
 
 &lt;p&gt;The optional second argument (&lt;code&gt;callback&lt;/code&gt;) must be a function, which takes the
-agent itself as the single argument and does some post-processing jobs.&lt;/p&gt;
+response data from the server as the single argument and does some post-processing jobs.&lt;/p&gt;
 
 &lt;p&gt;Ths optional third argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
 which takes an exception and does some error-handling jobs.&lt;/p&gt;
@@ -952,7 +952,7 @@ always the case.&lt;/p&gt;
 &lt;p&gt;The second argument (&lt;code&gt;params&lt;/code&gt;) must be an object (hash).&lt;/p&gt;
 
 &lt;p&gt;The optional third argument (&lt;code&gt;callback&lt;/code&gt;) must be a function, which takes the
-agent itself as the single argument and does some post-processing jobs.&lt;/p&gt;
+response data from the server as the single argument and does some post-processing jobs.&lt;/p&gt;
 
 &lt;p&gt;Ths optional fourth argument (&lt;code&gt;errorHandler&lt;/code&gt;) must be a function,
 which takes an exception and does some error-handling jobs.&lt;/p&gt;
