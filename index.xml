@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cape.JS: Documentation</title>
-    <link>http://oiax.github.io/capejs/</link>
+    <link>http://capejs.github.io/capejs/</link>
     <description>Recent content on Cape.JS: Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://oiax.github.io/capejs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://capejs.github.io/capejs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>API Reference</title>
-      <link>http://oiax.github.io/capejs/api/</link>
+      <link>http://capejs.github.io/capejs/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/</guid>
+      <guid>http://capejs.github.io/capejs/api/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt; -
@@ -90,10 +90,10 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
     
     <item>
       <title>Assignment of event handler - Cape.JS Primer</title>
-      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/08_assignment_of_event_handler/</link>
+      <link>http://capejs.github.io/capejs/tutorials/capejs_primer/08_assignment_of_event_handler/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/08_assignment_of_event_handler/</guid>
+      <guid>http://capejs.github.io/capejs/tutorials/capejs_primer/08_assignment_of_event_handler/</guid>
       <description>&lt;p&gt;On &lt;a href=&#34;../07_initializing_the_date_with_ajax&#34;&gt;the previous lecture&lt;/a&gt;, I explained how to initialize the component data of Cape.JS via Ajax.&lt;/p&gt;
 
 &lt;p&gt;On this lecture, I&amp;rsquo;ll explain how to assign the event handler to HTML element.&lt;/p&gt;
@@ -159,7 +159,7 @@ You can simplify brackets surrounding the parameter when there&#39;s 1 parameter
 
 &lt;p&gt;Now, let&amp;rsquo;s make sure it works well. Boot the server and open &lt;code&gt;http://localhost:3000/&lt;/code&gt; on the browser. By clicking the first checkbox, it displays &amp;ldquo;1&amp;rdquo; like following in the warning dialog. This is the value of the column&amp;rsquo;s &lt;code&gt;id&lt;/code&gt; task.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list05.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://capejs.github.io/capejs/capejs/images/capejs_primer/todo_list05.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -169,10 +169,10 @@ You can simplify brackets surrounding the parameter when there&#39;s 1 parameter
     
     <item>
       <title>Cape - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/cape/</link>
+      <link>http://capejs.github.io/capejs/api/cape/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/cape/</guid>
+      <guid>http://capejs.github.io/capejs/api/cape/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#create-collection-agent-class&#34;&gt;Cape.createCollectionAgentClass()&lt;/a&gt; -
@@ -445,10 +445,10 @@ Cape.extend(object1, object2);
     
     <item>
       <title>Cape.CollectionAgent - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/collection_agent/</link>
+      <link>http://capejs.github.io/capejs/api/collection_agent/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/collection_agent/</guid>
+      <guid>http://capejs.github.io/capejs/api/collection_agent/</guid>
       <description>
 
 &lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
@@ -1064,10 +1064,10 @@ which takes an exception and does some error-handling jobs.&lt;/p&gt;
     
     <item>
       <title>Cape.Component - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/component/</link>
+      <link>http://capejs.github.io/capejs/api/component/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/component/</guid>
+      <guid>http://capejs.github.io/capejs/api/component/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#checked-on&#34;&gt;checkedOn()&lt;/a&gt; -
@@ -1641,10 +1641,10 @@ radio button is checked.&lt;/p&gt;
     
     <item>
       <title>Cape.DataStore - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <link>http://capejs.github.io/capejs/api/data_store/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <guid>http://capejs.github.io/capejs/api/data_store/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
@@ -1784,10 +1784,10 @@ comp2.mount(&#39;counter2&#39;);
     
     <item>
       <title>Cape.JS 1.2 - Cape.JS Primer</title>
-      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/16_capejs_1_2/</link>
+      <link>http://capejs.github.io/capejs/tutorials/capejs_primer/16_capejs_1_2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/16_capejs_1_2/</guid>
+      <guid>http://capejs.github.io/capejs/tutorials/capejs_primer/16_capejs_1_2/</guid>
       <description>&lt;p&gt;It has passed about a month from &lt;a href=&#34;../15_deleting_task&#34;&gt;the previous lecture&lt;/a&gt;.
 I thought I could release Cape.JS 1.2 soon at the time I wrote the article but I&amp;rsquo;ve noticed there are some &amp;ldquo;holes&amp;rdquo; of the spec since my co-workers and I actually use it. It&amp;rsquo;s already updated for 16 times (!) since the first Release Candidate (RC) version.&lt;/p&gt;
 
@@ -1893,10 +1893,10 @@ jQuery calls Ajax request by using XMLHttpRequest in it. If it can uses Fetch AP
     
     <item>
       <title>Cape.JS Primer - A Tutorial</title>
-      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/</link>
+      <link>http://capejs.github.io/capejs/tutorials/capejs_primer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/</guid>
+      <guid>http://capejs.github.io/capejs/tutorials/capejs_primer/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;https://cdn.rawgit.com/oiax/capejs/master/doc/logo/capejs.svg&#34; alt=&#34;Cape.JS Logo&#34; /&gt;&lt;/p&gt;
@@ -1952,10 +1952,10 @@ Also, &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;documents&lt;/a&gt; 
     
     <item>
       <title>Cape.MarkupBuilder - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/markup_builder/</link>
+      <link>http://capejs.github.io/capejs/api/markup_builder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/markup_builder/</guid>
+      <guid>http://capejs.github.io/capejs/api/markup_builder/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#general-notes&#34;&gt;General notes&lt;/a&gt; -
@@ -3052,10 +3052,10 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
     
     <item>
       <title>Cape.Partial - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/partial/</link>
+      <link>http://capejs.github.io/capejs/api/partial/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/partial/</guid>
+      <guid>http://capejs.github.io/capejs/api/partial/</guid>
       <description>
 
 &lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.3&lt;/span&gt;&lt;/p&gt;
@@ -3539,10 +3539,10 @@ radio button is checked.&lt;/p&gt;
     
     <item>
       <title>Cape.ResourceAgent - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/resource_agent/</link>
+      <link>http://capejs.github.io/capejs/api/resource_agent/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/resource_agent/</guid>
+      <guid>http://capejs.github.io/capejs/api/resource_agent/</guid>
       <description>
 
 &lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
@@ -4134,10 +4134,10 @@ by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
     
     <item>
       <title>Cape.Router - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/router/</link>
+      <link>http://capejs.github.io/capejs/api/router/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/router/</guid>
+      <guid>http://capejs.github.io/capejs/api/router/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#action&#34;&gt;#action&lt;/a&gt; -
@@ -4699,10 +4699,10 @@ router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
     
     <item>
       <title>Cape.RoutingMapper - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
+      <link>http://capejs.github.io/capejs/api/routing_mapper/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
+      <guid>http://capejs.github.io/capejs/api/routing_mapper/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#collection&#34;&gt;collection()&lt;/a&gt; -
@@ -5184,10 +5184,10 @@ router.draw(function(m) {
     
     <item>
       <title>Change displaying order (1) - Cape.JS Primer</title>
-      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/20_reordering1/</link>
+      <link>http://capejs.github.io/capejs/tutorials/capejs_primer/20_reordering1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/20_reordering1/</guid>
+      <guid>http://capejs.github.io/capejs/tutorials/capejs_primer/20_reordering1/</guid>
       <description>&lt;p&gt;On the three lectures from this one, I&amp;rsquo;ll add the function to change the displaying order of the tasks to our &amp;ldquo;Todo list&amp;rdquo; application.&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -5291,7 +5291,7 @@ When the content of arrow function of ECMAScript6 includes many statements, it n
 
 &lt;p&gt;The screen will be like following when the top page displays on the browser. There are up-way and down-way arrows on the button.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list21.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://capejs.github.io/capejs/capejs/images/capejs_primer/todo_list21.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s try some more. It should better to make the up button on the first line and down button on the last line have no effect.&lt;/p&gt;
 
@@ -5372,7 +5372,7 @@ When the arrow function of ECMAScript6 takes only one argument, we can omit the 
 
 &lt;p&gt;I added lines from the fifth to second from the bottom. Reload the browser and the screen will be like following.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://oiax.github.io/capejs/capejs/images/capejs_primer/todo_list22.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://capejs.github.io/capejs/capejs/images/capejs_primer/todo_list22.png&#34; alt=&#34;Screen capture&#34; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -5382,10 +5382,10 @@ When the arrow function of ECMAScript6 takes only one argument, we can omit the 
     
     <item>
       <title>Change displaying order (2) - Cape.JS Primer</title>
-      <link>http://oiax.github.io/capejs/tutorials/capejs_primer/21_reordering2/</link>
+      <link>http://capejs.github.io/capejs/tutorials/capejs_primer/21_reordering2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/tutorials/capejs_primer/21_reordering2/</guid>
+      <guid>http://capejs.github.io/capejs/tutorials/capejs_primer/21_reordering2/</guid>
       <description>&lt;p&gt;From &lt;a href=&#34;../20_reordering1&#34;&gt;the previous lecture&lt;/a&gt;, I started making the function to interchange the displaying order of the task. I just set the button moving up and down now. I&amp;rsquo;ll make API on the server this time.&lt;/p&gt;
 
 &lt;hr /&gt;

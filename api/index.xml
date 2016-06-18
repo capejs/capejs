@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Apis on Cape.JS: Documentation</title>
-    <link>http://oiax.github.io/capejs/api/</link>
+    <link>http://capejs.github.io/capejs/api/</link>
     <description>Recent content in Apis on Cape.JS: Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://oiax.github.io/capejs/api/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://capejs.github.io/capejs/api/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>API Reference</title>
-      <link>http://oiax.github.io/capejs/api/</link>
+      <link>http://capejs.github.io/capejs/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/</guid>
+      <guid>http://capejs.github.io/capejs/api/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;./cape&#34;&gt;Cape&lt;/a&gt; -
@@ -90,10 +90,10 @@ method of &lt;code&gt;Cape.Router&lt;/code&gt;.&lt;/p&gt;
     
     <item>
       <title>Cape - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/cape/</link>
+      <link>http://capejs.github.io/capejs/api/cape/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/cape/</guid>
+      <guid>http://capejs.github.io/capejs/api/cape/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#create-collection-agent-class&#34;&gt;Cape.createCollectionAgentClass()&lt;/a&gt; -
@@ -366,10 +366,10 @@ Cape.extend(object1, object2);
     
     <item>
       <title>Cape.CollectionAgent - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/collection_agent/</link>
+      <link>http://capejs.github.io/capejs/api/collection_agent/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/collection_agent/</guid>
+      <guid>http://capejs.github.io/capejs/api/collection_agent/</guid>
       <description>
 
 &lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
@@ -985,10 +985,10 @@ which takes an exception and does some error-handling jobs.&lt;/p&gt;
     
     <item>
       <title>Cape.Component - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/component/</link>
+      <link>http://capejs.github.io/capejs/api/component/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/component/</guid>
+      <guid>http://capejs.github.io/capejs/api/component/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#checked-on&#34;&gt;checkedOn()&lt;/a&gt; -
@@ -1562,10 +1562,10 @@ radio button is checked.&lt;/p&gt;
     
     <item>
       <title>Cape.DataStore - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/data_store/</link>
+      <link>http://capejs.github.io/capejs/api/data_store/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/data_store/</guid>
+      <guid>http://capejs.github.io/capejs/api/data_store/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#constructor&#34;&gt;Constructor&lt;/a&gt; -
@@ -1705,10 +1705,10 @@ comp2.mount(&#39;counter2&#39;);
     
     <item>
       <title>Cape.MarkupBuilder - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/markup_builder/</link>
+      <link>http://capejs.github.io/capejs/api/markup_builder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/markup_builder/</guid>
+      <guid>http://capejs.github.io/capejs/api/markup_builder/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#general-notes&#34;&gt;General notes&lt;/a&gt; -
@@ -2805,10 +2805,10 @@ then the &lt;code&gt;name&lt;/code&gt; attribute becomes &lt;code&gt;&amp;quot;u
     
     <item>
       <title>Cape.Partial - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/partial/</link>
+      <link>http://capejs.github.io/capejs/api/partial/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/partial/</guid>
+      <guid>http://capejs.github.io/capejs/api/partial/</guid>
       <description>
 
 &lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.3&lt;/span&gt;&lt;/p&gt;
@@ -3292,10 +3292,10 @@ radio button is checked.&lt;/p&gt;
     
     <item>
       <title>Cape.ResourceAgent - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/resource_agent/</link>
+      <link>http://capejs.github.io/capejs/api/resource_agent/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/resource_agent/</guid>
+      <guid>http://capejs.github.io/capejs/api/resource_agent/</guid>
       <description>
 
 &lt;p&gt;&lt;span class=&#34;badge alert-info&#34;&gt;1.2&lt;/span&gt;&lt;/p&gt;
@@ -3887,10 +3887,10 @@ by the &lt;code&gt;memberPath()&lt;/code&gt; method.&lt;/p&gt;
     
     <item>
       <title>Cape.Router - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/router/</link>
+      <link>http://capejs.github.io/capejs/api/router/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/router/</guid>
+      <guid>http://capejs.github.io/capejs/api/router/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#action&#34;&gt;#action&lt;/a&gt; -
@@ -4452,10 +4452,10 @@ router.vars.currentUser = { id: 99, name: &#39;john&#39;, privileged: true };
     
     <item>
       <title>Cape.RoutingMapper - API Reference</title>
-      <link>http://oiax.github.io/capejs/api/routing_mapper/</link>
+      <link>http://capejs.github.io/capejs/api/routing_mapper/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://oiax.github.io/capejs/api/routing_mapper/</guid>
+      <guid>http://capejs.github.io/capejs/api/routing_mapper/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;#collection&#34;&gt;collection()&lt;/a&gt; -
