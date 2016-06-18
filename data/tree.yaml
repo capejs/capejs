@@ -161,6 +161,9 @@ pages:
     title: "Tutorials"
     sections:
       -
+        id: "greeter"
+        title: "How to Make a Single Page Application (SPA) with Cape.JS and Rails"
+      -
         id: "capejs-primer"
         title: "Cape.JS Primer"
 api_pages:

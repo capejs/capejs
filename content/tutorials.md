@@ -1,6 +1,12 @@
 ---
 title: "Tutorials"
 ---
+
+<a class="anchor" id="greeter"></a>
+### How to Make a Single Page Application (SPA) with Cape.JS and Rails
+
+* [Preface](./greeter)
+
 <a class="anchor" id="capejs-primer"></a>
 ### Cape.JS Primer
 
