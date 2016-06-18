@@ -12,7 +12,7 @@ a JavaScript UI framework that was born in 2015.
 You will also learn how to integrate it with a back-end server written in Ruby on Rails,
 by creating a simple *to-do* list application step by step.
 
-Cape.JS uses a technique "virtual DOM" just like [React](https://facebook.github.io/react/) and [Riot](https://muut.com/riotjs/) do.
+Cape.JS uses a technique "virtual DOM" just like [React](https://facebook.github.io/react/) and [Riot](http://riotjs.com/) do.
 You can utilize Cape.JS to create interactive websites, whose contents change dynamically in response to user actions.
 
 Until recently, it's general to create such interactive websites by making full use of [jQuery](https://jquery.com/),
@@ -21,7 +21,7 @@ but front-end programming will be much easier to if you adopt "virtual DOM".
 Cape.JS is an open source project. It's distributed under the MIT license.
 You can use it for free and also redistribute or sell it after you modify its source code.
 You can find the source code at GitHub's [repository](https://github.com/capejs/capejs).
-Also, [documents](http://oiax.github.io/capejs/) are prepared.
+Also, [documents](http://capejs.github.io/capejs/) are prepared.
 
 ### Table of Contents
 
