@@ -70,6 +70,10 @@
   </url>
   
   <url>
+    <loc>http://capejs.github.io/capejs/tutorials/greeter/07_collection_agent/</loc>
+  </url>
+  
+  <url>
     <loc>http://capejs.github.io/capejs/collection_agents/</loc>
   </url>
   
@@ -138,6 +142,10 @@
   </url>
   
   <url>
+    <loc>http://capejs.github.io/capejs/tutorials/greeter/10_listing_visitors/</loc>
+  </url>
+  
+  <url>
     <loc>http://capejs.github.io/capejs/tutorials/greeter/05_form_for/</loc>
   </url>
   
@@ -147,6 +155,10 @@
   
   <url>
     <loc>http://capejs.github.io/capejs/tutorials/greeter/04_navigation_among_pages/</loc>
+  </url>
+  
+  <url>
+    <loc>http://capejs.github.io/capejs/tutorials/greeter/09_partial/</loc>
   </url>
   
   <url>
@@ -167,6 +179,10 @@
   
   <url>
     <loc>http://capejs.github.io/capejs/tutorials/capejs_primer/11_form_for_new_task/</loc>
+  </url>
+  
+  <url>
+    <loc>http://capejs.github.io/capejs/tutorials/greeter/08_error_messages/</loc>
   </url>
   
   <url>

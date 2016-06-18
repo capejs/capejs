@@ -664,6 +664,74 @@ Thus the functionality to change the displaying order of tasks is realized.&lt;/
     </item>
     
     <item>
+      <title>Collection Agent - How to make a SPA with Cape.JS and Rails</title>
+      <link>http://capejs.github.io/capejs/tutorials/greeter/07_collection_agent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://capejs.github.io/capejs/tutorials/greeter/07_collection_agent/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;../&#34;&gt;Table of Contents&lt;/a&gt; - &lt;a href=&#34;../08_error_messages&#34;&gt;Next Section&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;adding-the-visitorlistagent-class&#34;&gt;Adding the &lt;code&gt;VisitorListAgent&lt;/code&gt; class&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ mkdir -p app/assets/javascripts/agents
+$ touch app/assets/javascripts/agents/visitor_list_agent.es6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add these lines to &lt;code&gt;app/assets/javascripts/components/agents.es6&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class VisitorListAgent extends Cape.CollectionAgent {
+  constructor(client, options) {
+    super(client, options);
+    this.resourceName = &#39;visitors&#39;;
+    this.basePath = &#39;/api/&#39;;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;using-a-collection-agent&#34;&gt;Using a Collection Agent&lt;/h3&gt;
+
+&lt;p&gt;Edit &lt;code&gt;app/assets/javascripts/components/visitor_form.es6&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class VisitorForm extends Cape.Component {
+  init() {
+    this.agent = new VisitorListAgent(this)
+    this.refresh()
+  }
+
+  render(m) {
+    m.h2(&#39;Visitors Entry Form&#39;)
+    m.p(&amp;quot;Please fill in your name on this form.&amp;quot;)
+    m.formFor(&#39;visitor&#39;, m =&amp;gt; {
+      m.div(m =&amp;gt; {
+        m.labelFor(&#39;given_name&#39;, &#39;Given Name&#39;).sp().textField(&#39;given_name&#39;)
+      })
+      m.div(m =&amp;gt; {
+        m.labelFor(&#39;family_name&#39;, &#39;Family Name&#39;).sp().textField(&#39;family_name&#39;)
+      })
+      m.onclick(e =&amp;gt; this.submit()).btn(&#39;Submit&#39;)
+    })
+  }
+
+  submit() {
+    this.agent.create(this.paramsFor(&#39;visitor&#39;), data =&amp;gt; {
+      if (data.result === &#39;Success&#39;) {
+        $router.navigateTo(&#39;thanks&#39;)
+      }
+      else {
+        this.refresh()
+      }
+    })
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;../&#34;&gt;Table of Contents&lt;/a&gt; - &lt;a href=&#34;../08_error_messages&#34;&gt;Next Section&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Collection agent (1) - Cape.JS Primer</title>
       <link>http://capejs.github.io/capejs/tutorials/capejs_primer/17_collection_agent1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1767,51 +1835,6 @@ I think observant readers may notice that the program of Cape.JS is very similar
 &lt;p&gt;This is the end of the first lecture. On &lt;a href=&#34;../02_custom_attributes_and_nested_elements&#34;&gt;the next lecture&lt;/a&gt;
 we will explain how to acquire data from elements that components are mounted on.
 We will also talk about the nesting of HTML elements.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>How to Make a Single Page Application (SPA) with Cape.JS and Rails - A Tutorial</title>
-      <link>http://capejs.github.io/capejs/tutorials/greeter/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://capejs.github.io/capejs/tutorials/greeter/</guid>
-      <description>
-
-&lt;p&gt;&lt;img src=&#34;https://cdn.rawgit.com/capejs/capejs/master/doc/logo/capejs.svg&#34; alt=&#34;Cape.JS Logo&#34; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;preface&#34;&gt;Preface&lt;/h3&gt;
-
-&lt;p&gt;By reading through this tutorial,
-you can learn how to construct &lt;em&gt;Single Page Applications&lt;/em&gt; (SPAs)
-combining the &lt;a href=&#34;https://github.com/capejs/capejs&#34;&gt;Cape.JS&lt;/a&gt; as front-end framework
-with the &lt;a href=&#34;https://github.com/rails/rails&#34;&gt;Ruby on Rails&lt;/a&gt; as back-end framework.&lt;/p&gt;
-
-&lt;p&gt;This tutorial is based on the Cape.JS 1.5 and Ruby on Rails 5.0.0.rc1.&lt;/p&gt;
-
-&lt;h3 id=&#34;legend&#34;&gt;Legend&lt;/h3&gt;
-
-&lt;p&gt;If you should run one or more commands on your shell, we denote like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ mkdir foo/bar
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note that the dollar sign (&lt;code&gt;$&lt;/code&gt;) at the beginning of each line means the command prompt.&lt;/p&gt;
-
-&lt;h3 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;./01_setting_up&#34;&gt;Setting up&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./02_creating_top_page&#34;&gt;Creating the Top Page&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./03_showing_reception_component&#34;&gt;Showing the Reception Component&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./04_navigation_among_pages&#34;&gt;Navigation Among Pages&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./05_form_for&#34;&gt;Rendering an HTML Form&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./06_models_and_resources&#34;&gt;Models and Resources&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&#34;note&#34;&gt;
-This tutorial has not been completed yet.
-&lt;/div&gt;
 </description>
     </item>
     
