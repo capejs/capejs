@@ -9,6 +9,15 @@
     <atom:link href="http://capejs.github.io/capejs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title></title>
+      <link>http://capejs.github.io/capejs/tutorials/greeter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://capejs.github.io/capejs/tutorials/greeter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>API Reference</title>
       <link>http://capejs.github.io/capejs/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1917,7 +1926,7 @@ but front-end programming will be much easier to if you adopt &amp;ldquo;virtual
 
 &lt;p&gt;Cape.JS is an open source project. It&amp;rsquo;s distributed under the MIT license.
 You can use it for free and also redistribute or sell it after you modify its source code.
-You can find the source code at GitHub&amp;rsquo;s &lt;a href=&#34;https://github.com/oiax/capejs&#34;&gt;repository&lt;/a&gt;.
+You can find the source code at GitHub&amp;rsquo;s &lt;a href=&#34;https://github.com/capejs/capejs&#34;&gt;repository&lt;/a&gt;.
 Also, &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;documents&lt;/a&gt; are prepared.&lt;/p&gt;
 
 &lt;h3 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h3&gt;
@@ -5377,108 +5386,6 @@ When the arrow function of ECMAScript6 takes only one argument, we can omit the 
 &lt;hr /&gt;
 
 &lt;p&gt;That&amp;rsquo;s all for today. On &lt;a href=&#34;../21_reordering2&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll make API on the server to change the displaying order of tasks.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Change displaying order (2) - Cape.JS Primer</title>
-      <link>http://capejs.github.io/capejs/tutorials/capejs_primer/21_reordering2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://capejs.github.io/capejs/tutorials/capejs_primer/21_reordering2/</guid>
-      <description>&lt;p&gt;From &lt;a href=&#34;../20_reordering1&#34;&gt;the previous lecture&lt;/a&gt;, I started making the function to interchange the displaying order of the task. I just set the button moving up and down now. I&amp;rsquo;ll make API on the server this time.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;First, introduce Gem package &lt;a href=&#34;https://github.com/swanandp/acts_as_list&#34;&gt;acts_as_list&lt;/a&gt; that make processing to interchange the list&amp;rsquo;s order.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Gemfile&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;gem &#39;acts_as_list&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Run next command on the terminal.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;bin/bundle
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Run the commands below by following &lt;code&gt;acts_as_list&lt;/code&gt;&amp;rsquo;s &lt;a href=&#34;https://github.com/swanandp/acts_as_list#example&#34;&gt;README.md&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;bin/rails g migration AddPositionToTasks position:integer
-bin/rake db:migrate
-bin/rake db:reset
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Mount &lt;code&gt;acts_as_list&lt;/code&gt; to the class &lt;code&gt;Task&lt;/code&gt;. Rewrite &lt;code&gt;app/models/task.rb&lt;/code&gt; as following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;class Task &amp;lt; ActiveRecord::Base
-  acts_as_list
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Next, I&amp;rsquo;ll make API. &lt;code&gt;config/routes.rb&lt;/code&gt; is now like following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Rails.application.routes.draw do
-  root &#39;top#index&#39;
-
-  namespace :api do
-    resources :tasks, only: [ :index, :create, :update, :destroy ]
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Rewrite it as following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Rails.application.routes.draw do
-  root &#39;top#index&#39;
-
-  namespace :api do
-    resources :tasks, only: [ :index, :create, :update, :destroy ] do
-      patch :move_higher, :move_lower, on: :member
-    end
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;acts_as_list&lt;/code&gt; means &amp;ldquo;move up&amp;rdquo; and as &lt;code&gt;move_higher&lt;/code&gt; and &amp;ldquo;move down&amp;rdquo; as &lt;code&gt;move_lower&lt;/code&gt;. I named API like them.&lt;/p&gt;
-
-&lt;p&gt;Next, implement the action  &lt;code&gt;move_higher&lt;/code&gt; and &lt;code&gt;move_lower&lt;/code&gt;. Rewrite &lt;code&gt;app/controllers/tasks_controller.rb&lt;/code&gt; as following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;class Api::TasksController &amp;lt; ApplicationController
-  def index
-    @tasks = Task.order(position: :asc)
-  end
-
-  (snip)
-
-  def destroy
-    Task.find(params[:id]).destroy
-    render text: &#39;OK&#39;
-  end
-
-  def move_higher
-    task = Task.find(params[:id])
-    task.move_higher
-    render text: &#39;OK&#39;
-  end
-
-  def move_lower
-    task = Task.find(params[:id])
-    task.move_lower
-    render text: &#39;OK&#39;
-  end
-
-  private
-  (snip)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Thank to the &lt;code&gt;acts_as_list&lt;/code&gt; gem, it&amp;rsquo;s very simple code. I use these actions for Ajax requests. It just returns the string &amp;ldquo;OK&amp;rdquo; to the browser from the server.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Now API is ready. On &lt;a href=&#34;../22_reordering3&#34;&gt;the next lecture&lt;/a&gt;, I&amp;rsquo;ll finish JavaScript by using this API.&lt;/p&gt;
 </description>
     </item>
     
