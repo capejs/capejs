@@ -1909,7 +1909,7 @@ a JavaScript UI framework that was born in 2015.&lt;/p&gt;
 &lt;p&gt;You will also learn how to integrate it with a back-end server written in Ruby on Rails,
 by creating a simple &lt;em&gt;to-do&lt;/em&gt; list application step by step.&lt;/p&gt;
 
-&lt;p&gt;Cape.JS uses a technique &amp;ldquo;virtual DOM&amp;rdquo; just like &lt;a href=&#34;https://facebook.github.io/react/&#34;&gt;React&lt;/a&gt; and &lt;a href=&#34;https://muut.com/riotjs/&#34;&gt;Riot&lt;/a&gt; do.
+&lt;p&gt;Cape.JS uses a technique &amp;ldquo;virtual DOM&amp;rdquo; just like &lt;a href=&#34;https://facebook.github.io/react/&#34;&gt;React&lt;/a&gt; and &lt;a href=&#34;http://riotjs.com/&#34;&gt;Riot&lt;/a&gt; do.
 You can utilize Cape.JS to create interactive websites, whose contents change dynamically in response to user actions.&lt;/p&gt;
 
 &lt;p&gt;Until recently, it&amp;rsquo;s general to create such interactive websites by making full use of &lt;a href=&#34;https://jquery.com/&#34;&gt;jQuery&lt;/a&gt;,
@@ -1918,7 +1918,7 @@ but front-end programming will be much easier to if you adopt &amp;ldquo;virtual
 &lt;p&gt;Cape.JS is an open source project. It&amp;rsquo;s distributed under the MIT license.
 You can use it for free and also redistribute or sell it after you modify its source code.
 You can find the source code at GitHub&amp;rsquo;s &lt;a href=&#34;https://github.com/capejs/capejs&#34;&gt;repository&lt;/a&gt;.
-Also, &lt;a href=&#34;http://oiax.github.io/capejs/&#34;&gt;documents&lt;/a&gt; are prepared.&lt;/p&gt;
+Also, &lt;a href=&#34;http://capejs.github.io/capejs/&#34;&gt;documents&lt;/a&gt; are prepared.&lt;/p&gt;
 
 &lt;h3 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h3&gt;
 
