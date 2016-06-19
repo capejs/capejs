@@ -22,7 +22,8 @@ without [jQuery](https://jquery.com/) <i class="fa fa-external-link"></i>.
 with *unidirectional data flow.*
 * **Resource agents and collection agents:** Using *resource agents* and/or
 *collection agents*, you can perform REST requests
-to the web resources using [Fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API).
+to the web resources using [Fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
+<i class="fa fa-external-link"></i>.
 * **Router:** You can define *routes* with a DSL (domain specific language)
 similar to that of Ruby on Rails.
 
