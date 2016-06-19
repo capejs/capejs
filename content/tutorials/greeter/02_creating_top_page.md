@@ -23,9 +23,18 @@ $ bin/rails g controller top index
 
 Edit `app/views/top/index.html.erb` so that its content becomes like as:
 
-```ruby
-<h1>Greeter</h1>
-<div id='main'></div>
+```html
+<header class="jumbotron">
+  <h1>Greeter</h1>
+</header>
+
+<div class='container'>
+  <div class='card'>
+    <div class='card-block'>
+      <div id='main'></div>
+    </div>
+  </div>
+</div>
 ```
 
 ### Starting the server

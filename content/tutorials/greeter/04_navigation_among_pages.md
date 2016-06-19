@@ -15,7 +15,7 @@ class Reception extends Cape.Component {
     m.p("Hi, I am Greeter. Nice to meet you!")
     m.div(m => {
       m.onclick(e => $router.navigateTo('visitor_form'))
-        .btn('Proceed to the Entry Form')
+        .class('btn btn-primary').btn('Proceed to the Entry Form')
     })
   }
 }
@@ -31,10 +31,10 @@ Add these lines to `app/assets/javascripts/components/visitor_form.es6`:
 ```javascript
 class VisitorForm extends Cape.Component {
   render(m) {
-    m.h2('Visitors Entry Form')
     m.p("Please fill in your name on this form.")
     m.div(m => {
-      m.onclick(e => $router.navigateTo('thanks')).btn('Submit')
+      m.onclick(e => $router.navigateTo('thanks'))
+        .class('btn btn-primary').btn('Submit')
     })
   }
 }
@@ -47,7 +47,8 @@ class Thanks extends Cape.Component {
   render(m) {
     m.p("Thank you!")
     m.div(m => {
-      m.onclick(e => $router.navigateTo('')).btn('Return to the top page')
+      m.onclick(e => $router.navigateTo(''))
+        .class('btn btn-primary').btn('Return to the top page')
     })
   }
 }

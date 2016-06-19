@@ -49,7 +49,13 @@ gem 'sass-rails', '~> 6.0.0.beta1'
 gem 'sprockets', '~> 4.0.0.beta2'
 gem 'sprockets-rails'
 gem 'babel-transpiler'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 ```
+
+<div class="note">
+We add <code>bootstrap</code> just in order to smarten up our pages.
+Cape.JS doesn't depend on the Bootstrap.
+</div>
 
 ```text
 $ bin/bundle
@@ -66,6 +72,28 @@ Edit `app/assets/javascripts/application.js` so that its content becomes as foll
 
 We removed three lines that require `jquery`, `jquery_ujs` and `turbolinks`.
 Keep them if you kept `jquery-rails` and `turbolinks` on `Gemfile`.
+
+<div class="note">
+We didn't add <code>bootstrap</code> here, because we don't use any Bootstrap
+plugins on this application.
+</div>
+
+### Creating `application.scss`
+
+```text
+$ rm app/assets/stylesheets/application.css
+$ touch app/assets/stylesheets/application.scss
+```
+
+Add this line to `app/assets/stylesheets/application.scss`:
+
+```scss
+@import "bootstrap";
+```
+
+<div class="note">
+This procedure is not necessary if you don't use Bootstrap.
+</div>
 
 ### Creating `generators.rb`
 

@@ -25,7 +25,7 @@ class Reception extends Cape.Component {
 ### Introducing the Cape.JS router
 
 ```text
-$ touch app/assets/javascripts/router.es6
+$ touch app/assets/javascripts/routes.es6
 ```
 
 Add these lines to `app/assets/javascripts/routes.es6`:
