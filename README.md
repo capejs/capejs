@@ -44,8 +44,8 @@ The following example will insert `<div>Hello, World!</div>` into the `div#hello
 
 <script src="./hello_message.js"></script>
 <script>
-  var component = new HelloMesage();
-  component.mount('hello-message');
+  var component = new HelloMesage()
+  component.mount('hello-message')
 </script>
 ```
 
@@ -68,7 +68,7 @@ This example is explained in detail
 in the [Hello World](http://capejs.github.io/capejs/components/#hello-world) section
 of *Cape.JS Documentation.*
 
-## Using with Rails
+## Integration with Rails Asset Pipeline
 
 If you combile Cape.JS with Ruby on Rails, you are recommended to use `capejs-rails` gem.
 
@@ -144,7 +144,15 @@ class WelcomePage extends Cape.Component {
 * [Cape.JS Primer](http://capejs.github.io/capejs/tutorials/capejs_primer/):
   Reading through this tutorial, you can learn the basics of Cape.JS programming.
 
-## A demo application
+## Demo Applications
+
+### Greeter
+
+You can get the source code of demo app from https://github.com/capejs/greeter-demo.
+
+By reading its source code, you can learn how to construct _Single Page Applications_ (SPAs) combining the Cape.JS as front-end framework with the Rails as back-end framework.
+
+### Todo List
 
 You can download and try a demo app from https://github.com/oiax/capejs-demo-on-rails.
 
