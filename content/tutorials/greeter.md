@@ -39,3 +39,7 @@ You must omit them when you enter the text into your shell.
 * [Showing Error Messages](./08_error_messages)
 * [Refactoring with Partials](./09_partial)
 * [Listing Registered Visitors](./10_listing_visitors)
+
+### Source Code
+
+You can get the source code of demo app from https://github.com/capejs/greeter-demo.
