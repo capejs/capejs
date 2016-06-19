@@ -15,13 +15,16 @@ This tutorial is based on the Cape.JS 1.5 and Ruby on Rails 5.0.0.rc1.
 
 ### Legend
 
-If you should run one or more commands on your shell, we denote like this:
+A boxed text whose each line begins with a dollar sign (`$`) denotes that readers
+should enter this text into your _shell_ in order to run _commands_:
 
 ```text
-$ mkdir foo/bar
+$ mkdir -p foo/bar
+$ cd foo/bar
 ```
 
-Note that the dollar sign (`$`) at the beginning of each line means the command prompt.
+Note that the dollar signs (`$`) at the beginning of each line stand for _command prompts._
+You must omit them when you enter the text into your shell.
 
 ### Table of Contents
 
