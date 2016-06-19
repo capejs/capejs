@@ -15,27 +15,31 @@ class VisitorForm extends Cape.Component {
   }
 
   render(m) {
-    m.h2('Visitors Entry Form')
     m.p("Please fill in your name on this form.")
     if (this.errors) this.renderErrorMessages(m)
     m.formFor('visitor', m => {
-      m.div(m => {
-        m.labelFor('given_name', 'Given Name').sp().textField('given_name')
+      m.class('form-group').fieldset(m => {
+        m.labelFor('family_name', 'Family Name')
+        m.class('form-control').textField('family_name')
       })
-      m.div(m => {
-        m.labelFor('family_name', 'Family Name').sp().textField('family_name')
+      m.class('form-group').fieldset(m => {
+        m.labelFor('given_name', 'Given Name')
+        m.class('form-control').textField('given_name')
       })
-      m.onclick(e => this.submit()).btn('Submit')
+      m.onclick(e => this.submit())
+        .class('btn btn-primary').btn('Submit')
     })
   }
 
   renderErrorMessages(m) {
-    m.div({ class: 'error-message' }, m => {
-      m.p("You have errors. Please fix them and submit again.")
-      m.ul(m => {
-        this.errors.forEach(err => {
-          m.li(err)
-        })
+    m.class('alert alert-danger')
+    if (this.errors.length === 1)
+      m.div("The form has an error. Please correct it and try again.")
+    else
+      m.div("The form has some errors. Please correct them and try again.")
+    m.ul(m => {
+      this.errors.forEach(err => {
+        m.class('text-danger').li(err + '.')
       })
     })
   }

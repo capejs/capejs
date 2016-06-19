@@ -5,21 +5,22 @@ description: ""
 
 [Table of Contents](../) - [Next Section](../08_error_messages)
 
-### Adding the `VisitorListAgent` class
+### Creating the `VisitorListAgent` class
 
 ```text
 $ mkdir -p app/assets/javascripts/agents
 $ touch app/assets/javascripts/agents/visitor_list_agent.es6
 ```
 
-Add these lines to `app/assets/javascripts/components/agents.es6`:
+Add these lines to `app/assets/javascripts/agents/visitor_list_agent.es6`:
 
 ```javascript
 class VisitorListAgent extends Cape.CollectionAgent {
   constructor(client, options) {
-    super(client, options);
-    this.resourceName = 'visitors';
-    this.basePath = '/api/';
+    super(client, options)
+
+    this.resourceName = 'visitors'
+    this.basePath = '/api/'
   }
 }
 ```
@@ -36,16 +37,19 @@ class VisitorForm extends Cape.Component {
   }
 
   render(m) {
-    m.h2('Visitors Entry Form')
     m.p("Please fill in your name on this form.")
+    if (this.errors) this.renderErrorMessages(m)
     m.formFor('visitor', m => {
-      m.div(m => {
-        m.labelFor('given_name', 'Given Name').sp().textField('given_name')
+      m.class('form-group').fieldset(m => {
+        m.labelFor('family_name', 'Family Name')
+        m.class('form-control').textField('family_name')
       })
-      m.div(m => {
-        m.labelFor('family_name', 'Family Name').sp().textField('family_name')
+      m.class('form-group').fieldset(m => {
+        m.labelFor('given_name', 'Given Name')
+        m.class('form-control').textField('given_name')
       })
-      m.onclick(e => this.submit()).btn('Submit')
+      m.onclick(e => this.submit())
+        .class('btn btn-primary').btn('Submit')
     })
   }
 
