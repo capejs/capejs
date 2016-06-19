@@ -5,8 +5,6 @@ description: ""
 
 [Table of Contents](../) - [Next Section](../08_error_messages)
 
-### Creating the `VisitorListAgent` class
-
 ```text
 $ mkdir -p app/assets/javascripts/agents
 $ touch app/assets/javascripts/agents/visitor_list_agent.es6
@@ -25,7 +23,7 @@ class VisitorListAgent extends Cape.CollectionAgent {
 }
 ```
 
-### Using a Collection Agent
+----
 
 Edit `app/assets/javascripts/components/visitor_form.es6`:
 

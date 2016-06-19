@@ -5,8 +5,6 @@ description: ""
 
 [Table of Contents](../) - [Next Section](../05_form_for)
 
-## Adding `VisitorForm` and `Thanks` components
-
 Edit `app/assets/javascripts/omponents/reception.es6`:
 
 ```javascript

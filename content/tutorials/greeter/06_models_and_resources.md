@@ -5,7 +5,7 @@ description: ""
 
 [Table of Contents](../) - [Next Section](../07_collection_agent)
 
-### Creating `Visitor` model
+Create `Visitor` model
 
 ```text
 $ bin/rails g model visitor family_name:string given_name:string
@@ -20,7 +20,7 @@ class Visitor < ApplicationRecord
 end
 ```
 
-### Creating `api/visitors` resources
+----
 
 ```text
 $ bin/rails g controller api/visitors
@@ -38,15 +38,15 @@ Rails.application.routes.draw do
 end
 ```
 
-### Preparing the `api/visitors` controller
+----
 
 Edit `app/controllers/api/visitors_controller.rb`:
 
 ```text
 class Api::VisitorsController < ApplicationController
   def create
-    visitor = Visitor.new(visitor_params)
-    if visitor.save
+    @visitor = Visitor.new(visitor_params)
+    if @visitor.save
       render json: { result: 'Success' }
     else
       render action: 'errors', format: 'json'

@@ -5,8 +5,6 @@ description: ""
 
 [Table of Contents](../)
 
-### Adding `api/visitors#index` action
-
 Edit `config/routes.rb`:
 
 ```ruby
@@ -53,7 +51,7 @@ Add this line to `app/views/visitors/index.jbuilder`
 json.visitors(@visitors, :id, :family_name, :given_name)
 ```
 
-### Adding a route
+----
 
 Edit `app/assets/javascripts/routes.es6`:
 
@@ -73,7 +71,7 @@ document.addEventListener("DOMContentLoaded", event => {
 });
 ```
 
-### Create `Visitors.List` component
+----
 
 ```text
 $ mkdir -p app/assets/javascripts/components/visitors

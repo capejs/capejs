@@ -5,7 +5,7 @@ description: "Creating a Rails app skeleton and setting it up for Cape.JS integr
 
 [Table of Contents](../) - [Next Section](../02_creating_top_page)
 
-### Checking required softwares
+Check if you have required softwares:
 
 ```text
 $ ruby -v
@@ -14,7 +14,9 @@ $ rails -v
 
 You need Ruby 2.2.2 or higher and Rails 5.0.0.rc1.
 
-### Creating the Rails app skeleton
+----
+
+Create a Rails application skeleton:
 
 ```text
 $ rails new greeter -BT
@@ -25,7 +27,7 @@ The meaning of options:
 * `-B`: Don't run bundle install (`--skip-bundle`)
 * `-T`: Skip test files (`--skip-test`)
 
-### Setting up the `capejs-rails`
+----
 
 Remove these lines from the `Gemfile`:
 
@@ -61,7 +63,7 @@ Cape.JS doesn't depend on the Bootstrap.
 $ bin/bundle
 ```
 
-### Editing `application.js`
+----
 
 Edit `app/assets/javascripts/application.js` so that its content becomes as follows:
 
@@ -78,7 +80,7 @@ We didn't add <code>bootstrap</code> here, because we don't use any Bootstrap
 plugins on this application.
 </div>
 
-### Creating `application.scss`
+----
 
 ```text
 $ rm app/assets/stylesheets/application.css
@@ -95,7 +97,7 @@ Add this line to `app/assets/stylesheets/application.scss`:
 This procedure is not necessary if you don't use Bootstrap.
 </div>
 
-### Creating `generators.rb`
+----
 
 ```text
 $ touch config/initializers/generators.rb

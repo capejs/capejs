@@ -5,7 +5,7 @@ description: "Creating the Reception component and introducing the Cape.JS route
 
 [Table of Contents](../) - [Next Section](../04_navigation_among_pages)
 
-### Creating the `Reception` component
+Create `Reception` component
 
 ```text
 $ mkdir -p app/assets/javascripts/components
@@ -22,7 +22,7 @@ class Reception extends Cape.Component {
 }
 ```
 
-### Introducing the Cape.JS router
+----
 
 ```text
 $ touch app/assets/javascripts/routes.es6
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", event => {
 })
 ```
 
-Reload your browser to see if the page is rendered without errors. Below the heading you will see a <p> element with following content:
+Reload your browser to see if the page is rendered without errors. Below the heading you will see a `<p>` element with following content:
 
 > Hi, I am Greeter. Nice to meet you!
 
