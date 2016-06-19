@@ -5,6 +5,56 @@ description: ""
 
 [Table of Contents](../)
 
+### Adding `api/visitors#index` action
+
+Edit `config/routes.rb`:
+
+```ruby
+Rails.application.routes.draw do
+  root 'top#index'
+
+  namespace :api do
+    resources :visitors, only: [ :index, :create ]
+  end
+end
+```
+
+Edit `app/controllers/api/visitors_controller.rb`:
+
+```text
+class Api::VisitorsController < ApplicationController
+  def index
+    @visitors = Visitor.order('id')
+  end
+
+  def create
+    visitor = Visitor.new(visitor_params)
+    if visitor.save
+      render json: { result: 'Success' }
+    else
+      render action: 'errors', format: 'json'
+    end
+  end
+
+  private
+  def visitor_params
+    params.require(:visitor).permit(:family_name, :given_name)
+  end
+end
+```
+
+```text
+$ touch app/views/visitors/index.jbuilder
+```
+
+Add this line to `app/views/visitors/index.jbuilder`
+
+```ruby
+json.visitors(@visitors, :id, :family_name, :given_name)
+```
+
+### Adding a route
+
 Edit `app/assets/javascripts/routes.es6`:
 
 ```javascript
@@ -22,6 +72,8 @@ document.addEventListener("DOMContentLoaded", event => {
   $router.start()
 });
 ```
+
+### Create `Visitors.List` component
 
 ```text
 $ mkdir -p app/assets/javascripts/components/visitors
@@ -42,13 +94,16 @@ var Visitors = Visitors || {}
     }
 
     render(m) {
+      m.h4('Visitors List')
       m.ol(m => {
         this.agent.objects.forEach(visitor => {
           m.li(`${visitor.family_name}, ${visitor.given_name}`)
         })
       })
       m.div(m => {
-        m.onclick(e => $router.navigateTo('')).btn('Return to the top page')
+        m.onclick(e => $router.navigateTo(''))
+          .class('btn btn-primary')
+          .btn('Go Back')
       })
     }
   }
@@ -66,11 +121,12 @@ class Reception extends Cape.Component {
     m.p("Hi, I am Greeter. Nice to meet you!")
     m.div(m => {
       m.onclick(e => $router.navigateTo('visitor_form'))
+        .class('btn btn-primary')
         .btn('Proceed to the Entry Form')
-    })
-    m.div(m => {
+      m.sp()
       m.onclick(e => $router.navigateTo('visitors'))
-        .btn('Show the list of registered visitors')
+        .class('btn btn-default')
+        .btn('Show Visitors List')
     })
   }
 }

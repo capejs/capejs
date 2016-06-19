@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   root 'top#index'
 
   namespace :api do
-    resources :visitors, only: [ :index, :create ]
+    resources :visitors, only: [ :create ]
   end
 end
 ```
@@ -44,10 +44,6 @@ Edit `app/controllers/api/visitors_controller.rb`:
 
 ```text
 class Api::VisitorsController < ApplicationController
-  def index
-    @visitors = Visitor.order('id')
-  end
-
   def create
     visitor = Visitor.new(visitor_params)
     if visitor.save

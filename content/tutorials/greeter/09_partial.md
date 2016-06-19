@@ -7,21 +7,45 @@ description: ""
 
 ```text
 $ mkdir -p app/assets/javascripts/partials
-$ touch app/assets/javascripts/partials/error_message_list.es6
+$ touch app/assets/javascripts/partials/error_message.es6
+$ touch app/assets/javascripts/partials/text_field_set.es6
 ```
 
-Add these lines to `app/assets/javascripts/partials/error_message_list.es6`:
+Add these lines to `app/assets/javascripts/partials/error_message.es6`:
 
 ```javascript
-class ErrorMessageList extends Cape.Partial {
+class ErrorMessage extends Cape.Partial {
   render(m) {
-    m.div({ class: 'error-message' }, m => {
-      m.p("You have errors. Please fix them and submit again.")
-      m.ul(m => {
-        this.parent.errors.forEach(err => {
-          m.li(err)
+    m.class('alert alert-danger').div(m => {
+      if (Object.keys(this.parent.errors).length === 1)
+        m.text('An error is found in the form.').sp()
+          .text('Please correct it and try again.')
+      else
+        m.text('Some errors are found in the form.').sp()
+          .text('Please correct them and try again.')
+    })
+  }
+}
+```
+
+Add these lines to `app/assets/javascripts/partials/text_field_set.es6`:
+
+```javascript
+class TextFieldSet extends Cape.Partial {
+  render(m, name, labelText) {
+    let errors = this.parent.errors && this.parent.errors[name]
+
+    if (errors) m.class('has-danger')
+
+    m.class('form-group').fieldset(m => {
+      m.class('form-control-label').labelFor(name, labelText)
+      m.class('form-control').textField(name)
+
+      if (errors) {
+        m.class('text-danger small').ul(m => {
+          errors.forEach(error => m.li(error))
         })
-      })
+      }
     })
   }
 }
@@ -33,22 +57,22 @@ Edit `app/assets/javascripts/components/visitor_form.es6`:
 class VisitorForm extends Cape.Component {
   init() {
     this.agent = new VisitorListAgent(this)
-    this.errorMessageList = new ErrorMessageList(this)
     this.refresh()
   }
 
   render(m) {
-    m.h2('Visitors Entry Form')
+    let errorMessage = new ErrorMessage(this)
+    let textFieldSet = new TextFieldSet(this)
+
     m.p("Please fill in your name on this form.")
-    if (this.errors) this.errorMessageList.render(m)
+
+    if (this.errors) errorMessage.render(m)
+
     m.formFor('visitor', m => {
-      m.div(m => {
-        m.labelFor('given_name', 'Given Name').sp().textField('given_name')
-      })
-      m.div(m => {
-        m.labelFor('family_name', 'Family Name').sp().textField('family_name')
-      })
-      m.onclick(e => this.submit()).btn('Submit')
+      textFieldSet.render(m, 'family_name', 'Family Name')
+      textFieldSet.render(m, 'given_name', 'Given Name')
+      m.onclick(e => this.submit())
+        .class('btn btn-primary').btn('Submit')
     })
   }
 
