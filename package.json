@@ -4,7 +4,7 @@
   "description": "Documentation for Cape.JS",
   "author": "Oiax, Inc. and other contributors",
   "license": "MIT",
-  "homepage": "http://oiax.github.io/capejs/",
+  "homepage": "http://capejs.github.io/capejs/",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-run": "^1.6.7",
