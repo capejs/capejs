@@ -1,5 +1,6 @@
 ---
 title: "How to Make a Single Page Application (SPA) with Cape.JS and Rails - A Tutorial"
+description: "By reading through this tutorial, you will learn how to construct Single Page Applications (SPAs) combining Cape.JS and Ruby on Rails."
 ---
 
 ![Cape.JS Logo](https://cdn.rawgit.com/capejs/capejs/master/doc/logo/capejs.svg)

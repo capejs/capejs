@@ -1,6 +1,6 @@
 ---
 title: "Listing Registered Visitors - How to make a SPA with Cape.JS and Rails"
-description: ""
+description: "Learn how to fetch collection data from the server and render them as a list using Cape.JS's markup builder."
 ---
 
 [Table of Contents](../)

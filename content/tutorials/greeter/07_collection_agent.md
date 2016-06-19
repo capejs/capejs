@@ -1,6 +1,6 @@
 ---
 title: "Collection Agent - How to make a SPA with Cape.JS and Rails"
-description: ""
+description: "Learn how to define a collection agent for doing Ajax requests."
 ---
 
 [Table of Contents](../) - [Next Section](../08_error_messages)

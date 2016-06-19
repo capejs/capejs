@@ -1,6 +1,6 @@
 ---
 title: "Models and Resources - How to make a SPA with Cape.JS and Rails"
-description: ""
+description: "Preparing models and resources on the server-side app."
 ---
 
 [Table of Contents](../) - [Next Section](../07_collection_agent)

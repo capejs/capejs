@@ -1,6 +1,6 @@
 ---
 title: "Manipulating an HTML Form - How to make a SPA with Cape.JS and Rails"
-description: ""
+description: "Learn how to construct an HTML form with Cape.JS's markup builder."
 ---
 
 [Table of Contents](../) - [Next Section](../06_models_and_resources)

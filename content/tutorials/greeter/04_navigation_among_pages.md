@@ -1,6 +1,6 @@
 ---
 title: "Navigation Among Pages - How to make a SPA with Cape.JS and Rails"
-description: ""
+description: "Learn how to use the navigateTo() method of Cape.JS router."
 ---
 
 [Table of Contents](../) - [Next Section](../05_form_for)

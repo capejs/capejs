@@ -1,6 +1,6 @@
 ---
 title: "Showing Error Messages - How to make a SPA with Cape.JS and Rails"
-description: ""
+description: "Learn how to show error messages on the form using JSON data form ther server."
 ---
 
 [Table of Contents](../) - [Next Section](../09_partial)

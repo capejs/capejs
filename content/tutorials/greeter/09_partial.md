@@ -1,6 +1,6 @@
 ---
 title: "Refactoring with Partials - How to make a SPA with Cape.JS and Rails"
-description: ""
+description: "Learn how to make the source code more maintainable by introducing Partials."
 ---
 
 [Table of Contents](../) - [Next Section](../10_listing_visitors)
