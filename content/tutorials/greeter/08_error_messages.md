@@ -16,31 +16,40 @@ class VisitorForm extends Cape.Component {
 
   render(m) {
     m.p("Please fill in your name on this form.")
-    if (this.errors) this.renderErrorMessages(m)
+    if (this.errors) this.renderErrorMessage(m)
     m.formFor('visitor', m => {
-      m.class('form-group').fieldset(m => {
-        m.labelFor('family_name', 'Family Name')
-        m.class('form-control').textField('family_name')
-      })
-      m.class('form-group').fieldset(m => {
-        m.labelFor('given_name', 'Given Name')
-        m.class('form-control').textField('given_name')
-      })
+      this.renderTextFieldSet(m, 'family_name', 'Family Name')
+      this.renderTextFieldSet(m, 'given_name', 'Given Name')
       m.onclick(e => this.submit())
         .class('btn btn-primary').btn('Submit')
     })
   }
 
-  renderErrorMessages(m) {
-    m.class('alert alert-danger')
-    if (this.errors.length === 1)
-      m.div("The form has an error. Please correct it and try again.")
-    else
-      m.div("The form has some errors. Please correct them and try again.")
-    m.ul(m => {
-      this.errors.forEach(err => {
-        m.class('text-danger').li(err + '.')
-      })
+  renderErrorMessage(m) {
+    m.class('alert alert-danger').div(m => {
+      if (Object.keys(this.errors).length === 1)
+        m.text('An error is found in the form.').sp()
+          .text('Please correct it and try again.')
+      else
+        m.text('Some errors are found in the form.').sp()
+          .text('Please correct them and try again.')
+    })
+  }
+
+  renderTextFieldSet(m, name, labelText) {
+    let errors = this.errors && this.errors[name]
+
+    if (errors) m.class('has-danger')
+
+    m.class('form-group').fieldset(m => {
+      m.class('form-control-label').labelFor(name, labelText)
+      m.class('form-control').textField(name)
+
+      if (errors) {
+        m.class('text-danger small').ul(m => {
+          errors.forEach(error => m.li(error))
+        })
+      }
     })
   }
 

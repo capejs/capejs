@@ -53,7 +53,7 @@ class Api::VisitorsController < ApplicationController
     if visitor.save
       render json: { result: 'Success' }
     else
-      render json: { result: 'Failure', errors: visitor.errors.full_messages }
+      render action: 'errors', format: 'json'
     end
   end
 
@@ -65,13 +65,19 @@ end
 ```
 
 ```text
-$ touch app/views/api/visitors/index.jbuilder
+$ touch app/views/visitors/errors.jbuilder
 ```
 
-Add this line to `app/views/api/visitors/index.jbuilder`:
+Add these lines to `app/views/visitors/errors.jbuilder`
 
 ```ruby
-json.visitors(@visitors, :id, :family_name, :given_name)
+json.errors do
+  @visitor.errors.keys.each do |key|
+    json.set! key do
+      json.array! @visitor.errors.full_messages_for(key)
+    end
+  end
+end
 ```
 
 [Table of Contents](../) - [Next Section](../07_collection_agent)
