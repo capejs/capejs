@@ -219,19 +219,42 @@
 
 <pre><code class="language-javascript">class VisitorForm extends Cape.Component {
   render(m) {
-    m.h2('Visitors Entry Form')
     m.p(&quot;Please fill in your name on this form.&quot;)
     m.formFor('visitor', m =&gt; {
-      m.div(m =&gt; {
-        m.labelFor('given_name', 'Given Name').sp().textField('given_name')
+      m.class('form-group').fieldset(m =&gt; {
+        m.class('form-control-label').labelFor('family_name', 'Family Name')
+        m.class('form-control').textField('family_name')
       })
-      m.div(m =&gt; {
-        m.labelFor('family_name', 'Family Name').sp().textField('family_name')
+      m.class('form-group').fieldset(m =&gt; {
+        m.class('form-control-label').labelFor('given_name', 'Given Name')
+        m.class('form-control').textField('given_name')
       })
-      m.onclick(e =&gt; $router.navigateTo('thanks')).btn('Submit')
+      m.onclick(e =&gt; $router.navigateTo('thanks'))
+        .class('btn btn-primary').btn('Submit')
     })
   }
 }
+</code></pre>
+
+<p>This component creates a DOM structure roughly equivalent to the following HTML fragment:</p>
+
+<pre><code class="language-html">&lt;p&gt;Please fill in your name on this form.&lt;/p&gt;
+&lt;form name=&quot;visitor&quot;&gt;
+&lt;fieldset class=&quot;form-group&quot;&gt;
+&lt;label for=&quot;visitor-field-family-name&quot;
+  class=&quot;form-control-label&quot;&gt;Family Name&lt;/label&gt;
+&lt;input type=&quot;text&quot; name=&quot;family_name&quot;
+  id=&quot;visitor-field-family-name&quot; class=&quot;form-control&quot;&gt;
+&lt;/fieldset&gt;
+&lt;fieldset class=&quot;form-group&quot;&gt;
+&lt;label for=&quot;visitor-field-given-name&quot;
+  class=&quot;form-control-label&quot;&gt;Given Name&lt;/label&gt;
+&lt;input type=&quot;text&quot; name=&quot;given_name&quot;
+  id=&quot;visitor-field-given-name&quot; class=&quot;form-control&quot;&gt;
+&lt;/fieldset&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; value=&quot;&quot;
+  onclick=&quot;function(e) { $router.navigateTo('thanks') }&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
 </code></pre>
 
 <p><a href="../">Table of Contents</a> - <a href="../06_models_and_resources">Next Section</a></p>

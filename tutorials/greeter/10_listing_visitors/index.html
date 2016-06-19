@@ -213,7 +213,55 @@
           </div>
         </header>
         <div>
-          <p><a href="../">Table of Contents</a></p>
+          
+
+<p><a href="../">Table of Contents</a></p>
+
+<h3 id="adding-api-visitors-index-action">Adding <code>api/visitors#index</code> action</h3>
+
+<p>Edit <code>config/routes.rb</code>:</p>
+
+<pre><code class="language-ruby">Rails.application.routes.draw do
+  root 'top#index'
+
+  namespace :api do
+    resources :visitors, only: [ :index, :create ]
+  end
+end
+</code></pre>
+
+<p>Edit <code>app/controllers/api/visitors_controller.rb</code>:</p>
+
+<pre><code class="language-text">class Api::VisitorsController &lt; ApplicationController
+  def index
+    @visitors = Visitor.order('id')
+  end
+
+  def create
+    visitor = Visitor.new(visitor_params)
+    if visitor.save
+      render json: { result: 'Success' }
+    else
+      render action: 'errors', format: 'json'
+    end
+  end
+
+  private
+  def visitor_params
+    params.require(:visitor).permit(:family_name, :given_name)
+  end
+end
+</code></pre>
+
+<pre><code class="language-text">$ touch app/views/visitors/index.jbuilder
+</code></pre>
+
+<p>Add this line to <code>app/views/visitors/index.jbuilder</code></p>
+
+<pre><code class="language-ruby">json.visitors(@visitors, :id, :family_name, :given_name)
+</code></pre>
+
+<h3 id="adding-a-route">Adding a route</h3>
 
 <p>Edit <code>app/assets/javascripts/routes.es6</code>:</p>
 
@@ -232,6 +280,8 @@ document.addEventListener(&quot;DOMContentLoaded&quot;, event =&gt; {
 });
 </code></pre>
 
+<h3 id="create-visitors-list-component">Create <code>Visitors.List</code> component</h3>
+
 <pre><code class="language-text">$ mkdir -p app/assets/javascripts/components/visitors
 $ touch app/assets/javascripts/components/visitors/list.es6
 </code></pre>
@@ -249,13 +299,16 @@ $ touch app/assets/javascripts/components/visitors/list.es6
     }
 
     render(m) {
+      m.h4('Visitors List')
       m.ol(m =&gt; {
         this.agent.objects.forEach(visitor =&gt; {
           m.li(`${visitor.family_name}, ${visitor.given_name}`)
         })
       })
       m.div(m =&gt; {
-        m.onclick(e =&gt; $router.navigateTo('')).btn('Return to the top page')
+        m.onclick(e =&gt; $router.navigateTo(''))
+          .class('btn btn-primary')
+          .btn('Go Back')
       })
     }
   }
@@ -272,11 +325,12 @@ $ touch app/assets/javascripts/components/visitors/list.es6
     m.p(&quot;Hi, I am Greeter. Nice to meet you!&quot;)
     m.div(m =&gt; {
       m.onclick(e =&gt; $router.navigateTo('visitor_form'))
+        .class('btn btn-primary')
         .btn('Proceed to the Entry Form')
-    })
-    m.div(m =&gt; {
+      m.sp()
       m.onclick(e =&gt; $router.navigateTo('visitors'))
-        .btn('Show the list of registered visitors')
+        .class('btn btn-default')
+        .btn('Show Visitors List')
     })
   }
 }

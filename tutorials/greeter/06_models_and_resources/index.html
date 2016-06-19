@@ -241,7 +241,7 @@ end
   root 'top#index'
 
   namespace :api do
-    resources :visitors, only: [ :index, :create ]
+    resources :visitors, only: [ :create ]
   end
 end
 </code></pre>
@@ -251,16 +251,12 @@ end
 <p>Edit <code>app/controllers/api/visitors_controller.rb</code>:</p>
 
 <pre><code class="language-text">class Api::VisitorsController &lt; ApplicationController
-  def index
-    @visitors = Visitor.order('id')
-  end
-
   def create
     visitor = Visitor.new(visitor_params)
     if visitor.save
       render json: { result: 'Success' }
     else
-      render json: { result: 'Failure', errors: visitor.errors.full_messages }
+      render action: 'errors', format: 'json'
     end
   end
 
@@ -271,12 +267,18 @@ end
 end
 </code></pre>
 
-<pre><code class="language-text">$ touch app/views/api/visitors/index.jbuilder
+<pre><code class="language-text">$ touch app/views/visitors/errors.jbuilder
 </code></pre>
 
-<p>Add this line to <code>app/views/api/visitors/index.jbuilder</code>:</p>
+<p>Add these lines to <code>app/views/visitors/errors.jbuilder</code></p>
 
-<pre><code class="language-ruby">json.visitors(@visitors, :id, :family_name, :given_name)
+<pre><code class="language-ruby">json.errors do
+  @visitor.errors.keys.each do |key|
+    json.set! key do
+      json.array! @visitor.errors.full_messages_for(key)
+    end
+  end
+end
 </code></pre>
 
 <p><a href="../">Table of Contents</a> - <a href="../07_collection_agent">Next Section</a></p>

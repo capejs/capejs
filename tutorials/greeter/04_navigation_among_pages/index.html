@@ -226,7 +226,7 @@
     m.p(&quot;Hi, I am Greeter. Nice to meet you!&quot;)
     m.div(m =&gt; {
       m.onclick(e =&gt; $router.navigateTo('visitor_form'))
-        .btn('Proceed to the Entry Form')
+        .class('btn btn-primary').btn('Proceed to the Entry Form')
     })
   }
 }
@@ -240,10 +240,10 @@ $ touch app/assets/javascripts/components/thanks.es6
 
 <pre><code class="language-javascript">class VisitorForm extends Cape.Component {
   render(m) {
-    m.h2('Visitors Entry Form')
     m.p(&quot;Please fill in your name on this form.&quot;)
     m.div(m =&gt; {
-      m.onclick(e =&gt; $router.navigateTo('thanks')).btn('Submit')
+      m.onclick(e =&gt; $router.navigateTo('thanks'))
+        .class('btn btn-primary').btn('Submit')
     })
   }
 }
@@ -255,7 +255,8 @@ $ touch app/assets/javascripts/components/thanks.es6
   render(m) {
     m.p(&quot;Thank you!&quot;)
     m.div(m =&gt; {
-      m.onclick(e =&gt; $router.navigateTo('')).btn('Return to the top page')
+      m.onclick(e =&gt; $router.navigateTo(''))
+        .class('btn btn-primary').btn('Return to the top page')
     })
   }
 }

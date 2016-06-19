@@ -673,19 +673,20 @@ Thus the functionality to change the displaying order of tasks is realized.&lt;/
 
 &lt;p&gt;&lt;a href=&#34;../&#34;&gt;Table of Contents&lt;/a&gt; - &lt;a href=&#34;../08_error_messages&#34;&gt;Next Section&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;adding-the-visitorlistagent-class&#34;&gt;Adding the &lt;code&gt;VisitorListAgent&lt;/code&gt; class&lt;/h3&gt;
+&lt;h3 id=&#34;creating-the-visitorlistagent-class&#34;&gt;Creating the &lt;code&gt;VisitorListAgent&lt;/code&gt; class&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ mkdir -p app/assets/javascripts/agents
 $ touch app/assets/javascripts/agents/visitor_list_agent.es6
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Add these lines to &lt;code&gt;app/assets/javascripts/components/agents.es6&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Add these lines to &lt;code&gt;app/assets/javascripts/agents/visitor_list_agent.es6&lt;/code&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;class VisitorListAgent extends Cape.CollectionAgent {
   constructor(client, options) {
-    super(client, options);
-    this.resourceName = &#39;visitors&#39;;
-    this.basePath = &#39;/api/&#39;;
+    super(client, options)
+
+    this.resourceName = &#39;visitors&#39;
+    this.basePath = &#39;/api/&#39;
   }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -701,16 +702,19 @@ $ touch app/assets/javascripts/agents/visitor_list_agent.es6
   }
 
   render(m) {
-    m.h2(&#39;Visitors Entry Form&#39;)
     m.p(&amp;quot;Please fill in your name on this form.&amp;quot;)
+    if (this.errors) this.renderErrorMessages(m)
     m.formFor(&#39;visitor&#39;, m =&amp;gt; {
-      m.div(m =&amp;gt; {
-        m.labelFor(&#39;given_name&#39;, &#39;Given Name&#39;).sp().textField(&#39;given_name&#39;)
+      m.class(&#39;form-group&#39;).fieldset(m =&amp;gt; {
+        m.labelFor(&#39;family_name&#39;, &#39;Family Name&#39;)
+        m.class(&#39;form-control&#39;).textField(&#39;family_name&#39;)
       })
-      m.div(m =&amp;gt; {
-        m.labelFor(&#39;family_name&#39;, &#39;Family Name&#39;).sp().textField(&#39;family_name&#39;)
+      m.class(&#39;form-group&#39;).fieldset(m =&amp;gt; {
+        m.labelFor(&#39;given_name&#39;, &#39;Given Name&#39;)
+        m.class(&#39;form-control&#39;).textField(&#39;given_name&#39;)
       })
-      m.onclick(e =&amp;gt; this.submit()).btn(&#39;Submit&#39;)
+      m.onclick(e =&amp;gt; this.submit())
+        .class(&#39;btn btn-primary&#39;).btn(&#39;Submit&#39;)
     })
   }
 
@@ -1440,8 +1444,17 @@ end
 
 &lt;p&gt;Edit &lt;code&gt;app/views/top/index.html.erb&lt;/code&gt; so that its content becomes like as:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;&amp;lt;h1&amp;gt;Greeter&amp;lt;/h1&amp;gt;
-&amp;lt;div id=&#39;main&#39;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;header class=&amp;quot;jumbotron&amp;quot;&amp;gt;
+  &amp;lt;h1&amp;gt;Greeter&amp;lt;/h1&amp;gt;
+&amp;lt;/header&amp;gt;
+
+&amp;lt;div class=&#39;container&#39;&amp;gt;
+  &amp;lt;div class=&#39;card&#39;&amp;gt;
+    &amp;lt;div class=&#39;card-block&#39;&amp;gt;
+      &amp;lt;div id=&#39;main&#39;&amp;gt;&amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;starting-the-server&#34;&gt;Starting the server&lt;/h3&gt;

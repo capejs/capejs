@@ -224,28 +224,41 @@
   }
 
   render(m) {
-    m.h2('Visitors Entry Form')
     m.p(&quot;Please fill in your name on this form.&quot;)
-    if (this.errors) this.renderErrorMessages(m)
+    if (this.errors) this.renderErrorMessage(m)
     m.formFor('visitor', m =&gt; {
-      m.div(m =&gt; {
-        m.labelFor('given_name', 'Given Name').sp().textField('given_name')
-      })
-      m.div(m =&gt; {
-        m.labelFor('family_name', 'Family Name').sp().textField('family_name')
-      })
-      m.onclick(e =&gt; this.submit()).btn('Submit')
+      this.renderTextFieldSet(m, 'family_name', 'Family Name')
+      this.renderTextFieldSet(m, 'given_name', 'Given Name')
+      m.onclick(e =&gt; this.submit())
+        .class('btn btn-primary').btn('Submit')
     })
   }
 
-  renderErrorMessages(m) {
-    m.div({ class: 'error-message' }, m =&gt; {
-      m.p(&quot;You have errors. Please fix them and submit again.&quot;)
-      m.ul(m =&gt; {
-        this.errors.forEach(err =&gt; {
-          m.li(err)
+  renderErrorMessage(m) {
+    m.class('alert alert-danger').div(m =&gt; {
+      if (Object.keys(this.errors).length === 1)
+        m.text('An error is found in the form.').sp()
+          .text('Please correct it and try again.')
+      else
+        m.text('Some errors are found in the form.').sp()
+          .text('Please correct them and try again.')
+    })
+  }
+
+  renderTextFieldSet(m, name, labelText) {
+    let errors = this.errors &amp;&amp; this.errors[name]
+
+    if (errors) m.class('has-danger')
+
+    m.class('form-group').fieldset(m =&gt; {
+      m.class('form-control-label').labelFor(name, labelText)
+      m.class('form-control').textField(name)
+
+      if (errors) {
+        m.class('text-danger small').ul(m =&gt; {
+          errors.forEach(error =&gt; m.li(error))
         })
-      })
+      }
     })
   }
 

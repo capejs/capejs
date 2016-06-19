@@ -233,8 +233,17 @@ end
 
 <p>Edit <code>app/views/top/index.html.erb</code> so that its content becomes like as:</p>
 
-<pre><code class="language-ruby">&lt;h1&gt;Greeter&lt;/h1&gt;
-&lt;div id='main'&gt;&lt;/div&gt;
+<pre><code class="language-html">&lt;header class=&quot;jumbotron&quot;&gt;
+  &lt;h1&gt;Greeter&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;div class='container'&gt;
+  &lt;div class='card'&gt;
+    &lt;div class='card-block'&gt;
+      &lt;div id='main'&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
 
 <h3 id="starting-the-server">Starting the server</h3>
