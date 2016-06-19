@@ -213,11 +213,9 @@
           </div>
         </header>
         <div>
-          
+          <p><a href="../">Table of Contents</a> - <a href="../02_creating_top_page">Next Section</a></p>
 
-<p><a href="../">Table of Contents</a> - <a href="../02_creating_top_page">Next Section</a></p>
-
-<h3 id="checking-required-softwares">Checking required softwares</h3>
+<p>Check if you have required softwares:</p>
 
 <pre><code class="language-text">$ ruby -v
 $ rails -v
@@ -225,7 +223,9 @@ $ rails -v
 
 <p>You need Ruby 2.2.2 or higher and Rails 5.0.0.rc1.</p>
 
-<h3 id="creating-the-rails-app-skeleton">Creating the Rails app skeleton</h3>
+<hr />
+
+<p>Create a Rails application skeleton:</p>
 
 <pre><code class="language-text">$ rails new greeter -BT
 </code></pre>
@@ -237,7 +237,7 @@ $ rails -v
 <li><code>-T</code>: Skip test files (<code>--skip-test</code>)</li>
 </ul>
 
-<h3 id="setting-up-the-capejs-rails">Setting up the <code>capejs-rails</code></h3>
+<hr />
 
 <p>Remove these lines from the <code>Gemfile</code>:</p>
 
@@ -270,7 +270,7 @@ Cape.JS doesn't depend on the Bootstrap.
 <pre><code class="language-text">$ bin/bundle
 </code></pre>
 
-<h3 id="editing-application-js">Editing <code>application.js</code></h3>
+<hr />
 
 <p>Edit <code>app/assets/javascripts/application.js</code> so that its content becomes as follows:</p>
 
@@ -286,7 +286,7 @@ We didn't add <code>bootstrap</code> here, because we don't use any Bootstrap
 plugins on this application.
 </div>
 
-<h3 id="creating-application-scss">Creating <code>application.scss</code></h3>
+<hr />
 
 <pre><code class="language-text">$ rm app/assets/stylesheets/application.css
 $ touch app/assets/stylesheets/application.scss
@@ -301,7 +301,7 @@ $ touch app/assets/stylesheets/application.scss
 This procedure is not necessary if you don't use Bootstrap.
 </div>
 
-<h3 id="creating-generators-rb">Creating <code>generators.rb</code></h3>
+<hr />
 
 <pre><code class="language-text">$ touch config/initializers/generators.rb
 </code></pre>

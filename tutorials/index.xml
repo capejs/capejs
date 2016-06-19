@@ -669,11 +669,7 @@ Thus the functionality to change the displaying order of tasks is realized.&lt;/
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://capejs.github.io/capejs/tutorials/greeter/07_collection_agent/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;../&#34;&gt;Table of Contents&lt;/a&gt; - &lt;a href=&#34;../08_error_messages&#34;&gt;Next Section&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;creating-the-visitorlistagent-class&#34;&gt;Creating the &lt;code&gt;VisitorListAgent&lt;/code&gt; class&lt;/h3&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;../&#34;&gt;Table of Contents&lt;/a&gt; - &lt;a href=&#34;../08_error_messages&#34;&gt;Next Section&lt;/a&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ mkdir -p app/assets/javascripts/agents
 $ touch app/assets/javascripts/agents/visitor_list_agent.es6
@@ -691,7 +687,7 @@ $ touch app/assets/javascripts/agents/visitor_list_agent.es6
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;using-a-collection-agent&#34;&gt;Using a Collection Agent&lt;/h3&gt;
+&lt;hr /&gt;
 
 &lt;p&gt;Edit &lt;code&gt;app/assets/javascripts/components/visitor_form.es6&lt;/code&gt;:&lt;/p&gt;
 
@@ -1424,11 +1420,7 @@ It also breaks out when the string is pasted by the user.&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://capejs.github.io/capejs/tutorials/greeter/02_creating_top_page/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;../&#34;&gt;Table of Contents&lt;/a&gt; - &lt;a href=&#34;../03_showing_reception_component&#34;&gt;Next Section&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;add-a-route-to-the-top-index-action&#34;&gt;Add a route to the &lt;code&gt;top#index&lt;/code&gt; action&lt;/h3&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;../&#34;&gt;Table of Contents&lt;/a&gt; - &lt;a href=&#34;../03_showing_reception_component&#34;&gt;Next Section&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Edit &lt;code&gt;config/routes.rb&lt;/code&gt; so that its content becomes like as:&lt;/p&gt;
 
@@ -1437,7 +1429,9 @@ It also breaks out when the string is pasted by the user.&lt;/p&gt;
 end
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;creating-the-top-index-action&#34;&gt;Creating the &lt;code&gt;top#index&lt;/code&gt; action&lt;/h3&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;Create &lt;code&gt;top#index&lt;/code&gt; action:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bin/rails g controller top index
 &lt;/code&gt;&lt;/pre&gt;
@@ -1457,7 +1451,9 @@ end
 &amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;starting-the-server&#34;&gt;Starting the server&lt;/h3&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;Start the server:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;$ bin/rails s
 &lt;/code&gt;&lt;/pre&gt;

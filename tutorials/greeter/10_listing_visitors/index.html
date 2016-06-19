@@ -213,11 +213,7 @@
           </div>
         </header>
         <div>
-          
-
-<p><a href="../">Table of Contents</a></p>
-
-<h3 id="adding-api-visitors-index-action">Adding <code>api/visitors#index</code> action</h3>
+          <p><a href="../">Table of Contents</a></p>
 
 <p>Edit <code>config/routes.rb</code>:</p>
 
@@ -261,7 +257,7 @@ end
 <pre><code class="language-ruby">json.visitors(@visitors, :id, :family_name, :given_name)
 </code></pre>
 
-<h3 id="adding-a-route">Adding a route</h3>
+<hr />
 
 <p>Edit <code>app/assets/javascripts/routes.es6</code>:</p>
 
@@ -280,7 +276,7 @@ document.addEventListener(&quot;DOMContentLoaded&quot;, event =&gt; {
 });
 </code></pre>
 
-<h3 id="create-visitors-list-component">Create <code>Visitors.List</code> component</h3>
+<hr />
 
 <pre><code class="language-text">$ mkdir -p app/assets/javascripts/components/visitors
 $ touch app/assets/javascripts/components/visitors/list.es6
