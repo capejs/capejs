@@ -2,6 +2,19 @@
 
 var isNode = typeof module !== 'undefined' && module.exports !== undefined;
 
+class HelloComponent extends Cape.Component {
+  render(m) {
+    m.p('hello!')
+  }
+}
+
+class RootDataComponent extends Cape.Component {
+  render(m) {
+    m.p(this.root.data.name);
+    m.p(this.root.data.userId);
+  }
+}
+
 describe('Component', function() {
   beforeEach(function() {
     var div = document.createElement('div');
@@ -16,43 +29,19 @@ describe('Component', function() {
 
   describe('mount', function() {
     it('should throw when no argument is given', function() {
-      var Klass, component;
-
-      Klass = Cape.createComponentClass({
-        render: function(m) {
-          m.p('hello!');
-        }
-      })
-
-      component = new Klass();
+      let component = new HelloComponent();
 
       expect(function() { component.mount() }).to.throw(/missing/);
     })
 
     it('should throw when the argument is not a string', function() {
-      var Klass, component;
-
-      Klass = Cape.createComponentClass({
-        render: function(m) {
-          m.p('hello!');
-        }
-      })
-
-      component = new Klass();
+      let component = new HelloComponent();
 
       expect(function() { component.mount(0) }).to.throw(/must be a string/);
     })
 
     it('should throw when the component is already mounted', function() {
-      var Klass, component;
-
-      Klass = Cape.createComponentClass({
-        render: function(m) {
-          m.p('hello!');
-        }
-      })
-
-      component = new Klass();
+      let component = new HelloComponent();
       component.mount('target');
 
       expect(function() { component.mount('target') }).to.throw(/already/);
@@ -61,31 +50,14 @@ describe('Component', function() {
 
   describe('unmount', function() {
     it('should throw when the component is not mounted yet', function() {
-      var Klass, component;
-
-      Klass = Cape.createComponentClass({
-        render: function(m) {
-          m.p('hello!');
-        }
-      })
-
-      component = new Klass();
+      let component = new HelloComponent();
 
       expect(function() { component.unmount() }).to.throw(/yet/);
     })
 
     it('should call beforeUnmount callback', function() {
-      var Klass, component;
-
-      Klass = Cape.createComponentClass({
-        render: function(m) {
-          m.p('hello!');
-        },
-
-        beforeUnmount: sinon.spy()
-      })
-
-      component = new Klass();
+      let component = new HelloComponent();
+      component.beforeUnmount = sinon.spy()
       component.mount('target');
       component.unmount();
 
@@ -93,17 +65,8 @@ describe('Component', function() {
     })
 
     it('should call afterUnmount callback', function() {
-      var Klass, component;
-
-      Klass = Cape.createComponentClass({
-        render: function(m) {
-          m.p('hello!');
-        },
-
-        afterUnmount: sinon.spy()
-      })
-
-      component = new Klass();
+      let component = new HelloComponent();
+      component.afterUnmount = sinon.spy()
       component.mount('target');
       component.unmount();
 
@@ -119,14 +82,7 @@ describe('Component', function() {
       div.setAttribute("data-name", "Foo");
       div.setAttribute("data-user-id", "100");
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
-          m.p(this.root.data.name);
-          m.p(this.root.data.userId);
-        }
-      })
-
-      component = new Klass();
+      component = new RootDataComponent();
       component.mount('target');
 
       div = document.getElementById('target');

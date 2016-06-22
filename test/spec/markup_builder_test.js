@@ -18,12 +18,12 @@ describe('MarkupBuilder', function() {
     it('should set attribute of next element', function() {
       var target, c, p;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.attr('title', 'x').attr('id', 'y')
             .p('One', { id: 'z' })
             .p('Two') }
-      });
+      };
 
       c = new C();
       c.mount('target');
@@ -40,12 +40,12 @@ describe('MarkupBuilder', function() {
     it('should take a hash object', function() {
       var target, c, p;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.attr({ title: 'x', id: 'y' }).attr({ title: 'xx' })
             .p('One', { id: 'z' })
             .p('Two') }
-      });
+      };
 
       c = new C();
       c.mount('target');
@@ -64,13 +64,13 @@ describe('MarkupBuilder', function() {
     it('should set attribute of next element', function() {
       var target, c, p;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.class('foo').class('bar')
             .p('One', { class: 'baz foo' })
             .p('Two', { class: { foo: true, bar: false } })
         }
-      });
+      };
 
       c = new C();
       c.mount('target');
@@ -86,13 +86,13 @@ describe('MarkupBuilder', function() {
     it('should take a hash', function() {
       var target, c, p;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.class({ foo: true, bar: true }).class({ active: false })
             .p('One', { class: 'baz foo' })
             .p('Two', { class: { foo: true, bar: false } })
         }
-      });
+      };
 
       c = new C();
       c.mount('target');
@@ -113,12 +113,12 @@ describe('MarkupBuilder', function() {
       it('should set data-* attribute of next element', function() {
         var target, c, p;
 
-        var C = Cape.createComponentClass({
-          render: function(m) {
+        class C extends Cape.Component {
+          render(m) {
             m.data('title', 'x').data('name', 'y')
               .p('One', { data: { name: 'z' } })
               .p('Two') }
-        });
+        };
 
         c = new C();
         c.mount('target');
@@ -135,13 +135,13 @@ describe('MarkupBuilder', function() {
       it('should take a hash', function() {
         var target, c, p;
 
-        var C = Cape.createComponentClass({
-          render: function(m) {
+        class C extends Cape.Component {
+          render(m) {
             m.data({ title: 'x', name: 'y' })
               .data({ title: 'xx' })
               .p('One', { data: { name: 'z' } })
               .p('Two') }
-        });
+        };
 
         c = new C();
         c.mount('target');
@@ -161,13 +161,13 @@ describe('MarkupBuilder', function() {
     it('should set attribute of next element', function() {
       var target, c, p;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.css('color', 'red').css('font-size', '90%')
             .p('One', { style: { fontWeight: 'bold' } })
             .p('Two', { style: { color: 'blue', fontWeight: 'bold'  } })
         }
-      });
+      };
 
       c = new C();
       c.mount('target');
@@ -183,13 +183,13 @@ describe('MarkupBuilder', function() {
     it('should take a hash', function() {
       var target, c, p;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.css({ color: 'red' }).css({ fontSize: '90%' })
             .p('One', { style: { fontWeight: 'bold' } })
             .p('Two', { style: { color: 'blue', fontWeight: 'bold'  } })
         }
-      });
+      };
 
       c = new C();
       c.mount('target');
@@ -207,17 +207,18 @@ describe('MarkupBuilder', function() {
     it('should set event handler of next element', function() {
       var target, c, span;
 
-      var C = Cape.createComponentClass({
-        init: function() {
+      class C extends Cape.Component {
+        init() {
           this.counter = 0;
           this.refresh();
-        },
-        render: function(m) {
+        }
+
+        render(m) {
           m.on('click', function(e) { this.counter++ });
           m.on('dblclick', function(e) { this.counter++ });
           m.span('Click me');
         }
-      });
+      }
 
       c = new C();
       c.mount('target');
@@ -236,16 +237,17 @@ describe('MarkupBuilder', function() {
     it('should allow the event handler to be overriden', function() {
       var target, c, span;
 
-      var C = Cape.createComponentClass({
-        init: function() {
+      class C extends Cape.Component {
+        init() {
           this.counter = 0;
           this.refresh();
-        },
-        render: function(m) {
-          m.on('click', function(e) { this.counter++ });
-          m.span('Click me', { onclick: function(e) { this.counter = -1 }});
         }
-      });
+
+        render(m) {
+          m.on('click', function(e) { this.counter++ });
+          m.span('Click me', { onclick(e) { this.counter = -1 }});
+        }
+      }
 
       c = new C();
       c.mount('target');
@@ -262,16 +264,17 @@ describe('MarkupBuilder', function() {
     it('should throw an error when the first argument is not a string', function() {
       var target, c, span;
 
-      var C = Cape.createComponentClass({
-        init: function() {
+      class C extends Cape.Component {
+        init() {
           this.counter = 0;
           this.refresh();
-        },
-        render: function(m) {
-          m.on(0, function(e) { this.counter++ });
-          m.span('Click me', { onclick: function(e) { this.counter = -1 }});
         }
-      });
+
+        render(m) {
+          m.on(0, function(e) { this.counter++ });
+          m.span('Click me', { onclick(e) { this.counter = -1 }});
+        }
+      }
 
       c = new C();
       expect(function() { c.mount('target') }).to.throw(/must be a string/);
@@ -282,12 +285,12 @@ describe('MarkupBuilder', function() {
     it('should add a font-awesome icon', function() {
       var target, c, i;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.fa('beer');
           m.fa('beer', { class: 'large' })
         }
-      });
+      }
 
       c = new C();
       c.mount('target');
@@ -306,8 +309,8 @@ describe('MarkupBuilder', function() {
     it('should create form with appropriate id attribute', function() {
       var target, form, c, e;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.formFor('', function(m) {
             m.hiddenField('dummy');
             m.labelFor('name', 'Name').sp().textField('name').br();
@@ -357,7 +360,7 @@ describe('MarkupBuilder', function() {
             })
           })
         }
-      });
+      }
 
       c = new C();
       c.mount('target');
@@ -416,13 +419,13 @@ describe('MarkupBuilder', function() {
     it('should set onsubmit callback if not defined', function() {
       var target, form, c, e;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.formFor('', function(m) {
             m.textField('name')
           })
         }
-      })
+      }
 
       c = new C();
       c.mount('target');
@@ -437,14 +440,14 @@ describe('MarkupBuilder', function() {
       var method, c, form;
 
       method = sinon.spy();
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.on('submit', function(e) { method(); return false });
           m.formFor('', function(m) {
             m.textField('name');
           })
         }
-      })
+      }
 
       c = new C();
       c.mount('target');
@@ -460,13 +463,14 @@ describe('MarkupBuilder', function() {
     it('should not set the id attribute of hidden field', function() {
       var target, form, c, e;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.formFor('', function(m) {
             m.checkBox('name');
           })
         }
-      })
+      }
+
       c = new C();
       c.mount('target');
 
@@ -482,14 +486,15 @@ describe('MarkupBuilder', function() {
         var target, form, c, callback, elem, ev;
 
         callback = sinon.spy()
-        var C = Cape.createComponentClass({
-          render: function(m) {
+        class C extends Cape.Component {
+          render(m) {
             m.formFor('', function(m) {
               m.onchange(callback)
               m.checkBox('name');
             })
           }
-        })
+        }
+
         c = new C();
         c.mount('target');
 
@@ -508,13 +513,14 @@ describe('MarkupBuilder', function() {
     it('should create a <button type="button"> tag', function() {
       var target, form, c, e;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.formFor('', function(m) {
             m.btn('Click');
           })
         }
-      })
+      }
+
       c = new C();
       c.mount('target');
 
@@ -528,13 +534,14 @@ describe('MarkupBuilder', function() {
     it('should create a <button type="submit"> tag', function() {
       var target, form, c, e;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.formFor('', function(m) {
             m.btn('Click', { type: 'submit' });
           })
         }
-      })
+      }
+
       c = new C();
       c.mount('target');
 
@@ -550,11 +557,12 @@ describe('MarkupBuilder', function() {
     it('should add a text node', function() {
       var target, form, c, e;
 
-      var C = Cape.createComponentClass({
-        render: function(m) {
+      class C extends Cape.Component {
+        render(m) {
           m.text('Hello!')
         }
-      })
+      }
+
       c = new C();
       c.mount('target');
 

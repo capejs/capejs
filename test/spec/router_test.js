@@ -227,14 +227,16 @@ describe('Router', function() {
         m.page('hello', 'test_message');
       })
 
-      window.TestMessage = Cape.createComponentClass({
-        init: function() {
+      class TestMessage extends Cape.Component {
+        init() {
           this.notice = router.flash.notice;
           this.alert = router.flash.alert;
         }
-      })
 
-      window.TestMessage.prototype.mount = function() { this.init() };
+        mount() { this.init() }
+      }
+      window.TestMessage = TestMessage
+
       router.mount('main');
       router.navigateTo('hello', {}, { notice: 'X', alert: 'Y' });
 
@@ -518,14 +520,17 @@ describe('Router', function() {
         m.page('hello', 'test_message');
       })
 
-      window.TestMessage = Cape.createComponentClass({
-        init: function() {
+      class TestMessage extends Cape.Component {
+        init() {
           this.notice = router.flash.notice;
           this.alert = router.flash.alert;
         }
-      })
 
-      window.TestMessage.prototype.mount = function() { this.init() };
+        mount() { this.init() }
+      }
+
+      window.TestMessage = TestMessage
+
       router.mount('main');
       router.redirectTo('hello', {}, { notice: 'X', alert: 'Y' });
 
@@ -544,14 +549,17 @@ describe('Router', function() {
         m.page('hello', 'test_message');
       })
 
-      window.TestMessage = Cape.createComponentClass({
-        init: function() {
+      class TestMessage extends Cape.Component {
+        init() {
           this.notice = router.flash.notice;
           this.alert = router.flash.alert;
         }
-      })
 
-      window.TestMessage.prototype.mount = function() { this.init() };
+        mount() { this.init() }
+      }
+
+      window.TestMessage = TestMessage
+
       router.mount('main');
       router.redirectTo('hello', { notice: 'X', alert: 'Y' });
 
@@ -569,14 +577,17 @@ describe('Router', function() {
         m.page('hello', 'test_message');
       })
 
-      window.TestMessage = Cape.createComponentClass({
-        init: function() {
+      class TestMessage extends Cape.Component {
+        init() {
           this.notice = router.flash.notice;
           this.alert = router.flash.alert;
         }
-      })
 
-      window.TestMessage.prototype.mount = function() { this.init() };
+        mount() { this.init() }
+      }
+
+      window.TestMessage = TestMessage
+
       router.mount('main');
       router.redirectTo('hello', { notice: 'X', alert: 'Y' }, {});
 

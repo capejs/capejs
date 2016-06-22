@@ -16,15 +16,15 @@ describe('VirtualForms', function() {
 
   describe('val', function() {
     it('should get the value of a form field', function() {
-      var Klass, component;
+      var component;
 
-      Klass = Cape.createComponentClass({
-        init: function() {
+      class Klass extends Cape.Component {
+        init() {
           this.setValues('', { title: 'A', confirmed: true, genre: 'H' });
           this.refresh();
-        },
+        }
 
-        render: function(m) {
+        render(m) {
           m.form(function(m) {
             m.a({ name: 'name' })
             m.textField('title');
@@ -40,7 +40,7 @@ describe('VirtualForms', function() {
             m.hiddenField('uid', { value: '' });
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -64,15 +64,15 @@ describe('VirtualForms', function() {
     })
 
     it('should toggle check boxes whose name end with []', function() {
-      var Klass, component, elem;
+      var component, elem;
 
-      Klass = Cape.createComponentClass({
-        init: function() {
+      class Klass extends Cape.Component {
+        init() {
           this.setValues('', { 'types[]': [ 'a', 'b' ] });
           this.refresh();
-        },
+        }
 
-        render: function(m) {
+        render(m) {
           m.form(function(m) {
             m.checkBox('types[]', { value: 'a', id: 'type_a' } );
             m.checkBox('types[]', { value: 'b' } );
@@ -82,7 +82,7 @@ describe('VirtualForms', function() {
             m.checkBox('tags[]', { value: 'z' } );
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -107,10 +107,10 @@ describe('VirtualForms', function() {
     })
 
     it('should get the value of a select field', function() {
-      var Klass, component;
+      var component;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.form(function(m) {
             m.selectBox('genre', function(m) {
               m.option('X', { value: 'x' });
@@ -123,7 +123,7 @@ describe('VirtualForms', function() {
             })
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -141,16 +141,16 @@ describe('VirtualForms', function() {
     })
 
     it('should get the value of a field of named form', function() {
-      var Klass, component;
+      var component;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.formFor('foo', function(m) {
             m.textField('title', { value: 'A' });
             m.textField('name', { value: 'B' });
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -162,16 +162,16 @@ describe('VirtualForms', function() {
     })
 
     it('should set the value of a form field', function() {
-      var Klass, component;
+      var component;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.form(function(m) {
             m.textField('title');
             m.textField('name');
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -183,16 +183,16 @@ describe('VirtualForms', function() {
     })
 
     it('should set the value of a field of named form', function() {
-      var Klass, component;
+      var component;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.form({ name: 'foo' }, function(m) {
             m.textField('title');
             m.textField('name');
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -204,16 +204,16 @@ describe('VirtualForms', function() {
     })
 
     it('should set the value of a form field by a hash', function() {
-      var Klass, component;
+      var component;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.form(function(m) {
             m.textField('title');
             m.textField('name');
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -224,16 +224,16 @@ describe('VirtualForms', function() {
     })
 
     it('should set the value of a field of named form by a hash', function() {
-      var Klass, component;
+      var component;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.form({ name: 'foo' }, function(m) {
             m.textField('title');
             m.textField('name');
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -244,10 +244,10 @@ describe('VirtualForms', function() {
     })
 
     it('should set a field value of a nested form', function() {
-      var Klass, component;
+      var component;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.formFor('book', function(m) {
             m.textField('title');
             m.fieldsFor('author', function(m) {
@@ -268,7 +268,7 @@ describe('VirtualForms', function() {
             });
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -282,11 +282,11 @@ describe('VirtualForms', function() {
     })
 
     it('should not change other forms', function() {
-      var Klass, component, div, form;
+      var component, div, form;
 
-      Klass = Cape.createComponentClass({
-        init: function() { this.mode = 'foo'; },
-        render: function(m) {
+      class Klass extends Cape.Component {
+        init() { this.mode = 'foo'; }
+        render(m) {
           if (this.mode === 'foo')
             m.formFor('foo', function(m) {
               m.textField('title');
@@ -298,7 +298,7 @@ describe('VirtualForms', function() {
               m.checkBox('published');
             });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -323,16 +323,16 @@ describe('VirtualForms', function() {
 
   describe('setValues', function() {
     it('should set the values of form fields', function() {
-      var Klass, component;
+      var component;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.formFor('book', function(m) {
             m.textField('title');
             m.textField('author');
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -343,10 +343,10 @@ describe('VirtualForms', function() {
     })
 
     it('should set the field values of a nested form', function() {
-      var Klass, component;
+      var component;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.formFor('book', function(m) {
             m.textField('title');
             m.fieldsFor('author', function(m) {
@@ -367,7 +367,7 @@ describe('VirtualForms', function() {
             });
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -391,10 +391,10 @@ describe('VirtualForms', function() {
 
   describe('formData', function() {
     it('should return an object that contains parameters', function() {
-      var Klass, component, params;
+      var component, params;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.form(function(m) {
             m.textField('title', { value: 'A' });
             m.textField('name', { value: 'B' });
@@ -406,7 +406,7 @@ describe('VirtualForms', function() {
             })
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -421,16 +421,16 @@ describe('VirtualForms', function() {
     })
 
     it('should return an object that contains parameters for a named form', function() {
-      var Klass, component, params;
+      var component, params;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.formFor('article', function(m) {
             m.textField('title', { value: 'A' });
             m.textField('name', { value: 'B' });
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -441,16 +441,16 @@ describe('VirtualForms', function() {
     })
 
     it('should return array of values when the name of checkbox has "[]" in the end', function() {
-      var Klass, component, params;
+      var component, params;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.form(function(m) {
             m.checkBox('types[]', { value: 'a', checked: true });
             m.checkBox('types[]', { value: 'b', checked: true });
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -462,16 +462,16 @@ describe('VirtualForms', function() {
     })
 
     it('should return string when the name of checkbox does not have "[]" in the end', function() {
-      var Klass, component, params;
+      var component, params;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.form(function(m) {
             m.checkBox('types', { value: 'a', checked: true });
             m.checkBox('types', { value: 'b', checked: true });
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -483,10 +483,10 @@ describe('VirtualForms', function() {
 
   describe('paramsFor', function() {
     it('should return an object that is suitable for API requests', function() {
-      var Klass, component, params;
+      var component, params;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.formFor('article', function(m) {
             m.textField('title', { value: 'A' });
             m.textField('name', { value: 'B' });
@@ -498,7 +498,7 @@ describe('VirtualForms', function() {
             })
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -511,16 +511,16 @@ describe('VirtualForms', function() {
     })
 
     it('should take "as" option to change parameter name', function() {
-      var Klass, component, params;
+      var component, params;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.formFor('blog', function(m) {
             m.textField('title', { value: 'A' });
             m.textField('name', { value: 'B' });
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -533,10 +533,10 @@ describe('VirtualForms', function() {
 
   describe('jsonFor', function() {
     it('should return a JSON string that contains form data', function() {
-      var Klass, component, json, params;
+      var component, json, params;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.formFor('article', function(m) {
             m.textField('title', { value: 'A' });
             m.textField('name', { value: 'B' });
@@ -548,7 +548,7 @@ describe('VirtualForms', function() {
             });
           });
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');
@@ -564,10 +564,10 @@ describe('VirtualForms', function() {
 
   describe('checkedOn', function() {
     it('should get the value of a check field', function() {
-      var Klass, component;
+      var component;
 
-      Klass = Cape.createComponentClass({
-        render: function(m) {
+      class Klass extends Cape.Component {
+        render(m) {
           m.form(function(m) {
             m.textField('name');
             m.textareaField('comment', { value: 'X' });
@@ -580,7 +580,7 @@ describe('VirtualForms', function() {
             m.checkBox('confirmed');
           })
         }
-      })
+      }
 
       component = new Klass();
       component.mount('target');

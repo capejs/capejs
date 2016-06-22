@@ -16,7 +16,7 @@ describe('Demo', function() {
     it('should refresh counter', function() {
       var c, root, input, button, ul, cb, label;
 
-      c = new TodoList();
+      c = new ES6TodoList();
       c.mount('component');
 
       root = document.getElementById('component');

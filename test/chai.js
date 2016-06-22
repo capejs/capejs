@@ -2,3 +2,4 @@
 var expect = chai.expect;
 var global = window;
 global.fetch = function() {}
+window.module = window.module || {}

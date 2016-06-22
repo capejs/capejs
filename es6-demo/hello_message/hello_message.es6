@@ -4,4 +4,4 @@ class ES6HelloMessage extends Cape.Component {
   }
 }
 
-module.exports = ES6HelloMessage;
+(module || {}).exports = ES6HelloMessage;
