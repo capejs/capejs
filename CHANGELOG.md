@@ -1,5 +1,10 @@
 # CHANGELOG - Cape.JS
 
+## 2.0.0 (Not yet released)
+
+* Rewrite all classes using ES6 syntax (WIP).
+* Remove `Cape.createComponentClass()`.
+
 ## 1.5.1 (June 19, 2016)
 
 * Change the Git repository from `git://github.com/oiax/capejs` to `git://github.com/capejs/capejs`.
