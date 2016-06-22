@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/capejs/capejs",
   "engines": {
-    "node": ">=5.5"
+    "node": ">=6.2"
   },
   "dependencies": {
     "inflected": "^1.1.6",
