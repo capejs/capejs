@@ -8,4 +8,4 @@ machine:
     version: 5.5
 test:
   override:
-    - gulp test
+    - npm run test2
