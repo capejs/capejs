@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 
 class ES6TodoList extends Cape.Component {
   render(m) {

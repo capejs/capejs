@@ -1,3 +1,5 @@
+'use strict'
+
 class ES6ClickableArea extends Cape.Partial {
   constructor(parent) {
     super(parent);
