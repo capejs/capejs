@@ -5,6 +5,7 @@
 [![Circle CI](https://circleci.com/gh/capejs/capejs.png?style=badge)](https://circleci.com/gh/capejs/capejs)
 [![Npm Version](https://badge.fury.io/js/capejs.svg)](http://badge.fury.io/js/capejs)
 [![Bower Version](https://badge.fury.io/bo/capejs.svg)](http://badge.fury.io/bo/capejs)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Cape.JS is a lightweight JavaScript UI framework with following features:
 
