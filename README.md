@@ -1,11 +1,11 @@
 # Cape.JS
 
-![Cape.JS logo](https://cdn.rawgit.com/capejs/capejs/master/doc/logo/capejs.svg)
-
 [![Circle CI](https://circleci.com/gh/capejs/capejs.png?style=badge)](https://circleci.com/gh/capejs/capejs)
 [![Npm Version](https://badge.fury.io/js/capejs.svg)](http://badge.fury.io/js/capejs)
 [![Bower Version](https://badge.fury.io/bo/capejs.svg)](http://badge.fury.io/bo/capejs)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+![Cape.JS logo](https://cdn.rawgit.com/capejs/capejs/master/doc/logo/capejs.svg)
 
 Cape.JS is a lightweight JavaScript UI framework with following features:
 
@@ -31,49 +31,174 @@ The architecture and terminology of Cape.JS are strongly influenced by
 [Riot](https://github.com/muut/riotjs)
 and [Ruby on Rails](https://github.com/rails/rails).
 
-If you want to learn about Cape.JS, check out the [Cape.JS Documentation](http://capejs.github.io/capejs/).
+## Table of Contents
 
-## A simple example
+* [Installation](#installation)
+    * [Using CDN](#using-cdn)
+    * [With npm](#with-npm)
+    * [With Bower](#with-bower)
+    * [With `capejs-rails` gem](#with-capejs-rails-gem)
+* [simple examples](#simple-examples)
+    * [Hello World](#hello-world)
+    * [Generating DOM Tree](#generating-dom-tree)
+* [Handling DOM Events](#handling-dom-events)
+* [Router](#router)
+* [Tutorials](#tutorials)
+* [Demo Applications](#demo-applications)
+    * [Greeter](#greeter)
+    * [Todo List](#todo-list)
+* [Browser Support](#browser-support)
+* [Contributing](#contributing)
+* [Acknowledgements](#acknowledgements)
+* [Trademarks](#trademarks)
+* [License](#license)
 
-The following example will insert `<div>Hello, World!</div>` into the `div#hello-message` element.
+## Installation
 
-`index.html`
+Cape.JS is available from a variety of sources.
+
+### Using CDN
+
+To include Cape.JS on your web site, add this line to the `<head>` section of your HTML files:
 
 ```html
-<h1>Greeting from Cape.JS</h1>
-<div id="hello-message" data-name="World"></div>
+<script src="//cdn.rawgit.com/capejs/capejs/v1.5.1/dist/cape.min.js"></script>
+```
 
-<script src="./hello_message.js"></script>
-<script>
-  var component = new HelloMesage()
-  component.mount('hello-message')
-</script>
+### With npm
+
+```text
+$ npm install capejs
+```
+
+### With bower
+
+```text
+$ bower install capejs
+```
+
+### With `capejs-rails` gem
+
+If you want to integrate Cape.JS with Ruby on Rails, you are recommended to use `capejs-rails` gem.
+
+See [capejs/capejs-rails](https://github.com/capejs/capejs-rails) for details.
+
+## Simple Examples
+
+### Hello World
+
+Put following two files on your PC:
+
+`hello_message.html`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HELLO WORLD</title>
+  <meta charset="UTF-8">
+  <script src="https://cdn.rawgit.com/capejs/capejs/v1.5.1/dist/cape.min.js"></script>
+  <script src="./hello_message.js"></script>
+</head>
+<body>
+  <div id="content"></div>
+</body>
+</html>
 ```
 
 `hello_message.js`
 
 ```javascript
-var HelloMesage = Cape.createComponentClass({
-  render: function(m) {
-    m.div('Hello, ' + this.root.data.name + '!')
+'use strict'
+
+class HelloMessage extends Cape.Component {
+  constructor(name) {
+    super()
+    this.name = name
   }
+
+  render(m) {
+    m.p(`Hello, ${this.name}!`)
+  }
+}
+
+document.addEventListener("DOMContentLoaded", event => {
+  let comp = new HelloMessage('world')
+  comp.mount('content')
 })
 ```
 
-In this example, the `div` method corresponds to the `div` tag of HTML.
-If you replace it with `p`, it inserts `<p>Hello, World!</p>`.
-In this way, you can generate [any HTML5 element](http://www.w3.org/TR/html-markup/elements.html),
-such as `blockquote`, `h1`, `strong`, `video`, etc.
+When you open `hello_message.html` with your browser, you will see the text "Hello, world!" on the screen.
 
-This example is explained in detail
-in the [Hello World](http://capejs.github.io/capejs/components/#hello-world) section
-of *Cape.JS Documentation.*
+### Generating DOM Tree
 
-## Integration with Rails Asset Pipeline
+Edit the `render` method of `HelloMessage` class like this:
 
-If you combile Cape.JS with Ruby on Rails, you are recommended to use `capejs-rails` gem.
+```javascript
+  render(m) {
+    m.h1('Greeting')
+    m.class('message').p(m => {
+      m.text('Hello, ')
+      m.em(this.name + '!')
+      m.sp()
+      m.text('My name is Cape.JS.')
+    })
+  }
+```
 
-See [capejs/capejs-rails](https://github.com/capejs/capejs-rails) for details.
+This generates a DOM tree roughly equivalent to this HTML fragment:
+
+```html
+<h1>Greeting</h1>
+<p class='message'>Hello, <em>world!</em> My name is Cape.JS.</p>
+```
+
+## Handling DOM Events
+
+Edit `hello_message.js` as follows and reload your browser:
+
+```javascript
+'use strict'
+
+class HelloMessage extends Cape.Component {
+  constructor(name) {
+    super()
+    this.names = [ 'alice', 'bob', 'charlie' ]
+    this.name = name
+  }
+
+  render(m) {
+    m.h1('Greeting')
+    m.p('Who are you?')
+    m.div(m => {
+      this.names.forEach(name => {
+        m.checked(name === this.name)
+          .onclick(e => { this.name = e.target.value; this.refresh() })
+          .radioButton('name', name)
+        m.sp()
+        m.text(name)
+      })
+    })
+    m.class('message').p(m => {
+      m.text('Hello, ')
+      m.em(this.name + '!')
+      m.sp()
+      m.text('My name is Cape.JS.')
+    })
+  }
+}
+
+document.addEventListener("DOMContentLoaded", event => {
+  let comp = new HelloMessage('alice')
+  comp.mount('content')
+})
+```
+
+You will see three radio buttons and by choosing one of them
+you can change the message text.
+
+Note that `this.refresh()` updates the DOM tree _very quickly_
+using Virtual DOM technology.
 
 ## Router
 
@@ -83,7 +208,7 @@ similar to that of Ruby on Rails. Here is an example of `routes.js`:
 ```javascript
 var $router = new Cape.Router()
 
-$router.draw(function(m) {
+$router.draw(m => {
   m.root('welcome')
   m.page('login')
   m.page('help')
@@ -100,16 +225,14 @@ $router.navigateTo('help')
 The following is a full example of Component definition:
 
 ```javascript
-var WelcomePage = Cape.createComponentClass({
-  render: function(m) {
-    m.div(function(m) {
-      m.span('Help', {
-        class: 'link',
-        onclick: function(e) { $router.navigateTo('help') }
-      })
+class WelcomePage extends Cape.Component {
+  render(m) {
+    m.div(m => {
+      m.onclick(e => $router.navigateTo('help'))
+        .class('link').span('Help')
     })
   }
-})
+}
 ```
 
 When the user clicks on the "Help" link, the hash fragment of the URL changes
@@ -120,24 +243,6 @@ In the above example, when the user is navigated to the `Help` component,
 the HTML document itself does _not_ get reloaded. The `Help` component is rendered
 by Cape.JS with the assistance of _virtual-dom._
 An apparent _page transition_ happens within a _single_ page in fact.
-
-## ECMAScript 2015 (_a.k.a._ ES6)
-
-If you are familiar with [Babel](https://babeljs.io/), you can write the code above
-more concisely using the ECMAScript 2015 syntax like this:
-
-```javascript
-class WelcomePage extends Cape.Component {
-  render(m) {
-    m.div(m => {
-      m.span('Help', {
-        class: 'link',
-        onclick: e => $router.navigateTo('doc/help')
-      })
-    })
-  }
-}
-```
 
 ## Tutorials
 
