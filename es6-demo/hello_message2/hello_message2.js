@@ -27,8 +27,3 @@ class HelloMessage2 extends Cape.Component {
     })
   }
 }
-
-document.addEventListener("DOMContentLoaded", e => {
-  let comp = new HelloMessage2('alice')
-  comp.mount('content')
-})
