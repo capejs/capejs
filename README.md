@@ -122,7 +122,7 @@ class HelloMessage extends Cape.Component {
   }
 }
 
-document.addEventListener("DOMContentLoaded", event => {
+document.addEventListener("DOMContentLoaded", e => {
   let comp = new HelloMessage('world')
   comp.mount('content')
 })
@@ -188,7 +188,7 @@ class HelloMessage extends Cape.Component {
   }
 }
 
-document.addEventListener("DOMContentLoaded", event => {
+document.addEventListener("DOMContentLoaded", e => {
   let comp = new HelloMessage('alice')
   comp.mount('content')
 })
