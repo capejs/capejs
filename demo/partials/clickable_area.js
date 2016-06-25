@@ -18,3 +18,5 @@ class ClickableArea extends Cape.Partial {
     this.refresh()
   }
 }
+
+if (typeof module !== 'undefined' && module.exports) module.exports = ClickableArea

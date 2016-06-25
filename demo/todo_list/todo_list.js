@@ -48,3 +48,5 @@ class TodoList extends Cape.Component {
     this.refresh()
   }
 }
+
+if (typeof module !== 'undefined' && module.exports) module.exports = TodoList

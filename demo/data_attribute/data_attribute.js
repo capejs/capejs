@@ -5,3 +5,5 @@ class DataAttribute extends Cape.Component {
     m.h1('Hello!', { data: { hello: 'hello' } })
   }
 }
+
+if (typeof module !== 'undefined' && module.exports) module.exports = DataAttribute

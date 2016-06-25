@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOUBLE CLICK COUNTERS | Cape.JS Demo</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css"
+     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./click_counter.css">
+  <script src="../../dist/cape.js" charset="UTF-8"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>DOUBLE CLICK COUNTERS <small>Cape.JS Demo</small></h1>
+    </div>
+
+    <div class="page-body">
+      <div class="panel panel-default" id="click-counter1"></div>
+      <div class="panel panel-default" id="click-counter2"></div>
+    </div>
+  </div>
+
+  <script src="./click_counter_store.js"></script>
+  <script src="./modular_click_counter.js"></script>
+  <script>
+    let ds = new ClickCounterStore()
+    let counter1 = new ModularClickCounter()
+    let counter2 = new ModularClickCounter()
+    counter1.ds = ds
+    counter2.ds = ds
+    ds.attach(counter1)
+    ds.attach(counter2)
+    counter1.mount('click-counter1')
+    counter2.mount('click-counter2')
+  </script>
+</body>
+</html>

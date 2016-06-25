@@ -27,3 +27,5 @@ class HelloMessage2 extends Cape.Component {
     })
   }
 }
+
+if (typeof module !== 'undefined' && module.exports) module.exports = HelloMessage2

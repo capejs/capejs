@@ -21,3 +21,5 @@ class PartialContainer extends Cape.Component {
     })
   }
 }
+
+if (typeof module !== 'undefined' && module.exports) module.exports = PartialContainer
