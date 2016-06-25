@@ -23,6 +23,7 @@ module.exports = function(config) {
       '../demo/todo_list/*.js',
       '../demo/partials/*.js',
       '../demo/form_manipulator/*.js',
+      '../demo/mixins/*.js',
       'integration/*.js',
       'helpers.js',
       'spec/*.js'

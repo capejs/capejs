@@ -24,6 +24,8 @@ describe('Cape Tests', function() {
     global.PartialContainer = require('../demo/partials/partial_container.js')
     global.TodoList = require('../demo/todo_list/todo_list.js')
     global.FormManipulator = require('../demo/form_manipulator/form_manipulator.js')
+    global.FormControls = require('../demo/mixins/form_controls.js')
+    global.SimpleForm = require('../demo/mixins/simple_form.js')
   } else {
     global = window
     mocha.run()
