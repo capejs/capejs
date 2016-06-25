@@ -26,7 +26,7 @@ function stubFetchAPI(spy, data, dataType) {
                 callback2.call(this, data);
                 return {
                   catch: function(callback3) {
-                    callback3.call(this, new Error(''));
+                    callback3.call(this, new Error('Fetch Error'));
                   }
                 }
               }

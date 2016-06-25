@@ -300,18 +300,22 @@ describe('ResourceAgent', function() {
     })
 
     it('should go through a fetch api chain', function() {
-      var form, options, agent, spy0, spy1;
+      var form, options, agent, spy0, spy1, spy2;
 
       options = { resourceName: 'user', id: 123 };
       spy0 = sinon.spy();
-      agent = new Cape.ResourceAgent({ refresh: spy0 }, options);
-
       spy1 = sinon.spy();
-      stubFetchAPI(spy1);
+      spy2 = sinon.spy();
+
+      agent = new Cape.ResourceAgent({ refresh: spy0 }, options);
+      agent.defaultErrorHandler = spy1;
+
+      stubFetchAPI(spy2);
 
       agent.refresh();
       expect(spy0.called).to.be.true;
       expect(spy1.called).to.be.true;
+      expect(spy2.called).to.be.true;
       expect(global.fetch.calledWith('/users/123')).to.be.true;
     })
   })
