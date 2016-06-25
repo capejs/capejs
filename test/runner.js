@@ -23,6 +23,8 @@ describe('Cape Tests', function() {
     global.ClickableArea = require('../demo/partials/clickable_area.js')
     global.PartialContainer = require('../demo/partials/partial_container.js')
     global.TodoList = require('../demo/todo_list/todo_list.js')
+    global.TodoList2 = require('../demo/todo_list2/todo_list2.js')
+    global.TodoItemStore = require('../demo/todo_list2/todo_item_store.js')
     global.FormManipulator = require('../demo/form_manipulator/form_manipulator.js')
     global.FormControls = require('../demo/mixins/form_controls.js')
     global.SimpleForm = require('../demo/mixins/simple_form.js')

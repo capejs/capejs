@@ -21,6 +21,7 @@ module.exports = function(config) {
       '../demo/double_click_counters/*.js',
       '../demo/data_attribute/*.js',
       '../demo/todo_list/*.js',
+      '../demo/todo_list2/*.js',
       '../demo/partials/*.js',
       '../demo/form_manipulator/*.js',
       '../demo/mixins/*.js',
