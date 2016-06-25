@@ -2,8 +2,8 @@
 
 class PartialContainer extends Cape.Component {
   init() {
-    this.area1 = new ES6ClickableArea(this);
-    this.area2 = new ES6ClickableArea(this);
+    this.area1 = new ClickableArea(this);
+    this.area2 = new ClickableArea(this);
     this.refresh();
   }
 
@@ -21,5 +21,3 @@ class PartialContainer extends Cape.Component {
     });
   }
 }
-
-if (typeof module !== 'undefined') module.exports = PartialContainer;

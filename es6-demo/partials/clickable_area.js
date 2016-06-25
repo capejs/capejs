@@ -1,6 +1,6 @@
 'use strict'
 
-class ES6ClickableArea extends Cape.Partial {
+class ClickableArea extends Cape.Partial {
   constructor(parent) {
     super(parent);
     this.counter = 0;
@@ -18,5 +18,3 @@ class ES6ClickableArea extends Cape.Partial {
     this.refresh();
   }
 }
-
-if (typeof module !== 'undefined') module.exports = ES6ClickableArea;

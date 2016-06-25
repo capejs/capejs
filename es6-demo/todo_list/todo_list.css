@@ -1,0 +1,4 @@
+label input[type="checkbox"] { margin-right: 5px; }
+label.completed { color: red }
+button[disabled] { color: silver }
+input + button { margin-left: 5px }
