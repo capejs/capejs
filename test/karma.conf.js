@@ -22,6 +22,7 @@ module.exports = function(config) {
       '../demo/data_attribute/*.js',
       '../demo/todo_list/*.js',
       '../demo/partials/*.js',
+      '../demo/form_manipulator/*.js',
       'integration/*.js',
       'helpers.js',
       'spec/*.js'

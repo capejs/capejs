@@ -23,6 +23,7 @@ describe('Cape Tests', function() {
     global.ClickableArea = require('../demo/partials/clickable_area.js')
     global.PartialContainer = require('../demo/partials/partial_container.js')
     global.TodoList = require('../demo/todo_list/todo_list.js')
+    global.FormManipulator = require('../demo/form_manipulator/form_manipulator.js')
   } else {
     global = window
     mocha.run()
