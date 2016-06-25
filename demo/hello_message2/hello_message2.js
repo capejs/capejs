@@ -12,11 +12,13 @@ class HelloMessage2 extends Cape.Component {
     m.p('Who are you?')
     m.div(m => {
       this.names.forEach(name => {
-        m.checked(name === this.name)
-          .onclick(e => { this.name = e.target.value; this.refresh() })
-          .radioButton('name', name)
-        m.sp()
-        m.text(name)
+        m.label(m => {
+          m.checked(name === this.name)
+            .onclick(e => { this.name = e.target.value; this.refresh() })
+            .radioButton('name', name)
+          m.sp()
+          m.text(name)
+        })
       })
     })
     m.class('message').p(m => {
