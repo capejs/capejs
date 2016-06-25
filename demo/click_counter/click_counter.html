@@ -2,18 +2,12 @@
 <html>
 <head>
   <title>CLICK COUNTER | Cape.JS Demo</title>
+  <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css"
      href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./click_counter.css">
   <script src="../../dist/cape.js" charset="UTF-8"></script>
-  <style>
-    div.counter {
-      border: 1px solid black;
-      padding: 20px;
-      margin: 20px;
-      text-align: center;
-      cursor: pointer;
-    }
-  </style>
+  <script src="./click_counter.js"></script>
 </head>
 <body>
   <div class="container">
@@ -24,10 +18,9 @@
     <div class="page-body" id="click-counter"></div>
   </div>
 
-  <script src="./click_counter.js"></script>
   <script>
-    var counter = new ClickCounter();
-    counter.mount('click-counter');
+    let counter = new ClickCounter()
+    counter.mount('click-counter')
   </script>
 </body>
 </html>

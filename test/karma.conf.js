@@ -17,6 +17,7 @@ module.exports = function(config) {
       '../test/chai.js',
       '../demo/hello_message/*.js',
       '../demo/hello_message2/*.js',
+      '../demo/click_counter/*.js',
       '../demo/todo_list/*.js',
       '../demo/partials/*.js',
       'integration/*.js',
