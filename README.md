@@ -44,6 +44,7 @@ and [Ruby on Rails](https://github.com/rails/rails).
 * [Handling DOM Events](#handling-dom-events)
 * [Router](#router)
 * [Tutorials](#tutorials)
+* [Demo Pages](#demo-pages)
 * [Demo Applications](#demo-applications)
     * [Greeter](#greeter)
     * [Todo List](#todo-list)
@@ -249,6 +250,10 @@ An apparent _page transition_ happens within a _single_ page in fact.
 * [How to Make a Single Page Application (SPA) with Cape.JS and Rails - A Tutorial](http://capejs.github.io/capejs/tutorials/greeter/): A tutorial about Cape.JS router.
 * [Cape.JS Primer](http://capejs.github.io/capejs/tutorials/capejs_primer/):
   Reading through this tutorial, you can learn the basics of Cape.JS programming.
+
+## Demo Pages
+
+You can learn how to construct web pages using _Cape.JS_ by reading through [demo pages](demo/).
 
 ## Demo Applications
 
