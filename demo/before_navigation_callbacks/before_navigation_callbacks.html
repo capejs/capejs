@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BEFORE NAVIGATION CALLBACKS | Cape.JS Demo</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css"
+     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="../../dist/cape.js" charset="UTF-8"></script>
+  <script src="./before_navigation_callbacks.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>BEFORE NAVIGATION CALLBACKS <small>Cape.JS Demo</small></h1>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a href="#">Component X</a>
+          <a href="#y">Component Y</a>
+          <a href="#z">Component Z</a><br />
+          <label>
+            <input type="checkbox" id="causing-error">
+            Check this to cause an error
+          </lable><br />
+          <label>
+            <input type="checkbox" id="redirect">
+            Check this to redirect #y to Component Z
+          </lable>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-body" id="main"></div>
+    <script src="./routes.js"></script>
+  </div>
+</body>
+</html>
