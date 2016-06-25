@@ -2,18 +2,10 @@
 <html>
 <head>
   <title>Data Attribute Test | Cape.JS Demo</title>
+  <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css"
      href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <script src="../../dist/cape.js" charset="UTF-8"></script>
-  <style>
-    div.counter {
-      border: 1px solid black;
-      padding: 20px;
-      margin: 20px;
-      text-align: center;
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
@@ -26,8 +18,8 @@
 
   <script src="./data_attribute.js"></script>
   <script>
-    var dataAttribute = new DataAttribute();
-    dataAttribute.mount('data-attribute');
+    let dataAttribute = new DataAttribute()
+    dataAttribute.mount('data-attribute')
   </script>
 </body>
 </html>

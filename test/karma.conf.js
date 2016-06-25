@@ -18,6 +18,7 @@ module.exports = function(config) {
       '../demo/hello_message/*.js',
       '../demo/hello_message2/*.js',
       '../demo/click_counter/*.js',
+      '../demo/data_attribute/*.js',
       '../demo/todo_list/*.js',
       '../demo/partials/*.js',
       'integration/*.js',
