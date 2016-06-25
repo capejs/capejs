@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Demo', function() {
-  describe('ES6PartialContainer', function() {
+  describe('PartialContainer', function() {
     before(function() {
       var div = document.createElement('div');
       div.id = "partial-container";
@@ -16,7 +16,7 @@ describe('Demo', function() {
     it('should refresh counter', function() {
       var p, div;
 
-      p = new ES6PartialContainer();
+      p = new PartialContainer();
       p.mount('partial-container');
 
       div = document.getElementsByClassName('clickable-area')[0];

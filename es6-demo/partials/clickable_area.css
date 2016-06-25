@@ -1,0 +1,13 @@
+div.partial-container {
+  border: 2px dotted black;
+  padding-top: 20px;
+  margin: 20px;
+  text-align: center;
+}
+div.clickable-area {
+  border: 1px solid black;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  cursor: pointer;
+}
