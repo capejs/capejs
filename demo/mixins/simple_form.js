@@ -14,3 +14,5 @@ class SimpleForm extends Cape.Component {
 }
 
 Cape.merge(SimpleForm.prototype, FormControls)
+
+if (typeof module !== 'undefined' && module.exports) module.exports = SimpleForm

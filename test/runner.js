@@ -26,6 +26,11 @@ describe('Cape Tests', function() {
     global.FormManipulator = require('../demo/form_manipulator/form_manipulator.js')
     global.FormControls = require('../demo/mixins/form_controls.js')
     global.SimpleForm = require('../demo/mixins/simple_form.js')
+    global.TopPage = require('../demo/simple_routes/components.js').TopPage
+    global.AboutPage = require('../demo/simple_routes/components.js').AboutPage
+    global.HelpPage = require('../demo/simple_routes/components.js').HelpPage
+    global.simple_router = require('../demo/simple_routes/router.js')
+    global.simple_router.rootContainer = global
   } else {
     global = window
     mocha.run()

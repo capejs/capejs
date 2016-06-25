@@ -24,6 +24,7 @@ module.exports = function(config) {
       '../demo/partials/*.js',
       '../demo/form_manipulator/*.js',
       '../demo/mixins/*.js',
+      '../demo/simple_routes/*.js',
       'integration/*.js',
       'helpers.js',
       'spec/*.js'
