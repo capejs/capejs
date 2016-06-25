@@ -2,8 +2,8 @@
 
 class ClickableArea extends Cape.Partial {
   constructor(parent) {
-    super(parent);
-    this.counter = 0;
+    super(parent)
+    this.counter = 0
   }
 
   render(m) {
@@ -14,7 +14,7 @@ class ClickableArea extends Cape.Partial {
   }
 
   increment() {
-    this.counter++;
-    this.refresh();
+    this.counter++
+    this.refresh()
   }
 }

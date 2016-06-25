@@ -15,11 +15,11 @@ module.exports = function(config) {
       '../node_modules/sinon/pkg/sinon.js',
       '../dist/cape.js',
       '../test/chai.js',
-      '../es6-demo/hello_message/*.js',
-      '../es6-demo/hello_message2/*.js',
-      '../es6-demo/todo_list/*.js',
-      '../es6-demo/partials/*.js',
-      'integration/es6/*.js',
+      '../demo/hello_message/*.js',
+      '../demo/hello_message2/*.js',
+      '../demo/todo_list/*.js',
+      '../demo/partials/*.js',
+      'integration/*.js',
       'helpers.js',
       'spec/*.js'
     ]
