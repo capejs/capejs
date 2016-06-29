@@ -22,5 +22,4 @@ exclude_paths:
 - dist/
 - doc/
 - node_modules/
-- test/
 - vendor/
