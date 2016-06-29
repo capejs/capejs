@@ -4,6 +4,8 @@
 [![Npm Version](https://badge.fury.io/js/capejs.svg)](http://badge.fury.io/js/capejs)
 [![Bower Version](https://badge.fury.io/bo/capejs.svg)](http://badge.fury.io/bo/capejs)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Code Climate](https://codeclimate.com/repos/57729e362aa900008f001778/badges/1e6f677e29d0633663e3/gpa.svg)](https://codeclimate.com/repos/57729e362aa900008f001778/feed)
+[![Test Coverage](https://codeclimate.com/repos/57729e362aa900008f001778/badges/1e6f677e29d0633663e3/coverage.svg)](https://codeclimate.com/repos/57729e362aa900008f001778/coverage)
 
 ![Cape.JS logo](https://cdn.rawgit.com/capejs/capejs/master/doc/logo/capejs.svg)
 
