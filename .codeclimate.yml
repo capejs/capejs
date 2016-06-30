@@ -14,6 +14,8 @@ engines:
     checks:
       global-require:
         enabled: false
+      no-new-func:
+        enabled: false
       no-unused-expressions:
         enabled: true
         exclude_paths:
