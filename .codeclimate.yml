@@ -11,6 +11,9 @@ engines:
       - test/**/*
   eslint:
     enabled: true
+    checks:
+      global-require:
+        enabled: false
   fixme:
     enabled: true
 ratings:
