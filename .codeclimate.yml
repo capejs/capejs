@@ -17,9 +17,7 @@ engines:
       no-new-func:
         enabled: false
       no-unused-expressions:
-        enabled: true
-        exclude_paths:
-          - test/**/*
+        enabled: false
   fixme:
     enabled: true
 ratings:
@@ -32,3 +30,4 @@ exclude_paths:
 - doc/
 - node_modules/
 - vendor/
+- test/runner.js
