@@ -31,3 +31,4 @@ exclude_paths:
 - node_modules/
 - vendor/
 - test/runner.js
+- gulpfile.js
