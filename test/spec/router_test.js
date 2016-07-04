@@ -1,529 +1,529 @@
-'use strict';
+'use strict'
 
-describe('Router', function() {
-  describe('constructor', function() {
-    it('should have complete set of properties', function() {
-      var router = new Cape.Router();
+describe('Router', () => {
+  describe('constructor', () => {
+    it('should have complete set of properties', () => {
+      let router = new Cape.Router()
 
-      expect(router.rootContainer).to.equal(window);
-      expect(Array.isArray(router.routes)).to.be.true;
-      expect(typeof router.params).to.equal('object');
-      expect(typeof router.query).to.equal('object');
-      expect(typeof router.vars).to.equal('object');
-      expect(typeof router.flash).to.equal('object');
+      expect(router.rootContainer).to.equal(window)
+      expect(Array.isArray(router.routes)).to.be.true
+      expect(typeof router.params).to.equal('object')
+      expect(typeof router.query).to.equal('object')
+      expect(typeof router.vars).to.equal('object')
+      expect(typeof router.flash).to.equal('object')
     })
   })
 
-  describe('attach', function() {
-    it('should register a component as an event listener', function() {
-      var router, component;
+  describe('attach', () => {
+    it('should register a component as an event listener', () => {
+      let router, component
 
-      router = new Cape.Router();
-      component = { refresh: sinon.spy() };
-      router.attach(component);
-      router.notify();
+      router = new Cape.Router()
+      component = { refresh: sinon.spy() }
+      router.attach(component)
+      router.notify()
 
-      expect(component.refresh.called).to.equal(true);
+      expect(component.refresh.called).to.equal(true)
     })
 
-    it('should not register a component twice', function() {
-      var router, component;
+    it('should not register a component twice', () => {
+      let router, component
 
-      router = new Cape.Router();
-      component = { refresh: sinon.spy() };
-      router.attach(component);
-      router.attach(component);
+      router = new Cape.Router()
+      component = { refresh: sinon.spy() }
+      router.attach(component)
+      router.attach(component)
 
-      expect(router._.notificationListeners.length).to.equal(1);
+      expect(router._.notificationListeners.length).to.equal(1)
     })
 
-    it('should throw an exception when the listener does not have "refresh" method', function() {
-      var router, component;
+    it('should throw an exception when the listener does not have "refresh" method', () => {
+      let router, component
 
-      router = new Cape.Router();
+      router = new Cape.Router()
       expect(router.attach.bind(router, {})).to
         .throw('The listener must have the "refresh" function.')
     })
   })
 
-  describe('detach', function() {
-    it('should unregister a component as an event listener', function() {
-      var router, component;
+  describe('detach', () => {
+    it('should unregister a component as an event listener', () => {
+      let router, component
 
-      router = new Cape.Router();
-      component = { refresh: sinon.spy() };
-      router.attach(component);
-      router.detach(component);
-      router.notify();
+      router = new Cape.Router()
+      component = { refresh: sinon.spy() }
+      router.attach(component)
+      router.detach(component)
+      router.notify()
 
-      expect(component.refresh.called).not.to.equal(true);
+      expect(component.refresh.called).not.to.equal(true)
     })
   })
 
-  describe('beforeNavigation', function() {
-    after(function() {
-      window.Top = undefined;
+  describe('beforeNavigation', () => {
+    after(() => {
+      window.Top = undefined
     })
 
-    it('should register a beforeNavigation callback', function() {
-      var router, method;
+    it('should register a beforeNavigation callback', () => {
+      let router, method
 
-      router = new Cape.Router();
-      router.beforeNavigation(function() {})
+      router = new Cape.Router()
+      router.beforeNavigation(() => {})
 
-      expect(router._.beforeNavigationCallbacks.length).to.equal(1);
+      expect(router._.beforeNavigationCallbacks.length).to.equal(1)
     })
   })
 
-  describe('start', function() {
-    it('should mount a component', function() {
-      var router, method;
+  describe('start', () => {
+    it('should mount a component', () => {
+      let router, method
 
-      window.HomePage = {};
-      window.HomePage.Index = function() {};
-      window.HomePage.Index.prototype.mount = method = sinon.spy();
+      window.HomePage = {}
+      window.HomePage.Index = class {}
+      window.HomePage.Index.prototype.mount = method = sinon.spy()
 
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('', 'home_page.index');
+        m.page('', 'home_page.index')
       })
-      router.mount('main');
-      router.start();
+      router.mount('main')
+      router.start()
 
-      expect(method.calledWith('main')).to.equal(true);
+      expect(method.calledWith('main')).to.equal(true)
     })
   })
 
-  describe('stop', function() {
-    it('should unmount a component', function() {
-      var router, method;
+  describe('stop', () => {
+    it('should unmount a component', () => {
+      let router, method
 
-      window.HomePage = {};
-      window.HomePage.Index = function() {};
-      window.HomePage.Index.prototype.mount = function() {};
-      window.removeEventListener = sinon.spy();
+      window.HomePage = {}
+      window.HomePage.Index = class {}
+      window.HomePage.Index.prototype.mount = () => {}
+      window.removeEventListener = sinon.spy()
 
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('', 'home_page.index');
+        m.page('', 'home_page.index')
       })
-      router.mount('main');
-      router.start();
-      router.stop();
+      router.mount('main')
+      router.start()
+      router.stop()
 
-      expect(window.removeEventListener.calledOnce).to.equal(true);
+      expect(window.removeEventListener.calledOnce).to.equal(true)
     })
   })
 
-  describe('constructor', function() {
-    it('should specify the root container of components', function() {
-      var router, method;
+  describe('constructor', () => {
+    it('should specify the root container of components', () => {
+      let router, method
 
       window.App = {}
-      window.App.HomePage = {};
-      window.App.HomePage.Index = function() {};
-      window.App.HomePage.Index.prototype.mount = method = sinon.spy();
+      window.App.HomePage = {}
+      window.App.HomePage.Index = class {}
+      window.App.HomePage.Index.prototype.mount = method = sinon.spy()
 
-      router = new Cape.Router(window.App);
-      router._.setHash = function() {};
+      router = new Cape.Router(window.App)
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('', 'home_page.index');
+        m.page('', 'home_page.index')
       })
-      router.mount('main');
-      router.start();
+      router.mount('main')
+      router.start()
 
-      expect(method.calledWith('main')).to.equal(true);
+      expect(method.calledWith('main')).to.equal(true)
     })
   })
 
-  describe('draw', function() {
-    it ('should throw when the first argument is not a function', function() {
-      var router = new Cape.Router();
+  describe('draw', () => {
+    it ('should throw when the first argument is not a function', () => {
+      let router = new Cape.Router()
 
-      expect(function() { router.draw("") }).to.throw(/must be a function/);
+      expect(() => { router.draw("") }).to.throw(/must be a function/)
     })
 
-    it ('should throw when the given function takes no argument', function() {
-      var router = new Cape.Router();
+    it ('should throw when the given function takes no argument', () => {
+      let router = new Cape.Router()
 
-      expect(function() { router.draw(function() {}) }).to.throw(/requires an argument/);
+      expect(() => { router.draw(() => {}) }).to.throw(/requires an argument/)
     })
   })
 
-  describe('navigateTo', function() {
-    afterEach(function() {
-      window.TestMessage = undefined;
-      window.Members = undefined;
-      window.App = undefined;
-      window.Admin = undefined;
-      window.Adm = undefined;
+  describe('navigateTo', () => {
+    afterEach(() => {
+      window.TestMessage = undefined
+      window.Members = undefined
+      window.App = undefined
+      window.Admin = undefined
+      window.Adm = undefined
     })
 
-    it('should mount the matched component', function() {
-      var router, method;
+    it('should mount the matched component', () => {
+      let router, method
 
-      window.TestMessage = function() {};
-      window.TestMessage.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      window.TestMessage = class {}
+      window.TestMessage.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('hello', 'test_message');
+        m.page('hello', 'test_message')
       })
-      router.mount('main');
-      router.navigateTo('hello');
+      router.mount('main')
+      router.navigateTo('hello')
 
-      expect(method.calledWith('main')).to.equal(true);
-      expect(router.component).to.equal('test_message');
+      expect(method.calledWith('main')).to.equal(true)
+      expect(router.component).to.equal('test_message')
     })
 
-    it('should recognize query part of the URL hash', function() {
-      var router, method;
+    it('should recognize query part of the URL hash', () => {
+      let router, method
 
-      window.TestMessage = function() {};
-      window.TestMessage.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      window.TestMessage = class {}
+      window.TestMessage.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('hello', 'test_message');
+        m.page('hello', 'test_message')
       })
-      router.mount('main');
-      router.navigateTo('hello', { name: 'John', message: 'Goodby'});
-      router.navigateTo('hello?name=John&message=Goodby&x');
+      router.mount('main')
+      router.navigateTo('hello', { name: 'John', message: 'Goodby'})
+      router.navigateTo('hello?name=John&message=Goodby&x')
 
-      expect(method.calledWith('main')).to.equal(true);
-      expect(router.component).to.equal('test_message');
-      expect(router.query.name).to.equal('John');
-      expect(router.query.message).to.equal('Goodby');
-      expect(router.query.x).to.equal('');
+      expect(method.calledWith('main')).to.equal(true)
+      expect(router.component).to.equal('test_message')
+      expect(router.query.name).to.equal('John')
+      expect(router.query.message).to.equal('Goodby')
+      expect(router.query.x).to.equal('')
     })
 
-    it('should take the second argument as query params', function() {
-      var router, method;
+    it('should take the second argument as query params', () => {
+      let router, method
 
-      window.TestMessage = function() {};
-      window.TestMessage.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      window.TestMessage = class {}
+      window.TestMessage.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('hello', 'test_message');
+        m.page('hello', 'test_message')
       })
-      router.mount('main');
-      router.navigateTo('hello', { name: 'John', message: 'Goodby' });
+      router.mount('main')
+      router.navigateTo('hello', { name: 'John', message: 'Goodby' })
 
-      expect(method.calledWith('main')).to.equal(true);
-      expect(router.component).to.equal('test_message');
-      expect(router.query.name).to.equal('John');
-      expect(router.query.message).to.equal('Goodby');
+      expect(method.calledWith('main')).to.equal(true)
+      expect(router.component).to.equal('test_message')
+      expect(router.query.name).to.equal('John')
+      expect(router.query.message).to.equal('Goodby')
     })
 
-    it('should take the third argument as options', function() {
-      var router, method;
+    it('should take the third argument as options', () => {
+      let router, method
 
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('hello', 'test_message');
+        m.page('hello', 'test_message')
       })
 
       class TestMessage extends Cape.Component {
         init() {
-          this.notice = router.flash.notice;
-          this.alert = router.flash.alert;
+          this.notice = router.flash.notice
+          this.alert = router.flash.alert
         }
 
         mount() { this.init() }
       }
       window.TestMessage = TestMessage
 
-      router.mount('main');
-      router.navigateTo('hello', {}, { notice: 'X', alert: 'Y' });
+      router.mount('main')
+      router.navigateTo('hello', {}, { notice: 'X', alert: 'Y' })
 
-      expect(router.component).to.equal('test_message');
-      expect(router._.mountedComponent.notice).to.equal('X');
-      expect(router._.mountedComponent.alert).to.equal('Y');
+      expect(router.component).to.equal('test_message')
+      expect(router._.mountedComponent.notice).to.equal('X')
+      expect(router._.mountedComponent.alert).to.equal('Y')
     })
 
-    it('should mount the matched component and set Router#params', function() {
-      var router, method;
+    it('should mount the matched component and set Router#params', () => {
+      let router, method
 
-      window.Members = {};
-      window.Members.Item = function() {};
-      window.Members.Item.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      window.Members = {}
+      window.Members.Item = class {}
+      window.Members.Item.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.many('members');
+        m.many('members')
       })
-      router.mount('main');
-      router.navigateTo('members/123');
+      router.mount('main')
+      router.navigateTo('members/123')
 
-      expect(method.calledWith('main')).to.equal(true);
-      expect(router.params.id).to.equal('123');
-      expect(router.namespace).to.be.null;
-      expect(router.resource).to.equal('members');
-      expect(router.action).to.equal('show');
-      expect(router.container).to.equal('members');
-      expect(router.component).to.equal('item');
+      expect(method.calledWith('main')).to.equal(true)
+      expect(router.params.id).to.equal('123')
+      expect(router.namespace).to.be.null
+      expect(router.resource).to.equal('members')
+      expect(router.action).to.equal('show')
+      expect(router.container).to.equal('members')
+      expect(router.component).to.equal('item')
     })
 
-    it('should mount the nested component and set Router#params', function() {
-      var router, method;
+    it('should mount the nested component and set Router#params', () => {
+      let router, method
 
-      window.Members = {};
-      window.Members.Item = function() {};
-      window.Members.Item.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      window.Members = {}
+      window.Members.Item = class {}
+      window.Members.Item.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
         m.many('groups', { only: [] }, function(m) {
           m.many('members')
-        });
-      })
-      router.mount('main');
-      router.navigateTo('groups/9/members/123');
-
-      expect(method.calledWith('main')).to.equal(true);
-      expect(router.params.group_id).to.equal('9');
-      expect(router.params.id).to.equal('123');
-    })
-
-    it('should unmount the mounted component before remounting', function() {
-      var router, method1, method2, method3;
-
-      window.Members = {};
-      window.Members.List = function() {};
-      window.Members.Item = function() {};
-      window.Members.List.prototype.mount = method1 = sinon.spy();
-      window.Members.List.prototype.unmount = method2 = sinon.spy();
-      window.Members.Item.prototype.mount = method3 = sinon.spy();
-
-      router = new Cape.Router();
-      router._.setHash = function() {};
-      router.draw(function(m) {
-        m.many('members');
-      })
-      router.mount('main');
-      router.navigateTo('members');
-      router.navigateTo('members/123');
-
-      expect(method1.calledWith('main')).to.equal(true);
-      expect(method2.called).to.equal(true);
-      expect(method3.calledWith('main')).to.equal(true);
-    })
-
-    it('should mount the component under a namespace', function() {
-      var router, method;
-
-      window.Admin = { Members: {} };
-      window.Admin.Members.Item = function() {};
-      window.Admin.Members.Item.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
-      router.draw(function(m) {
-        m.namespace('admin', function(m) {
-          m.many('members');
         })
       })
-      router.mount('main');
-      router.navigateTo('admin/members/123');
+      router.mount('main')
+      router.navigateTo('groups/9/members/123')
 
-      expect(method.calledWith('main')).to.equal(true);
-      expect(router.params.id).to.equal('123');
-      expect(router.namespace).to.equal('admin');
-      expect(router.resource).to.equal('members');
-      expect(router.action).to.equal('show');
-      expect(router.container).to.equal('admin.members');
-      expect(router.component).to.equal('item');
+      expect(method.calledWith('main')).to.equal(true)
+      expect(router.params.group_id).to.equal('9')
+      expect(router.params.id).to.equal('123')
     })
 
-    it('should mount the component under a deeply nested namespace', function() {
-      var router, method;
+    it('should unmount the mounted component before remounting', () => {
+      let router, method1, method2, method3
 
-      window.App = { Admin: { Members: {} } };
-      window.App.Admin.Members.Item = function() {};
-      window.App.Admin.Members.Item.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      window.Members = {}
+      window.Members.List = class {}
+      window.Members.Item = class {}
+      window.Members.List.prototype.mount = method1 = sinon.spy()
+      window.Members.List.prototype.unmount = method2 = sinon.spy()
+      window.Members.Item.prototype.mount = method3 = sinon.spy()
+
+      router = new Cape.Router()
+      router._.setHash = () => {}
+      router.draw(function(m) {
+        m.many('members')
+      })
+      router.mount('main')
+      router.navigateTo('members')
+      router.navigateTo('members/123')
+
+      expect(method1.calledWith('main')).to.equal(true)
+      expect(method2.called).to.equal(true)
+      expect(method3.calledWith('main')).to.equal(true)
+    })
+
+    it('should mount the component under a namespace', () => {
+      let router, method
+
+      window.Admin = { Members: {} }
+      window.Admin.Members.Item = class {}
+      window.Admin.Members.Item.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
+      router.draw(function(m) {
+        m.namespace('admin', function(m) {
+          m.many('members')
+        })
+      })
+      router.mount('main')
+      router.navigateTo('admin/members/123')
+
+      expect(method.calledWith('main')).to.equal(true)
+      expect(router.params.id).to.equal('123')
+      expect(router.namespace).to.equal('admin')
+      expect(router.resource).to.equal('members')
+      expect(router.action).to.equal('show')
+      expect(router.container).to.equal('admin.members')
+      expect(router.component).to.equal('item')
+    })
+
+    it('should mount the component under a deeply nested namespace', () => {
+      let router, method
+
+      window.App = { Admin: { Members: {} } }
+      window.App.Admin.Members.Item = class {}
+      window.App.Admin.Members.Item.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
         m.namespace('app', function(m) {
           m.namespace('admin', function(m) {
-            m.many('members');
+            m.many('members')
           })
         })
       })
-      router.mount('main');
-      router.navigateTo('app/admin/members/123');
+      router.mount('main')
+      router.navigateTo('app/admin/members/123')
 
-      expect(method.calledWith('main')).to.equal(true);
-      expect(router.params.id).to.equal('123');
+      expect(method.calledWith('main')).to.equal(true)
+      expect(router.params.id).to.equal('123')
     })
 
-    it('should mount the component under a namespace with path option', function() {
-      var router, method;
+    it('should mount the component under a namespace with path option', () => {
+      let router, method
 
-      window.Adm = { Members: {} };
-      window.Adm.Members.Item = function() {};
-      window.Adm.Members.Item.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      window.Adm = { Members: {} }
+      window.Adm.Members.Item = class {}
+      window.Adm.Members.Item.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
         m.namespace('adm', { path: 'admin' }, function(m) {
-          m.many('members');
+          m.many('members')
         })
       })
-      router.mount('main');
-      router.navigateTo('admin/members/123');
+      router.mount('main')
+      router.navigateTo('admin/members/123')
 
-      expect(method.calledWith('main')).to.equal(true);
-      expect(router.params.id).to.equal('123');
+      expect(method.calledWith('main')).to.equal(true)
+      expect(router.params.id).to.equal('123')
     })
 
     it('should run beforeNavigation callbacks', function(done) {
-      var router;
+      let router
 
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router._.mountComponent = function(id) {
-        expect(id).to.equal('login');
-        done();
+        expect(id).to.equal('login')
+        done()
       }
 
       router.draw(function(m) {
-        m.page('login', 'sessions.new');
-        m.many('members');
+        m.page('login', 'sessions.new')
+        m.many('members')
       })
 
       router.beforeNavigation(function(hash) {
         return new Promise(function(resolve, reject) {
-          resolve(hash);
-        });
-      });
+          resolve(hash)
+        })
+      })
 
       router.beforeNavigation(function(hash) {
         return new Promise(function(resolve, reject) {
-          resolve('login');
-        });
-      });
+          resolve('login')
+        })
+      })
 
-      router.mount('main');
-      router.navigateTo('members');
+      router.mount('main')
+      router.navigateTo('members')
     })
 
     it('should run errorHandler', function(done) {
-      var router;
+      let router
 
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      router = new Cape.Router()
+      router._.setHash = () => {}
 
       router.draw(function(m) {
-        m.many('members');
+        m.many('members')
       })
 
       router.beforeNavigation(function(hash) {
         return new Promise(function(resolve, reject) {
-          reject('ERROR');
-        });
-      });
+          reject('ERROR')
+        })
+      })
 
       router.errorHandler(function(err) {
-        expect(err).to.equal('ERROR');
-        done();
-      });
+        expect(err).to.equal('ERROR')
+        done()
+      })
 
-      router.mount('main');
-      router.navigateTo('members');
+      router.mount('main')
+      router.navigateTo('members')
     })
 
-    it ('should call notify()', function() {
-      var router, method3;
+    it ('should call notify()', () => {
+      let router, method3
 
-      window.Members = {};
-      window.Members.Item = function() {};
-      window.Members.Item.prototype.mount = method3 = sinon.spy();
+      window.Members = {}
+      window.Members.Item = class {}
+      window.Members.Item.prototype.mount = method3 = sinon.spy()
 
-      router = new Cape.Router();
-      router._.setHash = function() {};
-      sinon.spy(router, 'notify');
+      router = new Cape.Router()
+      router._.setHash = () => {}
+      sinon.spy(router, 'notify')
       router.draw(function(m) {
-        m.many('members');
+        m.many('members')
       })
-      router.mount('main');
+      router.mount('main')
       router.navigateTo('members/1')
       router.navigateTo('members/2')
 
       expect(router.notify.calledOnce)
     })
 
-    it ('should throw when the argument is not a string', function() {
-      var router;
+    it ('should throw when the argument is not a string', () => {
+      let router
 
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.many('members');
+        m.many('members')
       })
-      router.mount('main');
+      router.mount('main')
 
-      expect(function() { router.navigateTo(0) }).to.throw(/must be a string/);
+      expect(() => { router.navigateTo(0) }).to.throw(/must be a string/)
     })
   })
 
-  describe('redirectTo', function() {
-    afterEach(function() {
-      window.TestMessage = undefined;
+  describe('redirectTo', () => {
+    afterEach(() => {
+      window.TestMessage = undefined
     })
 
-    it('should mount the matched component', function() {
-      var router, method;
+    it('should mount the matched component', () => {
+      let router, method
 
-      window.TestMessage = function() {};
-      window.TestMessage.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      window.TestMessage = class {}
+      window.TestMessage.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('hello', 'test_message');
+        m.page('hello', 'test_message')
       })
-      router.mount('main');
-      router.redirectTo('hello');
+      router.mount('main')
+      router.redirectTo('hello')
 
-      expect(method.calledWith('main')).to.equal(true);
-      expect(router.component).to.equal('test_message');
+      expect(method.calledWith('main')).to.equal(true)
+      expect(router.component).to.equal('test_message')
     })
 
-    it('should take the second argument as query params', function() {
-      var router, method;
+    it('should take the second argument as query params', () => {
+      let router, method
 
-      window.TestMessage = function() {};
-      window.TestMessage.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      window.TestMessage = class {}
+      window.TestMessage.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('hello', 'test_message');
+        m.page('hello', 'test_message')
       })
-      router.mount('main');
-      router.redirectTo('hello', { name: 'John', message: 'Goodby'});
+      router.mount('main')
+      router.redirectTo('hello', { name: 'John', message: 'Goodby'})
 
-      expect(method.calledWith('main')).to.equal(true);
-      expect(router.component).to.equal('test_message');
-      expect(router.query.name).to.equal('John');
-      expect(router.query.message).to.equal('Goodby');
+      expect(method.calledWith('main')).to.equal(true)
+      expect(router.component).to.equal('test_message')
+      expect(router.query.name).to.equal('John')
+      expect(router.query.message).to.equal('Goodby')
     })
 
-    it('should take the third argument as options', function() {
-      var router, method;
+    it('should take the third argument as options', () => {
+      let router, method
 
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('hello', 'test_message');
+        m.page('hello', 'test_message')
       })
 
       class TestMessage extends Cape.Component {
         init() {
-          this.notice = router.flash.notice;
-          this.alert = router.flash.alert;
+          this.notice = router.flash.notice
+          this.alert = router.flash.alert
         }
 
         mount() { this.init() }
@@ -531,28 +531,28 @@ describe('Router', function() {
 
       window.TestMessage = TestMessage
 
-      router.mount('main');
-      router.redirectTo('hello', {}, { notice: 'X', alert: 'Y' });
+      router.mount('main')
+      router.redirectTo('hello', {}, { notice: 'X', alert: 'Y' })
 
-      expect(router.component).to.equal('test_message');
-      expect(router._.mountedComponent.notice).to.equal('X');
-      expect(router._.mountedComponent.alert).to.equal('Y');
+      expect(router.component).to.equal('test_message')
+      expect(router._.mountedComponent.notice).to.equal('X')
+      expect(router._.mountedComponent.alert).to.equal('Y')
     })
 
     // For backward compatibility. This example should be removed on the vertion 2.x.
-    it('should take the second argument as options if it has a notice/alert key', function() {
-      var router, method;
+    it('should take the second argument as options if it has a notice/alert key', () => {
+      let router, method
 
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('hello', 'test_message');
+        m.page('hello', 'test_message')
       })
 
       class TestMessage extends Cape.Component {
         init() {
-          this.notice = router.flash.notice;
-          this.alert = router.flash.alert;
+          this.notice = router.flash.notice
+          this.alert = router.flash.alert
         }
 
         mount() { this.init() }
@@ -560,27 +560,27 @@ describe('Router', function() {
 
       window.TestMessage = TestMessage
 
-      router.mount('main');
-      router.redirectTo('hello', { notice: 'X', alert: 'Y' });
+      router.mount('main')
+      router.redirectTo('hello', { notice: 'X', alert: 'Y' })
 
-      expect(router.component).to.equal('test_message');
-      expect(router._.mountedComponent.notice).to.equal('X');
-      expect(router._.mountedComponent.alert).to.equal('Y');
+      expect(router.component).to.equal('test_message')
+      expect(router._.mountedComponent.notice).to.equal('X')
+      expect(router._.mountedComponent.alert).to.equal('Y')
     })
 
-    it('should not take the second argument as options if the third argument is given', function() {
-      var router, method;
+    it('should not take the second argument as options if the third argument is given', () => {
+      let router, method
 
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('hello', 'test_message');
+        m.page('hello', 'test_message')
       })
 
       class TestMessage extends Cape.Component {
         init() {
-          this.notice = router.flash.notice;
-          this.alert = router.flash.alert;
+          this.notice = router.flash.notice
+          this.alert = router.flash.alert
         }
 
         mount() { this.init() }
@@ -588,54 +588,54 @@ describe('Router', function() {
 
       window.TestMessage = TestMessage
 
-      router.mount('main');
-      router.redirectTo('hello', { notice: 'X', alert: 'Y' }, {});
+      router.mount('main')
+      router.redirectTo('hello', { notice: 'X', alert: 'Y' }, {})
 
-      expect(router.component).to.equal('test_message');
-      expect(router.query.notice).to.equal('X');
-      expect(router.query.alert).to.equal('Y');
-      expect(router._.mountedComponent.notice).to.be_null;
-      expect(router._.mountedComponent.alert).to.be_null;
+      expect(router.component).to.equal('test_message')
+      expect(router.query.notice).to.equal('X')
+      expect(router.query.alert).to.equal('Y')
+      expect(router._.mountedComponent.notice).to.be_null
+      expect(router._.mountedComponent.alert).to.be_null
     })
   })
 
-  describe('show', function() {
-    afterEach(function() {
-      window.TestMessage = undefined;
+  describe('show', () => {
+    afterEach(() => {
+      window.TestMessage = undefined
     })
 
-    it('should mount the specified component', function() {
-      var router, method;
+    it('should mount the specified component', () => {
+      let router, method
 
-      window.TestMessage = function() {};
-      window.TestMessage.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      window.TestMessage = class {}
+      window.TestMessage.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('hello', 'test_message');
+        m.page('hello', 'test_message')
       })
-      router.mount('main');
-      router.show(window.TestMessage);
+      router.mount('main')
+      router.show(window.TestMessage)
 
-      expect(method.calledWith('main')).to.equal(true);
+      expect(method.calledWith('main')).to.equal(true)
     })
 
-    it('should take the second argument as query params', function() {
-      var router, method;
+    it('should take the second argument as query params', () => {
+      let router, method
 
-      window.TestMessage = function() {};
-      window.TestMessage.prototype.mount = method = sinon.spy();
-      router = new Cape.Router();
-      router._.setHash = function() {};
+      window.TestMessage = class {}
+      window.TestMessage.prototype.mount = method = sinon.spy()
+      router = new Cape.Router()
+      router._.setHash = () => {}
       router.draw(function(m) {
-        m.page('hello', 'test_message');
+        m.page('hello', 'test_message')
       })
-      router.mount('main');
-      router.show(window.TestMessage, { name: 'John', message: 'Goodby'});
+      router.mount('main')
+      router.show(window.TestMessage, { name: 'John', message: 'Goodby'})
 
-      expect(method.calledWith('main')).to.equal(true);
-      expect(router.query.name).to.equal('John');
-      expect(router.query.message).to.equal('Goodby');
+      expect(method.calledWith('main')).to.equal(true)
+      expect(router.query.name).to.equal('John')
+      expect(router.query.message).to.equal('Goodby')
     })
   })
 })

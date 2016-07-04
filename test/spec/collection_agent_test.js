@@ -217,7 +217,7 @@ describe('CollectionAgent', () => {
       spy1 = sinon.spy()
       stubFetchAPI(spy1, { users: [ {}, {} ], user_count: 2 })
       agent = new Cape.CollectionAgent({}, { resourceName: 'users' })
-      sinon.stub(agent, 'afterRefresh', function() {
+      sinon.stub(agent, 'afterRefresh', () => {
         agent.userCount = agent.data.user_count
       })
       sinon.stub(agent, 'defaultErrorHandler')
