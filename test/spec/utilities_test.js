@@ -47,24 +47,4 @@ describe('Cape', function() {
       expect(obj1.e).to.equal(7);
     })
   })
-
-  describe('createPartialClass', function() {
-    it('should take constructor method', function() {
-      var Klass, partial;
-
-      Klass = Cape.createPartialClass({
-        constructor: function(x, y) {
-          this.x = x;
-          this.y = y;
-        },
-        render: function(m) {
-          m.p('hello!');
-        }
-      })
-
-      partial = new Klass(1, 2);
-      expect(partial.x).to.equal(1);
-      expect(partial.y).to.equal(2);
-    })
-  })
 })
