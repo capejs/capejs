@@ -47,9 +47,12 @@ console.log(router.action); // => "edit"
 
 #### Usage
 
-* **attach(component)**
+* **attach(listener)**
 
-This method register the *component* as the target of *notification* from this router.
+This method register the *listener* as the target of *notification* from this router.
+
+A listener must have `#refresh()` method.
+Typically, a listener is an instance of Cape.Component, Cape.ResourceAgent or Cape.CollectionAgent.
 
 See [#notify()](#notify) for details.
 
@@ -189,7 +192,7 @@ This method is *deprecated* as of v1.4.
 * **navigate(hash)**
 
 Sets the anchor part (begins with a `#` symbol) of the browser's current URL to _hash._
-See [#navigateTo()](#navigateTo).
+See [#navigateTo()](#navigate-to).
 
 <a class="anchor" id="navigate-to"></a>
 ### #navigateTo() <span class="badge alert-info">1.4</span>
@@ -209,11 +212,9 @@ After setting the anchor part of URL, this method choose a component
 according to the routing table.
 
 When this component is different from the component which is mounted currently,
-it unmounts the latter and mounts the former.
-When this component is same with the component mounted currently
-it calls the `#refresh` method of mounted component.
-
-Lastly, the `#notify()` method is executed.
+it unmounts the latter, executes the `#notify()` method, and mounts the former.
+When this component is same with the component mounted currently,
+it just executes the `#notify()` method.
 
 If you don't want the `#notify()` method to be executed, use [#show()](#show) instead.
 
@@ -251,12 +252,12 @@ router.navigateTo('articles/new', {}, { alert: 'Failed to upload a new article.'
 * **notify()**
 
 This method triggars the _notification_ process, which calls the `#refresh()` method
-of all components registerd as targets of _notification_ of this data store.
+of all _listeners_ registerd as targets of _notification_ of this data store.
 
-Eventually, each target component executes its `#render()` method,
-which has to be defined by developers.
+Eventually, each _listener_ executes its `#refresh()` method,
+which may have to be defined by developers.
 
-The `#notify()` method is executed after each time the [#navigateTo()](#navigateTo) method is called.
+The `#notify()` method is executed after each time the [#navigateTo()](#navigate-to) method is called.
 
 <a class="anchor" id="mount"></a>
 ### #mount()
@@ -351,11 +352,9 @@ After setting the anchor part of URL, this method choose a component
 according to the routing table.
 
 When this component is different from the component mounted currently,
-it unmounts the latter and mounts the former.
+it unmounts the latter, executes `#notify()` method and mounts the former.
 When this component is same with the component which is mounted currently
-it calls the `#refresh` method of the mounted component.
-
-Lastly, the `#notify()` method is executed.
+it just executes `#notify()` method.
 
 #### Usage
 
@@ -471,7 +470,7 @@ var route = router.routeFor('admin/articles/123/edit');
 
 This method mounts an instance of *componentClass* class.
 
-Unlike [#navigateTo()](#navigateTo), it does neither change the anchor part of
+Unlike [#navigateTo()](#navigate-to), it does neither change the anchor part of
 current URL, nor call the [#notify()](#notify) method.
 
 #### Example
