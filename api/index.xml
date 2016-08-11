@@ -3940,10 +3940,13 @@ console.log(router.action); // =&amp;gt; &amp;quot;edit&amp;quot;
 &lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;attach(component)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;attach(listener)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;This method register the &lt;em&gt;component&lt;/em&gt; as the target of &lt;em&gt;notification&lt;/em&gt; from this router.&lt;/p&gt;
+&lt;p&gt;This method register the &lt;em&gt;listener&lt;/em&gt; as the target of &lt;em&gt;notification&lt;/em&gt; from this router.&lt;/p&gt;
+
+&lt;p&gt;A listener must have &lt;code&gt;#refresh()&lt;/code&gt; method.
+Typically, a listener is an instance of Cape.Component, Cape.ResourceAgent or Cape.CollectionAgent.&lt;/p&gt;
 
 &lt;p&gt;See &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; for details.&lt;/p&gt;
 
@@ -4093,7 +4096,7 @@ console.log(router.namespace); // =&amp;gt; &amp;quot;admin&amp;quot;
 &lt;/ul&gt;
 
 &lt;p&gt;Sets the anchor part (begins with a &lt;code&gt;#&lt;/code&gt; symbol) of the browser&amp;rsquo;s current URL to &lt;em&gt;hash.&lt;/em&gt;
-See &lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt;.&lt;/p&gt;
+See &lt;a href=&#34;#navigate-to&#34;&gt;#navigateTo()&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;navigate-to&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -4116,11 +4119,9 @@ it will be set to the anchor part of the browser&amp;rsquo;s current URL.&lt;/p&
 according to the routing table.&lt;/p&gt;
 
 &lt;p&gt;When this component is different from the component which is mounted currently,
-it unmounts the latter and mounts the former.
-When this component is same with the component mounted currently
-it calls the &lt;code&gt;#refresh&lt;/code&gt; method of mounted component.&lt;/p&gt;
-
-&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
+it unmounts the latter, executes the &lt;code&gt;#notify()&lt;/code&gt; method, and mounts the former.
+When this component is same with the component mounted currently,
+it just executes the &lt;code&gt;#notify()&lt;/code&gt; method.&lt;/p&gt;
 
 &lt;p&gt;If you don&amp;rsquo;t want the &lt;code&gt;#notify()&lt;/code&gt; method to be executed, use &lt;a href=&#34;#show&#34;&gt;#show()&lt;/a&gt; instead.&lt;/p&gt;
 
@@ -4163,12 +4164,12 @@ router.navigateTo(&#39;articles/new&#39;, {}, { alert: &#39;Failed to upload a n
 &lt;/ul&gt;
 
 &lt;p&gt;This method triggars the &lt;em&gt;notification&lt;/em&gt; process, which calls the &lt;code&gt;#refresh()&lt;/code&gt; method
-of all components registerd as targets of &lt;em&gt;notification&lt;/em&gt; of this data store.&lt;/p&gt;
+of all &lt;em&gt;listeners&lt;/em&gt; registerd as targets of &lt;em&gt;notification&lt;/em&gt; of this data store.&lt;/p&gt;
 
-&lt;p&gt;Eventually, each target component executes its &lt;code&gt;#render()&lt;/code&gt; method,
-which has to be defined by developers.&lt;/p&gt;
+&lt;p&gt;Eventually, each &lt;em&gt;listener&lt;/em&gt; executes its &lt;code&gt;#refresh()&lt;/code&gt; method,
+which may have to be defined by developers.&lt;/p&gt;
 
-&lt;p&gt;The &lt;code&gt;#notify()&lt;/code&gt; method is executed after each time the &lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt; method is called.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;#notify()&lt;/code&gt; method is executed after each time the &lt;a href=&#34;#navigate-to&#34;&gt;#navigateTo()&lt;/a&gt; method is called.&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;anchor&#34; id=&#34;mount&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -4266,11 +4267,9 @@ before changing the anchor part of URL.&lt;/p&gt;
 according to the routing table.&lt;/p&gt;
 
 &lt;p&gt;When this component is different from the component mounted currently,
-it unmounts the latter and mounts the former.
+it unmounts the latter, executes &lt;code&gt;#notify()&lt;/code&gt; method and mounts the former.
 When this component is same with the component which is mounted currently
-it calls the &lt;code&gt;#refresh&lt;/code&gt; method of the mounted component.&lt;/p&gt;
-
-&lt;p&gt;Lastly, the &lt;code&gt;#notify()&lt;/code&gt; method is executed.&lt;/p&gt;
+it just executes &lt;code&gt;#notify()&lt;/code&gt; method.&lt;/p&gt;
 
 &lt;h4 id=&#34;usage-10&#34;&gt;Usage&lt;/h4&gt;
 
@@ -4393,7 +4392,7 @@ var route = router.routeFor(&#39;admin/articles/123/edit&#39;);
 
 &lt;p&gt;This method mounts an instance of &lt;em&gt;componentClass&lt;/em&gt; class.&lt;/p&gt;
 
-&lt;p&gt;Unlike &lt;a href=&#34;#navigateTo&#34;&gt;#navigateTo()&lt;/a&gt;, it does neither change the anchor part of
+&lt;p&gt;Unlike &lt;a href=&#34;#navigate-to&#34;&gt;#navigateTo()&lt;/a&gt;, it does neither change the anchor part of
 current URL, nor call the &lt;a href=&#34;#notify&#34;&gt;#notify()&lt;/a&gt; method.&lt;/p&gt;
 
 &lt;h4 id=&#34;example-17&#34;&gt;Example&lt;/h4&gt;

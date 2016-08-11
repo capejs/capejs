@@ -512,10 +512,13 @@ console.log(router.action); // =&gt; &quot;edit&quot;
 <h4 id="usage">Usage</h4>
 
 <ul>
-<li><strong>attach(component)</strong></li>
+<li><strong>attach(listener)</strong></li>
 </ul>
 
-<p>This method register the <em>component</em> as the target of <em>notification</em> from this router.</p>
+<p>This method register the <em>listener</em> as the target of <em>notification</em> from this router.</p>
+
+<p>A listener must have <code>#refresh()</code> method.
+Typically, a listener is an instance of Cape.Component, Cape.ResourceAgent or Cape.CollectionAgent.</p>
 
 <p>See <a href="#notify">#notify()</a> for details.</p>
 
@@ -665,7 +668,7 @@ console.log(router.namespace); // =&gt; &quot;admin&quot;
 </ul>
 
 <p>Sets the anchor part (begins with a <code>#</code> symbol) of the browser&rsquo;s current URL to <em>hash.</em>
-See <a href="#navigateTo">#navigateTo()</a>.</p>
+See <a href="#navigate-to">#navigateTo()</a>.</p>
 
 <p><a class="anchor" id="navigate-to"></a></p>
 
@@ -688,11 +691,9 @@ it will be set to the anchor part of the browser&rsquo;s current URL.</p>
 according to the routing table.</p>
 
 <p>When this component is different from the component which is mounted currently,
-it unmounts the latter and mounts the former.
-When this component is same with the component mounted currently
-it calls the <code>#refresh</code> method of mounted component.</p>
-
-<p>Lastly, the <code>#notify()</code> method is executed.</p>
+it unmounts the latter, executes the <code>#notify()</code> method, and mounts the former.
+When this component is same with the component mounted currently,
+it just executes the <code>#notify()</code> method.</p>
 
 <p>If you don&rsquo;t want the <code>#notify()</code> method to be executed, use <a href="#show">#show()</a> instead.</p>
 
@@ -735,12 +736,12 @@ router.navigateTo('articles/new', {}, { alert: 'Failed to upload a new article.'
 </ul>
 
 <p>This method triggars the <em>notification</em> process, which calls the <code>#refresh()</code> method
-of all components registerd as targets of <em>notification</em> of this data store.</p>
+of all <em>listeners</em> registerd as targets of <em>notification</em> of this data store.</p>
 
-<p>Eventually, each target component executes its <code>#render()</code> method,
-which has to be defined by developers.</p>
+<p>Eventually, each <em>listener</em> executes its <code>#refresh()</code> method,
+which may have to be defined by developers.</p>
 
-<p>The <code>#notify()</code> method is executed after each time the <a href="#navigateTo">#navigateTo()</a> method is called.</p>
+<p>The <code>#notify()</code> method is executed after each time the <a href="#navigate-to">#navigateTo()</a> method is called.</p>
 
 <p><a class="anchor" id="mount"></a></p>
 
@@ -838,11 +839,9 @@ before changing the anchor part of URL.</p>
 according to the routing table.</p>
 
 <p>When this component is different from the component mounted currently,
-it unmounts the latter and mounts the former.
+it unmounts the latter, executes <code>#notify()</code> method and mounts the former.
 When this component is same with the component which is mounted currently
-it calls the <code>#refresh</code> method of the mounted component.</p>
-
-<p>Lastly, the <code>#notify()</code> method is executed.</p>
+it just executes <code>#notify()</code> method.</p>
 
 <h4 id="usage-10">Usage</h4>
 
@@ -965,7 +964,7 @@ var route = router.routeFor('admin/articles/123/edit');
 
 <p>This method mounts an instance of <em>componentClass</em> class.</p>
 
-<p>Unlike <a href="#navigateTo">#navigateTo()</a>, it does neither change the anchor part of
+<p>Unlike <a href="#navigate-to">#navigateTo()</a>, it does neither change the anchor part of
 current URL, nor call the <a href="#notify">#notify()</a> method.</p>
 
 <h4 id="example-17">Example</h4>
