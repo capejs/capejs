@@ -1318,8 +1318,8 @@ _extends(Router.prototype, {
 
     if (window.addEventListener) window.addEventListener('hashchange', self._.eventListener, false);else if (window.attachEvent) window.attachEvent('onhashchange', self._.eventListener);
 
-    this.currentHash = window.location.href.split('#')[1] || '';
-    this.navigate(this.currentHash);
+    this._.currentHash = window.location.href.split('#')[1] || '';
+    this.navigate(this._.currentHash);
   },
   stop: function () {
     var self = this;
