@@ -1,5 +1,10 @@
 # CHANGELOG - Cape.JS
 
+## 1.5.2 (August 16, 2016)
+
+* Fix `Cape.Router#start()`. The `currentHash` is not a public attribute, but
+  a private (inner) attribute.
+
 ## 1.5.1 (June 19, 2016)
 
 * Change the Git repository from `git://github.com/oiax/capejs` to `git://github.com/capejs/capejs`.
