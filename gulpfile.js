@@ -9,7 +9,7 @@ var Server = require('karma').Server;
 var fs = require('fs');
 
 gulp.task('build', function(cb) {
-  exec('browserify --transform babelify --standalone Cape lib/cape.js > dist/cape.js', function (err, stdout, stderr) {
+  exec('browserify --transform [ babelify --presets [ es2015] ] --standalone Cape lib/cape.js > dist/cape.js', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);

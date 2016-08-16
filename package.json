@@ -1,6 +1,6 @@
 {
   "name": "capejs",
-  "version": "1.5.1",
+  "version": "2.0.0.alpha",
   "description": "A lightweight Javascript UI framework based on virtual-dom",
   "main": "lib/cape.js",
   "directories": {
@@ -29,7 +29,9 @@
     "virtual-dom": "2.1.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.11.4",
     "babel-plugin-transform-object-assign": "^6.8.0",
+    "babel-preset-es2015": "^6.13.2",
     "babelify": "^7.3.0",
     "browserify": "^13.0.0",
     "chai": "^3.5.0",
