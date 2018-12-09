@@ -99,7 +99,7 @@ Put following two files on your PC:
 <head>
   <title>HELLO WORLD</title>
   <meta charset="UTF-8">
-  <script src="https://cdn.rawgit.com/capejs/capejs/v1.5.1/dist/cape.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/capejs/capejs@v1.5.1/dist/cape.min.js"></script>
   <script src="./hello_message.js"></script>
 </head>
 <body>
